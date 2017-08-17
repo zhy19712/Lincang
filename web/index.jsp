@@ -18,8 +18,9 @@
     <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="css/choose.min.css" rel="stylesheet">
-    <link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='css/animate.min.css' rel='stylesheet'>
+    <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
@@ -120,7 +121,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        new1
+
                                     </div>
                                     <div class="tab-pane" id="progress1">
                                         <div>
@@ -189,7 +190,7 @@
 <script src="js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="js/jquery.history.js"></script>
-<!-- application script for Charisma demo -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
