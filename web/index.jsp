@@ -122,6 +122,17 @@
                                             </ul>
                                         </div>
 
+                                        <table id="originalForm" class="table table-striped table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th>编号</th>
+                                                <th>标题</th>
+                                                <th>创建时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+
                                     </div>
                                     <div class="tab-pane" id="progress1">
                                         <div>
