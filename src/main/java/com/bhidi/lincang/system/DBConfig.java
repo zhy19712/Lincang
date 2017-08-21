@@ -8,10 +8,10 @@ import java.sql.SQLException;
  * Created by zhy19712 on 01/08/2017.
  */
 public class DBConfig {
-    public static final String url = "jdbc:mysql://106.14.10.21:3306/LINCANG?useSSL=false";
+    public static final String url = "jdbc:mysql://192.168.243.124:3306/LINCANG?useSSL=false";
     public static final String name = "com.mysql.jdbc.Driver";
     public static final String user = "root";
-    public static final String password = "Jsjs=412";
+    public static final String password = "admin";
 
 
     public DBConfig() {
