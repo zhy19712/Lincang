@@ -11,10 +11,13 @@
     border-right: 1px solid red;
 }
 .myrow>div>span{
+    display: inline-block;
+    width: 70px;
+    border-right: 1px solid red;
     color: red;
 }
 .myrow>div>input{
-    width: 75%;
+    width: 65%;
     height: 80%;
     border: none;
     outline: none;
@@ -29,8 +32,9 @@
     outline: none;
     text-indent: 11px;
 }
-@media (max-width: 1200px){
+@media (max-width: 1250px){
     .myrow>div{
+        width: 100%;
         border-bottom: 1px solid red;
         border-right: 1px solid red;
     }
