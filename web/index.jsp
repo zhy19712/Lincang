@@ -173,12 +173,13 @@
                                                 <input type="text">
                                             </div>
                                         </div>
-                                        <div class="row myrow">
+                                        <div class="row myrow last">
                                             <div class="col-lg-12">
-                                                <p>标题</p>
-                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                                <span>标题</span>
+                                                <input type="text">
                                             </div>
                                         </div>
+                                        <textarea name="" id="mytext" cols="30" rows="10" placeholder="内容"></textarea>
 
                                     </div>
                                     <div class="tab-pane" id="progress1">
