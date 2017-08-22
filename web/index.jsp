@@ -20,6 +20,7 @@
     <link href="css/choose.min.css" rel="stylesheet">
     <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
 
 
     <!-- jQuery -->
@@ -132,6 +133,52 @@
                                             </tr>
                                             </thead>
                                         </table>
+                                        <div class="row myrow">
+                                            <div class="col-lg-5">
+                                                <span>报稿单位</span>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <span>报稿</span>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <span>科室核稿</span>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row myrow">
+                                            <div class="col-lg-5">
+                                                <span>印刷</span>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-3">
+                                                <span>校对</span>
+                                                <input type="text">
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <span>份数</span>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row myrow">
+                                            <div class="col-lg-12">
+                                                <span>附件</span>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row myrow">
+                                            <div class="col-lg-12">
+                                                <span>主题词</span>
+                                                <input type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row myrow">
+                                            <div class="col-lg-12">
+                                                <p>标题</p>
+                                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                            </div>
+                                        </div>
 
                                     </div>
                                     <div class="tab-pane" id="progress1">
@@ -166,8 +213,11 @@
                                         completed3
                                     </div>
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
 
             </div>

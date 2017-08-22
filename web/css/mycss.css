@@ -1,0 +1,33 @@
+.myrow{
+    width: 100%;
+    margin-left: 0;
+    border-top: 2px solid red;
+    line-height: 30px;
+}
+.myrow>div{
+    border-right: 2px solid red;
+}
+.myrow>div:last-child{
+    border-right: none;
+}
+.myrow>div>input{
+    width: 75%;
+    height: 80%;
+    border: none;
+    outline: none;
+}
+.myrow textarea{
+    width: 100%;
+    height: 200px;
+    border: 2px solid red;
+    outline: none;
+}
+@media (max-width: 1200px){
+    .myrow>div{
+        border-right: none;
+        border-bottom: 2px solid red;
+    }
+    .myrow>div:last-child{
+        border-bottom: none;
+    }
+}
