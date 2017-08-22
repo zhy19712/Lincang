@@ -30,4 +30,7 @@
     .myrow>div:last-child{
         border-bottom: none;
     }
+    .homepage-box{
+        height: 650px;
+    }
 }
