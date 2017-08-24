@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class OriginalFormTable {
+public class WaitingTable_Stuff {
     @ResponseBody
     @RequestMapping(value = "/oform", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
     public String FetchData(@RequestParam(value = "draw", required = false) String draw,
