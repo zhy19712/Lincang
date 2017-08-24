@@ -99,15 +99,13 @@ $(document).ready(function () {
     $('.accordion li.active:first').parents('ul').slideDown();
 
 
-    //other things to do on document ready, separated for ajax calls
-    docReady();
 
 
     //datatable
     var originalForm;
     originalForm = $('#originalForm').DataTable({
         ajax: {
-            url: "/list_task.jsp"
+            url: "/oform"
         },
         "order": [[1, 'asc']],
         "serverSide": true,
@@ -153,6 +151,14 @@ $(document).ready(function () {
             cell.innerHTML = columnIndex;
         });
     }).draw();
+
+
+
+
+
+    //other things to do on document ready, separated for ajax calls
+    docReady();
+
 
 
 });
