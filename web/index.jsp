@@ -98,7 +98,7 @@
             <!-- content starts -->
             <div class=" row">
                     <div class="col-lg-12">
-                        <div class="box-inner homepage-box">
+                        <div class="box-inner ">
                             <div class="box-content">
                                 <div id="myTabContent" class="tab-content">
                                     <div class="tab-pane active" id="home">
