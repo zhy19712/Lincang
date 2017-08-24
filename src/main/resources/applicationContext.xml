@@ -7,8 +7,8 @@
                           http://www.springframework.org/schema/context
                           http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="/WEB-INF/dbConfig.properties"/>
-    <context:property-placeholder location="/WEB-INF/c3p0.properties"/>
+    <context:property-placeholder location="classpath:dbConfig.properties"/>
+    <context:property-placeholder location="classpath:c3p0.properties"/>
     <!--配置数据库连接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="${jdbc.username}"></property>
