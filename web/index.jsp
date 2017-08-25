@@ -123,12 +123,12 @@
                                             </ul>
                                         </div>
 
-                                        <table id="originalForm" class="table table-striped table-bordered">
+                                        <table id="originalForm"  class="display" width="100%" cellspacing="0">
                                             <thead>
                                             <tr>
                                                 <th>编号</th>
                                                 <th>标题</th>
-                                                <th>创建时间</th>
+                                                <th>创时间</th>
                                                 <th>操作</th>
                                             </tr>
                                             </thead>

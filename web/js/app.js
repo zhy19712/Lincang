@@ -152,6 +152,21 @@ function docReady() {
             {"data": "CREATED_AT"},
             {"data": null}
         ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [3],
+                "render" : function (data) {
+                    return "<div class='detail' onclick='detail(this)'><img src='/image/detail.png' alt=''><span>详情</span></div><div class='delete'><img src='/image/delete.png' alt=''><span>删除</span></div>"
+                }
+            },
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0]
+            }
+        ],
 
         "language": {
             "lengthMenu": "每页_MENU_ 条记录",
@@ -165,28 +180,6 @@ function docReady() {
                 "next": "下一页"
             }
         }
-
     });
-
-    //添加序号
-    //不管是排序，还是分页，还是搜索最后都会重画，这里监听draw事件即可
-    originalFormTable.on('draw.dt',function() {
-        originalFormTable.column(0, {
-            search: 'applied',
-            order: 'applied'
-        }).nodes().each(function(cell, i) {
-            //i 从0开始，所以这里先加1
-            i = i+1;
-            //服务器模式下获取分页信息
-            var page = table.page.info();
-            //当前第几页，从0开始
-            var pageno = page.page;
-            //每页数据
-            var length = page.length;
-            //行号等于 页数*每页数据长度+行号
-            var columnIndex = (i+pageno*length);
-            cell.innerHTML = columnIndex;
-        });
-    }).draw();
 
 }

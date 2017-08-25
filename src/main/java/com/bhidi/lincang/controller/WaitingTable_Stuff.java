@@ -3,12 +3,14 @@ package com.bhidi.lincang.controller;
 import com.bhidi.lincang.bean.OriginalFrom;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,18 +23,21 @@ import java.util.Map;
 @Controller
 public class WaitingTable_Stuff {
     @ResponseBody
-    @RequestMapping(value="/oform",method= RequestMethod.GET,produces = "text/html;charset=UTF-8")
-    public String FetchData(@RequestParam(value = "draw", required = false) String draw,
-                            @RequestParam(value = "start", required = false) String start,
-                            @RequestParam(value = "length", required = false) String length,
-                            @RequestParam(value = "order[0][column]", required = false) String orderColumn,
-                            @RequestParam(value = "order[0][dir]", required = false) String orderDir,
-                            @RequestParam(value = "search[value]", required = false) String searchValue) throws SQLException {
+    @RequestMapping(value="/oform.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String FetchData(HttpServletRequest request) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "FORM_ORIGIN";
-        System.out.println(123);
+
+
+        //获取请求次数
+        String draw = "0";
+        draw = request.getParameter("draw");
+        //数据起始位置
+        String start = request.getParameter("start");
+        //数据长度
+        String length = request.getParameter("length");
 
         //总记录数
         String recordsTotal = "0";
@@ -43,8 +48,16 @@ public class WaitingTable_Stuff {
 
         //定义列名
         String[] cols = {"OID", "TITLE", "CREATED_AT"};
+        String orderColumn = "0";
+        orderColumn = request.getParameter("order[0][column]");
+        orderColumn = cols[Integer.parseInt(orderColumn)];
+        //获取排序方式 默认为asc
+        String orderDir = "asc";
+        orderDir = request.getParameter("order[0][dir]");
 
         //获取用户过滤框里的字符
+        String searchValue = request.getParameter("search[value]");
+
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
