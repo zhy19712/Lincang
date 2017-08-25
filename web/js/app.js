@@ -138,6 +138,7 @@ function docReady() {
     //iOS / iPhone style toggle switch
     $('.iphone-toggle').iphoneStyle();
 
+
     //datatable
     var originalFormTable;
     originalFormTable = $('#originalForm').DataTable({
@@ -157,8 +158,10 @@ function docReady() {
                 "searchable": false,
                 "orderable": false,
                 "targets": [3],
-                "render" : function (data) {
-                    return "<div class='detail' onclick='detail(this)'><img src='/image/detail.png' alt=''><span>详情</span></div><div class='delete'><img src='/image/delete.png' alt=''><span>删除</span></div>"
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='查看'/>"
+                    html += "<input type='button' class='btn btn-danger btn-xs' value='删除'/>"
+                  return html;
                 }
             },
             {
@@ -167,7 +170,6 @@ function docReady() {
                 "targets": [0]
             }
         ],
-
         "language": {
             "lengthMenu": "每页_MENU_ 条记录",
             "zeroRecords": "没有找到记录",
@@ -181,5 +183,9 @@ function docReady() {
             }
         }
     });
+
+
+
+
 
 }

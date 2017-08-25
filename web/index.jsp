@@ -242,6 +242,17 @@
 
 </div><!--/.fluid-container-->
 
+<script>
+
+    function detail(that){
+        var oid = $(that).parents("tr").children("td:nth-child(1)").text();
+        var title = $(that).parents("tr").children("td:nth-child(2)").text();
+        var time = $(that).parents("tr").children("td:nth-child(3)").text();
+        alert(oid);
+    }
+
+</script>
+
 <!-- external javascript -->
 <script src="js/bootstrap.min.js"></script>
 <!-- library for cookie management -->
