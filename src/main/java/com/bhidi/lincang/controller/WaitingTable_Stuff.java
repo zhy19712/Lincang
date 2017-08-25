@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 public class WaitingTable_Stuff {
     @ResponseBody
-    @RequestMapping(value = "/oform", method = RequestMethod.GET, produces = {"application/json;charset=UTF-8"})
+    @RequestMapping(value="/oform",method= RequestMethod.GET,produces = "text/html;charset=UTF-8")
     public String FetchData(@RequestParam(value = "draw", required = false) String draw,
                             @RequestParam(value = "start", required = false) String start,
                             @RequestParam(value = "length", required = false) String length,
@@ -32,6 +32,7 @@ public class WaitingTable_Stuff {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "FORM_ORIGIN";
+        System.out.println(123);
 
         //总记录数
         String recordsTotal = "0";
