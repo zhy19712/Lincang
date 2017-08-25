@@ -142,7 +142,7 @@ function docReady() {
     var originalFormTable;
     originalFormTable = $('#originalForm').DataTable({
         ajax: {
-            url: "/oform"
+            url: "/oform.do"
         },
         "order": [[2, 'asc']],
         "serverSide": true,
