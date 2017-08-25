@@ -2,13 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                           http://www.springframework.org/schema/beans/spring-beans.xsd
                           http://www.springframework.org/schema/context
-                          http://www.springframework.org/schema/context/spring-context.xsd">
+                          http://www.springframework.org/schema/context/spring-context.xsd
+                          http://www.springframework.org/schema/tx
+                          http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
     <context:property-placeholder location="classpath:dbConfig.properties"/>
-    <!--<context:property-placeholder location="classpath:c3p0.properties"/>-->
     <!--配置数据库连接池 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="user" value="${jdbc.username}"></property>
@@ -28,4 +30,11 @@
     <bean id="namedJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <constructor-arg name="dataSource" value="#{dataSource}"></constructor-arg>
     </bean>
+    <!--让事务管理器控制事务；控制住获取的连接即可  -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <constructor-arg name="dataSource" ref="dataSource"></constructor-arg>
+    </bean>
+
+    <!--开启基于注解的事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 </beans>

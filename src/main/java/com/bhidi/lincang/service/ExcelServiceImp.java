@@ -12,6 +12,7 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,6 +32,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
      * 读取Excel测试，兼容 Excel 2003/2007/2010
      * @throws Exception
      */
+
     public String readService(File excelFile){
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         //读取步骤
@@ -212,7 +214,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             p.setInterviewer(interviewer);
         }
         //调用sql将用户的存储到数据库中去
-        DBUtils.batchInsert(pl.getPeopleList());
+       /* DBUtils.batchInsert(pl.getPeopleList());*/
 
 
 
@@ -322,7 +324,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);
         //调用jadbcTemplate的插入方法
-        int i = excelDao.save(move);
+       /* int i = excelDao.save(move);
+        System.out.println("迁入迁出信息录入了："+i+"条；");*/
 
         //开始取住房情况信息
         Row rowMainHouse = firstSheet.getRow(firstSheetendRow + 5);
@@ -332,7 +335,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellMainHouse2.setCellType(Cell.CELL_TYPE_STRING);
         }
         String main_size = cellMainHouse2.getStringCellValue();
-        System.out.println(main_size);
+        System.out.println("主房面积："+main_size);
         //砖混结构
         Cell cellMainHouse3 = rowMainHouse.getCell(3);
         if( cellMainHouse3 != null ){
@@ -368,7 +371,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         String main_structure5 = cellMainHouse7.getStringCellValue();
         System.out.println(main_structure5);
-        //简易房
+        //主房备注
         Cell cellMainHouse8 = rowMainHouse.getCell(8);
         if( cellMainHouse8 != null ){
             cellMainHouse8.setCellType(Cell.CELL_TYPE_STRING);
@@ -383,14 +386,14 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellSubHouse2.setCellType(Cell.CELL_TYPE_STRING);
         }
         String sub_size = cellSubHouse2.getStringCellValue();
-        System.out.println(sub_size);
+        System.out.println("附属房间面积："+sub_size);
         //砖混结构
         Cell cellSubHouse3 = rowSubHouse.getCell(3);
         if( cellSubHouse3 != null ){
             cellSubHouse3.setCellType(Cell.CELL_TYPE_STRING);
         }
         String sub_structure1 = cellSubHouse3.getStringCellValue();
-        System.out.println(main_structure1);
+        System.out.println(sub_structure1);
         //砖木结构
         Cell cellSubHouse4 = rowSubHouse.getCell(4);
         if( cellSubHouse4 != null ){
@@ -404,7 +407,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellSubHouse5.setCellType(Cell.CELL_TYPE_STRING);
         }
         String sub_structure3 = cellSubHouse5.getStringCellValue();
-        System.out.println(main_structure3);
+        System.out.println(sub_structure3);
         //木竹结构
         Cell cellSubHouse6 = rowSubHouse.getCell(6);
         if( cellSubHouse6 != null ){
@@ -445,7 +448,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_remark(sub_remark);
         //调用jadbcTemplate的插入方法
         int j = excelDao.saveHouse(house);
-        System.out.println(j);
+        System.out.println("房子信息录入了："+j+"条！");
 
 
         //取收入的数据
