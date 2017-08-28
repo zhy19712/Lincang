@@ -189,16 +189,97 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="completed1">
-                                    completed1
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的表单</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已办表单</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="new2">
-                                    new2
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的事务</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">待办事务</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
+
+                                        </div>
+                                        <div class="box-content">
+                                            <table id="NewTable_Office" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>接收时间</th>
+                                                    <th>科室</th>
+                                                    <th>报稿</th>
+                                                    <th>标题</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
                                 </div>
                                 <div class="tab-pane" id="progress2">
-                                    progress2
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的事务</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">在办事务</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
+
+                                        </div>
+                                        <div class="box-content">
+                                            <table id="SubmittedTable_Office" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>提交时间</th>
+                                                    <th>缓级</th>
+                                                    <th>报稿</th>
+                                                    <th>标题</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
+
                                 </div>
                                 <div class="tab-pane" id="completed2">
-                                    completed2
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的事务</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">已办事务</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="new3">
                                     new3
@@ -226,7 +307,7 @@
 
     <hr>
 
-    <div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="form_stuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
 
         <div class="modal-dialog">
@@ -238,11 +319,11 @@
                 <div class="modal-body">
                     <div class="row myrow">
                         <div class="col-lg-5">
-                            <span>报稿单位</span>
+                            <span>拟稿单位</span>
                             <input id="input1" type="text">
                         </div>
                         <div class="col-lg-3">
-                            <span>报稿</span>
+                            <span>拟稿</span>
                             <input id="input2" type="text">
                         </div>
                         <div class="col-lg-4">
@@ -292,6 +373,127 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>填写表单</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row myrow">
+                        <div class="col-lg-3">
+                            <span>临移（）</span>
+                            <input id="input_office1" type="text">
+
+                        </div>
+                        <div class="col-lg-3">
+                            <span>日期</span>
+                            <input id="input_office2" type="text">
+                        </div>
+                        <div class="col-lg-3">
+                            <span>缓级</span>
+                            <input id="input_office3" type="text">
+                        </div>
+                        <div class="col-lg-3">
+                            <span>密级</span>
+                            <input id="input_office4" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-3">
+                            <span>签发</span>
+                            <input id="input_office5" type="text">
+
+                        </div>
+                        <div class="col-lg-3">
+                            <span>审稿</span>
+                            <input id="input_office6" type="text">
+                        </div>
+                        <div class="col-lg-6">
+                            <span>会签</span>
+                            <input id="input_office7" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-12">
+                            <span>抄报：</span>
+                            <input id="input_office8" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-12">
+                            <span>抄送：</span>
+                            <input id="input_office9" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-12">
+                            <span>发：</span>
+                            <input id="input_office10" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-5">
+                            <span>拟稿单位</span>
+                            <input id="input_office11" type="text">
+                        </div>
+                        <div class="col-lg-3">
+                            <span>拟稿</span>
+                            <input id="input_office12" type="text">
+                        </div>
+                        <div class="col-lg-4">
+                            <span>科室核稿</span>
+                            <input id="input_office13" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-5">
+                            <span>印刷</span>
+                            <input id="input_office14" type="text">
+                        </div>
+                        <div class="col-lg-3">
+                            <span>校对</span>
+                            <input id="input_office15" type="text">
+                        </div>
+                        <div class="col-lg-4">
+                            <span>份数</span>
+                            <input id="input_office16" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-12">
+                            <span>附件</span>
+                            <input id="input_office17" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow">
+                        <div class="col-lg-12">
+                            <span>主题词</span>
+                            <input id="input_office18" type="text">
+                        </div>
+                    </div>
+                    <div class="row myrow last">
+                        <div class="col-lg-12">
+                            <span>标题</span>
+                            <input id="input_office19" type="text">
+                        </div>
+                    </div>
+                    <textarea class="mytext" name="" id="input_office20" cols="30" rows="10" placeholder="内容"></textarea>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer class="row">
         <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
@@ -304,7 +506,7 @@
 
 <script>
     function newForm() {
-        $('#form').modal('show');
+        $('#form_stuff').modal('show');
     }
 
 
@@ -314,8 +516,14 @@
         var time = $(that).parents("tr").children("td:nth-child(3)").text();
         alert(oid);
         //   that.preventDefault();
-        $('#form').modal('show');
+        $('#form_stuff').modal('show');
     }
+
+    function detail_office(that) {
+
+        $('#form_office').modal('show');
+    }
+
 
 </script>
 

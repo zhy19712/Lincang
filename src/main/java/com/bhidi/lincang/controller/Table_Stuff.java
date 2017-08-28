@@ -21,7 +21,7 @@ import java.util.Map;
 @Controller
 public class Table_Stuff {
     @ResponseBody
-    @RequestMapping(value="/nform.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/nform_stuff.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String NewForm(HttpServletRequest request) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
@@ -76,20 +76,19 @@ public class Table_Stuff {
 
         List<Form_Stuff> tasks = new ArrayList<Form_Stuff>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table;
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = 'NEW'";
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table;
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = 'NEW'";
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
-
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table;
+            String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";
             if (individualSearch != "") {
-                searchSQL = " where " + individualSearch;
+                searchSQL = " and " + "("+individualSearch+")";
             }
             sql += searchSQL;
             recordsFilteredSql += searchSQL;
@@ -130,7 +129,7 @@ public class Table_Stuff {
 
 
     @ResponseBody
-    @RequestMapping(value="/sform.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/sform_stuff.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String SubmittedForm(HttpServletRequest request) throws SQLException{
         ResultSet rs = null;
         Statement stmt = null;

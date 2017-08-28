@@ -140,10 +140,9 @@ function docReady() {
 
 
     //datatable
-    var newForm;
-    newForm = $('#NewTable_Stuff').DataTable({
+    var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
-            url: "/nform.do"
+            url: "/nform_stuff.do"
         },
         "order": [[2, 'asc']],
         "serverSide": true,
@@ -187,10 +186,9 @@ function docReady() {
 
 
 
-    var submittedForm;
-    submittedForm = $('#SubmittedTable_Stuff').DataTable({
+    var submittedForm_stuff = $('#SubmittedTable_Stuff').DataTable({
         ajax: {
-            url: "/sform.do"
+            url: "/sform_stuff.do"
         },
         "order": [[2, 'asc']],
         "serverSide": true,
@@ -206,7 +204,7 @@ function docReady() {
                 "orderable": false,
                 "targets": [3],
                 "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='查看'/>"
+                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='编辑'/>"
                     html += "<input type='button' class='btn btn-danger btn-xs' value='删除'/>"
                     return html;
                 }
@@ -230,6 +228,46 @@ function docReady() {
             }
         }
     });
+
+
+     var newForm_office = $('#NewTable_Office').DataTable({
+        ajax: {
+            url: "/nform_office.do"
+        },
+        "order": [[0, 'asc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "CREATED_AT"},
+            {"data": "DEPT"},
+            {"data": "AUTHOR"},
+            {"data": "TITLE"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [4],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail_office(this)' value='编辑'/>"
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
 
 
 
