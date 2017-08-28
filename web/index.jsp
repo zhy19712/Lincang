@@ -97,35 +97,36 @@
         <div id="content" class="col-lg-10 col-sm-10">
             <!-- content starts -->
             <div class=" row">
-                    <div class="col-lg-12">
-                        <div class="box-inner ">
-                            <div class="box-content">
-                                <div id="myTabContent" class="tab-content">
-                                    <div class="tab-pane active" id="home">
-                                        <div>
-                                            <ul class="breadcrumb">
-                                                <li>
-                                                    <a href="#">首页</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        home
+                <div class="col-lg-12">
+                    <div class="box-inner ">
+                        <div class="box-content">
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane active" id="home">
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">首页</a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <div class="tab-pane active" id="new1">
-                                        <div>
-                                            <ul class="breadcrumb">
-                                                <li>
-                                                    <a href="#">我的表单</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">待办表单</a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    home
+                                </div>
+                                <div class="tab-pane active" id="new1">
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的表单</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">待办表单</a>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                                        <div class="row">
+                                    <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block" href="javascript:void(0)" onclick="newForm()">
+                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
+                                               href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
                                                 <div>新建表单</div>
@@ -134,65 +135,84 @@
                                         </div>
 
                                     </div>
-                                        <div class = "box-inner">
-                                            <div class="box-header well">
-                                                <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
 
-                                            </div>
-
-
-                                            <div class="box-content">
-                                        <table id="originalForm"  class="display" width="100%" cellspacing="0">
-                                            <thead>
-                                            <tr>
-                                                <th>编号</th>
-                                                <th>标题</th>
-                                                <th>时间</th>
-                                                <th>操作</th>
-                                            </tr>
-                                            </thead>
-                                        </table>
-                                                </div>
                                         </div>
-                                    </div>
-                                    <div class="tab-pane" id="progress1">
-                                        <div>
-                                            <ul class="breadcrumb">
-                                                <li>
-                                                    <a href="#">我的表单</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">在办表单</a>
-                                                </li>
-                                            </ul>
+
+
+                                        <div class="box-content">
+                                            <table id="NewTable_Stuff" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>标题</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                         </div>
-                                        progress1
-                                    </div>
-                                    <div class="tab-pane" id="completed1">
-                                        completed1
-                                    </div>
-                                    <div class="tab-pane" id="new2">
-                                        new2
-                                    </div>
-                                    <div class="tab-pane" id="progress2">
-                                        progress2
-                                    </div>
-                                    <div class="tab-pane" id="completed2">
-                                        completed2
-                                    </div>
-                                    <div class="tab-pane" id="new3">
-                                        new3
-                                    </div>
-                                    <div class="tab-pane" id="completed3">
-                                        completed3
                                     </div>
                                 </div>
+                                <div class="tab-pane" id="progress1">
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的表单</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">在办表单</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
 
+                                        </div>
+
+
+                                        <div class="box-content">
+                                            <table id="SubmittedTable_Stuff" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>标题</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="completed1">
+                                    completed1
+                                </div>
+                                <div class="tab-pane" id="new2">
+                                    new2
+                                </div>
+                                <div class="tab-pane" id="progress2">
+                                    progress2
+                                </div>
+                                <div class="tab-pane" id="completed2">
+                                    completed2
+                                </div>
+                                <div class="tab-pane" id="new3">
+                                    new3
+                                </div>
+                                <div class="tab-pane" id="completed3">
+                                    completed3
+                                </div>
                             </div>
 
                         </div>
 
                     </div>
+
+                </div>
 
             </div>
 
@@ -219,50 +239,50 @@
                     <div class="row myrow">
                         <div class="col-lg-5">
                             <span>报稿单位</span>
-                            <input id = "input1" type="text">
+                            <input id="input1" type="text">
                         </div>
                         <div class="col-lg-3">
                             <span>报稿</span>
-                            <input id = "input2" type="text">
+                            <input id="input2" type="text">
                         </div>
                         <div class="col-lg-4">
                             <span>科室核稿</span>
-                            <input id = "input3" type="text">
+                            <input id="input3" type="text">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-lg-5">
                             <span>印刷</span>
-                            <input id = "input4" type="text">
+                            <input id="input4" type="text">
                         </div>
                         <div class="col-lg-3">
                             <span>校对</span>
-                            <input id = "input5" type="text">
+                            <input id="input5" type="text">
                         </div>
                         <div class="col-lg-4">
                             <span>份数</span>
-                            <input id = "input6" type="text">
+                            <input id="input6" type="text">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-lg-12">
                             <span>附件</span>
-                            <input id = "input7" type="text">
+                            <input id="input7" type="text">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-lg-12">
                             <span>主题词</span>
-                            <input id = "input8" type="text">
+                            <input id="input8" type="text">
                         </div>
                     </div>
                     <div class="row myrow last">
                         <div class="col-lg-12">
                             <span>标题</span>
-                            <input id = "input9" type="text">
+                            <input id="input9" type="text">
                         </div>
                     </div>
-                    <textarea class = "mytext" name="" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
+                    <textarea class="mytext" name="" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
@@ -283,19 +303,17 @@
 </div><!--/.fluid-container-->
 
 <script>
-    function newForm(){
+    function newForm() {
         $('#form').modal('show');
     }
 
 
-
-
-    function detail(that){
+    function detail(that) {
         var oid = $(that).parents("tr").children("td:nth-child(1)").text();
         var title = $(that).parents("tr").children("td:nth-child(2)").text();
         var time = $(that).parents("tr").children("td:nth-child(3)").text();
         alert(oid);
-     //   that.preventDefault();
+        //   that.preventDefault();
         $('#form').modal('show');
     }
 
@@ -311,7 +329,8 @@
 <script src="js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="js/jquery.history.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript"
+        src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
