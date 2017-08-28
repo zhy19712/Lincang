@@ -186,6 +186,4 @@ function docReady() {
 
 
 
-
-
 }
