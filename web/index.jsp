@@ -15,7 +15,7 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link id="bs-css" href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="css/app.css" rel="stylesheet">
     <link href="css/choose.min.css" rel="stylesheet">
     <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
