@@ -77,7 +77,7 @@
                 <div class="nav-canvas">
                     <div class="nav-sm nav nav-stacked">
                     </div>
-                    <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
+                    <ul class="nav nav-pills nav-stacked main-menu">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
                         <li class="nav-header">我的办公</li>
                         <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
