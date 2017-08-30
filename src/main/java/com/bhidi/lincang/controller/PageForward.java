@@ -18,8 +18,8 @@ import java.net.URLDecoder;
  * Created by admin on 2017/8/28.
  */
 @Controller
-public class IndexController {
-    @RequestMapping(value = "/to_indexTest", method = RequestMethod.GET)
+public class PageForward {
+    @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String to_index(@CookieValue(value="cookie_user",required=false)String cookie_user,HttpSession session,HttpServletRequest req){
 /*        if( cookie_user != null ){
             System.out.println("cookie中去出来的"+cookie_user);
@@ -53,6 +53,6 @@ public class IndexController {
                 }
             }
         }
-        return "indexTest";
+        return "home";
     }
 }
