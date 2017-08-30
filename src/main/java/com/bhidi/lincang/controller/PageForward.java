@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.User;
 import com.google.gson.Gson;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,26 +18,15 @@ import java.net.URLDecoder;
 /**
  * Created by admin on 2017/8/28.
  */
+
 @Controller
 public class PageForward {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String to_index(@CookieValue(value="cookie_user",required=false)String cookie_user,HttpSession session,HttpServletRequest req){
-/*        if( cookie_user != null ){
-            System.out.println("cookie中去出来的"+cookie_user);
-            try {
-                cookie_user = URLDecoder.decode(cookie_user,"utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            Gson gson = new Gson();
-            User userFromJson = gson.fromJson(cookie_user,User.class);
-            System.out.println("转"+userFromJson.getUsername());
-            session.setAttribute("user",userFromJson);
-        }*/
+    public String to_home(HttpSession session,HttpServletRequest req){
         Cookie[] cookies = req.getCookies();
-        User user= null;
-        if( cookies != null ){
-            for(Cookie c :cookies){
+        User user = null;
+        if( cookies != null) {
+            for (Cookie c : cookies) {
                 String str = "";
                 if (c.getName() != null && c.getName().equals("cookie_user")) {
                     str = c.getValue();
@@ -50,9 +40,18 @@ public class PageForward {
                     Gson gson = new Gson();
                     user = gson.fromJson(str, User.class);
                     session.setAttribute("user", user);
+                    return "home";
                 }
             }
         }
-        return "home";
+        return "login";
+
+    }
+
+
+    @RequestMapping(value = "/oa", method = RequestMethod.GET)
+    public String to_oa(){
+        System.out.println("sdfdsf");
+        return "oa";
     }
 }

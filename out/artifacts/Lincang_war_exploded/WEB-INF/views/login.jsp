@@ -11,7 +11,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Free HTML5 Bootstrap Admin Template</title>
+    <title>临沧市移民局</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="临沧市移民局">
 

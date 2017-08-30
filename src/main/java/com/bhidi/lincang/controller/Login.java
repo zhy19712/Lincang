@@ -62,7 +62,7 @@ public class Login {
     /*
      *注销的业务逻辑
      */
-    @RequestMapping("/cancel")
+    @RequestMapping("/logout")
     public String cancel(HttpSession session,HttpServletResponse response){
         String s = "消除！";
         Gson gson = new Gson();
@@ -77,6 +77,6 @@ public class Login {
         /*cookie.setPath("/");*///项目所有目录均有效，这句很关键，否则不敢保证删除
         response.addCookie(cookie); //重新写入，将覆盖之前的
         session.invalidate();
-        return "home";
+        return "login";
     }
 }

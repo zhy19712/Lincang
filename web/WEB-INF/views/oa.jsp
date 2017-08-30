@@ -5,7 +5,13 @@
   Time: 9:21
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,15 +55,15 @@
 
         <!-- user dropdown starts -->
         <div class="btn-group pull-right">
-            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> 管理员</span>
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#">信息</a></li>
-                <li class="divider"></li>
-                <li><a href="login.html">注销</a></li>
-            </ul>
+            <div class="btn btn-default">
+                <i class="glyphicon glyphicon-user"></i>
+                <c:if test="${user==null}">
+                    <a href="/toLogin.htm" target="_blank">请登录</a>
+                </c:if>
+                <c:if test="${user!=null}">
+                    欢迎${user.username},<a href="logout.do" >注销</a>
+                </c:if>
+            </div>
         </div>
         <!-- user dropdown ends -->
     </div>
