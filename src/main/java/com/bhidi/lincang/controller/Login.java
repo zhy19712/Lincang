@@ -20,7 +20,7 @@ import java.net.URLEncoder;
  * Created by admin on 2017/8/28.
  */
 @Controller
-public class LoginController {
+public class Login {
     @Autowired
     LoginServiceImp loginServiceImp;
 
@@ -53,7 +53,7 @@ public class LoginController {
                 cookie.setMaxAge(60 * 60 * 24 * 7);
                 response.addCookie(cookie);
             }
-            return "indexTest";
+            return "home";
         } else {
             map.put("msg","用户名或者密码不正确！");
             return "login";
@@ -62,7 +62,7 @@ public class LoginController {
     /*
      *注销的业务逻辑
      */
-    @RequestMapping("/cancel")
+    @RequestMapping("/logout")
     public String cancel(HttpSession session,HttpServletResponse response){
         String s = "消除！";
         Gson gson = new Gson();
@@ -77,6 +77,6 @@ public class LoginController {
         /*cookie.setPath("/");*///项目所有目录均有效，这句很关键，否则不敢保证删除
         response.addCookie(cookie); //重新写入，将覆盖之前的
         session.invalidate();
-        return "indexTest";
+        return "login";
     }
 }
