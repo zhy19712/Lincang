@@ -92,7 +92,7 @@
           <input type="submit" value="提交"/>
       </form>
       <div>
-          <c:if test="${error != null}">
+          <c:if test="${error.size() > 0}">
               <c:forEach items="${error}" var="err">
                   <div>
                           ${err}:
@@ -102,7 +102,8 @@
           </c:if>
       </div>
       <div>
-          <c:if test="${error == null}">
+          <c:if test="${error.size() == 0}">
+              <sapn>${error}</sapn>
               <sapn>录入成功！</sapn>
           </c:if>
       </div>

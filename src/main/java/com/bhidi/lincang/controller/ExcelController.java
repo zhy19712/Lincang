@@ -51,9 +51,11 @@ public class ExcelController {
             }
             if(!excelFile.exists()){
                 resultList.add(excelName+"文件不存在!");
+                continue;
             }
             if(!(excelFile.isFile() && (excelFile.getName().endsWith("xls") || excelFile.getName().endsWith("xlsx")))){
                 resultList.add(excelName+"文件不是Excel格式!");
+                continue;
             }
             String resultService = excelServiceImp.readService(excelFile);
             resultList.add(resultService);
@@ -120,14 +122,14 @@ public class ExcelController {
         List<String> resultList = new ArrayList<>();
         List<String> errorList = new ArrayList<>();
         // /判断excel数组不能为空并且长度大于0
-        if( excels!=null && excels.length > 0 ){
+        if( excels != null && excels.length > 0 ){
             //循环获取file数组中得文件
             for( int i = 0;i < excels.length;i++ ){
                 MultipartFile excel = excels[i];
                 if( !excel.isEmpty() ){
                     //保存文件
                     String sign = singleExcelUpload(excel,request);
-                    if( sign.endsWith("!") ){
+                    if( sign.endsWith("！") ){
                         errorList.add(sign);
                     } else {
                         resultList.add(sign);
@@ -140,12 +142,15 @@ public class ExcelController {
                 }
             }
         }
+        //读取已经上传的所有的Excel文件
         List<String> resultRead = readExcel(resultList);
+        //删除已经上传但是内部有问题的Excel文件
         for( String s :resultRead){
             if( !"录入成功！".equals(s) ){
                 errorList.add(s);
                 //调用删除服务器上文件的方法！
-                delete(s);
+                String filePath =  s.split("文")[0];
+                delete(filePath);
             }
         }
         map.put("error",errorList);
@@ -163,6 +168,10 @@ public class ExcelController {
             String path = request.getSession().getServletContext().getRealPath("upload/excel");
             //文件名字
             String fileName = excel.getOriginalFilename();
+            //在这里判断文件名字，滤掉非excel文件。
+            if( !(fileName.endsWith("xls") || fileName.endsWith("xlsx")) ){
+                return fileName+"不是Excel文件！";
+            }
             File dir = new File(path, fileName);
             if ( !dir.exists() ) {
                 //创建此抽象路径指定的目录，包括所有必须但不存在的父目录。
@@ -184,7 +193,7 @@ public class ExcelController {
             Long fileSize = excel.getSize();
             System.out.println("文件大小为"+fileSize);
         } catch (Exception e) {
-            return pathpath+"上传失败！";
+            return pathpath+"文件上传失败！";
         }
         return pathpath;
     }

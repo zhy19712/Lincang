@@ -39,7 +39,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         //取出来文件的名字
         String excelName = excelFile.getName();
-        System.out.println("ExcelServiceImo中的excel文件的名字："+excelName);
+        System.out.println("ExcelServiceImp中的excel文件的名字："+excelName);
         //读取步骤
         Workbook workbook = null;
         try{
@@ -63,6 +63,11 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //在这里先判断是否fid为空，为空的话返回，就不插入了，不为空的话判断数据库中是否有关于这个fid的内容
         for( int s = 0; s< SheetCount; s++ ){
             Sheet sheet = workbook.getSheetAt(s);
+            int rowcount = sheet.getLastRowNum();
+
+            if( rowcount == 0 ){
+                return excelName+"文件内容为空！";
+            }
             //00获取移民编号
             Row row0 = sheet.getRow(0);
             Cell cell00 = row0.getCell(0);
@@ -76,11 +81,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 return excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
             }
         }
-
-
-
-
-
         //在这里遍历sheet的名字，是什么名字的时候，调用哪个方法
         String resultFirst = "";
         String resultSecond = "";
