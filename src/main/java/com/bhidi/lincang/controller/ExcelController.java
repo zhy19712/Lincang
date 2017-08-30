@@ -25,6 +25,7 @@ public class ExcelController {
 
     @Autowired
     private ExcelServiceImp excelServiceImp;
+
     /*
      * 读取excel文件的方法
      */
@@ -37,13 +38,11 @@ public class ExcelController {
         //遍历地址的集合生成相对的File实例
         for( String path: pathList){
             String[] strs = path.split("\\\\");
-            //文件名字
+            //取文件名字
             String excelName = strs[strs.length - 1];
             //在这里将地址的斜杠改变一下
-
             path = path.replaceAll("\\\\","/");
             path = path.replaceFirst("/","//");
-
             File excelFile = null;
             try {
                 excelFile = new File(path);
@@ -155,8 +154,8 @@ public class ExcelController {
     /*
      * 单个excel文件的上传
      */
-    @RequestMapping(value="/singleExcelUpload",method= RequestMethod.POST)
     @ResponseBody
+    @RequestMapping(value="/singleExcelUpload",method= RequestMethod.POST)
     public String singleExcelUpload(MultipartFile excel,HttpServletRequest request) {
         String pathpath = "";
         try {
@@ -192,7 +191,6 @@ public class ExcelController {
     /**
      * 服务器上的文件删除功能
      * @param fileUrl
-     * (static/upload/...)
      * @return
      */
     @RequestMapping("/delete")

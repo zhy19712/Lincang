@@ -77,11 +77,9 @@
             data: {username:$("#username").val(), password:$("#password").val()},
             success: function (result) {
 
-            }
-        });
-    }
-
-
+}
+});
+}
 </script>
 
 <script src="js/bootstrap.min.js"></script>

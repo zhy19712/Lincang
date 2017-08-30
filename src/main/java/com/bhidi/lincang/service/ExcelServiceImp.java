@@ -37,6 +37,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
     @Transactional
     public String readService(File excelFile){
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        //取出来文件的名字
+        String excelName = excelFile.getName();
+        System.out.println("ExcelServiceImo中的excel文件的名字："+excelName);
         //读取步骤
         Workbook workbook = null;
         try{
@@ -55,8 +58,29 @@ public class ExcelServiceImp implements ExcelServiceInf{
         String firstSheetName = firstSheet.getSheetName();
         System.out.println("第一个sheet的名字："+firstSheetName);*/
         if(SheetCount == 0){
-            return "此文件中无sheet！";
+            return excelName+"文件中无sheet！";
         }
+        //在这里先判断是否fid为空，为空的话返回，就不插入了，不为空的话判断数据库中是否有关于这个fid的内容
+        for( int s = 0; s< SheetCount; s++ ){
+            Sheet sheet = workbook.getSheetAt(s);
+            //00获取移民编号
+            Row row0 = sheet.getRow(0);
+            Cell cell00 = row0.getCell(0);
+            String fid = cell00.getStringCellValue();
+            if( "".equals(fid) ){
+                return excelName+"文件的fid为："+fid+"其中的"+sheet.getSheetName()+"表编号不可以为空！";
+            }
+            System.out.println("判断阶段的："+fid);
+            String fidRes = excelDao.queryPeopleByFid(fid);
+            if( !"".equals(fidRes) ){
+                return excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
+            }
+        }
+
+
+
+
+
         //在这里遍历sheet的名字，是什么名字的时候，调用哪个方法
         String resultFirst = "";
         String resultSecond = "";
@@ -100,9 +124,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
         String fid = cell00.getStringCellValue();
-        if( "".equals(fid) ){
+        /*if( "".equals(fid) ){
             return "表编号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println(fid);
         //根据查询数据库中是否存在此户的数据，如果有，就请他们去修改页面进行修改，否则可以继续
         /*int ifexit = DBUtils.queryFid("select fid from people where fid = "+'"'+fid+'"');
@@ -110,9 +134,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。";
         }*/
         String fidRes = excelDao.queryPeopleByFid(fid);
-        if( !"".equals(fidRes) ){
+       /* if( !"".equals(fidRes) ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         //22获取所属水库
         Row row2 = firstSheet.getRow(2);
         Cell cell22 = row2.getCell(2);
@@ -120,9 +144,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell22.setCellType(Cell.CELL_TYPE_STRING);
         }
         String reservoir = cell22.getStringCellValue();
-        if( "".equals(reservoir) ){
+       /* if( "".equals(reservoir) ){
             return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println("所属水库："+reservoir);
         //24获取安置点
         Cell cell24 = row2.getCell(4);
@@ -130,9 +154,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell24.setCellType(Cell.CELL_TYPE_STRING);
         }
         String location = cell24.getStringCellValue();
-        if( "".equals(location) ){
+        /*if( "".equals(location) ){
             return "安置点不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println("安置点："+location);
         //27获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
         Cell cell27 = row2.getCell(7);
@@ -140,9 +164,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell27.setCellType(Cell.CELL_TYPE_STRING);
         }
         String masterName = cell27.getStringCellValue();
-        if( "".equals(masterName) ){
+        /*if( "".equals(masterName) ){
             return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println("户主姓名："+masterName);
 
         //取出银行卡信息
@@ -210,9 +234,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             Cell cell =row.getCell(1);
             cell.setCellType(Cell.CELL_TYPE_STRING);
-            if( ("".equals(cell.getStringCellValue())) ){
+           /* if( ("".equals(cell.getStringCellValue())) ){
                 return "姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-            }
+            }*/
             //第一个单元格不是空的在去取这一行的数据。
             if( !("".equals(cell.getStringCellValue())) ){
                 num++;
@@ -225,9 +249,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 Cell cell2 = row.getCell(2);
                 cell2.setCellType(Cell.CELL_TYPE_STRING);
                 String pid = cell2.getStringCellValue();
-                if( "".equals(pid) ){
+                /*if( "".equals(pid) ){
                     return "身份证号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-                }
+                }*/
                 //性别
                 Cell cell4 = row.getCell(4);
                 cell4.setCellType(Cell.CELL_TYPE_STRING);
@@ -939,9 +963,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
         String fid = cell00.getStringCellValue();
-        if( "".equals(fid) ){
+        /*if( "".equals(fid) ){
             return "表编号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println(fid);
         //根据查询数据库中是否存在此户的数据，如果有，就请他们去修改页面进行修改，否则可以继续
        /* int ifexit = DBUtils.queryFid("select fid from people where fid = "+'"'+fid+'"');
@@ -949,9 +973,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。";
         }*/
         String fidRes = excelDao.queryPeopleByFid(fid);
-        if( !"".equals(fidRes) ){
+      /*  if( !"".equals(fidRes) ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         //22获取所属水库
         Row row2 = firstSheet.getRow(2);
         Cell cell22 = row2.getCell(2);
@@ -959,9 +983,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell22.setCellType(Cell.CELL_TYPE_STRING);
         }
         String reservoir = cell22.getStringCellValue();
-        if( "".equals(reservoir) ){
+        /*if( "".equals(reservoir) ){
             return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println("所属水库："+reservoir);
        /* //24获取安置点
         Cell cell24 = row2.getCell(4);
@@ -979,9 +1003,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell27.setCellType(Cell.CELL_TYPE_STRING);
         }
         String masterName = cell27.getStringCellValue();
-        if( "".equals(masterName) ){
+        /*if( "".equals(masterName) ){
             return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }
+        }*/
         System.out.println("户主姓名："+masterName);
         //取出银行卡信息
         //32获取开户人姓名
@@ -1047,9 +1071,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             Cell cell =row.getCell(1);
             cell.setCellType(Cell.CELL_TYPE_STRING);
-            if( ("".equals(cell.getStringCellValue())) ){
+           /* if( ("".equals(cell.getStringCellValue())) ){
                 return "姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-            }
+            }*/
             //第一个单元格不是空的在去取这一行的数据。
             if( !("".equals(cell.getStringCellValue())) ){
                 num++;
@@ -1062,9 +1086,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 Cell cell2 = row.getCell(2);
                 cell2.setCellType(Cell.CELL_TYPE_STRING);
                 String pid = cell2.getStringCellValue();
-                if( "".equals(pid) ){
+                /*if( "".equals(pid) ){
                     return "身份证号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-                }
+                }*/
                 //性别
                 Cell cell4 = row.getCell(4);
                 cell4.setCellType(Cell.CELL_TYPE_STRING);

@@ -35,20 +35,22 @@ public class IndexController {
         }*/
         Cookie[] cookies = req.getCookies();
         User user= null;
-        for(Cookie c :cookies){
-            String str = "";
-            if (c.getName() != null && c.getName().equals("cookie_user")) {
-                str = c.getValue();
-            }
-            if (!str.equals("")) {
-                try {
-                    str = URLDecoder.decode(str, "utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+        if( cookies != null ){
+            for(Cookie c :cookies){
+                String str = "";
+                if (c.getName() != null && c.getName().equals("cookie_user")) {
+                    str = c.getValue();
                 }
-                Gson gson = new Gson();
-                user = gson.fromJson(str, User.class);
-                session.setAttribute("user", user);
+                if (!str.equals("")) {
+                    try {
+                        str = URLDecoder.decode(str, "utf-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    Gson gson = new Gson();
+                    user = gson.fromJson(str, User.class);
+                    session.setAttribute("user", user);
+                }
             }
         }
         return "indexTest";
