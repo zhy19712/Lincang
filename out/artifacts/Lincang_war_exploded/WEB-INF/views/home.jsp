@@ -23,7 +23,7 @@
     <!-- The styles -->
     <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="../../css/app.css" rel="stylesheet">
-    <link href="css/choose.min.css" rel="stylesheet">
+    <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
@@ -77,7 +77,7 @@
                 <div class="nav-canvas">
                     <div class="nav-sm nav nav-stacked">
                     </div>
-                    <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
+                    <ul class="nav nav-pills nav-stacked main-menu">
                         <li><a href="#"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
                         <li class="nav-header">我的办公</li>
                         <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>

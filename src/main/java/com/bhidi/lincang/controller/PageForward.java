@@ -51,13 +51,11 @@ public class PageForward {
 
     @RequestMapping(value = "/oa", method = RequestMethod.GET)
     public String to_oa(){
-
         return "oa";
     }
 
     @RequestMapping(value = "/yimin", method = RequestMethod.GET)
     public String to_yimin(){
-
         return "yimin";
     }
 }

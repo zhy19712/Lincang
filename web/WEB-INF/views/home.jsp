@@ -23,7 +23,7 @@
     <!-- The styles -->
     <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="../../css/app.css" rel="stylesheet">
-    <link href="css/choose.min.css" rel="stylesheet">
+    <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
