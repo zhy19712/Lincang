@@ -24,10 +24,6 @@ import static java.net.InetAddress.getLocalHost;
 @Controller
 @RequestMapping("file")
 public class FileController {
-    @Autowired
-    private HttpServletRequest request;
-    @Autowired
-    private HttpSession session;
     /**
      * 单个文件上传功能
      * @param file
@@ -35,7 +31,7 @@ public class FileController {
      */
     @RequestMapping(value="/singleUpload",method= RequestMethod.POST)
     @ResponseBody
-    public String singleUpload(MultipartFile file) {
+    public String singleUpload(MultipartFile file,HttpServletRequest request) {
         if (!file.isEmpty()) {
             try {
                 //文件存储路径
@@ -76,14 +72,14 @@ public class FileController {
      */
     @ResponseBody
     @RequestMapping(value="/multipleUpload",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String multipleUpload(@RequestParam("files") MultipartFile[] files) {
+    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request) {
         //判断file数组不能为空并且长度大于0
         if(files!=null&&files.length>0){
             //循环获取file数组中得文件
             for(int i = 0;i<files.length;i++){
                 MultipartFile file = files[i];
                 //保存文件
-                singleUpload(file);
+                singleUpload(file,request);
             }
         }
         return "ok";

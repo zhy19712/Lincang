@@ -42,6 +42,8 @@ public class People {
     private String interviewer;
     //被调查人
     private String interviewee;
+    //创建时间
+    private String created_at;
 
     public People() {
     }
@@ -181,6 +183,11 @@ public class People {
 
     public String getInterviewee() {
         return interviewee;
+    }
+    public  String getCreated_at() {
+        return created_at;
+    }public void   setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
 }
