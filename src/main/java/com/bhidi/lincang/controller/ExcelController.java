@@ -126,6 +126,7 @@ public class ExcelController {
             //循环获取file数组中得文件
             for( int i = 0;i < excels.length;i++ ){
                 MultipartFile excel = excels[i];
+                //在这里判断内存大小为0字节的文件
                 if( !excel.isEmpty() ){
                     //保存文件
                     String sign = singleExcelUpload(excel,request);
@@ -136,6 +137,7 @@ public class ExcelController {
                     }
                 } else {
                     String excelName = excel.getOriginalFilename();
+                    //这里的判断是因为会默认传过来一个没有名字的文件，把他滤掉
                     if( !"".endsWith(excelName) ){
                         errorList.add(excelName+"为空！");
                     }
@@ -147,14 +149,14 @@ public class ExcelController {
         //删除已经上传但是内部有问题的Excel文件
         for( String s :resultRead){
             if( !"录入成功！".equals(s) ){
-                errorList.add(s);
+                errorList.add(s.split("-")[1]);
                 //调用删除服务器上文件的方法！
-                String filePath =  s.split("文")[0];
+                String filePath =  s.split("-")[0];
                 delete(filePath);
             }
         }
         map.put("error",errorList);
-        return "indexTest";
+        return "yimin";
     }
     /*
      * 单个excel文件的上传
@@ -200,7 +202,6 @@ public class ExcelController {
     /**
      * 服务器上的文件删除功能
      * @param fileUrl
-     * @return
      */
     @RequestMapping("/delete")
     public void delete(String fileUrl) {

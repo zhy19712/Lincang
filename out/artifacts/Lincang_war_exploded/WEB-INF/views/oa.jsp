@@ -23,7 +23,7 @@
     <!-- The styles -->
     <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="../../css/app.css" rel="stylesheet">
-    <link href="css/choose.min.css" rel="stylesheet">
+    <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../css/mycss.css">

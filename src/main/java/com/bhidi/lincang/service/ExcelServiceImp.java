@@ -40,6 +40,14 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //取出来文件的名字
         String excelName = excelFile.getName();
         System.out.println("ExcelServiceImp中的excel文件的名字："+excelName);
+        //取出来文件的路径
+        String serverPath = excelFile.getPath();
+        System.out.println("服务器上文件的路径："+serverPath);
+        String[] strs = serverPath.split("\\\\");
+        //在这里将地址的斜杠改变一下
+        serverPath = serverPath.replaceAll("\\\\","/");
+        serverPath = serverPath.replaceFirst("/","//");
+        System.out.println("要放到方法中去删除的地址："+serverPath);
         //读取步骤
         Workbook workbook = null;
         try{
@@ -58,27 +66,28 @@ public class ExcelServiceImp implements ExcelServiceInf{
         String firstSheetName = firstSheet.getSheetName();
         System.out.println("第一个sheet的名字："+firstSheetName);*/
         if(SheetCount == 0){
-            return excelName+"文件中无sheet！";
+            return serverPath+"-"+excelName+"文件中无sheet！";
         }
         //在这里先判断是否fid为空，为空的话返回，就不插入了，不为空的话判断数据库中是否有关于这个fid的内容
         for( int s = 0; s< SheetCount; s++ ){
             Sheet sheet = workbook.getSheetAt(s);
+            //获取有效行数
             int rowcount = sheet.getLastRowNum();
 
             if( rowcount == 0 ){
-                return excelName+"文件内容为空！";
+                return serverPath+"-"+excelName+"文件内容为空！";
             }
             //00获取移民编号
             Row row0 = sheet.getRow(0);
             Cell cell00 = row0.getCell(0);
             String fid = cell00.getStringCellValue();
             if( "".equals(fid) ){
-                return excelName+"文件的fid为："+fid+"其中的"+sheet.getSheetName()+"表编号不可以为空！";
+                return serverPath+"-"+excelName+"文件的fid为："+fid+"其中的"+sheet.getSheetName()+"表编号不可以为空！";
             }
             System.out.println("判断阶段的："+fid);
             String fidRes = excelDao.queryPeopleByFid(fid);
             if( !"".equals(fidRes) ){
-                return excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
+                return serverPath+"-"+excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
             }
         }
         //在这里遍历sheet的名字，是什么名字的时候，调用哪个方法
