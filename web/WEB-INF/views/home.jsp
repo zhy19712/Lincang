@@ -25,6 +25,9 @@
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
+
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/home.css">
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <!-- The fav icon -->
@@ -78,7 +81,6 @@
                     <div class="nav-sm nav nav-stacked">
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu">
-                        <li><a href="#"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
                         <li class="nav-header">我的办公</li>
                         <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
 
@@ -97,11 +99,9 @@
                 <div class="col-lg-12">
                     <div class="box-inner ">
                         <div class="box-content">
-                               首页显示内容
+                            首页显示的内容
                         </div>
-
                     </div>
-
                 </div>
 
             </div>
@@ -135,8 +135,6 @@
 <script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
-<script type="text/javascript" language="javascript"
-        src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 </body>
 </html>

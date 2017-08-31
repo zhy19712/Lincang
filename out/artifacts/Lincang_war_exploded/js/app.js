@@ -205,7 +205,7 @@ function docReady() {
                 "targets": [3],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='编辑'/>"
-                    html += "<input type='button' class='btn btn-danger btn-xs' value='删除'/>"
+                    html += "<input type='button' class='btn btn-warning btn-xs' onclick='flow(this)' value='流程'/>"
                     return html;
                 }
             },

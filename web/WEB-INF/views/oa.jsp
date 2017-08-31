@@ -86,12 +86,12 @@
                         <li><a href="#completed1"><i class="glyphicon glyphicon-check"></i><span> 已办表单</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
+                        <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
 
                         <li class="nav-header">我的审批</li>
-                        <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span></a></li>
+                        <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
                         <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
                     </ul>
                 </div>
@@ -381,7 +381,6 @@
     </div>
     <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
-
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -501,6 +500,28 @@
         </div>
     </div>
 
+    <div class="modal fade" id="flow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>公文流转</h3>
+                </div>
+                <div class="modal-body">
+                <canvas id="myCanvas" width="100%"></canvas>
+                </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer class="row">
         <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
 
@@ -530,6 +551,10 @@
         $('#form_office').modal('show');
     }
 
+    function flow(that){
+        $('#flow').modal('show');
+    }
+
 
 </script>
 
@@ -546,6 +571,7 @@
 <script type="text/javascript" language="javascript"
         src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
+<script src="../../js/flowchart.js"></script>
 </body>
 </html>
 
