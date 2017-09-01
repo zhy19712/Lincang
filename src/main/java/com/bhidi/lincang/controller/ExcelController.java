@@ -141,6 +141,9 @@ public class ExcelController {
                     if( !"".endsWith(excelName) ){
                         errorList.add(excelName+"为空！");
                     }
+                    if( excels.length == 1 && "".equals(excel.getOriginalFilename()) ){
+                        errorList = null;
+                    }
                 }
             }
         }
@@ -156,7 +159,7 @@ public class ExcelController {
             }
         }
         map.put("error",errorList);
-        return "yimin";
+        return "yimin_temp";
     }
     /*
      * 单个excel文件的上传

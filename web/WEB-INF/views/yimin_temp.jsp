@@ -84,6 +84,23 @@
           </div>
           <input type="submit" value="提交"/>
       </form>
+      <div>
+          <c:if test="${fileerror.size() > 0}">
+              <c:forEach items="${fileerror}" var="err">
+                  <div>
+                          ${err}
+                  </div>
+                  <br>
+              </c:forEach>
+          </c:if>
+      </div>
+      <div>
+          <c:if test="${fileerror.size() == 0}">
+              <sapn>上传成功！</sapn>
+          </c:if>
+      </div>
+
+
       <form action="/excel/multipleExcelUpLoadExcel.do" method="post" enctype="multipart/form-data">
           <div id="excelsUpload">
               <a href="#" id="excel_add" onclick="add_click_excel(1)"  >添加附件</a>
@@ -95,7 +112,7 @@
           <c:if test="${error.size() > 0}">
               <c:forEach items="${error}" var="err">
                   <div>
-                          ${err}:
+                          ${err}
                   </div>
                   <br>
               </c:forEach>
@@ -103,7 +120,6 @@
       </div>
       <div>
           <c:if test="${error.size() == 0}">
-              <sapn>${error}</sapn>
               <sapn>录入成功！</sapn>
           </c:if>
       </div>

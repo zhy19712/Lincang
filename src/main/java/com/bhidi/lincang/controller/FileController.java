@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,6 +16,10 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.InetAddress;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static java.net.InetAddress.getLocalHost;
 
@@ -29,15 +34,15 @@ public class FileController {
      * @param file
      * @return
      */
-    @RequestMapping(value="/singleUpload",method= RequestMethod.POST)
     @ResponseBody
+    @RequestMapping(value="/singleUpload",method= RequestMethod.POST)
     public String singleUpload(MultipartFile file,HttpServletRequest request) {
+        //文件名字
+        String fileName =  file.getOriginalFilename();;
         if (!file.isEmpty()) {
             try {
                 //文件存储路径
                 String path = request.getSession().getServletContext().getRealPath("upload");
-                //文件名字
-                String fileName = file.getOriginalFilename();
                 File dir = new File(path, fileName);
                 if (!dir.exists()) {
                     dir.mkdirs();
@@ -50,7 +55,6 @@ public class FileController {
                 //本机的ip
                 String ipStr = inetAddress.getHostAddress();
                 System.out.println("本机的IP = " + ipStr);
-
                 //文件在服务器的位置
                 String pathpath = request.getSession().getServletContext().getRealPath("upload\\"+fileName);
                 System.out.println("文件在服务器上的位置为"+pathpath);
@@ -58,31 +62,49 @@ public class FileController {
                 Long fileSize = file.getSize();
                 System.out.println("文件大小为"+fileSize);
             } catch (Exception e) {
-                e.printStackTrace();
+                return fileName+"文件上传失败！";
             }
             return "ok!";
         } else{
-            return "bad!";
+                return fileName+"文件为空！";
         }
+
     }
     /**
      * 多个文件上传功能
      * @param files
      * @return
      */
-    @ResponseBody
     @RequestMapping(value="/multipleUpload",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request) {
+    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request, ModelMap map) {
+        //声明一个集合来收集每个文件上传的结果
+        Set<String> resultSet = new HashSet<>();
+
+        List<String> resultFinal = new ArrayList<>();
         //判断file数组不能为空并且长度大于0
         if(files!=null&&files.length>0){
             //循环获取file数组中得文件
             for(int i = 0;i<files.length;i++){
                 MultipartFile file = files[i];
                 //保存文件
-                singleUpload(file,request);
+                if( !"".equals(file.getOriginalFilename()) ){
+                    String resultSingle = singleUpload(file,request);
+                    resultSet.add(resultSingle);
+                }
+                if( files.length == 1 && "".equals(file.getOriginalFilename()) ){
+                    resultFinal = null;
+                }
+
             }
         }
-        return "ok";
+        //对单个文件的返回结果进行处理返回最终上传结果
+        for( String s:resultSet ){
+            if( !"ok!".equals(s) ){
+                resultFinal.add(s);
+            }
+        }
+        map.put("fileerror",resultFinal);
+        return "yimin_temp";
     }
     /**
      * 服务器上的文件删除功能
