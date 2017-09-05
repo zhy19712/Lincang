@@ -61,57 +61,6 @@ public class ExcelController {
             resultList.add(resultService);
         }
         return resultList;
-
-
-
-        /*File excelFile = null;
-        File excelFile1 = null;
-        File excelFile2= null;
-        try{
-            // 创建需要读取的文件对象
-            excelFile = new File("C://Users/admin/Desktop/移民搬迁管理登记表终结版.xlsx");
-            excelFile1 = new File("C://Users/admin/Desktop/tt.xlsx");
-            excelFile2 = new File("C://Users/admin/Desktop/aaa.xlsx");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if(!excelFile.exists()){
-            return "文件不存在!";
-        }
-        if(!(excelFile.isFile() && (excelFile.getName().endsWith("xls") || excelFile.getName().endsWith("xlsx")))){
-            return "文件不是Excel!";
-        }
-        List<File> excelList = new ArrayList<File>();
-        excelList.add(excelFile);
-        excelList.add(excelFile1);
-        excelList.add(excelFile2);
-        Set<String> set = new HashSet();
-        //调用service层的业务逻辑处理，进行Excel文件的读取。
-        for( int i = 0 ; i <  excelList.size();i++){
-            String sign = null;
-            try {
-                sign = excelServiceImp.readService(excelList.get(i));
-            } catch (Exception e) {
-                sign = e.getMessage();
-            }
-            set.add(sign);
-        }
-        if( set.size() == 1 ){
-            String result = "";
-            for( String str : set){
-                result = str;
-            }
-            return result;
-        }
-        else{
-            String result = "";
-            for( String str : set){
-                if(!"录入成功！".equals(str)){
-                    result = result + str + "/t";
-                }
-            }
-            return result;
-        }*/
     }
     /*
      * 上传多个excel文件的方法
@@ -151,11 +100,13 @@ public class ExcelController {
         List<String> resultRead = readExcel(resultList);
         //删除已经上传但是内部有问题的Excel文件
         for( String s :resultRead){
-            if( !"录入成功！".equals(s) ){
+            if( ! ("录入成功！".equals(s)) ){
                 errorList.add(s.split("-")[1]);
+                if( !s.contains("数据库中已经存在你们家的信息") ){
                 //调用删除服务器上文件的方法！
                 String filePath =  s.split("-")[0];
                 delete(filePath);
+                }
             }
         }
         map.put("error",errorList);

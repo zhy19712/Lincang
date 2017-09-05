@@ -2,6 +2,7 @@ package com.bhidi.lincang.service;
 
 import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.ExcelDao;
+import com.bhidi.lincang.dao.ExcelMapper;
 import com.bhidi.lincang.system.DBUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
@@ -29,12 +30,11 @@ import java.util.Iterator;
 @Service
 public class ExcelServiceImp implements ExcelServiceInf{
     @Autowired
-    ExcelDao excelDao;
+    ExcelMapper excelMapper;
     /**
      * 读取Excel测试，兼容 Excel 2003/2007/2010,并存储。
      * @throws Exception
      */
-    @Transactional
     public String readService(File excelFile){
         SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
         //取出来文件的名字
@@ -61,10 +61,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
         // Sheet的数量
         int SheetCount = workbook.getNumberOfSheets();
         System.out.println("Sheet的数量"+SheetCount);
-        //取第一个sheet，在这里默认第一个sheet就是移民搬迁登记表。
-        /*Sheet firstSheet = workbook.getSheetAt(0);
-        String firstSheetName = firstSheet.getSheetName();
-        System.out.println("第一个sheet的名字："+firstSheetName);*/
         if(SheetCount == 0){
             return serverPath+"-"+excelName+"文件中无sheet！";
         }
@@ -85,8 +81,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 return serverPath+"-"+excelName+"文件的fid为："+fid+"其中的"+sheet.getSheetName()+"表编号不可以为空！";
             }
             System.out.println("判断阶段的："+fid);
-            String fidRes = excelDao.queryPeopleByFid(fid);
-            if( !"".equals(fidRes) ){
+            String fidResult = excelMapper.queryPeopleByFid(fid);
+            if( fidResult != null ){
                 return serverPath+"-"+excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
             }
         }
@@ -112,19 +108,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
         return "录入成功！";
     }
     /*
-     *判断一行是否为空的方法
-     */
-    public boolean isRowEmpty(Row row) {
-        int aa = row.getFirstCellNum();
-        int bb = row.getLastCellNum();
-        for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
-            Cell cell = row.getCell(c);
-            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
-                return false;
-        }
-        return true;
-    }
-    /*
      * 录入excel文件第一个sheet的方法
      */
     public String first(Sheet firstSheet){
@@ -142,8 +125,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if( ifexit == 1 ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。";
         }*/
-        String fidRes = excelDao.queryPeopleByFid(fid);
-       /* if( !"".equals(fidRes) ){
+       /* String fidRes = excelDao.queryPeopleByFid(fid);
+        if( !"".equals(fidRes) ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         //22获取所属水库
@@ -201,13 +184,16 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         String account_number = cell37.getStringCellValue();
         System.out.println("银行卡号："+account_number);
-        //存入数据库
         Bank bank = new Bank();
         bank.setFid(fid);
         bank.setAccount_name(account_name);
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
-        excelDao.saveBank(bank);
+        //在这里应该添加事物的，先没有考虑如果插入不成功，会怎么办。
+        if( bank != null ){
+            Integer intResultOfBank =  excelMapper.saveBank(bank);
+        }
+
 
 
         //第五行开始取个人信息,每行的名字取出来都要和前边户主的名字进行比较，进而来判断人的身份。
@@ -327,9 +313,10 @@ public class ExcelServiceImp implements ExcelServiceInf{
             p.setInterviewer(interviewer);
             p.setCreated_at( sdf.format( new Date() ) );
         }
-        //调用sql将用户的存储到数据库中去
-        /*DBUtils.batchInsert(pl);*/
-        excelDao.batchSavePeople(pl);
+        //调用Dao层将用户的存储到数据库中去
+        if( pl.size() > 0 ){
+            Integer intResultOfPeople = excelMapper.batchSavePeople(pl);
+        }
 
 
 
@@ -438,9 +425,11 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_village(to_village);
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);
-        //调用jadbcTemplate的插入方法
-        int i = excelDao.saveMove(move);
-        System.out.println("迁入迁出信息录入了："+i+"条；");
+        //调用Dao层的方法插入数据库
+        if( move != null ){
+            Integer intResultOfMove = excelMapper.saveMove(move);
+        }
+
 
         //开始取住房情况信息
         Row rowMainHouse = firstSheet.getRow(firstSheetendRow + 5);
@@ -561,13 +550,15 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_structure4(sub_structure4);
         house.setSub_structure5(sub_structure5);
         house.setSub_remark(sub_remark);
-        //调用jdbcTemplate的插入方法
-        int j = excelDao.saveHouse(house);
-        System.out.println("房子信息录入了："+j+"条！");
+        //调用Dao的方法将房屋信息插入数据库
+        if( house != null ){
+            Integer intResultOfHouse =  excelMapper.saveHouse(house);
+        }
+
 
 
         //取收入的数据
-        List<SqlParameterSource> listIncome = new ArrayList<SqlParameterSource>();
+        List<Income> listIncome = new ArrayList<Income>();
         //收入分类之养殖业收入，一共8行内容，
         for(int incomenum = (firstSheetendRow + 8);incomenum< (firstSheetendRow + 16);incomenum++ ){
             Row rowIncome = firstSheet.getRow(incomenum);
@@ -627,8 +618,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
             income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了养殖业之后的长度："+listIncome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -691,8 +682,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
             income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+           /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了种殖业之后的长度："+listIncome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -755,18 +746,18 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
             income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了其他之后的长度："+listIncome.size());
-        //调用jadbcTemplate的插入方法
-        int[] h = excelDao.saveIncome(listIncome);
-        System.out.println("收入信息录入了："+h.length+"条；");
-
+        //调用Dao层的插入方法存储收入数据
+        if( listIncome.size() > 0 ){
+            Integer intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+        }
 
 
         //支出的数据的取
-        List<SqlParameterSource> listOutcome = new ArrayList<SqlParameterSource>();
+        List<Outcome> listOutcome = new ArrayList<Outcome>();
         //支出分类之种殖业支出，
         for(int outcomenum = (firstSheetendRow + 23);outcomenum< (firstSheetendRow + 29);outcomenum++ ){
             Row rowOutcome = firstSheet.getRow(outcomenum);
@@ -826,8 +817,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了种殖业支出之后的长度："+listOutcome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -890,8 +881,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了养殖业支出之后的长度："+listOutcome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -954,13 +945,15 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
-        //调用jadbcTemplate的插入方法
-        int[] hOut = excelDao.saveOutcome(listOutcome);
-        System.out.println("支出信息录入了："+hOut.length+"条；");
+        //调用Dao层的方法存储支出数据
+        if( listOutcome.size() > 0 ){
+            Integer intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+        }
+
         return "录入成功！";
     }
     /*
@@ -981,8 +974,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if( ifexit == 1 ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。";
         }*/
-        String fidRes = excelDao.queryPeopleByFid(fid);
-      /*  if( !"".equals(fidRes) ){
+       /*  String fidRes = excelDao.queryPeopleByFid(fid);
+       if( !"".equals(fidRes) ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         //22获取所属水库
@@ -1039,13 +1032,16 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         String account_number = cell37.getStringCellValue();
         System.out.println("银行卡号："+account_number);
-        //存入数据库
         Bank bank = new Bank();
         bank.setFid(fid);
         bank.setAccount_name(account_name);
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
-        excelDao.saveBank(bank);
+        //存储数据库
+        if( bank != null ){
+            Integer intResult =  excelMapper.saveBank(bank);
+        }
+
 
         //第五行开始取个人信息,每行的名字取出来都要和前边户主的名字进行比较，进而来判断人的身份。
         //在这里我们要查出来合并单元格的多少来判断一共有几行是用来写家庭成员信息的。4-8
@@ -1154,8 +1150,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellInterviewee.setCellType(Cell.CELL_TYPE_STRING);
         }
         String interviewee = cellInterviewee.getStringCellValue();
-
-
         //在这里给集合中的每个用户添加属性
         for( People p: pl ){
             p.setHome_size(num);
@@ -1164,9 +1158,11 @@ public class ExcelServiceImp implements ExcelServiceInf{
             p.setInterviewer(interviewer);
             p.setCreated_at( sdf.format( new Date() ) );
         }
-        //调用sql将用户的存储到数据库中去
-       /* DBUtils.batchInsert(pl.getPeopleList());*/
-       excelDao.batchSavePeople(pl);
+        //调用Dao层方法将家庭成员信息的存储到数据库中去
+        if( pl.size() > 0 ){
+            Integer intResultOfPeople = excelMapper.batchSavePeople(pl);
+        }
+
 
 
 
@@ -1275,9 +1271,11 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_village(to_village);
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);*/
-        //调用jadbcTemplate的插入方法
-        int i = excelDao.saveMove(move);
-        System.out.println("所在地信息录入了："+i+"条；");
+        //调用Dao层的方法插入数据库
+        if( move != null ){
+            Integer intResultOfMove = excelMapper.saveMove(move);
+        }
+
 
         //开始取住房情况信息
         Row rowMainHouse = firstSheet.getRow(firstSheetendRow + 4);
@@ -1398,13 +1396,15 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_structure4(sub_structure4);
         house.setSub_structure5(sub_structure5);
         house.setSub_remark(sub_remark);
-        //调用jdbcTemplate的插入方法
-        int j = excelDao.saveHouse(house);
-        System.out.println("房子信息录入了："+j+"条！");
+        //调用Dao的方法将房屋信息插入数据库
+        if( house != null ){
+            Integer intResultOfHouse =  excelMapper.saveHouse(house);
+        }
+
 
 
         //取收入的数据
-        List<SqlParameterSource> listIncome = new ArrayList<SqlParameterSource>();
+        List<Income> listIncome = new ArrayList<Income>();
         //收入分类之养殖业收入，一共8行内容，
         for(int incomenum = (firstSheetendRow + 7);incomenum< (firstSheetendRow + 15);incomenum++ ){
             Row rowIncome = firstSheet.getRow(incomenum);
@@ -1463,9 +1463,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+            income.setRemark("".equals(remark)?"无":remark);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了养殖业之后的长度："+listIncome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -1527,9 +1527,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+            income.setRemark("".equals(remark)?"无":remark);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了种殖业之后的长度："+listIncome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -1591,14 +1591,16 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
             income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
             income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);
-            listIncome.add(paramSource);
+            income.setRemark("".equals(remark)?"无":remark);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
+            listIncome.add(income);
         }
         System.out.println("集合添加了其他之后的长度："+listIncome.size());
-        //调用jadbcTemplate的插入方法
-        int[] h = excelDao.saveIncome(listIncome);
-        System.out.println("收入信息录入了："+h.length+"条；");
+        //调用Dao层的插入方法存储收入数据
+        if( listIncome.size() > 0 ){
+            Integer intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+        }
+
 
 
 
@@ -1796,8 +1798,21 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
         //调用jadbcTemplate的插入方法
-        int[] hOut = excelDao.saveOutcome(listOutcome);
-        System.out.println("支出信息录入了："+hOut.length+"条；");
+      /*  int[] hOut = excelDao.saveOutcome(listOutcome);
+        System.out.println("支出信息录入了："+hOut.length+"条；");*/
         return "录入成功！";
+    }
+    /*
+     *判断一行是否为空的方法
+     */
+    public boolean isRowEmpty(Row row) {
+        int aa = row.getFirstCellNum();
+        int bb = row.getLastCellNum();
+        for (int c = row.getFirstCellNum(); c < row.getLastCellNum(); c++) {
+            Cell cell = row.getCell(c);
+            if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK)
+                return false;
+        }
+        return true;
     }
 }

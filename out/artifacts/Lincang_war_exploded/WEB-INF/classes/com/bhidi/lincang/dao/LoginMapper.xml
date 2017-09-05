@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.LoginMapper">
+
+    <select id="queryUserByUsername" parameterType="Map" resultType="com.bhidi.lincang.bean.User">
+        select
+        uid,
+        username,
+        pass as password,
+        name,
+        dept,
+        phone1,
+        phone2,
+        level,
+        created_at
+        from user where username= #{username} and pass = #{password}
+    </select>
+
+</mapper>

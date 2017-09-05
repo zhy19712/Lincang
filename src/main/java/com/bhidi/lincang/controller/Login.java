@@ -36,8 +36,7 @@ public class Login {
      */
     @RequestMapping(value = "/login.do",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String login(String username, String password, String login_auto_login,HttpSession session, ModelMap map, HttpServletResponse response){
-        System.out.println("fffff");
-        User user = loginServiceImp.queryUserByUsername(username,password);
+        User user = loginServiceImp.queryUserByUsernameAndPass(username,password);
         if( user != null  ){
             session.setAttribute("user",user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
@@ -74,9 +73,9 @@ public class Login {
             e.printStackTrace();
         }
         Cookie cookie=new Cookie("cookie_user",sss);
-        cookie.setMaxAge(0); //立即删除型
-        /*cookie.setPath("/");*///项目所有目录均有效，这句很关键，否则不敢保证删除
-        response.addCookie(cookie); //重新写入，将覆盖之前的
+        cookie.setMaxAge(0);
+        /*cookie.setPath("/");*/
+        response.addCookie(cookie);
         session.invalidate();
         return "login";
     }

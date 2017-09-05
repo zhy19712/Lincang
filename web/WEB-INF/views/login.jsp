@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +41,12 @@
         <div class="row">
             <div class="well col-md-5 center login-box">
                 <div class="alert alert-info">
-                    用户名密码登录
+                    <c:if test="${msg==null}">
+                        用户名密码登录
+                    </c:if>
+                    <c:if test="${msg!=null}">
+                        ${msg}
+                    </c:if>
                 </div>
                 <form class="form-horizontal" action="/login.do" method="post">
                     <fieldset>

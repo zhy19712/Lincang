@@ -14,6 +14,5 @@ public class User {
     public void login(HttpServletRequest request){
         String TT = request.getParameter("username");
         System.out.println(TT);
-
     }
 }
