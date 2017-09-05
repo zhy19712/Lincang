@@ -139,6 +139,11 @@ function docReady() {
     $('.iphone-toggle').iphoneStyle();
 
 
+
+
+
+
+
     //datatable
     var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
@@ -182,6 +187,12 @@ function docReady() {
             }
         }
     });
+
+
+
+
+
+
 
 
 
