@@ -88,8 +88,7 @@
                         <li class="nav-header">我的事务</li>
                         <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
-                        <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
-
+                        <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></
                         <li class="nav-header">我的审批</li>
                         <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
                         <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
@@ -117,6 +116,12 @@
                                     </div>
                                     home
                                 </div>
+
+
+
+
+
+
                                 <div class="tab-pane active" id="new1">
                                     <div>
                                         <ul class="breadcrumb">
@@ -144,7 +149,6 @@
                                     <div class="box-inner">
                                         <div class="box-header well">
                                             <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
-
                                         </div>
 
 
@@ -162,6 +166,13 @@
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
                                 <div class="tab-pane" id="progress1">
                                     <div>
                                         <ul class="breadcrumb">
@@ -313,8 +324,11 @@
 
     <hr>
 
+
+
+
     <div class="modal fade" id="form_stuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
+         aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
             <div class="modal-content">
@@ -324,47 +338,47 @@
                 </div>
                 <div class="modal-body">
                     <div class="row myrow">
-                        <div class="col-lg-5">
+                        <div class="col-sm-5">
                             <span>拟稿单位</span>
                             <input id="input1" type="text">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-3">
                             <span>拟稿</span>
                             <input id="input2" type="text">
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-sm-4">
                             <span>科室核稿</span>
                             <input id="input3" type="text">
                         </div>
                     </div>
                     <div class="row myrow">
-                        <div class="col-lg-5">
+                        <div class="col-sm-5">
                             <span>印刷</span>
                             <input id="input4" type="text">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-sm-3">
                             <span>校对</span>
                             <input id="input5" type="text">
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-sm-4">
                             <span>份数</span>
                             <input id="input6" type="text">
                         </div>
                     </div>
                     <div class="row myrow">
-                        <div class="col-lg-12">
+                        <div class="col-sm-12">
                             <span>附件</span>
-                            <input id="input7" type="text">
+                            <input id="input7" type="text" name="文件">
                         </div>
                     </div>
                     <div class="row myrow">
-                        <div class="col-lg-12">
+                        <div class="col-sm-12">
                             <span>主题词</span>
                             <input id="input8" type="text">
                         </div>
                     </div>
                     <div class="row myrow last">
-                        <div class="col-lg-12">
+                        <div class="col-sm-12">
                             <span>标题</span>
                             <input id="input9" type="text">
                         </div>
@@ -531,10 +545,15 @@
 
 </div><!--/.fluid-container-->
 
+
+
 <script>
+
     function newForm() {
         $('#form_stuff').modal('show');
     }
+
+
 
 
     function detail(that) {
@@ -546,8 +565,9 @@
         $('#form_stuff').modal('show');
     }
 
-    function detail_office(that) {
 
+
+    function detail_office(that) {
         $('#form_office').modal('show');
     }
 
@@ -557,6 +577,8 @@
 
 
 </script>
+
+
 
 <!-- external javascript -->
 <script src="../../js/bootstrap.min.js"></script>
@@ -572,6 +594,8 @@
         src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/flowchart.js"></script>
+
+<script src="../../js/oa.js"></script>
 </body>
 </html>
 
