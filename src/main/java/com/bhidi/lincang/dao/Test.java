@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 2017/8/23.
@@ -15,11 +17,16 @@ import java.sql.Connection;
 public class Test {
     private static ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
     public static void main(String[] args)throws Exception{
-        System.out.println(ioc);
+/*        System.out.println(ioc);
         DataSource bean = (DataSource) ioc.getBean("dataSource");
         Connection connection = bean.getConnection();
         System.out.println(connection);
-        connection.close();
+        connection.close();*/
+        List<String> list = new ArrayList<String>();
+        if( list == null ){
+            System.out.println("null");
+        }
+        System.out.println(list);
     }
 
 }
