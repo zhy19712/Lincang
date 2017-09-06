@@ -57,56 +57,37 @@ function del_file(number) {
 
     // 表单保存
     $(".btn-success").click(function () {
-
-        $("#Commit").click();
-
-
-        var draftUnit=  $("#input1").val();
-        var draft=  $("#input2").val();
-        var draftSectionOffice=  $("#input3").val();
-        var Printing=  $("#input4").val();
-        var proofread=  $("#input5").val();
-        var Copies=  $("#input6").val();
-        var descriptor=  $("#input8").val();
+        var sent_at=  $("#input1").val();
+        var author=  $("#input2").val();
+        var dept=  $("#input3").val();
+        var print=  $("#input4").val();
+        var revision=  $("#input5").val();
+        var copy=  $("#input6").val();
+        var keywords=  $("#input8").val();
         var title=  $("#input9").val();
-        var Content=  $("#input10").val();
-
-
-        var Attachment= $("#filesUpload > span");
+        var content=  $("#input10").val();
+        var attachment= $("#filesUpload > span");
         var arrAttachment=[];
-
-        for(var i=0;i<Attachment.length;i++){
-            arrAttachment.push(Attachment.eq(i).text());
+        for(var i=0;i<attachment.length;i++){
+            arrAttachment.push(attachment.eq(i).text());
         }
-
         var datas= {
-            "draftUnit":draftUnit,
-            "draft":draft,
-            "draftSectionOffice":draftSectionOffice,
-            "Printing":Printing,
-            "proofread":proofread,
-            "Copies":Copies,
-            "descriptor":descriptor,
+            "sent_at":sent_at,
+            "author":author,
+            "dept":dept,
+            "print":print,
+            "revision":revision,
+            "copy":copy,
+            "arrAttachment":arrAttachment,
+            "keywords":keywords,
             "title":title,
-            "Content":Content,
-            "arrAttachment":arrAttachment
+            "content":content
         };
-
         console.log([datas])
-
-
-
-
-
-
-
         $.ajax({
-            type: "post",
-            url: "update.do",
-            data:[datas],
-            // "draftUnit=" + draftUnit + "draft=" + draft + "draftSectionOffice=" + draftSectionOffice + "Printing=" + Printing+
-            // "proofread=" + proofread+"Printing=" + Printing+"Copies=" + Copies+"Attachment=" + Attachment+
-            // "descriptor=" + descriptor+"title=" + title+"Content=" + Content,
+            type: 'post',
+            url: '/saveFormData.do',
+            data: datas,
             dataType: 'json',
             async:false,
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
@@ -114,6 +95,7 @@ function del_file(number) {
                 //location.reload();
             }
         });
+        /*$("#Commit").submit();*/
     });
 
 
@@ -121,34 +103,45 @@ function del_file(number) {
 
     // 表单提交
     $(".btn-primary").click(function () {
-
-        var draftUnit=  $("#input1").val();
-        var draft=  $("#input2").val();
-        var draftSectionOffice=  $("#input3").val();
-        var Printing=  $("#input4").val();
-        var proofread=  $("#input5").val();
-        var Copies=  $("#input6").val();
-        var Attachment=  $("#input7").val();
-        var descriptor=  $("#input8").val();
+        var sent_at=  $("#input1").val();
+        var author=  $("#input2").val();
+        var dept=  $("#input3").val();
+        var print=  $("#input4").val();
+        var revision=  $("#input5").val();
+        var copy=  $("#input6").val();
+        var keywords=  $("#input8").val();
         var title=  $("#input9").val();
-        var Content=  $("#input10").val();
-
-        console.log(draftUnit)
-
-
-        // $.ajax({
-        //     type: "post",
-        //     url: "update.do",
-        //     data: "draftUnit=" + draftUnit + "draft=" + draft + "draftSectionOffice=" + draftSectionOffice + "Printing=" + Printing+
-        //     "proofread=" + proofread+"Printing=" + Printing+"Copies=" + Copies+"Attachment=" + Attachment+
-        //     "descriptor=" + descriptor+"title=" + title+"Content=" + Content,
-        //     dataType: 'json',
-        //     async:false,
-        //     contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        //     success: function (result) {
-        //         //location.reload();
-        //     }
-        // });
+        var content=  $("#input10").val();
+        var attachment= $("#filesUpload > span");
+        var arrAttachment=[];
+        for(var i=0;i<attachment.length;i++){
+            arrAttachment.push(attachment.eq(i).text());
+        }
+        var datas= {
+            "sent_at":sent_at,
+            "author":author,
+            "dept":dept,
+            "print":print,
+            "revision":revision,
+            "copy":copy,
+            "arrAttachment":arrAttachment,
+            "keywords":keywords,
+            "title":title,
+            "content":content
+        };
+        console.log([datas])
+        $.ajax({
+            type: 'post',
+            url: '/submitFormData.do',
+            data: datas,
+            dataType: 'json',
+            async:false,
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function (result) {
+                //location.reload();
+            }
+        });
+        /*$("#Commit").submit();*/
     });
 
 

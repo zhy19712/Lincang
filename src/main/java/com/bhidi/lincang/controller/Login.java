@@ -34,7 +34,7 @@ public class Login {
     /*
      *登录的业务逻辑
      */
-    @RequestMapping(value = "/login.do",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/login",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String login(String username, String password, String login_auto_login,HttpSession session, ModelMap map, HttpServletResponse response){
         User user = loginServiceImp.queryUserByUsernameAndPass(username,password);
         if( user != null  ){

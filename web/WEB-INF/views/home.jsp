@@ -26,8 +26,8 @@
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
 
-    <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/home.css">
+<%--<link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/home.css">--%>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <!-- The fav icon -->

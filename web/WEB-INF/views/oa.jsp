@@ -63,6 +63,7 @@
                 <c:if test="${user!=null}">
                     欢迎${user.username}<a href="logout.do" >注销</a>
                 </c:if>
+                <span id="status" style="overflow: hidden;width:0;height:0;">${user.level}</span>
             </div>
         </div>
         <!-- user dropdown ends -->
@@ -486,7 +487,7 @@
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
-                                <input type="submit" value="提交" id="Commit" style="display:none"/>
+                                <input type="button" id="Commit" style="display:none"/>
                             </form>
 
                             <%--<input id="input7" type="text" name="文件">--%>

@@ -26,8 +26,8 @@
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
 
-    <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/home.css">
+<%--<link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/home.css">--%>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <!-- The fav icon -->
@@ -65,6 +65,7 @@
                 <c:if test="${user!=null}">
                     欢迎${user.username},身份信息：${user.level}<a href="logout.do" >注销</a>
                 </c:if>
+                <span id="status" style="overflow: hidden;width:0;height:0;">${user.level}</span>
             </div>
         </div>
         <!-- user dropdown ends -->
@@ -136,6 +137,7 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script src="../../js/app.js"></script>
+
 </body>
 </html>
 
