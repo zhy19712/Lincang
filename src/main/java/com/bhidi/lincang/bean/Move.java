@@ -23,6 +23,22 @@ public class Move {
 
     }
 
+    public Move(String fid, String from_city, String from_district, String from_town, String from_village, String from_group, String from_remark, String to_city, String to_district, String to_town, String to_village, String to_group, String to_remark) {
+        this.fid = fid;
+        this.from_city = from_city;
+        this.from_district = from_district;
+        this.from_town = from_town;
+        this.from_village = from_village;
+        this.from_group = from_group;
+        this.from_remark = from_remark;
+        this.to_city = to_city;
+        this.to_district = to_district;
+        this.to_town = to_town;
+        this.to_village = to_village;
+        this.to_group = to_group;
+        this.to_remark = to_remark;
+    }
+
     public String getFid() {
         return fid;
     }

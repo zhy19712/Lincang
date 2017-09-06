@@ -12,6 +12,13 @@ public class Bank {
     public Bank() {
     }
 
+    public Bank(String fid, String account_name, String bank_name, String account_number) {
+        this.fid = fid;
+        this.account_name = account_name;
+        this.bank_name = bank_name;
+        this.account_number = account_number;
+    }
+
     public String getFid() {
         return fid;
     }

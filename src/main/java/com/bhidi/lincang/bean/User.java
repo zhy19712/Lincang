@@ -17,6 +17,18 @@ public class User {
     public User() {
     }
 
+    public User(String uid, String username, String password, String name, String dept, String phone1, String phone2, int level, String created_at) {
+        this.uid = uid;
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.dept = dept;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.level = level;
+        this.created_at = created_at;
+    }
+
     public String getUsername() {
         return username;
     }
