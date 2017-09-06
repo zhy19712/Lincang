@@ -61,11 +61,12 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username}<a href="logout.do" >注销</a>
+                    欢迎${user.username},<a href="logout.do" >注销</a>
                 </c:if>
-                <span id="status" style="overflow: hidden;width:0;height:0;">${user.level}</span>
             </div>
         </div>
+
+        <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -487,7 +488,7 @@
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
-                                <input type="button" id="Commit" style="display:none"/>
+                                <input type="submit" value="提交" id="Commit" style="display:none"/>
                             </form>
 
                             <%--<input id="input7" type="text" name="文件">--%>
@@ -670,6 +671,24 @@
 
 
 <script>
+
+    ~function() {
+
+        var status=$("#status").text();
+
+        if(status == 2){
+            $("#myTab > li:gt(7)").remove();
+
+        }else if(status == 3){
+            $("#myTab > li:gt(4)").remove();
+
+        }
+
+    }();
+
+
+
+
 
     function newForm() {
         $('#form_stuff').modal('show');
