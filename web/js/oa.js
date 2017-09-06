@@ -1,6 +1,4 @@
 
-var status=$("status").text();
-console.log(status)
 
 
 

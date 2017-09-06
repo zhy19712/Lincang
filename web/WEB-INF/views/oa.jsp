@@ -65,6 +65,8 @@
                 </c:if>
             </div>
         </div>
+
+        <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -80,6 +82,7 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li><a href="#home"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
+
                         <li class="nav-header">我的表单</li>
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 待办表单</span></a></li>
                         <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 在办表单</span></a></li>
@@ -89,6 +92,7 @@
                         <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
+
                         <li class="nav-header">我的审批</li>
                         <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
                         <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
@@ -669,6 +673,24 @@
 
 
 <script>
+
+    ~function() {
+
+        var status=$("#status").text();
+
+        if(status == 2){
+            $("#myTab > li:gt(7)").remove();
+
+        }else if(status == 3){
+            $("#myTab > li:gt(4)").remove();
+
+        }
+
+    }();
+
+
+
+
 
     function newForm() {
         $('#form_stuff').modal('show');

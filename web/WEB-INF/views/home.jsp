@@ -63,13 +63,14 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username},身份信息：${user.level}<a href="logout.do" >注销</a>
+                    欢迎${user.username}, 身份信息：${user.level}<a href="logout.do" >注销</a>
                 </c:if>
-                <span id="status" style="overflow: hidden;width:0;height:0;">${user.level}</span>
             </div>
         </div>
         <!-- user dropdown ends -->
     </div>
+
+
 </div>
 <!-- topbar ends -->
 <div class="ch-container">
@@ -137,6 +138,8 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script src="../../js/app.js"></script>
+
+
 
 </body>
 </html>
