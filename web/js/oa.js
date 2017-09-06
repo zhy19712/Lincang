@@ -1,4 +1,7 @@
 
+var status=$("status").text();
+console.log(status)
+
 
 
 var fileIndex = 1;
@@ -83,6 +86,7 @@ function del_file(number) {
             "Printing":Printing,
             "proofread":proofread,
             "Copies":Copies,
+            "descriptor":descriptor,
             "title":title,
             "Content":Content,
             "arrAttachment":arrAttachment
