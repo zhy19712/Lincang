@@ -88,7 +88,7 @@
                         <li class="nav-header">我的事务</li>
                         <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
-                        <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></
+                        <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
                         <li class="nav-header">我的审批</li>
                         <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
                         <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
@@ -106,6 +106,8 @@
                     <div class="box-inner ">
                         <div class="box-content">
                             <div id="myTabContent" class="tab-content">
+
+
                                 <div class="tab-pane active" id="home">
                                     <div>
                                         <ul class="breadcrumb">
@@ -116,11 +118,6 @@
                                     </div>
                                     home
                                 </div>
-
-
-
-
-
 
                                 <div class="tab-pane active" id="new1">
                                     <div>
@@ -166,13 +163,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-
                                 <div class="tab-pane" id="progress1">
                                     <div>
                                         <ul class="breadcrumb">
@@ -216,7 +206,32 @@
                                             </li>
                                         </ul>
                                     </div>
+
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 以办列表</h2>
+
+                                        </div>
+
+
+                                        <div class="box-content">
+                                            <table id="OverTable_Stuff" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>标题</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
                                 </div>
+
                                 <div class="tab-pane" id="new2">
                                     <div>
                                         <ul class="breadcrumb">
@@ -262,6 +277,7 @@
                                             </li>
                                         </ul>
                                     </div>
+
                                     <div class="box-inner">
                                         <div class="box-header well">
                                             <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
@@ -293,17 +309,112 @@
                                                 <a href="#">我的事务</a>
                                             </li>
                                             <li>
-                                                <a href="#">已办事务</a>
+                                                <a href="#">已归档事务</a>
                                             </li>
                                         </ul>
                                     </div>
+
+
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已归档事务</h2>
+
+                                        </div>
+                                        <div class="box-content">
+                                            <table id="OverTable_Office" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>提交时间</th>
+                                                    <th>缓级</th>
+                                                    <th>报稿</th>
+                                                    <th>标题</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
+
+
                                 </div>
                                 <div class="tab-pane" id="new3">
-                                    new3
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的审批</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">待审批表单</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待审批表单</h2>
+
+                                        </div>
+                                        <div class="box-content">
+                                            <table id="NewTable_Approval" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>接收时间</th>
+                                                    <th>科室</th>
+                                                    <th>报稿</th>
+                                                    <th>标题</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
+
+
                                 </div>
                                 <div class="tab-pane" id="completed3">
-                                    completed3
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的审批</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">审批记录</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 审批记录</h2>
+
+                                        </div>
+                                        <div class="box-content">
+                                            <table id="OverTable_Approval" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>接收时间</th>
+                                                    <th>科室</th>
+                                                    <th>报稿</th>
+                                                    <th>标题</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+
+
+                                    </div>
+
                                 </div>
+
+
+
                             </div>
 
                         </div>
@@ -368,7 +479,17 @@
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>附件</span>
-                            <input id="input7" type="text" name="文件">
+
+                            <form action="/file/multipleUpload.do" method="post"  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+
+                                <div id="filesUpload">
+                                    <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                    <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                                </div>
+                                <input type="submit" value="提交" id="Commit" style="display:none"/>
+                            </form>
+
+                            <%--<input id="input7" type="text" name="文件">--%>
                         </div>
                     </div>
                     <div class="row myrow">
