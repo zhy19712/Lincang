@@ -63,10 +63,8 @@
                 <c:if test="${user!=null}">
                     欢迎${user.username}<a href="logout.do" >注销</a>
                 </c:if>
-                <span id="status" style="overflow: hidden;width:0;height:0;">${user.level}</span>
             </div>
         </div>
-
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <!-- user dropdown ends -->
     </div>
@@ -680,7 +678,7 @@
         var status=$("#status").text();
 
         if(status == 2){
-            $("#myTab > li:gt(7)").remove();
+            $("#myTab > li:gt(8)").remove();
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();

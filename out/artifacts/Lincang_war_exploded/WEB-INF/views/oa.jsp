@@ -61,11 +61,10 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username},<a href="logout.do" >注销</a>
+                    欢迎${user.username}<a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
-
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <!-- user dropdown ends -->
     </div>
@@ -82,6 +81,7 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li><a href="#home"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
+
                         <li class="nav-header">我的表单</li>
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 待办表单</span></a></li>
                         <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 在办表单</span></a></li>
@@ -91,6 +91,7 @@
                         <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
+
                         <li class="nav-header">我的审批</li>
                         <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
                         <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
@@ -488,7 +489,7 @@
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
-                                <input type="submit" value="提交" id="Commit" style="display:none"/>
+                                <input type="button" id="Commit" style="display:none"/>
                             </form>
 
                             <%--<input id="input7" type="text" name="文件">--%>
@@ -677,7 +678,7 @@
         var status=$("#status").text();
 
         if(status == 2){
-            $("#myTab > li:gt(7)").remove();
+            $("#myTab > li:gt(8)").remove();
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();
