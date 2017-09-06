@@ -48,6 +48,28 @@ public class People {
     public People() {
     }
 
+    public People(int id, String fid, String reservoir, String location, String name, int master, String pid, String gender, String race, String relation, String education, String profession, int home_size, int imm_num, int prop, String poor_reason, String interviewer, String interviewee, String created_at) {
+        this.id = id;
+        this.fid = fid;
+        this.reservoir = reservoir;
+        this.location = location;
+        this.name = name;
+        this.master = master;
+        this.pid = pid;
+        this.gender = gender;
+        this.race = race;
+        this.relation = relation;
+        this.education = education;
+        this.profession = profession;
+        this.home_size = home_size;
+        this.imm_num = imm_num;
+        this.prop = prop;
+        this.poor_reason = poor_reason;
+        this.interviewer = interviewer;
+        this.interviewee = interviewee;
+        this.created_at = created_at;
+    }
+
     public void setId(int id) {
         this.id = id;
     }

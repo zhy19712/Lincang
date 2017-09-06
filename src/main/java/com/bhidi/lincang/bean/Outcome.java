@@ -16,6 +16,16 @@ public class Outcome {
 
     }
 
+    public Outcome(String fid, String outcome_source, String outcome_cate, int outcome_quantity, float outcome_unit, float outcome_sum, String remark) {
+        this.fid = fid;
+        this.outcome_source = outcome_source;
+        this.outcome_cate = outcome_cate;
+        this.outcome_quantity = outcome_quantity;
+        this.outcome_unit = outcome_unit;
+        this.outcome_sum = outcome_sum;
+        this.remark = remark;
+    }
+
     public String getFid() {
         return fid;
     }

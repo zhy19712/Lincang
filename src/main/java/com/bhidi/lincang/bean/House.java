@@ -21,7 +21,24 @@ public class House {
     private String sub_remark;
 
     public House(){
+    }
 
+    public House(String fid, float main_size, String main_structure1, String main_structure2, String main_structure3, String main_structure4, String main_structure5, String main_remark, float sub_size, String sub_structure1, String sub_structure2, String sub_structure3, String sub_structure4, String sub_structure5, String sub_remark) {
+        this.fid = fid;
+        this.main_size = main_size;
+        this.main_structure1 = main_structure1;
+        this.main_structure2 = main_structure2;
+        this.main_structure3 = main_structure3;
+        this.main_structure4 = main_structure4;
+        this.main_structure5 = main_structure5;
+        this.main_remark = main_remark;
+        this.sub_size = sub_size;
+        this.sub_structure1 = sub_structure1;
+        this.sub_structure2 = sub_structure2;
+        this.sub_structure3 = sub_structure3;
+        this.sub_structure4 = sub_structure4;
+        this.sub_structure5 = sub_structure5;
+        this.sub_remark = sub_remark;
     }
 
     public String getFid() {

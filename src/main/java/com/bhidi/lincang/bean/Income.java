@@ -16,6 +16,16 @@ public class Income {
 
     }
 
+    public Income(String fid, String income_source, String income_cate, int income_quantity, float income_unit, float income_sum, String remark) {
+        this.fid = fid;
+        this.income_source = income_source;
+        this.income_cate = income_cate;
+        this.income_quantity = income_quantity;
+        this.income_unit = income_unit;
+        this.income_sum = income_sum;
+        this.remark = remark;
+    }
+
     public String getFid() {
         return fid;
     }
