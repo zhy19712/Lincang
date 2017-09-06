@@ -1,7 +1,3 @@
-
-
-
-
 var fileIndex = 1;
 function add_click_file(index){
     $("#add_file_"+fileIndex).click();
@@ -18,7 +14,6 @@ function add(index) {
     ++fileIndex;
 }
 
-
 function del_file(number) {
     var o=document.getElementById("filesUpload");//获取父节点
     var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
@@ -28,11 +23,6 @@ function del_file(number) {
     o.removeChild(a)
     o.removeChild(span)
 }
-
-
-
-
-
 
 
     //表单放弃
@@ -49,9 +39,6 @@ function del_file(number) {
          $("#input9").val(" ");
          $("#input10").val(" ");
     });
-
-
-
 
     // 表单保存
     $(".btn-success").click(function () {
@@ -95,9 +82,6 @@ function del_file(number) {
         });
         /*$("#Commit").submit();*/
     });
-
-
-
 
     // 表单提交
     $(".btn-primary").click(function () {
