@@ -42,13 +42,13 @@ function del_file(number) {
 
     // 表单保存
     $(".btn-success").click(function () {
-        var sent_at=  $("#input1").val();
+        var dept=  $("#input1").val();
         var author=  $("#input2").val();
-        var dept=  $("#input3").val();
+        var reviewer=  $("#input3").val();
         var print=  $("#input4").val();
         var revision=  $("#input5").val();
         var copy=  $("#input6").val();
-        var keywords=  $("#input8").val();
+        var keyword=  $("#input8").val();
         var title=  $("#input9").val();
         var content=  $("#input10").val();
         var attachment= $("#filesUpload > span");
@@ -57,41 +57,55 @@ function del_file(number) {
             arrAttachment.push(attachment.eq(i).text());
         }
         var datas= {
-            "sent_at":sent_at,
-            "author":author,
             "dept":dept,
+            "author":author,
+            "reviewer":reviewer,
             "print":print,
             "revision":revision,
             "copy":copy,
-            "arrAttachment":arrAttachment,
-            "keywords":keywords,
+            /*"arrAttachment":arrAttachment,*/
+            "keyword":keyword,
             "title":title,
             "content":content
         };
-        console.log([datas])
+
         $.ajax({
-            type: 'post',
             url: '/saveFormData.do',
+            type: 'post',
             data: datas,
             dataType: 'json',
-            async:false,
+            async: false,
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            success: function (result) {
+            success: function (data) {
                 //location.reload();
             }
         });
-        /*$("#Commit").submit();*/
+       /* $("#fileForm").submit();*/
+       $("#fileForm").ajaxSubmit({
+           url: '/file/multipleUpload.do',
+           type: "post",
+           enctype: 'multipart/form-data',
+           dataType:'json',
+           success: function (data)
+           {
+
+           },
+           error: function (data)
+           {
+
+           }
+       })
     });
 
     // 表单提交
     $(".btn-primary").click(function () {
-        var sent_at=  $("#input1").val();
+        var dept=  $("#input1").val();
         var author=  $("#input2").val();
-        var dept=  $("#input3").val();
+        var reviewer=  $("#input3").val();
         var print=  $("#input4").val();
         var revision=  $("#input5").val();
         var copy=  $("#input6").val();
-        var keywords=  $("#input8").val();
+        var keyword=  $("#input8").val();
         var title=  $("#input9").val();
         var content=  $("#input10").val();
         var attachment= $("#filesUpload > span");
@@ -100,18 +114,17 @@ function del_file(number) {
             arrAttachment.push(attachment.eq(i).text());
         }
         var datas= {
-            "sent_at":sent_at,
-            "author":author,
             "dept":dept,
+            "author":author,
+            "reviewer":reviewer,
             "print":print,
             "revision":revision,
             "copy":copy,
-            "arrAttachment":arrAttachment,
-            "keywords":keywords,
+            /*"arrAttachment":arrAttachment,*/
+            "keyword":keyword,
             "title":title,
             "content":content
         };
-        console.log([datas])
         $.ajax({
             type: 'post',
             url: '/submitFormData.do',
@@ -123,7 +136,7 @@ function del_file(number) {
                 //location.reload();
             }
         });
-        /*$("#Commit").submit();*/
+        $("#fileForm").submit();
     });
 
 

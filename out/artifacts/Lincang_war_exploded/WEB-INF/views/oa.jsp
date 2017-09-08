@@ -31,6 +31,7 @@
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-form.min.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -482,17 +483,15 @@
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>附件</span>
-
-                            <form action="/file/multipleUpload.do" method="post"  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
-
+                            <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
+                            <form id = "fileForm" action="/file/multipleUpload.do" method="post"
+                                  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;"target="uploadFrame">
                                 <div id="filesUpload">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
                                 <input type="button" id="Commit" style="display:none"/>
                             </form>
-
-                            <%--<input id="input7" type="text" name="文件">--%>
                         </div>
                     </div>
                     <div class="row myrow">
@@ -686,10 +685,6 @@
         }
 
     }();
-
-
-
-
 
     function newForm() {
         $('#form_stuff').modal('show');

@@ -16,7 +16,17 @@ public class FormStuffServiceImp implements FormStuffServiceInf {
     }
 
     @Override
-    public Integer ssubmittedFormStuff(F_Stuff f_stuff) {
+    public Integer submittedFormStuff(F_Stuff f_stuff) {
         return formStuffMapper.submittedFormStuff(f_stuff);
+    }
+
+    @Override
+    public F_Stuff queryStuffByOid(String oid) {
+        return formStuffMapper.queryStuffByOid(oid);
+    }
+
+    @Override
+    public int deleteStuffByOid(String oid) {
+        return formStuffMapper.deleteStuffByOid(oid);
     }
 }

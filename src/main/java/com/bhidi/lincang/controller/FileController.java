@@ -66,7 +66,7 @@ public class FileController {
             }
             return "ok!";
         } else{
-                return fileName+"文件为空！";
+            return fileName+"文件为空！";
         }
 
     }
@@ -75,9 +75,9 @@ public class FileController {
      * @param files
      * @return
      */
-    /*@ResponseBody*/
-    @RequestMapping(value="/multipleUpload",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public void multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request, ModelMap map) {
+    @ResponseBody
+    @RequestMapping(value="/multipleUpload",method= RequestMethod.POST)
+    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request, ModelMap map,String test) {
         //声明一个集合来收集每个文件上传的结果
         Set<String> resultSet = new HashSet<>();
 
@@ -105,7 +105,7 @@ public class FileController {
             }
         }
         map.put("fileerror",resultFinal);
-        /*return "yimin_temp";*/
+        return "yimin_temp";
     }
     /**
      * 服务器上的文件删除功能

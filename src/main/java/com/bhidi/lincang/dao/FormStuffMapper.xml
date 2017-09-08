@@ -3,61 +3,24 @@
 <mapper namespace="com.bhidi.lincang.dao.FormStuffMapper">
 
     <insert  id="saveFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff">
-        insert into form_stuff (oid,created_at,sent_at,author,dept,reviewer,keywords,
+        insert into form_stuff (oid,created_at,sent_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
-        values( #{oid},#{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keywords},
+        values( #{oid},#{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
          #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
 
     <insert  id="submittedFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff">
-        insert into form_stuff (oid,created_at,sent_at,author,dept,reviewer,keywords,
+        insert into form_stuff (oid,created_at,sent_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
-        values( #{oid},#{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keywords},
+        values( #{oid},#{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
         #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
-    <insert  id="batchSavePeople" parameterType="List">
-        insert into people (fid,reservoir,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at)
-        values
-        <foreach collection="list" separator="," item="people">
-            (
-            #{people.fid},#{people.reservoir},#{people.location}, #{people.name},#{people.master},
-            #{people.pid},#{people.gender},#{people.race},#{people.relation},#{people.education},
-            #{people.profession},#{people.home_size},#{people.imm_num},#{people.interviewer},#{people.interviewee},
-            #{people.created_at}
-            )
-        </foreach>
-    </insert >
-
-    <insert  id="saveMove" parameterType="com.bhidi.lincang.bean.Move">
-        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
-        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
-        #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
-    </insert >
-
-    <insert  id="saveHouse" parameterType="com.bhidi.lincang.bean.House">
-        insert into house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
-        values( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},#{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},#{sub_remark} )
-    </insert >
-
-    <insert  id="batchSaveIncome" parameterType="List">
-        insert into income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
-        values
-        <foreach collection="list" separator="," item="income">
-            (
-            #{income.fid},#{income.income_source},#{income.income_cate},#{income.income_quantity},#{income.income_unit},
-            #{income.income_sum},#{income.remark}
-            )
-        </foreach>
-    </insert >
-
-    <insert  id="batchSaveOutcome" parameterType="List">
-        insert into outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
-        values
-        <foreach collection="list" separator="," item="outcome">
-            (
-            #{outcome.fid},#{outcome.outcome_source},#{outcome.outcome_cate},#{outcome.outcome_quantity},#{outcome.outcome_unit},
-            #{outcome.outcome_sum},#{outcome.remark}
-            )
-        </foreach>
-    </insert >
+    <!--F_Stuff queryStuffByOid(String oid);-->
+    <select id="queryStuffByOid" parameterType="String" resultType="com.bhidi.lincang.bean.F_Stuff">
+        select * from form_stuff where oid = #{oid}
+    </select>
+    <!--int deleteStuffByOid(String oid);-->
+    <delete id = "deleteStuffByOid" parameterType="String">
+        delete from form_stuff where oid = #{oid}
+    </delete>
 </mapper>

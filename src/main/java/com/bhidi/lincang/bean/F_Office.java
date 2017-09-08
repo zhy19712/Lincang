@@ -1,10 +1,17 @@
 package com.bhidi.lincang.bean;
 
-public class F_Stuff {
+public class F_Office {
     private int id;
-    private String oid;
+    private String mid;
+    private String sn;
+    private String issuer;
     private String created_at;
-    private String sent_at;
+    //提交时间
+    private String modified_at;
+    //缓急
+    private int urgency;
+    //密级
+    private int secret_level;
     private String author;
     private String dept;
     private String reviewer;
@@ -16,15 +23,18 @@ public class F_Stuff {
     private int copy;
     private String status;
 
-    public F_Stuff() {
+    public F_Office() {
     }
 
-    public F_Stuff(int id, String oid, String created_at, String sent_at, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, int copy, String status) {
-
+    public F_Office(int id, String mid, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, int copy, String status) {
         this.id = id;
-        this.oid = oid;
+        this.mid = mid;
+        this.sn = sn;
+        this.issuer = issuer;
         this.created_at = created_at;
-        this.sent_at = sent_at;
+        this.modified_at = modified_at;
+        this.urgency = urgency;
+        this.secret_level = secret_level;
         this.author = author;
         this.dept = dept;
         this.reviewer = reviewer;
@@ -37,6 +47,37 @@ public class F_Stuff {
         this.status = status;
     }
 
+    public String getModified_at() {
+        return modified_at;
+    }
+
+    public void setModified_at(String modified_at) {
+        this.modified_at = modified_at;
+    }
+
+    public int getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(int urgency) {
+        this.urgency = urgency;
+    }
+
+    public int getSecret_level() {
+        return secret_level;
+    }
+
+    public void setSecret_level(int secret_level) {
+        this.secret_level = secret_level;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
     public int getId() {
         return id;
     }
@@ -44,13 +85,20 @@ public class F_Stuff {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getOid() {
-        return oid;
+    
+    public String getMid() {
+        return mid;
     }
 
-    public void setOid(String oid) {
-        this.oid = oid;
+    public void setMid(String mid) {
+        this.mid = mid;
+    }
+    public String getIssuer() {
+        return issuer;
+    }
+
+    public void setIssuer(String issuer) {
+        this.issuer = issuer;
     }
 
     public String getCreated_at() {
@@ -61,13 +109,7 @@ public class F_Stuff {
         this.created_at = created_at;
     }
 
-    public String getSent_at() {
-        return sent_at;
-    }
 
-    public void setSent_at(String sent_at) {
-        this.sent_at = sent_at;
-    }
 
     public String getAuthor() {
         return author;
@@ -151,11 +193,15 @@ public class F_Stuff {
 
     @Override
     public String toString() {
-        return "F_Stuff{" +
+        return "F_Office{" +
                 "id=" + id +
-                ", oid='" + oid + '\'' +
+                ", mid='" + mid + '\'' +
+                ", sn='" + sn + '\'' +
+                ", issuer='" + issuer + '\'' +
                 ", created_at='" + created_at + '\'' +
-                ", sent_at='" + sent_at + '\'' +
+                ", modified_at='" + modified_at + '\'' +
+                ", urgency=" + urgency +
+                ", secret_level=" + secret_level +
                 ", author='" + author + '\'' +
                 ", dept='" + dept + '\'' +
                 ", reviewer='" + reviewer + '\'' +
