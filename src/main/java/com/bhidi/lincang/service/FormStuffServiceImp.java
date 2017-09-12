@@ -21,12 +21,12 @@ public class FormStuffServiceImp implements FormStuffServiceInf {
     }
 
     @Override
-    public F_Stuff queryStuffByOid(String oid) {
-        return formStuffMapper.queryStuffByOid(oid);
+    public F_Stuff queryStuffById(int id) {
+        return formStuffMapper.queryStuffById(id);
     }
 
     @Override
-    public int deleteStuffByOid(String oid) {
-        return formStuffMapper.deleteStuffByOid(oid);
+    public int deleteStuffById(int id) {
+        return formStuffMapper.deleteStuffById(id);
     }
 }

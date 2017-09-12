@@ -120,7 +120,7 @@ function docReady() {
     });
 
     //chosen - improves select
-    $('[data-rel="chosen"],[rel="chosen"]').chosen();
+    /*$('[data-rel="chosen"],[rel="chosen"]').chosen();*/
 
     //tabs
     $('#myTab a:first').tab('show');
@@ -152,7 +152,7 @@ function docReady() {
         "order": [[2, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "OID"},
+            {"data": "ID"},
             {"data": "TITLE"},
             {"data": "CREATED_AT"},
             {"data": null}
@@ -204,7 +204,7 @@ function docReady() {
         "order": [[2, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "OID"},
+            {"data": "ID"},
             {"data": "TITLE"},
             {"data": "CREATED_AT"},
             {"data": null}

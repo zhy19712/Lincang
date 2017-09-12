@@ -7,7 +7,7 @@ public interface FormStuffServiceInf {
 
     Integer submittedFormStuff(F_Stuff f_stuff);
 
-    F_Stuff queryStuffByOid(String oid);
+    F_Stuff queryStuffById(int id);
 
-    int deleteStuffByOid(String oid);
+    int deleteStuffById(int id);
 }

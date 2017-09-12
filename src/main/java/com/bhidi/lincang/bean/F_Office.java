@@ -2,7 +2,7 @@ package com.bhidi.lincang.bean;
 
 public class F_Office {
     private int id;
-    private String mid;
+
     private String sn;
     private String issuer;
     private String created_at;
@@ -26,9 +26,8 @@ public class F_Office {
     public F_Office() {
     }
 
-    public F_Office(int id, String mid, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
+    public F_Office(int id, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
         this.id = id;
-        this.mid = mid;
         this.sn = sn;
         this.issuer = issuer;
         this.created_at = created_at;
@@ -85,14 +84,7 @@ public class F_Office {
     public void setId(int id) {
         this.id = id;
     }
-    
-    public String getMid() {
-        return mid;
-    }
 
-    public void setMid(String mid) {
-        this.mid = mid;
-    }
     public String getIssuer() {
         return issuer;
     }
@@ -195,7 +187,6 @@ public class F_Office {
     public String toString() {
         return "F_Office{" +
                 "id=" + id +
-                ", mid='" + mid + '\'' +
                 ", sn='" + sn + '\'' +
                 ", issuer='" + issuer + '\'' +
                 ", created_at='" + created_at + '\'' +

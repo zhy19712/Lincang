@@ -1,13 +1,13 @@
 package com.bhidi.lincang.bean;
 
 public class Form_Stuff {
-    public String OID;
+    public int ID;
     public String TITLE;
     public String CREATED_AT;
 
 
-    public Form_Stuff(String OID, String TITLE, String CREATED_AT) {
-        this.OID = OID;
+    public Form_Stuff(int ID, String TITLE, String CREATED_AT) {
+        this.ID = ID;
         this.TITLE = TITLE;
         this.CREATED_AT = CREATED_AT;
     }
@@ -16,9 +16,9 @@ public class Form_Stuff {
 
         return TITLE;
     }
-    public String getOID() {
+    public int getID() {
 
-        return OID;
+        return ID;
     }
 
     public String getCREATED_AT() {

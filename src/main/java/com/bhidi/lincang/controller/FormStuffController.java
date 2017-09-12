@@ -43,9 +43,8 @@ public class FormStuffController {
                              @RequestParam(value="content",required=false)String content){
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String oid =  String.valueOf( now.getTime() ).substring(1,10);
+        /*String oid =  String.valueOf( now.getTime() ).substring(1,10);*/
         F_Stuff f_stuff = new F_Stuff();
-        f_stuff.setOid(oid);
         f_stuff.setCreated_at( sdf.format(now) );
         f_stuff.setSent_at( "" );
         f_stuff.setReviewer(reviewer);
@@ -78,9 +77,8 @@ public class FormStuffController {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String oid =  String.valueOf( now.getTime() ).substring(1,10);
+        /*String oid =  String.valueOf( now.getTime() ).substring(1,10);*/
         F_Stuff f_stuff = new F_Stuff();
-        f_stuff.setOid(oid);
         f_stuff.setCreated_at( sdf.format(now) );
         f_stuff.setSent_at( sdf.format(now) );
         f_stuff.setReviewer(reviewer);
@@ -107,20 +105,23 @@ public class FormStuffController {
         return integerResultOfFormOffice.toString();
     }
     /*
-     * 查看按钮，目前是传送回来OID
+     * 查看按钮，目前是传送回来ID
      */
     @ResponseBody
-    @RequestMapping(value="/queryStuffByOid",method= RequestMethod.POST)
-    public F_Stuff queryStuffByOid(String oid){
-        F_Stuff fStuff = formStuffServiceImp.queryStuffByOid(oid);
+    @RequestMapping(value="/queryStuffById",method= RequestMethod.POST)
+    public F_Stuff queryStuffByOid(int id){
+        F_Stuff fStuff = formStuffServiceImp.queryStuffById(id);
         return fStuff;
     }
+    /*
+     * 删除按钮，根据id删除表单内容
+     */
     @ResponseBody
-    @RequestMapping(value="/deleteStuffByOid")
-    public String delete( String oid ) {
+    @RequestMapping(value="/deleteStuffById")
+    public String delete( int id ) {
         int cnt = 0;
         try {
-            cnt = formStuffServiceImp.deleteStuffByOid(oid);
+            cnt = formStuffServiceImp.deleteStuffById(id);
         } catch ( Exception e ) {
             e.printStackTrace();
         }
