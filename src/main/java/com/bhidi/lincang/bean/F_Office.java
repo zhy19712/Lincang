@@ -20,13 +20,13 @@ public class F_Office {
     private String content;
     private String print;
     private String revision;
-    private int copy;
+    private String copy;
     private String status;
 
     public F_Office() {
     }
 
-    public F_Office(int id, String mid, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, int copy, String status) {
+    public F_Office(int id, String mid, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
         this.id = id;
         this.mid = mid;
         this.sn = sn;
@@ -175,11 +175,11 @@ public class F_Office {
         this.revision = revision;
     }
 
-    public int getCopy() {
+    public String getCopy() {
         return copy;
     }
 
-    public void setCopy(int copy) {
+    public void setCopy(String copy) {
         this.copy = copy;
     }
 

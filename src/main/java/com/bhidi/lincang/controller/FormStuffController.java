@@ -56,7 +56,7 @@ public class FormStuffController {
         f_stuff.setContent(content);
         f_stuff.setPrint(print);
         f_stuff.setRevision(revision);
-        f_stuff.setCopy(copy == ""?0:Integer.parseInt(copy));
+        f_stuff.setCopy(copy);
         f_stuff.setStatus("NEW");
         //在这里需要设置返回值的，要让用户知道上传或者说是这些东西完事没有。
         Integer integerResultOfFormStuff = formStuffServiceImp.saveFormStuff(f_stuff);
@@ -91,7 +91,7 @@ public class FormStuffController {
         f_stuff.setContent(content);
         f_stuff.setPrint(print);
         f_stuff.setRevision(revision);
-        f_stuff.setCopy(copy == ""?0:Integer.parseInt(copy));
+        f_stuff.setCopy(copy);
         f_stuff.setStatus("SUBMITTED");
         //在这里需要设置返回值的，要让用户知道上传或者说是这些东西完事没有。
         Integer integerResultOfFormStuff = formStuffServiceImp.submittedFormStuff(f_stuff);

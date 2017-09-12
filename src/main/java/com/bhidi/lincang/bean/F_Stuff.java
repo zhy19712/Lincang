@@ -13,13 +13,13 @@ public class F_Stuff {
     private String content;
     private String print;
     private String revision;
-    private int copy;
+    private String copy;
     private String status;
 
     public F_Stuff() {
     }
 
-    public F_Stuff(int id, String oid, String created_at, String sent_at, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, int copy, String status) {
+    public F_Stuff(int id, String oid, String created_at, String sent_at, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
 
         this.id = id;
         this.oid = oid;
@@ -133,11 +133,11 @@ public class F_Stuff {
         this.revision = revision;
     }
 
-    public int getCopy() {
+    public String getCopy() {
         return copy;
     }
 
-    public void setCopy(int copy) {
+    public void setCopy(String copy) {
         this.copy = copy;
     }
 
