@@ -58,10 +58,10 @@ public class Table_Office {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
-                sArray.add(" SN like '%" + searchValue + "%'");
-                sArray.add(" TITLE like '%" + searchValue + "%'");
                 sArray.add(" CREATED_AT like '%" + searchValue + "%'");
-                sArray.add(" URGENCY like '%" + searchValue + "%'");
+                sArray.add(" DEPT like '%" + searchValue + "%'");
+                sArray.add(" AUTHOR like '%" + searchValue + "%'");
+                sArray.add(" TITLE like '%" + searchValue + "%'");
             }
 
 
@@ -167,10 +167,10 @@ public class Table_Office {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
-            sArray.add(" SN like '%" + searchValue + "%'");
-            sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
-            sArray.add(" URGENCY like '%" + searchValue + "%'");
+            sArray.add(" DEPT like '%" + searchValue + "%'");
+            sArray.add(" AUTHOR like '%" + searchValue + "%'");
+            sArray.add(" TITLE like '%" + searchValue + "%'");
         }
 
 

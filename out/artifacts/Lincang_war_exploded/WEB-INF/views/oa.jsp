@@ -727,11 +727,9 @@
 <script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
-<script type="text/javascript" language="javascript"
-        src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/flowchart.js"></script>
-
 <script src="../../js/oa.js"></script>
 </body>
 </html>

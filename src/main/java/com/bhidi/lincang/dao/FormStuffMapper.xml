@@ -9,7 +9,8 @@
          #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
 
-    <insert  id="submittedFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff">
+    <insert  id="submittedFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff" useGeneratedKeys="true"
+             keyProperty="id">
         insert into form_stuff (created_at,sent_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
         values( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
