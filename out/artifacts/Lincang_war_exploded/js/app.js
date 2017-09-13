@@ -145,7 +145,8 @@ $(document).ready(function () {
             }
         }
     });
-    newForm_stuff.ajax.url("/nform_stuff.do");
+
+
 
 
 
@@ -167,8 +168,9 @@ $(document).ready(function () {
                 "orderable": false,
                 "targets": [3],
                 "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='编辑'/>"
-                    html += "<input type='button' class='btn btn-warning btn-xs' onclick='flow(this)' value='流程'/>"
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='编辑'/>"
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" +
+                        "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='' value='确认'/>";
                     return html;
                 }
             },
