@@ -29,4 +29,9 @@ public class FormStuffServiceImp implements FormStuffServiceInf {
     public int deleteStuffById(int id) {
         return formStuffMapper.deleteStuffById(id);
     }
+
+    @Override
+    public Integer updateFormStuff(F_Stuff f_stuff) {
+        return formStuffMapper.updateFormStuff(f_stuff);
+    }
 }

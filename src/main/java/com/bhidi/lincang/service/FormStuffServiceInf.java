@@ -10,4 +10,6 @@ public interface FormStuffServiceInf {
     F_Stuff queryStuffById(int id);
 
     int deleteStuffById(int id);
+
+    Integer updateFormStuff(F_Stuff f_stuff);
 }

@@ -16,7 +16,7 @@
         values( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
         #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
-    <!--F_Stuff queryStuffByOid(int id);-->
+    <!--F_Stuff queryStuffById(int id);-->
     <select id="queryStuffById" parameterType="int" resultType="com.bhidi.lincang.bean.F_Stuff">
         select * from form_stuff where id = #{id}
     </select>

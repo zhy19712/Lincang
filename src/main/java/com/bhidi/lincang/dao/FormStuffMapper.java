@@ -12,4 +12,6 @@ public interface FormStuffMapper {
     F_Stuff queryStuffById(int id);
 
     int deleteStuffById(int id);
+
+
 }
