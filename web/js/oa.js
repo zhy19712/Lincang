@@ -8,8 +8,8 @@ function add(index) {
     var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
     alert($("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1]);
     var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
-    $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
-    $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
+    $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+    $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
     $("#filesUpload").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
     ++fileIndex;
 }
@@ -38,6 +38,10 @@ function del_file(number) {
          $("#input8").val(" ");
          $("#input9").val(" ");
          $("#input10").val(" ");
+
+         $(".add_file").remove();
+
+
     });
 
     // 表单保存
@@ -69,6 +73,13 @@ function del_file(number) {
             "content":content
         };
 
+
+
+
+
+
+
+
         $.ajax({
             url: '/saveFormData.do',
             type: 'post',
@@ -78,6 +89,8 @@ function del_file(number) {
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (data) {
                 //location.reload();
+                alert("ok");
+                $(".btn-danger").click();
             }
         });
        /* $("#fileForm").submit();*/
@@ -98,7 +111,9 @@ function del_file(number) {
     });
 
     // 表单提交
+
     $(".btn-primary").click(function () {
+
         var dept=  $("#input1").val();
         var author=  $("#input2").val();
         var reviewer=  $("#input3").val();
@@ -113,6 +128,12 @@ function del_file(number) {
         for(var i=0;i<attachment.length;i++){
             arrAttachment.push(attachment.eq(i).text());
         }
+
+        var Id=$("#formId").val();
+
+        console.log($("#formId").val());
+
+
         var datas= {
             "dept":dept,
             "author":author,
@@ -125,21 +146,78 @@ function del_file(number) {
             "title":title,
             "content":content
         };
-        $.ajax({
-            type: 'post',
-            url: '/submitFormData.do',
-            data: datas,
-            dataType: 'json',
-            async:false,
-            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            success: function (result) {
-                //location.reload();
-            }
-        });
-        $("#fileForm").submit();
+
+        if(dept == ""){
+            alert("拟稿单位不能为空")
+        }else if(author == ""){
+            alert("拟稿不能为空")
+        }else if(title == ""){
+            alert("标题不能为空")
+        }else if(content == ""){
+            alert("内容不能为空")
+        }else {
+            $.ajax({
+                type: 'post',
+                url: '/submitFormData.do',
+                data: datas,
+                dataType: 'json',
+                async:false,
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (result) {
+                    console.log(dept);
+                    //location.reload();
+                    alert("ok");
+                    $(".btn-danger").click();
+                }
+            });
+            $("#fileForm").submit();
+
+
+        }
+
+
+
     });
 
 
+
+
+
+    // #NewTable_Stuff 表格操作
+
+function detail(that) {
+    var oid = $(that).parents("tr").children("td:nth-child(1)").text();
+    var title = $(that).parents("tr").children("td:nth-child(2)").text();
+    var time = $(that).parents("tr").children("td:nth-child(3)").text();
+
+
+    $('#form_stuff').modal('show');
+
+
+
+
+    $.ajax({
+        url: '/queryStuffById',
+        type: 'get',
+        data: "id="+oid,
+        dataType: 'json',
+        async: false,
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function (data) {
+            //location.reload();
+            console.log(data)
+
+        }
+
+
+    })
+
+
+
+
+
+
+}
 
 
 

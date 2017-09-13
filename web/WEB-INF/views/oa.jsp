@@ -167,6 +167,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane" id="progress1">
                                     <div>
                                         <ul class="breadcrumb">
@@ -447,11 +448,19 @@
 
         <div class="modal-dialog">
             <div class="modal-content">
+
+
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3>填写表单</h3>
                 </div>
+
+                <form id = "fileForm" action="/file/multipleUpload.do" method="post"
+                      enctype="multipart/form-data"  target="uploadFrame">
+
                 <div class="modal-body">
+                    <span id="formId" style="display: none;">1231321</span>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>拟稿单位</span>
@@ -484,14 +493,13 @@
                         <div class="col-sm-12">
                             <span>附件</span>
                             <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                            <form id = "fileForm" action="/file/multipleUpload.do" method="post"
-                                  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;"target="uploadFrame">
-                                <div id="filesUpload">
+
+                                <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
                                 <input type="button" id="Commit" style="display:none"/>
-                            </form>
+
                         </div>
                     </div>
                     <div class="row myrow">
@@ -508,14 +516,24 @@
                     </div>
                     <textarea class="mytext" name="" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
                 </div>
+
+                </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
                     <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
                     <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
                 </div>
+
+
             </div>
         </div>
     </div>
+
+
+
+
+
+
     <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -693,14 +711,14 @@
 
 
 
-    function detail(that) {
-        var oid = $(that).parents("tr").children("td:nth-child(1)").text();
-        var title = $(that).parents("tr").children("td:nth-child(2)").text();
-        var time = $(that).parents("tr").children("td:nth-child(3)").text();
-        alert(oid);
-        //   that.preventDefault();
-        $('#form_stuff').modal('show');
-    }
+//    function detail(that) {
+//        var oid = $(that).parents("tr").children("td:nth-child(1)").text();
+//        var title = $(that).parents("tr").children("td:nth-child(2)").text();
+//        var time = $(that).parents("tr").children("td:nth-child(3)").text();
+//        alert(oid);
+//        //   that.preventDefault();
+//        $('#form_stuff').modal('show');
+//    }
 
 
 

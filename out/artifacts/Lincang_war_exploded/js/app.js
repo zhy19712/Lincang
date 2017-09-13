@@ -98,6 +98,10 @@ $(document).ready(function () {
 
     $('.accordion li.active:first').parents('ul').slideDown();
 
+
+
+
+
     //datatable
     var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
@@ -141,13 +145,6 @@ $(document).ready(function () {
             }
         }
     });
-
-
-
-
-
-
-
 
 
 
