@@ -19,28 +19,38 @@ function del_file(number) {
     var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
     var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
     var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
-    o.removeChild(int)//从父节点o上面移除子节点a
-    o.removeChild(a)
+    o.removeChild(int); //从父节点o上面移除子节点a
+    o.removeChild(a);
     o.removeChild(span)
 }
 
 function wipeData() {
-    $("#input1").val(" ");
-    $("#input2").val(" ");
-    $("#input3").val(" ");
-    $("#input4").val(" ");
-    $("#input5").val(" ");
-    $("#input6").val(" ");
-    $("#input8").val(" ");
-    $("#input9").val(" ");
-    $("#input10").val(" ");
+    $("#input1").val("");
+    $("#input2").val("");
+    $("#input3").val("");
+    $("#input4").val("");
+    $("#input5").val("");
+    $("#input6").val("");
+    $("#input8").val("");
+    $("#input9").val("");
+    $("#input10").val("");
     $(".add_file").remove();
+    $("#oId").text("");
+    $("#created_at").text("");
 }
 
 //表单放弃
 $(".btn-danger").click(function () {
         wipeData()
 });
+
+//表单关闭 x
+$("#close_stuff").click(function(){
+    wipeData()
+});
+
+
+
 
 // 表单保存
 $(".btn-success").click(function () {
@@ -71,8 +81,9 @@ $(".btn-success").click(function () {
         "title":title,
         "content":content,
         "id":id,
-        "created_at":created_at,
+        "created_at":created_at
     };
+
     if(dept == ""){
         alert("拟稿单位不能为空")
     }else if(author == ""){
@@ -81,7 +92,7 @@ $(".btn-success").click(function () {
         alert("标题不能为空")
     }else if(content == ""){
         alert("内容不能为空")
-    }else {
+    }else{
         $.ajax({
             url: '/saveFormData.do',
             type: 'post',
@@ -90,8 +101,13 @@ $(".btn-success").click(function () {
             async: false,
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (data) {
-                console.log(data);
-                alert("保存成功");
+                if(data){
+                    alert("保存成功");
+                }else {
+                    alert("保存失败");
+                }
+
+
                 wipeData();
             }
         });
