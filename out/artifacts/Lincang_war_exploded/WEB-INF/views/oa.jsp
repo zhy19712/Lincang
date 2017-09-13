@@ -452,7 +452,7 @@
 
 
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
                     <h3>填写表单</h3>
                 </div>
 
