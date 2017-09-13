@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface FormOfficeMapper {
     Integer stuffToOffice(F_Stuff f_stuff);
+
+    Integer updateFormOffice(F_Stuff f_stuff);
 }

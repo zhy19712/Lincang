@@ -13,6 +13,5 @@ public interface FormStuffMapper {
 
     int deleteStuffById(int id);
 
-
     Integer updateFormStuff(F_Stuff f_stuff);
 }

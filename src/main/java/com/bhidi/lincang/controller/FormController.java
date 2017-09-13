@@ -32,6 +32,7 @@ public class FormController {
     @ResponseBody
     @RequestMapping(value="/saveFormData",method= RequestMethod.POST)
     public String saveFormData(@RequestParam(value="id",required=false)Integer id,
+                               @RequestParam(value="created_at",required=false)String created_at,
                                @RequestParam(value="author",required=false)String author,
                                @RequestParam(value="dept",required=false)String dept,
                                @RequestParam(value="reviewer",required=false)String reviewer,
@@ -47,7 +48,7 @@ public class FormController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         /*String oid =  String.valueOf( now.getTime() ).substring(1,10);*/
         F_Stuff f_stuff = new F_Stuff();
-        f_stuff.setCreated_at( sdf.format(now) );
+        f_stuff.setCreated_at( created_at == ""?sdf.format(now):created_at );
         f_stuff.setSent_at( "" );
         f_stuff.setReviewer(reviewer);
         f_stuff.setAuthor(author);
@@ -80,10 +81,11 @@ public class FormController {
         }
         return integerResultOfFormStuff.toString();
     }
-    //提交的处理,这里还应该存储到事物的表里去。
+    //提交的处理,这里还应该存储到office的表里去。
     @ResponseBody
     @RequestMapping(value="/submitFormData",method= RequestMethod.POST)
     public String submitFormData(@RequestParam(value="id",required=false)Integer id,
+                                 @RequestParam(value="created_at",required=false)String created_at,
                                  @RequestParam(value="author",required=false)String author,
                                  @RequestParam(value="dept",required=false)String dept,
                                  @RequestParam(value="reviewer",required=false)String reviewer,
@@ -97,9 +99,8 @@ public class FormController {
         Map<String, Object> resultMap = new HashMap<String, Object>();
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        /*String oid =  String.valueOf( now.getTime() ).substring(1,10);*/
         F_Stuff f_stuff = new F_Stuff();
-        f_stuff.setCreated_at( sdf.format(now) );
+        f_stuff.setCreated_at( created_at == ""?sdf.format(now):created_at );
         f_stuff.setSent_at( sdf.format(now) );
         f_stuff.setReviewer(reviewer);
         f_stuff.setAuthor(author);
@@ -112,27 +113,39 @@ public class FormController {
         f_stuff.setCopy(copy);
         f_stuff.setStatus("SUBMITTED");
         //在这里需要设置返回值的，要让用户知道上传或者说是这些东西完事没有。
-        //在这里返回插入数据的id
-        Integer integerResultOfFormStuff = null;
-        try {
-            integerResultOfFormStuff = formStuffServiceImp.submittedFormStuff(f_stuff);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        //在这里先判断插入FORM_STUFF成功没有，没成功直接返回0，成功在继续插入
-        Integer integerResultOfFormOffice = 0;
-        if( integerResultOfFormStuff != 0 ){
-            //执行插入FROM_OFFICE表格的操作，在这里需要将状态转变为new
-            f_stuff.setStatus("NEW");
+        if( id != null ){
+            //插入操作，插入两个表
+            //在这里返回插入数据的id
+            Integer idResultOfFormStuff = null;
             try {
-                integerResultOfFormOffice = formOfficeServiceImp.stuffToOffice(f_stuff);
+                idResultOfFormStuff = formStuffServiceImp.submittedFormStuff(f_stuff);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            //在这里先判断插入FORM_STUFF成功没有，没成功直接返回0，成功在继续插入
+            Integer integerResultOfFormOffice = 0;
+            if( idResultOfFormStuff != 0 ){
+                //执行插入FROM_OFFICE表格的操作，在这里需要将状态转变为new
+                f_stuff.setStatus("NEW");
+                try {
+                    integerResultOfFormOffice = formOfficeServiceImp.stuffToOffice(f_stuff);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                return "0";
+            }
         } else {
-            return "0";
+            //更新操作，更新两个表
+            f_stuff.setId(id);
+            Integer upStuffResult = formStuffServiceImp.updateFormStuff(f_stuff);
+            if( upStuffResult != 0 ){
+                Integer upOfficeResult = formOfficeServiceImp.updateFormOffice(f_stuff);
+            }
+
         }
-        return integerResultOfFormOffice.toString();
+        /*return integerResultOfFormOffice.toString();*/
+        return "1";
     }
     /*
      * 查看按钮，目前是传送回来ID

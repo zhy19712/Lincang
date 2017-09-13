@@ -16,4 +16,9 @@ public class FormOfficeServiceImp implements FormOfficeServiceInf {
     public Integer stuffToOffice(F_Stuff f_stuff) {
         return formOfficeMapper.stuffToOffice(f_stuff);
     }
+
+    @Override
+    public Integer updateFormOffice(F_Stuff f_stuff) {
+        return formOfficeMapper.updateFormOffice(f_stuff);
+    }
 }
