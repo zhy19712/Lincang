@@ -115,7 +115,7 @@ public class FormController {
         //在这里需要设置返回值的，要让用户知道上传或者说是这些东西完事没有。
         Integer idResultOfFormStuff = null;
         if( id != null ){
-            //更新操作，更新一个表
+            //更新操作，更新FORM_STUFF表
             f_stuff.setId(id);
             try {
                 idResultOfFormStuff = formStuffServiceImp.updateFormStuff(f_stuff);
@@ -123,7 +123,7 @@ public class FormController {
                 e.printStackTrace();
             }
         } else {
-            //插入操作，插入一个表
+            //插入操作，插入FORM_STUFF表
             //在这里返回插入数据的id
             try {
                 idResultOfFormStuff = formStuffServiceImp.submittedFormStuff(f_stuff);
@@ -165,7 +165,7 @@ public class FormController {
      */
     @ResponseBody
     @RequestMapping(value="/deleteStuffById",method= RequestMethod.POST)
-    public String delete( int id ) {
+    public String delete(int id) {
         int cnt = 0;
         try {
             cnt = formStuffServiceImp.deleteStuffById(id);
