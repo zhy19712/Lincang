@@ -113,39 +113,38 @@ public class FormController {
         f_stuff.setCopy(copy);
         f_stuff.setStatus("SUBMITTED");
         //在这里需要设置返回值的，要让用户知道上传或者说是这些东西完事没有。
+        Integer idResultOfFormStuff = null;
         if( id != null ){
-            //插入操作，插入两个表
+            //更新操作，更新一个表
+            f_stuff.setId(id);
+            try {
+                idResultOfFormStuff = formStuffServiceImp.updateFormStuff(f_stuff);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            //插入操作，插入一个表
             //在这里返回插入数据的id
-            Integer idResultOfFormStuff = null;
             try {
                 idResultOfFormStuff = formStuffServiceImp.submittedFormStuff(f_stuff);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //在这里先判断插入FORM_STUFF成功没有，没成功直接返回0，成功在继续插入
-            Integer integerResultOfFormOffice = 0;
-            if( idResultOfFormStuff != 0 ){
-                //执行插入FROM_OFFICE表格的操作，在这里需要将状态转变为new
-                f_stuff.setStatus("NEW");
-                try {
-                    integerResultOfFormOffice = formOfficeServiceImp.stuffToOffice(f_stuff);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else {
-                return "0";
+        }
+        //在这里先判断插入FORM_STUFF成功没有，没成功直接返回0，成功在继续插入
+        Integer integerResultOfFormOffice = 0;
+        if( idResultOfFormStuff != 0 ){
+            //执行插入FROM_OFFICE表格的操作，在这里需要将状态转变为new
+            f_stuff.setStatus("NEW");
+            try {
+                integerResultOfFormOffice = formOfficeServiceImp.stuffToOffice(f_stuff);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
-            //更新操作，更新两个表
-            f_stuff.setId(id);
-            Integer upStuffResult = formStuffServiceImp.updateFormStuff(f_stuff);
-            if( upStuffResult != 0 ){
-                Integer upOfficeResult = formOfficeServiceImp.updateFormOffice(f_stuff);
-            }
-
+            return "0";
         }
-        /*return integerResultOfFormOffice.toString();*/
-        return "1";
+        return integerResultOfFormOffice.toString();
     }
     /*
      * 查看按钮，目前是传送回来ID

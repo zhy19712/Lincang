@@ -8,5 +8,22 @@
         values( #{id},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
          #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
+    <!--Integer updateFormOffice(F_Stuff f_stuff);-->
+    <update id="updateFormOffice" parameterType="com.bhidi.lincang.bean.Bank">
+        update form_office
+        set
+        created_at = #{sent_at},
+        author = #{author},
+        dept = #{dept},
+        reviewer = #{reviewer},
+        keyword = #{keyword},
+        title = #{title},
+        content = #{content},
+        print = #{print},
+        revision = #{revision},
+        copy = #{copy},
+        status = #{status}
+        where oid = #{id}
+    </update>
 
 </mapper>

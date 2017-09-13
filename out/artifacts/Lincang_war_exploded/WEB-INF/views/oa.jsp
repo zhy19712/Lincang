@@ -456,11 +456,12 @@
                     <h3>填写表单</h3>
                 </div>
 
-                <form id = "fileForm" action="/file/multipleUpload.do" method="post"
+                <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                 <div class="modal-body">
-                    <span id="formId" style="display: none;">1231321</span>
+                    <span id="oId" style="display: none"></span>
+                    <span id="created_at" style="display: none"></span>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>拟稿单位</span>
@@ -711,14 +712,7 @@
 
 
 
-//    function detail(that) {
-//        var oid = $(that).parents("tr").children("td:nth-child(1)").text();
-//        var title = $(that).parents("tr").children("td:nth-child(2)").text();
-//        var time = $(that).parents("tr").children("td:nth-child(3)").text();
-//        alert(oid);
-//        //   that.preventDefault();
-//        $('#form_stuff').modal('show');
-//    }
+
 
 
 

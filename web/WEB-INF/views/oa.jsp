@@ -456,7 +456,7 @@
                     <h3>填写表单</h3>
                 </div>
 
-                <form id = "fileForm" action="/file/multipleUpload.do" method="post"
+                <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                 <div class="modal-body">

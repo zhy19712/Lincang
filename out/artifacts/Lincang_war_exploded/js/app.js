@@ -122,7 +122,7 @@ $(document).ready(function () {
                 "targets": [3],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='查看'/>"
-                    html += "<input type='button' class='btn btn-danger btn-xs' value='删除'/>"
+                    html += "<input type='button' class='btn btn-danger btn-xs' onclick='deleteOrder(this)' value='删除'/>"
                     return html;
                 }
             },
@@ -145,6 +145,7 @@ $(document).ready(function () {
             }
         }
     });
+    newForm_stuff.ajax.url("/nform_stuff.do");
 
 
 
