@@ -197,8 +197,8 @@ function detail(that) {
 
 
     $.ajax({
-        url: '/queryStuffById',
-        type: 'get',
+        url: '/queryStuffById.do',
+        type: 'post',
         data: "id="+oid,
         dataType: 'json',
         async: false,

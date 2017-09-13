@@ -189,10 +189,7 @@ function detail(that) {
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
     var time = $(that).parents("tr").children("td:nth-child(3)").text();
-    // alert(title);
-    //   that.preventDefault();
 
-    $("#input1").val(oid);
 
     $('#form_stuff').modal('show');
 
@@ -200,9 +197,9 @@ function detail(that) {
 
 
     $.ajax({
-        url: '/queryStuffById',
-        type: 'get',
-        data: [],
+        url: '/queryStuffById.do',
+        type: 'post',
+        data: "id="+oid,
         dataType: 'json',
         async: false,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
