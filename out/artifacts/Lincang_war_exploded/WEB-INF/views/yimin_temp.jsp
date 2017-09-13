@@ -34,6 +34,7 @@
               <a href="#" id="add_1" onclick="add_click_file(1)"  >添加附件</a>
               <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
           </div>
+          test:<input type="text" name = "test"/>
           <input type="submit" value="提交"/>
       </form>
 
@@ -80,6 +81,16 @@
               <sapn>录入成功！</sapn>
           </c:if>
       </div>
+      <iframe id="test" name="test" style="display:none;"></iframe>
+
+      <form action="/queryStuffByOid.do" method="post" target="test">
+          <input type="text" name = "oid"/>
+          <input type="submit" value="查看按钮测试"/>
+      </form>
+      <form action="/deleteStuffByOid.do" method="post" target="test">
+          <input type="text" name = "oid"/>
+          <input type="submit" value="删除按钮测试"/>
+      </form>
   </body>
 
 

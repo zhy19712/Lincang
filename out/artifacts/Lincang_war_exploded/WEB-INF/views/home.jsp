@@ -26,8 +26,8 @@
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
 
-    <link rel="stylesheet" href="../../css/reset.css">
-    <link rel="stylesheet" href="../../css/home.css">
+<%--<link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/home.css">--%>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <!-- The fav icon -->
@@ -63,7 +63,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username}, 身份信息：${user.level}<a href="logout.do" >注销</a>
+                    欢迎${user.username}, <a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>

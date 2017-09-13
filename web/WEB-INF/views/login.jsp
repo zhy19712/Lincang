@@ -18,12 +18,12 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link href="css/bootstrap-cerulean.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
-    <link href='css/jquery.iphone.toggle.css' rel='stylesheet'>
-    <link href='css/animate.min.css' rel='stylesheet'>
+    <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="../../css/app.css" rel="stylesheet">
+    <link href='../../css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='../../css/animate.min.css' rel='stylesheet'>
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
+    <script src="../../js/jquery.min.js"></script>
 
 </head>
 
@@ -48,7 +48,7 @@
                         ${msg}
                     </c:if>
                 </div>
-                <form class="form-horizontal" action="/login.do" method="post">
+                <form class="form-horizontal" action="login.do" method="post">
                     <fieldset>
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
@@ -82,17 +82,16 @@
 
 
 
-<script src="js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 
 <!-- library for cookie management -->
-<script src="js/jquery.cookie.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
 <!-- for iOS style toggle switch -->
-<script src="js/jquery.iphone.toggle.js"></script>
+<script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
-<script src="js/jquery.history.js"></script>
-<script src="js/app.js"></script>
+<script src="../../js/jquery.history.js"></script>
+<script src="../../js/app.js"></script>
 
-<script src="../../js/oa.js"></script>
 
 
 </body>

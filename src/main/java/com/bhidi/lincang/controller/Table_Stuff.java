@@ -44,7 +44,7 @@ public class Table_Stuff {
 
 
         //定义列名
-        String[] cols = {"OID", "TITLE", "CREATED_AT"};
+        String[] cols = {"ID", "TITLE", "CREATED_AT"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -58,7 +58,7 @@ public class Table_Stuff {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
-            sArray.add(" OID like '%" + searchValue + "%'");
+            sArray.add(" ID like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
         }
@@ -99,7 +99,7 @@ public class Table_Stuff {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new Form_Stuff(rs.getString("OID"),
+                    tasks.add(new Form_Stuff(rs.getInt("ID"),
                         rs.getString("TITLE"),
                         rs.getString("CREATED_AT")));
             }
@@ -152,7 +152,7 @@ public class Table_Stuff {
 
 
         //定义列名
-        String[] cols = {"OID", "TITLE", "CREATED_AT"};
+        String[] cols = {"ID", "TITLE", "CREATED_AT"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -164,7 +164,7 @@ public class Table_Stuff {
         String searchValue = request.getParameter("search[value]");
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
-            sArray.add(" OID like '%" + searchValue + "%'");
+            sArray.add(" ID like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
         }
@@ -202,7 +202,7 @@ public class Table_Stuff {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new Form_Stuff(rs.getString("OID"),
+                tasks.add(new Form_Stuff(rs.getInt("ID"),
                         rs.getString("TITLE"),
                         rs.getString("CREATED_AT")));
             }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class User {
     @ResponseBody
-    @RequestMapping(value="/login",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
+    @RequestMapping(value="/loginlogin",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public void login(HttpServletRequest request){
         String TT = request.getParameter("username");
         System.out.println(TT);

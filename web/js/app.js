@@ -98,52 +98,6 @@ $(document).ready(function () {
 
     $('.accordion li.active:first').parents('ul').slideDown();
 
-    //other things to do on document ready, separated for ajax calls
-    docReady();
-
-
-
-});
-
-
-function docReady() {
-    //prevent # links from moving to top
-    $('a[href="#"][data-top!=true]').click(function (e) {
-        e.preventDefault();
-    });
-
-    //notifications
-    $('.noty').click(function (e) {
-        e.preventDefault();
-        var options = $.parseJSON($(this).attr('data-noty-options'));
-        noty(options);
-    });
-
-    //chosen - improves select
-    $('[data-rel="chosen"],[rel="chosen"]').chosen();
-
-    //tabs
-    $('#myTab a:first').tab('show');
-    $('#myTab a').click(function (e) {
-        e.preventDefault();
-        $(this).tab('show');
-    });
-
-    //tooltip
-    $('[data-toggle="tooltip"]').tooltip();
-
-    //popover
-    $('[data-toggle="popover"]').popover();
-
-    //iOS / iPhone style toggle switch
-    $('.iphone-toggle').iphoneStyle();
-
-
-
-
-
-
-
     //datatable
     var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
@@ -152,7 +106,7 @@ function docReady() {
         "order": [[2, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "OID"},
+            {"data": "ID"},
             {"data": "TITLE"},
             {"data": "CREATED_AT"},
             {"data": null}
@@ -204,7 +158,7 @@ function docReady() {
         "order": [[2, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "OID"},
+            {"data": "ID"},
             {"data": "TITLE"},
             {"data": "CREATED_AT"},
             {"data": null}
@@ -241,7 +195,7 @@ function docReady() {
     });
 
 
-     var newForm_office = $('#NewTable_Office').DataTable({
+    var newForm_office = $('#NewTable_Office').DataTable({
         ajax: {
             url: "/nform_office.do"
         },
@@ -278,6 +232,55 @@ function docReady() {
             }
         }
     });
+
+
+
+
+
+
+    //other things to do on document ready, separated for ajax calls
+    docReady();
+
+
+});
+
+
+function docReady() {
+    //prevent # links from moving to top
+    $('a[href="#"][data-top!=true]').click(function (e) {
+        e.preventDefault();
+    });
+
+    //notifications
+    $('.noty').click(function (e) {
+        e.preventDefault();
+        var options = $.parseJSON($(this).attr('data-noty-options'));
+        noty(options);
+    });
+
+    //chosen - improves select
+    /*$('[data-rel="chosen"],[rel="chosen"]').chosen();*/
+
+    //tabs
+    $('#myTab a:first').tab('show');
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+    //tooltip
+    $('[data-toggle="tooltip"]').tooltip();
+
+    //popover
+    $('[data-toggle="popover"]').popover();
+
+    //iOS / iPhone style toggle switch
+    $('.iphone-toggle').iphoneStyle();
+
+
+
+
+
 
 
 

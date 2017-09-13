@@ -66,7 +66,7 @@ public class FileController {
             }
             return "ok!";
         } else{
-                return fileName+"文件为空！";
+            return fileName+"文件为空！";
         }
 
     }
@@ -75,14 +75,15 @@ public class FileController {
      * @param files
      * @return
      */
-    @RequestMapping(value="/multipleUpload",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
-    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request, ModelMap map) {
+    @ResponseBody
+    @RequestMapping(value="/multipleUpload",method= RequestMethod.POST)
+    public String multipleUpload(@RequestParam("files") MultipartFile[] files,HttpServletRequest request, ModelMap map,String test) {
         //声明一个集合来收集每个文件上传的结果
         Set<String> resultSet = new HashSet<>();
 
         List<String> resultFinal = new ArrayList<>();
         //判断file数组不能为空并且长度大于0
-        if(files!=null&&files.length>0){
+        if( files != null && files.length > 0 ){
             //循环获取file数组中得文件
             for(int i = 0;i<files.length;i++){
                 MultipartFile file = files[i];

@@ -31,6 +31,7 @@
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-form.min.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -65,7 +66,6 @@
                 </c:if>
             </div>
         </div>
-
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <!-- user dropdown ends -->
     </div>
@@ -483,17 +483,15 @@
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>附件</span>
-
-                            <form action="/file/multipleUpload.do" method="post"  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
-
+                            <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
+                            <form id = "fileForm" action="/file/multipleUpload.do" method="post"
+                                  enctype="multipart/form-data" style="width:80%;display: inline-block;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;"target="uploadFrame">
                                 <div id="filesUpload">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div>
-                                <input type="submit" value="提交" id="Commit" style="display:none"/>
+                                <input type="button" id="Commit" style="display:none"/>
                             </form>
-
-                            <%--<input id="input7" type="text" name="文件">--%>
                         </div>
                     </div>
                     <div class="row myrow">
@@ -679,7 +677,7 @@
         var status=$("#status").text();
 
         if(status == 2){
-            $("#myTab > li:gt(7)").remove();
+            $("#myTab > li:gt(8)").remove();
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();
@@ -687,10 +685,6 @@
         }
 
     }();
-
-
-
-
 
     function newForm() {
         $('#form_stuff').modal('show');
@@ -733,11 +727,9 @@
 <script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
-<script type="text/javascript" language="javascript"
-        src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script src="../../js/flowchart.js"></script>
-
 <script src="../../js/oa.js"></script>
 </body>
 </html>
