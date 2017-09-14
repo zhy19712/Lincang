@@ -191,7 +191,6 @@ $("#form_stuff .btn-success").click(function () {
             success: function (data) {
                 if(data){
                     alert("保存成功");
-                    newForm_stuff.ajax.url("/nform_stuff.do").load();
                 }else {
                     alert("保存失败");
                 }

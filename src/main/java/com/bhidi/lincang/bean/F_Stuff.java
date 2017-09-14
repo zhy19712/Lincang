@@ -2,7 +2,6 @@ package com.bhidi.lincang.bean;
 
 public class F_Stuff {
     private int id;
-    private int oid;
     private String created_at;
     private String sent_at;
     private String author;
@@ -19,9 +18,8 @@ public class F_Stuff {
     public F_Stuff() {
     }
 
-    public F_Stuff(int id, int oid, String created_at, String sent_at, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
+    public F_Stuff(int id, String created_at, String sent_at, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
         this.id = id;
-        this.oid = oid;
         this.created_at = created_at;
         this.sent_at = sent_at;
         this.author = author;
@@ -42,14 +40,6 @@ public class F_Stuff {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getOid() {
-        return oid;
-    }
-
-    public void setOid(int oid) {
-        this.oid = oid;
     }
 
     public String getCreated_at() {

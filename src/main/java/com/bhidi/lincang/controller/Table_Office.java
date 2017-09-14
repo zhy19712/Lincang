@@ -44,7 +44,7 @@ public class Table_Office {
 
 
             //定义列名
-            String[] cols = {"CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
+            String[] cols = {"OID","CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -58,6 +58,7 @@ public class Table_Office {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
+                sArray.add(" OID like '%" + searchValue + "%'");
                 sArray.add(" CREATED_AT like '%" + searchValue + "%'");
                 sArray.add(" DEPT like '%" + searchValue + "%'");
                 sArray.add(" AUTHOR like '%" + searchValue + "%'");
@@ -100,7 +101,9 @@ public class Table_Office {
 
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
-                    tasks.add(new Form_Office(rs.getString("CREATED_AT"),
+                    tasks.add(new Form_Office(
+                            rs.getInt("OID"),
+                            rs.getString("CREATED_AT"),
                             rs.getString("DEPT"),
                             rs.getString("AUTHOR"),
                             rs.getString("TITLE")));
@@ -153,7 +156,7 @@ public class Table_Office {
 
 
         //定义列名
-        String[] cols = {"CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
+        String[] cols = {"OID","CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -167,6 +170,7 @@ public class Table_Office {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            sArray.add(" OID like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             sArray.add(" DEPT like '%" + searchValue + "%'");
             sArray.add(" AUTHOR like '%" + searchValue + "%'");
@@ -209,7 +213,9 @@ public class Table_Office {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new Form_Office(rs.getString("CREATED_AT"),
+                tasks.add(new Form_Office(
+                        rs.getInt("OID"),
+                        rs.getString("CREATED_AT"),
                         rs.getString("DEPT"),
                         rs.getString("AUTHOR"),
                         rs.getString("TITLE")));

@@ -2,7 +2,7 @@ package com.bhidi.lincang.bean;
 
 public class F_Office {
     private int id;
-
+    private int oid;
     private String sn;
     private String issuer;
     private String created_at;
@@ -26,8 +26,9 @@ public class F_Office {
     public F_Office() {
     }
 
-    public F_Office(int id, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
+    public F_Office(int id, int oid, String sn, String issuer, String created_at, String modified_at, int urgency, int secret_level, String author, String dept, String reviewer, String keyword, String title, String content, String print, String revision, String copy, String status) {
         this.id = id;
+        this.oid = oid;
         this.sn = sn;
         this.issuer = issuer;
         this.created_at = created_at;
@@ -44,6 +45,14 @@ public class F_Office {
         this.revision = revision;
         this.copy = copy;
         this.status = status;
+    }
+
+    public int getOid() {
+        return oid;
+    }
+
+    public void setOid(int oid) {
+        this.oid = oid;
     }
 
     public String getModified_at() {

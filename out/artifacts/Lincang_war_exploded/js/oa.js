@@ -159,6 +159,8 @@ $("#form_stuff .btn-success").click(function () {
         arrAttachment.push(attachment.eq(i).text());
     }
     var datas= {
+        "id":id,
+        "created_at":created_at,
         "dept":dept,
         "author":author,
         "reviewer":reviewer,
@@ -167,9 +169,7 @@ $("#form_stuff .btn-success").click(function () {
         "copy":copy,
         "keyword":keyword,
         "title":title,
-        "content":content,
-        "id":id,
-        "created_at":created_at
+        "content":content
     };
 
     if(dept == ""){
