@@ -1,3 +1,93 @@
+//待办表单的datatable
+var newForm_stuff = $('#NewTable_Stuff').DataTable({
+    ajax: {
+        url: "/nform_stuff.do"
+    },
+    "order": [[2, 'asc']],
+    "serverSide": true,
+    "columns": [
+        {"data": "ID"},
+        {"data": "TITLE"},
+        {"data": "CREATED_AT"},
+        {"data": null}
+    ],
+    "columnDefs": [
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [3],
+            "render" :  function(data,type,row) {
+                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>"
+                html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='deleteOrder(this)' value='删除'/>"
+                return html;
+            }
+        },
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [0]
+        }
+    ],
+    "language": {
+        "lengthMenu": "每页_MENU_ 条记录",
+        "zeroRecords": "没有找到记录",
+        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+        "infoEmpty": "无记录",
+        "search": "搜索：",
+        "infoFiltered": "(从 _MAX_ 条记录过滤)",
+        "paginate": {
+            "previous": "上一页",
+            "next": "下一页"
+        }
+    }
+});
+
+//再办表单的datatable
+var submittedForm_stuff = $('#SubmittedTable_Stuff').DataTable({
+    ajax: {
+        url: "/sform_stuff.do"
+    },
+    "order": [[2, 'asc']],
+    "serverSide": true,
+    "columns": [
+        {"data": "ID"},
+        {"data": "TITLE"},
+        {"data": "CREATED_AT"},
+        {"data": null}
+    ],
+    "columnDefs": [
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [3],
+            "render" :  function(data,type,row) {
+                var html = "<input type='button' class='btn btn-info btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" +
+                    "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' disabled='disabled' onclick='' value='确认'/>";
+                return html;
+            }
+        },
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [0]
+        }
+    ],
+    "language": {
+        "lengthMenu": "每页_MENU_ 条记录",
+        "zeroRecords": "没有找到记录",
+        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+        "infoEmpty": "无记录",
+        "search": "搜索：",
+        "infoFiltered": "(从 _MAX_ 条记录过滤)",
+        "paginate": {
+            "previous": "上一页",
+            "next": "下一页"
+        }
+    }
+});
+
+
+// 多文件上传
 var fileIndex = 1;
 function add_click_file(index){
     $("#add_file_"+fileIndex).click();
@@ -24,6 +114,7 @@ function del_file(number) {
     o.removeChild(span)
 }
 
+// 清空数据
 function wipeData() {
     $("#input1").val("");
     $("#input2").val("");
@@ -39,21 +130,18 @@ function wipeData() {
     $("#created_at").text("");
 }
 
-//表单放弃
-$(".btn-danger").click(function () {
+//新建表单 表单放弃
+$("#form_stuff .btn-danger").click(function () {
         wipeData()
 });
 
-//表单关闭 x
+//新建表单 表单关闭 x
 $("#close_stuff").click(function(){
     wipeData()
 });
 
-
-
-
-// 表单保存
-$(".btn-success").click(function () {
+// 新建表单 表单保存
+$("#form_stuff .btn-success").click(function () {
     var dept=  $("#input1").val();
     var author=  $("#input2").val();
     var reviewer=  $("#input3").val();
@@ -85,13 +173,13 @@ $(".btn-success").click(function () {
     };
 
     if(dept == ""){
-        alert("拟稿单位不能为空")
+        alert("拟稿单位不能为空");
     }else if(author == ""){
-        alert("拟稿不能为空")
+        alert("拟稿不能为空");
     }else if(title == ""){
-        alert("标题不能为空")
+        alert("标题不能为空");
     }else if(content == ""){
-        alert("内容不能为空")
+        alert("内容不能为空");
     }else{
         $.ajax({
             url: '/saveFormData.do',
@@ -103,12 +191,15 @@ $(".btn-success").click(function () {
             success: function (data) {
                 if(data){
                     alert("保存成功");
+                    newForm_stuff.ajax.url("/nform_stuff.do").load();
                 }else {
                     alert("保存失败");
                 }
-
-
+                $("#form_stuff").modal("hide");
                 wipeData();
+            },
+            error:function () {
+                alert("系统错误");
             }
         });
     }
@@ -127,8 +218,8 @@ $(".btn-success").click(function () {
    })*/
 });
 
-// 表单提交
-$(".btn-primary").click(function () {
+//  新建表单 表单提交
+$("#form_stuff .btn-primary").click(function () {
     var dept=  $("#input1").val();
     var author=  $("#input2").val();
     var reviewer=  $("#input3").val();
@@ -176,10 +267,19 @@ $(".btn-primary").click(function () {
             async:false,
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function (result) {
-                console.log(dept);
-                //location.reload();
-                alert("ok");
+
+                if(result){
+                    alert("提交成功");
+                    newForm_stuff.ajax.url("/nform_stuff.do").load();
+                    submittedForm_stuff.ajax.url("/sform_stuff.do").load();
+                }else {
+                    alert("提交失败");
+                }
+                $("#form_stuff").modal("hide");
                 wipeData();
+            },
+            error:function () {
+                alert("系统错误");
             }
         });
        /* $("#fileForm").submit();*/
@@ -226,20 +326,23 @@ function deleteOrder(that) {
         dataType: 'json',
         async: false,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        success: function (data) {
-            console.log(data);
-            $(that).parents("tr").remove();
-              alert("删除成功")
+        success: function (val) {
+            if(val){
+                newForm_stuff.ajax.url("/nform_stuff.do").load();
+                alert("删除成功")
+            }else {
+                alert("删除失败")
+            }
+        },
+        error:function () {
+            alert("系统错误");
         }
     })
 }
 
 
 
+//待办事务  编辑按钮
+function detail_office(that){
 
-
-
-
-
-
-
+}

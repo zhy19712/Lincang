@@ -27,6 +27,7 @@
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../css/mycss.css">
+    <link rel="stylesheet" href="../../css/oa.css">
 
 
     <!-- jQuery -->
@@ -89,7 +90,7 @@
                         <li><a href="#completed1"><i class="glyphicon glyphicon-check"></i><span> 已办表单</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><span class="notification red">12</span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
+                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
 
@@ -257,20 +258,22 @@
                                             <table id="NewTable_Office" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>编号</th>
                                                     <th>接收时间</th>
                                                     <th>科室</th>
                                                     <th>报稿</th>
                                                     <th>标题</th>
                                                     <th>操作</th>
                                                 </tr>
+
                                                 </thead>
                                             </table>
                                         </div>
 
-
                                     </div>
 
                                 </div>
+
                                 <div class="tab-pane" id="progress2">
                                     <div>
                                         <ul class="breadcrumb">
@@ -440,9 +443,6 @@
 
     <hr>
 
-
-
-
     <div class="modal fade" id="form_stuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
@@ -521,18 +521,14 @@
                 </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
+                    <a href="#" class="btn btn-success">保存</a>
+                    <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
 
             </div>
         </div>
     </div>
-
-
-
-
 
 
     <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -656,6 +652,7 @@
         </div>
     </div>
 
+
     <div class="modal fade" id="flow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true">
 
@@ -666,14 +663,46 @@
                     <h3>公文流转</h3>
                 </div>
                 <div class="modal-body">
-                <canvas id="myCanvas" width="100%"></canvas>
+
+                    <div id="wrap">
+                        <div>
+                            <img src="../../img/员工.png"  class="head head_pic1" alt="员工">
+                            <p class="staff status1" >申请人</p>
+                            <div class="details details1">
+                                <p>姓名：<span>小吴</span></p>
+                                <p>提交时间：<span>2017-06-18 16：30</span></p>
+                            </div>
+                        </div>
+
+                        <div class="hr hr1"></div>
+
+                        <div>
+                            <img src="../../img/中层.png" class="head head_pic2" alt="中层">
+                            <p class="staff status2">办公室</p>
+                            <div class="details details2">
+                                <p>审核状态：<span>通过</span></p>
+                                <p>审核人：<span>小明</span></p>
+                                <p>审核时间：<span>2017-06-18 16：30</span></p>
+                            </div>
+                        </div>
+
+                        <div class="hr hr2"></div>
+
+                        <div>
+                            <img src="../../img/高层.png" class="head head_pic3" alt="高层">
+                            <p class="staff status3">审批领导</p>
+                            <div class="details details3">
+                                <p>审核状态：<span>未审核</span></p>
+                                <p>审批人：<span>小秋</span></p>
+                                <p>审核时间：<span>2017-06-18 16：30</span></p>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
                 </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -741,7 +770,6 @@
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
-<script src="../../js/flowchart.js"></script>
 <script src="../../js/oa.js"></script>
 </body>
 </html>
