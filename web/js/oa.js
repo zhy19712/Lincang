@@ -49,11 +49,11 @@ $("#close_stuff").click(function(){
     wipeData()
 });
 
-
-
-
 // 表单保存
 $(".btn-success").click(function () {
+    var id=$("#oId").text();
+    alert(id);
+    var created_at=$("#created_at").text();
     var dept=  $("#input1").val();
     var author=  $("#input2").val();
     var reviewer=  $("#input3").val();
@@ -64,13 +64,13 @@ $(".btn-success").click(function () {
     var title=  $("#input9").val();
     var content=  $("#input10").val();
     var attachment= $("#filesUpload > span");
-    var arrAttachment=[];
-    var id=$("#oId").text();
-    var created_at=$("#created_at").text();
+  /*  var arrAttachment=[];
     for(var i=0;i<attachment.length;i++){
         arrAttachment.push(attachment.eq(i).text());
-    }
+    }*/
     var datas= {
+        "id":id,
+        "created_at":created_at,
         "dept":dept,
         "author":author,
         "reviewer":reviewer,
@@ -79,9 +79,7 @@ $(".btn-success").click(function () {
         "copy":copy,
         "keyword":keyword,
         "title":title,
-        "content":content,
-        "id":id,
-        "created_at":created_at
+        "content":content
     };
 
     if(dept == ""){
@@ -93,7 +91,7 @@ $(".btn-success").click(function () {
     }else if(content == ""){
         alert("内容不能为空")
     }else{
-        $.ajax({
+        /*$.ajax({
             url: '/saveFormData.do',
             type: 'post',
             data: datas,
@@ -108,23 +106,24 @@ $(".btn-success").click(function () {
                 }
 
 
+
+            }
+        });*/
+        $("#fileForm").ajaxSubmit({
+            /*url: '/file/multipleUpload.do',*/
+            url: '/saveFormData.do',
+            type: "post",
+            enctype: 'multipart/form-data',
+            dataType:'json',
+            success: function (data) {
                 wipeData();
+            },
+            error: function (data) {
             }
         });
     }
    /* $("#fileForm").submit();*/
-   /*$("#fileForm").ajaxSubmit({
-       url: '/file/multipleUpload.do',
-       type: "post",
-       enctype: 'multipart/form-data',
-       dataType:'json',
-       success: function (data)
-       {
-       },
-       error: function (data)
-       {
-       }
-   })*/
+
 });
 
 // 表单提交

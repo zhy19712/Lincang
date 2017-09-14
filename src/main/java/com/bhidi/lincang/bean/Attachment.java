@@ -2,17 +2,15 @@ package com.bhidi.lincang.bean;
 
 public class Attachment {
     private int id;
-    private String aid;
     private String name;
     private String path;
-    private String size;
+    private Long size;
 
     public Attachment() {
     }
 
-    public Attachment(int id, String aid, String name, String path, String size) {
+    public Attachment(int id,String name, String path, Long size) {
         this.id = id;
-        this.aid = aid;
         this.name = name;
         this.path = path;
         this.size = size;
@@ -24,14 +22,6 @@ public class Attachment {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getAid() {
-        return aid;
-    }
-
-    public void setAid(String aid) {
-        this.aid = aid;
     }
 
     public String getName() {
@@ -50,11 +40,11 @@ public class Attachment {
         this.path = path;
     }
 
-    public String getSize() {
+    public Long getSize() {
         return size;
     }
 
-    public void setSize(String size) {
+    public void setSize(Long size) {
         this.size = size;
     }
 
@@ -62,7 +52,6 @@ public class Attachment {
     public String toString() {
         return "Attachment{" +
                 "id=" + id +
-                ", aid='" + aid + '\'' +
                 ", name='" + name + '\'' +
                 ", path='" + path + '\'' +
                 ", size='" + size + '\'' +

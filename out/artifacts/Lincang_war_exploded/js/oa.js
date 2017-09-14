@@ -49,11 +49,11 @@ $("#close_stuff").click(function(){
     wipeData()
 });
 
-
-
-
 // 表单保存
 $(".btn-success").click(function () {
+    var id=$("#oId").text();
+    alert(id);
+    var created_at=$("#created_at").text();
     var dept=  $("#input1").val();
     var author=  $("#input2").val();
     var reviewer=  $("#input3").val();
@@ -64,13 +64,13 @@ $(".btn-success").click(function () {
     var title=  $("#input9").val();
     var content=  $("#input10").val();
     var attachment= $("#filesUpload > span");
-    var arrAttachment=[];
-    var id=$("#oId").text();
-    var created_at=$("#created_at").text();
+  /*  var arrAttachment=[];
     for(var i=0;i<attachment.length;i++){
         arrAttachment.push(attachment.eq(i).text());
-    }
+    }*/
     var datas= {
+        "id":id,
+        "created_at":created_at,
         "dept":dept,
         "author":author,
         "reviewer":reviewer,
@@ -79,9 +79,7 @@ $(".btn-success").click(function () {
         "copy":copy,
         "keyword":keyword,
         "title":title,
-        "content":content,
-        "id":id,
-        "created_at":created_at
+        "content":content
     };
 
     if(dept == ""){
@@ -93,7 +91,7 @@ $(".btn-success").click(function () {
     }else if(content == ""){
         alert("内容不能为空")
     }else{
-        $.ajax({
+        /*$.ajax({
             url: '/saveFormData.do',
             type: 'post',
             data: datas,
@@ -103,73 +101,29 @@ $(".btn-success").click(function () {
             success: function (data) {
                 if(data){
                     alert("保存成功");
-
-                    var newForm_stuff = $('#NewTable_Stuff').DataTable({
-                        ajax: {
-                            url: "/nform_stuff.do"
-                        },
-                        "order": [[2, 'asc']],
-                        "serverSide": true,
-                        "columns": [
-                            {"data": "ID"},
-                            {"data": "TITLE"},
-                            {"data": "CREATED_AT"},
-                            {"data": null}
-                        ],
-                        "columnDefs": [
-                            {
-                                "searchable": false,
-                                "orderable": false,
-                                "targets": [3],
-                                "render" :  function(data,type,row) {
-                                    var html = "<input type='button' class='btn btn-primary btn-xs' onclick='detail(this)' value='查看'/>"
-                                    html += "<input type='button' class='btn btn-danger btn-xs' onclick='deleteOrder(this)' value='删除'/>"
-                                    return html;
-                                }
-                            },
-                            {
-                                "searchable": false,
-                                "orderable": false,
-                                "targets": [0]
-                            }
-                        ],
-                        "language": {
-                            "lengthMenu": "每页_MENU_ 条记录",
-                            "zeroRecords": "没有找到记录",
-                            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                            "infoEmpty": "无记录",
-                            "search": "搜索：",
-                            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                            "paginate": {
-                                "previous": "上一页",
-                                "next": "下一页"
-                            }
-                        }
-                    });
-
-
                 }else {
                     alert("保存失败");
                 }
 
 
+
+            }
+        });*/
+        $("#fileForm").ajaxSubmit({
+            /*url: '/file/multipleUpload.do',*/
+            url: '/saveFormData.do',
+            type: "post",
+            enctype: 'multipart/form-data',
+            dataType:'json',
+            success: function (data) {
                 wipeData();
+            },
+            error: function (data) {
             }
         });
     }
    /* $("#fileForm").submit();*/
-   /*$("#fileForm").ajaxSubmit({
-       url: '/file/multipleUpload.do',
-       type: "post",
-       enctype: 'multipart/form-data',
-       dataType:'json',
-       success: function (data)
-       {
-       },
-       error: function (data)
-       {
-       }
-   })*/
+
 });
 
 // 表单提交

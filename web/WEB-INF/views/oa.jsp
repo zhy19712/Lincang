@@ -455,67 +455,64 @@
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
                     <h3>填写表单</h3>
                 </div>
-
+                <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                 <div class="modal-body">
-                    <span id="oId" style="display: none"></span>
-                    <span id="created_at" style="display: none"></span>
+                    <input id="oId" type="text" name="id" style="display: none" ></input>
+                    <input id="created_at" type="text" name="created_at" style="display: none" ></input>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>拟稿单位</span>
-                            <input id="input1" type="text">
+                            <input id="input1" type="text" name="dept">
                         </div>
                         <div class="col-sm-3">
                             <span>拟稿</span>
-                            <input id="input2" type="text">
+                            <input id="input2" type="text" name="author">
                         </div>
                         <div class="col-sm-4">
                             <span>科室核稿</span>
-                            <input id="input3" type="text">
+                            <input id="input3" type="text" name="reviewer">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>印刷</span>
-                            <input id="input4" type="text">
+                            <input id="input4" type="text" name="print">
                         </div>
                         <div class="col-sm-3">
                             <span>校对</span>
-                            <input id="input5" type="text">
+                            <input id="input5" type="text" name="revision">
                         </div>
                         <div class="col-sm-4">
                             <span>份数</span>
-                            <input id="input6" type="text">
+                            <input id="input6" type="text" name="copy">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>附件</span>
-                            <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-
-                                <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
-                                    <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
-                                    <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" id="Commit" style="display:none"/>
-
+                            <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+                                <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                            </div>
+                            <%--<input type="button" id="Commit" style="display:none"/>--%>
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>主题词</span>
-                            <input id="input8" type="text">
+                            <input id="input8" type="text" name="keyword">
                         </div>
                     </div>
                     <div class="row myrow last">
                         <div class="col-sm-12">
                             <span>标题</span>
-                            <input id="input9" type="text">
+                            <input id="input9" type="text" name="title">
                         </div>
                     </div>
-                    <textarea class="mytext" name="" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
+                    <textarea class="mytext" name="content" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
                 </div>
 
                 </form>
