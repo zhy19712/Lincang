@@ -195,9 +195,9 @@ public class FormController {
      */
     public String multipleUpload(MultipartFile[] files, HttpServletRequest request) {
         //声明一个集合来收集每个文件上传的结果
-        Set<String> resultSet = new HashSet<>();
+        Set<String> resultSet = new HashSet<String>();
         Map<String, Object> map = new HashMap<String, Object>();
-        List<String> resultFinal = new ArrayList<>();
+        List<String> resultFinal = new ArrayList<String>();
         //判断file数组不能为空并且长度大于0
         if( files != null && files.length > 0 ){
             //循环获取file数组中得文件

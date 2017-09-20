@@ -1,0 +1,479 @@
+$(function(){
+	//自适应宽高
+	var height = $(window).height() - 66;
+	var width = $(window).width() - 360;
+	var show_height = $(window).height() - 247;
+	$("#content").height(height);
+	$("#container").width(width);
+	$(".show").height(show_height);
+
+
+	//滚动条插件
+	$(".show").panel({iWheelStep:32});
+
+
+	//省市县三级联动插件
+	// $("#sel_city").citySelect({
+ //        prov: "河南",
+ //        nodata: "none"
+ //    });
+
+
+
+    
+	//引入地图
+    var map = new BMap.Map("container");          // 创建地图实例
+	var point = new BMap.Point(100.085905,23.882529);  // 创建点坐标  
+	map.centerAndZoom(point, 10);   //初始化地图，设置地图中心坐标和地图级别
+	map.enableScrollWheelZoom();   //启用鼠标滚轮缩放
+	map.setMinZoom(10);   //设置缩放最小级别
+	var opts = {anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type: BMAP_NAVIGATION_CONTROL_ZOOM}        //右下方
+
+	map.addControl(new BMap.NavigationControl(opts));                //平移缩放控件 默认左上角
+
+	map.addControl(new BMap.ScaleControl(opts));                     //比例尺控件地图 默认左下方
+
+	map.setCurrentCity("云南");  
+	 
+	
+
+	//行政区域面积
+	function getBoundary(name){       
+	    var bdary = new BMap.Boundary();
+	    bdary.get(name, function(rs){       //获取行政区域
+	        map.clearOverlays();        //清除地图覆盖物       
+	        var count = rs.boundaries.length; //行政区域的点有多少个
+	      
+	        for(var i = 0; i < count; i++){
+	            var ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 2, strokeColor: "#00ae66",fillColor: "#d1e9dc",fillOpacity: 0.5}); //建立多边形覆盖物
+	            map.addOverlay(ply);  //添加覆盖物
+	            // map.setViewport(ply.getPath());    //调整视野         
+	        }                
+	    });   
+	}
+	//改变覆盖物显示
+	function change_label(level){
+		$.each($(".BMapLabel"),function(i,n){
+			if(n.title != level){
+				$(this).css("display","none");
+			}else{
+				$(this).css("display","block");
+			}
+		});
+		
+	}
+
+	//获取坐标
+	function get_point(name){
+		var myGeo = new BMap.Geocoder(); 
+		myGeo.getPoint(name,function(point){
+			return point;
+		});
+		return point;
+	}
+
+	//添加覆盖物
+	function addLabel(name,level,string){ 
+		// 创建地址解析器实例     
+		var myGeo = new BMap.Geocoder();      
+		// 将地址解析结果显示在地图上，并调整地图视野    
+		myGeo.getPoint(name,function(point){      
+	    	 if(point){	
+				var opts = {position:point,offset:new BMap.Size(-40,-35)};    //定义位置及偏移量
+				var label = new BMap.Label(string,opts);
+				if(level != "村级单位"){
+					label.setStyle({											
+						color:"#fff",
+						backgroundColor:"#69bf8a",
+						borderColor:"transparent",
+						width:"95px",
+						height:"75px",
+						borderRadius:"50%",
+						lineHeight:"20px",
+						textAlign:"center",
+						paddingTop:"20px",
+						cursor:"pointer",
+					});
+				}else{
+					label.setStyle({											
+						color:"#fff",
+						backgroundColor:"transparent",
+						borderColor:"transparent",
+						height:"25px",
+						minWidth:"50px",
+						lineHeight:"20px",
+						textAlign:"center",
+						padding:"0 8px",
+						cursor:"pointer",
+						background:"url(../../img/c-green.png) no-repeat top left"
+					});
+				}					
+				label.setTitle(level);
+				label.setZIndex("999");
+				map.addOverlay(label);
+				label.disableMassClear();
+				if(level != "县级单位"){
+					label.hide();
+				}
+				label.addEventListener("click",function(){
+					var la = this;
+					var u = map.getZoom();
+					if(u == 10 || u == 11){
+						map.centerAndZoom(point,12);
+					}else if(u == 12 || u == 13){
+						map.centerAndZoom(point,14);
+						setTimeout(function(){
+							$.each($(".BMapLabel"),function(i,n){
+								if(n.title == "镇级单位"){
+									$(this).css({"backgroundColor":"#69bf8a","backgroundImage":"none"});
+								}
+							});
+						},100);
+					}else{
+						$(".c_info").css("display","none");
+						la.setContent("<p id='c_name'>"+name+"</p><p class='c_info'>| 30人</p>");
+					}
+				});
+				label.addEventListener("mouseover",function (){
+					var la = this;
+					var u = map.getZoom();
+					if(u < 14){
+						la.setStyle({backgroundColor:"#e14a4b"});
+						getBoundary(name);
+					}else if(u > 13){
+						la.setStyle({background:"url(../../img/c-red.png) no-repeat top left"});
+					}
+				});
+				label.addEventListener("mouseout",function(){
+					var la = this;
+					var u = map.getZoom();
+					if(u < 14){
+						map.clearOverlays();        //清除地图覆盖物 
+						la.setStyle({backgroundColor:"#69bf8a"});    
+					}else{
+						la.setStyle({background:"url(../../img/c-green.png) no-repeat top left"});
+					}
+	        		
+				});
+	         }     
+	      }, "云南省临沧市");
+	}
+	addLabel("临翔区","县级单位","临翔区<br>共有移民1000人");
+	addLabel("凤庆县","县级单位","凤庆县<br>共有移民1000人");
+	addLabel("永德县","县级单位","永德县<br>共有移民1000人");
+	addLabel("镇康县","县级单位","镇康县<br>共有移民1000人");
+	addLabel("云县","县级单位","云县<br>共有移民1000人");
+	addLabel("沧源佤族自治县","县级单位","沧源佤族自治县<br>共有移民1000人");
+	addLabel("耿马傣族佤族自治县","县级单位","耿马傣族<br>佤族自治县<br>共有移民1000人");
+	addLabel("双江拉祜族佤族布朗族傣族自治县","县级单位","双江拉祜族佤族<br>布朗族傣族自治县<br>共有移民1000人");
+	
+
+	addLabel("凤翔街道","镇级单位","凤翔街道<br>共有移民1000人");
+	addLabel("忙畔街道","镇级单位","忙畔街道<br>共有移民1000人");
+	addLabel("博尚镇","镇级单位","博尚镇<br>共有移民1000人");
+	addLabel("蚂蚁堆乡","镇级单位","蚂蚁堆乡<br>共有移民1000人");
+	addLabel("章驮乡","镇级单位","章驮乡<br>共有移民1000人");
+	addLabel("南美拉祜族乡","镇级单位","南美拉祜族乡<br>共有移民1000人");
+	addLabel("圈内乡","镇级单位","圈内乡<br>共有移民1000人");
+	addLabel("马台乡","镇级单位","马台乡<br>共有移民1000人");
+	addLabel("邦东乡","镇级单位","邦东乡<br>共有移民1000人");
+	addLabel("平村彝族傣族乡","镇级单位","平村彝族傣族乡<br>共有移民1000人");
+
+
+	addLabel("青华村","村级单位","青华村");
+	addLabel("陶家寨","村级单位","陶家寨");
+	addLabel("马房","村级单位","马房");
+
+
+	//缩放地图
+	map.addEventListener("zoomend",function(){
+		var u = map.getZoom();
+		if(u == 10 || u == 11){
+			change_label("县级单位");
+		}else if(u == 12 || u == 13){
+			change_label("镇级单位");
+		}else if(u > 13){
+			change_label("村级单位");
+		}
+	});
+
+
+	//搜索功能
+	var $$ = function (id) {
+
+	    return "string" == typeof id ? document.getElementById(id) : id;
+
+	};
+
+	var Bind = function(object, fun) {
+
+	    return function() {
+
+	        return fun.apply(object, arguments);
+
+	    }
+
+	};
+
+	function AutoComplete(obj,autoObj,arr){
+
+	    this.obj=$$(obj);        //输入框
+
+	    this.autoObj=$$(autoObj);//DIV的根节点
+
+	    this.value_arr=arr;        //不要包含重复值
+
+	    this.index=-1;          //当前选中的DIV的索引
+
+	    this.search_value="";   //保存当前搜索的字符
+
+	};
+
+	AutoComplete.prototype={
+
+	    //初始化DIV的位置
+
+	    init: function(){
+
+	        this.autoObj.style.left = this.obj.offsetLeft + "px";
+
+	        this.autoObj.style.top  = this.obj.offsetTop + this.obj.offsetHeight + "px";
+
+	        this.autoObj.style.width= this.obj.offsetWidth - 2 + "px";//减去边框的长度2px
+
+	    },
+
+	    //删除自动完成需要的所有DIV
+
+	    deleteDIV: function(){
+
+	        while(this.autoObj.hasChildNodes()){
+
+	            this.autoObj.removeChild(this.autoObj.firstChild);
+
+	        }
+
+	        this.autoObj.className="auto_hidden";
+
+	    },
+
+	    //设置值
+
+	    setValue: function(_this){
+
+	        return function(){
+
+	            _this.obj.value=this.seq;
+
+	            _this.autoObj.className="auto_hidden";
+
+	        }
+
+	    },
+
+	    //模拟鼠标移动至DIV时，DIV高亮
+
+	    autoOnmouseover: function(_this,_div_index){
+
+	        return function(){
+
+	            _this.index=_div_index;
+
+	            var length = _this.autoObj.children.length;
+
+	            for(var j=0;j<length;j++){
+
+	                if(j!=_this.index ){
+
+	                    _this.autoObj.childNodes[j].className='auto_onmouseout';
+
+	                }else{
+
+	                    _this.autoObj.childNodes[j].className='auto_onmouseover';
+
+	                }
+
+	            }
+
+	        }
+
+	    },
+
+	    //更改classname
+
+	    changeClassname: function(length){
+
+	        for(var i=0;i<length;i++){
+
+	            if(i!=this.index ){
+
+	                this.autoObj.childNodes[i].className='auto_onmouseout';
+
+	            }else{
+
+	                this.autoObj.childNodes[i].className='auto_onmouseover';
+
+	                this.obj.value=this.autoObj.childNodes[i].seq;
+
+	            }
+
+	        }
+
+	    }
+
+	    ,
+
+	    //响应键盘
+
+	    pressKey: function(event){
+
+	        var length = this.autoObj.children.length;
+
+	        //光标键"↓"
+
+	        if(event.keyCode==40){
+
+	            ++this.index;
+
+	            if(this.index>length){
+
+	                this.index=0;
+
+	            }else if(this.index==length){
+
+	                this.obj.value=this.search_value;
+
+	            }
+
+	            this.changeClassname(length);
+
+	        }
+
+	        //光标键"↑"
+
+	        else if(event.keyCode==38){
+
+	            this.index--;
+
+	            if(this.index<-1){
+
+	                this.index=length - 1;
+
+	            }else if(this.index==-1){
+
+	                this.obj.value=this.search_value;
+
+	            }
+
+	            this.changeClassname(length);
+
+	        }
+
+	        //回车键
+
+	        else if(event.keyCode==13){
+
+	            this.autoObj.className="auto_hidden";
+
+	            this.index=-1;
+				search();
+
+	        }else{
+
+	            this.index=-1;
+
+	        }
+
+	    },
+
+	    //程序入口
+
+	    start: function(event){
+
+	        if(event.keyCode!=13&&event.keyCode!=38&&event.keyCode!=40){
+
+	            this.init();
+
+	            this.deleteDIV();
+
+	            this.search_value=this.obj.value;
+
+	            var valueArr=this.value_arr;
+
+	            valueArr.sort();
+
+	            if(this.obj.value.replace(/(^\s*)|(\s*$$)/g,'')==""){ return; }//值为空，退出
+
+	            try{ var reg = new RegExp("(" + this.obj.value + ")","i");}
+
+	            catch (e){ return; }
+
+	            var div_index=0;//记录创建的DIV的索引
+
+	            for(var i=0;i<valueArr.length;i++){
+
+	                if(reg.test(valueArr[i])){
+
+	                    var div = document.createElement("div");
+
+	                    div.className="auto_onmouseout";
+
+	                    div.seq=valueArr[i];
+
+	                    div.onclick=this.setValue(this);
+
+	                    div.onmouseover=this.autoOnmouseover(this,div_index);
+
+	                    div.innerHTML=valueArr[i].replace(reg,"<strong style='color:red;'>$1</strong>");//搜索到的字符粗体显示
+
+	                    this.autoObj.appendChild(div);
+
+	                    this.autoObj.className="auto_show";
+
+	                    div_index++;
+
+	                }
+
+	            }
+
+	        }
+
+	        this.pressKey(event);
+
+	        window.onresize=Bind(this,function(){this.init();});
+
+	    }
+
+	}
+	var count = [{"name":"临翔区","level":"县级单位","people":"1000"},{"name":"凤翔街道","level":"镇级单位","people":"100"},{"name":"青华村","level":"村级单位","people":"50"}];
+	var arr = ['临翔区','凤庆县','永德县','镇康县','云县','沧源佤族自治县','耿马傣族佤族自治县','双江拉祜族佤族布朗族傣族自治县','凤翔街道','忙畔街道','博尚镇','蚂蚁堆乡','章驮乡','南美拉祜族乡','圈内乡','马台乡','邦东乡','平村彝族傣族乡','青华村','陶家寨','马房'];
+	var autoComplete=new AutoComplete('ipt','auto',arr);
+	
+	
+
+	//搜索
+	function search(){
+		var name = $("#ipt").val();
+		var level;
+		$.each(count,function(i,n){
+			if(name == n.name){
+				level = n.level;
+			}
+		});
+		var point = get_point(name);
+		if(level == "县级单位"){
+			map.centerAndZoom(point,10);
+		}else if(level == "镇级单位"){
+			map.centerAndZoom(point,12);
+		}else if(level == "村级单位"){
+			map.centerAndZoom(point,14);
+		}else{
+			alert("您输入的名称有误,请重新输入");
+		}
+	}
+	$("#btn").click(search);
+
+	$("#ipt").keyup(function (e){
+		autoComplete.start(e);
+	})
+})
