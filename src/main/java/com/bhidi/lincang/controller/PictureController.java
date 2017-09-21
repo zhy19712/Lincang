@@ -27,7 +27,7 @@ public class PictureController {
     @ResponseBody
     @RequestMapping(value="/picture",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String pictureInfo(ModelMap map){
-        List<PictureFull> listPictureResult = new ArrayList<>();
+        List<PictureFull> listPictureResult = new ArrayList<PictureFull>();
         //查询县级别的数据
         List<PictureCounty> listPictureCounty = pictureServiceImp.queryCountyInfo();
         for(PictureCounty p: listPictureCounty){
@@ -52,7 +52,7 @@ public class PictureController {
                 pictureFull.setLevel(listPictureCounty.get(i).getLevel());
                 pictureFull.setNum(listPictureCounty.get(i).getNum());
 
-                List<PictureFull> listTown = new ArrayList<>();
+                List<PictureFull> listTown = new ArrayList<PictureFull>();
                 for(int j = 0; j < listPictureTown.size();j++){
                     if( listPictureCounty.get(i).getCountyName().equals( listPictureTown.get(j).getCountyName() ) ){
                         //设置一个镇级别数据的集合来装县对应的镇级别的所有数据
@@ -60,7 +60,7 @@ public class PictureController {
                         pictureFullTowm.setName(listPictureTown.get(j).getTownName());
                         pictureFullTowm.setLevel(listPictureTown.get(j).getLevel());
                         pictureFullTowm.setNum(listPictureTown.get(j).getNum());
-                        List<PictureFull> listVillage = new ArrayList<>();
+                        List<PictureFull> listVillage = new ArrayList<PictureFull>();
                         for(int k = 0; k < listPictureVillage.size();k++){
                             if( listPictureTown.get(j).getTownName().equals( listPictureVillage.get(k).getTownName() ) ){
                                 PictureFull pictureFullVillage = new PictureFull();
