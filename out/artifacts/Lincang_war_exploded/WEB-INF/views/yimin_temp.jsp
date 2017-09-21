@@ -91,6 +91,7 @@
           <input type="text" name = "oid"/>
           <input type="submit" value="删除按钮测试"/>
       </form>
+        <input type="button" value="测试获取地图数据" onclick="clickclick()">
   </body>
 
 
@@ -151,6 +152,15 @@
           o.removeChild(int)//从父节点o上面移除子节点a
           o.removeChild(a)
           o.removeChild(span)
+      }
+
+      function clickclick(){
+          $.ajax({
+              url : "/picture.do",
+              success : function(data){
+                  console.log(data);
+              }
+          })
       }
   </script>
 

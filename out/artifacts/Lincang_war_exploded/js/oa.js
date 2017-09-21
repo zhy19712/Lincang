@@ -159,8 +159,6 @@ $("#form_stuff .btn-success").click(function () {
         arrAttachment.push(attachment.eq(i).text());
     }
     var datas= {
-        "id":id,
-        "created_at":created_at,
         "dept":dept,
         "author":author,
         "reviewer":reviewer,
@@ -169,7 +167,9 @@ $("#form_stuff .btn-success").click(function () {
         "copy":copy,
         "keyword":keyword,
         "title":title,
-        "content":content
+        "content":content,
+        "id":id,
+        "created_at":created_at
     };
 
     if(dept == ""){
@@ -191,7 +191,6 @@ $("#form_stuff .btn-success").click(function () {
             success: function (data) {
                 if(data){
                     alert("保存成功");
-                    newForm_stuff.ajax.url("/nform_stuff.do").load();
                 }else {
                     alert("保存失败");
                 }
