@@ -33,7 +33,7 @@ public class ExcelController {
     @RequestMapping(value="/readExcel",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")*/
     public List<String> readExcel(List<String> pathList){
         //返回值的集合
-        List<String> resultList = new ArrayList<>();
+        List<String> resultList = new ArrayList<String>();
 
         //遍历地址的集合生成相对的File实例
         for( String path: pathList){
@@ -68,8 +68,8 @@ public class ExcelController {
     @RequestMapping(value="/multipleExcelUpLoadExcel",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String multipleExcelUpLoadExcel(@RequestParam("excels") MultipartFile[] excels, HttpServletRequest request, ModelMap map){
         //建立两个返回值集合
-        List<String> resultList = new ArrayList<>();
-        List<String> errorList = new ArrayList<>();
+        List<String> resultList = new ArrayList<String>();
+        List<String> errorList = new ArrayList<String>();
         // /判断excel数组不能为空并且长度大于0
         if( excels != null && excels.length > 0 ){
             //循环获取file数组中得文件

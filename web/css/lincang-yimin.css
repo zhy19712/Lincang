@@ -1,0 +1,278 @@
+.none {
+  display: none;
+}
+.BMap_cpyCtrl {
+  display: none;
+}
+.anchorBL {
+  display: none;
+}
+.zUIpanelScrollBox,
+.zUIpanelScrollBar {
+  width: 10px;
+  top: 4px;
+  right: 0px;
+  border-radius: 5px;
+}
+.zUIpanelScrollBox {
+  background: #e4e3e3;
+  opacity: 1;
+  filter: alpha(opacity=10);
+}
+.zUIpanelScrollBar {
+  background: #000;
+  opacity: 0.8;
+  filter: alpha(opacity=80);
+}
+#c_name,
+.c_info {
+  display: inline-block;
+  vertical-align: middle;
+}
+.c_info {
+  padding-left: 3px;
+}
+#header {
+  width: 100%;
+  height: 64px;
+  background-color: #fff;
+  border-bottom: 1px solid #000;
+  font-size: 0;
+}
+#header .search,
+#header .logo,
+#header .search-text,
+#header .search-condition {
+  display: inline-block;
+  vertical-align: middle;
+}
+#header .search {
+  margin-left: 40px;
+}
+#header .search .search-text input {
+  display: inline-block;
+  padding: 3px;
+  width: 220px;
+  height: 18px;
+  outline: none;
+  border: 1px solid #9ca0a7;
+  border-right-width: 0;
+  vertical-align: middle;
+}
+#header .search .search-text button {
+  display: inline-block;
+  vertical-align: middle;
+  width: 64px;
+  height: 26px;
+  background-color: #53B371;
+  border: 1px solid #2e8d56;
+}
+#header .search .search-text button i {
+  display: inline-block;
+  padding-top: 5px;
+  width: 18px;
+  height: 18px;
+  background: url(../img/search.png) no-repeat center center;
+}
+#header .search .search-condition li {
+  display: inline-block;
+  vertical-align: middle;
+  width: 104px;
+  height: 24px;
+  border: 1px solid #ccc;
+  margin-left: 5px;
+  cursor: pointer;
+}
+#header .search .search-condition li span {
+  font-size: 12px;
+  line-height: 24px;
+  margin-left: 6px;
+}
+#header .search .search-condition li i {
+  display: inline-block;
+  width: 12px;
+  height: 8px;
+  float: right;
+  margin: 7px 10px 0 0;
+  background: url(../img/arrow.png) no-repeat;
+}
+#content #container-wrapper {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+#content #container-wrapper #container {
+  height: 100%;
+  margin-left: 360px;
+}
+#content #slide {
+  float: left;
+  width: 360px;
+  height: 100%;
+  margin-left: -100%;
+}
+#content #slide .left {
+  float: left;
+  width: 60px;
+  height: 100%;
+  background-color: #000;
+}
+#content #slide .left .nav li {
+  cursor: pointer;
+}
+#content #slide .left .nav li i {
+  display: block;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-left: 17px;
+  margin-top: 5px;
+  background-image: url(../img/sprite.png);
+  background-repeat: no-repeat;
+  background-position: -10px -38px;
+}
+#content #slide .left .nav li p {
+  clear: both;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+#content #slide .left .nav li:hover {
+  background-color: #3c96e6;
+}
+#content #slide .left .nav li:first-child {
+  background-color: #3c96e6;
+}
+#content #slide .left .nav li:nth-child(2) i {
+  background-position: -10px -10px;
+}
+#content #slide .left .nav li:nth-child(3) i {
+  background-position: -10px -10px;
+}
+#content #slide .right {
+  float: left;
+  width: 300px;
+  height: 100%;
+  border-right: 1px solid #000;
+  box-sizing: border-box;
+}
+#content #slide .right .title {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 20px;
+  background-color: #f0f0f0;
+  font-weight: 800;
+  font-size: 12px;
+}
+#content #slide .right .title span {
+  color: #e4393c;
+}
+#content #slide .right #sel_city {
+  padding: 10px 5px;
+  border-bottom: 1px solid #000;
+  height: 70px;
+  box-sizing: border-box;
+}
+#content #slide .right #sel_city #btn:hover {
+  background-color: #D11E1E !important;
+}
+#content #slide .right .city_info {
+  position: relative;
+  height: 70px;
+  border-bottom: 1px solid #000;
+}
+#content #slide .right .city_info .icon {
+  position: absolute;
+  top: 22px;
+  left: 20px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #3c96e6;
+}
+#content #slide .right .city_info .icon .circle {
+  position: absolute;
+  left: 7px;
+  top: 4px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+#content #slide .right .city_info .icon .circle div {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: #3c96e6;
+  border-radius: 50%;
+  left: 3px;
+  top: 3px;
+}
+#content #slide .right .city_info .icon .triangle {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-width: 7px;
+  border-top-color: #fff;
+  top: 13px;
+  left: 8px;
+}
+#content #slide .right .city_info .info {
+  position: absolute;
+  top: 0;
+  left: 70px;
+  width: 150px;
+  height: 70px;
+}
+#content #slide .right .city_info .info .name {
+  margin-top: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+#content #slide .right .city_info .info .count {
+  margin-top: 5px;
+  font-size: 12px;
+}
+#content #slide .right .show {
+  overflow: hidden;
+}
+#content #slide .right .show ul {
+  width: 100%;
+}
+#content #slide .right .show ul li {
+  height: 160px;
+  border-bottom: 1px solid #555;
+  background-color: #fff;
+}
+#content #slide .right .show ul li a {
+  display: block;
+  height: 100%;
+}
+#content #slide .right .show ul li a .img {
+  float: left;
+  width: 120px;
+  height: 120px;
+  margin: 20px 10px;
+  background: url(../img/img-1.png);
+}
+#content #slide .right .show ul li a .info {
+  float: left;
+  width: 150px;
+  margin-top: 20px;
+}
+#content #slide .right .show ul li a .info .name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #262626;
+  line-height: 30px;
+}
+#content #slide .right .show ul li a .info .text {
+  color: #555;
+  line-height: 30px;
+  font-size: 14px;
+}
+#content #slide .right .show ul li a .info .text span {
+  color: red;
+}
