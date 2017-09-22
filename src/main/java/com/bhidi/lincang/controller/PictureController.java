@@ -31,17 +31,17 @@ public class PictureController {
         //查询县级别的数据
         List<PictureCounty> listPictureCounty = pictureServiceImp.queryCountyInfo();
         for(PictureCounty p: listPictureCounty){
-            p.setLevel("县级单位！");
+            p.setLevel("县级单位");
         }
         //查询镇级别的数据
         List<PictureTown> listPictureTown = pictureServiceImp.queryTownInfo();
         for(PictureTown p: listPictureTown){
-            p.setLevel("镇级单位！");
+            p.setLevel("镇级单位");
         }
         //查询村级别的数据
         List<PictureVillage> listPictureVillage = pictureServiceImp.queryVillageInfo();
         for(PictureVillage p: listPictureVillage){
-            p.setLevel("村级单位！");
+            p.setLevel("村级单位");
         }
         if(listPictureCounty.size() > 0){
             //遍历县级别的数据

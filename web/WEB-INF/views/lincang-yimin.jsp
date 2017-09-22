@@ -102,60 +102,60 @@
 				</div>
 				<div class="show">
 					<ul>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
-						<li>
-							<a href="#" title="地区">
-								<div class="img"></div>
-								<div class="info">
-									<h2 class="name">隆阳区</h2>
-									<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>
-								</div>
-							</a>
-						</li>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
+						<%--<li>--%>
+							<%--<a href="#" title="地区">--%>
+								<%--<div class="img"></div>--%>
+								<%--<div class="info">--%>
+									<%--<h2 class="name">隆阳区</h2>--%>
+									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
+								<%--</div>--%>
+							<%--</a>--%>
+						<%--</li>--%>
 					</ul>
 				</div>
 			</div>
