@@ -671,16 +671,16 @@ $(function(){
 	//区县列表信息
 	$(".show").on("click","li",function () {
 		var name = $(this).find(".name").text();
-		alert(name);
-		// $.ajax({
-		// 	url: "",
-		// 	type: "get",
-		// 	data: name,
-		// 	dataType: "json",
-		// 	success: function (data) {
-		// 		console.log(data)
-         //    }
-		// })
+		// alert(name);
+		$.ajax({
+			url: "/BasicInfoOfFamily",
+			type: "get",
+			data: name,
+			dataType: "json",
+			success: function (data) {
+				console.log(data)
+            }
+		})
         // table1.ajax.url().load();
     })
 })
