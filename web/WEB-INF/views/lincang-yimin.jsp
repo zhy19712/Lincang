@@ -6,12 +6,11 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="../../css/reset.css">
 	<link rel="stylesheet" href="../../css/lincang-yimin.css">
-	<!-- <link rel="stylesheet" type="text/css" href="http://www.sucaihuo.com/jquery/css/common.css" /> -->
 	<link rel="stylesheet" href="../../css/search.css">
+	<link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
 	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
-	<!-- <script src="js/jquery.cityselect.js"></script> -->
-	<!-- <script src="js/search.js"></script> -->
 	<script src="../../js/zUI.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
 </head>
@@ -56,6 +55,36 @@
 	<div id="content">
 		<div id="container-wrapper">
 			<div id="container"></div>
+			<div id="show_info">
+				<div id="back">返回地图</div>
+				<div id="tab">
+					<ul id="tab_list">
+						<li>统计分析</li>
+						<li>移民信息</li>
+					</ul>
+					<ul id="tab_content">
+						<li>
+							tab1
+						</li>
+						<li>
+							<div id="table-wrapper">
+								<table id="table1" class="table table-striped table-bordered">
+									<thead>
+									<tr>
+										<th>UID</th>
+										<th>户主姓名</th>
+										<th>建档立卡</th>
+										<th>家庭人数</th>
+										<th>移民人数</th>
+										<th>所属水库</th>
+									</tr>
+									</thead>
+								</table>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 		<div id="slide">
 			<div class="left">
@@ -102,64 +131,12 @@
 				</div>
 				<div class="show">
 					<ul>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
-						<%--<li>--%>
-							<%--<a href="#" title="地区">--%>
-								<%--<div class="img"></div>--%>
-								<%--<div class="info">--%>
-									<%--<h2 class="name">隆阳区</h2>--%>
-									<%--<p class="text">共有移民<span class="family">160</span>户，<span class="people">540</span>人</p>--%>
-								<%--</div>--%>
-							<%--</a>--%>
-						<%--</li>--%>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<div id="data_input">数据录入</div>
+		<div id="data_analysis">统计分析</div>
 	</div>
 </body>
 </html>

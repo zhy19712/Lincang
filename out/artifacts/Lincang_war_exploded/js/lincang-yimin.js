@@ -55,9 +55,9 @@ $(function(){
 	function change_label(level){
 		$.each($(".BMapLabel"),function(i,n){
 			if(n.title != level){
-				$(this).css("display","none");
+				$(this).css("visibility","hidden");
 			}else{
-				$(this).css("display","block");
+				$(this).css("visibility","hiddenk");
 			}
 		});
 		
@@ -116,8 +116,7 @@ $(function(){
                 })
             });
         }
-    })
-    console.log(all_info,all_place);
+    });
 
 	//侧边栏所有县或该县下的镇级信息显示,
 	function xian(name) {
@@ -139,7 +138,7 @@ $(function(){
 		}
     }
 
-    //侧边栏村级信息显示
+    //侧边栏所有村级或该县下的村级信息显示
 	function zhen(name) {
 		if (arguments.length == 1){
 			$.each(mydata,function (i,n) {
@@ -163,7 +162,7 @@ $(function(){
 		}
     }
 
-    //侧边栏单个村级单位信息显示
+    //侧边栏所有村级或该村信息显示
 	function cun(name) {
 		if(arguments.length == 1){
             $.each(mydata,function (i,n) {
@@ -250,7 +249,7 @@ $(function(){
 						},100);
                         zhen(name);
 					}else{
-						$(".c_info").css("display","none");
+						$(".c_info").css("visibility","hidden");
                         $.each(mydata,function (i,n) {
                             $.each(n.listChild,function (i,n) {
                                 $.each(n.listChild,function (i,n) {
@@ -289,10 +288,6 @@ $(function(){
 	         }     
 	      }, "云南省临沧市");
 	}
-
-
-
-
 
 	//缩放地图
 	map.addEventListener("zoomend",function(){
@@ -557,8 +552,6 @@ $(function(){
 	    }
 
 	}
-	// var count = [{"name":"临翔区","level":"县级单位","people":"1000"},{"name":"凤翔街道","level":"镇级单位","people":"100"},{"name":"青华村","level":"村级单位","people":"50"}];
-	// var arr = ['临翔区','凤庆县','永德县','镇康县','云县','沧源佤族自治县','耿马傣族佤族自治县','双江拉祜族佤族布朗族傣族自治县','凤翔街道','忙畔街道','博尚镇','蚂蚁堆乡','章驮乡','南美拉祜族乡','圈内乡','马台乡','邦东乡','平村彝族傣族乡','青华村','陶家寨','马房'];
 	var autoComplete=new AutoComplete('ipt','auto',all_place);
 	
 	
@@ -595,5 +588,99 @@ $(function(){
 
 	$("#ipt").keyup(function (e){
 		autoComplete.start(e);
-	})
+	});
+
+	//tab切换
+    var num = 0;
+	$("#tab_list li").click(function () {
+		var index = $(this).index();
+		if(index != num){
+		    num = index;
+		    $("#tab_list li").css({"background-color": "#DCDCDC","color": "#595757"});
+		    $("#tab_list li").eq(index).css({"background-color": "#f26d0b","color": "#fff"});
+            $("#tab_content li").css("display","none");
+            $("#tab_content li").eq(index).fadeIn();
+        }
+    })
+
+	//返回地图按钮
+	$("#back").click(function () {
+		$("#show_info").css("display","none");
+    })
+
+	//侧边栏切换
+	var slide_index = 0;
+	$(".nav").children("li").click(function () {
+		var index = $(this).index();
+		if(index != slide_index){
+			slide_index = index;
+			console.log(slide_index);
+			$(".nav li").css("background-color","#000");
+			$(this).css("background-color","#3c96e6");
+			if(slide_index == 0){
+                $("#data_input").css("display","none");
+                $("#data_analysis").css("display","none");
+                $("#slide").children(".right").css("visibility","visible");
+                $("#container").css("visibility","visible");
+			}else if (slide_index == 1){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_analysis").css("display","none");
+                $("#data_input").css("display","block");
+			}else if (slide_index == 2){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_input").css("display","none");
+				$("#data_analysis").css("display","block");
+			}
+		}
+    })
+
+	//导入空表格
+    // var table_data = [
+     //    [
+     //        "Tiger Nixon",
+     //        "System Architect",
+     //        "Edinburgh",
+     //        "5421",
+     //        "2011/04/25"
+     //    ],
+     //    [
+     //        "Garrett Winters",
+     //        "Director",
+     //        "Edinburgh",
+     //        "8422",
+     //        "2011/07/25"
+     //    ]
+    // ];
+	var table1 = $("#table1").DataTable({
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+	});
+
+	//区县列表信息
+	$(".show").on("click","li",function () {
+		var name = $(this).find(".name").text();
+		alert(name);
+		// $.ajax({
+		// 	url: "",
+		// 	type: "get",
+		// 	data: name,
+		// 	dataType: "json",
+		// 	success: function (data) {
+		// 		console.log(data)
+         //    }
+		// })
+        // table1.ajax.url().load();
+    })
 })
