@@ -51,7 +51,7 @@ public class FormController {
                                @RequestParam(value="print",required=false)String print,
                                @RequestParam(value="revision",required=false)String revision,
                                @RequestParam(value="copy",required=false)String copy,
-                               /* @RequestParam(value="arrAttachment[]",required=false) String[] arrAttachment*/
+                               @RequestParam(value="arrAttachment[]",required=false) String[] arrAttachment,
                                @RequestParam("files") MultipartFile[] files
                                ){
         Date now = new Date();
