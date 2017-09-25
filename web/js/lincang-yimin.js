@@ -55,22 +55,139 @@ $(function(){
 	function change_label(level){
 		$.each($(".BMapLabel"),function(i,n){
 			if(n.title != level){
-				$(this).css("display","none");
+				$(this).css("visibility","hidden");
 			}else{
-				$(this).css("display","block");
+				$(this).css("visibility","hiddenk");
 			}
 		});
 		
 	}
+    //添加侧边栏信息
+    function slide(name,num) {
+        var str = "";
+        str += ""
+            +  "<li>"
+            +  "<a href='#' title='地区'>"
+            +  "<div class='img'></div>"
+            +  "<div class='info'>"
+            +  "<h2 class='name'>" + name + "</h2>"
+            +  "<p class='text'>共有移民<span class='people'>" + num + "</span>人</p>"
+            +  "</div>"
+            +  "</a>"
+            +  "</li>"
+        $(".show ul").append(str);
+    }
 
-	//获取坐标
-	function get_point(name){
-		var myGeo = new BMap.Geocoder(); 
-		myGeo.getPoint(name,function(point){
-			return point;
-		});
-		return point;
-	}
+    //获取数据,添加覆盖物
+    var all_info = [];
+    var all_place = [];
+    var mydata = [];
+    $.ajax({
+        url:"./picture.do",
+        async: false,
+        success: function (data) {
+        	mydata = data.result;
+            $.each(data.result,function (i,n) {
+                all_info.push(n);
+                all_place.push(n.name);
+                slide(n.name,n.num);
+                if(n.name.length<8){
+                    addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
+                }else {
+                    var name1 = n.name.substring(0,7);
+                    var name2 = n.name.substring(7);
+                    addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
+                }
+                $.each(n.listChild,function (i,n) {
+                    all_info.push(n);
+                    all_place.push(n.name);
+                    if(n.name.length<8){
+                        addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
+                    }else {
+                        var name1 = n.name.substring(0,7);
+                        var name2 = n.name.substring(7);
+                        addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
+                    }
+                    $.each(n.listChild,function (i,n) {
+                        all_info.push(n);
+                        all_place.push(n.name);
+                        addLabel(n.name,n.level,n.name);
+                    })
+                })
+            });
+        }
+    });
+
+	//侧边栏所有县或该县下的镇级信息显示,
+	function xian(name) {
+		if(arguments.length == 1){
+			$.each(mydata,function (i,n) {
+                if (name == n.name){
+                    $(".show ul").empty();
+                    $.each(n.listChild,function (i,n) {
+                        slide(n.name,n.num);
+                    });
+                    return ;
+                }
+            })
+		}else {
+            $(".show ul").empty();
+			$.each(mydata,function (i,n) {
+                slide(n.name,n.num);
+            })
+		}
+    }
+
+    //侧边栏所有村级或该县下的村级信息显示
+	function zhen(name) {
+		if (arguments.length == 1){
+			$.each(mydata,function (i,n) {
+				$.each(n.listChild,function (i,n) {
+                    if (name == n.name){
+                        $(".show ul").empty();
+                        $.each(n.listChild,function (i,n) {
+                            slide(n.name,n.num);
+                        });
+                        return ;
+                    }
+                })
+            })
+		}else {
+            $(".show ul").empty();
+			$.each(mydata,function (i,n) {
+				$.each(n.listChild,function (i,n) {
+					slide(n.name,n.num);
+                })
+            })
+		}
+    }
+
+    //侧边栏所有村级或该村信息显示
+	function cun(name) {
+		if(arguments.length == 1){
+            $.each(mydata,function (i,n) {
+                $.each(n.listChild,function (i,n) {
+                    $.each(n.listChild,function (i,n) {
+                        if (name == n.name){
+                            $(".show ul").empty();
+                            slide(n.name,n.num);
+
+                            return ;
+                        }
+                    })
+                });
+            })
+        }else {
+            $(".show ul").empty();
+            $.each(mydata,function (i,n) {
+                $.each(n.listChild,function (i,n) {
+                    $.each(n.listChild,function (i,n) {
+						slide(n.name,n.num);
+                    })
+                });
+            })
+		}
+    }
 
 	//添加覆盖物
 	function addLabel(name,level,string){ 
@@ -120,6 +237,7 @@ $(function(){
 					var u = map.getZoom();
 					if(u == 10 || u == 11){
 						map.centerAndZoom(point,12);
+						xian(name);
 					}else if(u == 12 || u == 13){
 						map.centerAndZoom(point,14);
 						setTimeout(function(){
@@ -129,9 +247,21 @@ $(function(){
 								}
 							});
 						},100);
+                        zhen(name);
 					}else{
-						$(".c_info").css("display","none");
-						la.setContent("<p id='c_name'>"+name+"</p><p class='c_info'>| 30人</p>");
+						$(".c_info").css("visibility","hidden");
+                        $.each(mydata,function (i,n) {
+                            $.each(n.listChild,function (i,n) {
+                                $.each(n.listChild,function (i,n) {
+                                    if (name == n.name){
+                                        $(".show ul").empty();
+                                        slide(n.name,n.num);
+                                        la.setContent("<p id='c_name'>"+name+"</p><p class='c_info'>| "+ n.num +"人</p>");
+                                        return ;
+                                    }
+                                })
+                            });
+                        })
 					}
 				});
 				label.addEventListener("mouseover",function (){
@@ -158,42 +288,19 @@ $(function(){
 	         }     
 	      }, "云南省临沧市");
 	}
-	addLabel("临翔区","县级单位","临翔区<br>共有移民1000人");
-	addLabel("凤庆县","县级单位","凤庆县<br>共有移民1000人");
-	addLabel("永德县","县级单位","永德县<br>共有移民1000人");
-	addLabel("镇康县","县级单位","镇康县<br>共有移民1000人");
-	addLabel("云县","县级单位","云县<br>共有移民1000人");
-	addLabel("沧源佤族自治县","县级单位","沧源佤族自治县<br>共有移民1000人");
-	addLabel("耿马傣族佤族自治县","县级单位","耿马傣族<br>佤族自治县<br>共有移民1000人");
-	addLabel("双江拉祜族佤族布朗族傣族自治县","县级单位","双江拉祜族佤族<br>布朗族傣族自治县<br>共有移民1000人");
-	
-
-	addLabel("凤翔街道","镇级单位","凤翔街道<br>共有移民1000人");
-	addLabel("忙畔街道","镇级单位","忙畔街道<br>共有移民1000人");
-	addLabel("博尚镇","镇级单位","博尚镇<br>共有移民1000人");
-	addLabel("蚂蚁堆乡","镇级单位","蚂蚁堆乡<br>共有移民1000人");
-	addLabel("章驮乡","镇级单位","章驮乡<br>共有移民1000人");
-	addLabel("南美拉祜族乡","镇级单位","南美拉祜族乡<br>共有移民1000人");
-	addLabel("圈内乡","镇级单位","圈内乡<br>共有移民1000人");
-	addLabel("马台乡","镇级单位","马台乡<br>共有移民1000人");
-	addLabel("邦东乡","镇级单位","邦东乡<br>共有移民1000人");
-	addLabel("平村彝族傣族乡","镇级单位","平村彝族傣族乡<br>共有移民1000人");
-
-
-	addLabel("青华村","村级单位","青华村");
-	addLabel("陶家寨","村级单位","陶家寨");
-	addLabel("马房","村级单位","马房");
-
 
 	//缩放地图
 	map.addEventListener("zoomend",function(){
 		var u = map.getZoom();
 		if(u == 10 || u == 11){
 			change_label("县级单位");
+			xian();
 		}else if(u == 12 || u == 13){
 			change_label("镇级单位");
+			zhen();
 		}else if(u > 13){
 			change_label("村级单位");
+			cun();
 		}
 	});
 
@@ -445,9 +552,7 @@ $(function(){
 	    }
 
 	}
-	var count = [{"name":"临翔区","level":"县级单位","people":"1000"},{"name":"凤翔街道","level":"镇级单位","people":"100"},{"name":"青华村","level":"村级单位","people":"50"}];
-	var arr = ['临翔区','凤庆县','永德县','镇康县','云县','沧源佤族自治县','耿马傣族佤族自治县','双江拉祜族佤族布朗族傣族自治县','凤翔街道','忙畔街道','博尚镇','蚂蚁堆乡','章驮乡','南美拉祜族乡','圈内乡','马台乡','邦东乡','平村彝族傣族乡','青华村','陶家寨','马房'];
-	var autoComplete=new AutoComplete('ipt','auto',arr);
+	var autoComplete=new AutoComplete('ipt','auto',all_place);
 	
 	
 
@@ -455,25 +560,127 @@ $(function(){
 	function search(){
 		var name = $("#ipt").val();
 		var level;
-		$.each(count,function(i,n){
+		$.each(all_info,function(i,n){
 			if(name == n.name){
 				level = n.level;
+                var myGeo = new BMap.Geocoder();
+                myGeo.getPoint(name,function(point){
+                    if(point){
+                        if(level == "县级单位"){
+                            map.centerAndZoom(point,10);
+                            xian(name);
+                        }else if(level == "镇级单位"){
+                            map.centerAndZoom(point,12);
+                            zhen(name);
+                        }else if(level == "村级单位"){
+                            map.centerAndZoom(point,14);
+                            cun(name);
+                        }else{
+                            alert("您输入的名称有误,请重新输入");
+                        }
+                    }
+                }, "云南省临沧市");
 			}
 		});
-		var point = get_point(name);
-		if(level == "县级单位"){
-			map.centerAndZoom(point,10);
-		}else if(level == "镇级单位"){
-			map.centerAndZoom(point,12);
-		}else if(level == "村级单位"){
-			map.centerAndZoom(point,14);
-		}else{
-			alert("您输入的名称有误,请重新输入");
-		}
+
 	}
 	$("#btn").click(search);
 
 	$("#ipt").keyup(function (e){
 		autoComplete.start(e);
-	})
+	});
+
+	//tab切换
+    var num = 0;
+	$("#tab_list li").click(function () {
+		var index = $(this).index();
+		if(index != num){
+		    num = index;
+		    $("#tab_list li").css({"background-color": "#DCDCDC","color": "#595757"});
+		    $("#tab_list li").eq(index).css({"background-color": "#f26d0b","color": "#fff"});
+            $("#tab_content li").css("display","none");
+            $("#tab_content li").eq(index).fadeIn();
+        }
+    })
+
+	//返回地图按钮
+	$("#back").click(function () {
+		$("#show_info").css("display","none");
+    })
+
+	//侧边栏切换
+	var slide_index = 0;
+	$(".nav").children("li").click(function () {
+		var index = $(this).index();
+		if(index != slide_index){
+			slide_index = index;
+			console.log(slide_index);
+			$(".nav li").css("background-color","#000");
+			$(this).css("background-color","#3c96e6");
+			if(slide_index == 0){
+                $("#data_input").css("display","none");
+                $("#data_analysis").css("display","none");
+                $("#slide").children(".right").css("visibility","visible");
+                $("#container").css("visibility","visible");
+			}else if (slide_index == 1){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_analysis").css("display","none");
+                $("#data_input").css("display","block");
+			}else if (slide_index == 2){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_input").css("display","none");
+				$("#data_analysis").css("display","block");
+			}
+		}
+    })
+
+	//导入空表格
+    // var table_data = [
+     //    [
+     //        "Tiger Nixon",
+     //        "System Architect",
+     //        "Edinburgh",
+     //        "5421",
+     //        "2011/04/25"
+     //    ],
+     //    [
+     //        "Garrett Winters",
+     //        "Director",
+     //        "Edinburgh",
+     //        "8422",
+     //        "2011/07/25"
+     //    ]
+    // ];
+	var table1 = $("#table1").DataTable({
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+	});
+
+	//区县列表信息
+	$(".show").on("click","li",function () {
+		var name = $(this).find(".name").text();
+		alert(name);
+		// $.ajax({
+		// 	url: "",
+		// 	type: "get",
+		// 	data: name,
+		// 	dataType: "json",
+		// 	success: function (data) {
+		// 		console.log(data)
+         //    }
+		// })
+        // table1.ajax.url().load();
+    })
 })
