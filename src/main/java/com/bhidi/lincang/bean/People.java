@@ -23,6 +23,8 @@ public class People {
     private String gender;
     //民族
     private String race;
+    //联系电话
+    private String phone;
     //与户主关系
     private String relation;
     //文化程度
@@ -48,7 +50,7 @@ public class People {
     public People() {
     }
 
-    public People(int id, String fid, String reservoir, String location, String name, int master, String pid, String gender, String race, String relation, String education, String profession, int home_size, int imm_num, int prop, String poor_reason, String interviewer, String interviewee, String created_at) {
+    public People(int id, String fid, String reservoir, String location, String name, int master, String pid, String gender, String race, String phone, String relation, String education, String profession, int home_size, int imm_num, int prop, String poor_reason, String interviewer, String interviewee, String created_at) {
         this.id = id;
         this.fid = fid;
         this.reservoir = reservoir;
@@ -58,6 +60,7 @@ public class People {
         this.pid = pid;
         this.gender = gender;
         this.race = race;
+        this.phone = phone;
         this.relation = relation;
         this.education = education;
         this.profession = profession;
@@ -137,6 +140,14 @@ public class People {
     public void setInterviewer(String interviewer) { this.interviewer = interviewer;}
 
     public void setInterviewee(String interviewee) { this.interviewee = interviewee;}
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     public int getId() { return id;}
 

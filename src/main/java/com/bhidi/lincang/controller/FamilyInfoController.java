@@ -30,4 +30,18 @@ public class FamilyInfoController {
         String resultStr = gson.toJson(result);
         return resultStr;
     }
+    /**
+     * 根据传递过来的FID显示家庭成员信息
+     * @param fid
+     */
+    @ResponseBody
+    @RequestMapping(value="FamilyInfoByFid",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String FamilyInfoByFid(String fid){
+        List<People> result = new ArrayList<People>();
+        result = familyInfoServiceImp.queryFamilyInfoByFid(fid);
+        Gson gson = new Gson();
+        String resultStr = gson.toJson(result);
+        return resultStr;
+    }
+
 }

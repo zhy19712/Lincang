@@ -93,8 +93,9 @@
       </form>
       <input type="button" value="测试获取地图数据" onclick="clickclick()">
       <hr>
-      <br>
       <input type="button" value="家庭基本信息" onclick="familyclick()">
+      <hr>
+      <input type="button" value="家庭人数信息" onclick="familyNumClick()">
   </body>
 
 
@@ -170,6 +171,18 @@
               url : "/BasicInfoOfFamily.do",
               data :{
                   name : '耿马傣族佤族自治县'
+              },
+              success : function(data){
+                  console.log(data);
+              }
+          })
+      }
+
+      function familyNumClick(){
+          $.ajax({
+              url : "/FamilyInfoByFid.do",
+              data :{
+                  fid : '移民搬迁登记表——Bqaaa'
               },
               success : function(data){
                   console.log(data);

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface FamilyInfoServiceInf {
     List<People> BasicInfoOfFamily(String name);
+
+    List<People> queryFamilyInfoByFid(String fid);
 }

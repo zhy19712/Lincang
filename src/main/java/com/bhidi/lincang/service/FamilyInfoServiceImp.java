@@ -14,4 +14,8 @@ public class FamilyInfoServiceImp implements FamilyInfoServiceInf{
     public List<People> BasicInfoOfFamily(String name) {
         return familyInfoMapper.BasicInfoOfFamily(name);
     }
+
+    public List<People> queryFamilyInfoByFid(String fid) {
+        return familyInfoMapper.queryFamilyInfoByFid(fid);
+    }
 }

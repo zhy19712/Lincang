@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface FamilyInfoMapper {
     List<People> BasicInfoOfFamily(String name);
+
+    List<People> queryFamilyInfoByFid(String fid);
 }
