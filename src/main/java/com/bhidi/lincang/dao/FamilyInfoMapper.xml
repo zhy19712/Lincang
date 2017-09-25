@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.FamilyInfoMapper">
+    <!--People BasicInfoOfFamily(String name);-->
+    <select id="BasicInfoOfFamily" parameterType="String" resultType="com.bhidi.lincang.bean.People">
+        SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = #{name} AND p.`RELATION` = '户主'
+    </select>
+
+</mapper>

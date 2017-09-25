@@ -56,5 +56,6 @@ public class PageForward {
     @RequestMapping(value = "/yimin", method = RequestMethod.GET)
     public String to_yimin(){
         return "lincang-yimin";
+        /*return "yimin_temp";*/
     }
 }

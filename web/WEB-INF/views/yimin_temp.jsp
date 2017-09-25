@@ -91,7 +91,10 @@
           <input type="text" name = "oid"/>
           <input type="submit" value="删除按钮测试"/>
       </form>
-        <input type="button" value="测试获取地图数据" onclick="clickclick()">
+      <input type="button" value="测试获取地图数据" onclick="clickclick()">
+      <hr>
+      <br>
+      <input type="button" value="家庭基本信息" onclick="familyclick()">
   </body>
 
 
@@ -157,6 +160,17 @@
       function clickclick(){
           $.ajax({
               url : "/picture.do",
+              success : function(data){
+                  console.log(data);
+              }
+          })
+      }
+      function familyclick(){
+          $.ajax({
+              url : "/BasicInfoOfFamily.do",
+              data :{
+                  name : '耿马傣族佤族自治县'
+              },
               success : function(data){
                   console.log(data);
               }
