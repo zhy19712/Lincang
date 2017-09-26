@@ -69,16 +69,6 @@
 						<li>
 							<div id="table-wrapper">
 								<table id="table1" class="table table-striped table-bordered">
-									<thead>
-									<tr>
-										<th>UID</th>
-										<th>户主姓名</th>
-										<th>建档立卡</th>
-										<th>家庭人数</th>
-										<th>移民人数</th>
-										<th>所属水库</th>
-									</tr>
-									</thead>
 								</table>
 							</div>
 						</li>
@@ -135,7 +125,78 @@
 				</div>
 			</div>
 		</div>
-		<div id="data_input">数据录入</div>
+		<div id="data_input">
+			<div id="ta_wrapper">
+				<table>
+					<tbody>
+						<tr>
+							<td colspan="9">库区登记表</td>
+						</tr>
+						<tr>
+							<td rowspan="2" class="bgc">户主信息</td>
+							<td class="bgc">所属水库</td>
+							<td colspan="4"><input type="text"></td>
+							<td class="bgc">户主姓名</td>
+							<td colspan="2"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="bgc">开户人姓名</td>
+							<td><input type="text"></td>
+							<td class="bgc">开户行名称</td>
+							<td colspan="2"><input type="text"></td>
+							<td class="bgc">银行卡号</td>
+							<td colspan="2"><input type="text"></td>
+						</tr>
+						<tr>
+							<td rowspan="5" class="bgc">家庭信息</td>
+							<td class="bgc">姓名</td>
+							<td class="bgc" colspan="2">身份证号码</td>
+							<td class="bgc">性别</td>
+							<td class="bgc">民族</td>
+							<td class="bgc">与户主关系</td>
+							<td class="bgc">文化程度</td>
+							<td class="bgc">职业</td>
+						</tr>
+						<tr>
+							<td><input type="text"></td>
+							<td colspan="2"><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td><input type="text"></td>
+							<td colspan="2"><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td><input type="text"></td>
+							<td colspan="2"><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td><input type="text"></td>
+							<td colspan="2"><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 		<div id="data_analysis">统计分析</div>
 	</div>
 </body>

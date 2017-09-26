@@ -614,7 +614,6 @@ $(function(){
 		var index = $(this).index();
 		if(index != slide_index){
 			slide_index = index;
-			console.log(slide_index);
 			$(".nav li").css("background-color","#000");
 			$(this).css("background-color","#3c96e6");
 			if(slide_index == 0){
@@ -636,51 +635,36 @@ $(function(){
 		}
     })
 
-	//导入空表格
-    // var table_data = [
-     //    [
-     //        "Tiger Nixon",
-     //        "System Architect",
-     //        "Edinburgh",
-     //        "5421",
-     //        "2011/04/25"
-     //    ],
-     //    [
-     //        "Garrett Winters",
-     //        "Director",
-     //        "Edinburgh",
-     //        "8422",
-     //        "2011/07/25"
-     //    ]
-    // ];
-	var table1 = $("#table1").DataTable({
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-	});
 
+	var table1;
 	//区县列表信息
 	$(".show").on("click","li",function () {
 		var name = $(this).find(".name").text();
 		alert(name);
-		// $.ajax({
-		// 	url: "",
-		// 	type: "get",
-		// 	data: name,
-		// 	dataType: "json",
-		// 	success: function (data) {
-		// 		console.log(data)
-         //    }
-		// })
-        // table1.ajax.url().load();
+        //导入表格
+        // table1 = $("#table1").DataTable({
+			// ajax: '',
+        //     columns: [
+        //         { title: "ID" },
+        //         { title: "户主姓名" },
+        //         { title: "建档立卡" },
+        //         { title: "家庭人数." },
+        //         { title: "移民人数" },
+        //         { title: "所属水库" }
+        //     ],
+        //     "language": {
+        //         "lengthMenu": "每页_MENU_ 条记录",
+        //         "zeroRecords": "没有找到记录",
+        //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+        //         "infoEmpty": "无记录",
+        //         "search": "搜索：",
+        //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+        //         "paginate": {
+        //             "previous": "上一页",
+        //             "next": "下一页"
+        //         }
+        //     }
+        // }).draw();
     })
+
 })
