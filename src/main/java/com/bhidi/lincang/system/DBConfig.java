@@ -8,7 +8,7 @@ import java.sql.SQLException;
  * Created by zhy19712 on 01/08/2017.
  */
 public class DBConfig {
-//    public static final String url = "jdbc:mysql://192.168.243.124:3306/LINCANG?useSSL=false";
+    /*public static final String url = "jdbc:mysql://192.168.243.124:3306/LINCANG?useSSL=false";*/
     public static final String url = "jdbc:mysql://127.0.0.1:3306/LINCANG?useSSL=false";
     public static final String name = "com.mysql.jdbc.Driver";
     public static final String user = "root";
