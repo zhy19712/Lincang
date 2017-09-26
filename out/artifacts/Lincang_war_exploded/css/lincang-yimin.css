@@ -370,9 +370,12 @@ td{
   border-right: 1px solid #000000;
   border-bottom: 1px solid #000000;
 }
-#ta_wrapper{
+#ta_sroll{
   width: 96%;
   margin: 10px auto;
+}
+#ta_wrapper{
+  width: 100%;
 }
 #ta_wrapper table{
   width: 100%;
@@ -393,4 +396,34 @@ td{
 }
 .bgc{
   background-color: #f2f2f2;
+}
+#ta_wrapper input[type='checkbox']{
+  width: auto;
+  vertical-align: middle;
+}
+#ta_wrapper label{
+  vertical-align: middle;
+}
+#ta_wrapper li{
+  display: inline-block;
+  vertical-align: middle;
+}
+#btn-container{
+  margin-top: 10px;
+  height: 30px;
+}
+#btn-container a{
+  padding: 5px 18px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 5px;
+}
+#btn-container a:before{
+  border-radius: 5px;
+}
+#btn-container li{
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  margin: 0 10px;
 }

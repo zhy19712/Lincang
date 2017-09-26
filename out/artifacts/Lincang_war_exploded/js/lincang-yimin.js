@@ -7,10 +7,11 @@ $(function(){
 	$("#container").width(width);
 	$(".show").height(show_height);
 
-
+	var ta_height = $(window).height() - 86
+	$("#ta_sroll").height(ta_height);
 	//滚动条插件
 	$(".show").panel({iWheelStep:32});
-
+	$("#ta_sroll").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
@@ -55,9 +56,9 @@ $(function(){
 	function change_label(level){
 		$.each($(".BMapLabel"),function(i,n){
 			if(n.title != level){
-				$(this).css("visibility","hidden");
+                $(this).css("display","none");
 			}else{
-				$(this).css("visibility","hiddenk");
+                $(this).css("display","block");
 			}
 		});
 		
@@ -86,6 +87,7 @@ $(function(){
         url:"./picture.do",
         async: false,
         success: function (data) {
+        	console.log(data);
         	mydata = data.result;
             $.each(data.result,function (i,n) {
                 all_info.push(n);
@@ -292,14 +294,15 @@ $(function(){
 	//缩放地图
 	map.addEventListener("zoomend",function(){
 		var u = map.getZoom();
+		console.log(u);
 		if(u == 10 || u == 11){
-			change_label("县级单位");
+            change_label("县级单位");
 			xian();
 		}else if(u == 12 || u == 13){
-			change_label("镇级单位");
+            change_label("镇级单位");
 			zhen();
 		}else if(u > 13){
-			change_label("村级单位");
+            change_label("村级单位");
 			cun();
 		}
 	});
@@ -643,7 +646,11 @@ $(function(){
 		alert(name);
         //导入表格
         // table1 = $("#table1").DataTable({
-			// ajax: '',
+			// ajax: {
+		// 			url: ""
+		// 		},
+        //    "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
+         //   "serverSide": true,
         //     columns: [
         //         { title: "ID" },
         //         { title: "户主姓名" },
@@ -652,6 +659,13 @@ $(function(){
         //         { title: "移民人数" },
         //         { title: "所属水库" }
         //     ],
+			// "columnDefs": [
+			//     {
+			//         "searchable": false,
+			//         "orderable": false,
+			//         "targets": [0.-1]
+			//     }
+			// ],
         //     "language": {
         //         "lengthMenu": "每页_MENU_ 条记录",
         //         "zeroRecords": "没有找到记录",
@@ -665,6 +679,15 @@ $(function(){
         //         }
         //     }
         // }).draw();
-    })
+    });
 
+
+
+	//数据录入表格单选
+	$("#yes").click(function () {
+		$("#no").prop("checked",false);
+    })
+    $("#no").click(function () {
+        $("#yes").prop("checked",false);
+    })
 })
