@@ -3,7 +3,7 @@
 <mapper namespace="com.bhidi.lincang.dao.FamilyInfoMapper">
     <!--People BasicInfoOfFamily(String name);-->
     <select id="BasicInfoOfFamily" parameterType="String" resultType="com.bhidi.lincang.bean.People">
-        SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = #{name} AND p.`RELATION` = '户主'
+        SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = #{name} AND p.`MASTER` = '1'
     </select>
     <!--List<People> queryFamilyInfoByFid(String fid);-->
     <select id="queryFamilyInfoByFid" parameterType="String" resultType="com.bhidi.lincang.bean.People">
