@@ -362,3 +362,35 @@
 #table-wrapper{
   margin-top: 10px;
 }
+table{
+  border-top: 1px solid #000000;
+  border-left: 1px solid #000000;
+}
+td{
+  border-right: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+#ta_wrapper{
+  width: 96%;
+  margin: 10px auto;
+}
+#ta_wrapper table{
+  width: 100%;
+}
+#ta_wrapper tr{
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  font-weight: 700;
+}
+#ta_wrapper td{
+  vertical-align: middle;
+}
+#ta_wrapper input{
+  width: 96%;
+  border: none;
+  outline: none;
+}
+.bgc{
+  background-color: #f2f2f2;
+}

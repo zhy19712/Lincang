@@ -643,7 +643,11 @@ $(function(){
 		alert(name);
         //导入表格
         // table1 = $("#table1").DataTable({
-			// ajax: '',
+			// ajax: {
+		// 			url: ""
+		// 		},
+        //    "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
+         //   "serverSide": true,
         //     columns: [
         //         { title: "ID" },
         //         { title: "户主姓名" },
@@ -652,6 +656,13 @@ $(function(){
         //         { title: "移民人数" },
         //         { title: "所属水库" }
         //     ],
+			// "columnDefs": [
+			//     {
+			//         "searchable": false,
+			//         "orderable": false,
+			//         "targets": [0.-1]
+			//     }
+			// ],
         //     "language": {
         //         "lengthMenu": "每页_MENU_ 条记录",
         //         "zeroRecords": "没有找到记录",
