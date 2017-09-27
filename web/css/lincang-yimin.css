@@ -315,48 +315,48 @@
   margin-top: 5px;
   font-size: 12px;
 }
-#content #slide .right .show {
+#content #slide .right #show {
   overflow: hidden;
 }
-#content #slide .right .show ul {
+#content #slide .right #show ul {
   width: 100%;
 }
-#content #slide .right .show ul li {
+#content #slide .right #show ul li {
   height: 160px;
   border-bottom: 1px solid #555;
   background-color: #fff;
 }
-#content #slide .right .show ul li:hover{
+#content #slide .right #show ul li:hover{
   background-color: rgb(238, 237, 237);
 }
-#content #slide .right .show ul li a {
+#content #slide .right #show ul li a {
   display: block;
   height: 100%;
 }
-#content #slide .right .show ul li a .img {
+#content #slide .right #show ul li a .img {
   float: left;
   width: 120px;
   height: 120px;
   margin: 20px 10px;
   background: url(../img/img-1.png);
 }
-#content #slide .right .show ul li a .info {
+#content #slide .right #show ul li a .info {
   float: left;
   width: 150px;
   margin-top: 20px;
 }
-#content #slide .right .show ul li a .info .name {
+#content #slide .right #show ul li a .info .name {
   font-size: 16px;
   font-weight: 800;
   color: #262626;
   line-height: 30px;
 }
-#content #slide .right .show ul li a .info .text {
+#content #slide .right #show ul li a .info .text {
   color: #555;
   line-height: 30px;
   font-size: 14px;
 }
-#content #slide .right .show ul li a .info .text span {
+#content #slide .right #show ul li a .info .text span {
   color: red;
 }
 #table-wrapper{

@@ -67,7 +67,7 @@ $(function(){
     function slide(name,num) {
         var str = "";
         str += ""
-            +  "<li>"
+            +  "<li class='about'>"
             +  "<a href='#' title='地区'>"
             +  "<div class='img'></div>"
             +  "<div class='info'>"
@@ -76,7 +76,7 @@ $(function(){
             +  "</div>"
             +  "</a>"
             +  "</li>"
-        $(".show ul").append(str);
+        $("#show ul").append(str);
     }
 
     //获取数据,添加覆盖物
@@ -638,51 +638,51 @@ $(function(){
     })
 
 
-	var table1;
 	//区县列表信息
-	$(".show").on("click","li",function () {
-		var name = $(this).find(".name").text();
-		alert(name);
-        //导入表格
-        table1 = $("#table1").DataTable({
-			ajax: {
-					url: "./BasicInfoOfFamilyByName.do",
-					data: name,
-					success: function (data) {
-						console.log(data);
-                    }
-				},
-           "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
-           "serverSide": true,
-            "columns": [
-                { "title": "FID" },
-                { "title": "NAME" },
-                { "title": "PROP" },
-                { "title": "HOME_SIZE." },
-                { "title": "IMM_NUM" },
-                { "title": "RESERVOIR" }
-            ],
-			"columnDefs": [
-			    {
-			        "searchable": false,
-			        "orderable": false,
-			        "targets": [0.-1]
-			    }
-			],
-            "language": {
-                "lengthMenu": "每页_MENU_ 条记录",
-                "zeroRecords": "没有找到记录",
-                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                "infoEmpty": "无记录",
-                "search": "搜索：",
-                "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
-                }
+
+    var table1 = $('#table1').DataTable({
+        ajax: {
+            url: "./BasicInfoOfFamilyByName.do?name=双江拉祜族佤族布朗族傣族自治县",
+			success: function (data) {
+				console.log(data)
             }
-        }).draw();
+        },
+        "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
+        "serverSide": true,
+        "columns": [
+            {"title": "FID"},
+            {"title": "户主姓名"},
+            {"title": "建档立卡"},
+            {"title": "家庭人数"},
+            {"title": "移民人数"}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0.-1]
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
     });
+    // $(".show").off("click",".about").on("click",".about",function () {
+		// var name = $(this).find(".name").text();
+		// // alert(name);
+    //     //导入表格
+    //     table(name);
+		// console.log(name)
+    // });
 
 
 

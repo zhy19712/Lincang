@@ -111,8 +111,6 @@
                     <div class="box-inner ">
                         <div class="box-content">
                             <div id="myTabContent" class="tab-content">
-
-
                                 <div class="tab-pane active" id="home">
                                     <div>
                                         <ul class="breadcrumb">
