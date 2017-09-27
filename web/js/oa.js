@@ -1,7 +1,7 @@
 //待办表单的datatable
 var newForm_stuff = $('#NewTable_Stuff').DataTable({
     ajax: {
-        url: "/nform_stuff.do"
+        url: "/nform_stuff.do",
     },
     "order": [[2, 'asc']],
     "serverSide": true,

@@ -69,15 +69,15 @@
 						</li>
 						<li>
 							<div id="table-wrapper">
-								<table id="table1" class="table table-striped table-bordered">
+								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
 											<th>FID</th>
-											<th>HOME_SIZE</th>
-											<th>IMM_NUM</th>
-											<th>NAME</th>
-											<th>PROP</th>
-											<th>RESERVOIR</th>
+											<th>户主姓名</th>
+											<th>建档立卡</th>
+											<th>家庭人数</th>
+											<th>移民人数</th>
+											<th>所属水库</th>
 										</tr>
 									</thead>
 								</table>

@@ -69,7 +69,7 @@
 						</li>
 						<li>
 							<div id="table-wrapper">
-								<table id="table1" class="table table-striped table-bordered">
+								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
 											<th>FID</th>

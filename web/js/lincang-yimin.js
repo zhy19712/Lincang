@@ -639,30 +639,19 @@ $(function(){
 
 
 	//区县列表信息
-
-    var table1 = $('#table1').DataTable({
+	var mytable1 = $('#table1').DataTable({
         ajax: {
-            url: "./BasicInfoOfFamilyByName.do?name=双江拉祜族佤族布朗族傣族自治县",
-			success: function (data) {
-				console.log(data)
-            }
+            url: "./BasicInfoOfFamilyByName.do"
         },
         "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
         "serverSide": true,
         "columns": [
             {data: "FID"},
-            {data: "HOME_SIZE"},
-            {data: "IMM_NUM"},
             {data: "NAME"},
             {data: "PROP"},
+            {data: "HOME_SIZE"},
+            {data: "IMM_NUM"},
             {data: "RESERVOIR"}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0.-1]
-            }
         ],
         "language": {
             "lengthMenu": "每页_MENU_ 条记录",
@@ -677,33 +666,17 @@ $(function(){
             }
         }
     });
-    // table1.on('draw.dt',function() {
-    //     table1.column(0, {
-    //         search: 'applied',
-    //         order: 'applied'
-    //     }).nodes().each(function(cell, i) {
-    //         //i 从0开始，所以这里先加1
-    //         i = i+1;
-    //         //服务器模式下获取分页信息
-    //         var page = table1.page.info();
-    //         //当前第几页，从0开始
-    //         var pageno = page.page;
-    //         //每页数据
-    //         var length = page.length;
-    //         //行号等于 页数*每页数据长度+行号
-    //         var columnIndex = (i+pageno*length);
-    //         cell.innerHTML = columnIndex;
-    //     });
-    // }).draw();
-    // $(".show").off("click",".about").on("click",".about",function () {
-		// var name = $(this).find(".name").text();
-		// // alert(name);
-    //     //导入表格
-    //     table(name);
-		// console.log(name)
-    // });
 
+    $("#show").off("click",".about").on("click",".about",function () {
+		var name = $(this).find(".name").text();
+		mytable1.ajax.url("./BasicInfoOfFamilyByName.do?name=" + name).load();
+		$("#show_info").css("display","block");
+    });
 
+	$("#table1 tbody").on("click","tr",function () {
+		var name = $(this).children("td:first-child").text();
+		alert(name);
+    })
 
 	//数据录入表格单选
 	$("#yes").click(function () {
