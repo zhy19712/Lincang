@@ -650,11 +650,12 @@ $(function(){
         "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
         "serverSide": true,
         "columns": [
-            {"title": "FID"},
-            {"title": "户主姓名"},
-            {"title": "建档立卡"},
-            {"title": "家庭人数"},
-            {"title": "移民人数"}
+            {data: "FID"},
+            {data: "HOME_SIZE"},
+            {data: "IMM_NUM"},
+            {data: "NAME"},
+            {data: "PROP"},
+            {data: "RESERVOIR"}
         ],
         "columnDefs": [
             {
@@ -676,6 +677,24 @@ $(function(){
             }
         }
     });
+    // table1.on('draw.dt',function() {
+    //     table1.column(0, {
+    //         search: 'applied',
+    //         order: 'applied'
+    //     }).nodes().each(function(cell, i) {
+    //         //i 从0开始，所以这里先加1
+    //         i = i+1;
+    //         //服务器模式下获取分页信息
+    //         var page = table1.page.info();
+    //         //当前第几页，从0开始
+    //         var pageno = page.page;
+    //         //每页数据
+    //         var length = page.length;
+    //         //行号等于 页数*每页数据长度+行号
+    //         var columnIndex = (i+pageno*length);
+    //         cell.innerHTML = columnIndex;
+    //     });
+    // }).draw();
     // $(".show").off("click",".about").on("click",".about",function () {
 		// var name = $(this).find(".name").text();
 		// // alert(name);

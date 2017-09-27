@@ -127,7 +127,7 @@ public class Table_Family {
 
 
             Map<Object, Object> info = new HashMap<Object, Object>();
-            info.put("title", tasks);
+            info.put("data", tasks);
             info.put("recordsTotal", recordsTotal);
             info.put("recordsFiltered", recordsFiltered);
             info.put("draw", draw);

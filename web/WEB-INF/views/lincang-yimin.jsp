@@ -77,6 +77,7 @@
 											<th>建档立卡</th>
 											<th>家庭人数</th>
 											<th>移民人数</th>
+											<th>所属水库</th>
 										</tr>
 									</thead>
 								</table>
