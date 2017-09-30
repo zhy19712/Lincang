@@ -2,7 +2,7 @@ package com.bhidi.lincang.bean;
 
 public class FamilyAllInfo {
 
-    private String FID;
+
     private String NAME;
     private String GENDER;
     private String RACE;
@@ -11,21 +11,13 @@ public class FamilyAllInfo {
     public FamilyAllInfo() {
     }
 
-    public FamilyAllInfo(String FID, String NAME, String GENDER, String RACE, String PHONE) {
-        this.FID = FID;
+    public FamilyAllInfo(String NAME, String GENDER, String RACE, String PHONE) {
         this.NAME = NAME;
         this.GENDER = GENDER;
         this.RACE = RACE;
         this.PHONE = PHONE;
     }
 
-    public String getFID() {
-        return FID;
-    }
-
-    public void setFID(String FID) {
-        this.FID = FID;
-    }
 
     public String getNAME() {
         return NAME;
@@ -62,7 +54,6 @@ public class FamilyAllInfo {
     @Override
     public String toString() {
         return "FamilyAllInfo{" +
-                "FID='" + FID + '\'' +
                 ", NAME='" + NAME + '\'' +
                 ", GENDER='" + GENDER + '\'' +
                 ", RACE='" + RACE + '\'' +

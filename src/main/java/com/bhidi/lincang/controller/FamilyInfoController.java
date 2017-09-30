@@ -1,6 +1,7 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.People;
+import com.bhidi.lincang.bean.PeopleMore;
 import com.bhidi.lincang.service.FamilyInfoServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,18 @@ public class FamilyInfoController {
     public String FamilyInfoByFid(String fid){
         List<People> result = new ArrayList<People>();
         result = familyInfoServiceImp.queryFamilyInfoByFid(fid);
+        Gson gson = new Gson();
+        String resultStr = gson.toJson(result);
+        return resultStr;
+    }
+    /**
+     * 根据传递过来的FID显示家庭详细信息
+     * @param fid
+     */
+    @ResponseBody
+    @RequestMapping(value="FamilyDetailByFid",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String FamilyDetailByFid(String fid){
+        PeopleMore result = familyInfoServiceImp.queryFamilyDetailByFid(fid);
         Gson gson = new Gson();
         String resultStr = gson.toJson(result);
         return resultStr;

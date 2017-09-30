@@ -44,7 +44,7 @@ public class Table_FamilyInfo {
 
 
             //定义列名
-            String[] cols = {"FID","NAME", "GENDER", "RACE", "PHONE"};
+            String[] cols = {"NAME", "GENDER", "RACE", "PHONE"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -58,7 +58,6 @@ public class Table_FamilyInfo {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
-                sArray.add(" FID like '%" + searchValue + "%'");
                 sArray.add(" NAME like '%" + searchValue + "%'");
                 sArray.add(" GENDER like '%" + searchValue + "%'");
                 sArray.add(" RACE like '%" + searchValue + "%'");
@@ -79,11 +78,11 @@ public class Table_FamilyInfo {
             List<FamilyAllInfo> tasks = new ArrayList<FamilyAllInfo>();
             if (conn != null) {
                 /*String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = 'NEW'";*/
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where FID = "+fid;
+                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where FID = "+"'"+fid+"'";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
                 /*String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = 'NEW'";*/
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where FID = "+fid;
+                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where FID = "+"'"+fid+"'";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
@@ -91,7 +90,7 @@ public class Table_FamilyInfo {
 
                 String searchSQL = "";
                 /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
-                String sql = "SELECT * FROM " + table + " where FID = "+fid;
+                String sql = "SELECT * FROM " + table + " where FID = '"+fid+"'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -105,7 +104,6 @@ public class Table_FamilyInfo {
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                         tasks.add(new FamilyAllInfo(
-                            rs.getString("FID"),
                             rs.getString("NAME"),
                             rs.getString("GENDER"),
                             rs.getString("RACE"),
@@ -129,6 +127,7 @@ public class Table_FamilyInfo {
             info.put("recordsFiltered", recordsFiltered);
             info.put("draw", draw);
             String json = new Gson().toJson(info);
+            System.out.println(json);
             rs.close();
             stmt.close();
             conn.close();
