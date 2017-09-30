@@ -22,7 +22,7 @@
         FROM people p,move m,house h,bank b,income i WHERE p.master = 1 AND p.fid = m.fid AND p.fid = h.fid AND p.fid = b.fid AND p.fid = i.fid
         AND p.fid = #{fid}
     </select>
-    <resultMap id="find" type="com.bhidi.lincang.bean.PeopleMore">
+    <!--<resultMap id="find" type="com.bhidi.lincang.bean.PeopleMore">
         <result property="income_sum" column="income_sum" />
         <result property="income_source" column="income_source" />
         <result property="account_number" column="account_number" />
@@ -40,5 +40,5 @@
         <result property="reservoir" column="RESERVOIR" />
         <result property="pid" column="pid" />
         <result property="name" column="name" />
-    </resultMap>
+    </resultMap>-->
 </mapper>

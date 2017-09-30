@@ -11,7 +11,7 @@
 	<link rel="stylesheet" href="../../css/style.css">
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
+	<%--<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>--%>
 	<script src="../../js/zUI.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
 </head>
@@ -227,17 +227,17 @@
 							<tr>
 								<td rowspan="2" class="bgc">户主信息</td>
 								<td class="bgc">所属水库</td>
-								<td colspan="4"><input type="text"></td>
+								<td colspan="4"><input type="text" id="reservoir"></td>
 								<td class="bgc">户主姓名</td>
-								<td colspan="2"><input type="text" required></td>
+								<td colspan="2"><input type="text" id="householder"></td>
 							</tr>
 							<tr>
 								<td class="bgc">开户人姓名</td>
-								<td><input type="text"></td>
+								<td><input type="text" id="bank-user"></td>
 								<td class="bgc">开户行名称</td>
-								<td colspan="2"><input type="text"></td>
+								<td colspan="2"><input type="text" id="bank-name"></td>
 								<td class="bgc">银行卡号</td>
-								<td colspan="2"><input type="text"></td>
+								<td colspan="2"><input type="text" id="bank-number"></td>
 							</tr>
 							<tr>
 								<td rowspan="5" class="bgc">家庭信息</td>
@@ -249,7 +249,7 @@
 								<td class="bgc">文化程度</td>
 								<td class="bgc">职业</td>
 							</tr>
-							<tr>
+							<tr id="home_people1">
 								<td><input type="text"></td>
 								<td colspan="2"><input type="text"></td>
 								<td><input type="text"></td>
@@ -258,7 +258,7 @@
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="home_people2">
 								<td><input type="text"></td>
 								<td colspan="2"><input type="text"></td>
 								<td><input type="text"></td>
@@ -267,7 +267,7 @@
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="home_people3">
 								<td><input type="text"></td>
 								<td colspan="2"><input type="text"></td>
 								<td><input type="text"></td>
@@ -276,8 +276,8 @@
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 							</tr>
-							<tr>
-								<td><input type="text"></td>
+							<tr id="home_people4">
+								<td><input type="text" class="h_name"></td>
 								<td colspan="2"><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -294,7 +294,7 @@
 								<td class="bgc">组</td>
 								<td class="bgc" colspan="3">备注</td>
 							</tr>
-							<tr>
+							<tr id="city">
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -313,7 +313,7 @@
 								<td class="bgc">简易房</td>
 								<td class="bgc">备注</td>
 							</tr>
-							<tr>
+							<tr id="main">
 								<td class="bgc">主房</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -323,7 +323,7 @@
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="sub">
 								<td class="bgc">附属房</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -342,7 +342,7 @@
 								<td class="bgc">小计</td>
 								<td class="bgc" colspan="3">备注</td>
 							</tr>
-							<tr>
+							<tr id="in_animal1">
 								<td class="bgc" rowspan="8">养殖业收入</td>
 								<td class="bgc">猪</td>
 								<td><input type="text"></td>
@@ -350,56 +350,56 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal2">
 								<td class="bgc">牛</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal3">
 								<td class="bgc">羊</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal4">
 								<td class="bgc">鸡</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal5">
 								<td class="bgc">鸭</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal6">
 								<td class="bgc">渔业</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal7">
 								<td class="bgc">乳业</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_animal8">
 								<td class="bgc">其他</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_botany1">
 								<td class="bgc" rowspan="4">种植业收入</td>
 								<td class="bgc">粮食</td>
 								<td><input type="text"></td>
@@ -407,28 +407,28 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_botany2">
 								<td class="bgc">蔬菜</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_botany3">
 								<td class="bgc">水果</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_botany4">
 								<td class="bgc">其他</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_other1">
 								<td class="bgc" rowspan="2">其他收入</td>
 								<td class="bgc">劳务酬劳</td>
 								<td><input type="text"></td>
@@ -436,7 +436,7 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="in_other2">
 								<td class="bgc">房、耕地租赁</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -452,7 +452,7 @@
 								<td class="bgc">小计</td>
 								<td class="bgc" colspan="3">备注</td>
 							</tr>
-							<tr>
+							<tr id="out_botany1">
 								<td class="bgc" rowspan="6">种植业支出</td>
 								<td class="bgc">籽种</td>
 								<td><input type="text"></td>
@@ -460,42 +460,42 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_botany2">
 								<td class="bgc">化肥、农药</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_botany3">
 								<td class="bgc">雇工</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_botany4">
 								<td class="bgc">机耕支出</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_botany5">
 								<td class="bgc">灌溉水电费</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_botany6">
 								<td class="bgc">承租耕地</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_animal1">
 								<td class="bgc" rowspan="4">养殖业支出</td>
 								<td class="bgc">幼种</td>
 								<td><input type="text"></td>
@@ -503,28 +503,28 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_animal2">
 								<td class="bgc">饲料</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_animal3">
 								<td class="bgc">疫病防治</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_animal4">
 								<td class="bgc">其他</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life1">
 								<td class="bgc" rowspan="8">生活支出</td>
 								<td class="bgc">主食</td>
 								<td><input type="text"></td>
@@ -532,49 +532,49 @@
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life2">
 								<td class="bgc">衣物</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life3">
 								<td class="bgc">水、电费</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life4">
 								<td class="bgc">通讯费</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life5">
 								<td class="bgc">交通费</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life6">
 								<td class="bgc">教育</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life7">
 								<td class="bgc">医疗</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
 								<td colspan="3"><input type="text"></td>
 							</tr>
-							<tr>
+							<tr id="out_life8">
 								<td class="bgc">其他</td>
 								<td><input type="text"></td>
 								<td><input type="text"></td>
@@ -598,15 +598,15 @@
 								<td colspan="5">
 									<ul id="reason">
 										<li>
-											<input type="checkbox" id="traffic">
+											<input type="checkbox" id="traffic" value="交通落后">
 											<label for="traffic">交通落后</label>
 										</li>
 										<li>
-											<input type="checkbox" id="money">
+											<input type="checkbox" id="money" value="缺技术、资金、土地、水">
 											<label for="money">缺技术、资金、土地、水</label>
 										</li>
 										<li>
-											<input type="checkbox" id="disaster">
+											<input type="checkbox" id="disaster" value="因学、残、灾">
 											<label for="disaster">因学、残、灾</label>
 										</li>
 									</ul>
@@ -614,11 +614,11 @@
 							</tr>
 							<tr>
 								<td class="bgc">被调查人签字</td>
-								<td colspan="2"><input type="text"></td>
+								<td colspan="2"><input type="text" id="respondent"></td>
 								<td class="bgc">调查人签字</td>
-								<td colspan="2"><input type="text"></td>
+								<td colspan="2"><input type="text" id="inquirer"></td>
 								<td class="bgc">填表时间</td>
-								<td colspan="2"><input type="text"></td>
+								<td colspan="2"><input type="text" id="time"></td>
 							</tr>
 							</tbody>
 						</table>
