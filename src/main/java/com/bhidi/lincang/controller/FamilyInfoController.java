@@ -54,6 +54,7 @@ public class FamilyInfoController {
         PeopleMore result = familyInfoServiceImp.queryFamilyDetailByFid(fid);
         Gson gson = new Gson();
         String resultStr = gson.toJson(result);
+        System.out.println(resultStr);
         return resultStr;
     }
 
