@@ -174,10 +174,12 @@
 }
 #show_info #tab #tab_content{
   position: relative;
+  height: 100%;
   border-top: 1px solid #f26d0b;
 }
 #show_info #tab #tab_content li{
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   display: none;
@@ -428,22 +430,43 @@ td{
   float: right;
   margin: 0 10px;
 }
-#table1{
+#table1,#table2{
   border-top: 1pt solid #C1DAD7;
   border-left: 1pt solid #C1DAD7;
 }
-#table1 td{
+#table1 td,#table2 td{
   border-right: 1pt solid #C1DAD7;
   border-bottom: 1pt solid #C1DAD7;
 }
-#table1 thead{
+#table1 thead,#table2 thead{
   background-color: #0066CC;
   color: #fff;
 }
-#table1 tbody tr:nth-child(even){
+#table1 tbody tr:nth-child(even),#table2 tbody tr:nth-child(even){
   background-color: #c6f9f7;
 }
-#table1 tbody tr:hover{
+#table1 tbody tr:hover,#table2 tbody tr:hover{
   background-color: #E0F0F0;
   cursor: pointer;
+}
+#family table{
+  width: 100%;
+  border: none;
+}
+#family td{
+  border: none;
+  line-height: 26px;
+}
+#family .weight{
+  font-weight: 700;
+  margin-right: 8px;
+}
+#table-wrapper{
+  width: 100%;
+}
+#family{
+  display: none;
+}
+#table2_wrapper{
+  display: none;
 }

@@ -96,65 +96,65 @@
 										<tbody>
 											<tr>
 												<td>
-													<span class="weight">户主姓名:</span><span class="f_name">王尚</span>
+													<span class="weight">户主姓名:</span><span class="f_name"></span>
 												</td>
 												<td>
-													<span class="weight">身份证号:</span><span class="f_id">713313102741566700</span>
+													<span class="weight">身份证号:</span><span class="f_id"></span>
 												</td>
 												<td>
-													<span class="weight">户主姓名:</span><span class="f_people">3</span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">移民人数:</span><span class="f_name">3</span>
-												</td>
-												<td>
-													<span class="weight">建档立卡:</span><span class="f_id">否</span>
-												</td>
-												<td>
-													<span class="weight">迁出地区:</span><span class="f_people">施甸县摆榔乡沙河村</span>
+													<span class="weight">常住人口:</span><span class="f_people"></span>
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<span class="weight">迁入地区:</span><span class="f_place">隆阳区汉庄镇岩箐村</span>
+													<span class="weight">移民人数:</span><span class="f_imm"></span>
 												</td>
 												<td>
-													<span class="weight">致贫原因:</span><span class="f_reason">其他原因</span>
+													<span class="weight">建档立卡:</span><span class="f_prop"></span>
 												</td>
 												<td>
-													<span class="weight">主房结构:</span><span class="f_house">砖瓦房</span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">主房面积:</span><span class="f_arear">16</span>
-												</td>
-												<td>
-													<span class="weight">开户银行:</span><span class="f_bank">建设银行</span>
-												</td>
-												<td>
-													<span class="weight">银行账号:</span><span class="f_number">579553620521265900</span>
+													<span class="weight">迁出地区:</span><span class="f_out"></span>
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<span class="weight">收入来源:</span><span class="f_work">养殖</span>
+													<span class="weight">迁入地区:</span><span class="f_in"></span>
 												</td>
 												<td>
-													<span class="weight">年收入:</span><span class="f_money">8549</span>
+													<span class="weight">致贫原因:</span><span class="f_reason"></span>
 												</td>
 												<td>
-													<span class="weight">所属水库:</span><span class="f_reservoir">明子山水库</span>
+													<span class="weight">主房结构:</span><span class="f_mainhouse"></span>
 												</td>
 											</tr>
 											<tr>
 												<td>
-													<span class="weight">附属房结构:</span><span class="f_framework">养殖</span>
+													<span class="weight">主房面积:</span><span class="f_mainarear"></span>
 												</td>
 												<td>
-													<span class="weight">附属房面积:</span><span class="f_farear">8549</span>
+													<span class="weight">开户银行:</span><span class="f_bank"></span>
+												</td>
+												<td>
+													<span class="weight">银行账号:</span><span class="f_number"></span>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="weight">收入来源:</span><span class="f_work"></span>
+												</td>
+												<td>
+													<span class="weight">年收入:</span><span class="f_money"></span>
+												</td>
+												<td>
+													<span class="weight">所属水库:</span><span class="f_reservoir"></span>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<span class="weight">附属房结构:</span><span class="f_subhouse"></span>
+												</td>
+												<td>
+													<span class="weight">附属房面积:</span><span class="f_subarear"></span>
 												</td>
 											</tr>
 										</tbody>

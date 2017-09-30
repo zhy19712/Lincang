@@ -669,31 +669,31 @@ $(function(){
             }
         }
     });
-    // var mytable2 = $('#table2').DataTable({
-    //     ajax: {
-    //         url: "./BasicInfoOfFamilyByName.do"
-    //     },
-    //     "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
-    //     "serverSide": true,
-    //     "columns": [
-    //         {data: "FID"},
-    //         {data: "NAME"},
-    //         {data: "PROP"},
-    //         {data: "HOME_SIZE"}
-    //     ],
-    //     "language": {
-    //         "lengthMenu": "每页_MENU_ 条记录",
-    //         "zeroRecords": "没有找到记录",
-    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-    //         "infoEmpty": "无记录",
-    //         "search": "搜索：",
-    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
-    //         "paginate": {
-    //             "previous": "上一页",
-    //             "next": "下一页"
-    //         }
-    //     }
-    // });
+    var mytable2 = $('#table2').DataTable({
+        ajax: {
+            url: "./FamilyInfoByFid.do"
+        },
+        "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
+        "serverSide": true,
+        "columns": [
+            {data: "NAME"},
+            {data: "GENDER"},
+            {data: "RACE"},
+            {data: "PHONE"}
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
     $("#show").off("click",".about").on("click",".about",function () {
 		var name = $(this).find(".name").text();
@@ -702,17 +702,53 @@ $(function(){
     });
 
 	$("#table1 tbody").on("click","tr",function () {
-		var name = $(this).children("td:first-child").text();
-		$("#table2").css("display","block");
+		var fid = $(this).children("td:first-child").text();
+        $("#table2_wrapper").css("display","block");
+        mytable2.ajax.url("./FamilyInfoByFid.do?fid=" + fid).load();
 		$("#family").css("display","block");
-		// $.ajax({
-		// 	url: "",
-		// 	data: {name:name},
-		// 	dataType: "json",
-		// 	success: function (data) {
-		// 		console.log(data);
-         //    }
-		// })
+		$.ajax({
+			url: "./FamilyDetailByFid.do",
+			data: {fid:fid},
+			dataType: "json",
+			success: function (data) {
+				console.log(data);
+				var index1 = data.inArea.indexOf(",");
+				var index2 = data.mainStructure.indexOf(",");
+				var index3 = data.outArea.indexOf(",");
+				var index4 = data.subStructure.indexOf(",");
+				var inArea = data.inArea.substring(0,index1);
+				var mainStructure = data.mainStructure.substring(0,index2);
+				var outArea = data.outArea.substring(0,index3);
+				var subStructure = data.subStructure.substring(0,index4);
+				if(data.prop == 0){
+					var prop = "是";
+				}else {
+					var prop = "否";
+				}
+				if(!data.poor_reason){
+					var reason = "无"
+				}else{
+					var reason = data.poor_reason;
+				}
+				$(".f_name").text(data.name);
+				$(".f_id").text(data.pid);
+				$(".f_people").text(data.home_size);
+				$(".f_imm").text(data.imm_num);
+                $(".f_prop").text(prop);
+                $(".f_out").text(outArea);
+                $(".f_in").text(inArea);
+                $(".f_reason").text(reason);
+                $(".f_mainhouse").text(mainStructure);
+                $(".f_mainarear").text(data.mainSize);
+                $(".f_bank").text(data.bank_name);
+                $(".f_number").text(data.account_number);
+                $(".f_work").text(data.income_source);
+                $(".f_money").text(data.income_sum);
+                $(".f_reservoir").text(data.reservoir);
+                $(".f_subhouse").text(subStructure);
+                $(".f_subarear").text(outArea);
+            }
+		})
     })
 
 	//数据录入表格单选
