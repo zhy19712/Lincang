@@ -11,16 +11,34 @@
     </select>
     <!--PeopleMore queryFamilyDetailByFid(String fid);-->
     <select id="queryFamilyDetailByFid" parameterType="String" resultType="com.bhidi.lincang.bean.PeopleMore">
-        SELECT p.name,p.pid,p.RESERVOIR,p.home_size,p.imm_num,p.prop,p.poor_reason,GROUP_CONCAT(m.FROM_CITY,m.FROM_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE)AS outarea,
-        GROUP_CONCAT(m.TO_CITY,m.TO_DISTRICT,m.TO_TOWN,m.TO_VILLAGE)AS inarea,
-        GROUP_CONCAT(h.MAIN_STRUCTURE1,h.MAIN_STRUCTURE2,h.MAIN_STRUCTURE3,h.MAIN_STRUCTURE4,h.MAIN_STRUCTURE5) AS mainstructure,
-        h.main_size AS mainsize,
-        GROUP_CONCAT(h.SUB_STRUCTURE1,h.SUB_STRUCTURE2,h.SUB_STRUCTURE3,h.SUB_STRUCTURE4,h.SUB_STRUCTURE5) AS substructure,
-        h.sub_size AS subsize,b.bank_name,b.account_number,
-        GROUP_CONCAT(DISTINCT(i.INCOME_SOURCE)) AS income_source,
-        SUM(i.INCOME_SUM) AS income_sum
+        SELECT IFNULL(p.name,"")as name,IFNULL(p.pid,"")as pid,IFNULL(p.RESERVOIR,"")as reservoir,IFNULL(p.home_size,"")as home_size,IFNULL(p.imm_num,"")as imm_num,IFNULL(p.prop,"")as prop,IFNULL(p.poor_reason,"")AS poor_reason,IFNULL(GROUP_CONCAT(m.FROM_CITY,m.FROM_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE),"")AS outarea,
+        IFNULL(GROUP_CONCAT(m.TO_CITY,m.TO_DISTRICT,m.TO_TOWN,m.TO_VILLAGE),"")AS inarea,
+        IFNULL(GROUP_CONCAT(h.MAIN_STRUCTURE1,h.MAIN_STRUCTURE2,h.MAIN_STRUCTURE3,h.MAIN_STRUCTURE4,h.MAIN_STRUCTURE5),"") AS mainstructure,
+        IFNULL(h.main_size,"") AS mainsize,
+        IFNULL(GROUP_CONCAT(h.SUB_STRUCTURE1,h.SUB_STRUCTURE2,h.SUB_STRUCTURE3,h.SUB_STRUCTURE4,h.SUB_STRUCTURE5),"") AS substructure,
+        IFNULL(h.sub_size,"") AS subsize,IFNULL(b.bank_name,"")as bank_name,IFNULL(b.account_number,"")as account_number,
+        IFNULL(GROUP_CONCAT(DISTINCT(i.INCOME_SOURCE)),"") AS income_source,
+        IFNULL(SUM(i.INCOME_SUM),"") AS income_sum
         FROM people p,move m,house h,bank b,income i WHERE p.master = 1 AND p.fid = m.fid AND p.fid = h.fid AND p.fid = b.fid AND p.fid = i.fid
         AND p.fid = #{fid}
     </select>
-
+    <!--<resultMap id="find" type="com.bhidi.lincang.bean.PeopleMore">
+        <result property="income_sum" column="income_sum" />
+        <result property="income_source" column="income_source" />
+        <result property="account_number" column="account_number" />
+        <result property="bank_name" column="bank_name" />
+        <result property="subSize" column="sub_size" />
+        <result property="subStructure" column="substructure" />
+        <result property="mainSize" column="mainsize" />
+        <result property="mainStructure" column="mainstructure" />
+        <result property="inArea" column="inarea" />
+        <result property="outArea" column="outarea" />
+        <result property="poor_reason" column="poor_reason" />
+        <result property="prop" column="prop" />
+        <result property="imm_num" column="imm_num" />
+        <result property="home_size" column="home_size" />
+        <result property="reservoir" column="RESERVOIR" />
+        <result property="pid" column="pid" />
+        <result property="name" column="name" />
+    </resultMap>-->
 </mapper>
