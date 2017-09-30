@@ -3,15 +3,18 @@ $(function(){
 	var height = $(window).height() - 66;
 	var width = $(window).width() - 360;
 	var show_height = $(window).height() - 247;
+	var tab_content_height = $(window).height() - 171;
 	$("#content").height(height);
 	$("#container").width(width);
 	$(".show").height(show_height);
+	$("#tab_content li").height(tab_content_height);
 
 	var ta_height = $(window).height() - 86
 	$("#ta_sroll").height(ta_height);
 	//滚动条插件
 	$(".show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
+	$("#tab_content li").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
@@ -666,7 +669,7 @@ $(function(){
             }
         }
     });
-    // var mytable2 = $('#table1').DataTable({
+    // var mytable2 = $('#table2').DataTable({
     //     ajax: {
     //         url: "./BasicInfoOfFamilyByName.do"
     //     },
@@ -700,6 +703,8 @@ $(function(){
 
 	$("#table1 tbody").on("click","tr",function () {
 		var name = $(this).children("td:first-child").text();
+		$("#table2").css("display","block");
+		$("#family").css("display","block");
 		// $.ajax({
 		// 	url: "",
 		// 	data: {name:name},
