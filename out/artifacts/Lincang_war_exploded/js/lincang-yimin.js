@@ -3,15 +3,18 @@ $(function(){
 	var height = $(window).height() - 66;
 	var width = $(window).width() - 360;
 	var show_height = $(window).height() - 247;
+	var tab_content_height = $(window).height() - 171;
 	$("#content").height(height);
 	$("#container").width(width);
 	$(".show").height(show_height);
+	$("#tab_content li").height(tab_content_height);
 
 	var ta_height = $(window).height() - 86
 	$("#ta_sroll").height(ta_height);
 	//滚动条插件
 	$(".show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
+	$("#tab_content li").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
@@ -666,31 +669,31 @@ $(function(){
             }
         }
     });
-    var mytable2 = $('#table2').DataTable({
-        ajax: {
-            url: "./FamilyInfoByFid.do?fid=移民搬迁登记表——Bqaaa"
-        },
-        "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
-        "serverSide": true,
-        "columns": [
-            {data: "NAME"},
-            {data: "GENDER"},
-            {data: "RACE"},
-            {data: "PHONE"}
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+    // var mytable2 = $('#table2').DataTable({
+    //     ajax: {
+    //         url: "./BasicInfoOfFamilyByName.do"
+    //     },
+    //     "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
+    //     "serverSide": true,
+    //     "columns": [
+    //         {data: "FID"},
+    //         {data: "NAME"},
+    //         {data: "PROP"},
+    //         {data: "HOME_SIZE"}
+    //     ],
+    //     "language": {
+    //         "lengthMenu": "每页_MENU_ 条记录",
+    //         "zeroRecords": "没有找到记录",
+    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+    //         "infoEmpty": "无记录",
+    //         "search": "搜索：",
+    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+    //         "paginate": {
+    //             "previous": "上一页",
+    //             "next": "下一页"
+    //         }
+    //     }
+    // });
 
     $("#show").off("click",".about").on("click",".about",function () {
 		var name = $(this).find(".name").text();
@@ -699,15 +702,17 @@ $(function(){
     });
 
 	$("#table1 tbody").on("click","tr",function () {
-		var fid = $(this).children("td:first-child").text();
-		$.ajax({
-			url: "/FamilyDetailByFid.do",
-			data: {"fid":fid},
-			dataType: "json",
-			success: function (data) {
-				console.log(data);
-            }
-		})
+		var name = $(this).children("td:first-child").text();
+		$("#table2").css("display","block");
+		$("#family").css("display","block");
+		// $.ajax({
+		// 	url: "",
+		// 	data: {name:name},
+		// 	dataType: "json",
+		// 	success: function (data) {
+		// 		console.log(data);
+         //    }
+		// })
     })
 
 	//数据录入表格单选

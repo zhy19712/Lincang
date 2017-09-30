@@ -174,10 +174,12 @@
 }
 #show_info #tab #tab_content{
   position: relative;
+  height: 100%;
   border-top: 1px solid #f26d0b;
 }
 #show_info #tab #tab_content li{
   position: absolute;
+  width: 100%;
   top: 0;
   left: 0;
   display: none;
@@ -446,4 +448,22 @@ td{
 #table1 tbody tr:hover{
   background-color: #E0F0F0;
   cursor: pointer;
+}
+#family table{
+  width: 100%;
+  border: none;
+}
+#family td{
+  border: none;
+  line-height: 26px;
+}
+#family .weight{
+  font-weight: 700;
+  margin-right: 8px;
+}
+#table2,#family{
+  display: none;
+}
+#table-wrapper{
+  width: 100%;
 }
