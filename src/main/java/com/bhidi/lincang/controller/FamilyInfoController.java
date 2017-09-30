@@ -22,7 +22,7 @@ public class FamilyInfoController {
      * @param name
      */
     @ResponseBody
-    @RequestMapping(value="BasicInfoOfFamily",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="BasicInfoOfFamilyss",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String BasicInfoOfFamily(String name){
         List<People> result = new ArrayList<People>();
         result = familyInfoServiceImp.BasicInfoOfFamily(name);
@@ -35,7 +35,7 @@ public class FamilyInfoController {
      * @param fid
      */
     @ResponseBody
-    @RequestMapping(value="FamilyInfoByFid",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="FamilyInfoByFidss",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String FamilyInfoByFid(String fid){
         List<People> result = new ArrayList<People>();
         result = familyInfoServiceImp.queryFamilyInfoByFid(fid);

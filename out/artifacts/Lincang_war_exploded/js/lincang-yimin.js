@@ -666,6 +666,7 @@ $(function(){
             }
         }
     });
+
     $("#show").off("click",".about").on("click",".about",function () {
 		var name = $(this).find(".name").text();
 		mytable1.ajax.url("./BasicInfoOfFamilyByName.do?name=" + name).load();
