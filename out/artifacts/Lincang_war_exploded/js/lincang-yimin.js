@@ -26,18 +26,18 @@ $(function(){
 
     
 	//引入地图
-    // var map = new BMap.Map("container");          // 创建地图实例
-	// var point = new BMap.Point(100.085905,23.882529);  // 创建点坐标
-	// map.centerAndZoom(point, 10);   //初始化地图，设置地图中心坐标和地图级别
-	// map.enableScrollWheelZoom();   //启用鼠标滚轮缩放
-	// map.setMinZoom(10);   //设置缩放最小级别
-	// var opts = {anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type: BMAP_NAVIGATION_CONTROL_ZOOM}        //右下方
-    //
-	// map.addControl(new BMap.NavigationControl(opts));                //平移缩放控件 默认左上角
-    //
-	// map.addControl(new BMap.ScaleControl(opts));                     //比例尺控件地图 默认左下方
-    //
-	// map.setCurrentCity("云南");
+    var map = new BMap.Map("container");          // 创建地图实例
+	var point = new BMap.Point(100.085905,23.882529);  // 创建点坐标
+	map.centerAndZoom(point, 10);   //初始化地图，设置地图中心坐标和地图级别
+	map.enableScrollWheelZoom();   //启用鼠标滚轮缩放
+	map.setMinZoom(10);   //设置缩放最小级别
+	var opts = {anchor:BMAP_ANCHOR_BOTTOM_RIGHT,type: BMAP_NAVIGATION_CONTROL_ZOOM}        //右下方
+
+	map.addControl(new BMap.NavigationControl(opts));                //平移缩放控件 默认左上角
+
+	map.addControl(new BMap.ScaleControl(opts));                     //比例尺控件地图 默认左下方
+
+	map.setCurrentCity("云南");
 	 
 	
 
@@ -86,42 +86,42 @@ $(function(){
     var all_info = [];
     var all_place = [];
     var mydata = [];
-    // $.ajax({
-    //     url:"./picture.do",
-    //     async: false,
-    //     success: function (data) {
-    //     	console.log(data);
-    //     	mydata = data.result;
-    //         $.each(data.result,function (i,n) {
-    //             all_info.push(n);
-    //             all_place.push(n.name);
-    //             slide(n.name,n.num);
-    //             if(n.name.length<8){
-    //                 addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
-    //             }else {
-    //                 var name1 = n.name.substring(0,7);
-    //                 var name2 = n.name.substring(7);
-    //                 addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
-    //             }
-    //             $.each(n.listChild,function (i,n) {
-    //                 all_info.push(n);
-    //                 all_place.push(n.name);
-    //                 if(n.name.length<8){
-    //                     addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
-    //                 }else {
-    //                     var name1 = n.name.substring(0,7);
-    //                     var name2 = n.name.substring(7);
-    //                     addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
-    //                 }
-    //                 $.each(n.listChild,function (i,n) {
-    //                     all_info.push(n);
-    //                     all_place.push(n.name);
-    //                     addLabel(n.name,n.level,n.name);
-    //                 })
-    //             })
-    //         });
-    //     }
-    // });
+    $.ajax({
+        url:"./picture.do",
+        async: false,
+        success: function (data) {
+        	console.log(data);
+        	mydata = data.result;
+            $.each(data.result,function (i,n) {
+                all_info.push(n);
+                all_place.push(n.name);
+                slide(n.name,n.num);
+                if(n.name.length<8){
+                    addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
+                }else {
+                    var name1 = n.name.substring(0,7);
+                    var name2 = n.name.substring(7);
+                    addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
+                }
+                $.each(n.listChild,function (i,n) {
+                    all_info.push(n);
+                    all_place.push(n.name);
+                    if(n.name.length<8){
+                        addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
+                    }else {
+                        var name1 = n.name.substring(0,7);
+                        var name2 = n.name.substring(7);
+                        addLabel(n.name,n.level,name1+"<br>"+name2+"<br>共有移民"+n.num+"人");
+                    }
+                    $.each(n.listChild,function (i,n) {
+                        all_info.push(n);
+                        all_place.push(n.name);
+                        addLabel(n.name,n.level,n.name);
+                    })
+                })
+            });
+        }
+    });
 
 	//侧边栏所有县或该县下的镇级信息显示,
 	function xian(name) {
@@ -294,20 +294,20 @@ $(function(){
 	      }, "云南省临沧市");
 	}
 
-	//缩放地图
-	// map.addEventListener("zoomend",function(){
-	// 	var u = map.getZoom();
-	// 	if(u == 10 || u == 11){
-     //        change_label("县级单位");
-	// 		xian();
-	// 	}else if(u == 12 || u == 13){
-     //        change_label("镇级单位");
-	// 		zhen();
-	// 	}else if(u > 13){
-     //        change_label("村级单位");
-	// 		cun();
-	// 	}
-	// });
+	// 缩放地图
+	map.addEventListener("zoomend",function(){
+		var u = map.getZoom();
+		if(u == 10 || u == 11){
+            change_label("县级单位");
+			xian();
+		}else if(u == 12 || u == 13){
+            change_label("镇级单位");
+			zhen();
+		}else if(u > 13){
+            change_label("村级单位");
+			cun();
+		}
+	});
 
 
 	//搜索功能
@@ -558,8 +558,8 @@ $(function(){
 
 	}
 	var autoComplete=new AutoComplete('ipt','auto',all_place);
-	
-	
+
+
 
 	//搜索
 	function search(){
@@ -887,10 +887,14 @@ $(function(){
 			poor_reason.push($(this).val());
         })
         data.poor_reason = poor_reason;
+
 		var respondent = $("#respondent").val();
 		var inquirer = $("#inquirer").val();
 		var time = $("#time").val();
-		console.log(respondent,inquirer,time)
+
+		data.respondent = respondent;
+		data.inquirer = inquirer;
+		data.time = time;
         console.log(data);
     })
 })

@@ -92,7 +92,8 @@ public class Table_Family {
                 }
 
                 String searchSQL = "";
-                /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
+                /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";
+                * IFNULL(p.FID,'')as PID,IFNULL(p.NAME,'')as NAME,IFNULL(p.PROP,'')as PROP,IFNULL(p.HOME_SIZE,'')as HOME_SIZE,IFNULL(p.IMM_NUM,'')as IMM_NUM,IFNULL(p.RESERVOIR,'')as RESERVOIR*/
                 String sql = "SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = '"+ name +"' AND p.`MASTER` = '1'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";

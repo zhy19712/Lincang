@@ -90,7 +90,7 @@ public class Table_FamilyInfo {
 
                 String searchSQL = "";
                 /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
-                String sql = "SELECT * FROM " + table + " where FID = '"+fid+"'";
+                String sql = "SELECT IFNULL(NAME,'') as NAME,IFNULL(GENDER,'')as GENDER,IFNULL(RACE,'')as RACE,IFNULL(PHONE,'')as PHONE FROM " + table + " where FID = '"+fid+"'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
