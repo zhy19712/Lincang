@@ -30,102 +30,233 @@
     <link rel="stylesheet" href="../../css/home.css">--%>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
+
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .news-wrapper{
+            display: inline-block;
+            vertical-align: middle;
+            width: 400px;
+            margin: 32px;
+        }
+        .news-wrapper .header{
+            height: 30px;
+            line-height: 30px;
+        }
+        .news-wrapper .header .title{
+            float: left;
+            margin: 0;
+            width: 98px;
+            height: 30px;
+            text-align: center;
+            color: #fff;
+            background: url(../../images/li.png) no-repeat top left;
+        }
+        .news-wrapper .header a{
+            float: right;
+        }
+        .news li{
+            list-style: none;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-break: keep-all;
+        }
+        .news li::before{
+            content: "·";
+            color: #2fa4e7;
+            padding-right: 10px;
+            font-size: 20px;
+        }
+        .news li a{
+            color: #000000;
+        }
+        #lb{
+            position: relative;
+            height: 400px;
+            width: 100%;
+            overflow: hidden;
+        }
+        #lb img{
+            float: left;
+            height: 400px;
+            width: 100%;
+        }
+        #circle{
+            position: absolute;
+            width: 140px;
+            height: 50px;
+            left: 50%;
+            margin-left: -80px;
+            bottom: 10px;
+        }
+        #circle span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid #fff;
+            cursor: pointer;
+        }
+        #circle span:first-child{
+            background-color: #2fa4e7;
+        }
+    </style>
 </head>
 
 <body>
 
+<div id="mycontainer" style="width: 1200px;margin: 0 auto;">
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
 
+        <div class="navbar-inner">
+            <!-- 小屏幕时的导航按键 starts -->
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- 小屏幕时的导航按键 ends -->
+            <!-- logo starts -->
+            <a class="navbar-brand" href="oa.jsp" style="width: 300px"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+                <span style="font-size: 26px;">临沧市移民开发局</span></a>
+            <!-- logo ends -->
 
-<!-- topbar starts -->
-<div class="navbar navbar-default" role="navigation">
-
-    <div class="navbar-inner">
-        <!-- 小屏幕时的导航按键 starts -->
-        <button type="button" class="navbar-toggle pull-left animated flip">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <!-- 小屏幕时的导航按键 ends -->
-        <!-- logo starts -->
-        <a class="navbar-brand" href="oa.jsp"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-            <span>临沧市移民开发局</span></a>
-        <!-- logo ends -->
-
-        <!-- user dropdown starts -->
-        <div class="btn-group pull-right">
-            <div class="btn btn-default">
-                <i class="glyphicon glyphicon-user"></i>
-                <c:if test="${user==null}">
-                    <a href="/toLogin.htm" target="_blank">请登录</a>
-                </c:if>
-                <c:if test="${user!=null}">
-                    欢迎${user.username}, <a href="logout.do" >注销</a>
-                </c:if>
-            </div>
-        </div>
-        <!-- user dropdown ends -->
-    </div>
-
-
-</div>
-<!-- topbar ends -->
-<div class="ch-container">
-    <div class="row">
-
-        <!-- left menu starts -->
-        <div class="col-sm-2 col-lg-2">
-            <div class="sidebar-nav">
-                <div class="nav-canvas">
-                    <div class="nav-sm nav nav-stacked">
-                    </div>
-                    <ul class="nav nav-pills nav-stacked main-menu">
-                        <li class="nav-header">我的办公</li>
-                        <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
-
-                        <li class="nav-header">我的业务</li>
-                        <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 业务管理</span></a></li>
-                    </ul>
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <div class="btn btn-default">
+                    <i class="glyphicon glyphicon-user"></i>
+                    <c:if test="${user==null}">
+                        <a href="/toLogin.htm" target="_blank">请登录</a>
+                    </c:if>
+                    <c:if test="${user!=null}">
+                        欢迎${user.username}, <a href="logout.do" >注销</a>
+                    </c:if>
                 </div>
             </div>
+            <!-- user dropdown ends -->
         </div>
-        <!--/span-->
-        <!-- left menu ends -->
 
-        <div id="content" class="col-lg-10 col-sm-10">
-            <!-- content starts -->
-            <div class=" row">
-                <div class="col-lg-12">
-                    <div class="box-inner ">
-                        <div class="box-content">
-                            首页显示的内容
+
+    </div>
+    <!-- topbar ends -->
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">我的办公</li>
+                            <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
+                            <li><a href="./money.jsp"><i class="glyphicon glyphicon-file"></i><span> 资金申请</span></a></li>
+
+                            <li class="nav-header">我的业务</li>
+                            <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 业务管理</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+
+            <div id="content" class="col-lg-10 col-sm-10">
+                <!-- content starts -->
+                <div class=" row">
+                    <div class="col-lg-12">
+                        <div class="box-inner ">
+                            <div class="box-content">
+                                <ul id="lb">
+                                    <img src="../../images/lb1.jpg" alt="">
+                                    <img src="../../images/lb2.jpg" alt="">
+                                    <img src="../../images/lb3.jpg" alt="">
+                                    <img src="../../images/lb4.jpg" alt="">
+                                    <div id="circle">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </ul>
+                                <div class="news-wrapper">
+                                    <div class="header">
+                                        <p class="title">通知公告</p>
+                                        <a href="#">查看更多</a>
+                                    </div>
+                                    <ul class="news">
+                                        <li>
+                                            <a href="#">云南临沧佤族织锦展吸引八方游客</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">从芯仙茗堂云顶筑巢自驾至临沧冰岛村 风尘仆仆只愿寻一味清凉自在</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">云南临沧沧源县新米节接待游客163946人次</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">武警临沧支队:“魔鬼周”极限训练 锻造反恐精武</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="news-wrapper">
+                                    <div class="header">
+                                        <p class="title">最新消息</p>
+                                        <a href="#">查看更多</a>
+                                    </div>
+                                    <ul class="news">
+                                        <li>
+                                            <a href="#">临沧荣获“全国森林旅游示范市”称号</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">临沧4天缴获114公斤冰毒 两批毒贩已落网</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">临沧供电检企联合开展职务犯罪警示教育</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">阿里巴巴太极禅苑文化驿栈在云南临沧揭牌</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
+                <div class="row">
 
-            <div class="row">
-
+                </div>
+                <!-- content ends -->
             </div>
-            <!-- content ends -->
         </div>
-    </div>
 
 
-    <hr>
+        <hr>
 
-    <footer class="row">
-        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
+        <footer class="row">
+            <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
 
-        <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
-                href="http://www.bhidi.com">北京院</a></p>
-    </footer>
+            <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+                    href="http://www.bhidi.com">北京院</a></p>
+        </footer>
 
-</div><!--/.fluid-container-->
+    </div><!--/.fluid-container-->
+</div>
+
+
 
 <!-- external javascript -->
 <script src="../../js/bootstrap.min.js"></script>
@@ -138,8 +269,48 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script src="../../js/app.js"></script>
-
-
+<script>
+    var x = 1;
+    function lb() {
+        x += 1 ;
+        console.log(x);
+        $("#lb>img").css("display","none");
+        $("#circle>span").css("background","transparent");
+        if(x==1){
+            $("#lb>img:first-child").fadeIn();
+            $("#circle>span:first-child").css("background","#2fa4e7");
+        }else if(x==2){
+            $("#lb>img:nth-child(2)").fadeIn();
+            $("#circle>span:nth-child(2)").css("background","#2fa4e7");
+        }else if(x==3){
+            $("#lb>img:nth-child(3)").fadeIn();
+            $("#circle>span:nth-child(3)").css("background","#2fa4e7");
+        }else if(x==4){
+            $("#lb>img:nth-child(4)").fadeIn();
+            $("#circle>span:nth-child(4)").css("background","#2fa4e7");
+            x = 0;
+        }else if(x==5){
+            $("#lb>img:first-child").fadeIn();
+            $("#circle>span:first-child").css("background","#2fa4e7");
+            x == 1;
+        }
+    }
+    var set1 = setInterval(lb,3000);
+    $("#lb").hover(function () {
+        clearInterval(set1)
+    },function () {
+        set1 = setInterval(lb,3000);
+    });
+    $("#circle>span").click(function () {
+        var index = $(this).index() + 1;
+        x = index;
+        console.log(x);
+        $("#lb>img").css("display","none");
+        $("#circle>span").css("background","transparent");
+        $("#lb>img:nth-child("+ index +")").fadeIn();
+        $("#circle>span:nth-child("+ index +")").css("background","#2fa4e7");
+    })
+</script>
 
 </body>
 </html>
