@@ -127,7 +127,6 @@ public class Table_FamilyInfo {
             info.put("recordsFiltered", recordsFiltered);
             info.put("draw", draw);
             String json = new Gson().toJson(info);
-            System.out.println(json);
             rs.close();
             stmt.close();
             conn.close();

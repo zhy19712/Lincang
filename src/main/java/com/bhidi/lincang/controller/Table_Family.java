@@ -59,7 +59,7 @@ public class Table_Family {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
-                sArray.add(" FID like '%" + searchValue + "%'");
+                sArray.add(" p.FID like '%" + searchValue + "%'");
                 sArray.add(" NAME like '%" + searchValue + "%'");
                 sArray.add(" PROP like '%" + searchValue + "%'");
                 sArray.add(" HOME_SIZE like '%" + searchValue + "%'");
@@ -92,9 +92,8 @@ public class Table_Family {
                 }
 
                 String searchSQL = "";
-                /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";
-                * IFNULL(p.FID,'')as PID,IFNULL(p.NAME,'')as NAME,IFNULL(p.PROP,'')as PROP,IFNULL(p.HOME_SIZE,'')as HOME_SIZE,IFNULL(p.IMM_NUM,'')as IMM_NUM,IFNULL(p.RESERVOIR,'')as RESERVOIR*/
-                String sql = "SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = '"+ name +"' AND p.`MASTER` = '1'";
+                /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
+                String sql = "SELECT IFNULL(p.FID,'')as FID,IFNULL(p.NAME,'')as NAME,IFNULL(p.PROP,'')as PROP,IFNULL(p.HOME_SIZE,'')as HOME_SIZE,IFNULL(p.IMM_NUM,'')as IMM_NUM,IFNULL(p.RESERVOIR,'')as RESERVOIR FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = '"+ name +"' AND p.`MASTER` = '1'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }

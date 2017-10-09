@@ -86,7 +86,7 @@ public class Table_Stuff {
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";
+            String sql = "SELECT IFNULL(ID,'') as ID,IFNULL(TITLE,'') as TITLE,IFNULL(CREATED_AT,'') as CREATED_AT FROM " + table + " where STATUS = 'NEW'";
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
