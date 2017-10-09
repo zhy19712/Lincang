@@ -6,13 +6,13 @@ $(function(){
 	var tab_content_height = $(window).height() - 171;
 	$("#content").height(height);
 	$("#container").width(width);
-	$(".show").height(show_height);
+	$("#show").height(show_height);
 	$("#tab_content li").height(tab_content_height);
 
 	var ta_height = $(window).height() - 86
 	$("#ta_sroll").height(ta_height);
 	//滚动条插件
-	$(".show").panel({iWheelStep:32});
+	$("#show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
 	$("#tab_content li").panel({iWheelStep:32});
 
@@ -128,7 +128,7 @@ $(function(){
 		if(arguments.length == 1){
 			$.each(mydata,function (i,n) {
                 if (name == n.name){
-                    $(".show ul").empty();
+                    $("#show ul").empty();
                     $.each(n.listChild,function (i,n) {
                         slide(n.name,n.num);
                     });
@@ -136,7 +136,7 @@ $(function(){
                 }
             })
 		}else {
-            $(".show ul").empty();
+            $("#show ul").empty();
 			$.each(mydata,function (i,n) {
                 slide(n.name,n.num);
             })
@@ -149,7 +149,7 @@ $(function(){
 			$.each(mydata,function (i,n) {
 				$.each(n.listChild,function (i,n) {
                     if (name == n.name){
-                        $(".show ul").empty();
+                        $("#show ul").empty();
                         $.each(n.listChild,function (i,n) {
                             slide(n.name,n.num);
                         });
@@ -158,7 +158,7 @@ $(function(){
                 })
             })
 		}else {
-            $(".show ul").empty();
+            $("#show ul").empty();
 			$.each(mydata,function (i,n) {
 				$.each(n.listChild,function (i,n) {
 					slide(n.name,n.num);
@@ -174,7 +174,7 @@ $(function(){
                 $.each(n.listChild,function (i,n) {
                     $.each(n.listChild,function (i,n) {
                         if (name == n.name){
-                            $(".show ul").empty();
+                            $("#show ul").empty();
                             slide(n.name,n.num);
 
                             return ;
@@ -183,7 +183,7 @@ $(function(){
                 });
             })
         }else {
-            $(".show ul").empty();
+            $("#show ul").empty();
             $.each(mydata,function (i,n) {
                 $.each(n.listChild,function (i,n) {
                     $.each(n.listChild,function (i,n) {
@@ -259,7 +259,7 @@ $(function(){
                             $.each(n.listChild,function (i,n) {
                                 $.each(n.listChild,function (i,n) {
                                     if (name == n.name){
-                                        $(".show ul").empty();
+                                        $("#show ul").empty();
                                         slide(n.name,n.num);
                                         la.setContent("<p id='c_name'>"+name+"</p><p class='c_info'>| "+ n.num +"人</p>");
                                         return ;
