@@ -707,17 +707,19 @@ $(function(){
     $("#show").on("click",".about",function () {
 		var name = $(this).find(".name").text();
 		console.log(name);
+
         // mytable.ajax.url("/list_task.jsp?name=双江拉祜族佤族布朗族傣族自治县").load(function (data) {
 			// console.log(data);
         // },true);
-        mytable1.ajax.url("/list_task.jsp?name="+ encodeURI(encodeURI(name))).load();
+        /*mytable1.ajax.url("/list_task.jsp?name="+ encodeURI(encodeURI(name))).load();*/
+        mytable1.ajax.url("/BasicInfoOfFamilyByName.do?name="+ encodeURI(encodeURI(name))).load();
 		$("#show_info").css("display","block");
     });
 
 	$("#table1 tbody").on("click","tr",function () {
 		var fid = $(this).children("td:first-child").text();
         $("#table2_wrapper").css("display","block");
-        mytable2.ajax.url("./FamilyInfoByFid.do?fid=" + fid).load();
+        mytable2.ajax.url("./FamilyInfoByFid.do?fid=" + encodeURI(encodeURI(fid))).load();
 		$("#family").css("display","block");
 		$.ajax({
 			url: "./FamilyDetailByFid.do",

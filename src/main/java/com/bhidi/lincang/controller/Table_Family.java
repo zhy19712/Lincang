@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +30,15 @@ public class Table_Family {
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
             String table = "PEOPLE";
+
+            if( name != null ){
+                try {
+                    name = URLDecoder.decode(name,"utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
 
             //获取请求次数
             String draw = "0";
