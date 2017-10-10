@@ -22,7 +22,7 @@ import java.util.Map;
 @Controller
 public class Table_Family {
     @ResponseBody
-    @RequestMapping(value="/BasicInfoOfFamilyByName.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/BasicInfoOfFamilyByName",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String NewForm(HttpServletRequest request,String name) throws SQLException {
             ResultSet rs = null;
             Statement stmt = null;

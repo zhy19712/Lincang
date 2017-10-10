@@ -697,7 +697,11 @@ $(function(){
 
     $("#show").off("click",".about").on("click",".about",function () {
 		var name = $(this).find(".name").text();
-		mytable1.ajax.url("./BasicInfoOfFamilyByName.do?name=" + name).load();
+        console.log(name)
+		/*mytable1.ajax.url("./BasicInfoOfFamilyByName?name=" + name).load();*/
+        mytable1.ajax.url("/list_task.jsp?name=" + name).load(function(data){
+			console.log(data)
+		});
 		$("#show_info").css("display","block");
     });
 
