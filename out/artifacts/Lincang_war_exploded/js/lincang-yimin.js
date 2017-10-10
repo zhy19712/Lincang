@@ -644,7 +644,7 @@ $(function(){
 	//区县列表信息
 	var mytable1 = $('#table1').DataTable({
         ajax: {
-            url: "./BasicInfoOfFamilyByName.do"
+            url: "BasicInfoOfFamilyByName.do"
         },
         "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
         "serverSide": true,
@@ -655,6 +655,13 @@ $(function(){
             {data: "HOME_SIZE"},
             {data: "IMM_NUM"},
             {data: "RESERVOIR"}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0.-1]
+            }
         ],
         "language": {
             "lengthMenu": "每页_MENU_ 条记录",
@@ -669,6 +676,7 @@ $(function(){
             }
         }
     });
+
     var mytable2 = $('#table2').DataTable({
         ajax: {
             url: "./FamilyInfoByFid.do"
@@ -695,13 +703,14 @@ $(function(){
         }
     });
 
-    $("#show").off("click",".about").on("click",".about",function () {
+
+    $("#show").on("click",".about",function () {
 		var name = $(this).find(".name").text();
-        console.log(name)
-		/*mytable1.ajax.url("./BasicInfoOfFamilyByName?name=" + name).load();*/
-        mytable1.ajax.url("/list_task.jsp?name=" + name).load(function(data){
-			console.log(data)
-		});
+		console.log(name);
+        // mytable.ajax.url("/list_task.jsp?name=双江拉祜族佤族布朗族傣族自治县").load(function (data) {
+			// console.log(data);
+        // },true);
+        mytable1.ajax.url("/list_task.jsp?name="+ encodeURI(encodeURI(name))).load();
 		$("#show_info").css("display","block");
     });
 

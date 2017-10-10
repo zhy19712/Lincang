@@ -200,52 +200,52 @@ $(document).ready(function () {
 
 
     //待办事务的datatables
-    var newForm_office = $('#NewTable_Office').DataTable({
-        ajax: {
-            url: "/nform_office.do",
-            async:false
-        },
-        "order": [[1, 'asc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "OID"},
-            {"data": "CREATED_AT"},
-            {"data": "DEPT"},
-            {"data": "AUTHOR"},
-            {"data": "TITLE"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [5],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail_office(this)' value='编辑'/>"
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+    // var newForm_office = $('#NewTable_Office').DataTable({
+    //     ajax: {
+    //         url: "/nform_office.do",
+    //         async:false
+    //     },
+    //     "order": [[1, 'asc']],
+    //     "serverSide": true,
+    //     "columns": [
+    //         {"data": "OID"},
+    //         {"data": "CREATED_AT"},
+    //         {"data": "DEPT"},
+    //         {"data": "AUTHOR"},
+    //         {"data": "TITLE"},
+    //         {"data": null}
+    //     ],
+    //     "columnDefs": [
+    //         {
+    //             "searchable": false,
+    //             "orderable": false,
+    //             "targets": [5],
+    //             "render" :  function(data,type,row) {
+    //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail_office(this)' value='编辑'/>"
+    //                 return html;
+    //             }
+    //         }
+    //     ],
+    //     "language": {
+    //         "lengthMenu": "每页_MENU_ 条记录",
+    //         "zeroRecords": "没有找到记录",
+    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+    //         "infoEmpty": "无记录",
+    //         "search": "搜索：",
+    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+    //         "paginate": {
+    //             "previous": "上一页",
+    //             "next": "下一页"
+    //         }
+    //     }
+    // });
 
 
     //待办事务的显示条数
-    setTimeout(function () {
-       var info=newForm_office.page.info();
-        $("#nav_num").text(info.recordsTotal)
-    },0);
+    // setTimeout(function () {
+    //    var info=newForm_office.page.info();
+    //     $("#nav_num").text(info.recordsTotal)
+    // },0);
 
 
 
