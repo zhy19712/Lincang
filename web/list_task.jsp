@@ -25,8 +25,10 @@
     String table = "PEOPLE";
 
     //获取参数
+    String name1 = "";
     String name = "";
-    name = request.getParameter("name");
+    name1 = request.getParameter("name");
+    name = java.net.URLDecoder.decode(name1,"utf-8");
     if( "null".equals(name) ){
         Map<Object, Object> info = new HashMap<Object, Object>();
         info.put("data", null);

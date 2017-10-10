@@ -644,7 +644,7 @@ $(function(){
 	//区县列表信息
 	var mytable1 = $('#table1').DataTable({
         ajax: {
-            url: "/BasicInfoOfFamilyByName.do"
+            url: "BasicInfoOfFamilyByName.do"
         },
         "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
         "serverSide": true,
@@ -655,6 +655,13 @@ $(function(){
             {data: "HOME_SIZE"},
             {data: "IMM_NUM"},
             {data: "RESERVOIR"}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0.-1]
+            }
         ],
         "language": {
             "lengthMenu": "每页_MENU_ 条记录",
@@ -669,24 +676,6 @@ $(function(){
             }
         }
     });
-    // mytable1.on('draw.dt',function() {
-    //     mytable1.column(0, {
-    //         search: 'applied',
-    //         order: 'applied'
-    //     }).nodes().each(function(cell, i) {
-    //         //i 从0开始，所以这里先加1
-    //         i = i+1;
-    //         //服务器模式下获取分页信息
-    //         var page = mytable1.page.info();
-    //         //当前第几页，从0开始
-    //         var pageno = page.page;
-    //         //每页数据
-    //         var length = page.length;
-    //         //行号等于 页数*每页数据长度+行号
-    //         var columnIndex = (i+pageno*length);
-    //         cell.innerHTML = columnIndex;
-    //     });
-    // }).draw();
 
     var mytable2 = $('#table2').DataTable({
         ajax: {
@@ -714,31 +703,14 @@ $(function(){
         }
     });
 
-    // mytable2.on('draw.dt',function() {
-    //     mytable2.column(0, {
-    //         search: 'applied',
-    //         order: 'applied'
-    //     }).nodes().each(function(cell, i) {
-    //         //i 从0开始，所以这里先加1
-    //         i = i+1;
-    //         //服务器模式下获取分页信息
-    //         var page = mytable2.page.info();
-    //         //当前第几页，从0开始
-    //         var pageno = page.page;
-    //         //每页数据
-    //         var length = page.length;
-    //         //行号等于 页数*每页数据长度+行号
-    //         var columnIndex = (i+pageno*length);
-    //         cell.innerHTML = columnIndex;
-    //     });
-    // }).draw();
 
     $("#show").on("click",".about",function () {
 		var name = $(this).find(".name").text();
 		console.log(name);
-		mytable1.ajax.url("/BasicInfoOfFamilyByName.do?name=" + name).load(function (data) {
-			console.log(data);
-        },true);
+        // mytable.ajax.url("/list_task.jsp?name=双江拉祜族佤族布朗族傣族自治县").load(function (data) {
+			// console.log(data);
+        // },true);
+        mytable1.ajax.url("/list_task.jsp?name="+ encodeURI(encodeURI(name))).load();
 		$("#show_info").css("display","block");
     });
 
