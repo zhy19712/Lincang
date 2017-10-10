@@ -88,7 +88,7 @@ public class Table_Office {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";
+                String sql = "SELECT IFNULL(OID,'') as OID,IFNULL(CREATED_AT,'') as CREATED_AT, IFNULL(DEPT,'') as DEPT, IFNULL(AUTHOR,'') as AUTHOR, IFNULL(TITLE,'') as TITLE FROM " + table + " where STATUS = 'NEW'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }

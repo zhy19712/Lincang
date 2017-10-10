@@ -660,7 +660,7 @@
 
                     <div id="wrap">
                         <div>
-                            <img src="../../img/员工.png"  class="head head_pic1" alt="员工">
+                            <img src="../../img/员工.png" class="head head_pic1" alt="员工">
                             <p class="staff status1" >申请人</p>
                             <div class="details details1">
                                 <p>姓名：<span>小吴</span></p>
