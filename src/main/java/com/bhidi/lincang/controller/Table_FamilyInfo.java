@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,12 +23,20 @@ import java.util.Map;
 @Controller
 public class Table_FamilyInfo {
     @ResponseBody
-    @RequestMapping(value="/FamilyInfoByFid.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/FamilyInfoByFid",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String NewForm(HttpServletRequest request,String fid) throws SQLException {
             ResultSet rs = null;
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
             String table = "PEOPLE";
+
+            if( fid != null ){
+                try {
+                    fid = URLDecoder.decode(fid ,"utf-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
 
             //获取请求次数
             String draw = "0";
