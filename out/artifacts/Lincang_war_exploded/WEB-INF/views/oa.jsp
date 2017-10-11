@@ -329,6 +329,7 @@
                                             <table id="OverTable_Office" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>编号</th>
                                                     <th>提交时间</th>
                                                     <th>缓级</th>
                                                     <th>报稿</th>
