@@ -104,48 +104,48 @@ $(document).ready(function () {
 // 待办表单的datatables
 
     //datatable
-    var newForm_stuff = $('#NewTable_Stuff').DataTable({
-        ajax: {
-            url: "/nform_stuff.do"
-        },
-        "order": [[2, 'asc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "ID"},
-            {"data": "TITLE"},
-            {"data": "CREATED_AT"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [3],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>"
-                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='deleteOrder(this)' value='删除'/>"
-                    return html;
-                }
-            },
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0]
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+    // var newForm_stuff = $('#NewTable_Stuff').DataTable({
+    //     ajax: {
+    //         url: "/nform_stuff.do"
+    //     },
+    //     "order": [[2, 'asc']],
+    //     "serverSide": true,
+    //     "columns": [
+    //         {"data": "ID"},
+    //         {"data": "TITLE"},
+    //         {"data": "CREATED_AT"},
+    //         {"data": null}
+    //     ],
+    //     "columnDefs": [
+    //         {
+    //             "searchable": false,
+    //             "orderable": false,
+    //             "targets": [3],
+    //             "render" :  function(data,type,row) {
+    //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>"
+    //                 html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='deleteOrder(this)' value='删除'/>"
+    //                 return html;
+    //             }
+    //         },
+    //         {
+    //             "searchable": false,
+    //             "orderable": false,
+    //             "targets": [0]
+    //         }
+    //     ],
+    //     "language": {
+    //         "lengthMenu": "每页_MENU_ 条记录",
+    //         "zeroRecords": "没有找到记录",
+    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+    //         "infoEmpty": "无记录",
+    //         "search": "搜索：",
+    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+    //         "paginate": {
+    //             "previous": "上一页",
+    //             "next": "下一页"
+    //         }
+    //     }
+    // });
 
 
  // 在办表单的datatables
