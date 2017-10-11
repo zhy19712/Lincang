@@ -3,6 +3,7 @@ package com.bhidi.lincang.controller;
 import com.bhidi.lincang.bean.Form_Office;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+@Controller
 public class ArchivedTable_Office {
     @ResponseBody
     @RequestMapping(value="/archivedtable_office.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
