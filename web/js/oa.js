@@ -186,6 +186,7 @@ var comForm_office = $('#OverTable_Office').DataTable({
 //     "serverSide": true,
 //     "columns": [
 //         {"data": "ID"},
+//         {"data": "ID"},
 //         {"data": "TITLE"},
 //         {"data": "CREATED_AT"},
 //         {"data": "CREATED_AT"},
@@ -195,7 +196,7 @@ var comForm_office = $('#OverTable_Office').DataTable({
 //         {
 //             "searchable": false,
 //             "orderable": false,
-//             "targets": [3],
+//             "targets": [5],
 //             "render" :  function(data,type,row) {
 //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='comdetail(this)' value='查看'/>"
 //                 return html;

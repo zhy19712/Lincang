@@ -404,6 +404,7 @@
                                             <table id="OverTable_Approval" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>编号</th>
                                                     <th>接收时间</th>
                                                     <th>科室</th>
                                                     <th>报稿</th>
