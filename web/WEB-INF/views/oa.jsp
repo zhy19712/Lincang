@@ -450,47 +450,47 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3 id="form-kind">填写表单</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
-                <div class="modal-body">
+                <div class="modal-body" style="font-size: 0;">
                     <input id="oId" type="text" name="id" style="display: none" ></input>
                     <input id="created_at" type="text" name="created_at" style="display: none" ></input>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>拟稿单位</span>
-                            <input id="input1" type="text" name="dept">
+                            <input id="input1" type="text" name="dept" readonly="true">
                         </div>
                         <div class="col-sm-3">
                             <span>拟稿</span>
-                            <input id="input2" type="text" name="author">
+                            <input id="input2" type="text" name="author" readonly="true">
                         </div>
                         <div class="col-sm-4">
                             <span>科室核稿</span>
-                            <input id="input3" type="text" name="reviewer">
+                            <input id="input3" type="text" name="reviewer" readonly="true">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>印刷</span>
-                            <input id="input4" type="text" name="print">
+                            <input id="input4" type="text" name="print" readonly="true">
                         </div>
                         <div class="col-sm-3">
                             <span>校对</span>
-                            <input id="input5" type="text" name="revision">
+                            <input id="input5" type="text" name="revision"readonly="true">
                         </div>
                         <div class="col-sm-4">
                             <span>份数</span>
-                            <input id="input6" type="text" name="copy">
+                            <input id="input6" type="text" name="copy" readonly="true">
                         </div>
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>附件</span>
-                            <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+                            <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                 <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                 <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                             </div>
@@ -500,29 +500,46 @@
                     <div class="row myrow">
                         <div class="col-sm-12">
                             <span>主题词</span>
-                            <input id="input8" type="text" name="keyword">
+                            <input id="input8" type="text" name="keyword" readonly="true">
                         </div>
                     </div>
                     <div class="row myrow last">
                         <div class="col-sm-12">
                             <span>标题</span>
-                            <input id="input9" type="text" name="title">
+                            <input id="input9" type="text" name="title" readonly="true">
                         </div>
                     </div>
-                    <textarea class="mytext" name="content" id="input10" cols="30" rows="10" placeholder="内容"></textarea>
+                    <textarea class="mytext" name="content" id="input10" cols="30" rows="10" placeholder="内容" readonly="true"></textarea>
+                    <div class="row myrow" id="app1">
+                        <div class="col-sm-6">
+                            <span>审批人</span>
+                            <input id="app-people" type="text" name="print" readonly="true">
+                        </div>
+                        <div class="col-sm-6">
+                            <span>审批时间</span>
+                            <input id="app-time" type="text" name="revision"readonly="true">
+                        </div>
+                    </div>
+                    <div class="row myrow" id="app2">
+                        <div class="col-sm-12">
+                            <span>审批意见</span>
+                            <input id="app-view" type="text" name="print" readonly="true">
+                        </div>
+                    </div>
                 </div>
 
                 </form>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success">保存</a>
-                    <a href="#" class="btn btn-primary">提交</a>
+                    <a href="#" id="btn-up" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" id="btn-save" class="btn btn-success">保存</a>
+                    <a href="#" id="btn-submit" class="btn btn-primary">提交</a>
                 </div>
 
 
             </div>
         </div>
     </div>
+
 
 
     <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -729,7 +746,13 @@
     }();
 
     function newForm() {
+        $("#form-kind").text("填写表单");
+        $("#app1").css("display","none");
+        $("#app2").css("display","none");
         $('#form_stuff').modal('show');
+        $("#btn-save").css("display","inline-block");
+        $("#btn-submit").css("display","inline-block");
+        $("#btn-up").text("放弃").css("display","inline-block");
     }
 
 

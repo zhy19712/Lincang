@@ -86,6 +86,139 @@ var submittedForm_stuff = $('#SubmittedTable_Stuff').DataTable({
     }
 });
 
+//已办表单的datatable
+
+// var comForm_stuff = $('#OverTable_Stuff').DataTable({
+//     ajax: {
+//         url: "/nform_stuff.do",
+//     },
+//     "order": [[2, 'asc']],
+//     "serverSide": true,
+//     "columns": [
+//         {"data": "ID"},
+//         {"data": "TITLE"},
+//         {"data": "CREATED_AT"},
+//         {"data": null}
+//     ],
+//     "columnDefs": [
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [3],
+//             "render" :  function(data,type,row) {
+//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='comdetail(this)' value='查看'/>"
+//                 return html;
+//             }
+//         },
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [0]
+//         }
+//     ],
+//     "language": {
+//         "lengthMenu": "每页_MENU_ 条记录",
+//         "zeroRecords": "没有找到记录",
+//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//         "infoEmpty": "无记录",
+//         "search": "搜索：",
+//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//         "paginate": {
+//             "previous": "上一页",
+//             "next": "下一页"
+//         }
+//     }
+// });
+
+//已归档事务的datatable
+
+// var comForm_stuff = $('#OverTable_Office').DataTable({
+//     ajax: {
+//         url: "/nform_stuff.do",
+//     },
+//     "order": [[2, 'asc']],
+//     "serverSide": true,
+//     "columns": [
+//         {"data": "ID"},
+//         {"data": "TITLE"},
+//         {"data": "CREATED_AT"},
+//         {"data": "CREATED_AT"},
+//         {"data": null}
+//     ],
+//     "columnDefs": [
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [3],
+//             "render" :  function(data,type,row) {
+//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='comdetail(this)' value='查看'/>"
+//                 return html;
+//             }
+//         },
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [0]
+//         }
+//     ],
+//     "language": {
+//         "lengthMenu": "每页_MENU_ 条记录",
+//         "zeroRecords": "没有找到记录",
+//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//         "infoEmpty": "无记录",
+//         "search": "搜索：",
+//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//         "paginate": {
+//             "previous": "上一页",
+//             "next": "下一页"
+//         }
+//     }
+// });
+
+//审批记录的datatable
+
+// var comForm_stuff = $('#OverTable_Approval').DataTable({
+//     ajax: {
+//         url: "/nform_stuff.do",
+//     },
+//     "order": [[2, 'asc']],
+//     "serverSide": true,
+//     "columns": [
+//         {"data": "ID"},
+//         {"data": "TITLE"},
+//         {"data": "CREATED_AT"},
+//         {"data": "CREATED_AT"},
+//         {"data": null}
+//     ],
+//     "columnDefs": [
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [3],
+//             "render" :  function(data,type,row) {
+//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='comdetail(this)' value='查看'/>"
+//                 return html;
+//             }
+//         },
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [0]
+//         }
+//     ],
+//     "language": {
+//         "lengthMenu": "每页_MENU_ 条记录",
+//         "zeroRecords": "没有找到记录",
+//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//         "infoEmpty": "无记录",
+//         "search": "搜索：",
+//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//         "paginate": {
+//             "previous": "上一页",
+//             "next": "下一页"
+//         }
+//     }
+// });
 
 // 多文件上传
 var fileIndex = 1;
@@ -287,6 +420,12 @@ $("#form_stuff .btn-primary").click(function () {
 
 // #NewTable_Stuff 表格操作，查看按钮
 function detail(that) {
+    $("#form-kind").text("表单详情");
+    $("#app1").css("display","none");
+    $("#app2").css("display","none");
+    $("#btn-save").css("display","none");
+    $("#btn-submit").css("display","none");
+    $("#btn-up").text("关闭").css("display","inline-block");
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
     var time = $(that).parents("tr").children("td:nth-child(3)").text();
@@ -339,6 +478,41 @@ function deleteOrder(that) {
     })
 }
 
+// #comForm_stuff 表格操作，查看按钮
+function comdetail(that) {
+    $("#form-kind").text("表单详情");
+    $("#app1").css("display","block");
+    $("#app2").css("display","block");
+    $("#btn-save").css("display","none");
+    $("#btn-submit").css("display","none");
+    $("#btn-up").text("关闭").css("display","inline-block");
+    var oid = $(that).parents("tr").children("td:nth-child(1)").text();
+    var title = $(that).parents("tr").children("td:nth-child(2)").text();
+    var time = $(that).parents("tr").children("td:nth-child(3)").text();
+    $.ajax({
+        url: '/queryStuffById.do',
+        type: 'post',
+        data: "id="+oid,
+        dataType: 'json',
+        async: false,
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function (data) {
+            console.log(data);
+            $("#input1").val(data.dept);
+            $("#input2").val(data.author);
+            $("#input3").val(data.reviewer);
+            $("#input4").val(data.print);
+            $("#input5").val(data.revision);
+            $("#input6").val(data.copy);
+            $("#input8").val(data.keyword);
+            $("#input9").val(data.title);
+            $("#input10").val(data.content);
+            $("#oId").text(data.id);
+            $("#created_at").text(data.created_at);
+            $('#form_stuff').modal('show');
+        }
+    })
+}
 
 
 //待办事务  编辑按钮
