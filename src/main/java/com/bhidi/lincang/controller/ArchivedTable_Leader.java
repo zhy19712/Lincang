@@ -1,5 +1,6 @@
 package com.bhidi.lincang.controller;
 
+import com.bhidi.lincang.bean.Form_Approver;
 import com.bhidi.lincang.bean.Form_Office;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
@@ -21,7 +22,7 @@ import java.util.Map;
 @Controller
 public class ArchivedTable_Leader {
     @ResponseBody
-    @RequestMapping(value="/archivedtable_leader.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/archivedtable_leader",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String SubmittedForm(HttpServletRequest request) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
@@ -44,7 +45,7 @@ public class ArchivedTable_Leader {
 
 
         //定义列名
-        String[] cols = {"OID","CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
+        String[] cols = {"RID","CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -58,7 +59,7 @@ public class ArchivedTable_Leader {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
-            sArray.add(" OID like '%" + searchValue + "%'");
+            sArray.add(" RID like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             sArray.add(" DEPT like '%" + searchValue + "%'");
             sArray.add(" AUTHOR like '%" + searchValue + "%'");
@@ -76,7 +77,7 @@ public class ArchivedTable_Leader {
             individualSearch += sArray.get(sArray.size() - 1);
         }
 
-        List<Form_Office> tasks = new ArrayList<Form_Office>();
+        List<Form_Approver> tasks = new ArrayList<Form_Approver>();
         if (conn != null) {
             String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = 'SUBMITTED'";
             stmt = conn.createStatement();
@@ -101,8 +102,8 @@ public class ArchivedTable_Leader {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new Form_Office(
-                        rs.getInt("OID"),
+                tasks.add(new Form_Approver(
+                        rs.getInt("RID"),
                         rs.getString("CREATED_AT"),
                         rs.getString("DEPT"),
                         rs.getString("AUTHOR"),
