@@ -273,7 +273,6 @@
     var x = 1;
     function lb() {
         x += 1 ;
-        console.log(x);
         $("#lb>img").css("display","none");
         $("#circle>span").css("background","transparent");
         if(x==1){
@@ -304,7 +303,6 @@
     $("#circle>span").click(function () {
         var index = $(this).index() + 1;
         x = index;
-        console.log(x);
         $("#lb>img").css("display","none");
         $("#circle>span").css("background","transparent");
         $("#lb>img:nth-child("+ index +")").fadeIn();

@@ -753,6 +753,7 @@
         $("#btn-save").css("display","inline-block");
         $("#btn-submit").css("display","inline-block");
         $("#btn-up").text("放弃").css("display","inline-block");
+        $("#fileForm input").attr("readonly",false);
     }
 
 
