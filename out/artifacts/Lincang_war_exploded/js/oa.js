@@ -1,90 +1,90 @@
 //待办表单的datatable
-var newForm_stuff = $('#NewTable_Stuff').DataTable({
-    ajax: {
-        url: "/nform_stuff.do",
-    },
-    "order": [[2, 'asc']],
-    "serverSide": true,
-    "columns": [
-        {"data": "ID"},
-        {"data": "TITLE"},
-        {"data": "CREATED_AT"},
-        {"data": null}
-    ],
-    "columnDefs": [
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [3],
-            "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>"
-                html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='deleteOrder(this)' value='删除'/>"
-                return html;
-            }
-        },
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [0]
-        }
-    ],
-    "language": {
-        "lengthMenu": "每页_MENU_ 条记录",
-        "zeroRecords": "没有找到记录",
-        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-        "infoEmpty": "无记录",
-        "search": "搜索：",
-        "infoFiltered": "(从 _MAX_ 条记录过滤)",
-        "paginate": {
-            "previous": "上一页",
-            "next": "下一页"
-        }
-    }
-});
+// var newForm_stuff = $('#NewTable_Stuff').DataTable({
+//     ajax: {
+//         url: "/nform_stuff.do",
+//     },
+//     "order": [[2, 'asc']],
+//     "serverSide": true,
+//     "columns": [
+//         {"data": "ID"},
+//         {"data": "TITLE"},
+//         {"data": "CREATED_AT"},
+//         {"data": null}
+//     ],
+//     "columnDefs": [
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [3],
+//             "render" :  function(data,type,row) {
+//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>"
+//                 html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='deleteOrder(this)' value='删除'/>"
+//                 return html;
+//             }
+//         },
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [0]
+//         }
+//     ],
+//     "language": {
+//         "lengthMenu": "每页_MENU_ 条记录",
+//         "zeroRecords": "没有找到记录",
+//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//         "infoEmpty": "无记录",
+//         "search": "搜索：",
+//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//         "paginate": {
+//             "previous": "上一页",
+//             "next": "下一页"
+//         }
+//     }
+// });
 
 //再办表单的datatable
-var submittedForm_stuff = $('#SubmittedTable_Stuff').DataTable({
-    ajax: {
-        url: "/sform_stuff.do"
-    },
-    "order": [[2, 'asc']],
-    "serverSide": true,
-    "columns": [
-        {"data": "ID"},
-        {"data": "TITLE"},
-        {"data": "CREATED_AT"},
-        {"data": null}
-    ],
-    "columnDefs": [
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [3],
-            "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-info btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" +
-                    "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' disabled='disabled' onclick='' value='确认'/>";
-                return html;
-            }
-        },
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [0]
-        }
-    ],
-    "language": {
-        "lengthMenu": "每页_MENU_ 条记录",
-        "zeroRecords": "没有找到记录",
-        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-        "infoEmpty": "无记录",
-        "search": "搜索：",
-        "infoFiltered": "(从 _MAX_ 条记录过滤)",
-        "paginate": {
-            "previous": "上一页",
-            "next": "下一页"
-        }
-    }
-});
+// var submittedForm_stuff = $('#SubmittedTable_Stuff').DataTable({
+//     ajax: {
+//         url: "/sform_stuff.do"
+//     },
+//     "order": [[2, 'asc']],
+//     "serverSide": true,
+//     "columns": [
+//         {"data": "ID"},
+//         {"data": "TITLE"},
+//         {"data": "CREATED_AT"},
+//         {"data": null}
+//     ],
+//     "columnDefs": [
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [3],
+//             "render" :  function(data,type,row) {
+//                 var html = "<input type='button' class='btn btn-info btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" +
+//                     "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' disabled='disabled' onclick='' value='确认'/>";
+//                 return html;
+//             }
+//         },
+//         {
+//             "searchable": false,
+//             "orderable": false,
+//             "targets": [0]
+//         }
+//     ],
+//     "language": {
+//         "lengthMenu": "每页_MENU_ 条记录",
+//         "zeroRecords": "没有找到记录",
+//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//         "infoEmpty": "无记录",
+//         "search": "搜索：",
+//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//         "paginate": {
+//             "previous": "上一页",
+//             "next": "下一页"
+//         }
+//     }
+// });
 
 //已办表单的datatable
 
@@ -181,6 +181,9 @@ var comForm_office = $('#OverTable_Office').DataTable({
 var comForm_stuff = $('#OverTable_Approval').DataTable({
     ajax: {
         url: "/archivedtable_leader.do",
+        success: function (data) {
+            console.log(data);
+        }
     },
     "order": [[2, 'asc']],
     "serverSide": true,
@@ -427,6 +430,7 @@ function detail(that) {
     $("#app2").css("display","none");
     $("#btn-save").css("display","none");
     $("#btn-submit").css("display","none");
+    $("#fileForm input").attr("readonly",true);
     $("#btn-up").text("关闭").css("display","inline-block");
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
@@ -487,6 +491,7 @@ function comdetail(that) {
     $("#app2").css("display","block");
     $("#btn-save").css("display","none");
     $("#btn-submit").css("display","none");
+    $("#fileForm input").attr("readonly",true);
     $("#btn-up").text("关闭").css("display","inline-block");
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
