@@ -8,11 +8,14 @@
 	<link rel="stylesheet" href="../../css/lincang-yimin.css">
 	<link rel="stylesheet" href="../../css/search.css">
 	<link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="../../css/jedate.css">
 	<link rel="stylesheet" href="../../css/style.css">
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
 	<script src="../../js/zUI.js"></script>
+	<script src="../../js/jquery.jedate.js"></script>
+	<script src="../../js/jQuery.print.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
 </head>
 <body>
@@ -219,7 +222,7 @@
 			<div id="ta_sroll">
 				<div id="ta_wrapper">
 					<form action="">
-						<table>
+						<table id="jqtable">
 							<tbody>
 							<tr>
 								<td colspan="9">库区登记表</td>
@@ -227,17 +230,17 @@
 							<tr>
 								<td rowspan="2" class="bgc">户主信息</td>
 								<td class="bgc">所属水库</td>
-								<td colspan="4"><input type="text" id="reservoir"></td>
+								<td colspan="4"><input type="text" id="reservoir" placeholder="*此处为必填项"></td>
 								<td class="bgc">户主姓名</td>
-								<td colspan="2"><input type="text" id="householder"></td>
+								<td colspan="2"><input type="text" id="householder" placeholder="*此处为必填项"></td>
 							</tr>
 							<tr>
 								<td class="bgc">开户人姓名</td>
-								<td><input type="text" id="bank-user"></td>
+								<td><input type="text" id="bank-user" placeholder="*此处为必填项"></td>
 								<td class="bgc">开户行名称</td>
-								<td colspan="2"><input type="text" id="bank-name"></td>
+								<td colspan="2"><input type="text" id="bank-name" placeholder="*此处为必填项"></td>
 								<td class="bgc">银行卡号</td>
-								<td colspan="2"><input type="text" id="bank-number"></td>
+								<td colspan="2"><input type="text" id="bank-number" placeholder="*此处为必填项"></td>
 							</tr>
 							<tr>
 								<td rowspan="5" class="bgc">家庭信息</td>
@@ -614,11 +617,11 @@
 							</tr>
 							<tr>
 								<td class="bgc">被调查人签字</td>
-								<td colspan="2"><input type="text" id="respondent"></td>
+								<td colspan="2"><input type="text" id="respondent" placeholder="*此处为必填项"></td>
 								<td class="bgc">调查人签字</td>
-								<td colspan="2"><input type="text" id="inquirer"></td>
+								<td colspan="2"><input type="text" id="inquirer" placeholder="*此处为必填项"></td>
 								<td class="bgc">填表时间</td>
-								<td colspan="2"><input type="text" id="time"></td>
+								<td colspan="2"><input type="text" id="time" placeholder="*此处为必填项"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -626,6 +629,7 @@
 							<li><a class="hvr-rectangle-in button">提交</a></li>
 							<li><a class="hvr-sweep-to-right button">保存</a></li>
 							<li><a class="hvr-bounce-to-bottom button">放弃</a></li>
+							<li><a class="hvr-radial-out button" id="jqprint">打印</a></li>
 						</ul>
 					</form>
 				</div>

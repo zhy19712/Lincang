@@ -769,7 +769,14 @@ $(function(){
         $("#yes").prop("checked",false);
     });
 
-
+	//日期插件
+    $("#time").jeDate({
+        format: "YYYY-MM-DD"
+    });
+    //打印插件
+    $("#jqprint").click(function () {
+        jQuery('#jqtable').print();
+    });
 	//表单提交
 	$("#btn-container li:first-child").click(function () {
 		var data = new Object();
@@ -778,6 +785,10 @@ $(function(){
 		var bank_user = $("#bank-user").val();
 		var bank_number = $("#bank-number").val();
 		var bank_name = $("#bank-name").val();
+		if(!reservoir || !householder || !bank_user || !bank_name || !bank_number){
+			alert("没有填写必填项");
+			return;
+		}
 		data.reservoir = reservoir;
 		data.householder = householder;
 		data.bank_user = bank_user;
@@ -787,7 +798,7 @@ $(function(){
 		//家庭成员信息
 		var home_infos = [];
 		function home_info(name,id,sex,nation,relation,cultural,profession) {
-			this.name = name;
+            this.name = name;
 			this.id = id;
 			this.sex = sex;
 			this.nation = nation;
@@ -799,12 +810,48 @@ $(function(){
 			var value = $("#home_people" + index1 + " td:nth-child(" + index2 + ") input").val()
 			return value;
         }
-        var h1 = new home_info(val(1,1),val(1,2),val(1,3),val(1,4),val(1,5),val(1,6),val(1,7));
-        var h2 = new home_info(val(2,1),val(2,2),val(2,3),val(2,4),val(2,5),val(2,6),val(2,7));
-        var h3 = new home_info(val(3,1),val(3,2),val(3,3),val(3,4),val(3,5),val(3,6),val(3,7));
-        var h4 = new home_info(val(4,1),val(4,2),val(4,3),val(4,4),val(4,5),val(4,6),val(4,7));
-        home_infos.push(h1,h2,h3,h4);
-        data.home_infos = home_infos;
+        if(val(1,1) || val(1,2) || val(1,3) || val(1,4) ||val(1,5) || val(1,6) || val(1,7)){
+            if(!val(1,1)){
+                alert("姓名不能为空");
+                return;
+            }else {
+                var h1 = new home_info(val(1,1),val(1,2),val(1,3),val(1,4),val(1,5),val(1,6),val(1,7));
+                home_infos.push(h1);
+			}
+        }
+
+        if(val(2,1) || val(2,2) || val(2,3) || val(2,4) ||val(2,5) || val(2,6) || val(2,7)){
+            if(!val(2,1)){
+                alert("姓名不能为空");
+                return;
+            }else {
+                var h2 = new home_info(val(2,1),val(2,2),val(2,3),val(2,4),val(2,5),val(2,6),val(2,7));
+                home_infos.push(h2);
+			}
+        }
+
+        if(val(3,1) || val(3,2) || val(3,3) || val(3,4) ||val(3,5) || val(3,6) || val(3,7)){
+            if(!val(3,1)){
+                alert("姓名不能为空");
+                return;
+            }else {
+                var h3 = new home_info(val(3,1),val(3,2),val(3,3),val(3,4),val(3,5),val(3,6),val(3,7));
+                home_infos.push(h3);
+			}
+        }
+
+        if(val(4,1) || val(4,2) || val(4,3) || val(4,4) ||val(4,5) || val(4,6) || val(4,7)){
+            if(!val(4,1)){
+                alert("姓名不能为空");
+                return;
+            }else {
+                var h4 = new home_info(val(4,1),val(4,2),val(4,3),val(4,4),val(4,5),val(4,6),val(4,7));
+                home_infos.push(h4);
+			}
+        }
+		if(h1 || h2 || h3 || h4){
+            data.home_infos = home_infos;
+		}
 
 		//城市信息
 		var location = new Object();
@@ -860,6 +907,7 @@ $(function(){
         var money6 = new money("养殖业收入",money_content("in_animal",6,1),money_val("in_animal",6,2),money_val("in_animal",6,3),money_val("in_animal",6,4),money_val("in_animal",6,5));
         var money7 = new money("养殖业收入",money_content("in_animal",7,1),money_val("in_animal",7,2),money_val("in_animal",7,3),money_val("in_animal",7,4),money_val("in_animal",7,5));
         var money8 = new money("养殖业收入",money_content("in_animal",8,1),money_val("in_animal",8,2),money_val("in_animal",8,3),money_val("in_animal",8,4),money_val("in_animal",8,5));
+
         var money9 = new money("种植业收入",money_content("in_botany",1,2),money_val("in_botany",1,3),money_val("in_botany",8,4),money_val("in_botany",8,5),money_val("in_botany",8,6));
         var money10 = new money("种植业收入",money_content("in_botany",2,1),money_val("in_botany",2,2),money_val("in_botany",2,3),money_val("in_botany",2,4),money_val("in_botany",2,5));
         var money11 = new money("种植业收入",money_content("in_botany",3,1),money_val("in_botany",3,2),money_val("in_botany",3,3),money_val("in_botany",3,4),money_val("in_botany",3,5));
@@ -907,6 +955,10 @@ $(function(){
 		var inquirer = $("#inquirer").val();
 		var time = $("#time").val();
 
+		if(!respondent || !inquirer || !time){
+			alert("请将必填项输入完整");
+			return;
+		}
 		data.respondent = respondent;
 		data.inquirer = inquirer;
 		data.time = time;

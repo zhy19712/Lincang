@@ -29,10 +29,12 @@
     <link rel="stylesheet" href="../../css/mycss.css">
     <link rel="stylesheet" href="../../css/oa.css">
 
+    <link rel="stylesheet" href="../../css/media.css" media="print">
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/jquery-form.min.js"></script>
+    <script src="../../js/jQuery.print.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -458,21 +460,21 @@
                 <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
-                <div class="modal-body" style="font-size: 0;">
+                <div class="modal-body" style="font-size: 0;width: 100%;" id="print1">
                     <input id="oId" type="text" name="id" style="display: none" ></input>
                     <input id="created_at" type="text" name="created_at" style="display: none" ></input>
                     <div class="row myrow">
                         <div class="col-sm-5">
                             <span>拟稿单位</span>
-                            <input id="input1" type="text" name="dept" readonly="true">
+                            <input id="input1" type="text" name="dept" readonly="true" value="">
                         </div>
                         <div class="col-sm-3">
                             <span>拟稿</span>
-                            <input id="input2" type="text" name="author" readonly="true">
+                            <input id="input2" type="text" name="author" readonly="true" value="">
                         </div>
                         <div class="col-sm-4">
                             <span>科室核稿</span>
-                            <input id="input3" type="text" name="reviewer" readonly="true">
+                            <input id="input3" type="text" name="reviewer" readonly="true" value="">
                         </div>
                     </div>
                     <div class="row myrow">
@@ -532,6 +534,7 @@
 
                 </form>
                 <div class="modal-footer">
+                    <a href="#" id="btn-print" class="btn btn-info">打印</a>
                     <a href="#" id="btn-up" class="btn btn-danger" data-dismiss="modal">放弃</a>
                     <a href="#" id="btn-save" class="btn btn-success">保存</a>
                     <a href="#" id="btn-submit" class="btn btn-primary">提交</a>
@@ -756,6 +759,7 @@
         $("#btn-submit").css("display","inline-block");
         $("#btn-up").text("放弃").css("display","inline-block");
         $("#fileForm input").attr("readonly",false);
+        $("#fileForm textarea").attr("readonly",false);
     }
 
 

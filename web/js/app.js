@@ -103,7 +103,6 @@ $(document).ready(function () {
 
 // 待办表单的datatables
 
-    //datatable
     var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
             url: "/nform_stuff.do"

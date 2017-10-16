@@ -86,6 +86,10 @@
 //     }
 // });
 
+//打印
+$("#btn-print").click(function () {
+    jQuery('#fileForm').print();
+})
 //已办表单的datatable
 
 var comForm_stuff = $('#OverTable_Stuff').DataTable({
@@ -180,10 +184,7 @@ var comForm_office = $('#OverTable_Office').DataTable({
 
 var comForm_stuff = $('#OverTable_Approval').DataTable({
     ajax: {
-        url: "/archivedtable_leader.do",
-        success: function (data) {
-            console.log(data);
-        }
+        url: "/archivedtable_leader.do"
     },
     "order": [[2, 'asc']],
     "serverSide": true,
@@ -425,12 +426,20 @@ $("#form_stuff .btn-primary").click(function () {
 
 // #NewTable_Stuff 表格操作，查看按钮
 function detail(that) {
+    var kind = $(that).val();
     $("#form-kind").text("表单详情");
     $("#app1").css("display","none");
     $("#app2").css("display","none");
     $("#btn-save").css("display","none");
-    $("#btn-submit").css("display","none");
-    $("#fileForm input").attr("readonly",true);
+    if(kind == "查看"){
+        $("#btn-submit").css("display","none");
+        $("#fileForm input").attr("readonly",true);
+        $("#fileForm textarea").attr("readonly",true);
+    }else {
+        $("#btn-submit").css("display","inline-block");
+        $("#fileForm input").attr("readonly",false);
+        $("#fileForm textarea").attr("readonly",false);
+    }
     $("#btn-up").text("关闭").css("display","inline-block");
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
@@ -443,7 +452,6 @@ function detail(that) {
         async: false,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         success: function (data) {
-            console.log(data);
             $("#input1").val(data.dept);
             $("#input2").val(data.author);
             $("#input3").val(data.reviewer);
@@ -457,7 +465,7 @@ function detail(that) {
             $("#created_at").text(data.created_at);
             $('#form_stuff').modal('show');
         }
-    })
+    });
 }
 
 //删除按钮
@@ -492,6 +500,7 @@ function comdetail(that) {
     $("#btn-save").css("display","none");
     $("#btn-submit").css("display","none");
     $("#fileForm input").attr("readonly",true);
+    $("#fileForm textarea").attr("readonly",true);
     $("#btn-up").text("关闭").css("display","inline-block");
     var oid = $(that).parents("tr").children("td:nth-child(1)").text();
     var title = $(that).parents("tr").children("td:nth-child(2)").text();
@@ -504,7 +513,6 @@ function comdetail(that) {
         async: false,
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         success: function (data) {
-            console.log(data);
             $("#input1").val(data.dept);
             $("#input2").val(data.author);
             $("#input3").val(data.reviewer);
@@ -526,3 +534,6 @@ function comdetail(that) {
 function detail_office(that){
 
 }
+
+var allcookie = document.cookie.split(";");
+console.log(document.cookie);
