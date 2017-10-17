@@ -46,7 +46,7 @@ public class CapitalFlowController {
     }
 
     /**
-     * 点击了编辑之后的提交按钮
+     * 财务科点击了编辑之后的提交按钮
      * @param id
      * @param report_person
      * @param report_quarter
@@ -64,6 +64,7 @@ public class CapitalFlowController {
         Date now = new Date();
         String finance_time = format.format(now);
         Map<String,String> map = new HashMap();
+        map.put("id",id);
         map.put("create_time",create_time);
         map.put("report_person",report_person == null?"":report_person);
         map.put("report_quarter",report_quarter == null?"":report_quarter);
@@ -73,7 +74,36 @@ public class CapitalFlowController {
         map.put("amount",amount);
         map.put("finance_time",finance_time);
         map.put("status","市局规划科处理中");
+        int result = capitalFlowServiceImp.setCatipalDataById(map);
+        return result+"";
+    }
 
+    /**
+     * 规划科点击编辑之后的提交
+     * @param id
+     * @param areas
+     * @param text
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/setToAreaDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String setDataById(String id,String[] areas,String text) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        String toarea_time = format.format(now);
+        Map<String,String> map = new HashMap();
+        StringBuffer sb = new StringBuffer();
+        for( int i = 0;i < areas.length;i++ ){
+            if(i < (areas.length - 1)){
+                sb.append(areas[i]+",");
+            } else {
+                sb.append(areas[i]);
+            }
+        }
+        map.put("id",id);
+        map.put("toarea_time",toarea_time);
+        map.put("areaname",sb.toString());
+        map.put("text",text);
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }
