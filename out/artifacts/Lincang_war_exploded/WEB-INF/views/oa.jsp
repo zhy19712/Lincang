@@ -745,7 +745,6 @@
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();
-
         }
 
     }();
@@ -777,7 +776,7 @@
         $('#flow').modal('show');
     }
 
-
+    $("#status")
 </script>
 
 

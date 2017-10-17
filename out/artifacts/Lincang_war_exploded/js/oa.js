@@ -535,5 +535,8 @@ function detail_office(that){
 
 }
 
-var allcookie = document.cookie.split(";");
-console.log(document.cookie);
+// var allcookie = document.cookie.split(";");
+// $.each(allcookie,function (i,n) {
+//     console.log(window.sessionStorage)
+// })
+console.log(window.sessionStorage);
