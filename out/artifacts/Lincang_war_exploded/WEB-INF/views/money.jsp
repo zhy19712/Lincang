@@ -617,56 +617,56 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 
-    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" data-backdrop="static">
+    <%--<div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
+         <%--aria-hidden="true" data-backdrop="static">--%>
 
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
 
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>详细信息</h3>
-                </div>
-                <iframe name="uploadFrame" style="display:none;"></iframe>
-                <form action="" method="post"
-                      enctype="multipart/form-data"  target="uploadFrame">
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
+                    <%--<h3>详细信息</h3>--%>
+                <%--</div>--%>
+                <%--<iframe name="uploadFrame" style="display:none;"></iframe>--%>
+                <%--<form action="" method="post"--%>
+                      <%--enctype="multipart/form-data"  target="uploadFrame">--%>
 
-                    <div class="modal-body">
-                        <p>申请进度: <span>财务正在处理</span></p>
-                        <div class="row myrow">
-                            <div class="col-sm-6">
-                                <span>上报人</span>
-                                <input type="text" id="report_person_detail" readonly="true">
-                            </div>
-                            <div class="col-sm-6">
-                                <span>上报时间</span>
-                                <input type="text" id="report_quarter_detail" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>文件</span>
-                                <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                    <a href="#" onclick="add_click_file(1)">附件</a>
-                                    <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" style="display:none"/>
-                            </div>
-                        </div>
-                        <div class="row myrow last">
-                            <div class="col-sm-12" id="report_text_detail"></div>
-                        </div>
-                    </div>
+                    <%--<div class="modal-body">--%>
+                        <%--<p>申请进度: <span>财务正在处理</span></p>--%>
+                        <%--<div class="row myrow">--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>上报人</span>--%>
+                                <%--<input type="text" id="report_person_detail" readonly="true">--%>
+                            <%--</div>--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>上报时间</span>--%>
+                                <%--<input type="text" id="report_quarter_detail" readonly="true">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow">--%>
+                            <%--<div class="col-sm-12">--%>
+                                <%--<span>文件</span>--%>
+                                <%--<div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">--%>
+                                    <%--<a href="#" onclick="add_click_file(1)">附件</a>--%>
+                                    <%--<input style="display:none;" type="file" name = "files" onChange="add(1)"/>--%>
+                                <%--</div>--%>
+                                <%--<input type="button" style="display:none"/>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow last">--%>
+                            <%--<div class="col-sm-12" id="report_text_detail"></div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
 
-                </form>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                </div>
+                <%--</form>--%>
+                <%--<div class="modal-footer">--%>
+                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>--%>
+                <%--</div>--%>
 
 
-            </div>
-        </div>
-    </div>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
     <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
@@ -710,17 +710,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row myrow" id="caiwu1">
                             <div class="col-sm-6">
                                 <span>款项来源</span>
-                                <input type="text" id="money_source">
+                                <input type="text" id="money_source" readonly="true">
                             </div>
                             <div class="col-sm-6">
                                 <span>到款时间</span>
-                                <input type="text" name="author" id="arrival_time">
+                                <input type="text" name="author" id="arrival_time" readonly="readonly">
                             </div>
                         </div>
                         <div class="row myrow" id="caiwu2">
                             <div class="col-sm-6">
                                 <span>到款金额</span>
-                                <input type="text" id="amount">
+                                <input type="text" id="amount" readonly="true">
                             </div>
                             <div class="col-sm-6">
                                 <span>上传附件</span>
@@ -948,6 +948,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 
+
+
+
+
+<!-- external javascript -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- library for cookie management -->
+<script src="../../js/jquery.cookie.js"></script>
+<!-- select or dropdown enhancer -->
+<script src="../../js/chosen.jquery.min.js"></script>
+<!-- for iOS style toggle switch -->
+<script src="../../js/jquery.iphone.toggle.js"></script>
+<!-- history.js for cross-browser state change on ajax -->
+<script src="../../js/jquery.history.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="../../js/money.js"></script>
 <script>
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
@@ -972,6 +988,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     }();
+    //规划科资金申请
+    var money_apply1 = $('#money_apply1').DataTable({
+        ajax: {
+            url: "/capitalFlowForm.do",
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "id"},
+            {"data": "create_time"},
+            {"data": "report_person"},
+            {"data": "report_quarter"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [5],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
+    //申请提交
+    $("#money_apply_wdo .btn-primary").click(function () {
+        var app_people=  $("#input1").val();
+        var app_time=  $("#input2").val();
+        var app_content=  $("#input3").val();
+        var datas= {
+            "report_person":app_people,
+            "report_quarter":app_time,
+            "report_text":app_content
+        };
+        if(app_people == ""){
+            alert("上报人不能为空")
+        }else if(app_time == ""){
+            alert("上报时间不能为空")
+        }else if(app_content == ""){
+            alert("上报内容不能为空")
+        }else {
+            $.ajax({
+                type: 'post',
+                url: '/submitDataOfCapital.do',
+                data: datas,
+                dataType: 'json',
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (result) {
+                    if(result){
+                        alert("提交成功");
+                        money_apply1.ajax.url("/capitalFlowForm.do").load();
+                    }else {
+                        alert("提交失败");
+                    }
+                    $("#money_apply_wdo").modal("hide");
+                    wipeData();
+                },
+                error:function () {
+                    alert("系统错误");
+                }
+            });
+        }
+    });
+
+    // 清空数据
+    function mywipeData() {
+        $("#edit input").val("");
+    }
     // #资金申请查看按钮
     function detail(that) {
         $("#detail").modal('show');
@@ -992,10 +1094,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         })
         /*if(status == 1){
 
-        }*/
+         }*/
     }
+
     function edit(that) {
         $("#edit").modal('show');
+        var kind = $(that).val();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         $.ajax({
             url: "/getCatipalDataById.do",
@@ -1009,42 +1113,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $("#report_person_edit").val(data.report_person);
                 $("#report_quarter_edit").val(data.report_quarter);
                 $("#report_text_edit").text(data.report_text);
+                $("#money_source").val(data.money_source);
+                $("#arrival_time").val(data.arrival_time);
+                $("#amount").val(data.amount);
             }
         });
         var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+        console.log(status);
         if( status == 2 ){
-            $("#guihuake").css("display","none");
-            $("#caiwu2").addClass("last");
-            $("#edit .btn-primary").text("通知规划科");
-            $("#edit .btn-primary").click(function () {
-                var money_source = $("#money_source").val();
-                var arrival_time = $("#arrival_time").val();
-                var amount = $("#amount").val();
-                if(money_source == ""){
-                    alert("款项来源不能为空")
-                }else if(arrival_time == ""){
-                    alert("到款时间不能为空")
-                }else if(amount == ""){
-                    alert("到款金额不能为空")
+            if(kind == "查看"){
+                $("#guihuake").css("display","none");
+                if(state == "市局财务科处理中"){
+                    $("#caiwu2").css("display","none");
+                    $("#caiwu1").css("display","none");
+                    $("#caiwu").addClass("last");
                 }else {
-                    console.log(money_source,arrival_time,amount)
-                    //财务科提交
-                $.ajax({
-                    url: "/setDataById.do",
-                    type: "post",
-                    data: {id :id,
-                        money_source:money_source,
-                        arrival_time:arrival_time,
-                        amount:amount},
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                    }
-                })
+                    $("#caiwu").removeClass("last");
+                    $("#caiwu2").css("display","block");
+                    $("#caiwu1").css("display","block");
+                    $("#money_source").attr("readonly",true);
+                    $("#amount").attr("readonly",true);
                 }
-            })
+            }else if(kind == "编辑"){
+                $("#caiwu").removeClass("last");
+                $("#caiwu1").css("display","block");
+                $("#caiwu2").css("display","block");
+                $("#guihuake").css("display","none");
+                $("#caiwu2").addClass("last");
+                if(state == "市局财务科处理中"){
+                    $("#edit .btn-primary").text("通知规划科");
+                    $("#money_source").attr("readonly",false);
+                    $("#amount").attr("readonly",false);
+                    $("#edit .btn-primary").click(function () {
+                        var money_source = $("#money_source").val();
+                        var arrival_time = $("#arrival_time").val();
+                        var amount = $("#amount").val();
+                        if(money_source == ""){
+                            alert("款项来源不能为空")
+                        }else if(arrival_time == ""){
+                            alert("到款时间不能为空")
+                        }else if(amount == ""){
+                            alert("到款金额不能为空")
+                        }else {
+                            console.log(money_source,arrival_time,amount)
+                            //财务科提交
+                            $.ajax({
+                                url: "/setDataById.do",
+                                type: "post",
+                                data: {
+                                    id :id,
+                                    money_source:money_source,
+                                    arrival_time:arrival_time,
+                                    amount:amount
+                                },
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#edit").modal("hide");
+                                    money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                    mywipeData();
+                                }
+                            })
+                        }
+                    })
+                }else {
+                    $("#money_source").attr("readonly",true);
+                    $("#amount").attr("readonly",true);
+                }
+
+            }
         }else {
-            if (state != "规划科处理中"){
+            $("#money_source").attr("readonly",true);
+            $("#amount").attr("readonly",true);
+            if (state != "市局规划科处理中"){
                 $("#caiwu").addClass("last");
                 $("#caiwuw").removeClass("last");
                 $("#caiwu1").css("display","none");
@@ -1056,33 +1196,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $("#caiwu1").css("display","block");
                 $("#caiwu2").css("display","block");
                 $("#guihuake").css("display","block");
+//                if(kind == "查看" ){
+//
+//                }
+                $("#edit .btn-primary").text("通知区县");
+                $("#edit .btn-primary").click(function () {
+                    var arr = [];
+                    $.each($(".selected"),function (i,n) {
+                        arr.push(n.innerText);
+                    });
+                    var text = $("#notice_content").val();
+                    if(arr.length == 0){
+                        alert("请选取区县")
+                    }else if(text == ""){
+                        alert("请输入通知内容")
+                    }else{
+                        console.log(arr,text);
+//                        $.ajax({
+//                            url: "/getCatipalDataById.do",
+//                            type: "post",
+//                            async: false,
+//                            data: {id:id,areaname:arr,text:text},
+//                            dataType: "json",
+//                            success: function (data) {
+//                                console.log(data);
+//                                var data = data.result;
+//                            }
+//                        });
+                    }
+
+                })
+
+
+
             }
         }
-//        if(status == 1){
-//
-//        }
-//        $.ajax({
-//            url: '/queryStuffById.do',
-//            type: 'post',
-//            data: "id="+oid,
-//            dataType: 'json',
-//            async: false,
-//            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//            success: function (data) {
-//                $("#input1").val(data.dept);
-//                $("#input2").val(data.author);
-//                $("#input3").val(data.reviewer);
-//                $("#input4").val(data.print);
-//                $("#input5").val(data.revision);
-//                $("#input6").val(data.copy);
-//                $("#input8").val(data.keyword);
-//                $("#input9").val(data.title);
-//                $("#input10").val(data.content);
-//                $("#oId").text(data.id);
-//                $("#created_at").text(data.created_at);
-//                $('#form_stuff').modal('show');
-//            }
-//        });
     }
 
     function newForm() {
@@ -1108,21 +1256,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 </script>
-
-
-
-<!-- external javascript -->
-<script src="../../js/bootstrap.min.js"></script>
-<!-- library for cookie management -->
-<script src="../../js/jquery.cookie.js"></script>
-<!-- select or dropdown enhancer -->
-<script src="../../js/chosen.jquery.min.js"></script>
-<!-- for iOS style toggle switch -->
-<script src="../../js/jquery.iphone.toggle.js"></script>
-<!-- history.js for cross-browser state change on ajax -->
-<script src="../../js/jquery.history.js"></script>
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="../../js/money.js"></script>
-
 </body>
 </html>
