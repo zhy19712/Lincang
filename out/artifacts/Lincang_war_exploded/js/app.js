@@ -103,7 +103,6 @@ $(document).ready(function () {
 
 // 待办表单的datatables
 
-    //datatable
     var newForm_stuff = $('#NewTable_Stuff').DataTable({
         ajax: {
             url: "/nform_stuff.do"
@@ -169,8 +168,7 @@ $(document).ready(function () {
                 "targets": [3],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='编辑'/>"
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" +
-                        "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='' value='确认'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" ;
                     return html;
                 }
             },
@@ -289,6 +287,14 @@ function docReady() {
 
     //iOS / iPhone style toggle switch
     $('.iphone-toggle').iphoneStyle();
+
+
+
+
+
+
+
+
 
 
 }

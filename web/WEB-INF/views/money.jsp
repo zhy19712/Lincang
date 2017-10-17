@@ -1,3 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,11 +81,11 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li class="nav-header">我的申请</li>
-                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 规划科资金申请</span></a></li>
+                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
                         <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 区县资金申请</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 财务科已到资金</span></a></li>
+                        <li><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 财务科已到资金</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 规划科资金到账</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 区县接收资金申请通知</span></a></li>
                         <li><a href="#completed4"><i class="glyphicon glyphicon-check"></i><span> 财务转账页面</span></a></li>
@@ -86,7 +93,7 @@
                         <li><a href="#completed6"><i class="glyphicon glyphicon-check"></i><span> 资金去向明细</span></a></li>
 
                         <li class="nav-header">我的审批</li>
-                        <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 规划科批复</span><span class="notification red">3</span></a></li>
+                        <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 规划科批复</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -133,14 +140,16 @@
 
 
                                         <div class="box-content">
-                                            <table id="NewTable_Stuff" class="display" width="100%" cellspacing="0">
+                                            <table id="money_apply1" class="display" width="100%" cellspacing="0">
                                                 <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>标题</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>编号</th>
+                                                        <th>创建时间</th>
+                                                        <th>上报人</th>
+                                                        <th>上报季度</th>
+                                                        <th>当前状态</th>
+                                                        <th>操作</th>
+                                                    </tr>
                                                 </thead>
                                             </table>
                                         </div>
@@ -177,7 +186,7 @@
 
 
                                         <div class="box-content">
-                                            <table id="SubmittedTable_Stuff" class="display" width="100%" cellspacing="0">
+                                            <table id="quxian1" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>编号</th>
@@ -189,42 +198,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane" id="completed1">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的表单</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">已办表单</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 以办列表</h2>
-
-                                        </div>
-
-
-                                        <div class="box-content">
-                                            <table id="OverTable_Stuff" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>标题</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-
                                 </div>
 
                                 <div class="tab-pane" id="new2">
@@ -244,7 +217,7 @@
 
                                         </div>
                                         <div class="box-content">
-                                            <table id="NewTable_Office" class="display" width="100%" cellspacing="0">
+                                            <table id="guihua2" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>编号</th>
@@ -303,7 +276,7 @@
 
                                         </div>
                                         <div class="box-content">
-                                            <table id="SubmittedTable_Office" class="display" width="100%" cellspacing="0">
+                                            <table id="quxian2" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                     <tr>
                                                         <th>上报人</th>
@@ -366,6 +339,16 @@
 
                                         </div>
                                         <div class="box-content">
+                                            <table id="caiwu2" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>发件人</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                             <div class="x-know">
                                                 <p><span class="key">发件人：</span><span class="name">xxx</span></p>
                                                 <p><span class="key">通知内容: </span><span class="content">临沧为云南省地级市，地处云南省西南部，东邻普洱市，北连大理州，西接保山市，西南与缅甸交界，地处澜沧江与怒江之间，因濒临澜沧江而得名。市政府驻地距省会昆明598千米，是昆明通往缅甸仰光的陆上捷径，有3个国家口岸和17条通道。</span></p>
@@ -398,6 +381,17 @@
 
                                         </div>
                                         <div class="box-content">
+                                            <table id="quxian3" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>转账人员</th>
+                                                    <th>转账金额</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                             <div class="c-off">
                                                 <div class="info">
                                                     <div class="app">申请信息</div>
@@ -435,6 +429,16 @@
 
                                         </div>
                                         <div class="box-content">
+                                            <table id="quxian4" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>发件人</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                            </table>
                                             <div class="y-money">
                                                 <p><span class="key">发件人：</span><span class="name">财务科</span></p>
                                                 <p><span class="key">收款内容：</span><span class="con">临沧为云南省地级市，地处云南省西南部，东邻普洱市，北连大理州，西接保山市，西南与缅甸交界，地处澜沧江与怒江之间，因濒临澜沧江而得名。市政府驻地距省会昆明598千米，是昆明通往缅甸仰光的陆上捷径，有3个国家口岸和17条通道。</span></p>
@@ -520,7 +524,7 @@
                                             <p><span class="key">申请人：</span><span class="name">xxx</span></p>
                                             <p><span class="key">申请原因：</span><span class="reason">xxx</span></p>
                                             <div class="about">
-                                                <span>批复意见：</span><textarea name="" id="" cols="30"
+                                                <span>批复意见：</span><textarea name="" cols="30"
                                                                             rows="10"></textarea>
                                             </div>
                                             <button type="button" id="yes" class="btn btn-success dropdown-toggle mybtn">同意</button>
@@ -530,41 +534,6 @@
                                     </div>
 
 
-
-                                </div>
-                                <div class="tab-pane" id="completed3">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的审批</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">审批记录</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 审批记录</h2>
-
-                                        </div>
-                                        <div class="box-content">
-                                            <table id="OverTable_Approval" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>接收时间</th>
-                                                    <th>科室</th>
-                                                    <th>报稿</th>
-                                                    <th>标题</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-
-
-                                    </div>
 
                                 </div>
 
@@ -590,7 +559,7 @@
 
     <hr>
 
-    <div class="modal fade" id="form_stuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="money_apply_wdo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -629,13 +598,12 @@
                                 <input type="button" id="Commit" style="display:none"/>
                             </div>
                         </div>
-                        <textarea class="mytext" name="content" id="input10" cols="30" rows="10" placeholder="上报内容描述"></textarea>
+                        <textarea class="mytext" name="content" id="input3" cols="30" rows="10" placeholder="上报内容描述"></textarea>
                     </div>
 
                 </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success">保存</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -905,7 +873,7 @@
     }();
 
     function newForm() {
-        $('#form_stuff').modal('show');
+        $('#money_apply_wdo').modal('show');
     }
 
     function applyForm() {
@@ -941,7 +909,7 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="../../js/app.js"></script>
-<script src="../../js/oa.js"></script>
+<script src="../../js/money.js"></script>
+
 </body>
 </html>
