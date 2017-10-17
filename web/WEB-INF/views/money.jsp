@@ -636,11 +636,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row myrow">
                             <div class="col-sm-6">
                                 <span>上报人</span>
-                                <input type="text" name="dept">
+                                <input type="text" id="report_person_detail" readonly="true">
                             </div>
                             <div class="col-sm-6">
                                 <span>上报时间</span>
-                                <input type="text" name="author">
+                                <input type="text" id="report_quarter_detail" readonly="true">
                             </div>
                         </div>
                         <div class="row myrow">
@@ -653,8 +653,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="button" style="display:none"/>
                             </div>
                         </div>
-                        <div class="row myrow"  style="border: 1px solid red;height: 50px;">
-                            <div class="col-sm-12"></div>
+                        <div class="row myrow last">
+                            <div class="col-sm-12" id="report_text_detail"></div>
                         </div>
                     </div>
 
@@ -687,11 +687,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="row myrow">
                             <div class="col-sm-6">
                                 <span>上报人</span>
-                                <input type="text" name="dept" readonly="true">
+                                <input type="text" id="report_person_edit" readonly="true">
                             </div>
                             <div class="col-sm-6">
                                 <span>上报时间</span>
-                                <input type="text" name="author" readonly="true">
+                                <input type="text" id="report_quarter_edit" readonly="true">
                             </div>
                         </div>
                         <div class="row myrow">
@@ -704,30 +704,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="button" style="display:none"/>
                             </div>
                         </div>
-                        <div class="row myrow"  style="height: 50px;border-left:1px solid red;border-right:1px solid red;">
-                            <div class="col-sm-12"></div>
+                        <div class="row myrow" id="caiwu">
+                            <div class="col-sm-12" id="report_text_edit"></div>
                         </div>
                         <div class="row myrow" id="caiwu1">
                             <div class="col-sm-6">
                                 <span>款项来源</span>
-                                <input type="text" name="dept">
+                                <input type="text" id="money_source">
                             </div>
                             <div class="col-sm-6">
                                 <span>到款时间</span>
-                                <input type="text" name="author" id="date1">
+                                <input type="text" name="author" id="arrival_time">
                             </div>
                         </div>
                         <div class="row myrow" id="caiwu2">
                             <div class="col-sm-6">
                                 <span>到款金额</span>
-                                <input type="text" name="dept">
+                                <input type="text" id="amount">
                             </div>
                             <div class="col-sm-6">
                                 <span>上传附件</span>
                                 <input type="text" name="author">
                             </div>
                         </div>
-                        <div class="row myrow last">
+                        <div class="row myrow last" id="guihuake">
                             <div class="col-sm-12">
                                 <div class="notice">
                                     <div class="add">
@@ -955,7 +955,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $("#myDate").jeDate({
         format: "YYYY-MM-DD"
     });
-    $("#date1").jeDate({
+    $("#arrival_time").jeDate({
         format: "YYYY-MM-DD"
     });
     var status;
@@ -984,6 +984,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             dataType: "json",
             success: function (data) {
                 console.log(data);
+                var data = data.result;
+                $("#report_person_detail").val(data.report_person);
+                $("#report_quarter_detail").val(data.report_quarter);
+                $("#report_text_detail").text(data.report_text);
             }
         })
         /*if(status == 1){
@@ -992,9 +996,65 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     function edit(that) {
         $("#edit").modal('show');
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        $.ajax({
+            url: "/getCatipalDataById.do",
+            type: "post",
+            async: false,
+            data: {id:id},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var data = data.result;
+                $("#report_person_edit").val(data.report_person);
+                $("#report_quarter_edit").val(data.report_quarter);
+                $("#report_text_edit").text(data.report_text);
+            }
+        });
         var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
-        if(state)
-        console.log(state);
+        if( status == 2 ){
+            $("#guihuake").css("display","none");
+            $("#caiwu2").addClass("last");
+            $("#edit .btn-primary").text("通知规划科");
+            $("#edit .btn-primary").click(function () {
+                var money_source = $("#money_source").val();
+                var arrival_time = $("#arrival_time").val();
+                var amount = $("#amount").val();
+                if(money_source == ""){
+                    alert("款项来源不能为空")
+                }else if(arrival_time == ""){
+                    alert("到款时间不能为空")
+                }else if(amount == ""){
+                    alert("到款金额不能为空")
+                }else {
+                    console.log(money_source,arrival_time,amount)
+                    //财务科提交
+//                $.ajax({
+//                    url: "/getCatipalDataById.do",
+//                    type: "post",
+//                    data: {money_source:money_source,arrival_time:arrival_time,amount:amount},
+//                    dataType: "json",
+//                    success: function (data) {
+//                        console.log(data);
+//                    }
+//                })
+                }
+            })
+        }else {
+            if (state != "规划科处理中"){
+                $("#caiwu").addClass("last");
+                $("#caiwuw").removeClass("last");
+                $("#caiwu1").css("display","none");
+                $("#caiwu2").css("display","none");
+                $("#guihuake").css("display","none");
+            }else {
+                $("#caiwu").removeClass("last");
+                $("#caiwu2").removeClass("last");
+                $("#caiwu1").css("display","block");
+                $("#caiwu2").css("display","block");
+                $("#guihuake").css("display","block");
+            }
+        }
 //        if(status == 1){
 //
 //        }
