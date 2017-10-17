@@ -12,6 +12,14 @@ public class CapitalFlow {
     public CapitalFlow() {
     }
 
+    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String status) {
+        this.id = id;
+        this.create_time = create_time;
+        this.report_person = report_person;
+        this.report_quarter = report_quarter;
+        this.status = status;
+    }
+
     public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status) {
         this.id = id;
         this.create_time = create_time;
