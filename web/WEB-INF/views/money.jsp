@@ -264,64 +264,64 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
 
                                 <div class="tab-pane" id="progress2">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的事务</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">在办事务</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <%--<div>--%>
+                                        <%--<ul class="breadcrumb">--%>
+                                            <%--<li>--%>
+                                                <%--<a href="#">我的事务</a>--%>
+                                            <%--</li>--%>
+                                            <%--<li>--%>
+                                                <%--<a href="#">在办事务</a>--%>
+                                            <%--</li>--%>
+                                        <%--</ul>--%>
+                                    <%--</div>--%>
 
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
+                                    <%--<div class="box-inner">--%>
+                                        <%--<div class="box-header well">--%>
+                                            <%--<h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>--%>
 
-                                        </div>
-                                        <div class="box-content">
-                                            <table id="quxian2" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>上报人</th>
-                                                        <th>上报时间</th>
-                                                        <th>到账金额</th>
-                                                        <th>到账时间</th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                                        <%--</div>--%>
+                                        <%--<div class="box-content">--%>
+                                            <%--<table id="quxian2" class="display" width="100%" cellspacing="0">--%>
+                                                <%--<thead>--%>
+                                                    <%--<tr>--%>
+                                                        <%--<th>上报人</th>--%>
+                                                        <%--<th>上报时间</th>--%>
+                                                        <%--<th>到账金额</th>--%>
+                                                        <%--<th>到账时间</th>--%>
+                                                        <%--<th>操作</th>--%>
+                                                    <%--</tr>--%>
+                                                <%--</thead>--%>
+                                            <%--</table>--%>
+                                        <%--</div>--%>
 
-                                        <div class="info-detail">
-                                            <p style="color: red">下面内容为点击列表时展示内容</p>
-                                            <div class="infos">
-                                                <div class="apply">资金申请信息</div>
-                                                <div class="money">到款信息</div>
-                                            </div>
-                                            <div class="notice">
-                                                <div class="add">
-                                                    <span>通知区县</span>
-                                                    <ul class="ui-choose" multiple="multiple" id="uc_03">
-                                                        <li>临翔区</li>
-                                                        <li>凤庆县</li>
-                                                        <li>永德县</li>
-                                                        <li>镇康县</li>
-                                                        <li>云县</li>
-                                                        <li>沧源佤族自治县</li>
-                                                        <li>耿马傣族佤族自治县</li>
-                                                        <li>双江拉祜族佤族布朗族傣族自治县</li>
-                                                    </ul>
-                                                </div>
-                                                <div class="text">
-                                                    <span>通知内容</span><textarea name="" id="" cols="30"
-                                                                               rows="10"></textarea>
-                                                </div>
-                                            </div>
-                                            <button type="button" class="btn btn-primary dropdown-toggle mybtn">确认通知区县</button>
-                                        </div>
-                                    </div>
+                                        <%--<div class="info-detail">--%>
+                                            <%--<p style="color: red">下面内容为点击列表时展示内容</p>--%>
+                                            <%--<div class="infos">--%>
+                                                <%--<div class="apply">资金申请信息</div>--%>
+                                                <%--<div class="money">到款信息</div>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="notice">--%>
+                                                <%--<div class="add">--%>
+                                                    <%--<span>通知区县</span>--%>
+                                                    <%--<ul class="ui-choose" multiple="multiple" id="uc_03">--%>
+                                                        <%--<li>临翔区</li>--%>
+                                                        <%--<li>凤庆县</li>--%>
+                                                        <%--<li>永德县</li>--%>
+                                                        <%--<li>镇康县</li>--%>
+                                                        <%--<li>云县</li>--%>
+                                                        <%--<li>沧源佤族自治县</li>--%>
+                                                        <%--<li>耿马傣族佤族自治县</li>--%>
+                                                        <%--<li>双江拉祜族佤族布朗族傣族自治县</li>--%>
+                                                    <%--</ul>--%>
+                                                <%--</div>--%>
+                                                <%--<div class="text">--%>
+                                                    <%--<span>通知内容</span><textarea name="" id="" cols="30"--%>
+                                                                               <%--rows="10"></textarea>--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
+                                            <%--<button type="button" class="btn btn-primary dropdown-toggle mybtn">确认通知区县</button>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
 
 
                                 </div>
@@ -714,10 +714,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             </div>
                             <div class="col-sm-6">
                                 <span>到款时间</span>
-                                <input type="text" name="author">
+                                <input type="text" name="author" id="date1">
                             </div>
                         </div>
-                        <div class="row myrow last" id="caiwu2">
+                        <div class="row myrow" id="caiwu2">
                             <div class="col-sm-6">
                                 <span>到款金额</span>
                                 <input type="text" name="dept">
@@ -725,6 +725,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="col-sm-6">
                                 <span>上传附件</span>
                                 <input type="text" name="author">
+                            </div>
+                        </div>
+                        <div class="row myrow last">
+                            <div class="col-sm-12">
+                                <div class="notice">
+                                    <div class="add">
+                                        <span>通知区县</span>
+                                        <ul class="ui-choose" multiple="multiple" id="uc_03" style="width: 92%;">
+                                            <li>临翔区</li>
+                                            <li>凤庆县</li>
+                                            <li>永德县</li>
+                                            <li>镇康县</li>
+                                            <li>云县</li>
+                                            <li>沧源佤族自治县</li>
+                                            <li>耿马傣族佤族自治县</li>
+                                            <li>双江拉祜族佤族布朗族傣族自治县</li>
+                                        </ul>
+                                    </div>
+                                    <div class="text">
+                                        <span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid red"></textarea>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -933,6 +955,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $("#myDate").jeDate({
         format: "YYYY-MM-DD"
     });
+    $("#date1").jeDate({
+        format: "YYYY-MM-DD"
+    });
     var status;
     ~function() {
 
@@ -990,6 +1015,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     function edit(that) {
         $("#edit").modal('show');
         var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+        if(state)
         console.log(state);
 //        if(status == 1){
 //
