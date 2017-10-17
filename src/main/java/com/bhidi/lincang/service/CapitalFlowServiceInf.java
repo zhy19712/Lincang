@@ -7,8 +7,8 @@ import java.util.Map;
 public interface CapitalFlowServiceInf {
     int submitData(Map map);
 
-    CapitalFlow getDataById(String id);
+    CapitalFlow getCatipalDataById(String id);
 
 
-    int setDataById(Map<String, String> map);
+    int setCatipalDataById(Map<String, String> map);
 }

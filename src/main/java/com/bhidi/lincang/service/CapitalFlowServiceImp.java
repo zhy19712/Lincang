@@ -16,11 +16,11 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.submitData(map);
     }
 
-    public CapitalFlow getDataById(String id) {
-        return capitalFlowMapper.queryDataById(id);
+    public CapitalFlow getCatipalDataById(String id) {
+        return capitalFlowMapper.queryCatipalDataById(id);
     }
 
-    public int setDataById(Map<String, String> map){
-        return capitalFlowMapper.updateDataById(map);
+    public int setCatipalDataById(Map<String, String> map){
+        return capitalFlowMapper.updateCatipalDataById(map);
     }
 }

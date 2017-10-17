@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.CapitalFlow;
 import com.bhidi.lincang.service.CapitalFlowServiceImp;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +36,13 @@ public class CapitalFlowController {
     }
 
     @ResponseBody
-    @RequestMapping(value="/getDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/getCatipalDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getDataById(String id) {
-        CapitalFlow result = capitalFlowServiceImp.getDataById(id);
-        return result+"";
+        CapitalFlow cap = capitalFlowServiceImp.getCatipalDataById(id);
+        Map<String,CapitalFlow> mapResult = new HashMap();
+        mapResult.put("result",cap);
+        String resStr =  new Gson().toJson(mapResult);
+        return resStr;
     }
 
     /**
@@ -70,7 +74,7 @@ public class CapitalFlowController {
         map.put("finance_time",finance_time);
         map.put("status","市局规划科处理中");
 
-        int result = capitalFlowServiceImp.setDataById(map);
+        int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }
 }

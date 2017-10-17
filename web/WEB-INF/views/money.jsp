@@ -952,40 +952,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#detail").modal('show');
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         console.log(id);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {id:id},
-//            dataType: "json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
-//        if(status == 1){
-//
-//        }
-//        $.ajax({
-//            url: '/queryStuffById.do',
-//            type: 'post',
-//            data: "id="+oid,
-//            dataType: 'json',
-//            async: false,
-//            contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//            success: function (data) {
-//                $("#input1").val(data.dept);
-//                $("#input2").val(data.author);
-//                $("#input3").val(data.reviewer);
-//                $("#input4").val(data.print);
-//                $("#input5").val(data.revision);
-//                $("#input6").val(data.copy);
-//                $("#input8").val(data.keyword);
-//                $("#input9").val(data.title);
-//                $("#input10").val(data.content);
-//                $("#oId").text(data.id);
-//                $("#created_at").text(data.created_at);
-//                $('#form_stuff').modal('show');
-//            }
-//        });
+        $.ajax({
+            url: "/getCatipalDataById.do",
+            type: "post",
+            data: {id:id},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+        /*if(status == 1){
+
+        }*/
     }
     function edit(that) {
         $("#edit").modal('show');
