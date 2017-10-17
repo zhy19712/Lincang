@@ -161,7 +161,7 @@
                         <ul class="nav nav-pills nav-stacked main-menu">
                             <li class="nav-header">我的办公</li>
                             <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
-                            <li><a href="./money.jsp"><i class="glyphicon glyphicon-file"></i><span> 资金申请</span></a></li>
+                            <li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 资金申请</span></a></li>
 
                             <li class="nav-header">我的业务</li>
                             <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 业务管理</span></a></li>

@@ -24,6 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="../../css/ui-choose.css">
     <link rel="stylesheet" href="../../css/jedate.css">
     <link rel="stylesheet" href="../../css/money.css">
+    <style>
+        .last{
+            border-bottom: 1px solid red !important;
+        }
+    </style>
 
 
     <!-- jQuery -->
@@ -339,16 +344,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                         </div>
                                         <div class="box-content">
-                                            <table id="caiwu2" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>发件人</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
+                                            <%--<table id="caiwu2" class="display" width="100%" cellspacing="0">--%>
+                                                <%--<thead>--%>
+                                                <%--<tr>--%>
+                                                    <%--<th>编号</th>--%>
+                                                    <%--<th>发件人</th>--%>
+                                                    <%--<th>时间</th>--%>
+                                                    <%--<th>操作</th>--%>
+                                                <%--</tr>--%>
+                                                <%--</thead>--%>
+                                            <%--</table>--%>
                                             <div class="x-know">
                                                 <p><span class="key">发件人：</span><span class="name">xxx</span></p>
                                                 <p><span class="key">通知内容: </span><span class="content">临沧为云南省地级市，地处云南省西南部，东邻普洱市，北连大理州，西接保山市，西南与缅甸交界，地处澜沧江与怒江之间，因濒临澜沧江而得名。市政府驻地距省会昆明598千米，是昆明通往缅甸仰光的陆上捷径，有3个国家口岸和17条通道。</span></p>
@@ -612,7 +617,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
     </div>
 
-    <div class="modal fade" id="form_apply" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -620,33 +625,106 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3>详细信息</h3>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
                 <form action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
-                        <input type="text" name="id" style="display: none" ></input>
-                        <input type="text" name="created_at" style="display: none" ></input>
+                        <p>申请进度: <span>财务正在处理</span></p>
                         <div class="row myrow">
                             <div class="col-sm-6">
-                                <span>申请人</span>
+                                <span>上报人</span>
                                 <input type="text" name="dept">
                             </div>
                             <div class="col-sm-6">
-                                <span>申请原因</span>
+                                <span>上报时间</span>
                                 <input type="text" name="author">
                             </div>
                         </div>
-                        <div class="row myrow" style="border-bottom: 1px solid red;">
+                        <div class="row myrow">
                             <div class="col-sm-12">
-                                <span>上传文件</span>
+                                <span>文件</span>
                                 <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                    <a href="#" onclick="add_click_file(1)">添加附件</a>
+                                    <a href="#" onclick="add_click_file(1)">附件</a>
                                     <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
                                 </div>
                                 <input type="button" style="display:none"/>
+                            </div>
+                        </div>
+                        <div class="row myrow"  style="border: 1px solid red;height: 50px;">
+                            <div class="col-sm-12"></div>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>详细信息</h3>
+                </div>
+                <iframe name="uploadFrame" style="display:none;"></iframe>
+                <form action="" method="post"
+                      enctype="multipart/form-data"  target="uploadFrame">
+
+                    <div class="modal-body">
+                        <p>申请进度: <span>财务正在处理</span></p>
+                        <div class="row myrow">
+                            <div class="col-sm-6">
+                                <span>上报人</span>
+                                <input type="text" name="dept" readonly="true">
+                            </div>
+                            <div class="col-sm-6">
+                                <span>上报时间</span>
+                                <input type="text" name="author" readonly="true">
+                            </div>
+                        </div>
+                        <div class="row myrow">
+                            <div class="col-sm-12">
+                                <span>文件</span>
+                                <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <a href="#" onclick="add_click_file(1)">下载</a>
+                                    <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
+                                </div>
+                                <input type="button" style="display:none"/>
+                            </div>
+                        </div>
+                        <div class="row myrow"  style="height: 50px;border-left:1px solid red;border-right:1px solid red;">
+                            <div class="col-sm-12"></div>
+                        </div>
+                        <div class="row myrow" id="caiwu1">
+                            <div class="col-sm-6">
+                                <span>款项来源</span>
+                                <input type="text" name="dept">
+                            </div>
+                            <div class="col-sm-6">
+                                <span>到款时间</span>
+                                <input type="text" name="author">
+                            </div>
+                        </div>
+                        <div class="row myrow last" id="caiwu2">
+                            <div class="col-sm-6">
+                                <span>到款金额</span>
+                                <input type="text" name="dept">
+                            </div>
+                            <div class="col-sm-6">
+                                <span>上传附件</span>
+                                <input type="text" name="author">
                             </div>
                         </div>
                     </div>
@@ -654,10 +732,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success">保存</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
-
 
             </div>
         </div>
@@ -857,13 +933,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $("#myDate").jeDate({
         format: "YYYY-MM-DD"
     });
-
+    var status;
     ~function() {
 
-        var status=$("#status").text();
+        status = $("#status").text();
+        console.log(status);
 
         if(status == 2){
-            $("#myTab > li:gt(8)").remove();
+            $("#new1>.row").css("display","none");
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();
@@ -871,6 +948,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     }();
+    // #资金申请查看按钮
+    function detail(that) {
+        $("#detail").modal('show');
+//        if(status == 1){
+//
+//        }
+//        $.ajax({
+//            url: '/queryStuffById.do',
+//            type: 'post',
+//            data: "id="+oid,
+//            dataType: 'json',
+//            async: false,
+//            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+//            success: function (data) {
+//                $("#input1").val(data.dept);
+//                $("#input2").val(data.author);
+//                $("#input3").val(data.reviewer);
+//                $("#input4").val(data.print);
+//                $("#input5").val(data.revision);
+//                $("#input6").val(data.copy);
+//                $("#input8").val(data.keyword);
+//                $("#input9").val(data.title);
+//                $("#input10").val(data.content);
+//                $("#oId").text(data.id);
+//                $("#created_at").text(data.created_at);
+//                $('#form_stuff').modal('show');
+//            }
+//        });
+    }
+    function edit(that) {
+        $("#edit").modal('show');
+//        if(status == 1){
+//
+//        }
+//        $.ajax({
+//            url: '/queryStuffById.do',
+//            type: 'post',
+//            data: "id="+oid,
+//            dataType: 'json',
+//            async: false,
+//            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+//            success: function (data) {
+//                $("#input1").val(data.dept);
+//                $("#input2").val(data.author);
+//                $("#input3").val(data.reviewer);
+//                $("#input4").val(data.print);
+//                $("#input5").val(data.revision);
+//                $("#input6").val(data.copy);
+//                $("#input8").val(data.keyword);
+//                $("#input9").val(data.title);
+//                $("#input10").val(data.content);
+//                $("#oId").text(data.id);
+//                $("#created_at").text(data.created_at);
+//                $('#form_stuff').modal('show');
+//            }
+//        });
+    }
 
     function newForm() {
         $('#money_apply_wdo').modal('show');
