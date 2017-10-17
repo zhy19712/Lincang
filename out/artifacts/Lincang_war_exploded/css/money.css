@@ -21,12 +21,14 @@
     line-height: 30px;
 }
 .notice .add{
+    margin-top: 10px;
     line-height: 30px;
 }
 .add input{
     width: 300px;
 }
 .add span{
+    color: red;
     display: inline-block;
     vertical-align: middle;
 }
@@ -42,6 +44,7 @@
     padding-bottom: 50px;
 }
 .notice .text span{
+    color: red;
     display: inline-block;
     vertical-align: top;
     margin-right: 10px;

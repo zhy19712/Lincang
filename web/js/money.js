@@ -196,11 +196,11 @@ $(document).ready(function () {
             "report_text":app_content
         };
         if(app_people == ""){
-            alert("上报人")
+            alert("上报人不能为空")
         }else if(app_time == ""){
-            alert("上报时间")
+            alert("上报时间不能为空")
         }else if(app_content == ""){
-            alert("上报内容")
+            alert("上报内容不能为空")
         }else {
             $.ajax({
                 type: 'post',
