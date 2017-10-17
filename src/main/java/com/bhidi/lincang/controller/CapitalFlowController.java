@@ -29,7 +29,7 @@ public class CapitalFlowController {
         map.put("report_person",report_person == null?"":report_person);
         map.put("report_quarter",report_quarter == null?"":report_quarter);
         map.put("report_text",report_person == null?"":report_text);
-        map.put("status","已经提交！");
+        map.put("status","市局财务科处理中");
         int result = capitalFlowServiceImp.submitData(map);
         return result+"";
     }

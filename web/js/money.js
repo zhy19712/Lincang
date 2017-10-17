@@ -149,7 +149,7 @@ $(document).ready(function () {
             url: "/capitalFlowForm.do",
             async:false
         },
-        "order": [[1, 'asc']],
+        "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
             {"data": "id"},
@@ -166,7 +166,7 @@ $(document).ready(function () {
                 "targets": [5],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>";
-                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' value='编辑'/>" ;
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -202,7 +202,6 @@ $(document).ready(function () {
         }else if(app_content == ""){
             alert("上报内容")
         }else {
-            console.log(datas);
             $.ajax({
                 type: 'post',
                 url: '/submitDataOfCapital.do',
@@ -212,7 +211,7 @@ $(document).ready(function () {
                 success: function (result) {
                     if(result){
                         alert("提交成功");
-                        /*money_apply1.ajax.url("/nform_stuff.do").load();*/
+                        money_apply1.ajax.url("/capitalFlowForm.do").load();
                     }else {
                         alert("提交失败");
                     }
@@ -223,7 +222,6 @@ $(document).ready(function () {
                     alert("系统错误");
                 }
             });
-            /* $("#fileForm").submit();*/
         }
     });
 
