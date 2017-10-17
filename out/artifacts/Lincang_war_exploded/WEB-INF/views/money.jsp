@@ -735,7 +735,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
-
             </div>
         </div>
     </div>
@@ -937,11 +936,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var status;
     ~function() {
 
-        status=$("#status").text();
+        status = $("#status").text();
         console.log(status);
 
         if(status == 2){
-            $("#myTab > li:gt(8)").remove();
+            $("#new1>.row").css("display","none");
 
         }else if(status == 3){
             $("#myTab > li:gt(4)").remove();

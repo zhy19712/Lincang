@@ -202,7 +202,6 @@ $(document).ready(function () {
         }else if(app_content == ""){
             alert("上报内容")
         }else {
-            console.log(datas);
             $.ajax({
                 type: 'post',
                 url: '/submitDataOfCapital.do',
@@ -212,7 +211,7 @@ $(document).ready(function () {
                 success: function (result) {
                     if(result){
                         alert("提交成功");
-                        /*money_apply1.ajax.url("/nform_stuff.do").load();*/
+                        money_apply1.ajax.url("/capitalFlowForm.do").load();
                     }else {
                         alert("提交失败");
                     }
