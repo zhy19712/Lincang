@@ -146,17 +146,17 @@ $(document).ready(function () {
     //规划科资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/archivedtable_office.do",
+            url: "/capitalFlowForm.do",
             async:false
         },
-        "order": [[2, 'asc']],
+        "order": [[1, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "OID"},
-            {"data": "CREATED_AT"},
-            {"data": "DEPT"},
-            {"data": "AUTHOR"},
-            {"data": "TITLE"},
+            {"data": "id"},
+            {"data": "create_time"},
+            {"data": "report_person"},
+            {"data": "report_quarter"},
+            {"data": "status"},
             {"data": null}
         ],
         "columnDefs": [
@@ -166,7 +166,7 @@ $(document).ready(function () {
                 "targets": [5],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>";
-                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -203,26 +203,26 @@ $(document).ready(function () {
             alert("上报内容")
         }else {
             console.log(datas);
-            // $.ajax({
-            //     type: 'post',
-            //     url: '/submitFormData.do',
-            //     data: datas,
-            //     dataType: 'json',
-            //     contentType: "application/x-www-form-urlencoded; charset=utf-8",
-            //     success: function (result) {
-            //         if(result){
-            //             alert("提交成功");
-            //             money_apply1.ajax.url("/nform_stuff.do").load();
-            //         }else {
-            //             alert("提交失败");
-            //         }
-            //         $("#form_stuff").modal("hide");
-            //         wipeData();
-            //     },
-            //     error:function () {
-            //         alert("系统错误");
-            //     }
-            // });
+            $.ajax({
+                type: 'post',
+                url: '/submitDataOfCapital.do',
+                data: datas,
+                dataType: 'json',
+                contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                success: function (result) {
+                    if(result){
+                        alert("提交成功");
+                        /*money_apply1.ajax.url("/nform_stuff.do").load();*/
+                    }else {
+                        alert("提交失败");
+                    }
+                    $("#money_apply_wdo").modal("hide");
+                    wipeData();
+                },
+                error:function () {
+                    alert("系统错误");
+                }
+            });
             /* $("#fileForm").submit();*/
         }
     });
