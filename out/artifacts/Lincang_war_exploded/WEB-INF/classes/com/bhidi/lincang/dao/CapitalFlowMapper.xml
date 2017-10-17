@@ -8,5 +8,24 @@
         insert into capitalflow (create_time,report_person,report_quarter,report_text,status)
         values( #{create_time},#{report_person},#{report_quarter},#{report_text},#{status} )
     </insert >
-
+    <!--CapitalFlow queryCatipalDataById(String id);-->
+    <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
+        select * from capitalflow where id = #{id}
+    </select >
+    <!--int updateCatipalDataById(Map<String, String> map);-->
+    <update  id="updateCatipalDataById" parameterType="Map">
+        update capitalflow
+        set
+        create_time = #{create_time},
+        report_person = #{report_person},
+        report_quarter = #{report_quarter},
+        report_text = #{report_text},
+        report_failname = #{report_failname},
+        status = #{status},
+        money_source = #{money_source},
+        arrival_time = #{arrival_time},
+        amount = #{amount},
+        finance_time = #{finance_time},
+        where id = #{id}
+    </update >
 </mapper>

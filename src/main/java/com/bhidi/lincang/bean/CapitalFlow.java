@@ -8,6 +8,10 @@ public class CapitalFlow {
     private String report_text;
     private String report_failname;
     private String status;
+    private String money_source;
+    private String arrival_time;
+    private String amount;
+    private String finance_time;
 
     public CapitalFlow() {
     }
@@ -20,7 +24,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status, String money_source, String arrival_time, String amount, String finance_time) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
@@ -28,6 +32,10 @@ public class CapitalFlow {
         this.report_text = report_text;
         this.report_failname = report_failname;
         this.status = status;
+        this.money_source = money_source;
+        this.arrival_time = arrival_time;
+        this.amount = amount;
+        this.finance_time = finance_time;
     }
 
     public int getId() {
@@ -86,6 +94,38 @@ public class CapitalFlow {
         this.status = status;
     }
 
+    public String getMoney_source() {
+        return money_source;
+    }
+
+    public void setMoney_source(String money_source) {
+        this.money_source = money_source;
+    }
+
+    public String getArrival_time() {
+        return arrival_time;
+    }
+
+    public void setArrival_time(String arrival_time) {
+        this.arrival_time = arrival_time;
+    }
+
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
+    public String getFinance_time() {
+        return finance_time;
+    }
+
+    public void setFinance_time(String finance_time) {
+        this.finance_time = finance_time;
+    }
+
     @Override
     public String toString() {
         return "CapitalFlow{" +
@@ -96,6 +136,10 @@ public class CapitalFlow {
                 ", report_text='" + report_text + '\'' +
                 ", report_failname='" + report_failname + '\'' +
                 ", status='" + status + '\'' +
+                ", money_source='" + money_source + '\'' +
+                ", arrival_time='" + arrival_time + '\'' +
+                ", amount='" + amount + '\'' +
+                ", finance_time='" + finance_time + '\'' +
                 '}';
     }
 }
