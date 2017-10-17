@@ -48,9 +48,6 @@ public class CapitalFlowController {
     /**
      * 财务科点击了编辑之后的提交按钮
      * @param id
-     * @param report_person
-     * @param report_quarter
-     * @param report_text
      * @param money_source
      * @param arrival_time
      * @param amount
@@ -58,17 +55,17 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String setDataById(String id,String create_time,String report_person,String report_quarter,String report_text,
+    public String setDataById(String id,
                               String money_source,String arrival_time,String amount) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String finance_time = format.format(now);
         Map<String,String> map = new HashMap();
         map.put("id",id);
-        map.put("create_time",create_time);
+        /*map.put("create_time",create_time);
         map.put("report_person",report_person == null?"":report_person);
         map.put("report_quarter",report_quarter == null?"":report_quarter);
-        map.put("report_text",report_person == null?"":report_text);
+        map.put("report_text",report_person == null?"":report_text);*/
         map.put("money_source",money_source);
         map.put("arrival_time",arrival_time);
         map.put("amount",amount);

@@ -1029,15 +1029,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }else {
                     console.log(money_source,arrival_time,amount)
                     //财务科提交
-//                $.ajax({
-//                    url: "/getCatipalDataById.do",
-//                    type: "post",
-//                    data: {money_source:money_source,arrival_time:arrival_time,amount:amount},
-//                    dataType: "json",
-//                    success: function (data) {
-//                        console.log(data);
-//                    }
-//                })
+                $.ajax({
+                    url: "/setDataById.do",
+                    type: "post",
+                    data: {id :id,
+                        money_source:money_source,
+                        arrival_time:arrival_time,
+                        amount:amount},
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
                 }
             })
         }else {

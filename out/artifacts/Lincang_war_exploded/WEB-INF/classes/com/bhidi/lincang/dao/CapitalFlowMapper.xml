@@ -15,17 +15,21 @@
     <!--int updateCatipalDataById(Map<String, String> map);-->
     <update  id="updateCatipalDataById" parameterType="Map">
         update capitalflow
-        set
-        create_time = #{create_time},
-        report_person = #{report_person},
-        report_quarter = #{report_quarter},
-        report_text = #{report_text},
-        report_failname = #{report_failname},
-        status = #{status},
-        money_source = #{money_source},
-        arrival_time = #{arrival_time},
-        amount = #{amount},
-        finance_time = #{finance_time},
+        <trim prefix="set" suffixOverrides=",">
+            <if test="create_time!=null">create_time = #{create_time},</if>
+            <if test="report_person!=null">report_person = #{report_person},</if>
+            <if test="report_quarter!=null">report_quarter = #{report_quarter},</if>
+            <if test="report_text!=null">report_text = #{report_text},</if>
+            <if test="report_failname!=null">report_failname = #{report_failname},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="money_source!=null">money_source = #{money_source},</if>
+            <if test="arrival_time!=null">arrival_time = #{arrival_time},</if>
+            <if test="amount!=null">amount = #{amount},</if>
+            <if test="finance_time!=null">finance_time = #{finance_time},</if>
+            <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
+            <if test="areaname!=null">areaname = #{areaname},</if>
+            <if test="text!=null">text = #{text},</if>
+        </trim>
         where id = #{id}
     </update >
 </mapper>
