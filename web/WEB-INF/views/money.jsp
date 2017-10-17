@@ -85,7 +85,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="nav-sm nav nav-stacked">
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
-                        <li class="nav-header">我的申请</li>
+                        <li id="m_apply1" class="nav-header">我的申请</li>
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
                         <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 区县资金申请</span></a></li>
 
@@ -937,13 +937,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     ~function() {
 
         status = $("#status").text();
-        console.log(status);
 
         if(status == 2){
             $("#new1>.row").css("display","none");
 
         }else if(status == 3){
-            $("#myTab > li:gt(4)").remove();
+            $("#m_apply1").css("display","none");
 
         }
 
@@ -951,6 +950,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     // #资金申请查看按钮
     function detail(that) {
         $("#detail").modal('show');
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        console.log(id);
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            data: {id:id},
+//            dataType: "json",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
 //        if(status == 1){
 //
 //        }
@@ -979,6 +989,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
     function edit(that) {
         $("#edit").modal('show');
+        var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+        console.log(state);
 //        if(status == 1){
 //
 //        }

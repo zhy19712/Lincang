@@ -149,7 +149,7 @@ $(document).ready(function () {
             url: "/capitalFlowForm.do",
             async:false
         },
-        "order": [[1, 'asc']],
+        "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
             {"data": "id"},
@@ -202,7 +202,6 @@ $(document).ready(function () {
         }else if(app_content == ""){
             alert("上报内容")
         }else {
-            console.log(datas);
             $.ajax({
                 type: 'post',
                 url: '/submitDataOfCapital.do',
@@ -223,7 +222,6 @@ $(document).ready(function () {
                     alert("系统错误");
                 }
             });
-            /* $("#fileForm").submit();*/
         }
     });
 

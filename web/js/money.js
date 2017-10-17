@@ -149,7 +149,7 @@ $(document).ready(function () {
             url: "/capitalFlowForm.do",
             async:false
         },
-        "order": [[1, 'asc']],
+        "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
             {"data": "id"},
@@ -222,7 +222,6 @@ $(document).ready(function () {
                     alert("系统错误");
                 }
             });
-            /* $("#fileForm").submit();*/
         }
     });
 

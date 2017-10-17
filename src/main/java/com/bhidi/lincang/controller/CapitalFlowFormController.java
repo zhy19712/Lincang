@@ -74,17 +74,17 @@ public class CapitalFlowFormController {
         }
         List<CapitalFlow> tasks = new ArrayList<CapitalFlow>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = '申请中'";
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = '市局财务科处理中'";
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = '申请中'";
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = '市局财务科处理中'";
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where STATUS = '申请中'";
+            String sql = "SELECT * FROM " + table + " where STATUS = '市局财务科处理中'";
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
