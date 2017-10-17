@@ -31,6 +31,6 @@ public class CapitalFlowController {
         map.put("report_text",report_person == null?"":report_text);
         map.put("status","已经提交！");
         int result = capitalFlowServiceImp.submitData(map);
-        return "";
+        return result+"";
     }
 }
