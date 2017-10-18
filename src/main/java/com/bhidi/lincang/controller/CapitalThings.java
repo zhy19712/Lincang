@@ -1,7 +1,6 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.CapitalFlow;
-import com.bhidi.lincang.bean.Form_Stuff;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
@@ -10,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,10 +21,18 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class CapitalFlowFormController {
+public class CapitalThings {
+    /**
+     * 待处理事务
+     * @param request
+     * @param userstatus
+     * @param capitalstatus
+     * @return
+     * @throws SQLException
+     */
     @ResponseBody
-    @RequestMapping(value="/capitalFlowForm.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String SubmittedForm(HttpServletRequest request,String userstatus) throws SQLException {
+    @RequestMapping(value="/pendingCapitalFlow.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String SubmittedForm(HttpServletRequest request,String userstatus,String capitalstatus) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
@@ -33,6 +42,20 @@ public class CapitalFlowFormController {
             initiatorclass = "1";
         } else {
             initiatorclass = userstatus;
+        }
+        String status = "";
+        if( capitalstatus != null ){
+            try {
+                capitalstatus = URLDecoder.decode(capitalstatus ,"utf-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            String[] strs  = capitalstatus.split(",");
+            if( strs.length == 1 ){
+                status = "("+"status = "+strs[0]+")";
+            } else if ( strs.length == 2 ){
+                status = "("+"status = "+strs[0]+"or status = "+strs[1]+")";
+            }
         }
 
 
@@ -80,17 +103,17 @@ public class CapitalFlowFormController {
         }
         List<CapitalFlow> tasks = new ArrayList<CapitalFlow>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass;
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass +"and"+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass;
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass +"and"+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass;
+            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +"and"+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
