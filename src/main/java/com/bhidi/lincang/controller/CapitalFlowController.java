@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.SimpleDateFormat;
@@ -84,7 +85,7 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setToAreaDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String setDataById(String id,String[] areas,String text) {
+    public String setDataById(String id, @RequestParam(value="areanames[]",required=false) String[] areas, String text) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String toarea_time = format.format(now);
@@ -101,6 +102,7 @@ public class CapitalFlowController {
         map.put("toarea_time",toarea_time);
         map.put("areaname",sb.toString());
         map.put("text",text);
+        map.put("status","已通知区县");
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }

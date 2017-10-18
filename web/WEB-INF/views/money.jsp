@@ -1213,23 +1213,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }else{
                         console.log(arr,text);
                         //规划科提交
-//                        $.ajax({
-//                            url: "/getCatipalDataById.do",
-//                            type: "post",
-//                            async: false,
-//                            data: {id:id,areaname:arr,text:text},
-//                            dataType: "json",
-//                            success: function (data) {
-//                                console.log(data);
-//                                var data = data.result;
-//                            }
-//                        });
+                        $.ajax({
+                            url: "/setToAreaDataById.do",
+                            type: "post",
+                            async: false,
+                            data: {id:id,areanames:arr,text:text},
+                            dataType: "json",
+                            success: function (data) {
+                                console.log(data);
+                                var data = data.result;
+                            }
+                        });
                     }
-
                 })
-
-
-
             }
         }
     }
