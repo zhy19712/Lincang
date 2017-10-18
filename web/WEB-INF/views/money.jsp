@@ -87,7 +87,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li id="m_apply1" class="nav-header">我的申请</li>
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
-                        <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 区县资金申请</span></a></li>
 
                         <li class="nav-header">我的事务</li>
                         <li><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 财务科已到资金</span></a></li>
@@ -160,49 +159,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </div>
                                 </div>
 
-                                <div class="tab-pane" id="progress1">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的申请</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">新建申请</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
-                                               href="javascript:void(0)" onclick="applyForm()">
-                                                <i class="glyphicon glyphicon-pencil blue"></i>
-
-                                                <div>资金申请</div>
-
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
-                                        </div>
-
-
-                                        <div class="box-content">
-                                            <table id="quxian1" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>标题</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="tab-pane" id="new2">
                                     <div>
