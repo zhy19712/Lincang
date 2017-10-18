@@ -149,9 +149,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
-                                                        <th>创建时间</th>
-                                                        <th>上报人</th>
-                                                        <th>上报季度</th>
+                                                        <th>时间</th>
+                                                        <th>上报人/申请人</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -989,9 +988,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     }();
     //规划科资金申请
+    console.log(status);
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do",
+            url: "/capitalFlowForm.do?userstatus=" + status,
             async:false
         },
         "order": [[1, 'desc']],
@@ -1000,7 +1000,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "report_quarter"},
             {"data": "status"},
             {"data": null}
         ],
@@ -1008,7 +1007,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [5],
+                "targets": [4],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
