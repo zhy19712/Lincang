@@ -526,87 +526,87 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     //财务科待处理
     var sta1 = "市局财务科处理中";
-//    var dcl_table = $('#dcl_table').DataTable({
-//        ajax: {
-//            url: "/capitalFlowForm.do?userstatus=" + encodeURI(encodeURI(sta1)),
-//            async:false
-//        },
-//        "order": [[1, 'desc']],
-//        "serverSide": true,
-//        "columns": [
-//            {"data": "id"},
-//            {"data": "create_time"},
-//            {"data": "report_person"},
-//            {"data": "status"},
-//            {"data": null}
-//        ],
-//        "columnDefs": [
-//            {
-//                "searchable": false,
-//                "orderable": false,
-//                "targets": [4],
-//                "render" :  function(data,type,row) {
-//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-//                    return html;
-//                }
-//            }
-//        ],
-//        "language": {
-//            "lengthMenu": "每页_MENU_ 条记录",
-//            "zeroRecords": "没有找到记录",
-//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-//            "infoEmpty": "无记录",
-//            "search": "搜索：",
-//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-//            "paginate": {
-//                "previous": "上一页",
-//                "next": "下一页"
-//            }
-//        }
-//    });
+    var dcl_table = $('#dcl_table').DataTable({
+        ajax: {
+            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus="+status,
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "id"},
+            {"data": "create_time"},
+            {"data": "report_person"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [4],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
     //财务科已处理
     var sta2 = "市局规划科处理中,已通知区县";
-//    var ycl_table = $('#dcl_table').DataTable({
-//        ajax: {
-//            url: "/capitalFlowForm.do?userstatus=" + encodeURI(encodeURI(sta2)),
-//            async:false
-//        },
-//        "order": [[1, 'desc']],
-//        "serverSide": true,
-//        "columns": [
-//            {"data": "id"},
-//            {"data": "create_time"},
-//            {"data": "report_person"},
-//            {"data": "status"},
-//            {"data": null}
-//        ],
-//        "columnDefs": [
-//            {
-//                "searchable": false,
-//                "orderable": false,
-//                "targets": [4],
-//                "render" :  function(data,type,row) {
-//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-//                    return html;
-//                }
-//            }
-//        ],
-//        "language": {
-//            "lengthMenu": "每页_MENU_ 条记录",
-//            "zeroRecords": "没有找到记录",
-//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-//            "infoEmpty": "无记录",
-//            "search": "搜索：",
-//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-//            "paginate": {
-//                "previous": "上一页",
-//                "next": "下一页"
-//            }
-//        }
-//    });
+    var ycl_table = $('#ycl_table').DataTable({
+        ajax: {
+            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus="+status,
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "id"},
+            {"data": "create_time"},
+            {"data": "report_person"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [4],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
     //申请提交
     $("#money_apply_wdo .btn-primary").click(function () {

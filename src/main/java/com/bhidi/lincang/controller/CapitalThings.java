@@ -52,12 +52,11 @@ public class CapitalThings {
             }
             String[] strs  = capitalstatus.split(",");
             if( strs.length == 1 ){
-                status = "("+"status = "+strs[0]+")";
+                status = "("+"status = "+"'"+strs[0]+"'"+")";
             } else if ( strs.length == 2 ){
-                status = "("+"status = "+strs[0]+"or status = "+strs[1]+")";
+                status = "("+"status = "+"'"+strs[0]+"'"+"or status = "+"'"+strs[1]+"'"+")";
             }
         }
-
 
         //获取请求次数
         String draw = "0";
@@ -103,17 +102,17 @@ public class CapitalThings {
         }
         List<CapitalFlow> tasks = new ArrayList<CapitalFlow>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass +"and"+status;
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass +"and"+status;
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +"and"+status;
+            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +" and"+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
