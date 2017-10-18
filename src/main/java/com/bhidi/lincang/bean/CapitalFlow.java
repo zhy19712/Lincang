@@ -15,6 +15,7 @@ public class CapitalFlow {
     private String toarea_time;
     private String  areaname;
     private String text;
+    private String initiatorclass;
 
     public CapitalFlow() {
     }
@@ -27,7 +28,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
@@ -40,8 +41,6 @@ public class CapitalFlow {
         this.amount = amount;
         this.finance_time = finance_time;
         this.toarea_time = toarea_time;
-        this.areaname = areaname;
-        this.text = text;
     }
 
     public int getId() {
@@ -140,22 +139,6 @@ public class CapitalFlow {
         this.toarea_time = toarea_time;
     }
 
-    public String getAreaname() {
-        return areaname;
-    }
-
-    public void setAreaname(String areaname) {
-        this.areaname = areaname;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
     @Override
     public String toString() {
         return "CapitalFlow{" +
@@ -171,8 +154,6 @@ public class CapitalFlow {
                 ", amount='" + amount + '\'' +
                 ", finance_time='" + finance_time + '\'' +
                 ", toarea_time='" + toarea_time + '\'' +
-                ", areaname='" + areaname + '\'' +
-                ", text='" + text + '\'' +
                 '}';
     }
 }

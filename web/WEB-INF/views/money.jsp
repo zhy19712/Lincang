@@ -22,7 +22,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="../../css/mycss.css">
     <link rel="stylesheet" href="../../css/oa.css">
     <link rel="stylesheet" href="../../css/ui-choose.css">
-    <link rel="stylesheet" href="../../css/jquery.step.css">
     <link rel="stylesheet" href="../../css/jedate.css">
     <link rel="stylesheet" href="../../css/money.css">
     <style>
@@ -37,7 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script src="../../js/jquery-form.min.js"></script>
     <script src="../../js/ui-choose.js"></script>
     <script src="../../js/jquery.jedate.js"></script>
-    <script src="../../js/jquery.step.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -87,12 +85,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="nav-sm nav nav-stacked">
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
-                        <li id="header1" class="nav-header">我的申请</li>
-                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
+                        <li id="m_apply1" class="nav-header">我的申请</li>
+                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
+                        <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 区县资金申请</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li id="dcl"><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
-                        <li id="ycl"><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
+                        <li><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 财务科已到资金</span></a></li>
+                        <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 规划科资金到账</span></a></li>
                         <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 区县接收资金申请通知</span></a></li>
                         <li><a href="#completed4"><i class="glyphicon glyphicon-check"></i><span> 财务转账页面</span></a></li>
                         <li><a href="#completed5"><i class="glyphicon glyphicon-check"></i><span> 区县收款页面</span></a></li>
@@ -150,12 +149,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
-                                                        <th>创建时间</th>
-                                                        <th>类型</th>
-                                                        <th>申请人</th>
+                                                        <th>时间</th>
+                                                        <th>上报人/申请人</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="progress1">
+                                    <div>
+                                        <ul class="breadcrumb">
+                                            <li>
+                                                <a href="#">我的申请</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">新建申请</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2 col-sm-3 col-xs-6">
+                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
+                                               href="javascript:void(0)" onclick="applyForm()">
+                                                <i class="glyphicon glyphicon-pencil blue"></i>
+
+                                                <div>资金申请</div>
+
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                    <div class="box-inner">
+                                        <div class="box-header well">
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
+                                        </div>
+
+
+                                        <div class="box-content">
+                                            <table id="quxian1" class="display" width="100%" cellspacing="0">
+                                                <thead>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>标题</th>
+                                                    <th>时间</th>
+                                                    <th>操作</th>
+                                                </tr>
                                                 </thead>
                                             </table>
                                         </div>
@@ -179,16 +221,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                         </div>
                                         <div class="box-content">
-                                            <table id="ycl_table" class="display" width="100%" cellspacing="0">
+                                            <table id="guihua2" class="display" width="100%" cellspacing="0">
                                                 <thead>
-                                                    <tr>
-                                                        <th>编号</th>
-                                                        <th>创建时间</th>
-                                                        <th>上报人</th>
-                                                        <th>上报季度</th>
-                                                        <th>当前状态</th>
-                                                        <th>操作</th>
-                                                    </tr>
+                                                <tr>
+                                                    <th>编号</th>
+                                                    <th>到账时间</th>
+                                                    <th>项目名称</th>
+                                                    <th>金额数量</th>
+                                                    <th>申报人</th>
+                                                    <th>申报时间</th>
+                                                </tr>
+
                                                 </thead>
                                             </table>
                                         </div>
@@ -634,23 +677,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3>详细信息</h3>
                 </div>
-                <div id="container" style="width: 100%;height: 120px">
-                    <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
-                        <div class="step-header">
-                            <ul>
-                                <li><p>规划科已申请，财务处理中</p></li>
-                                <li><p>财务处理完毕，规划科处理中</p></li>
-                                <li><p>规划科已通知区县</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
                 <form action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
-
                     <div class="modal-body">
+                        <p>申请进度: <span>财务正在处理</span></p>
                         <div class="row myrow">
                             <div class="col-sm-6">
                                 <span>上报人</span>
@@ -716,27 +748,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                             </div>
                         </div>
-                        <div class="row myrow" id="guihuake_show1">
-                            <div class="col-sm-12">
-                                <div class="county_infos">
-                                    <span>已通知区县:</span>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row myrow last" id="guihuake_show2">
-                            <div class="col-sm-12">
-                                <div class="not_content">
-                                    <span>通知内容:</span>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </form>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -963,25 +979,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         status = $("#status").text();
 
         if(status == 2){
-            $("#hader1").remove();
-            $("#m_apply1").remove();
-            $("#m_apply2").remove();
             $("#new1>.row").css("display","none");
 
         }else if(status == 3){
-            $("#m_apply1").remove();
-            $("#new1").remove();
-            $("#m_apply2").click();
+            $("#m_apply1").css("display","none");
 
-        }else if(status == 1){
-            $("#m_apply2").remove();
         }
 
     }();
     //规划科资金申请
+    console.log(status);
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do",
+            url: "/capitalFlowForm.do?userstatus=" + status,
             async:false
         },
         "order": [[1, 'desc']],
@@ -990,7 +1000,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "report_quarter"},
             {"data": "status"},
             {"data": null}
         ],
@@ -998,7 +1007,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [5],
+                "targets": [4],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
@@ -1063,8 +1072,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     // 清空数据
     function mywipeData() {
         $("#edit input").val("");
-
-        $("#notice_content").val("");
     }
     // #资金申请查看按钮
     function detail(that) {
@@ -1093,7 +1100,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#edit").modal('show');
         var kind = $(that).val();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-        $("#edit .btn-primary").css("display","none");
         $.ajax({
             url: "/getCatipalDataById.do",
             type: "post",
@@ -1109,53 +1115,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $("#money_source").val(data.money_source);
                 $("#arrival_time").val(data.arrival_time);
                 $("#amount").val(data.amount);
-                $("#guihuake_show1 .county_infos p").text(data.areaname);
-                $("#guihuake_show2 .not_content p").text(data.text);
-                if(data.status == "市局财务科处理中"){
-                    step.goStep(1);
-                }else if(data.status == "市局规划科处理中"){
-                    step.goStep(2);
-                }else if(data.status == "已通知区县"){
-                    step.goStep(3);
-                }
             }
         });
         var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
         console.log(status);
         if( status == 2 ){
             if(kind == "查看"){
-                $("#guihuake_show1").css("display","none");
-                $("#guihuake_show2").css("display","none");
                 $("#guihuake").css("display","none");
                 if(state == "市局财务科处理中"){
                     $("#caiwu2").css("display","none");
                     $("#caiwu1").css("display","none");
                     $("#caiwu").addClass("last");
-                }else if(state == "市局规划科处理中"){
+                }else {
                     $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").addClass("last");
+                    $("#caiwu2").css("display","block");
                     $("#caiwu1").css("display","block");
                     $("#money_source").attr("readonly",true);
                     $("#amount").attr("readonly",true);
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block");
                 }
             }else if(kind == "编辑"){
                 $("#caiwu").removeClass("last");
                 $("#caiwu1").css("display","block");
                 $("#caiwu2").css("display","block");
-                $("#guihuake_show1").css("display","none");
-                $("#guihuake_show2").css("display","none");
                 $("#guihuake").css("display","none");
                 $("#caiwu2").addClass("last");
                 if(state == "市局财务科处理中"){
-                    $("#edit .btn-primary").css("display","inline-block");
                     $("#edit .btn-primary").text("通知规划科");
                     $("#money_source").attr("readonly",false);
                     $("#amount").attr("readonly",false);
@@ -1175,7 +1159,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $.ajax({
                                 url: "/setDataById.do",
                                 type: "post",
-                                async: false,
                                 data: {
                                     id :id,
                                     money_source:money_source,
@@ -1191,101 +1174,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             })
                         }
                     })
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
+                }else {
                     $("#money_source").attr("readonly",true);
                     $("#amount").attr("readonly",true);
-                }else if(state == "已通知区县"){
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block");
                 }
 
             }
-        }else if(status == 1){
+        }else {
             $("#money_source").attr("readonly",true);
             $("#amount").attr("readonly",true);
-            if(kind == "查看" ){
-                if (state == "市局财务科处理中"){
-                    $("#caiwu").addClass("last");
-                    $("#caiwu1").css("display","none");
-                    $("#caiwu2").css("display","none");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").addClass("last");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block").addClass("last");
-                }
-            }else if(kind == "编辑"){
-                if(state == "市局财务科处理中"){
-                    $("#caiwu").addClass("last");
-                    $("#caiwu1").css("display","none");
-                    $("#caiwu2").css("display","none");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").addClass("last");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                    $("#guihuake").css("display","block");
-                    $("#edit .btn-primary").css("display","inline-block");
-                    $("#edit .btn-primary").text("通知区县");
-                    $("#edit .btn-primary").click(function () {
-                        var arr = [];
-                        $.each($(".selected"),function (i,n) {
-                            arr.push(n.innerText);
+            if (state != "市局规划科处理中"){
+                $("#caiwu").addClass("last");
+                $("#caiwuw").removeClass("last");
+                $("#caiwu1").css("display","none");
+                $("#caiwu2").css("display","none");
+                $("#guihuake").css("display","none");
+            }else {
+                $("#caiwu").removeClass("last");
+                $("#caiwu2").removeClass("last");
+                $("#caiwu1").css("display","block");
+                $("#caiwu2").css("display","block");
+                $("#guihuake").css("display","block");
+//                if(kind == "查看" ){
+//
+//                }
+                $("#edit .btn-primary").text("通知区县");
+                $("#edit .btn-primary").click(function () {
+                    var arr = [];
+                    $.each($(".selected"),function (i,n) {
+                        arr.push(n.innerText);
+                    });
+                    var text = $("#notice_content").val();
+                    if(arr.length == 0){
+                        alert("请选取区县")
+                    }else if(text == ""){
+                        alert("请输入通知内容")
+                    }else{
+                        console.log(arr,text);
+                        //规划科提交
+                        $.ajax({
+                            url: "/setToAreaDataById.do",
+                            type: "post",
+                            async: false,
+                            data: {id:id,areanames:arr,text:text},
+                            dataType: "json",
+                            success: function (data) {
+                                console.log(data);
+                                var data = data.result;
+                            }
                         });
-                        var text = $("#notice_content").val();
-                        if(arr.length == 0){
-                            alert("请选取区县")
-                        }else if(text == ""){
-                            alert("请输入通知内容")
-                        }else{
-                            console.log(arr,text);
-                            //规划科提交
-                            $.ajax({
-                                url: "/setToAreaDataById.do",
-                                type: "post",
-                                async: false,
-                                data: {id:id,areanames:arr,text:text},
-                                dataType: "json",
-                                success: function (data) {
-                                    console.log(data);
-                                    $("#edit").modal("hide");
-                                    money_apply1.ajax.url("/capitalFlowForm.do").load();
-                                    mywipeData();
-                                    $("#uc_03 li").removeClass("selected");
-                                }
-                            });
-                        }
-                    })
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block").addClass("last");
-                }
-
+                    }
+                })
             }
         }
     }
@@ -1295,7 +1234,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
 
     function applyForm() {
-        $('#money_apply_wdo').modal('show');
+        $('#form_apply').modal('show');
     }
 
 
