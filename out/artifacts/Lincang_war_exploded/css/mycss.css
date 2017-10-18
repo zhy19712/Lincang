@@ -14,14 +14,26 @@
 }
 .myrow>div>span{
     display: inline-block;
-    width: 70px;
+    width: 80px;
     border-right: 1px solid red;
     color: red;
 }
 .myrow>div>input{
-    width: 60%;
+    width: 70%;
     border: none;
     outline: none;
+}
+.myrow>.col-sm-12>input{
+    width: 90%;
+}
+.myrow>.col-sm-5>input{
+    width: 76%;
+}
+.myrow>.col-sm-4>input{
+    width: 70%;
+}
+.myrow>.col-sm-3>input{
+    width: 58%;
 }
 .mytext{
     width: 100%;

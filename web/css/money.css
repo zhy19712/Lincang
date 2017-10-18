@@ -119,3 +119,19 @@
 .y-money p:nth-child(2){
     padding-bottom: 50px;
 }
+#guihuake_show1,#guihuake_show2{
+    display: none;
+}
+#guihuake_show1 span,#guihuake_show2 span{
+    width: 80px;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 1px solid red;
+    color: red;
+}
+#guihuake_show1 p,#guihuake_show2 p{
+    width: 88%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0;
+}
