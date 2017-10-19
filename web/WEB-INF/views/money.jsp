@@ -223,11 +223,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     </tr>
                                                 </thead>
                                             </table>
-                                            <%--<div class="x-know">--%>
-                                                <%--<p><span class="key">发件人：</span><span class="name">xxx</span></p>--%>
-                                                <%--<p><span class="key">通知内容: </span><span class="content">临沧为云南省地级市，地处云南省西南部，东邻普洱市，北连大理州，西接保山市，西南与缅甸交界，地处澜沧江与怒江之间，因濒临澜沧江而得名。市政府驻地距省会昆明598千米，是昆明通往缅甸仰光的陆上捷径，有3个国家口岸和17条通道。</span></p>--%>
-                                                <%--<button type="button" class="btn btn-primary dropdown-toggle mybtn">已知晓</button>--%>
-                                            <%--</div>--%>
                                         </div>
 
 
@@ -278,6 +273,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="modal-body">
                         <input id="oId" type="text" name="id" style="display: none" ></input>
                         <input id="created_at" type="text" name="created_at" style="display: none" ></input>
+                        <div class="row myrow">
+                            <div class="col-sm-12">
+                                <span>标题</span>
+                                <input id="title" type="text">
+                            </div>
+                        </div>
                         <div class="row myrow">
                             <div class="col-sm-6" id="people">
                                 <span>上报人</span>
@@ -715,6 +716,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     //申请提交
     $("#money_apply_wdo .btn-primary").click(function () {
+        var title = $("#title").val();
         if(status == 1){
             var app_people=  $("#input1").val();
             var app_time=  $("#input2").val();
@@ -722,7 +724,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var datas= {
                 "report_person":app_people,
                 "report_quarter":app_time,
-                "report_text":app_content
+                "report_text":app_content,
+                "title":title
             };
             if(app_people == ""){
                 alert("上报人不能为空")
@@ -730,7 +733,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 alert("上报时间不能为空")
             }else if(app_content == ""){
                 alert("上报内容不能为空")
+            }else if(title == ""){
+                alert("标题不能为空")
             }else {
+                console.log(datas);
                 $.ajax({
                     type: 'post',
                     url: '/submitDataOfCapital.do?userstatus=1',
@@ -757,13 +763,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var app_reason=  $("#input2").val();
             var datas= {
                 "report_person":app_people,
-                "report_reason":app_reason
+                "report_reason":app_reason,
+                "title":title
             };
             if(app_people == ""){
                 alert("申请人不能为空")
             }else if(app_time == ""){
                 alert("申请原因不能为空")
+            }else if(title == "") {
+                alert("标题不能为空")
             }else {
+                console.log(datas);
+
                 $.ajax({
                     type: 'post',
                     url: '/submitDataOfCapital.do?userstatus=3',
