@@ -37,7 +37,7 @@
          IFNULL(guihuapifuren,'')as guihuapifuren,
          IFNULL(caiwuzhuanzhangren,'')as caiwuzhuanzhangren,
          IFNULL(quxianbaocunren,'')as quxianbaocunren,
-         IFNULL(quxiantijiaoren,'')as quxiantijiaoren,
+         IFNULL(quxiantijiaoren,'')as quxiantijiaoren
          from capitalflow where id = #{id}
     </select >
     <!--int updateCatipalDataById(Map<String, String> map);-->

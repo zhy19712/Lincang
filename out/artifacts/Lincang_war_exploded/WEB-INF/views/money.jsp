@@ -35,12 +35,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         #user_container1,#user_container2{
             font-size: 0px;
         }
-        #user_container1>div,#user_container1>div{
+        #user_container1>div,#user_container2>div{
             display: inline-block;
             vertical-align: middle;
             text-align: center;
             font-size: 20px;
-            width: 33%;
+            width: 25%;
+        }
+        #user_container2>div{
+            width: 20%;
         }
     </style>
 
@@ -340,16 +343,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>规划科已申请，财务处理中</p></li>
-                                <li><p>财务处理完毕，规划科处理中</p></li>
+                                <li><p>规划科已申请</p></li>
+                                <li><p>财务处理中</p></li>
+                                <li><p>规划科处理中</p></li>
                                 <li><p>规划科已通知区县</p></li>
                             </ul>
                         </div>
                     </div>
                     <div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                        <div class="user1_1">user1</div>
-                        <div class="user1_2">user2</div>
-                        <div class="user1_3">user3</div>
+                        <div class="user1_1"></div>
+                        <div class="user1_2"></div>
+                        <div class="user1_3"></div>
+                        <div class="user1_4"></div>
                     </div>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
@@ -465,6 +470,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
+                                <li><p>区县已申请</p></li>
                                 <li><p>市局规划科批复中</p></li>
                                 <li><p>市局财务科转账中</p></li>
                                 <li><p>区县资金流向录入</p></li>
@@ -473,10 +479,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                     </div>
                     <div id="user_container2" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                        <div class="user2_1">user1</div>
-                        <div class="user2_2">user2</div>
-                        <div class="user2_3">user3</div>
-                        <div class="user2_4">user4</div>
+                        <div class="user2_1"></div>
+                        <div class="user2_2"></div>
+                        <div class="user2_3"></div>
+                        <div class="user2_4"></div>
+                        <div class="user2_5"></div>
                     </div>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
@@ -848,19 +855,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             data: {id:id},
             dataType: "json",
             success: function (data) {
-                console.log(data);
                 var data = data.result;
                 $("#apply_person_edit").val(data.report_person);
                 $("#apply_reason_edit").val(data.report_reason);
                 $("#apply1").addClass("last");
                 if(data.status == "市局规划科批复中"){
-                    step2.goStep(1);
-                }else if(data.status == "市局财务科转账中"){
                     step2.goStep(2);
-                }else if(data.status == "区县资金流向录入"){
+                    $(".user2_1").text(data.quxianshenqingren);
+                }else if(data.status == "市局财务科转账中"){
                     step2.goStep(3);
-                }else if(data.status == "区县资金流向明细"){
+                    $(".user2_1").text(data.quxianshenqingren);
+                    $(".user2_2").text(data.guihuapifuren);
+                }else if(data.status == "区县资金流向录入"){
                     step2.goStep(4);
+                    $(".user2_1").text(data.quxianshenqingren);
+                    $(".user2_2").text(data.guihuapifuren);
+                    $(".user2_3").text(data.caiwuzhuanzhangren);
+                    $(".user2_4").text(data.quxianbaocunren);
+                }else if(data.status == "区县资金流向明细"){
+                    step2.goStep(5);
+                    console.log(data.quxianshenqingren,data.guihuapifuren,data.caiwuzhuanzhangren,data.quxianbaocunren,data.quxiantijiaoren)
+                    $(".user2_1").text(data.quxianshenqingren);
+                    $(".user2_2").text(data.guihuapifuren);
+                    $(".user2_3").text(data.caiwuzhuanzhangren);
+                    $(".user2_4").text(data.quxianbaocunren);
+                    $(".user2_5").text(data.quxiantijiaoren);
                 }
             }
         });
@@ -892,11 +911,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#guihuake_show1 .county_infos p").text(data.areaname);
                         $("#guihuake_show2 .not_content p").text(data.text);
                         if(data.status == "市局财务科处理中"){
-                            step.goStep(1);
-                        }else if(data.status == "市局规划科处理中"){
                             step.goStep(2);
-                        }else if(data.status == "已通知区县"){
+                            $(".user1_1").text(data.guihuakeshenqing);
+                        }else if(data.status == "市局规划科处理中"){
                             step.goStep(3);
+                            $(".user1_1").text(data.guihuakeshenqing);
+                            $(".user1_2").text(data.caiwuchuliren);
+                        }else if(data.status == "已通知区县"){
+                            step.goStep(4);
+                            $(".user1_1").text(data.guihuakeshenqing);
+                            $(".user1_2").text(data.caiwuchuliren);
+                            $(".user1_3").text(data.guihuachuliren);
                         }
                     }else if(data.initiatorclass == 3){
                         edit2(that);
@@ -1149,7 +1174,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             }else if(text == ""){
                                 alert("请输入通知内容")
                             }else{
-                                alert(username);
                                 //规划科提交
                                 $.ajax({
                                     url: "/setToAreaDataById.do",
@@ -1248,7 +1272,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             //区县保存
                             $("#edit2 .btn-success").click(function () {
                                 var text = $("#luru_content").val();
+                                var username = $("#username").text();
                                 var str = data.quxianbaocunren;
+                                if(str != ""){
+                                    username = username +","+ str;
+                                }
                                 console.log(data.quxianbaocunren);
                                 if(text == ""){
                                     alert("录入内容不能为空");
