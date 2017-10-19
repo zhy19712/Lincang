@@ -146,8 +146,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>标题</th>
                                                         <th>创建时间</th>
-                                                        <%--<th>标题</th>--%>
                                                         <th>发起人</th>
                                                         <th>发起人类型</th>
                                                         <th>当前状态</th>
@@ -180,10 +180,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>标题</th>
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
                                                         <th>发起人类型</th>
-                                                        <th>标题</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -217,10 +217,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>标题</th>
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
-                                                        <th>发起类型</th>
-                                                        <th>标题</th>
+                                                        <th>发起人类型</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -560,7 +560,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
-//            {"data": "title"},
+            {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
             {"data": "initiatorclass"},
@@ -571,7 +571,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [5],
+                "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;

@@ -54,7 +54,7 @@ public class CapitalApplyFormController {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "create_time", "report_person","initiatorclass","title","status"};
+        String[] cols = {"id", "title","create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -66,10 +66,10 @@ public class CapitalApplyFormController {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             sArray.add(" id like '%" + searchValue + "%'");
+            sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
             sArray.add(" report_person like '%" + searchValue + "%'");
             sArray.add(" initiatorclass like '%" + searchValue + "%'");
-            sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
         String individualSearch = "";
@@ -104,10 +104,10 @@ public class CapitalApplyFormController {
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 tasks.add(new CapitalFlow(rs.getInt("id"),
+                        rs.getString("title"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
                         rs.getString("initiatorclass"),
-                        rs.getString("title"),
                         rs.getString("status")
                         ));
             }
