@@ -1,8 +1,10 @@
 ﻿var step;
+var step2;
   $(function() {
 
     step= $("#myStep").step();
-    
+    step2= $("#myStep2").step();
+
     $("#preBtn").click(function(event) {
       var yes=step.preStep();//上一步
     });

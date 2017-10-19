@@ -428,6 +428,127 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>详细信息</h3>
+                </div>
+                <div id="container2" style="width: 100%;height: 120px">
+                    <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
+                        <div class="step-header">
+                            <ul>
+                                <li><p>规划科批复中</p></li>
+                                <li><p>财务转账中</p></li>
+                                <li><p>资金去向录入中</p></li>
+                                <li><p>资金录入完成</p></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <iframe name="uploadFrame" style="display:none;"></iframe>
+                <form action="" method="post"
+                      enctype="multipart/form-data"  target="uploadFrame">
+
+
+                    <div class="modal-body">
+                        <div class="row myrow">
+                            <div class="col-sm-6">
+                                <span>申请人</span>
+                                <input type="text" id="apply_person_edit" readonly="true">
+                            </div>
+                            <div class="col-sm-6">
+                                <span>申请原因</span>
+                                <input type="text" id="apply_reason_edit" readonly="true">
+                            </div>
+                        </div>
+                        <div class="row myrow">
+                            <div class="col-sm-12">
+                                <span>文件</span>
+                                <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <a href="#" onclick="add_click_file(1)">下载</a>
+                                    <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
+                                </div>
+                                <input type="button" style="display:none"/>
+                            </div>
+                        </div>
+                        <%--<div class="row myrow" id="caiwu">--%>
+                            <%--<div class="col-sm-12" id="report_text_edit"></div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow" id="caiwu1">--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>款项来源</span>--%>
+                                <%--<input type="text" id="money_source" readonly="true">--%>
+                            <%--</div>--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>到款时间</span>--%>
+                                <%--<input type="text" name="author" id="arrival_time" readonly="readonly">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow" id="caiwu2">--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>到款金额</span>--%>
+                                <%--<input type="text" id="amount" readonly="true">--%>
+                            <%--</div>--%>
+                            <%--<div class="col-sm-6">--%>
+                                <%--<span>上传附件</span>--%>
+                                <%--<input type="text" name="author">--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow last" id="guihuake">--%>
+                            <%--<div class="col-sm-12">--%>
+                                <%--<div class="notice">--%>
+                                    <%--<div class="add">--%>
+                                        <%--<span>通知区县</span>--%>
+                                        <%--<ul class="ui-choose" multiple="multiple" id="uc_03" style="width: 92%;">--%>
+                                            <%--<li>临翔区</li>--%>
+                                            <%--<li>凤庆县</li>--%>
+                                            <%--<li>永德县</li>--%>
+                                            <%--<li>镇康县</li>--%>
+                                            <%--<li>云县</li>--%>
+                                            <%--<li>沧源佤族自治县</li>--%>
+                                            <%--<li>耿马傣族佤族自治县</li>--%>
+                                            <%--<li>双江拉祜族佤族布朗族傣族自治县</li>--%>
+                                        <%--</ul>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="text">--%>
+                                        <%--<span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid red"></textarea>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow" id="guihuake_show1">--%>
+                            <%--<div class="col-sm-12">--%>
+                                <%--<div class="county_infos">--%>
+                                    <%--<span>已通知区县:</span>--%>
+                                    <%--<p></p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div class="row myrow last" id="guihuake_show2">--%>
+                            <%--<div class="col-sm-12">--%>
+                                <%--<div class="not_content">--%>
+                                    <%--<span>通知内容:</span>--%>
+                                    <%--<p></p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    </div>
+
+                </form>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 <footer class="row">
@@ -709,212 +830,240 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
 
     function edit(that) {
-        $("#edit").modal('show');
-        var kind = $(that).val();
-        console.log(kind,status)
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-        $("#edit .btn-primary").css("display","none");
-        $.ajax({
-            url: "/getCatipalDataById.do",
-            type: "post",
-            async: false,
-            data: {id:id},
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-                var data = data.result;
-                $("#report_person_edit").val(data.report_person);
-                $("#report_quarter_edit").val(data.report_quarter);
-                $("#report_text_edit").text(data.report_text);
-                $("#money_source").val(data.money_source);
-                $("#arrival_time").val(data.arrival_time);
-                $("#amount").val(data.amount);
-                $("#guihuake_show1 .county_infos p").text(data.areaname);
-                $("#guihuake_show2 .not_content p").text(data.text);
-                if(data.status == "市局财务科处理中"){
-                    step.goStep(1);
-                }else if(data.status == "市局规划科处理中"){
-                    step.goStep(2);
-                }else if(data.status == "已通知区县"){
-                    step.goStep(3);
+        if( status != 3){
+            $("#edit").modal('show');
+            var kind = $(that).val();
+            console.log(kind,status)
+            var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+            $("#edit .btn-primary").css("display","none");
+            $.ajax({
+                url: "/getCatipalDataById.do",
+                type: "post",
+                async: false,
+                data: {id:id},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var data = data.result;
+                    $("#report_person_edit").val(data.report_person);
+                    $("#report_quarter_edit").val(data.report_quarter);
+                    $("#report_text_edit").text(data.report_text);
+                    $("#money_source").val(data.money_source);
+                    $("#arrival_time").val(data.arrival_time);
+                    $("#amount").val(data.amount);
+                    $("#guihuake_show1 .county_infos p").text(data.areaname);
+                    $("#guihuake_show2 .not_content p").text(data.text);
+                    if(data.status == "市局财务科处理中"){
+                        step.goStep(1);
+                    }else if(data.status == "市局规划科处理中"){
+                        step.goStep(2);
+                    }else if(data.status == "已通知区县"){
+                        step.goStep(3);
+                    }
                 }
-            }
-        });
-        var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-        console.log(status);
-        if( status == 2 ){
-            if(kind == "查看"){
-                $("#guihuake_show1").css("display","none");
-                $("#guihuake_show2").css("display","none");
-                $("#guihuake").css("display","none");
-                if(state == "市局财务科处理中"){
-                    $("#caiwu2").css("display","none");
-                    $("#caiwu1").css("display","none");
-                    $("#caiwu").addClass("last");
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").addClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block");
-                }
-            }else if(kind == "编辑"){
-                $("#caiwu").removeClass("last");
-                $("#caiwu1").css("display","block");
-                $("#caiwu2").css("display","block");
-                $("#guihuake_show1").css("display","none");
-                $("#guihuake_show2").css("display","none");
-                $("#guihuake").css("display","none");
-                $("#caiwu2").addClass("last");
-                if(state == "市局财务科处理中"){
-                    $("#edit .btn-primary").css("display","inline-block");
-                    $("#edit .btn-primary").text("通知规划科");
-                    $("#money_source").attr("readonly",false);
-                    $("#amount").attr("readonly",false);
-                    $("#edit .btn-primary").click(function () {
-                        var money_source = $("#money_source").val();
-                        var arrival_time = $("#arrival_time").val();
-                        var amount = $("#amount").val();
-                        if(money_source == ""){
-                            alert("款项来源不能为空")
-                        }else if(arrival_time == ""){
-                            alert("到款时间不能为空")
-                        }else if(amount == ""){
-                            alert("到款金额不能为空")
-                        }else {
-                            console.log(money_source,arrival_time,amount)
-                            //财务科提交
-                            $.ajax({
-                                url: "/setDataById.do",
-                                type: "post",
-                                async: false,
-                                data: {
-                                    id :id,
-                                    money_source:money_source,
-                                    arrival_time:arrival_time,
-                                    amount:amount
-                                },
-                                dataType: "json",
-                                success: function (data) {
-                                    $("#edit").modal("hide");
-                                    money_apply1.ajax.url("/capitalFlowForm.do").load();
-                                    sta1 = "市局财务科处理中";
-                                    sta2 = "市局规划科处理中,已通知区县";
-                                    dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
-                                    ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
-                                    mywipeData();
-                                }
-                            })
-                        }
-                    })
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                }else if(state == "已通知区县"){
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#money_source").attr("readonly",true);
-                    $("#amount").attr("readonly",true);
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block");
-                }
-
-            }
-        }else if(status == 1){
-            $("#money_source").attr("readonly",true);
-            $("#amount").attr("readonly",true);
-            if(kind == "查看" ){
-                if (state == "市局财务科处理中"){
-                    $("#caiwu").addClass("last");
-                    $("#caiwu1").css("display","none");
-                    $("#caiwu2").css("display","none");
-                    $("#guihuake").css("display","none");
+            });
+            var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+            console.log(status);
+            if( status == 2 ){
+                if(kind == "查看"){
                     $("#guihuake_show1").css("display","none");
                     $("#guihuake_show2").css("display","none");
-                }else if(state == "市局规划科处理中"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").addClass("last");
                     $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu2").css("display","block").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block").addClass("last");
-                }
-            }else if(kind == "编辑"){
-                if(state == "市局财务科处理中"){
-                    $("#caiwu").addClass("last");
-                    $("#caiwu1").css("display","none");
-                    $("#caiwu2").css("display","none");
-                    $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","none");
-                    $("#guihuake_show2").css("display","none");
-                }else if(state == "市局规划科处理中"){
+                    if(state == "市局财务科处理中"){
+                        $("#caiwu2").css("display","none");
+                        $("#caiwu1").css("display","none");
+                        $("#caiwu").addClass("last");
+                    }else if(state == "市局规划科处理中"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu2").css("display","block").addClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#money_source").attr("readonly",true);
+                        $("#amount").attr("readonly",true);
+                    }else if(state == "已通知区县"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu2").css("display","block").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#money_source").attr("readonly",true);
+                        $("#amount").attr("readonly",true);
+                        $("#guihuake_show1").css("display","block");
+                        $("#guihuake_show2").css("display","block");
+                    }
+                }else if(kind == "编辑"){
                     $("#caiwu").removeClass("last");
                     $("#caiwu1").css("display","block");
                     $("#caiwu2").css("display","block");
                     $("#guihuake_show1").css("display","none");
                     $("#guihuake_show2").css("display","none");
-                    $("#guihuake").css("display","block");
-                    $("#edit .btn-primary").css("display","inline-block");
-                    $("#edit .btn-primary").text("通知区县");
-                    $("#edit .btn-primary").click(function () {
-                        var arr = [];
-                        $.each($(".selected"),function (i,n) {
-                            arr.push(n.innerText);
-                        });
-                        var text = $("#notice_content").val();
-                        if(arr.length == 0){
-                            alert("请选取区县")
-                        }else if(text == ""){
-                            alert("请输入通知内容")
-                        }else{
-                            console.log(arr,text);
-                            //规划科提交
-                            $.ajax({
-                                url: "/setToAreaDataById.do",
-                                type: "post",
-                                async: false,
-                                data: {id:id,areanames:arr,text:text},
-                                dataType: "json",
-                                success: function (data) {
-                                    console.log(data);
-                                    $("#edit").modal("hide");
-                                    money_apply1.ajax.url("/capitalFlowForm.do").load();
-                                    sta1 = "市局规划科处理中";
-                                    sta2 = "已通知区县";
-                                    dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
-                                    ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
-                                    mywipeData();
-                                    $("#uc_03 li").removeClass("selected");
-                                }
-                            });
-                        }
-                    })
-                }else if(state == "已通知区县"){
-                    $("#caiwu").removeClass("last");
-                    $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").removeClass("last");
                     $("#guihuake").css("display","none");
-                    $("#guihuake_show1").css("display","block");
-                    $("#guihuake_show2").css("display","block").addClass("last");
-                }
+                    $("#caiwu2").addClass("last");
+                    if(state == "市局财务科处理中"){
+                        $("#edit .btn-primary").css("display","inline-block");
+                        $("#edit .btn-primary").text("通知规划科");
+                        $("#money_source").attr("readonly",false);
+                        $("#amount").attr("readonly",false);
+                        $("#edit .btn-primary").click(function () {
+                            var money_source = $("#money_source").val();
+                            var arrival_time = $("#arrival_time").val();
+                            var amount = $("#amount").val();
+                            if(money_source == ""){
+                                alert("款项来源不能为空")
+                            }else if(arrival_time == ""){
+                                alert("到款时间不能为空")
+                            }else if(amount == ""){
+                                alert("到款金额不能为空")
+                            }else {
+                                console.log(money_source,arrival_time,amount)
+                                //财务科提交
+                                $.ajax({
+                                    url: "/setDataById.do",
+                                    type: "post",
+                                    async: false,
+                                    data: {
+                                        id :id,
+                                        money_source:money_source,
+                                        arrival_time:arrival_time,
+                                        amount:amount
+                                    },
+                                    dataType: "json",
+                                    success: function (data) {
+                                        $("#edit").modal("hide");
+                                        money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                        sta1 = "市局财务科处理中";
+                                        sta2 = "市局规划科处理中,已通知区县";
+                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
+                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+                                        mywipeData();
+                                    }
+                                })
+                            }
+                        })
+                    }else if(state == "市局规划科处理中"){
+                        $("#caiwu").removeClass("last");
+                        $("#money_source").attr("readonly",true);
+                        $("#amount").attr("readonly",true);
+                    }else if(state == "已通知区县"){
+                        $("#caiwu2").css("display","block").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#money_source").attr("readonly",true);
+                        $("#amount").attr("readonly",true);
+                        $("#guihuake_show1").css("display","block");
+                        $("#guihuake_show2").css("display","block");
+                    }
 
+                }
+            }else if(status == 1){
+                $("#money_source").attr("readonly",true);
+                $("#amount").attr("readonly",true);
+                if(kind == "查看" ){
+                    if (state == "市局财务科处理中"){
+                        $("#caiwu").addClass("last");
+                        $("#caiwu1").css("display","none");
+                        $("#caiwu2").css("display","none");
+                        $("#guihuake").css("display","none");
+                        $("#guihuake_show1").css("display","none");
+                        $("#guihuake_show2").css("display","none");
+                    }else if(state == "市局规划科处理中"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#caiwu2").css("display","block").addClass("last");
+                        $("#guihuake").css("display","none");
+                        $("#guihuake_show1").css("display","none");
+                        $("#guihuake_show2").css("display","none");
+                    }else if(state == "已通知区县"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu2").css("display","block").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#guihuake").css("display","none");
+                        $("#guihuake_show1").css("display","block");
+                        $("#guihuake_show2").css("display","block").addClass("last");
+                    }
+                }else if(kind == "编辑"){
+                    if(state == "市局财务科处理中"){
+                        $("#caiwu").addClass("last");
+                        $("#caiwu1").css("display","none");
+                        $("#caiwu2").css("display","none");
+                        $("#guihuake").css("display","none");
+                        $("#guihuake_show1").css("display","none");
+                        $("#guihuake_show2").css("display","none");
+                    }else if(state == "市局规划科处理中"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#caiwu2").css("display","block");
+                        $("#guihuake_show1").css("display","none");
+                        $("#guihuake_show2").css("display","none");
+                        $("#guihuake").css("display","block");
+                        $("#edit .btn-primary").css("display","inline-block");
+                        $("#edit .btn-primary").text("通知区县");
+                        $("#edit .btn-primary").click(function () {
+                            var arr = [];
+                            $.each($(".selected"),function (i,n) {
+                                arr.push(n.innerText);
+                            });
+                            var text = $("#notice_content").val();
+                            if(arr.length == 0){
+                                alert("请选取区县")
+                            }else if(text == ""){
+                                alert("请输入通知内容")
+                            }else{
+                                console.log(arr,text);
+                                //规划科提交
+                                $.ajax({
+                                    url: "/setToAreaDataById.do",
+                                    type: "post",
+                                    async: false,
+                                    data: {id:id,areanames:arr,text:text},
+                                    dataType: "json",
+                                    success: function (data) {
+                                        console.log(data);
+                                        $("#edit").modal("hide");
+                                        money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                        sta1 = "市局规划科处理中";
+                                        sta2 = "已通知区县";
+                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
+                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
+                                        mywipeData();
+                                        $("#uc_03 li").removeClass("selected");
+                                    }
+                                });
+                            }
+                        })
+                    }else if(state == "已通知区县"){
+                        $("#caiwu").removeClass("last");
+                        $("#caiwu1").css("display","block");
+                        $("#caiwu2").css("display","block").removeClass("last");
+                        $("#guihuake").css("display","none");
+                        $("#guihuake_show1").css("display","block");
+                        $("#guihuake_show2").css("display","block").addClass("last");
+                    }
+
+                }
             }
+        }else if(status == 3){
+            $("#edit2").modal('show');
+            var kind = $(that).val();
+            var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+            $.ajax({
+                url: "/getCatipalDataById.do",
+                type: "post",
+                async: false,
+                data: {id:id},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var data = data.result;
+                    $("#apply_person_edit").val(data.report_person);
+
+                    if(data.status == "市局规划科批复中"){
+                        step.goStep(1);
+                    }else if(data.status == "市局财务科转账中"){
+                        step.goStep(2);
+                    }else if(data.status == "资金流向录入中"){
+                        step.goStep(3);
+                    }else if(data.status == "资金录入完成"){
+                        step.goStep(3);
+                    }
+                }
+            });
         }
     }
 
