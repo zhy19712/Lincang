@@ -477,9 +477,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="button" style="display:none"/>
                             </div>
                         </div>
-                        <%--<div class="row myrow" id="caiwu">--%>
-                            <%--<div class="col-sm-12" id="report_text_edit"></div>--%>
-                        <%--</div>--%>
+                        <div class="row myrow" id="pifu">
+                            <div class="col-sm-12" style="padding-top: 10px">
+                                <span style="display: inline-block;vertical-align: top;border: none;">批复意见:</span><textarea name="" id="pifu_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                            </div>
+                        </div>
                         <%--<div class="row myrow" id="caiwu1">--%>
                             <%--<div class="col-sm-6">--%>
                                 <%--<span>款项来源</span>--%>
@@ -830,11 +832,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#notice_content").val("");
     }
 
+    function edit2(that) {
+        $("#edit2").modal('show');
+        var kind = $(that).val();
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        $.ajax({
+            url: "/getCatipalDataById.do",
+            type: "post",
+            async: false,
+            data: {id:id},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var data = data.result;
+                $("#apply_person_edit").val(data.report_person);
+                $("#apply_reason_edit").val(data.report_reason);
+                $("#apply1").addClass("last");
+                if(data.status == "市局规划科批复中"){
+                    step.goStep(1);
+                }else if(data.status == "市局财务科转账中"){
+                    step.goStep(2);
+                }else if(data.status == "资金流向录入中"){
+                    step.goStep(3);
+                }else if(data.status == "资金录入完成"){
+                    step.goStep(4);
+                }
+            }
+        });
+    }
+
     function edit(that) {
         if( status != 3){
-            $("#edit").modal('show');
+
             var kind = $(that).val();
-            console.log(kind,status)
             var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
             $("#edit .btn-primary").css("display","none");
             $.ajax({
@@ -846,25 +876,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 success: function (data) {
                     console.log(data);
                     var data = data.result;
-                    $("#report_person_edit").val(data.report_person);
-                    $("#report_quarter_edit").val(data.report_quarter);
-                    $("#report_text_edit").text(data.report_text);
-                    $("#money_source").val(data.money_source);
-                    $("#arrival_time").val(data.arrival_time);
-                    $("#amount").val(data.amount);
-                    $("#guihuake_show1 .county_infos p").text(data.areaname);
-                    $("#guihuake_show2 .not_content p").text(data.text);
-                    if(data.status == "市局财务科处理中"){
-                        step.goStep(1);
-                    }else if(data.status == "市局规划科处理中"){
-                        step.goStep(2);
-                    }else if(data.status == "已通知区县"){
-                        step.goStep(3);
+                    if(data.initiatorclass == 1){
+                        $("#edit").modal('show');
+                        $("#report_person_edit").val(data.report_person);
+                        $("#report_quarter_edit").val(data.report_quarter);
+                        $("#report_text_edit").text(data.report_text);
+                        $("#money_source").val(data.money_source);
+                        $("#arrival_time").val(data.arrival_time);
+                        $("#amount").val(data.amount);
+                        $("#guihuake_show1 .county_infos p").text(data.areaname);
+                        $("#guihuake_show2 .not_content p").text(data.text);
+                        if(data.status == "市局财务科处理中"){
+                            step.goStep(1);
+                        }else if(data.status == "市局规划科处理中"){
+                            step.goStep(2);
+                        }else if(data.status == "已通知区县"){
+                            step.goStep(3);
+                        }
+                    }else if(data.initiatorclass == 3){
+                        edit2(that);
+                        var kind = $(that).val();
+                        var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+                        console.log(kind,state);
+                        if(kind == "查看"){
+                            if(state == "市局规划科批复中"){
+                                $("#pifu").css("display","none");
+                            }
+                        }else if(kind == "编辑"){
+                            if(state == "市局规划科批复中"){
+                                $("#pifu").css("display","block");
+                                $("#apply1").removeClass("last");
+                                $("#pifu").addClass("last");
+                                $("#edit2 .btn-primary").click(function () {
+                                    var text = $("#pifu_content").val();
+                                    if(text == ""){
+                                        alert("批复内容不能为空");
+                                        return;
+                                    }else {
+                                        //规划科批复
+                                        console.log(id,text);
+//                                        $.ajax({
+//                                            url: "",
+//                                            type: "post",
+//                                            dataType: "json",
+//                                            data:{id:id,text:text},
+//                                            success:function (data) {
+//                                                console.log(data);
+//                                                $("#edit2").modal("hide");
+//                                                sta1 = "市局规划科处理中,市局规划科批复中";
+//                                                sta2 = "已通知区县";
+//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+//                                                $("#pifu_content").val("");
+//                                            }
+//                                        })
+                                    }
+                                })
+                            }
+                        }
                     }
                 }
             });
             var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-            console.log(status);
             if( status == 2 ){
                 if(kind == "查看"){
                     $("#guihuake_show1").css("display","none");
@@ -928,7 +1001,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     dataType: "json",
                                     success: function (data) {
                                         $("#edit").modal("hide");
-                                        money_apply1.ajax.url("/capitalFlowForm.do").load();
                                         sta1 = "市局财务科处理中";
                                         sta2 = "市局规划科处理中,已通知区县";
                                         dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
@@ -1017,7 +1089,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     success: function (data) {
                                         console.log(data);
                                         $("#edit").modal("hide");
-                                        money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                        money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
                                         sta1 = "市局规划科处理中";
                                         sta2 = "已通知区县";
                                         dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
@@ -1040,33 +1112,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             }
         }else if(status == 3){
-            $("#edit2").modal('show');
-            var kind = $(that).val();
-            var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-            $.ajax({
-                url: "/getCatipalDataById.do",
-                type: "post",
-                async: false,
-                data: {id:id},
-                dataType: "json",
-                success: function (data) {
-                    console.log(data);
-                    var data = data.result;
-                    $("#apply_person_edit").val(data.report_person);
-                    $("#apply_reason_edit").val(data.report_reason);
-                    $("#apply1").addClass("last");
+            edit2(that);
 
-                    if(data.status == "市局规划科批复中"){
-                        step.goStep(1);
-                    }else if(data.status == "市局财务科转账中"){
-                        step.goStep(2);
-                    }else if(data.status == "资金流向录入中"){
-                        step.goStep(3);
-                    }else if(data.status == "资金录入完成"){
-                        step.goStep(3);
-                    }
-                }
-            });
         }
     }
 
