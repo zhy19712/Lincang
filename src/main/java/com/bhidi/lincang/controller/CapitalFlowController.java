@@ -20,13 +20,23 @@ public class CapitalFlowController {
     @Autowired
     CapitalFlowServiceImp capitalFlowServiceImp;
 
+    /**
+     * 提交申请按钮
+     * @param report_person
+     * @param report_reason
+     * @param report_quarter
+     * @param report_text
+     * @param userstatus
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value="/submitDataOfCapital",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/submitDataOfCapital",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String submitDataOfCapital(@RequestParam(value="report_person",required=false)String report_person,
                                       @RequestParam(value="report_reason",required=false)String report_reason,
                                       @RequestParam(value="report_quarter",required=false)String report_quarter,
                                       @RequestParam(value="report_text",required=false)String report_text,
                                       @RequestParam(value="userstatus",required=false)String userstatus) {
+        //在提交的时候，userstatus就是数据库中的发起人类别，其他的时候就不是了。
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String create_time = format.format(now);
@@ -46,8 +56,13 @@ public class CapitalFlowController {
         return result+"";
     }
 
+    /**
+     * 查看按钮
+     * @param id
+     * @return
+     */
     @ResponseBody
-    @RequestMapping(value="/getCatipalDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/getCatipalDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String getDataById(String id) {
         CapitalFlow cap = capitalFlowServiceImp.getCatipalDataById(id);
         Map<String,CapitalFlow> mapResult = new HashMap();
@@ -65,9 +80,8 @@ public class CapitalFlowController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/setDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String setDataById(String id,
-                              String money_source,String arrival_time,String amount) {
+    @RequestMapping(value="/setDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String setDataById(String id,String money_source,String arrival_time,String amount) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String finance_time = format.format(now);
@@ -94,8 +108,10 @@ public class CapitalFlowController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/setToAreaDataById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String setDataById(String id, @RequestParam(value="areanames[]",required=false) String[] areas, String text) {
+    @RequestMapping(value="/setToAreaDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String setDataById(String id,
+                              @RequestParam(value="areanames[]",required=false) String[] areas,
+                              String text) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String toarea_time = format.format(now);
