@@ -668,7 +668,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var app_reason=  $("#input2").val();
             var datas= {
                 "report_person":app_people,
-                "report_quarter":app_time
+                "report_quarter":app_reason
             };
             if(app_people == ""){
                 alert("申请人不能为空")
