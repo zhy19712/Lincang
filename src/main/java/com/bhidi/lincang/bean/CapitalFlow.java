@@ -17,6 +17,7 @@ public class CapitalFlow {
     private String toarea_time;
     private String areaname;
     private String text;
+    private String replytext;
 
     public CapitalFlow() {
     }
@@ -28,7 +29,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
@@ -45,6 +46,7 @@ public class CapitalFlow {
         this.toarea_time = toarea_time;
         this.areaname = areaname;
         this.text = text;
+        this.replytext = replytext;
     }
 
     public int getId() {
@@ -175,25 +177,11 @@ public class CapitalFlow {
         this.initiatorclass = initiatorclass;
     }
 
-    @Override
-    public String toString() {
-        return "CapitalFlow{" +
-                "id=" + id +
-                ", create_time='" + create_time + '\'' +
-                ", report_person='" + report_person + '\'' +
-                ", report_reason='" + report_reason + '\'' +
-                ", report_quarter='" + report_quarter + '\'' +
-                ", report_text='" + report_text + '\'' +
-                ", report_failname='" + report_failname + '\'' +
-                ", initiatorclass='" + initiatorclass + '\'' +
-                ", status='" + status + '\'' +
-                ", money_source='" + money_source + '\'' +
-                ", arrival_time='" + arrival_time + '\'' +
-                ", amount='" + amount + '\'' +
-                ", finance_time='" + finance_time + '\'' +
-                ", toarea_time='" + toarea_time + '\'' +
-                ", areaname='" + areaname + '\'' +
-                ", text='" + text + '\'' +
-                '}';
+    public String getReplytext() {
+        return replytext;
+    }
+
+    public void setReplytext(String replytext) {
+        this.replytext = replytext;
     }
 }

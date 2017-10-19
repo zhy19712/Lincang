@@ -111,24 +111,33 @@ public class CapitalFlowController {
     @RequestMapping(value="/setToAreaDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String setDataById(String id,
                               @RequestParam(value="areanames[]",required=false) String[] areas,
-                              String text) {
+                              @RequestParam(value="replytext",required=false) String replytext,
+                              @RequestParam(value="text",required=false) String text) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String toarea_time = format.format(now);
         Map<String,String> map = new HashMap();
         StringBuffer sb = new StringBuffer();
-        for( int i = 0;i < areas.length;i++ ){
-            if(i < (areas.length - 1)){
-                sb.append(areas[i]+",");
-            } else {
-                sb.append(areas[i]);
+        if( areas != null ){
+            for( int i = 0;i < areas.length;i++ ){
+                if(i < (areas.length - 1)){
+                    sb.append(areas[i]+",");
+                } else {
+                    sb.append(areas[i]);
+                }
             }
         }
         map.put("id",id);
-        map.put("toarea_time",toarea_time);
-        map.put("areaname",sb.toString());
-        map.put("text",text);
-        map.put("status","已通知区县");
+        if( areas != null ){
+            map.put("toarea_time",toarea_time);
+            map.put("areaname",sb.toString());
+            map.put("text",text);
+            map.put("status","已通知区县");
+        }
+        if( replytext != null ){
+            map.put("replytext",replytext);
+            map.put("status","市局财务转账中");
+        }
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }

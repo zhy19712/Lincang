@@ -31,6 +31,7 @@
             <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
             <if test="areaname!=null">areaname = #{areaname},</if>
             <if test="text!=null">text = #{text},</if>
+            <if test="replytext!=null">replytext = #{replytext},</if>
         </trim>
         where id = #{id}
     </update >

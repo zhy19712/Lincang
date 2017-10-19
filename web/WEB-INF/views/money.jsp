@@ -915,21 +915,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     }else {
                                         //规划科批复
                                         console.log(id,text);
-//                                        $.ajax({
-//                                            url: "",
-//                                            type: "post",
-//                                            dataType: "json",
-//                                            data:{id:id,text:text},
-//                                            success:function (data) {
-//                                                console.log(data);
-//                                                $("#edit2").modal("hide");
-//                                                sta1 = "市局规划科处理中,市局规划科批复中";
-//                                                sta2 = "已通知区县";
-//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-//                                                $("#pifu_content").val("");
-//                                            }
-//                                        })
+                                        $.ajax({
+                                            url: "/setToAreaDataById.do",
+                                            type: "post",
+                                            dataType: "json",
+                                            data:{id:id,replytext:text},
+                                            success:function (data) {
+                                                console.log(data);
+                                                $("#edit2").modal("hide");
+                                                sta1 = "市局规划科处理中,市局规划科批复中";
+                                                sta2 = "已通知区县";
+                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                $("#pifu_content").val("");
+                                            }
+                                        })
                                     }
                                 })
                             }
