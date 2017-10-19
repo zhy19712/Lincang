@@ -35,6 +35,7 @@ public class CapitalFlowController {
                                       @RequestParam(value="report_reason",required=false)String report_reason,
                                       @RequestParam(value="report_quarter",required=false)String report_quarter,
                                       @RequestParam(value="report_text",required=false)String report_text,
+                                      @RequestParam(value="title",required=false)String title,
                                       @RequestParam(value="userstatus",required=false)String userstatus) {
         //在提交的时候，userstatus就是数据库中的发起人类别，其他的时候就不是了。
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -46,6 +47,7 @@ public class CapitalFlowController {
         map.put("report_reason",report_reason == null?"":report_reason);
         map.put("report_quarter",report_quarter == null?"":report_quarter);
         map.put("report_text",report_person == null?"":report_text);
+        map.put("title",title == null?"":title);
         map.put("initiatorclass",userstatus == null?"":userstatus);
         if( "3".equals(userstatus) ){
             map.put("status","市局规划科批复中");
