@@ -18,6 +18,7 @@ public class CapitalFlow {
     private String areaname;
     private String text;
     private String replytext;
+    private String dealtext;
 
     public CapitalFlow() {
     }
@@ -29,7 +30,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext, String dealtext) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
@@ -47,6 +48,7 @@ public class CapitalFlow {
         this.areaname = areaname;
         this.text = text;
         this.replytext = replytext;
+        this.dealtext = dealtext;
     }
 
     public int getId() {
@@ -183,5 +185,13 @@ public class CapitalFlow {
 
     public void setReplytext(String replytext) {
         this.replytext = replytext;
+    }
+
+    public String getDealtext() {
+        return dealtext;
+    }
+
+    public void setDealtext(String dealtext) {
+        this.dealtext = dealtext;
     }
 }

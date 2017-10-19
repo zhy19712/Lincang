@@ -81,21 +81,25 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String setDataById(String id,String money_source,String arrival_time,String amount) {
+    public String setDataById(String id,String money_source,String arrival_time,String amount,
+                              @RequestParam(value="dealtext",required=false) String dealtext ){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String finance_time = format.format(now);
         Map<String,String> map = new HashMap();
         map.put("id",id);
-        /*map.put("create_time",create_time);
-        map.put("report_person",report_person == null?"":report_person);
-        map.put("report_quarter",report_quarter == null?"":report_quarter);
-        map.put("report_text",report_person == null?"":report_text);*/
-        map.put("money_source",money_source);
-        map.put("arrival_time",arrival_time);
-        map.put("amount",amount);
-        map.put("finance_time",finance_time);
-        map.put("status","市局规划科处理中");
+        if( money_source != null ){
+            map.put("money_source",money_source);
+            map.put("arrival_time",arrival_time);
+            map.put("amount",amount);
+            map.put("finance_time",finance_time);
+            map.put("status","市局规划科处理中");
+        }
+        if( dealtext != null ){
+            map.put("dealtext",dealtext);
+            map.put("status","区县资金录入中");
+        }
+
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }

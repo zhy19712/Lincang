@@ -969,23 +969,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         }else {
                                             //财务科处理
                                             console.log(id,text);
-//                                        $.ajax({
-//                                            url: "/setToAreaDataById.do",
-//                                            type: "post",
-//                                            dataType: "json",
-//                                            data:{id:id,replytext:text},
-//                                            success:function (data) {
-//                                                console.log(data);
-//                                                $("#edit2").modal("hide");
-//                                                sta1 = "市局财务科处理中,市局财务科转账中";
-//                                                sta2 = "已通知区县";
-//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-//                                                $("#chuli_content").val("");
-//                                            }
-//                                        })
+                                        $.ajax({
+                                            url: "/setDataById.do",
+                                            type: "post",
+                                            dataType: "json",
+                                            data:{id:id,dealtext:text},
+                                            success:function (data) {
+                                                console.log(data);
+                                                $("#edit2").modal("hide");
+                                                sta1 = "市局财务科处理中,市局财务科转账中";
+                                                sta2 = "已通知区县";
+                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                $("#chuli_content").val("");
+                                            }
+                                        })
                                         }
-                                    })
+                                    });
                                 }
                             }
                         }

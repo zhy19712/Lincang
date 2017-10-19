@@ -32,6 +32,7 @@
             <if test="areaname!=null">areaname = #{areaname},</if>
             <if test="text!=null">text = #{text},</if>
             <if test="replytext!=null">replytext = #{replytext},</if>
+            <if test="dealtext!=null">dealtext = #{dealtext},</if>
         </trim>
         where id = #{id}
     </update >
