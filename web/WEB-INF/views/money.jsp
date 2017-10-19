@@ -471,7 +471,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=3",
+            url: "/capitalFlowForm.do?userstatus=1",
             async:false
         },
         "order": [[1, 'desc']],
@@ -610,10 +610,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         }else if(status == 3){
             $("#night").addClass("last");
+            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
         }else if(status == 1){
             $("#night").removeClass("last");
             sta1 = "市局规划科处理中";
             sta2 = "已通知区县";
+            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
         }
@@ -644,14 +646,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }else {
                 $.ajax({
                     type: 'post',
-                    url: '/submitDataOfCapital.do',
+                    url: '/submitDataOfCapital.do?userstatus=1',
                     data: datas,
                     dataType: 'json',
                     contentType: "application/x-www-form-urlencoded; charset=utf-8",
                     success: function (result) {
                         if(result){
                             alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do").load();
+                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
                         }else {
                             alert("提交失败");
                         }
@@ -677,7 +679,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }else {
                 $.ajax({
                     type: 'post',
-                    url: '/submitDataOfCapital.do',
+                    url: '/submitDataOfCapital.do?userstatus=3',
                     data: datas,
                     dataType: 'json',
                     contentType: "application/x-www-form-urlencoded; charset=utf-8",
