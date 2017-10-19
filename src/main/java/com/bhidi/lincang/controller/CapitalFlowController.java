@@ -136,7 +136,7 @@ public class CapitalFlowController {
         }
         if( replytext != null ){
             map.put("replytext",replytext);
-            map.put("status","市局财务转账中");
+            map.put("status","市局财务科转账中");
         }
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
