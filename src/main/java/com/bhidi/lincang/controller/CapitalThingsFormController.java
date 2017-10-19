@@ -40,12 +40,12 @@ public class CapitalThingsFormController {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "CAPITALFLOW";
-        String initiatorclass = "";
+        /*String initiatorclass = "";
         if( "1".equals(userstatus) || "2".equals(userstatus) ){
             initiatorclass = "1";
         } else {
             initiatorclass = userstatus;
-        }
+        }*/
         String status = "";
         if( capitalstatus != null ){
             try {
@@ -82,7 +82,7 @@ public class CapitalThingsFormController {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "create_time", "report_person","status"};
+        String[] cols = {"id", "create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -96,6 +96,7 @@ public class CapitalThingsFormController {
             sArray.add(" id like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
             sArray.add(" report_person like '%" + searchValue + "%'");
+            sArray.add(" initiatorclass like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
         String individualSearch = "";
@@ -135,6 +136,7 @@ public class CapitalThingsFormController {
                 tasks.add(new CapitalFlow(rs.getInt("id"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
+                        rs.getString("initiatorclass"),
                         rs.getString("status")
                         ));
             }

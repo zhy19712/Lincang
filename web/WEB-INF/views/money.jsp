@@ -559,7 +559,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "status"},
+            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
@@ -602,7 +602,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "status"},
+            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
@@ -645,7 +645,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "status"},
+            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
