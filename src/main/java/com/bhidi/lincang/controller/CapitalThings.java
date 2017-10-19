@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public class CapitalThings {
      */
     @ResponseBody
     @RequestMapping(value="/pendingCapitalFlow.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String SubmittedForm(HttpServletRequest request,String userstatus,String capitalstatus) throws SQLException {
+    public String SubmittedForm(HttpServletRequest request, @RequestParam(value="userstatus",required=false)String userstatus, String capitalstatus) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
@@ -102,17 +103,20 @@ public class CapitalThings {
         }
         List<CapitalFlow> tasks = new ArrayList<CapitalFlow>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
+            //String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where"+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
+            //String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass = "+initiatorclass +" and"+status;
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where"+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +" and"+status;
+            //String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +" and"+status;
+            String sql = "SELECT * FROM " + table + " where"+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
