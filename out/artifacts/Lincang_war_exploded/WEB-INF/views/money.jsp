@@ -562,8 +562,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {"data": "id"},
 //            {"data": "title"},
             {"data": "create_time"},
-            {"data": "initiatorclass"},
             {"data": "report_person"},
+            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
