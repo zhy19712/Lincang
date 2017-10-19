@@ -688,7 +688,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#night").addClass("last");
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
             sta1 = "区县资金流向录入";
-            sta2 = "区县资金流向录入";
+            sta2 = "区县资金流向明细";
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
         }else if(status == 1){
@@ -806,13 +806,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 $("#apply_reason_edit").val(data.report_reason);
                 $("#apply1").addClass("last");
                 if(data.status == "市局规划科批复中"){
-                    step.goStep(1);
+                    step2.goStep(1);
                 }else if(data.status == "市局财务科转账中"){
-                    step.goStep(2);
-                }else if(data.status == "资金流向录入中"){
-                    step.goStep(3);
-                }else if(data.status == "资金录入完成"){
-                    step.goStep(4);
+                    step2.goStep(2);
+                }else if(data.status == "区县资金流向录入"){
+                    step2.goStep(3);
+                }else if(data.status == "区县资金流向明细"){
+                    step2.goStep(4);
                 }
             }
         });
@@ -820,7 +820,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     function edit(that) {
         if( status != 3){
-
+            $("#edit2 .btn-success").css("display","none");
             var kind = $(that).val();
             var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
             $("#edit .btn-primary").css("display","none");
@@ -1143,22 +1143,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     console.log(data);
                     var data = data.result;
                     if(kind == "查看"){
-                        if(state == "区县资金流向录入"){
-                            $("#pifu").css("display","block");
-                            $("#apply1").removeClass("last");
-                            $("#pifu").removeClass("last");
-                            $("#chuli").css("display","block").addClass("last");
-                            $("#pifu_content").val(data.replytext).attr("readonly",true);
-                            $("#chuli_content").val(data.dealtext).attr("readonly",true);
-                        }
+                        $("#edit2 .btn-success").css("display","none");
+                        $("#edit2 .btn-primary").css("display","none");
+                        $("#pifu").css("display","block");
+                        $("#apply1").removeClass("last");
+                        $("#pifu").removeClass("last");
+                        $("#chuli").css("display","block").removeClass("last");
+                        $("#pifu_content").val(data.replytext).attr("readonly",true);
+                        $("#chuli_content").val(data.dealtext).attr("readonly",true);
+                        $("#luru_content").val(data.capitalflowinstruction).attr("readonly",true);
+                        $("#luru").css("display","block").addClass("last");
                     }else if(kind == "编辑"){
                         if(state == "区县资金流向录入"){
+                            $("#edit2 .btn-success").css("display","block");
                             $("#pifu").css("display","block");
                             $("#apply1").removeClass("last");
                             $("#pifu").removeClass("last");
                             $("#chuli").css("display","block").removeClass("last");
                             $("#pifu_content").val(data.replytext).attr("readonly",true);
                             $("#chuli_content").val(data.dealtext).attr("readonly",true);
+                            $("#luru_content").val(data.capitalflowinstruction).attr("readonly",false);
                             $("#luru").css("display","block").addClass("last");
                             $("#edit2 .btn-primary").click(function () {
                                 var text = $("#luru_content").val();
@@ -1177,7 +1181,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 console.log(data);
                                                 $("#edit2").modal("hide");
                                                 sta1 = "区县资金流向录入";
-                                                sta2 = "区县资金流向录入";
+                                                sta2 = "区县资金流向明细";
                                                 dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                 ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
                                                 $("#luru_content").val("");
@@ -1203,7 +1207,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 console.log(data);
                                                 $("#edit2").modal("hide");
                                                 sta1 = "区县资金流向录入";
-                                                sta2 = "区县资金流向录入";
+                                                sta2 = "区县资金流向明细";
                                                 dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                 ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
                                                 $("#luru_content").val("");
@@ -1211,6 +1215,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         })
                                 }
                             });
+                        }else if(state == "区县资金明细"){
+                            $("#edit2 .btn-success").css("display","none");
+                            $("#edit2 .btn-primary").css("display","none");
+                            $("#pifu").css("display","block");
+                            $("#apply1").removeClass("last");
+                            $("#pifu").removeClass("last");
+                            $("#chuli").css("display","block").removeClass("last");
+                            $("#pifu_content").val(data.replytext).attr("readonly",true);
+                            $("#chuli_content").val(data.dealtext).attr("readonly",true);
+                            $("#luru_content").val(data.capitalflowinstruction).attr("readonly",true);
+                            $("#luru").css("display","block").addClass("last");
                         }
                     }
                 }
