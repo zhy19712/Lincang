@@ -443,10 +443,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>规划科批复中</p></li>
-                                <li><p>财务转账中</p></li>
-                                <li><p>资金去向录入中</p></li>
-                                <li><p>资金录入完成</p></li>
+                                <li><p>市局规划科批复中</p></li>
+                                <li><p>市局财务科转账中</p></li>
+                                <li><p>区县资金录入中</p></li>
+                                <li><p>区县资金录入完成</p></li>
                             </ul>
                         </div>
                     </div>
@@ -737,7 +737,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }else if(status == 1){
             $("#night").removeClass("last");
             sta1 = "市局规划科处理中,市局规划科批复中";
-            sta2 = "已通知区县";
+            sta2 = "已通知区县,市局财务科转账中,区县资金录入中,区县资金录入完成";
             console.log(sta1);
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
