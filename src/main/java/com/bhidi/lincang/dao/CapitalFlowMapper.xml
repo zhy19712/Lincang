@@ -10,7 +10,35 @@
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
-        select * from capitalflow where id = #{id}
+        select IFNULL(id,'')as id,
+         IFNULL(title,'')as title,
+         IFNULL(create_time,'')as create_time,
+         IFNULL(report_person,'')as report_person,
+         IFNULL(report_reason,'')as report_reason,
+         IFNULL(report_quarter,'')as report_quarter,
+         IFNULL(report_text,'')as report_text,
+         IFNULL(report_failname,'')as report_failname,
+         IFNULL(initiatorclass,'')as initiatorclass,
+         IFNULL(status,'')as status,
+         IFNULL(money_source,'')as money_source,
+         IFNULL(arrival_time,'')as arrival_time,
+         IFNULL(amount,'')as amount,
+         IFNULL(finance_time,'')as finance_time,
+         IFNULL(toarea_time,'')as toarea_time,
+         IFNULL(areaname,'')as areaname,
+         IFNULL(text,'')as text,
+         IFNULL(replytext,'')as replytext,
+         IFNULL(dealtext,'')as dealtext,
+         IFNULL(capitalflowinstruction,'')as capitalflowinstruction,
+         IFNULL(guihuakeshenqing,'')as guihuakeshenqing,
+         IFNULL(quxianshenqingren,'')as quxianshenqingren,
+         IFNULL(caiwuchuliren,'')as caiwuchuliren,
+         IFNULL(guihuachuliren,'')as guihuachuliren,
+         IFNULL(guihuapifuren,'')as guihuapifuren,
+         IFNULL(caiwuzhuanzhangren,'')as caiwuzhuanzhangren,
+         IFNULL(quxianbaocunren,'')as quxianbaocunren,
+         IFNULL(quxiantijiaoren,'')as quxiantijiaoren,
+         from capitalflow where id = #{id}
     </select >
     <!--int updateCatipalDataById(Map<String, String> map);-->
     <update  id="updateCatipalDataById" parameterType="Map">
