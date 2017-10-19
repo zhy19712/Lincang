@@ -37,7 +37,11 @@ public class CapitalFlowController {
         map.put("report_quarter",report_quarter == null?"":report_quarter);
         map.put("report_text",report_person == null?"":report_text);
         map.put("initiatorclass",userstatus == null?"":userstatus);
-        map.put("status","市局财务科处理中");
+        if( "3".equals(userstatus) ){
+            map.put("status","市局规划科批复中");
+        } else {
+            map.put("status","市局财务科处理中");
+        }
         int result = capitalFlowServiceImp.submitData(map);
         return result+"";
     }
