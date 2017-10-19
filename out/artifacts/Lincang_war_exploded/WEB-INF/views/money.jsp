@@ -471,7 +471,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=1",
+            url: "/capitalFlowForm.do?userstatus=3",
             async:false
         },
         "order": [[1, 'desc']],
@@ -610,10 +610,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         }else if(status == 3){
             $("#night").addClass("last");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
         }else if(status == 1){
             $("#night").removeClass("last");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
             sta1 = "市局规划科处理中";
             sta2 = "已通知区县";
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
@@ -628,41 +626,76 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     //申请提交
     $("#money_apply_wdo .btn-primary").click(function () {
-        var app_people=  $("#input1").val();
-        var app_time=  $("#input2").val();
-        var app_content=  $("#input3").val();
-        var datas= {
-            "report_person":app_people,
-            "report_quarter":app_time,
-            "report_text":app_content
-        };
-        if(app_people == ""){
-            alert("上报人不能为空")
-        }else if(app_time == ""){
-            alert("上报时间不能为空")
-        }else if(app_content == ""){
-            alert("上报内容不能为空")
-        }else {
-            $.ajax({
-                type: 'post',
-                url: '/submitDataOfCapital.do',
-                data: datas,
-                dataType: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                success: function (result) {
-                    if(result){
-                        alert("提交成功");
-                        money_apply1.ajax.url("/capitalFlowForm.do").load();
-                    }else {
-                        alert("提交失败");
+        if(status == 1){
+            var app_people=  $("#input1").val();
+            var app_time=  $("#input2").val();
+            var app_content=  $("#input3").val();
+            var datas= {
+                "report_person":app_people,
+                "report_quarter":app_time,
+                "report_text":app_content
+            };
+            if(app_people == ""){
+                alert("上报人不能为空")
+            }else if(app_time == ""){
+                alert("上报时间不能为空")
+            }else if(app_content == ""){
+                alert("上报内容不能为空")
+            }else {
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        wipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
                     }
-                    $("#money_apply_wdo").modal("hide");
-                    wipeData();
-                },
-                error:function () {
-                    alert("系统错误");
-                }
-            });
+                });
+            }
+        }else if(status == 3){
+            var app_people=  $("#input1").val();
+            var app_reason=  $("#input2").val();
+            var datas= {
+                "report_person":app_people,
+                "report_reason":app_reason
+            };
+            if(app_people == ""){
+                alert("申请人不能为空")
+            }else if(app_time == ""){
+                alert("申请原因不能为空")
+            }else {
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        mywipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
+                    }
+                });
+            }
         }
     });
 

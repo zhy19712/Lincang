@@ -5,8 +5,8 @@
     <!-- int submitData(Map map);-->
     <insert  id="submitData" parameterType="Map" useGeneratedKeys="true"
     keyProperty="id">
-        insert into capitalflow (create_time,report_person,report_quarter,report_text,status)
-        values( #{create_time},#{report_person},#{report_quarter},#{report_text},#{status} )
+        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,status)
+        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{status})
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
@@ -18,9 +18,11 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="create_time!=null">create_time = #{create_time},</if>
             <if test="report_person!=null">report_person = #{report_person},</if>
+            <if test="report_reason!=null">report_reason = #{report_reason},</if>
             <if test="report_quarter!=null">report_quarter = #{report_quarter},</if>
             <if test="report_text!=null">report_text = #{report_text},</if>
             <if test="report_failname!=null">report_failname = #{report_failname},</if>
+            <if test="initiatorclass!=null">initiatorclass = #{initiatorclass},</if>
             <if test="status!=null">status = #{status},</if>
             <if test="money_source!=null">money_source = #{money_source},</if>
             <if test="arrival_time!=null">arrival_time = #{arrival_time},</if>

@@ -471,7 +471,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=1",
+            url: "/capitalFlowForm.do?userstatus=3",
             async:false
         },
         "order": [[1, 'desc']],
@@ -668,7 +668,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var app_reason=  $("#input2").val();
             var datas= {
                 "report_person":app_people,
-                "report_quarter":app_time
+                "report_reason":app_reason
             };
             if(app_people == ""){
                 alert("申请人不能为空")
@@ -684,12 +684,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     success: function (result) {
                         if(result){
                             alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do").load();
+                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
                         }else {
                             alert("提交失败");
                         }
                         $("#money_apply_wdo").modal("hide");
-                        wipeData();
+                        mywipeData();
                     },
                     error:function () {
                         alert("系统错误");
