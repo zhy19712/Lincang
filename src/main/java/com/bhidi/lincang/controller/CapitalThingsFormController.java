@@ -123,7 +123,7 @@ public class CapitalThingsFormController {
             }
             String searchSQL = "";
             //String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +" and"+status;
-            String sql = "SELECT * FROM " + table + " where"+status;
+            String sql = "SELECT IFNULL(id,'')as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where"+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }

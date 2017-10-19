@@ -92,7 +92,7 @@ public class CapitalApplyFormController {
                 recordsTotal = rs.getString("recordsTotal");
             }
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass;
+            String sql = "SELECT IFNULL(id,'')as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where initiatorclass ="+initiatorclass;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
