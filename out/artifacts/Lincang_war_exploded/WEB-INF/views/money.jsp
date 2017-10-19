@@ -487,69 +487,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <span style="display: inline-block;vertical-align: top;border: none;">处理内容:</span><textarea name="" id="chuli_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
                             </div>
                         </div>
-                        <%--<div class="row myrow" id="caiwu1">--%>
-                            <%--<div class="col-sm-6">--%>
-                                <%--<span>款项来源</span>--%>
-                                <%--<input type="text" id="money_source" readonly="true">--%>
-                            <%--</div>--%>
-                            <%--<div class="col-sm-6">--%>
-                                <%--<span>到款时间</span>--%>
-                                <%--<input type="text" name="author" id="arrival_time" readonly="readonly">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="row myrow" id="caiwu2">--%>
-                            <%--<div class="col-sm-6">--%>
-                                <%--<span>到款金额</span>--%>
-                                <%--<input type="text" id="amount" readonly="true">--%>
-                            <%--</div>--%>
-                            <%--<div class="col-sm-6">--%>
-                                <%--<span>上传附件</span>--%>
-                                <%--<input type="text" name="author">--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="row myrow last" id="guihuake">--%>
-                            <%--<div class="col-sm-12">--%>
-                                <%--<div class="notice">--%>
-                                    <%--<div class="add">--%>
-                                        <%--<span>通知区县</span>--%>
-                                        <%--<ul class="ui-choose" multiple="multiple" id="uc_03" style="width: 92%;">--%>
-                                            <%--<li>临翔区</li>--%>
-                                            <%--<li>凤庆县</li>--%>
-                                            <%--<li>永德县</li>--%>
-                                            <%--<li>镇康县</li>--%>
-                                            <%--<li>云县</li>--%>
-                                            <%--<li>沧源佤族自治县</li>--%>
-                                            <%--<li>耿马傣族佤族自治县</li>--%>
-                                            <%--<li>双江拉祜族佤族布朗族傣族自治县</li>--%>
-                                        <%--</ul>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="text">--%>
-                                        <%--<span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid red"></textarea>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="row myrow" id="guihuake_show1">--%>
-                            <%--<div class="col-sm-12">--%>
-                                <%--<div class="county_infos">--%>
-                                    <%--<span>已通知区县:</span>--%>
-                                    <%--<p></p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                        <%--<div class="row myrow last" id="guihuake_show2">--%>
-                            <%--<div class="col-sm-12">--%>
-                                <%--<div class="not_content">--%>
-                                    <%--<span>通知内容:</span>--%>
-                                    <%--<p></p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                        <div class="row myrow" id="luru">
+                            <div class="col-sm-12" style="padding-top: 10px">
+                                <span style="display: inline-block;vertical-align: top;border: none;">资金流向:</span><textarea name="" id="luru_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                            </div>
+                        </div>
                     </div>
 
                 </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-success">保存</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -732,13 +680,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#dcl").addClass("active");
             $("#new2").addClass("active");
             sta1 = "市局财务科处理中,市局财务科转账中";
-            sta2 = "已通知区县,市局规划科处理中";
+            sta2 = "已通知区县,市局规划科处理中,区县资金流向录入";
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
 
         }else if(status == 3){
             $("#night").addClass("last");
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
+            sta1 = "区县资金流向录入";
+            sta2 = "区县资金流向录入";
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
         }else if(status == 1){
             $("#night").removeClass("last");
             sta1 = "市局规划科处理中,市局规划科批复中";
@@ -902,6 +854,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         edit2(that);
                         var kind = $(that).val();
                         var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+                        console.log(status);
                         if(kind == "查看"){
                             $("#edit2 .btn-primary").css("display","none");
                             if(status == 1){
@@ -920,7 +873,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     $("#pifu").addClass("last");
                                     $("#chuli").css("display","none");
                                     $("#pifu_content").val(data.replytext).attr("readonly",true);
+                                }else if(state == "区县资金流向录入"){
+                                    $("#pifu").css("display","block");
+                                    $("#apply1").removeClass("last");
+                                    $("#pifu").removeClass("last");
+                                    $("#chuli").css("display","block").addClass("last");
+                                    $("#pifu_content").val(data.replytext).attr("readonly",true);
+                                    $("#chuli_content").val(data.dealtext).attr("readonly",true);
                                 }
+                            }else if(status == 3){
+
                             }
                         }else if(kind == "编辑"){
                             $("#edit2 .btn-primary").css("display","inline-block");
@@ -978,7 +940,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     console.log(data);
                                                     $("#edit2").modal("hide");
                                                     sta1 = "市局财务科处理中,市局财务科转账中";
-                                                    sta2 = "已通知区县,市局规划科处理中,区县资金录入中";
+                                                    sta2 = "已通知区县,市局规划科处理中,区县资金流向录入";
                                                     dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                     ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
                                                     $("#chuli_content").val("");
@@ -1168,6 +1130,92 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }else if(status == 3){
             edit2(that);
+            var kind = $(that).val();
+            var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+            var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+            $.ajax({
+                url: "/getCatipalDataById.do",
+                type: "post",
+                async: false,
+                data: {id:id},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    var data = data.result;
+                    if(kind == "查看"){
+                        if(state == "区县资金流向录入"){
+                            $("#pifu").css("display","block");
+                            $("#apply1").removeClass("last");
+                            $("#pifu").removeClass("last");
+                            $("#chuli").css("display","block").addClass("last");
+                            $("#pifu_content").val(data.replytext).attr("readonly",true);
+                            $("#chuli_content").val(data.dealtext).attr("readonly",true);
+                        }
+                    }else if(kind == "编辑"){
+                        if(state == "区县资金流向录入"){
+                            $("#pifu").css("display","block");
+                            $("#apply1").removeClass("last");
+                            $("#pifu").removeClass("last");
+                            $("#chuli").css("display","block").removeClass("last");
+                            $("#pifu_content").val(data.replytext).attr("readonly",true);
+                            $("#chuli_content").val(data.dealtext).attr("readonly",true);
+                            $("#luru").css("display","block").addClass("last");
+                            $("#edit2 .btn-primary").click(function () {
+                                var text = $("#luru_content").val();
+                                if(text == ""){
+                                    alert("录入内容不能为空");
+                                    return;
+                                }else {
+                                    //区县提交
+                                    console.log(id,text);
+//                                        $.ajax({
+//                                            url: "/setDataById.do",
+//                                            type: "post",
+//                                            dataType: "json",
+//                                            data:{id:id,dealtext:text},
+//                                            success:function (data) {
+//                                                console.log(data);
+//                                                $("#edit2").modal("hide");
+//                                                sta1 = "区县资金流向录入";
+//                                                sta2 = "区县资金流向录入";
+//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+//                                                $("#luru_content").val("");
+//                                            }
+//                                        })
+                                }
+                            });
+                            //区县保存
+                            $("#edit2 .btn-success").click(function () {
+                                var text = $("#luru_content").val();
+                                if(text == ""){
+                                    alert("录入内容不能为空");
+                                    return;
+                                }else {
+                                    //区县提交
+                                    console.log(id,text);
+//                                        $.ajax({
+//                                            url: "/setDataById.do",
+//                                            type: "post",
+//                                            dataType: "json",
+//                                            data:{id:id,dealtext:text},
+//                                            success:function (data) {
+//                                                console.log(data);
+//                                                $("#edit2").modal("hide");
+//                                                sta1 = "区县资金流向录入";
+//                                                sta2 = "区县资金流向录入";
+//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+//                                                $("#luru_content").val("");
+//                                            }
+//                                        })
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+
 
         }
     }
