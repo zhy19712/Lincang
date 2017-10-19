@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,11 +24,17 @@ import java.util.Map;
 public class CapitalFlowFormController {
     @ResponseBody
     @RequestMapping(value="/capitalFlowForm.do",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String SubmittedForm(HttpServletRequest request) throws SQLException {
+    public String SubmittedForm(HttpServletRequest request,@RequestParam(value="userstatus",required=false)String userstatus) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "CAPITALFLOW";
+        String initiatorclass = "";
+        if( "1".equals(userstatus) || "2".equals(userstatus) ){
+            initiatorclass = "1";
+        } else {
+            initiatorclass = userstatus;
+        }
 
         //获取请求次数
         String draw = "0";
@@ -73,17 +80,17 @@ public class CapitalFlowFormController {
         }
         List<CapitalFlow> tasks = new ArrayList<CapitalFlow>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1 = 1";
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where initiatorclass ="+initiatorclass;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1 = 1";
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where initiatorclass ="+initiatorclass;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where 1 = 1";
+            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
