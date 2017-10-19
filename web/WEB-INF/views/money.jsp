@@ -788,6 +788,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 });
             }
         }else if(status == 3){
+            var username = $("#username").text();
             var app_people=  $("#input1").val();
             var app_reason=  $("#input2").val();
             var datas= {
@@ -900,7 +901,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }else if(data.initiatorclass == 3){
                         edit2(that);
                         var kind = $(that).val();
-                        var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+                        var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
                         console.log(status);
                         if(kind == "查看"){
                             $("#edit2 .btn-primary").css("display","none");
@@ -1003,7 +1004,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }
                 }
             });
-            var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+            var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
             if( status == 2 ){
                 if(kind == "查看"){
                     $("#guihuake_show1").css("display","none");
@@ -1030,6 +1031,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }
                 }else if(kind == "编辑"){
                     var username = $("#username").text();
+
                     $("#caiwu").removeClass("last");
                     $("#caiwu1").css("display","block");
                     $("#caiwu2").css("display","block");
@@ -1127,7 +1129,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#guihuake_show1").css("display","none");
                         $("#guihuake_show2").css("display","none");
                     }else if(state == "市局规划科处理中"){
-                        var username = $("#username").val();
+                        var username = $("#username").text();
                         $("#caiwu").removeClass("last");
                         $("#caiwu1").css("display","block");
                         $("#caiwu2").css("display","block").removeClass("last");
@@ -1147,7 +1149,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             }else if(text == ""){
                                 alert("请输入通知内容")
                             }else{
-                                console.log(arr,text);
+                                alert(username);
                                 //规划科提交
                                 $.ajax({
                                     url: "/setToAreaDataById.do",
@@ -1184,7 +1186,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             edit2(that);
             var kind = $(that).val();
             var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-            var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+            var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
             $.ajax({
                 url: "/getCatipalDataById.do",
                 type: "post",
@@ -1207,7 +1209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#luru").css("display","block").addClass("last");
                     }else if(kind == "编辑"){
                         if(state == "区县资金流向录入"){
-                            $("#edit2 .btn-success").css("display","block");
+                            $("#edit2 .btn-success").css("display","inline-block");
                             $("#pifu").css("display","block");
                             $("#apply1").removeClass("last");
                             $("#pifu").removeClass("last");
@@ -1233,6 +1235,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             success:function (data) {
                                                 console.log(data);
                                                 $("#edit2").modal("hide");
+                                                money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
                                                 sta1 = "区县资金流向录入";
                                                 sta2 = "区县资金流向明细";
                                                 dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
@@ -1245,13 +1248,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             //区县保存
                             $("#edit2 .btn-success").click(function () {
                                 var text = $("#luru_content").val();
+                                var str = data.quxianbaocunren;
+                                console.log(data.quxianbaocunren);
                                 if(text == ""){
                                     alert("录入内容不能为空");
                                     return;
                                 }else {
-                                    //区县提交
                                     console.log(id,text);
-
                                         $.ajax({
                                             url: "/countySaveDataById.do",
                                             type: "post",

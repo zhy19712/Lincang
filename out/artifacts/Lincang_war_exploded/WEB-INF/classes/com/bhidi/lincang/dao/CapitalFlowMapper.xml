@@ -5,8 +5,8 @@
     <!-- int submitData(Map map);-->
     <insert  id="submitData" parameterType="Map" useGeneratedKeys="true"
     keyProperty="id">
-        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status)
-        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status})
+        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status,guihuakeshenqing,quxianshenqingren)
+        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status},#{guihuakeshenqing},#{quxianshenqingren})
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
@@ -33,6 +33,12 @@
             <if test="text!=null">text = #{text},</if>
             <if test="replytext!=null">replytext = #{replytext},</if>
             <if test="dealtext!=null">dealtext = #{dealtext},</if>
+            <if test="caiwuchuliren!=null">caiwuchuliren = #{caiwuchuliren},</if>
+            <if test="guihuachuliren!=null">guihuachuliren = #{guihuachuliren},</if>
+            <if test="guihuapifuren!=null">guihuapifuren = #{guihuapifuren},</if>
+            <if test="caiwuzhuanzhangren!=null">caiwuzhuanzhangren = #{caiwuzhuanzhangren},</if>
+            <if test="quxianbaocunren!=null">quxianbaocunren = #{quxianbaocunren},</if>
+            <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
             <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
         where id = #{id}
