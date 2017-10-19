@@ -634,7 +634,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1))+"&userstatus=1",
+            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
             async:false
         },
         "order": [[1, 'desc']],
@@ -676,7 +676,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1",
+            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
             async:false
         },
         "order": [[1, 'desc']],
@@ -726,8 +726,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#new2").addClass("active");
             sta1 = "市局财务科处理中";
             sta2 = "市局规划科处理中,已通知区县";
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
 
         }else if(status == 3){
             $("#night").addClass("last");
@@ -738,8 +738,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             sta2 = "已通知区县";
             console.log(sta1);
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
         }
 
     }();
@@ -931,8 +931,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         money_apply1.ajax.url("/capitalFlowForm.do").load();
                                         sta1 = "市局财务科处理中";
                                         sta2 = "市局规划科处理中,已通知区县";
-                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
-                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
                                         mywipeData();
                                     }
                                 })
@@ -1020,8 +1020,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         money_apply1.ajax.url("/capitalFlowForm.do").load();
                                         sta1 = "市局规划科处理中";
                                         sta2 = "已通知区县";
-                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
-                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
+                                        dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                        ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
                                         mywipeData();
                                         $("#uc_03 li").removeClass("selected");
                                     }
