@@ -51,12 +51,12 @@ public class CapitalFlowController {
         map.put("title",title == null?"":title);
         //规划科申请人
         map.put("guihuakeshenqing",username == null?"":username);
-        //规划科申请人
+        //区县申请人
         map.put("quxianshenqingren",username == null?"":username);
-
         map.put("initiatorclass",userstatus == null?"":userstatus);
         if( "3".equals(userstatus) ){
             map.put("status","市局规划科批复中");
+
         } else {
             map.put("status","市局财务科处理中");
         }
@@ -90,7 +90,8 @@ public class CapitalFlowController {
     @ResponseBody
     @RequestMapping(value="/setDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String setDataById(String id,String money_source,String arrival_time,String amount,
-                              @RequestParam(value="dealtext",required=false) String dealtext ){
+                              @RequestParam(value="dealtext",required=false) String dealtext,
+                              @RequestParam(value="username",required=false) String username){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String finance_time = format.format(now);
@@ -102,10 +103,13 @@ public class CapitalFlowController {
             map.put("amount",amount);
             map.put("finance_time",finance_time);
             map.put("status","市局规划科处理中");
+            map.put("caiwuchuliren",username);
         }
         if( dealtext != null ){
             map.put("dealtext",dealtext);
+            map.put("caiwuzhuanzhangren",username);
             map.put("status","区县资金流向录入");
+
         }
 
         int result = capitalFlowServiceImp.setCatipalDataById(map);
@@ -124,7 +128,8 @@ public class CapitalFlowController {
     public String setDataById(String id,
                               @RequestParam(value="areanames[]",required=false) String[] areas,
                               @RequestParam(value="replytext",required=false) String replytext,
-                              @RequestParam(value="text",required=false) String text) {
+                              @RequestParam(value="text",required=false) String text,
+                              @RequestParam(value="username",required=false) String username) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String toarea_time = format.format(now);
@@ -145,10 +150,12 @@ public class CapitalFlowController {
             map.put("areaname",sb.toString());
             map.put("text",text);
             map.put("status","已通知区县");
+            map.put("guihuachuliren",username);
         }
         if( replytext != null ){
             map.put("replytext",replytext);
             map.put("status","市局财务科转账中");
+            map.put("guihuapifuren",username);
         }
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
@@ -162,9 +169,11 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/countySaveDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String countySaveDataById( String id,String capitalflowinstruction ){
+    public String countySaveDataById( String id,String capitalflowinstruction,
+                                      @RequestParam(value="username",required=false)String username){
         Map<String,String> map = new HashMap();
         map.put("id",id);
+        map.put("quxianbaocunren",username);
         if( capitalflowinstruction != null ){
             map.put("capitalflowinstruction",capitalflowinstruction);
         }
@@ -179,9 +188,11 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/countySubmitDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String countySubmitDataById( String id,String capitalflowinstruction ){
+    public String countySubmitDataById( String id,String capitalflowinstruction,
+                                        @RequestParam(value="username",required=false)String username){
         Map<String,String> map = new HashMap();
         map.put("id",id);
+        map.put("quxiantijiaoren",username);
         if( capitalflowinstruction != null ){
             map.put("capitalflowinstruction",capitalflowinstruction);
             map.put("status","区县资金流向明细");
