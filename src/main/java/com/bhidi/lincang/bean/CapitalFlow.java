@@ -4,10 +4,11 @@ public class CapitalFlow {
     private int id;
     private String create_time;
     private String report_person;
+    private String report_reason;
     private String report_quarter;
     private String report_text;
     private String report_failname;
-    private String report_reason;
+    private String initiatorclass;
     private String status;
     private String money_source;
     private String arrival_time;
@@ -27,14 +28,15 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String report_reason, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
+        this.report_reason = report_reason;
         this.report_quarter = report_quarter;
         this.report_text = report_text;
         this.report_failname = report_failname;
-        this.report_reason = report_reason;
+        this.initiatorclass = initiatorclass;
         this.status = status;
         this.money_source = money_source;
         this.arrival_time = arrival_time;
@@ -165,16 +167,25 @@ public class CapitalFlow {
         this.report_reason = report_reason;
     }
 
+    public String getInitiatorclass() {
+        return initiatorclass;
+    }
+
+    public void setInitiatorclass(String initiatorclass) {
+        this.initiatorclass = initiatorclass;
+    }
+
     @Override
     public String toString() {
         return "CapitalFlow{" +
                 "id=" + id +
                 ", create_time='" + create_time + '\'' +
                 ", report_person='" + report_person + '\'' +
+                ", report_reason='" + report_reason + '\'' +
                 ", report_quarter='" + report_quarter + '\'' +
                 ", report_text='" + report_text + '\'' +
                 ", report_failname='" + report_failname + '\'' +
-                ", report_reason='" + report_reason + '\'' +
+                ", initiatorclass='" + initiatorclass + '\'' +
                 ", status='" + status + '\'' +
                 ", money_source='" + money_source + '\'' +
                 ", arrival_time='" + arrival_time + '\'' +
