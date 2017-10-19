@@ -1168,21 +1168,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 }else {
                                     //区县提交
                                     console.log(id,text);
-//                                        $.ajax({
-//                                            url: "/setDataById.do",
-//                                            type: "post",
-//                                            dataType: "json",
-//                                            data:{id:id,dealtext:text},
-//                                            success:function (data) {
-//                                                console.log(data);
-//                                                $("#edit2").modal("hide");
-//                                                sta1 = "区县资金流向录入";
-//                                                sta2 = "区县资金流向录入";
-//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-//                                                $("#luru_content").val("");
-//                                            }
-//                                        })
+                                        $.ajax({
+                                            url: "/countySubmitDataById.do",
+                                            type: "post",
+                                            dataType: "json",
+                                            data:{id:id,capitalflowinstruction:text},
+                                            success:function (data) {
+                                                console.log(data);
+                                                $("#edit2").modal("hide");
+                                                sta1 = "区县资金流向录入";
+                                                sta2 = "区县资金流向录入";
+                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                $("#luru_content").val("");
+                                            }
+                                        })
                                 }
                             });
                             //区县保存
@@ -1194,21 +1194,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 }else {
                                     //区县提交
                                     console.log(id,text);
-//                                        $.ajax({
-//                                            url: "/setDataById.do",
-//                                            type: "post",
-//                                            dataType: "json",
-//                                            data:{id:id,dealtext:text},
-//                                            success:function (data) {
-//                                                console.log(data);
-//                                                $("#edit2").modal("hide");
-//                                                sta1 = "区县资金流向录入";
-//                                                sta2 = "区县资金流向录入";
-//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-//                                                $("#luru_content").val("");
-//                                            }
-//                                        })
+                                        $.ajax({
+                                            url: "/countySaveDataById.do",
+                                            type: "post",
+                                            dataType: "json",
+                                            data:{id:id,capitalflowinstruction:text},
+                                            success:function (data) {
+                                                console.log(data);
+                                                $("#edit2").modal("hide");
+                                                sta1 = "区县资金流向录入";
+                                                sta2 = "区县资金流向录入";
+                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                $("#luru_content").val("");
+                                            }
+                                        })
                                 }
                             });
                         }

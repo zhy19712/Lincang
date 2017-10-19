@@ -147,14 +147,31 @@ public class CapitalFlowController {
     }
 
     /**
+     * 区县点击了编辑之后的保存按钮
+     * @param id
+     * @param capitalflowinstruction
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/countySaveDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String countySaveDataById( String id,String capitalflowinstruction ){
+        Map<String,String> map = new HashMap();
+        map.put("id",id);
+        if( capitalflowinstruction != null ){
+            map.put("capitalflowinstruction",capitalflowinstruction);
+        }
+        int result = capitalFlowServiceImp.setCatipalDataById(map);
+        return result+"";
+    }
+    /**
      * 区县点击了编辑之后的提交按钮
      * @param id
      * @param capitalflowinstruction
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/countySetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String countySetDataById( String id,String capitalflowinstruction ){
+    @RequestMapping(value="/countySubmitDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String countySubmitDataById( String id,String capitalflowinstruction ){
         Map<String,String> map = new HashMap();
         map.put("id",id);
         if( capitalflowinstruction != null ){
