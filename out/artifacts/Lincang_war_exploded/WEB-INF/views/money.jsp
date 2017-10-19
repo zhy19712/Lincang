@@ -732,7 +732,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#dcl").addClass("active");
             $("#new2").addClass("active");
             sta1 = "市局财务科处理中,市局财务科转账中";
-            sta2 = "已通知区县,区县资金流向录入";
+            sta2 = "已通知区县,市局规划科处理中";
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
 
