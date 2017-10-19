@@ -82,7 +82,7 @@ public class CapitalThingsFormController {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id","title", "create_time", "report_person","initiatorclass","status"};
+        String[] cols = {"id", "create_time", "report_person","initiatorclass","title","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -123,7 +123,7 @@ public class CapitalThingsFormController {
             }
             String searchSQL = "";
             //String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass +" and"+status;
-            String sql = "SELECT IFNULL(id,'')as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status\n FROM " + table + " where"+status;
+            String sql = "SELECT IFNULL(id,'')as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where"+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
