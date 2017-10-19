@@ -76,6 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
         </div>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
+        <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -723,6 +724,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $("#money_apply_wdo .btn-primary").click(function () {
         var title = $("#title").val();
         if(status == 1){
+            var username = $("#username").text();
             var app_people=  $("#input1").val();
             var app_time=  $("#input2").val();
             var app_content=  $("#input3").val();
@@ -730,7 +732,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 "report_person":app_people,
                 "report_quarter":app_time,
                 "report_text":app_content,
-                "title":title
+                "title":title,
+                "username": username
             };
             if(app_people == ""){
                 alert("上报人不能为空")
