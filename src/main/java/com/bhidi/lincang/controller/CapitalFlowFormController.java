@@ -99,7 +99,6 @@ public class CapitalFlowFormController {
                 tasks.add(new CapitalFlow(rs.getInt("id"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
-                        rs.getString("report_quarter"),
                         rs.getString("status")
                         ));
             }

@@ -29,6 +29,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         .last{
             border-bottom: 1px solid red !important;
         }
+        #new3 tbody tr td:last-child input:last-child{
+            display: none;
+        }
     </style>
 
 
@@ -273,16 +276,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <input id="oId" type="text" name="id" style="display: none" ></input>
                         <input id="created_at" type="text" name="created_at" style="display: none" ></input>
                         <div class="row myrow">
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" id="people">
                                 <span>上报人</span>
                                 <input id="input1" type="text" name="dept">
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-6" id="time">
                                 <span>上报季度</span>
                                 <input id="input2" type="text" name="author">
                             </div>
                         </div>
-                        <div class="row myrow">
+                        <div class="row myrow" id="night">
                             <div class="col-sm-12">
                                 <span>上传文件</span>
                                 <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
@@ -464,28 +467,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     $("#arrival_time").jeDate({
         format: "YYYY-MM-DD"
     });
-    var status;
-    ~function() {
 
-        status = $("#status").text();
-
-        if(status == 2){
-            $("#hader1").remove();
-            $("#m_apply1").remove();
-
-        }else if(status == 3){
-            $("#m_apply1").remove();
-            $("#new1").remove();
-
-        }else if(status == 1){
-            $("#m_apply2").remove();
-        }
-
-    }();
-    //规划科资金申请
+    //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=" + status,
+            url: "/capitalFlowForm.do?userstatus=1",
             async:false
         },
         "order": [[1, 'desc']],
@@ -523,12 +509,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
 
-
     //财务科待处理
-    var sta1 = "市局财务科处理中";
+    var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus="+status,
+            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1))+"&userstatus=1",
             async:false
         },
         "order": [[1, 'desc']],
@@ -567,10 +552,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     });
 
     //财务科已处理
-    var sta2 = "市局规划科处理中,已通知区县";
+    var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus="+status,
+            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1",
             async:false
         },
         "order": [[1, 'desc']],
@@ -607,44 +592,110 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
     });
+    var status;
+    ~function() {
+
+        status = $("#status").text();
+
+        if(status == 2){
+            $("#header1").remove();
+            $("#m_apply1").remove();
+            $("#new1").remove();
+            $("#dcl").addClass("active");
+            $("#new2").addClass("active");
+            sta1 = "市局财务科处理中";
+            sta2 = "市局规划科处理中,已通知区县";
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+
+        }else if(status == 3){
+            $("#night").addClass("last");
+        }else if(status == 1){
+            $("#night").removeClass("last");
+            sta1 = "市局规划科处理中";
+            sta2 = "已通知区县";
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+        }
+
+    }();
+
+
+
+
 
     //申请提交
     $("#money_apply_wdo .btn-primary").click(function () {
-        var app_people=  $("#input1").val();
-        var app_time=  $("#input2").val();
-        var app_content=  $("#input3").val();
-        var datas= {
-            "report_person":app_people,
-            "report_quarter":app_time,
-            "report_text":app_content
-        };
-        if(app_people == ""){
-            alert("上报人不能为空")
-        }else if(app_time == ""){
-            alert("上报时间不能为空")
-        }else if(app_content == ""){
-            alert("上报内容不能为空")
-        }else {
-            $.ajax({
-                type: 'post',
-                url: '/submitDataOfCapital.do',
-                data: datas,
-                dataType: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                success: function (result) {
-                    if(result){
-                        alert("提交成功");
-                        money_apply1.ajax.url("/capitalFlowForm.do").load();
-                    }else {
-                        alert("提交失败");
+        if(status == 1){
+            var app_people=  $("#input1").val();
+            var app_time=  $("#input2").val();
+            var app_content=  $("#input3").val();
+            var datas= {
+                "report_person":app_people,
+                "report_quarter":app_time,
+                "report_text":app_content
+            };
+            if(app_people == ""){
+                alert("上报人不能为空")
+            }else if(app_time == ""){
+                alert("上报时间不能为空")
+            }else if(app_content == ""){
+                alert("上报内容不能为空")
+            }else {
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        wipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
                     }
-                    $("#money_apply_wdo").modal("hide");
-                    wipeData();
-                },
-                error:function () {
-                    alert("系统错误");
-                }
-            });
+                });
+            }
+        }else if(status == 3){
+            var app_people=  $("#input1").val();
+            var app_reason=  $("#input2").val();
+            var datas= {
+                "report_person":app_people,
+                "report_quarter":app_time
+            };
+            if(app_people == ""){
+                alert("申请人不能为空")
+            }else if(app_time == ""){
+                alert("申请原因不能为空")
+            }else {
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        wipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
+                    }
+                });
+            }
         }
     });
 
@@ -753,6 +804,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 success: function (data) {
                                     $("#edit").modal("hide");
                                     money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                    sta1 = "市局财务科处理中";
+                                    sta2 = "市局规划科处理中,已通知区县";
+                                    dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
+                                    ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
                                     mywipeData();
                                 }
                             })
@@ -809,7 +864,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }else if(state == "市局规划科处理中"){
                     $("#caiwu").removeClass("last");
                     $("#caiwu1").css("display","block");
-                    $("#caiwu2").css("display","block").addClass("last");
+                    $("#caiwu2").css("display","block");
                     $("#guihuake_show1").css("display","none");
                     $("#guihuake_show2").css("display","none");
                     $("#guihuake").css("display","block");
@@ -838,6 +893,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     console.log(data);
                                     $("#edit").modal("hide");
                                     money_apply1.ajax.url("/capitalFlowForm.do").load();
+                                    sta1 = "市局规划科处理中";
+                                    sta2 = "已通知区县";
+                                    dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
+                                    ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
                                     mywipeData();
                                     $("#uc_03 li").removeClass("selected");
                                 }
@@ -858,15 +917,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     }
 
     function newForm() {
+        if(status == 1){
+            $("#people span").text("上报人");
+            $("#time span").text("上报季度");
+            $("#input3").css("display","block");
+        }else if(status == 3){
+            $("#people span").text("申请人");
+            $("#time span").text("申请原因");
+            $("#input3").css("display","none");
+        }
         $('#money_apply_wdo').modal('show');
     }
 
     function applyForm() {
         $('#money_apply_wdo').modal('show');
     }
-
-
-
 
 
 
