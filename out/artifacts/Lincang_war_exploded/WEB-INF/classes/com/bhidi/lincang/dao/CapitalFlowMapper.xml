@@ -33,6 +33,7 @@
             <if test="text!=null">text = #{text},</if>
             <if test="replytext!=null">replytext = #{replytext},</if>
             <if test="dealtext!=null">dealtext = #{dealtext},</if>
+            <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
         where id = #{id}
     </update >
