@@ -54,7 +54,7 @@ public class CapitalApplyFormController {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "create_time", "report_person","initiatorclass","title","status"};
+        String[] cols = {"id", "create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -92,7 +92,7 @@ public class CapitalApplyFormController {
                 recordsTotal = rs.getString("recordsTotal");
             }
             String searchSQL = "";
-            String sql = "SELECT * FROM " + table + " where initiatorclass ="+initiatorclass;
+            String sql = "SELECT IFNULL(id,'')as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(status,'')as status FROM " + table + " where initiatorclass ="+initiatorclass;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -107,7 +107,7 @@ public class CapitalApplyFormController {
                         rs.getString("create_time"),
                         rs.getString("report_person"),
                         rs.getString("initiatorclass"),
-                        rs.getString("title"),
+//                        rs.getString("title"),
                         rs.getString("status")
                         ));
             }

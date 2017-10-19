@@ -147,10 +147,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     <tr>
                                                         <th>编号</th>
                                                         <th>创建时间</th>
+                                                        <%--<th>标题</th>--%>
                                                         <th>发起人</th>
-                                                        <th>发起类型</th>
+                                                        <th>发起人类型</th>
                                                         <th>当前状态</th>
-                                                        <th>标题</th>
                                                         <th>操作</th>
                                                     </tr>
                                                 </thead>
@@ -183,8 +183,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
                                                         <th>发起人类型</th>
-                                                        <th>当前状态</th>
                                                         <th>标题</th>
+                                                        <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
                                                 </thead>
@@ -220,8 +220,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
                                                         <th>发起类型</th>
-                                                        <th>当前状态</th>
                                                         <th>标题</th>
+                                                        <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
                                                 </thead>
@@ -234,7 +234,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                                 </div>
-
 
 
                             </div>
@@ -561,10 +560,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+//            {"data": "title"},
             {"data": "create_time"},
-            {"data": "report_person"},
             {"data": "initiatorclass"},
-            {"data": "title"},
+            {"data": "report_person"},
             {"data": "status"},
             {"data": null}
         ],
@@ -572,7 +571,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [6],
+                "targets": [5],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
@@ -605,10 +604,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+            {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
             {"data": "initiatorclass"},
-            {"data": "title"},
             {"data": "status"},
             {"data": null}
         ],
@@ -649,10 +648,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+            {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
             {"data": "initiatorclass"},
-            {"data": "title"},
             {"data": "status"},
             {"data": null}
         ],
@@ -743,26 +742,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 alert("标题不能为空")
             }else {
                 console.log(datas);
-//                $.ajax({
-//                    type: 'post',
-//                    url: '/submitDataOfCapital.do?userstatus=1',
-//                    data: datas,
-//                    dataType: 'json',
-//                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//                    success: function (result) {
-//                        if(result){
-//                            alert("提交成功");
-//                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-//                        }else {
-//                            alert("提交失败");
-//                        }
-//                        $("#money_apply_wdo").modal("hide");
-//                        wipeData();
-//                    },
-//                    error:function () {
-//                        alert("系统错误");
-//                    }
-//                });
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do?userstatus=1',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        wipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
+                    }
+                });
             }
         }else if(status == 3){
             var app_people=  $("#input1").val();
@@ -781,26 +780,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }else {
                 console.log(datas);
 
-//                $.ajax({
-//                    type: 'post',
-//                    url: '/submitDataOfCapital.do?userstatus=3',
-//                    data: datas,
-//                    dataType: 'json',
-//                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//                    success: function (result) {
-//                        if(result){
-//                            alert("提交成功");
-//                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
-//                        }else {
-//                            alert("提交失败");
-//                        }
-//                        $("#money_apply_wdo").modal("hide");
-//                        mywipeData();
-//                    },
-//                    error:function () {
-//                        alert("系统错误");
-//                    }
-//                });
+                $.ajax({
+                    type: 'post',
+                    url: '/submitDataOfCapital.do?userstatus=3',
+                    data: datas,
+                    dataType: 'json',
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function (result) {
+                        if(result){
+                            alert("提交成功");
+                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
+                        }else {
+                            alert("提交失败");
+                        }
+                        $("#money_apply_wdo").modal("hide");
+                        mywipeData();
+                    },
+                    error:function () {
+                        alert("系统错误");
+                    }
+                });
             }
         }
     });

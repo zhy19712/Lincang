@@ -5,8 +5,8 @@
     <!-- int submitData(Map map);-->
     <insert  id="submitData" parameterType="Map" useGeneratedKeys="true"
     keyProperty="id">
-        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,status)
-        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{status})
+        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status)
+        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status})
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
