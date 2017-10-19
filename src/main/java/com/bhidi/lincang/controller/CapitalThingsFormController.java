@@ -54,6 +54,7 @@ public class CapitalThingsFormController {
                 e.printStackTrace();
             }
             String[] strs  = capitalstatus.split(",");
+
             if( strs.length == 1 ){
                 status = "("+"status = "+"'"+strs[0]+"'"+")";
             } else if ( strs.length == 2 ){
