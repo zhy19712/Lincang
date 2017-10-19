@@ -772,7 +772,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var datas= {
                 "report_person":app_people,
                 "report_reason":app_reason,
-                "title":title
+                "title":title,
+                "username": username
             };
             if(app_people == ""){
                 alert("申请人不能为空")
@@ -913,6 +914,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $("#edit2 .btn-primary").css("display","inline-block");
                             if(status == 1){
                                 if(state == "市局规划科批复中"){
+                                    var username = $("#username").text();
                                     $("#pifu").css("display","block");
                                     $("#apply1").removeClass("last");
                                     $("#pifu").addClass("last");
@@ -927,7 +929,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 url: "/setToAreaDataById.do",
                                                 type: "post",
                                                 dataType: "json",
-                                                data:{id:id,replytext:text},
+                                                data:{id:id,replytext:text,username:username},
                                                 success:function (data) {
                                                     console.log(data);
                                                     $("#edit2").modal("hide");
@@ -943,6 +945,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 }
                             }else if(status == 2){
                                 if(state == "市局财务科转账中"){
+                                    var username = $("#username").text();
                                     $("#pifu").css("display","block");
                                     $("#apply1").removeClass("last");
                                     $("#pifu").removeClass("last");
@@ -960,7 +963,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 url: "/setDataById.do",
                                                 type: "post",
                                                 dataType: "json",
-                                                data:{id:id,dealtext:text},
+                                                data:{id:id,dealtext:text,username:username},
                                                 success:function (data) {
                                                     console.log(data);
                                                     $("#edit2").modal("hide");
@@ -1005,6 +1008,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#guihuake_show2").css("display","block");
                     }
                 }else if(kind == "编辑"){
+                    var username = $("#username").text();
                     $("#caiwu").removeClass("last");
                     $("#caiwu1").css("display","block");
                     $("#caiwu2").css("display","block");
@@ -1038,7 +1042,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         id :id,
                                         money_source:money_source,
                                         arrival_time:arrival_time,
-                                        amount:amount
+                                        amount:amount,
+                                        username: username
                                     },
                                     dataType: "json",
                                     success: function (data) {
@@ -1101,6 +1106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#guihuake_show1").css("display","none");
                         $("#guihuake_show2").css("display","none");
                     }else if(state == "市局规划科处理中"){
+                        var username = $("#username").val();
                         $("#caiwu").removeClass("last");
                         $("#caiwu1").css("display","block");
                         $("#caiwu2").css("display","block").removeClass("last");
@@ -1126,7 +1132,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     url: "/setToAreaDataById.do",
                                     type: "post",
                                     async: false,
-                                    data: {id:id,areanames:arr,text:text},
+                                    data: {id:id,areanames:arr,text:text,username:username},
                                     dataType: "json",
                                     success: function (data) {
                                         console.log(data);
@@ -1190,6 +1196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             $("#luru_content").val(data.capitalflowinstruction).attr("readonly",false);
                             $("#luru").css("display","block").addClass("last");
                             $("#edit2 .btn-primary").click(function () {
+                                var username = $("#username").text();
                                 var text = $("#luru_content").val();
                                 if(text == ""){
                                     alert("录入内容不能为空");
@@ -1201,7 +1208,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             url: "/countySubmitDataById.do",
                                             type: "post",
                                             dataType: "json",
-                                            data:{id:id,capitalflowinstruction:text},
+                                            data:{id:id,capitalflowinstruction:text,username:username},
                                             success:function (data) {
                                                 console.log(data);
                                                 $("#edit2").modal("hide");
@@ -1223,11 +1230,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 }else {
                                     //区县提交
                                     console.log(id,text);
+
                                         $.ajax({
                                             url: "/countySaveDataById.do",
                                             type: "post",
                                             dataType: "json",
-                                            data:{id:id,capitalflowinstruction:text},
+                                            data:{id:id,capitalflowinstruction:text,username:username},
                                             success:function (data) {
                                                 console.log(data);
                                                 $("#edit2").modal("hide");
