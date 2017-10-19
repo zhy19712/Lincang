@@ -443,11 +443,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>区县已申请，规划科批复中</p></li>
-                                <li><p>规划科已批复，财务转账中</p></li>
-                                <li><p>财务已转账，已通知区县</p></li>
-                                <li><p>收到资金，资金去向录入中</p></li>
-                                <li><p>资金去向已录入</p></li>
+                                <li><p>规划科批复中</p></li>
+                                <li><p>财务转账中</p></li>
+                                <li><p>资金去向录入中</p></li>
+                                <li><p>资金录入完成</p></li>
                             </ul>
                         </div>
                     </div>
