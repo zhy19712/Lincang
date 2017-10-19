@@ -2,6 +2,7 @@ package com.bhidi.lincang.bean;
 
 public class CapitalFlow {
     private int id;
+    private String title;
     private String create_time;
     private String report_person;
     private String report_reason;
@@ -24,16 +25,18 @@ public class CapitalFlow {
     public CapitalFlow() {
     }
 
-    public CapitalFlow(int id, String create_time, String report_person,String initiatorclass,String status) {
+    public CapitalFlow(int id, String title,String create_time,String report_person,String initiatorclass,String status) {
         this.id = id;
+        this.title = title;
         this.create_time = create_time;
         this.report_person = report_person;
         this.initiatorclass = initiatorclass;
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext, String dealtext, String capitalflowinstruction) {
+    public CapitalFlow(int id, String title, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext, String dealtext, String capitalflowinstruction) {
         this.id = id;
+        this.title = title;
         this.create_time = create_time;
         this.report_person = report_person;
         this.report_reason = report_reason;
@@ -60,6 +63,14 @@ public class CapitalFlow {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getCreate_time() {
