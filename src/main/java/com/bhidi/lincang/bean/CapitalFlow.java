@@ -21,6 +21,14 @@ public class CapitalFlow {
     private String replytext;
     private String dealtext;
     private String capitalflowinstruction;
+    private String guihuakeshenqing;
+    private String quxianshenqingren;
+    private String caiwuchuliren;
+    private String guihuachuliren;
+    private String guihuapifuren;
+    private String caiwuzhuanzhangren;
+    private String quxianbaocunren;
+    private String quxiantijiaoren;
 
     public CapitalFlow() {
     }
@@ -34,7 +42,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String title, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext, String dealtext, String capitalflowinstruction) {
+    public CapitalFlow(int id, String title, String create_time, String report_person, String report_reason, String report_quarter, String report_text, String report_failname, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text, String replytext, String dealtext, String capitalflowinstruction, String guihuakeshenqing, String quxianshenqingren, String caiwuchuliren, String guihuachuliren, String guihuapifuren, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren) {
         this.id = id;
         this.title = title;
         this.create_time = create_time;
@@ -55,6 +63,14 @@ public class CapitalFlow {
         this.replytext = replytext;
         this.dealtext = dealtext;
         this.capitalflowinstruction = capitalflowinstruction;
+        this.guihuakeshenqing = guihuakeshenqing;
+        this.quxianshenqingren = quxianshenqingren;
+        this.caiwuchuliren = caiwuchuliren;
+        this.guihuachuliren = guihuachuliren;
+        this.guihuapifuren = guihuapifuren;
+        this.caiwuzhuanzhangren = caiwuzhuanzhangren;
+        this.quxianbaocunren = quxianbaocunren;
+        this.quxiantijiaoren = quxiantijiaoren;
     }
 
     public int getId() {
@@ -215,5 +231,69 @@ public class CapitalFlow {
 
     public void setCapitalflowinstruction(String capitalflowinstruction) {
         this.capitalflowinstruction = capitalflowinstruction;
+    }
+
+    public String getGuihuakeshenqing() {
+        return guihuakeshenqing;
+    }
+
+    public void setGuihuakeshenqing(String guihuakeshenqing) {
+        this.guihuakeshenqing = guihuakeshenqing;
+    }
+
+    public String getQuxianshenqingren() {
+        return quxianshenqingren;
+    }
+
+    public void setQuxianshenqingren(String quxianshenqingren) {
+        this.quxianshenqingren = quxianshenqingren;
+    }
+
+    public String getCaiwuchuliren() {
+        return caiwuchuliren;
+    }
+
+    public void setCaiwuchuliren(String caiwuchuliren) {
+        this.caiwuchuliren = caiwuchuliren;
+    }
+
+    public String getGuihuachuliren() {
+        return guihuachuliren;
+    }
+
+    public void setGuihuachuliren(String guihuachuliren) {
+        this.guihuachuliren = guihuachuliren;
+    }
+
+    public String getGuihuapifuren() {
+        return guihuapifuren;
+    }
+
+    public void setGuihuapifuren(String guihuapifuren) {
+        this.guihuapifuren = guihuapifuren;
+    }
+
+    public String getCaiwuzhuanzhangren() {
+        return caiwuzhuanzhangren;
+    }
+
+    public void setCaiwuzhuanzhangren(String caiwuzhuanzhangren) {
+        this.caiwuzhuanzhangren = caiwuzhuanzhangren;
+    }
+
+    public String getQuxianbaocunren() {
+        return quxianbaocunren;
+    }
+
+    public void setQuxianbaocunren(String quxianbaocunren) {
+        this.quxianbaocunren = quxianbaocunren;
+    }
+
+    public String getQuxiantijiaoren() {
+        return quxiantijiaoren;
+    }
+
+    public void setQuxiantijiaoren(String quxiantijiaoren) {
+        this.quxiantijiaoren = quxiantijiaoren;
     }
 }
