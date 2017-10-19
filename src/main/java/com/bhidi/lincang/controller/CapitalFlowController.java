@@ -97,7 +97,7 @@ public class CapitalFlowController {
         }
         if( dealtext != null ){
             map.put("dealtext",dealtext);
-            map.put("status","区县资金录入中");
+            map.put("status","区县资金流向录入");
         }
 
         int result = capitalFlowServiceImp.setCatipalDataById(map);
@@ -141,6 +141,25 @@ public class CapitalFlowController {
         if( replytext != null ){
             map.put("replytext",replytext);
             map.put("status","市局财务科转账中");
+        }
+        int result = capitalFlowServiceImp.setCatipalDataById(map);
+        return result+"";
+    }
+
+    /**
+     * 区县点击了编辑之后的提交按钮
+     * @param id
+     * @param capitalflowinstruction
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/countySetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String countySetDataById( String id,String capitalflowinstruction ){
+        Map<String,String> map = new HashMap();
+        map.put("id",id);
+        if( capitalflowinstruction != null ){
+            map.put("capitalflowinstruction",capitalflowinstruction);
+            map.put("status","区县资金流向明细");
         }
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
