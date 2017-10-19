@@ -482,6 +482,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <span style="display: inline-block;vertical-align: top;border: none;">批复意见:</span><textarea name="" id="pifu_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
                             </div>
                         </div>
+                        <div class="row myrow" id="chuli">
+                            <div class="col-sm-12" style="padding-top: 10px">
+                                <span style="display: inline-block;vertical-align: top;border: none;">处理内容:</span><textarea name="" id="chuli_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                            </div>
+                        </div>
                         <%--<div class="row myrow" id="caiwu1">--%>
                             <%--<div class="col-sm-6">--%>
                                 <%--<span>款项来源</span>--%>
@@ -726,7 +731,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             $("#new1").remove();
             $("#dcl").addClass("active");
             $("#new2").addClass("active");
-            sta1 = "市局财务科处理中";
+            sta1 = "市局财务科处理中,市局财务科转账中";
             sta2 = "市局规划科处理中,已通知区县";
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
@@ -737,7 +742,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }else if(status == 1){
             $("#night").removeClass("last");
             sta1 = "市局规划科处理中,市局规划科批复中";
-            sta2 = "已通知区县,市局财务科转账中,区县资金录入中,区县资金录入完成";
+            sta2 = "已通知区县,市局财务科转账中";
             console.log(sta1);
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
@@ -897,41 +902,91 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         edit2(that);
                         var kind = $(that).val();
                         var state = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-                        console.log(kind,state);
                         if(kind == "查看"){
-                            if(state == "市局规划科批复中"){
-                                $("#pifu").css("display","none");
+                            $("#edit2 .btn-primary").css("display","none");
+                            if(status == 1){
+                                if(state == "市局规划科批复中"){
+                                    $("#pifu").css("display","none");
+                                }else if(state == "市局财务科转账中"){
+                                    $("#pifu").css("display","block");
+                                    $("#apply1").removeClass("last");
+                                    $("#pifu").addClass("last");
+                                    $("#pifu_content").val(data.replytext).attr("readonly",true);
+                                }
+                            }else if(status == 2){
+                                if(state == "市局财务科转账中"){
+                                    $("#pifu").css("display","block");
+                                    $("#apply1").removeClass("last");
+                                    $("#pifu").addClass("last");
+                                    $("#chuli").css("display","none");
+                                    $("#pifu_content").val(data.replytext).attr("readonly",true);
+                                }
                             }
                         }else if(kind == "编辑"){
-                            if(state == "市局规划科批复中"){
-                                $("#pifu").css("display","block");
-                                $("#apply1").removeClass("last");
-                                $("#pifu").addClass("last");
-                                $("#edit2 .btn-primary").click(function () {
-                                    var text = $("#pifu_content").val();
-                                    if(text == ""){
-                                        alert("批复内容不能为空");
-                                        return;
-                                    }else {
-                                        //规划科批复
-                                        console.log(id,text);
-                                        $.ajax({
-                                            url: "/setToAreaDataById.do",
-                                            type: "post",
-                                            dataType: "json",
-                                            data:{id:id,replytext:text},
-                                            success:function (data) {
-                                                console.log(data);
-                                                $("#edit2").modal("hide");
-                                                sta1 = "市局规划科处理中,市局规划科批复中";
-                                                sta2 = "已通知区县";
-                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-                                                $("#pifu_content").val("");
-                                            }
-                                        })
-                                    }
-                                })
+                            $("#edit2 .btn-primary").css("display","inline-block");
+                            if(status == 1){
+                                if(state == "市局规划科批复中"){
+                                    $("#pifu").css("display","block");
+                                    $("#apply1").removeClass("last");
+                                    $("#pifu").addClass("last");
+                                    $("#edit2 .btn-primary").click(function () {
+                                        var text = $("#pifu_content").val();
+                                        if(text == ""){
+                                            alert("批复内容不能为空");
+                                            return;
+                                        }else {
+                                            //规划科批复
+                                            $.ajax({
+                                                url: "/setToAreaDataById.do",
+                                                type: "post",
+                                                dataType: "json",
+                                                data:{id:id,replytext:text},
+                                                success:function (data) {
+                                                    console.log(data);
+                                                    $("#edit2").modal("hide");
+                                                    sta1 = "市局规划科处理中,市局规划科批复中";
+                                                    sta2 = "已通知区县,市局财务科转账中";
+                                                    dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+                                                    ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                    $("#pifu_content").val("");
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            }else if(status == 2){
+                                if(state == "市局财务科转账中"){
+                                    $("#pifu").css("display","block");
+                                    $("#apply1").removeClass("last");
+                                    $("#pifu").removeClass("last");
+                                    $("#chuli").css("display","block").addClass("last");
+                                    $("#pifu_content").val(data.replytext).attr("readonly",true);
+                                    $("#edit2 .btn-primary").click(function () {
+                                        var text = $("#chuli_content").val();
+                                        if(text == ""){
+                                            alert("处理内容不能为空");
+                                            return;
+                                        }else {
+                                            //财务科处理
+                                            console.log(id,text);
+//                                        $.ajax({
+//                                            url: "/setToAreaDataById.do",
+//                                            type: "post",
+//                                            dataType: "json",
+//                                            data:{id:id,replytext:text},
+//                                            success:function (data) {
+//                                                console.log(data);
+//                                                $("#edit2").modal("hide");
+//                                                sta1 = "市局财务科处理中,市局财务科转账中";
+//                                                sta2 = "已通知区县";
+//                                                dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
+//                                                ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+//                                                $("#chuli_content").val("");
+//                                            }
+//                                        })
+                                        }
+                                    });
+                                }
                             }
                         }
                     }
@@ -1061,7 +1116,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }else if(state == "市局规划科处理中"){
                         $("#caiwu").removeClass("last");
                         $("#caiwu1").css("display","block");
-                        $("#caiwu2").css("display","block");
+                        $("#caiwu2").css("display","block").removeClass("last");
                         $("#guihuake_show1").css("display","none");
                         $("#guihuake_show2").css("display","none");
                         $("#guihuake").css("display","block");
