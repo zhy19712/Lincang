@@ -467,7 +467,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <input type="text" id="apply_reason_edit" readonly="true">
                             </div>
                         </div>
-                        <div class="row myrow">
+                        <div class="row myrow" id="apply1">
                             <div class="col-sm-12">
                                 <span>文件</span>
                                 <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
@@ -630,7 +630,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
 
-    //财务科待处理
+    //待处理
     var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
@@ -672,7 +672,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
 
-    //财务科已处理
+    //已处理
     var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
@@ -734,11 +734,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
         }else if(status == 1){
             $("#night").removeClass("last");
-            sta1 = "市局规划科处理中";
+            sta1 = "市局规划科处理中,市局规划科批复中";
             sta2 = "已通知区县";
+            console.log(sta1);
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=2").load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=2").load();
+            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1)) + "&userstatus=1").load();
+            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)) + "&userstatus=1").load();
         }
 
     }();
@@ -1052,6 +1053,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     console.log(data);
                     var data = data.result;
                     $("#apply_person_edit").val(data.report_person);
+                    $("#apply_reason_edit").val(data.report_reason);
+                    $("#apply1").addClass("last");
 
                     if(data.status == "市局规划科批复中"){
                         step.goStep(1);
