@@ -32,6 +32,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         #new3 tbody tr td:last-child input:last-child{
             display: none;
         }
+        #user_container1,#user_container2{
+            font-size: 0px;
+        }
+        #user_container1>div,#user_container1>div{
+            display: inline-block;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 20px;
+            width: 33%;
+        }
     </style>
 
 
@@ -326,7 +336,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3>详细信息</h3>
                 </div>
-                <div id="container" style="width: 100%;height: 120px">
+                <div id="container" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
@@ -335,6 +345,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <li><p>规划科已通知区县</p></li>
                             </ul>
                         </div>
+                    </div>
+                    <div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">
+                        <div class="user1_1">user1</div>
+                        <div class="user1_2">user2</div>
+                        <div class="user1_3">user3</div>
                     </div>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
@@ -446,7 +461,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3>详细信息</h3>
                 </div>
-                <div id="container2" style="width: 100%;height: 120px">
+                <div id="container2" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
@@ -456,6 +471,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <li><p>区县资金流向明细</p></li>
                             </ul>
                         </div>
+                    </div>
+                    <div id="user_container2" style="width:80%;margin: 0 auto;margin-top: 85px;">
+                        <div class="user2_1">user1</div>
+                        <div class="user2_2">user2</div>
+                        <div class="user2_3">user3</div>
+                        <div class="user2_4">user4</div>
                     </div>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
