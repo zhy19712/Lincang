@@ -7,13 +7,14 @@ public class CapitalFlow {
     private String report_quarter;
     private String report_text;
     private String report_failname;
+    private String report_reason;
     private String status;
     private String money_source;
     private String arrival_time;
     private String amount;
     private String finance_time;
     private String toarea_time;
-    private String  areaname;
+    private String areaname;
     private String text;
 
     public CapitalFlow() {
@@ -26,13 +27,14 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
+    public CapitalFlow(int id, String create_time, String report_person, String report_quarter, String report_text, String report_failname, String report_reason, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String text) {
         this.id = id;
         this.create_time = create_time;
         this.report_person = report_person;
         this.report_quarter = report_quarter;
         this.report_text = report_text;
         this.report_failname = report_failname;
+        this.report_reason = report_reason;
         this.status = status;
         this.money_source = money_source;
         this.arrival_time = arrival_time;
@@ -155,6 +157,14 @@ public class CapitalFlow {
         this.text = text;
     }
 
+    public String getReport_reason() {
+        return report_reason;
+    }
+
+    public void setReport_reason(String report_reason) {
+        this.report_reason = report_reason;
+    }
+
     @Override
     public String toString() {
         return "CapitalFlow{" +
@@ -164,6 +174,7 @@ public class CapitalFlow {
                 ", report_quarter='" + report_quarter + '\'' +
                 ", report_text='" + report_text + '\'' +
                 ", report_failname='" + report_failname + '\'' +
+                ", report_reason='" + report_reason + '\'' +
                 ", status='" + status + '\'' +
                 ", money_source='" + money_source + '\'' +
                 ", arrival_time='" + arrival_time + '\'' +
