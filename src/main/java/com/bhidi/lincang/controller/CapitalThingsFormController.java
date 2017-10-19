@@ -54,12 +54,21 @@ public class CapitalThingsFormController {
                 e.printStackTrace();
             }
             String[] strs  = capitalstatus.split(",");
-
-            if( strs.length == 1 ){
+            status += "(";
+            for( int i = 0; i < strs.length;i++ ){
+                if( i < (strs.length - 1) ){
+                    status += " status = "+"'"+strs[i]+"'"+"or";
+                }
+                if( i == (strs.length - 1) ){
+                    status += " status = "+"'"+strs[i]+"'";
+                }
+            }
+            status += ")";
+            /*if( strs.length == 1 ){
                 status = "("+"status = "+"'"+strs[0]+"'"+")";
             } else if ( strs.length == 2 ){
                 status = "("+"status = "+"'"+strs[0]+"'"+"or status = "+"'"+strs[1]+"'"+")";
-            }
+            }*/
         }
         //获取请求次数
         String draw = "0";
