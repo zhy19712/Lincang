@@ -38,9 +38,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         #user_container1>div,#user_container2>div{
             display: inline-block;
             vertical-align: middle;
+            word-wrap: break-word;
             text-align: center;
             font-size: 20px;
-            width: 25%;
+            width: 33%;
         }
         #user_container2>div{
             width: 20%;
@@ -343,9 +344,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>规划科已申请</p></li>
+                                <li><p>规划科已上报</p></li>
                                 <li><p>财务处理中</p></li>
-                                <li><p>规划科处理中</p></li>
                                 <li><p>规划科已通知区县</p></li>
                             </ul>
                         </div>
@@ -354,7 +354,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="user1_1"></div>
                         <div class="user1_2"></div>
                         <div class="user1_3"></div>
-                        <div class="user1_4"></div>
                     </div>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
@@ -363,6 +362,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                     <div class="modal-body">
+                        <div class="row myrow">
+                            <div class="col-sm-12">
+                                <span>标题</span>
+                                <input type="text" id="report_title_edit" readonly="true">
+                            </div>
+                        </div>
                         <div class="row myrow">
                             <div class="col-sm-6">
                                 <span>上报人</span>
@@ -492,6 +497,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
                     <div class="modal-body">
+                        <div class="row myrow">
+                            <div class="col-sm-12">
+                                <span>标题</span>
+                                <input type="text" id="apply_title_edit" readonly="true">
+                            </div>
+                        </div>
                         <div class="row myrow">
                             <div class="col-sm-6">
                                 <span>申请人</span>
@@ -787,7 +798,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             alert("提交失败");
                         }
                         $("#money_apply_wdo").modal("hide");
-                        wipeData();
+                        mywipeData();
                     },
                     error:function () {
                         alert("系统错误");
@@ -856,11 +867,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             dataType: "json",
             success: function (data) {
                 var data = data.result;
+                $("#apply_title_edit").val(data.title);
                 $("#apply_person_edit").val(data.report_person);
                 $("#apply_reason_edit").val(data.report_reason);
                 $("#apply1").addClass("last");
                 if(data.status == "市局规划科批复中"){
-                    step2.goStep(2);
+                    step2.goStep(1);
                     $(".user2_1").text(data.quxianshenqingren);
                 }else if(data.status == "市局财务科转账中"){
                     step2.goStep(3);
@@ -902,6 +914,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     var data = data.result;
                     if(data.initiatorclass == 1){
                         $("#edit").modal('show');
+                        $("#report_title_edit").val(data.title);
                         $("#report_person_edit").val(data.report_person);
                         $("#report_quarter_edit").val(data.report_quarter);
                         $("#report_text_edit").text(data.report_text);
@@ -911,14 +924,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         $("#guihuake_show1 .county_infos p").text(data.areaname);
                         $("#guihuake_show2 .not_content p").text(data.text);
                         if(data.status == "市局财务科处理中"){
-                            step.goStep(2);
+                            step.goStep(1);
                             $(".user1_1").text(data.guihuakeshenqing);
                         }else if(data.status == "市局规划科处理中"){
-                            step.goStep(3);
+                            step.goStep(2);
                             $(".user1_1").text(data.guihuakeshenqing);
                             $(".user1_2").text(data.caiwuchuliren);
                         }else if(data.status == "已通知区县"){
-                            step.goStep(4);
+                            step.goStep(3);
                             $(".user1_1").text(data.guihuakeshenqing);
                             $(".user1_2").text(data.caiwuchuliren);
                             $(".user1_3").text(data.guihuachuliren);
@@ -1234,6 +1247,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     }else if(kind == "编辑"){
                         if(state == "区县资金流向录入"){
                             $("#edit2 .btn-success").css("display","inline-block");
+                            $("#edit2 .btn-primary").css("display","inline-block");
                             $("#pifu").css("display","block");
                             $("#apply1").removeClass("last");
                             $("#pifu").removeClass("last");

@@ -159,12 +159,12 @@
                         <div class="nav-sm nav nav-stacked">
                         </div>
                         <ul class="nav nav-pills nav-stacked main-menu">
-                            <li class="nav-header">我的办公</li>
-                            <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
-                            <li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 资金申请</span></a></li>
+                            <li class="nav-header">移民搬迁</li>
+                            <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 移民管理</span></a></li>
+                            <li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿</span></a></li>
 
-                            <li class="nav-header">我的业务</li>
-                            <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 业务管理</span></a></li>
+                            <li class="nav-header">协同办公</li>
+                            <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
                         </ul>
                     </div>
                 </div>
