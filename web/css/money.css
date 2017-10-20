@@ -28,7 +28,7 @@
     width: 300px;
 }
 .add span{
-    color: red;
+    color: #000;
     display: inline-block;
     vertical-align: middle;
 }
@@ -44,7 +44,7 @@
     padding-bottom: 50px;
 }
 .notice .text span{
-    color: red;
+    color: #000;
     display: inline-block;
     vertical-align: top;
     margin-right: 10px;
@@ -126,8 +126,8 @@
     width: 80px;
     display: inline-block;
     vertical-align: top;
-    border-right: 1px solid red;
-    color: red;
+    border-right: 1px solid #000;
+    color: #000;
 }
 #guihuake_show1 p,#guihuake_show2 p{
     width: 88%;

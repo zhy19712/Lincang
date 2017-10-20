@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" href="../../css/money.css">
     <style>
         .last{
-            border-bottom: 1px solid red !important;
+            border-bottom: 1px solid #000 !important;
         }
         #new3 tbody tr td:last-child input:last-child{
             display: none;
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
-                                                <div>资金申请</div>
+                                                <div>市局资金计划上报</div>
 
                                             </a>
                                         </div>
@@ -152,7 +152,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </div>
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 全部列表</h2>
                                         </div>
 
 
@@ -428,7 +428,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </ul>
                                     </div>
                                     <div class="text">
-                                        <span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid red"></textarea>
+                                        <span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid #000"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -525,17 +525,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </div>
                         <div class="row myrow" id="pifu">
                             <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">批复意见:</span><textarea name="" id="pifu_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                                <span style="display: inline-block;vertical-align: top;border: none;">批复意见:</span><textarea name="" id="pifu_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
                             </div>
                         </div>
                         <div class="row myrow" id="chuli">
                             <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">处理内容:</span><textarea name="" id="chuli_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                                <span style="display: inline-block;vertical-align: top;border: none;">处理内容:</span><textarea name="" id="chuli_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
                             </div>
                         </div>
                         <div class="row myrow" id="luru">
                             <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">资金流向:</span><textarea name="" id="luru_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid red"></textarea>
+                                <span style="display: inline-block;vertical-align: top;border: none;">资金流向:</span><textarea name="" id="luru_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
                             </div>
                         </div>
                     </div>
