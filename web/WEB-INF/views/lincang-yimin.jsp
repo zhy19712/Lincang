@@ -21,40 +21,15 @@
 <body>
 	<div id="header">
 		<img src="../../img/logo.png" alt="" class="logo">
-		<div class="search">
-			<div class="search-text">
-	            <input type="text" placeholder="请输入地区名称">
-	            <button><i></i></button>
-	        </div>
-	        <ul class="search-condition">
-	            <li>
-	                <span>迁出时间</span>
-	                <i></i>
-	                <ul class="none">
-	                </ul>
-	            </li>
-	            <li>
-	                <span>迁出人数</span>
-	                <i></i>
-	                <ul class="none">
-	                </ul>
-	            </li>
-	            <li>
-	                <span>迁出地点</span>
-	                <i></i>
-	                <ul class="none">
-	                </ul>
-	            </li>
-	            <li>
-	                <span>更多</span>
-	                <i></i>
-	            </li>
-	            <li>
-	                <i></i>
-	                <span>清除全部条件</span>
-	            </li>
-	        </ul>
+		<div class="search" style="font-size:16px;">
+			<c:if test="${user==null}">
+				<a href="/toLogin.htm" target="_blank">请登录</a>
+			</c:if>
+			<c:if test="${user!=null}">
+				欢迎${user.username}, <a href="logout.do" >注销</a>
+			</c:if>
 		</div>
+		<span id="username" style="display:none;width:0;height:0;">${user.username}</span>
 	</div>
 	<div id="content">
 		<div id="container-wrapper">
@@ -174,16 +149,16 @@
 				<ul class="nav">
 					<li>
 						<i></i>
-						<p>移民信息</p>
+						<p>移民分析</p>
 					</li>
 					<li>
 						<i></i>
-						<p>数据录入</p>
+						<p>移民登记</p>
 					</li>
-					<li>
-						<i></i>
-						<p>统计分析</p>
-					</li>
+					<%--<li>--%>
+						<%--<i></i>--%>
+						<%--<p>统计分析</p>--%>
+					<%--</li>--%>
 				</ul>
 			</div>
 			<div class="right">

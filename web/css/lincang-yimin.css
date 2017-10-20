@@ -1,15 +1,4 @@
-#ta_wrapper ::-webkit-input-placeholder { /* WebKit browsers */
-  color:    red;
-}
-#ta_wrapper :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-  color:    red;
-}
-#ta_wrapper ::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color:    red;
-}
-#ta_wrapper :-ms-input-placeholder { /* Internet Explorer 10+ */
-  color:    red;
-}
+
 .none {
   display: none;
 }
