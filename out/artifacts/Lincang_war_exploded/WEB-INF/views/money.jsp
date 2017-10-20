@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             display: none;
         }
         #user_container1,#user_container2{
-            font-size: 0px;
+            font-size: 0;
         }
         #user_container1>div,#user_container2>div{
             display: inline-block;
@@ -106,7 +106,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li id="header1" class="nav-header">我的申请</li>
-                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>资金申请</span></a></li>
+                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">市局资金计划上报</span></a></li>
 
                         <li class="nav-header">我的事务</li>
                         <li id="dcl"><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
-                                                <div>市局资金计划上报</div>
+                                                <div id="kind2">市局资金计划上报</div>
 
                                             </a>
                                         </div>
@@ -738,6 +738,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         }else if(status == 3){
             $("#night").addClass("last");
+            $("#kind1").text("资金申请");
+            $("#kind2").text("资金申请");
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
             sta1 = "区县资金流向录入";
             sta2 = "区县资金流向明细";
@@ -748,6 +750,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             sta1 = "市局规划科处理中,市局规划科批复中";
             sta2 = "已通知区县,市局财务科转账中";
             console.log(sta1);
+            $("#kind1").text("市局资金计划上报");
+            $("#kind2").text("市局资金计划上报");
             money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
             dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
             ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();

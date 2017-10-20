@@ -133,7 +133,7 @@
     width: 88%;
     display: inline-block;
     vertical-align: top;
-    margin: 0;
+    margin: 0px;
 }
 #pifu,#chuli,#luru,#edit2 .btn-success{
     display: none;
