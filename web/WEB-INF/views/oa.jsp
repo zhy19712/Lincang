@@ -456,9 +456,7 @@
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
                     <h3 id="form-kind">填写表单</h3>
                 </div>
-                <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post"
-                      enctype="multipart/form-data"  target="uploadFrame">
+
 
                 <div class="modal-body" style="font-size: 0;width: 100%;" id="print1">
                     <input id="oId" type="text" name="id" style="display: none" ></input>
@@ -493,12 +491,23 @@
                     </div>
                     <div class="row myrow">
                         <div class="col-sm-12">
+
+                            <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
+                            <form id = "fileForm" action="" method="post"
+                                  enctype="multipart/form-data"  target="uploadFrame">
+
+
                             <span>附件</span>
                             <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                 <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                 <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                             </div>
                             <%--<input type="button" id="Commit" style="display:none"/>--%>
+
+                            </form>
+
+
+
                         </div>
                     </div>
                     <div class="row myrow">
@@ -532,7 +541,7 @@
                     </div>
                 </div>
 
-                </form>
+
                 <div class="modal-footer">
                     <a href="#" id="btn-print" class="btn btn-info">打印</a>
                     <a href="#" id="btn-up" class="btn btn-danger" data-dismiss="modal">放弃</a>

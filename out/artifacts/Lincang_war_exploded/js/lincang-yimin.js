@@ -769,16 +769,14 @@ $(function(){
         $("#yes").prop("checked",false);
     });
 
-	//日期插件
-    $("#time").jeDate({
-        format: "YYYY-MM-DD"
-    });
+
     //打印插件
     $("#jqprint").click(function () {
         jQuery('#jqtable').print();
     });
 	//表单提交
 	$("#btn-container li:first-child").click(function () {
+		var username = $("#username").text();
 		var data = new Object();
 		var reservoir = $("#reservoir").val();
 		var householder = $("#householder").val();
@@ -855,30 +853,75 @@ $(function(){
 
 		//城市信息
 		var location = new Object();
-		location.city = $("#city td:nth-child(1) input").val();
-        location.county = $("#city td:nth-child(2) input").val();
-        location.town = $("#city td:nth-child(3) input").val();
-        location.village = $("#city td:nth-child(4) input").val();
-        location.group = $("#city td:nth-child(5) input").val();
-        location.remark = $("#city td:nth-child(6) input").val();
-		data.location = location;
+		if($("#city td:nth-child(1) input").val()){
+            location.city = $("#city td:nth-child(1) input").val();
+        }
+        if($("#city td:nth-child(2) input").val()){
+            location.county = $("#city td:nth-child(2) input").val();
+        }
+        if($("#city td:nth-child(3) input").val()){
+            location.town = $("#city td:nth-child(3) input").val();
+        }
+        if($("#city td:nth-child(4) input").val()){
+            location.village = $("#city td:nth-child(4) input").val();
+        }
+        if($("#city td:nth-child(5) input").val()){
+            location.group = $("#city td:nth-child(5) input").val();
+        }
+        if($("#city td:nth-child(6) input").val()){
+            location.remark = $("#city td:nth-child(6) input").val();
+        }
+        if(location.city || location.county || location.town || location.village || location.group || location.remark){
+            data.location = location;
+        }
 		//房子信息
 		var house = new Object();
-		house.main_arear = $("#main td:nth-child(2) input").val();
-		house.main_structure1 = $("#main td:nth-child(3) input").val();
-		house.main_structure2 = $("#main td:nth-child(4) input").val();
-		house.main_structure3 = $("#main td:nth-child(5) input").val();
-		house.main_structure4 = $("#main td:nth-child(6) input").val();
-		house.main_easy = $("#main td:nth-child(7) input").val();
-		house.main_remark = $("#main td:nth-child(8) input").val();
-        house.sub_arear = $("#sub td:nth-child(2) input").val();
-        house.sub_structure1 = $("#main td:nth-child(3) input").val();
-        house.sub_structure2 = $("#main td:nth-child(4) input").val();
-        house.sub_structure3 = $("#main td:nth-child(5) input").val();
-        house.sub_structure4 = $("#main td:nth-child(6) input").val();
-        house.sub_easy = $("#main td:nth-child(7) input").val();
-        house.sub_remark = $("#main td:nth-child(8) input").val();
-        data.house = house;
+        if($("#main td:nth-child(2) input").val()){
+            house.main_arear = $("#main td:nth-child(2) input").val();
+        }
+        if($("#main td:nth-child(3) input").val()){
+            house.main_structure1 = $("#main td:nth-child(3) input").val();
+        }
+        if($("#main td:nth-child(4) input").val()){
+            house.main_structure2 = $("#main td:nth-child(4) input").val();
+        }
+        if($("#main td:nth-child(5) input").val()){
+            house.main_structure3 = $("#main td:nth-child(5) input").val();
+        }
+        if($("#main td:nth-child(6) input").val()){
+            house.main_structure4 = $("#main td:nth-child(6) input").val();
+        }
+        if($("#main td:nth-child(7) input").val()){
+            house.main_easy = $("#main td:nth-child(7) input").val();
+        }
+        if($("#main td:nth-child(8) input").val()){
+            house.main_remark = $("#main td:nth-child(8) input").val();
+        }
+        if($("#sub td:nth-child(2) input").val()){
+            house.sub_arear = $("#sub td:nth-child(2) input").val();
+        }
+        if($("#main td:nth-child(3) input").val()){
+            house.sub_structure1 = $("#main td:nth-child(3) input").val();
+        }
+        if($("#main td:nth-child(4) input").val()){
+            house.sub_structure2 = $("#main td:nth-child(4) input").val();
+        }
+        if($("#main td:nth-child(5) input").val()){
+            house.sub_structure3 = $("#main td:nth-child(5) input").val();
+        }
+        if($("#main td:nth-child(6) input").val()){
+            house.sub_structure4 = $("#main td:nth-child(6) input").val();
+        }
+        if($("#main td:nth-child(7) input").val()){
+            house.sub_easy = $("#main td:nth-child(7) input").val();
+        }
+        if($("#main td:nth-child(8) input").val()){
+            house.sub_remark = $("#main td:nth-child(8) input").val();
+        }
+        if(house.main_arear || house.main_structure1 || house.main_structure2 || house.main_structure3 || house.main_structure4 || house.main_easy || house.main_remark || house.sub_arear || house.sub_arear || house.sub_structure1 || house.sub_structure2 || house.sub_structure3 || house.sub_structure4 || house.sub_easy || house.sub_remark){
+
+            data.house = house;
+        }
 
         //收入与支出信息
 		var money_info = [];
@@ -899,45 +942,181 @@ $(function(){
 			return content;
         }
 
-        var money1 = new money("养殖业收入",money_content("in_animal",1,2),money_val("in_animal",1,3),money_val("in_animal",1,4),money_val("in_animal",1,5),money_val("in_animal",1,6));
-        var money2 = new money("养殖业收入",money_content("in_animal",2,1),money_val("in_animal",2,2),money_val("in_animal",2,3),money_val("in_animal",2,4),money_val("in_animal",2,5));
-        var money3 = new money("养殖业收入",money_content("in_animal",3,1),money_val("in_animal",3,2),money_val("in_animal",3,3),money_val("in_animal",3,4),money_val("in_animal",3,5));
-        var money4 = new money("养殖业收入",money_content("in_animal",4,1),money_val("in_animal",4,2),money_val("in_animal",4,3),money_val("in_animal",4,4),money_val("in_animal",4,5));
-        var money5 = new money("养殖业收入",money_content("in_animal",5,1),money_val("in_animal",5,2),money_val("in_animal",5,3),money_val("in_animal",5,4),money_val("in_animal",5,5));
-        var money6 = new money("养殖业收入",money_content("in_animal",6,1),money_val("in_animal",6,2),money_val("in_animal",6,3),money_val("in_animal",6,4),money_val("in_animal",6,5));
-        var money7 = new money("养殖业收入",money_content("in_animal",7,1),money_val("in_animal",7,2),money_val("in_animal",7,3),money_val("in_animal",7,4),money_val("in_animal",7,5));
-        var money8 = new money("养殖业收入",money_content("in_animal",8,1),money_val("in_animal",8,2),money_val("in_animal",8,3),money_val("in_animal",8,4),money_val("in_animal",8,5));
+        if(money_content("in_animal",1,2) || money_val("in_animal",1,3) || money_val("in_animal",1,4) || money_val("in_animal",1,5) || money_val("in_animal",1,6)){
+            var money1 = new money("养殖业收入",money_content("in_animal",1,2),money_val("in_animal",1,3),money_val("in_animal",1,4),money_val("in_animal",1,5),money_val("in_animal",1,6));
+            money_info.push(money1);
+        }
+        if(money_content("in_animal",2,1) || money_val("in_animal",2,2) || money_val("in_animal",2,3) || money_val("in_animal",2,4) || money_val("in_animal",2,5)){
+            var money2 = new money("养殖业收入",money_content("in_animal",2,1),money_val("in_animal",2,2),money_val("in_animal",2,3),money_val("in_animal",2,4),money_val("in_animal",2,5));
+            money_info.push(money2);
+        }
+        if(money_content("in_animal",3,1) || money_val("in_animal",3,2) || money_val("in_animal",3,3) || money_val("in_animal",3,4) || money_val("in_animal",3,5)){
+            var money3 = new money("养殖业收入",money_content("in_animal",3,1),money_val("in_animal",3,2),money_val("in_animal",3,3),money_val("in_animal",3,4),money_val("in_animal",3,5));
+            money_info.push(money3);
+        }
+        if(money_content("in_animal",4,1) || money_val("in_animal",4,2) || money_val("in_animal",4,3) || money_val("in_animal",4,4) || money_val("in_animal",4,5)){
+            var money4 = new money("养殖业收入",money_content("in_animal",4,1),money_val("in_animal",4,2),money_val("in_animal",4,3),money_val("in_animal",4,4),money_val("in_animal",4,5));
+            money_info.push(money4);
+        }
+        if(money_content("in_animal",5,1) || money_val("in_animal",5,2) || money_val("in_animal",5,3) || money_val("in_animal",5,4) || money_val("in_animal",5,5)){
+            var money5 = new money("养殖业收入",money_content("in_animal",5,1),money_val("in_animal",5,2),money_val("in_animal",5,3),money_val("in_animal",5,4),money_val("in_animal",5,5));
+            money_info.push(money5);
+        }
+        if(money_content("in_animal",6,1) || money_val("in_animal",6,2) || money_val("in_animal",6,3) || money_val("in_animal",6,4) || money_val("in_animal",6,5)){
+            var money6 = new money("养殖业收入",money_content("in_animal",6,1),money_val("in_animal",6,2),money_val("in_animal",6,3),money_val("in_animal",6,4),money_val("in_animal",6,5));
+            money_info.push(money6);
+        }
+        if(money_content("in_animal",7,1) || money_val("in_animal",7,2) || money_val("in_animal",7,3) || money_val("in_animal",7,4) || money_val("in_animal",7,5)){
+            var money7 = new money("养殖业收入",money_content("in_animal",7,1),money_val("in_animal",7,2),money_val("in_animal",7,3),money_val("in_animal",7,4),money_val("in_animal",7,5));
+            money_info.push(money7);
+        }
+        if(money_content("in_animal",8,1) || money_val("in_animal",8,2) || money_val("in_animal",8,3) || money_val("in_animal",8,4) || money_val("in_animal",8,5)){
+            var money8 = new money("养殖业收入",money_content("in_animal",8,1),money_val("in_animal",8,2),money_val("in_animal",8,3),money_val("in_animal",8,4),money_val("in_animal",8,5));
+            money_info.push(money8);
+        }
 
-        var money9 = new money("种植业收入",money_content("in_botany",1,2),money_val("in_botany",1,3),money_val("in_botany",8,4),money_val("in_botany",8,5),money_val("in_botany",8,6));
-        var money10 = new money("种植业收入",money_content("in_botany",2,1),money_val("in_botany",2,2),money_val("in_botany",2,3),money_val("in_botany",2,4),money_val("in_botany",2,5));
-        var money11 = new money("种植业收入",money_content("in_botany",3,1),money_val("in_botany",3,2),money_val("in_botany",3,3),money_val("in_botany",3,4),money_val("in_botany",3,5));
-        var money12 = new money("种植业收入",money_content("in_botany",4,1),money_val("in_botany",4,2),money_val("in_botany",4,3),money_val("in_botany",4,4),money_val("in_botany",4,5));
-        var money13 = new money("其他收入",money_content("in_other",1,2),money_val("in_other",1,3),money_val("in_other",1,4),money_val("in_other",1,5),money_val("in_other",1,6));
-        var money14 = new money("其他收入",money_content("in_other",2,1),money_val("in_other",2,2),money_val("in_other",2,3),money_val("in_other",2,4),money_val("in_other",2,5));
+        // var money2 = new money("养殖业收入",money_content("in_animal",2,1),money_val("in_animal",2,2),money_val("in_animal",2,3),money_val("in_animal",2,4),money_val("in_animal",2,5));
+        // var money3 = new money("养殖业收入",money_content("in_animal",3,1),money_val("in_animal",3,2),money_val("in_animal",3,3),money_val("in_animal",3,4),money_val("in_animal",3,5));
+        // var money4 = new money("养殖业收入",money_content("in_animal",4,1),money_val("in_animal",4,2),money_val("in_animal",4,3),money_val("in_animal",4,4),money_val("in_animal",4,5));
+        // var money5 = new money("养殖业收入",money_content("in_animal",5,1),money_val("in_animal",5,2),money_val("in_animal",5,3),money_val("in_animal",5,4),money_val("in_animal",5,5));
+        // var money6 = new money("养殖业收入",money_content("in_animal",6,1),money_val("in_animal",6,2),money_val("in_animal",6,3),money_val("in_animal",6,4),money_val("in_animal",6,5));
+        // var money7 = new money("养殖业收入",money_content("in_animal",7,1),money_val("in_animal",7,2),money_val("in_animal",7,3),money_val("in_animal",7,4),money_val("in_animal",7,5));
+        // var money8 = new money("养殖业收入",money_content("in_animal",8,1),money_val("in_animal",8,2),money_val("in_animal",8,3),money_val("in_animal",8,4),money_val("in_animal",8,5));
 
-        var money15 = new money("种植业支出",money_content("out_botany",1,2),money_val("out_botany",1,3),money_val("out_botany",1,4),money_val("out_botany",1,5),money_val("out_botany",1,6));
-        var money16 = new money("种植业支出",money_content("out_botany",2,1),money_val("out_botany",2,2),money_val("out_botany",2,3),money_val("out_botany",2,4),money_val("out_botany",2,5));
-        var money17 = new money("种植业支出",money_content("out_botany",3,1),money_val("out_botany",3,2),money_val("out_botany",3,3),money_val("out_botany",3,4),money_val("out_botany",3,5));
-        var money18 = new money("种植业支出",money_content("out_botany",4,1),money_val("out_botany",4,2),money_val("out_botany",4,3),money_val("out_botany",4,4),money_val("out_botany",4,5));
-        var money19 = new money("种植业支出",money_content("out_botany",5,1),money_val("out_botany",5,2),money_val("out_botany",5,3),money_val("out_botany",5,4),money_val("out_botany",5,5));
-        var money20 = new money("种植业支出",money_content("out_botany",6,1),money_val("out_botany",6,2),money_val("out_botany",6,3),money_val("out_botany",6,4),money_val("out_botany",6,5));
+        if(money_content("in_botany",1,2) || money_val("in_botany",1,3) || money_val("in_botany",1,4) || money_val("in_botany",1,5) || money_val("in_botany",1,6)){
+            var money9 = new money("种植业收入",money_content("in_botany",1,2),money_val("in_botany",1,3),money_val("in_botany",1,4),money_val("in_botany",1,5),money_val("in_botany",1,6));
+            money_info.push(money9);
+        }
+        if(money_content("in_botany",2,1) || money_val("in_botany",2,2) || money_val("in_botany",2,3) || money_val("in_botany",2,4) || money_val("in_botany",2,5)){
+            var money10 = new money("种植业收入",money_content("in_botany",2,1),money_val("in_botany",2,2),money_val("in_botany",2,3),money_val("in_botany",2,4),money_val("in_botany",2,5));
+            money_info.push(money10);
+        }
+        if(money_content("in_botany",3,1) || money_val("in_botany",3,2) || money_val("in_botany",3,3) || money_val("in_botany",3,4) || money_val("in_botany",3,5)){
+            var money11 = new money("种植业收入",money_content("in_botany",3,1),money_val("in_botany",3,2),money_val("in_botany",3,3),money_val("in_botany",3,4),money_val("in_botany",3,5));
+            money_info.push(money11);
+        }
+        if(money_content("in_botany",4,1) || money_val("in_botany",4,2) || money_val("in_botany",4,3) || money_val("in_botany",4,4) || money_val("in_botany",4,5)){
+            var money12 = new money("种植业收入",money_content("in_botany",4,1),money_val("in_botany",4,2),money_val("in_botany",4,3),money_val("in_botany",4,4),money_val("in_botany",4,5));
+            money_info.push(money12);
+        }
+        if(money_content("in_other",1,2) || money_val("in_other",1,3) || money_val("in_other",1,4) || money_val("in_other",1,5) || money_val("in_other",1,6)){
+            var money13 = new money("其他收入",money_content("in_other",1,2),money_val("in_other",1,3),money_val("in_other",1,4),money_val("in_other",1,5),money_val("in_other",1,6));
+            money_info.push(money13);
+		}
+        if(money_content("in_other",2,1) || money_val("in_other",2,2) || money_val("in_other",2,3) || money_val("in_other",2,4) || money_val("in_other",2,5)){
+            var money14 = new money("其他收入",money_content("in_other",2,1),money_val("in_other",2,2),money_val("in_other",2,3),money_val("in_other",2,4),money_val("in_other",2,5));
+            money_info.push(money14);
+        }
 
-        var money21 = new money("养殖业支出",money_content("out_aniaml",1,2),money_val("out_aniaml",1,3),money_val("out_aniaml",1,4),money_val("out_aniaml",1,5),money_val("out_aniaml",1,6));
-        var money22 = new money("养殖业支出",money_content("out_aniaml",2,1),money_val("out_aniaml",2,2),money_val("out_aniaml",2,3),money_val("out_aniaml",2,4),money_val("out_aniaml",2,5));
-        var money23 = new money("养殖业支出",money_content("out_aniaml",3,1),money_val("out_aniaml",3,2),money_val("out_aniaml",3,3),money_val("out_aniaml",3,4),money_val("out_aniaml",3,5));
-        var money24 = new money("养殖业支出",money_content("out_aniaml",4,1),money_val("out_aniaml",4,2),money_val("out_aniaml",4,3),money_val("out_aniaml",4,4),money_val("out_aniaml",4,5));
+        // var money9 = new money("种植业收入",money_content("in_botany",1,2),money_val("in_botany",1,3),money_val("in_botany",1,4),money_val("in_botany",1,5),money_val("in_botany",1,6));
+        // var money10 = new money("种植业收入",money_content("in_botany",2,1),money_val("in_botany",2,2),money_val("in_botany",2,3),money_val("in_botany",2,4),money_val("in_botany",2,5));
+        // var money11 = new money("种植业收入",money_content("in_botany",3,1),money_val("in_botany",3,2),money_val("in_botany",3,3),money_val("in_botany",3,4),money_val("in_botany",3,5));
+        // var money12 = new money("种植业收入",money_content("in_botany",4,1),money_val("in_botany",4,2),money_val("in_botany",4,3),money_val("in_botany",4,4),money_val("in_botany",4,5));
+        // var money13 = new money("其他收入",money_content("in_other",1,2),money_val("in_other",1,3),money_val("in_other",1,4),money_val("in_other",1,5),money_val("in_other",1,6));
+        // var money14 = new money("其他收入",money_content("in_other",2,1),money_val("in_other",2,2),money_val("in_other",2,3),money_val("in_other",2,4),money_val("in_other",2,5));
 
-        var money25 = new money("生活支出",money_content("out_life",1,2),money_val("out_life",1,3),money_val("out_life",1,4),money_val("out_life",1,5),money_val("out_life",1,6));
-        var money26 = new money("生活支出",money_content("out_life",2,1),money_val("out_life",2,2),money_val("out_life",2,3),money_val("out_life",2,4),money_val("out_life",2,5));
-        var money27 = new money("生活支出",money_content("out_life",3,1),money_val("out_life",3,2),money_val("out_life",3,3),money_val("out_life",3,4),money_val("out_life",3,5));
-        var money28 = new money("生活支出",money_content("out_life",4,1),money_val("out_life",4,2),money_val("out_life",4,3),money_val("out_life",4,4),money_val("out_life",4,5));
-        var money29 = new money("生活支出",money_content("out_life",5,1),money_val("out_life",5,2),money_val("out_life",5,3),money_val("out_life",5,4),money_val("out_life",5,5));
-        var money30 = new money("生活支出",money_content("out_life",6,1),money_val("out_life",6,2),money_val("out_life",6,3),money_val("out_life",6,4),money_val("out_life",6,5));
-        var money31 = new money("生活支出",money_content("out_life",7,1),money_val("out_life",7,2),money_val("out_life",7,3),money_val("out_life",7,4),money_val("out_life",7,5));
-        var money32 = new money("生活支出",money_content("out_life",8,1),money_val("out_life",8,2),money_val("out_life",8,3),money_val("out_life",8,4),money_val("out_life",8,5));
+        if(money_content("out_botany",1,2) || money_val("out_botany",1,3) || money_val("out_botany",1,4) || money_val("out_botany",1,5) || money_val("out_botany",1,6)){
+            var money15 = new money("种植业支出",money_content("out_botany",1,2),money_val("out_botany",1,3),money_val("out_botany",1,4),money_val("out_botany",1,5),money_val("out_botany",1,6));
+            money_info.push(money15);
+        }
+        if(money_content("out_botany",2,1) || money_val("out_botany",2,2) || money_val("out_botany",2,3) || money_val("out_botany",2,4) || money_val("out_botany",2,5)){
+            var money16 = new money("种植业支出",money_content("out_botany",2,1),money_val("out_botany",2,2),money_val("out_botany",2,3),money_val("out_botany",2,4),money_val("out_botany",2,5));
+            money_info.push(money16);
+        }
+        if(money_content("out_botany",3,1) || money_val("out_botany",3,2) || money_val("out_botany",3,3) || money_val("out_botany",3,4) || money_val("out_botany",3,5)){
+            var money17 = new money("种植业支出",money_content("out_botany",3,1),money_val("out_botany",3,2),money_val("out_botany",3,3),money_val("out_botany",3,4),money_val("out_botany",3,5));
+            money_info.push(money17);
+        }
+        if(money_content("out_botany",4,1) || money_val("out_botany",4,2) || money_val("out_botany",4,3) || money_val("out_botany",4,4) || money_val("out_botany",4,5)){
+            var money18 = new money("种植业支出",money_content("out_botany",4,1),money_val("out_botany",4,2),money_val("out_botany",4,3),money_val("out_botany",4,4),money_val("out_botany",4,5));
+            money_info.push(money18);
+        }
+        if(money_content("out_botany",5,1) || money_val("out_botany",5,2) || money_val("out_botany",5,3) || money_val("out_botany",5,4) || money_val("out_botany",5,5)){
+            var money19 = new money("种植业支出",money_content("out_botany",5,1),money_val("out_botany",5,2),money_val("out_botany",5,3),money_val("out_botany",5,4),money_val("out_botany",5,5));
+            money_info.push(money19);
+        }
+        if(money_content("out_botany",6,1) || money_val("out_botany",6,2) || money_val("out_botany",6,3) || money_val("out_botany",6,4) || money_val("out_botany",6,5)){
+            var money20 = new money("种植业支出",money_content("out_botany",6,1),money_val("out_botany",6,2),money_val("out_botany",6,3),money_val("out_botany",6,4),money_val("out_botany",6,5));
+            money_info.push(money20);
+        }
 
-        money_info.push(money1,money2,money3,money4,money5,money6,money7,money8,money9,money10,money11,money12,money13,money14,money15,money16,money17,money18,money19,money20,money21,money22,money23,money24,money25,money26,money27,money28,money29,money30,money31,money32);
-        data.money_info = money_info;
+        // var money15 = new money("种植业支出",money_content("out_botany",1,2),money_val("out_botany",1,3),money_val("out_botany",1,4),money_val("out_botany",1,5),money_val("out_botany",1,6));
+        // var money16 = new money("种植业支出",money_content("out_botany",2,1),money_val("out_botany",2,2),money_val("out_botany",2,3),money_val("out_botany",2,4),money_val("out_botany",2,5));
+        // var money17 = new money("种植业支出",money_content("out_botany",3,1),money_val("out_botany",3,2),money_val("out_botany",3,3),money_val("out_botany",3,4),money_val("out_botany",3,5));
+        // var money18 = new money("种植业支出",money_content("out_botany",4,1),money_val("out_botany",4,2),money_val("out_botany",4,3),money_val("out_botany",4,4),money_val("out_botany",4,5));
+        // var money19 = new money("种植业支出",money_content("out_botany",5,1),money_val("out_botany",5,2),money_val("out_botany",5,3),money_val("out_botany",5,4),money_val("out_botany",5,5));
+        // var money20 = new money("种植业支出",money_content("out_botany",6,1),money_val("out_botany",6,2),money_val("out_botany",6,3),money_val("out_botany",6,4),money_val("out_botany",6,5));
+
+        if(money_content("out_aniaml",1,2) || money_val("out_aniaml",1,3) || money_val("out_aniaml",1,4) || money_val("out_aniaml",1,5) || money_val("out_aniaml",1,6)){
+            var money21 = new money("养殖业支出",money_content("out_aniaml",1,2),money_val("out_aniaml",1,3),money_val("out_aniaml",1,4),money_val("out_aniaml",1,5),money_val("out_aniaml",1,6));
+            money_info.push(money21);
+        }
+        if(money_content("out_aniaml",2,1) || money_val("out_aniaml",2,2) || money_val("out_aniaml",2,3) || money_val("out_aniaml",2,4) || money_val("out_aniaml",2,5)){
+            var money22 = new money("养殖业支出",money_content("out_aniaml",2,1),money_val("out_aniaml",2,2),money_val("out_aniaml",2,3),money_val("out_aniaml",2,4),money_val("out_aniaml",2,5));
+            money_info.push(money22);
+		}
+        if(money_content("out_aniaml",3,1) || money_val("out_aniaml",3,2) || money_val("out_aniaml",3,3) || money_val("out_aniaml",3,4) || money_val("out_aniaml",3,5)){
+            var money23 = new money("养殖业支出",money_content("out_aniaml",3,1),money_val("out_aniaml",3,2),money_val("out_aniaml",3,3),money_val("out_aniaml",3,4),money_val("out_aniaml",3,5));
+            money_info.push(money23);
+        }
+        if(money_content("out_aniaml",4,1) || money_val("out_aniaml",4,2) || money_val("out_aniaml",4,3) || money_val("out_aniaml",4,4) || money_val("out_aniaml",4,5)){
+            var money24 = new money("养殖业支出",money_content("out_aniaml",4,1),money_val("out_aniaml",4,2),money_val("out_aniaml",4,3),money_val("out_aniaml",4,4),money_val("out_aniaml",4,5));
+            money_info.push(money24);
+        }
+
+        // var money21 = new money("养殖业支出",money_content("out_aniaml",1,2),money_val("out_aniaml",1,3),money_val("out_aniaml",1,4),money_val("out_aniaml",1,5),money_val("out_aniaml",1,6));
+        // var money22 = new money("养殖业支出",money_content("out_aniaml",2,1),money_val("out_aniaml",2,2),money_val("out_aniaml",2,3),money_val("out_aniaml",2,4),money_val("out_aniaml",2,5));
+        // var money23 = new money("养殖业支出",money_content("out_aniaml",3,1),money_val("out_aniaml",3,2),money_val("out_aniaml",3,3),money_val("out_aniaml",3,4),money_val("out_aniaml",3,5));
+        // var money24 = new money("养殖业支出",money_content("out_aniaml",4,1),money_val("out_aniaml",4,2),money_val("out_aniaml",4,3),money_val("out_aniaml",4,4),money_val("out_aniaml",4,5));
+
+        if(money_content("out_life",1,2) || money_val("out_life",1,3) || money_val("out_life",1,4) || money_val("out_life",1,5) || money_val("out_life",1,6)){
+            var money25 = new money("生活支出",money_content("out_life",1,2),money_val("out_life",1,3),money_val("out_life",1,4),money_val("out_life",1,5),money_val("out_life",1,6));
+            money_info.push(money25);
+        }
+        if(money_content("out_life",2,1) || money_val("out_life",2,2) || money_val("out_life",2,3) || money_val("out_life",2,4) || money_val("out_life",2,5)){
+            var money26 = new money("生活支出",money_content("out_life",2,1),money_val("out_life",2,2),money_val("out_life",2,3),money_val("out_life",2,4),money_val("out_life",2,5));
+            money_info.push(money26);
+        }
+        if(money_content("out_life",3,1) || money_val("out_life",3,2) || money_val("out_life",3,3) || money_val("out_life",3,4) || money_val("out_life",3,5)){
+            var money27 = new money("生活支出",money_content("out_life",3,1),money_val("out_life",3,2),money_val("out_life",3,3),money_val("out_life",3,4),money_val("out_life",3,5));
+            money_info.push(money27);
+        }
+        if(money_content("out_life",4,1) || money_val("out_life",4,2) || money_val("out_life",4,3) || money_val("out_life",4,4) || money_val("out_life",4,5)){
+            var money28 = new money("生活支出",money_content("out_life",4,1),money_val("out_life",4,2),money_val("out_life",4,3),money_val("out_life",4,4),money_val("out_life",4,5));
+            money_info.push(money28);
+        }
+        if(money_content("out_life",5,1) || money_val("out_life",5,2) || money_val("out_life",5,3) || money_val("out_life",5,4) || money_val("out_life",5,5)){
+            var money29 = new money("生活支出",money_content("out_life",5,1),money_val("out_life",5,2),money_val("out_life",5,3),money_val("out_life",5,4),money_val("out_life",5,5));
+            money_info.push(money29);
+        }
+        if(money_content("out_life",6,1) || money_val("out_life",6,2) || money_val("out_life",6,3) || money_val("out_life",6,4) || money_val("out_life",6,5)){
+            var money30 = new money("生活支出",money_content("out_life",6,1),money_val("out_life",6,2),money_val("out_life",6,3),money_val("out_life",6,4),money_val("out_life",6,5));
+            money_info.push(money30);
+        }
+        if(money_content("out_life",7,1) || money_val("out_life",7,2) || money_val("out_life",7,3) || money_val("out_life",7,4) || money_val("out_life",7,5)){
+            var money31 = new money("生活支出",money_content("out_life",7,1),money_val("out_life",7,2),money_val("out_life",7,3),money_val("out_life",7,4),money_val("out_life",7,5));
+            money_info.push(money31);
+        }
+        if(money_content("out_life",8,1) || money_val("out_life",8,2) || money_val("out_life",8,3) || money_val("out_life",8,4) || money_val("out_life",8,5)){
+            var money32 = new money("生活支出",money_content("out_life",8,1),money_val("out_life",8,2),money_val("out_life",8,3),money_val("out_life",8,4),money_val("out_life",8,5));
+            money_info.push(money32);
+        }
+
+        // var money25 = new money("生活支出",money_content("out_life",1,2),money_val("out_life",1,3),money_val("out_life",1,4),money_val("out_life",1,5),money_val("out_life",1,6));
+        // var money26 = new money("生活支出",money_content("out_life",2,1),money_val("out_life",2,2),money_val("out_life",2,3),money_val("out_life",2,4),money_val("out_life",2,5));
+        // var money27 = new money("生活支出",money_content("out_life",3,1),money_val("out_life",3,2),money_val("out_life",3,3),money_val("out_life",3,4),money_val("out_life",3,5));
+        // var money28 = new money("生活支出",money_content("out_life",4,1),money_val("out_life",4,2),money_val("out_life",4,3),money_val("out_life",4,4),money_val("out_life",4,5));
+        // var money29 = new money("生活支出",money_content("out_life",5,1),money_val("out_life",5,2),money_val("out_life",5,3),money_val("out_life",5,4),money_val("out_life",5,5));
+        // var money30 = new money("生活支出",money_content("out_life",6,1),money_val("out_life",6,2),money_val("out_life",6,3),money_val("out_life",6,4),money_val("out_life",6,5));
+        // var money31 = new money("生活支出",money_content("out_life",7,1),money_val("out_life",7,2),money_val("out_life",7,3),money_val("out_life",7,4),money_val("out_life",7,5));
+        // var money32 = new money("生活支出",money_content("out_life",8,1),money_val("out_life",8,2),money_val("out_life",8,3),money_val("out_life",8,4),money_val("out_life",8,5));
+
+        // money_info.push(money1,money2,money3,money4,money5,money6,money7,money8,money9,money10,money11,money12,money13,money14,money15,money16,money17,money18,money19,money20,money21,money22,money23,money24,money25,money26,money27,money28,money29,money30,money31,money32);
+
+		if(money1 || money2 || money3 || money4 || money5 || money6 || money7 || money8 || money9 || money10 || money11 || money12 || money13 || money14 || money15 || money16 || money17 || money18 || money19 || money20 || money21 || money22 || money23 || money24 || money25 || money26 || money27 || money28 || money29 || money30 || money31 || money32 ){
+
+            data.money_info = money_info;
+        }
 
         var prop = "是";
         if(!$("#yes").prop("checked")){
@@ -949,7 +1128,9 @@ $(function(){
         $.each($("#reason input[type='checkbox']:checked"),function () {
 			poor_reason.push($(this).val());
         })
-        data.poor_reason = poor_reason;
+		if(poor_reason.length > 0){
+            data.poor_reason = poor_reason;
+        }
 
 		var respondent = $("#respondent").val();
 		var inquirer = $("#inquirer").val();
@@ -962,6 +1143,7 @@ $(function(){
 		data.respondent = respondent;
 		data.inquirer = inquirer;
 		data.time = time;
+		data.username = username;
         console.log(data);
     })
 })
