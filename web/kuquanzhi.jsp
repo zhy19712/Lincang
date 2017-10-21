@@ -8,11 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>库区安置登记表</title>
     <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/jedate.css">
     <link rel="stylesheet" href="css/lincang-yimin.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.jedate.js"></script>
     <script src="js/table.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
@@ -46,7 +48,7 @@
         <table id="jqtable">
             <tbody>
             <tr>
-                <td colspan="9">库区登记表</td>
+                <td colspan="9" id="kind">库区安置登记表</td>
             </tr>
             <tr>
                 <td rowspan="2" class="bgc">户主信息</td>
@@ -442,7 +444,7 @@
                 <td class="bgc">调查人签字</td>
                 <td colspan="2"><input type="text" id="inquirer" placeholder="*此处为必填项"></td>
                 <td class="bgc">填表时间</td>
-                <td colspan="2"><input type="text" id="time" placeholder="*此处为必填项"></td>
+                <td colspan="2"><input type="text" id="time" placeholder="*此处为必填项" readonly="readonly"></td>
             </tr>
             </tbody>
         </table>
