@@ -81,4 +81,33 @@ public class Income {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Income income = (Income) o;
+
+        if (income_quantity != income.income_quantity) return false;
+        if (Float.compare(income.income_unit, income_unit) != 0) return false;
+        if (Float.compare(income.income_sum, income_sum) != 0) return false;
+        if (fid != null ? !fid.equals(income.fid) : income.fid != null) return false;
+        if (income_source != null ? !income_source.equals(income.income_source) : income.income_source != null)
+            return false;
+        if (income_cate != null ? !income_cate.equals(income.income_cate) : income.income_cate != null) return false;
+        return remark != null ? remark.equals(income.remark) : income.remark == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = fid != null ? fid.hashCode() : 0;
+        result = 31 * result + (income_source != null ? income_source.hashCode() : 0);
+        result = 31 * result + (income_cate != null ? income_cate.hashCode() : 0);
+        result = 31 * result + income_quantity;
+        result = 31 * result + (income_unit != +0.0f ? Float.floatToIntBits(income_unit) : 0);
+        result = 31 * result + (income_sum != +0.0f ? Float.floatToIntBits(income_sum) : 0);
+        result = 31 * result + (remark != null ? remark.hashCode() : 0);
+        return result;
+    }
 }

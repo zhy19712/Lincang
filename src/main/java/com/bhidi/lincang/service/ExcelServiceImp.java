@@ -536,14 +536,14 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //new一个对象出来，将这些数据注入
         House house = new House();
         house.setFid(fid);
-        house.setMain_size("".equals(main_size)? 0.0f:Float.parseFloat(main_size));
+        house.setMain_size("".equals(main_size)? "0.0":main_size);
         house.setMain_structure1(main_structure1);
         house.setMain_structure2(main_structure2);
         house.setMain_structure3(main_structure3);
         house.setMain_structure4(main_structure4);
         house.setMain_structure5(main_structure5);
         house.setMain_remark(main_remark);
-        house.setSub_size("".equals(sub_size)? 0.0f:Float.parseFloat(sub_size));
+        house.setSub_size("".equals(sub_size)? "0.0":sub_size);
         house.setSub_structure1(sub_structure1);
         house.setSub_structure2(sub_structure2);
         house.setSub_structure3(sub_structure3);
@@ -1382,14 +1382,14 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //new一个对象出来，将这些数据注入
         House house = new House();
         house.setFid(fid);
-        house.setMain_size("".equals(main_size)?0.0f:Float.parseFloat(main_size));
+        house.setMain_size("".equals(main_size)?"0.0":main_size);
         house.setMain_structure1(main_structure1);
         house.setMain_structure2(main_structure2);
         house.setMain_structure3(main_structure3);
         house.setMain_structure4(main_structure4);
         house.setMain_structure5(main_structure5);
         house.setMain_remark(main_remark);
-        house.setSub_size("".equals(sub_size)?0.0f:Float.parseFloat(sub_size));
+        house.setSub_size("".equals(sub_size)?"0.0":sub_size);
         house.setSub_structure1(sub_structure1);
         house.setSub_structure2(sub_structure2);
         house.setSub_structure3(sub_structure3);

@@ -5,14 +5,14 @@ package com.bhidi.lincang.bean;
  */
 public class House {
     private String fid;
-    private float main_size;
+    private String main_size;
     private String main_structure1;
     private String main_structure2;
     private String main_structure3;
     private String main_structure4;
     private String main_structure5;
     private String main_remark;
-    private float sub_size;
+    private String sub_size;
     private String sub_structure1;
     private String sub_structure2;
     private String sub_structure3;
@@ -23,7 +23,7 @@ public class House {
     public House(){
     }
 
-    public House(String fid, float main_size, String main_structure1, String main_structure2, String main_structure3, String main_structure4, String main_structure5, String main_remark, float sub_size, String sub_structure1, String sub_structure2, String sub_structure3, String sub_structure4, String sub_structure5, String sub_remark) {
+    public House(String fid, String main_size, String main_structure1, String main_structure2, String main_structure3, String main_structure4, String main_structure5, String main_remark, String sub_size, String sub_structure1, String sub_structure2, String sub_structure3, String sub_structure4, String sub_structure5, String sub_remark) {
         this.fid = fid;
         this.main_size = main_size;
         this.main_structure1 = main_structure1;
@@ -49,13 +49,7 @@ public class House {
         this.fid = fid;
     }
 
-    public float getMain_size() {
-        return main_size;
-    }
 
-    public void setMain_size(float main_size) {
-        this.main_size = main_size;
-    }
 
     public String getMain_structure1() {
         return main_structure1;
@@ -105,11 +99,19 @@ public class House {
         this.main_remark = main_remark;
     }
 
-    public float getSub_size() {
+    public String getMain_size() {
+        return main_size;
+    }
+
+    public void setMain_size(String main_size) {
+        this.main_size = main_size;
+    }
+
+    public String getSub_size() {
         return sub_size;
     }
 
-    public void setSub_size(float sub_size) {
+    public void setSub_size(String sub_size) {
         this.sub_size = sub_size;
     }
 
