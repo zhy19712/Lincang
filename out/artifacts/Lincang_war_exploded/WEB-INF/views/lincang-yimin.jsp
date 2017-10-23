@@ -4,12 +4,15 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="../../css/mybs.css">
+	<link href="../../css/app.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/reset.css">
 	<link rel="stylesheet" href="../../css/lincang-yimin.css">
 	<link rel="stylesheet" href="../../css/search.css">
 	<link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="../../css/jedate.css">
 	<link rel="stylesheet" href="../../css/style.css">
+
 	<script src="../../js/jquery.min.js"></script>
 	<script src="../../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
@@ -38,107 +41,30 @@
 				<div id="back">返回地图</div>
 				<div id="tab">
 					<ul id="tab_list">
-						<li>统计分析</li>
 						<li>移民信息</li>
+						<li>统计分析</li>
 					</ul>
 					<ul id="tab_content">
-						<li>
-							tab1
-						</li>
 						<li>
 							<div id="table-wrapper">
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th>FID</th>
+											<th>分类</th>
 											<th>户主姓名</th>
-											<th>建档立卡</th>
-											<th>家庭人数</th>
-											<th>移民人数</th>
 											<th>所属水库</th>
+											<th>所在地</th>
+											<th>迁入地</th>
+											<th>调查人</th>
+											<th>填表时间</th>
+											<th>操作</th>
 										</tr>
 									</thead>
 								</table>
-								<table id="table2" width="100%" class="table table-striped table-bordered">
-									<thead>
-										<tr>
-											<th>姓名</th>
-											<th>性别</th>
-											<th>民族</th>
-											<th>联系电话</th>
-										</tr>
-									</thead>
-								</table>
-								<div id="family">
-									<table>
-										<tbody>
-											<tr>
-												<td>
-													<span class="weight">户主姓名:</span><span class="f_name"></span>
-												</td>
-												<td>
-													<span class="weight">身份证号:</span><span class="f_id"></span>
-												</td>
-												<td>
-													<span class="weight">常住人口:</span><span class="f_people"></span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">移民人数:</span><span class="f_imm"></span>
-												</td>
-												<td>
-													<span class="weight">建档立卡:</span><span class="f_prop"></span>
-												</td>
-												<td>
-													<span class="weight">迁出地区:</span><span class="f_out"></span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">迁入地区:</span><span class="f_in"></span>
-												</td>
-												<td>
-													<span class="weight">致贫原因:</span><span class="f_reason"></span>
-												</td>
-												<td>
-													<span class="weight">主房结构:</span><span class="f_mainhouse"></span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">主房面积:</span><span class="f_mainarear"></span>
-												</td>
-												<td>
-													<span class="weight">开户银行:</span><span class="f_bank"></span>
-												</td>
-												<td>
-													<span class="weight">银行账号:</span><span class="f_number"></span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">收入来源:</span><span class="f_work"></span>
-												</td>
-												<td>
-													<span class="weight">年收入:</span><span class="f_money"></span>
-												</td>
-												<td>
-													<span class="weight">所属水库:</span><span class="f_reservoir"></span>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<span class="weight">附属房结构:</span><span class="f_subhouse"></span>
-												</td>
-												<td>
-													<span class="weight">附属房面积:</span><span class="f_subarear"></span>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
 							</div>
+						</li>
+						<li>
+							tab1
 						</li>
 					</ul>
 				</div>
@@ -196,19 +122,32 @@
 		<div id="data_input">
             <div id="new_table">
 				<iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form action="">
+                <form action="" target="uploadFrame">
                     <ul>
-                        <li><a href="../../kuquanzhi.jsp" target="_blank">新建库区安置登记表</a></li>
-                        <li><a href="../../yiminbanqian.jsp" target="_blank">新建移民搬迁登记表</a></li>
+						<li><a data-toggle="tooltip" title="新建库区安置登记表" class="well top-block"
+							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
+							<i class="glyphicon glyphicon-pencil blue"></i>
+
+							<div>新建库区安置登记表</div>
+
+						</a>
+						</li>
+						<li><a data-toggle="tooltip" title="新建移民搬迁登记表" class="well top-block"
+							   href="../../yiminbanqian.jsp" style="padding: 16px 0;border-radius: 6px;">
+							<i class="glyphicon glyphicon-pencil blue"></i>
+
+							<div>新建移民搬迁登记表</div>
+
+						</a>
+						</li>
 						<div id="filesUpload" style="width:80%;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
 							<a href="#" id="add_1" onclick="add_click_file(1)">上传库区安置登记表</a>
 							<input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
 						</div>
-                        <li><span>上传库区安置登记文件</span><input type="file" multiple="multiple" name=""></li>
-                        <li><span>上传移民搬迁登记文件</span><input type="file" multiple="multiple"></li>
                     </ul>
-                    <button type="submit">确认上传</button>
-                </form>
+					<button type="submit">确认上传</button>
+				</form>
+				<button id="test">测试</button>
 				<div id="allinfo_table_wrapper">
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
@@ -228,6 +167,20 @@
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
+		<div id="edit">
+			<table>
+				<tbody>
+					<tr>
+						<td>户主姓名</td>
+						<td><input type="text"></td>
+						<td>户主电话</td>
+						<td><input type="text"></td>
+						<td>所属水库</td>
+						<td><input type="text"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </body>
 <script>

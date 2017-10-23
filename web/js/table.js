@@ -270,30 +270,30 @@ $(function () {
         // var money12 = new money("种植业收入",money_content("in_botany",4,1),money_val("in_botany",4,2),money_val("in_botany",4,3),money_val("in_botany",4,4),money_val("in_botany",4,5));
         // var money13 = new money("其他收入",money_content("in_other",1,2),money_val("in_other",1,3),money_val("in_other",1,4),money_val("in_other",1,5),money_val("in_other",1,6));
         // var money14 = new money("其他收入",money_content("in_other",2,1),money_val("in_other",2,2),money_val("in_other",2,3),money_val("in_other",2,4),money_val("in_other",2,5));
-
+        var money_outcome = [];
         if(money_val("out_botany",1,3) || money_val("out_botany",1,4) || money_val("out_botany",1,5) || money_val("out_botany",1,6)){
             var money15 = new money("种植业支出",money_content("out_botany",1,2),money_val("out_botany",1,3),money_val("out_botany",1,4),money_val("out_botany",1,5),money_val("out_botany",1,6));
-            money_info.push(money15);
+            money_outcome.push(money15);
         }
         if(money_val("out_botany",2,2) || money_val("out_botany",2,3) || money_val("out_botany",2,4) || money_val("out_botany",2,5)){
             var money16 = new money("种植业支出",money_content("out_botany",2,1),money_val("out_botany",2,2),money_val("out_botany",2,3),money_val("out_botany",2,4),money_val("out_botany",2,5));
-            money_info.push(money16);
+            money_outcome.push(money16);
         }
         if(money_val("out_botany",3,2) || money_val("out_botany",3,3) || money_val("out_botany",3,4) || money_val("out_botany",3,5)){
             var money17 = new money("种植业支出",money_content("out_botany",3,1),money_val("out_botany",3,2),money_val("out_botany",3,3),money_val("out_botany",3,4),money_val("out_botany",3,5));
-            money_info.push(money17);
+            money_outcome.push(money17);
         }
         if(money_val("out_botany",4,2) || money_val("out_botany",4,3) || money_val("out_botany",4,4) || money_val("out_botany",4,5)){
             var money18 = new money("种植业支出",money_content("out_botany",4,1),money_val("out_botany",4,2),money_val("out_botany",4,3),money_val("out_botany",4,4),money_val("out_botany",4,5));
-            money_info.push(money18);
+            money_outcome.push(money18);
         }
         if(money_val("out_botany",5,2) || money_val("out_botany",5,3) || money_val("out_botany",5,4) || money_val("out_botany",5,5)){
             var money19 = new money("种植业支出",money_content("out_botany",5,1),money_val("out_botany",5,2),money_val("out_botany",5,3),money_val("out_botany",5,4),money_val("out_botany",5,5));
-            money_info.push(money19);
+            money_outcome.push(money19);
         }
         if(money_val("out_botany",6,2) || money_val("out_botany",6,3) || money_val("out_botany",6,4) || money_val("out_botany",6,5)){
             var money20 = new money("种植业支出",money_content("out_botany",6,1),money_val("out_botany",6,2),money_val("out_botany",6,3),money_val("out_botany",6,4),money_val("out_botany",6,5));
-            money_info.push(money20);
+            money_outcome.push(money20);
         }
 
         // var money15 = new money("种植业支出",money_content("out_botany",1,2),money_val("out_botany",1,3),money_val("out_botany",1,4),money_val("out_botany",1,5),money_val("out_botany",1,6));
@@ -305,19 +305,19 @@ $(function () {
 
         if(money_val("out_animal",1,3) || money_val("out_animal",1,4) || money_val("out_animal",1,5) || money_val("out_animal",1,6)){
             var money21 = new money("养殖业支出",money_content("out_animal",1,2),money_val("out_animal",1,3),money_val("out_animal",1,4),money_val("out_animal",1,5),money_val("out_animal",1,6));
-            money_info.push(money21);
+            money_outcome.push(money21);
         }
         if(money_val("out_animal",2,2) || money_val("out_animal",2,3) || money_val("out_animal",2,4) || money_val("out_animal",2,5)){
             var money22 = new money("养殖业支出",money_content("out_animal",2,1),money_val("out_animal",2,2),money_val("out_animal",2,3),money_val("out_animal",2,4),money_val("out_animal",2,5));
-            money_info.push(money22);
+            money_outcome.push(money22);
         }
         if(money_val("out_animal",3,2) || money_val("out_animal",3,3) || money_val("out_animal",3,4) || money_val("out_animal",3,5)){
             var money23 = new money("养殖业支出",money_content("out_animal",3,1),money_val("out_animal",3,2),money_val("out_animal",3,3),money_val("out_animal",3,4),money_val("out_animal",3,5));
-            money_info.push(money23);
+            money_outcome.push(money23);
         }
         if(money_val("out_animal",4,2) || money_val("out_animal",4,3) || money_val("out_animal",4,4) || money_val("out_animal",4,5)){
             var money24 = new money("养殖业支出",money_content("out_animal",4,1),money_val("out_animal",4,2),money_val("out_animal",4,3),money_val("out_animal",4,4),money_val("out_animal",4,5));
-            money_info.push(money24);
+            money_outcome.push(money24);
         }
 
         // var money21 = new money("养殖业支出",money_content("out_animal",1,2),money_val("out_animal",1,3),money_val("out_animal",1,4),money_val("out_animal",1,5),money_val("out_animal",1,6));
@@ -327,35 +327,35 @@ $(function () {
 
         if(money_val("out_life",1,3) || money_val("out_life",1,4) || money_val("out_life",1,5) || money_val("out_life",1,6)){
             var money25 = new money("生活支出",money_content("out_life",1,2),money_val("out_life",1,3),money_val("out_life",1,4),money_val("out_life",1,5),money_val("out_life",1,6));
-            money_info.push(money25);
+            money_outcome.push(money25);
         }
         if(money_val("out_life",2,2) || money_val("out_life",2,3) || money_val("out_life",2,4) || money_val("out_life",2,5)){
             var money26 = new money("生活支出",money_content("out_life",2,1),money_val("out_life",2,2),money_val("out_life",2,3),money_val("out_life",2,4),money_val("out_life",2,5));
-            money_info.push(money26);
+            money_outcome.push(money26);
         }
         if(money_val("out_life",3,2) || money_val("out_life",3,3) || money_val("out_life",3,4) || money_val("out_life",3,5)){
             var money27 = new money("生活支出",money_content("out_life",3,1),money_val("out_life",3,2),money_val("out_life",3,3),money_val("out_life",3,4),money_val("out_life",3,5));
-            money_info.push(money27);
+            money_outcome.push(money27);
         }
         if(money_val("out_life",4,2) || money_val("out_life",4,3) || money_val("out_life",4,4) || money_val("out_life",4,5)){
             var money28 = new money("生活支出",money_content("out_life",4,1),money_val("out_life",4,2),money_val("out_life",4,3),money_val("out_life",4,4),money_val("out_life",4,5));
-            money_info.push(money28);
+            money_outcome.push(money28);
         }
         if(money_val("out_life",5,2) || money_val("out_life",5,3) || money_val("out_life",5,4) || money_val("out_life",5,5)){
             var money29 = new money("生活支出",money_content("out_life",5,1),money_val("out_life",5,2),money_val("out_life",5,3),money_val("out_life",5,4),money_val("out_life",5,5));
-            money_info.push(money29);
+            money_outcome.push(money29);
         }
         if(money_val("out_life",6,2) || money_val("out_life",6,3) || money_val("out_life",6,4) || money_val("out_life",6,5)){
             var money30 = new money("生活支出",money_content("out_life",6,1),money_val("out_life",6,2),money_val("out_life",6,3),money_val("out_life",6,4),money_val("out_life",6,5));
-            money_info.push(money30);
+            money_outcome.push(money30);
         }
         if(money_val("out_life",7,2) || money_val("out_life",7,3) || money_val("out_life",7,4) || money_val("out_life",7,5)){
             var money31 = new money("生活支出",money_content("out_life",7,1),money_val("out_life",7,2),money_val("out_life",7,3),money_val("out_life",7,4),money_val("out_life",7,5));
-            money_info.push(money31);
+            money_outcome.push(money31);
         }
         if(money_val("out_life",8,2) || money_val("out_life",8,3) || money_val("out_life",8,4) || money_val("out_life",8,5)){
             var money32 = new money("生活支出",money_content("out_life",8,1),money_val("out_life",8,2),money_val("out_life",8,3),money_val("out_life",8,4),money_val("out_life",8,5));
-            money_info.push(money32);
+            money_outcome.push(money32);
         }
 
         // var money25 = new money("生活支出",money_content("out_life",1,2),money_val("out_life",1,3),money_val("out_life",1,4),money_val("out_life",1,5),money_val("out_life",1,6));
@@ -369,9 +369,13 @@ $(function () {
 
         // money_info.push(money1,money2,money3,money4,money5,money6,money7,money8,money9,money10,money11,money12,money13,money14,money15,money16,money17,money18,money19,money20,money21,money22,money23,money24,money25,money26,money27,money28,money29,money30,money31,money32);
 
-        if(money1 || money2 || money3 || money4 || money5 || money6 || money7 || money8 || money9 || money10 || money11 || money12 || money13 || money14 || money15 || money16 || money17 || money18 || money19 || money20 || money21 || money22 || money23 || money24 || money25 || money26 || money27 || money28 || money29 || money30 || money31 || money32 ){
+        if(money1 || money2 || money3 || money4 || money5 || money6 || money7 || money8 || money9 || money10 || money11 || money12 || money13 || money14){
 
             data.money_info = money_info;
+        }
+        if(money15 || money16 || money17 || money18 || money19 || money20 || money21 || money22 || money23 || money24 || money25 || money26 || money27 || money28 || money29 || money30 || money31 || money32 ){
+
+            data.money_outcome = money_outcome;
         }
 
         var prop = "是";
