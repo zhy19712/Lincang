@@ -4,6 +4,11 @@
 $(function () {
     //清空表格
     $("#jqtable input").val("");
+    $("#yes").val("是");
+    $("#no").val("否");
+    $("#traffic").val("交通落后");
+    $("#money").val("缺技术、资金、土地、水");
+    $("#disaster").val("因学、残、灾");
     //数据录入表格单选
     $("#yes").click(function () {
         $("#no").prop("checked",false);
@@ -27,6 +32,7 @@ $(function () {
         var bank_user = $("#bank-user").val();
         var bank_number = $("#bank-number").val();
         var bank_name = $("#bank-name").val();
+        var number = $("#number").val();
         if(!reservoir || !householder || !bank_user || !bank_name || !bank_number){
             alert("没有填写必填项");
             return;
@@ -40,6 +46,7 @@ $(function () {
         data.bank_user = bank_user;
         data.bank_number = bank_number;
         data.bank_name = bank_name;
+        data.tel_number = number;
 
         //家庭成员信息
         var home_infos = [];
@@ -375,6 +382,7 @@ $(function () {
 
         var poor_reason = [];
         $.each($("#reason input[type='checkbox']:checked"),function () {
+            console.log($(this));
             poor_reason.push($(this).val());
         })
         if(poor_reason.length > 0){

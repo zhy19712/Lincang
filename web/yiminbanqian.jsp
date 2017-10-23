@@ -53,19 +53,21 @@
         <tr>
             <td rowspan="2" class="bgc">户主信息</td>
             <td class="bgc">所属水库</td>
-            <td colspan="1"><input type="text" id="reservoir" placeholder="*此处为必填项"></td>
+            <td colspan="1"><input type="text" id="reservoir"></td>
             <td class="bgc">安置点</td>
-            <td colspan="2"><input type="text" id="place" placeholder="*此处为必填项"></td>
+            <td><input type="text" id="place"></td>
             <td class="bgc">户主姓名</td>
-            <td colspan="2"><input type="text" id="householder" placeholder="*此处为必填项"></td>
+            <td><input type="text" id="householder"></td>
+            <td class="bgc">电话</td>
+            <td><input type="text" id="number"></td>
         </tr>
         <tr>
             <td class="bgc">开户人姓名</td>
-            <td><input type="text" id="bank-user" placeholder="*此处为必填项"></td>
+            <td><input type="text" id="bank-user"></td>
             <td class="bgc">开户行名称</td>
-            <td colspan="2"><input type="text" id="bank-name" placeholder="*此处为必填项"></td>
+            <td colspan="2"><input type="text" id="bank-name"></td>
             <td class="bgc">银行卡号</td>
-            <td colspan="2"><input type="text" id="bank-number" placeholder="*此处为必填项"></td>
+            <td colspan="2"><input type="text" id="bank-number"></td>
         </tr>
         <tr>
             <td rowspan="5" class="bgc">家庭信息</td>
@@ -442,11 +444,11 @@
         </tr>
         <tr>
             <td class="bgc">被调查人签字</td>
-            <td colspan="2"><input type="text" id="respondent" placeholder="*此处为必填项"></td>
+            <td colspan="2"><input type="text" id="respondent"></td>
             <td class="bgc">调查人签字</td>
-            <td colspan="2"><input type="text" id="inquirer" placeholder="*此处为必填项"></td>
+            <td colspan="2"><input type="text" id="inquirer"></td>
             <td class="bgc">填表时间</td>
-            <td colspan="2"><input type="text" id="time" placeholder="*此处为必填项" readonly="readonly"></td>
+            <td colspan="2"><input type="text" id="time" readonly="readonly"></td>
         </tr>
         </tbody>
     </table>
