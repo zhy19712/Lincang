@@ -3,33 +3,59 @@
 <mapper namespace="com.bhidi.lincang.dao.DataEnteringMapper">
     <!--int insertPeople();-->
     <insert  id="insertPeople" parameterType="List">
-        insert into people (fid,reservoir,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at)
+        insert into people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at)
         values
         <foreach collection="list" separator="," item="people">
             (
-            #{people.fid},#{people.reservoir},#{people.location}, #{people.name},#{people.master},
+            #{people.fid},#{people.reservoir},#{people.phone},#{people.prop},#{people.poor_reason},#{people.location}, #{people.name},#{people.master},
             #{people.pid},#{people.gender},#{people.race},#{people.relation},#{people.education},
             #{people.profession},#{people.home_size},#{people.imm_num},#{people.interviewer},#{people.interviewee},
             #{people.created_at}
             )
         </foreach>
     </insert >
-    <!--Integer updateFormOffice(F_Stuff f_stuff);-->
-<!--    <update id="updateFormOffice" parameterType="com.bhidi.lincang.bean.Bank">
-        update form_office
-        set
-        created_at = #{sent_at},
-        author = #{author},
-        dept = #{dept},
-        reviewer = #{reviewer},
-        keyword = #{keyword},
-        title = #{title},
-        content = #{content},
-        print = #{print},
-        revision = #{revision},
-        copy = #{copy},
-        status = #{status}
-        where oid = #{id}
-    </update>-->
+    <!--int insertBank(Bank bank);-->
+    <insert  id="insertBank" parameterType="com.bhidi.lincang.bean.Bank">
+        insert into bank (fid,account_name,bank_name,account_number)
+        values( #{fid},#{account_name},#{bank_name},#{account_number} )
+    </insert >
+    <!--int insertHouse(House house);-->
+    <insert  id="insertHouse" parameterType="com.bhidi.lincang.bean.House">
+        insert into house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
+        values( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},#{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},#{sub_remark} )
+    </insert >
+    <!--int insertIncome(List<Income> incomeList);-->
+    <insert  id="insertIncome" parameterType="List">
+        insert into income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
+        values
+        <foreach collection="list" separator="," item="income">
+            (
+            #{income.fid},#{income.income_source},#{income.income_cate},#{income.income_quantity},#{income.income_unit},
+            #{income.income_sum},#{income.remark}
+            )
+        </foreach>
+    </insert >
+
+
+    <insert  id="saveMove" parameterType="com.bhidi.lincang.bean.Move">
+        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
+        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
+        #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
+    </insert >
+
+
+
+
+
+    <insert  id="batchSaveOutcome" parameterType="List">
+        insert into outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
+        values
+        <foreach collection="list" separator="," item="outcome">
+            (
+            #{outcome.fid},#{outcome.outcome_source},#{outcome.outcome_cate},#{outcome.outcome_quantity},#{outcome.outcome_unit},
+            #{outcome.outcome_sum},#{outcome.remark}
+            )
+        </foreach>
+    </insert >
 
 </mapper>

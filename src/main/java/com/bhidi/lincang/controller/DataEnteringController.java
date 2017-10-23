@@ -1,6 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.People;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.DataEnteringServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,16 +31,26 @@ public class DataEnteringController {
         int peopleNum = 0;
         //致贫原因的数组
         int prNum = 0;
+        //收入的数组
+        int incomeNum = 0;
+        //支出的数组
+        int outcomeNum = 0;
         for (String key : map.keySet()) {
             if( key.startsWith("data[home_infos]") ){
                 peopleNum++;
             }
-            if( key.startsWith("data[poor_reason][]") ){
+            if( key.startsWith("data[poor_reason]") ){
                 prNum++;
             }
-           /* for(String value : map.get(key)){
+            if( key.startsWith("data[money_info]") ){
+                incomeNum++;
+            }
+            if( key.startsWith("data[money_outcome]") ){
+                outcomeNum++;
+            }
+            for(String value : map.get(key)){
                 System.out.println("key= "+ key + " and value= " + value );
-            }*/
+            }
         }
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date =  new Date();
@@ -60,7 +70,6 @@ public class DataEnteringController {
                 people.setReservoir( map.get("data[reservoir]")[0] );
                 if( map.get("data[home_infos]["+p+"][name]")[0].equals(map.get("data[householder]")[0]) ) {
                     people.setMaster(1);
-                    //手机号码没有传递过来
                     people.setPhone( map.get("data[tel_number]")[0] );
                 } else {
                     people.setMaster(0);
@@ -75,14 +84,14 @@ public class DataEnteringController {
                 people.setHome_size( peopleNum/7 );
                 people.setImm_num( peopleNum/7 );
                 people.setProp( (map.get("data[prop]")[0]).equals("是")?1:0 );
-                //致贫原因有问题
                 String poor_reason = "";
-                for( int pr = 1;pr <= prNum;pr++ ){
-                    if( pr < (prNum) ){
-                        poor_reason += (map.get("data[poor_reason][]")[1] + ",");
+                for( int pr = 0;pr < prNum;pr++ ){
+                    if( pr < (prNum - 1) ){
+                        //data[poor_reason][0][reason]
+                        poor_reason += (map.get("data[poor_reason]["+pr+"][reason]")[0] + ",");
                     }
-                    if( pr == (prNum) ){
-                        poor_reason += map.get("data[poor_reason][]")[0];
+                    if( pr == (prNum - 1) ){
+                        poor_reason += map.get("data[poor_reason]["+pr+"][reason]")[0];
                     }
                 }
                 people.setPoor_reason( poor_reason );
@@ -92,16 +101,105 @@ public class DataEnteringController {
                 peopleSet.add(people);
             }
         }
-        System.out.println(peopleSet.size());
         for (People ple : peopleSet) {
             peopleList.add(ple);
         }
+        //存储用户返回值
+        int rePeople = 0;
+        if (peopleList.size() > 0){
+            rePeople = dataEnteringServiceImp.savePerson(peopleList);
+        }
+        //move信息
+        Move move = new Move();
+        for (String key : map.keySet()) {
+            if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
+                move.setFid( "KQ"+sdf.format(date) );
+            }
+            if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
+                move.setFid( "BQ"+sdf.format(date) );
+            }
+        }
 
-        int re = dataEnteringServiceImp.savePerson(peopleList);
+        //银行信息
+        Bank bank = new Bank();
+        for (String key : map.keySet()) {
+            if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
+                bank.setFid( "KQ"+sdf.format(date) );
+            }
+            if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
+                bank.setFid( "BQ"+sdf.format(date) );
+            }
+            bank.setAccount_name( map.get("data[bank_user]")[0] );
+            bank.setBank_name( map.get("data[bank_name]")[0] );
+            bank.setAccount_number( map.get("data[bank_number]")[0] );
+        }
+        //存储银行返回值
+        int reBank= 0;
+        if (bank.getFid() != null){
+            reBank = dataEnteringServiceImp.saveBank(bank);
+        }
+        //House信息
+        House house = new House();
+        for (String key : map.keySet()) {
+            if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
+                house.setFid( "KQ"+sdf.format(date) );
+            }
+            if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
+                house.setFid( "BQ"+sdf.format(date) );
+            }
+            house.setMain_size( map.get("data[house][main_arear]")[0] );
+            house.setMain_structure1( map.get("data[house][main_structure1]")[0] );
+            house.setMain_structure2( map.get("data[house][main_structure2]")[0] );
+            house.setMain_structure3( map.get("data[house][main_structure3]")[0] );
+            house.setMain_structure4( map.get("data[house][main_structure4]")[0] );
+            house.setMain_structure5( map.get("data[house][main_easy]")[0] );
+            house.setMain_remark( map.get("data[house][main_remark]")[0] );
+            house.setSub_size( map.get("data[house][sub_arear]")[0]);
+            house.setSub_structure1( map.get("data[house][sub_structure1]")[0] );
+            house.setSub_structure2( map.get("data[house][sub_structure2]")[0] );
+            house.setSub_structure3( map.get("data[house][sub_structure3]")[0] );
+            house.setSub_structure4( map.get("data[house][sub_structure4]")[0] );
+            house.setSub_structure5( map.get("data[house][sub_easy]")[0] );
+            house.setSub_remark( map.get("data[house][sub_remark]")[0] );
+        }
+        //存储house返回值
+        int reRouse= 0;
+        if (house.getFid() != null){
+            reRouse = dataEnteringServiceImp.saveHouse(house);
+        }
+        //一个集合来收集income信息
+        List<Income> incomeList = new ArrayList<Income>();
+        Set<Income> incomeSet = new HashSet();
+        for (String key : map.keySet()) {
+            for( int p = 0 ; p < (incomeNum/6);p++ ){
+                Income income = new Income();
+                if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
+                    income.setFid( "KQ"+sdf.format(date) );
+                }
+                if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
+                    income.setFid( "BQ"+sdf.format(date) );
+                }
+                income.setIncome_source( map.get("data[money_info]["+p+"][kind]")[0] );
+                income.setIncome_cate( map.get("data[money_info]["+p+"][content]")[0] );
+                income.setIncome_quantity( Integer.parseInt(map.get("data[money_info]["+p+"][count]")[0]) );
+                income.setIncome_unit( Float.parseFloat(map.get("data[money_info]["+p+"][price]")[0]) );
+                income.setIncome_sum( Float.parseFloat(map.get("data[money_info]["+p+"][total]")[0]) );
+                income.setRemark( map.get("data[money_info]["+p+"][remark]")[0] );
+                incomeSet.add(income);
+            }
+        }
+        for(Income income : incomeSet){
+            incomeList.add(income);
+        }
+        //income
+        int reIncome= 0;
+        if (incomeList.size() > 0){
+            reIncome = dataEnteringServiceImp.saveIncome(incomeList);
+        }
 
 
-        System.out.println(peopleList.get(0));
-        System.out.println(peopleList.get(1));
+
+
         return "";
     }
 }
