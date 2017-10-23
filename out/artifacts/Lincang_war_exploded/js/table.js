@@ -129,6 +129,48 @@ $(function () {
         if(location.city || location.county || location.town || location.village || location.group || location.remark){
             data.location = location;
         }
+
+        //迁出地，迁入地
+        var move = new Object();
+        if($("#city1 td:nth-child(2) input").val()){
+            move.from_city = $("#city1 td:nth-child(2) input").val();
+        }
+        if($("#city1 td:nth-child(3) input").val()){
+            move.from_disirict = $("#city1 td:nth-child(3) input").val();
+        }
+        if($("#city1 td:nth-child(4) input").val()){
+            move.from_town = $("#city1 td:nth-child(4) input").val();
+        }
+        if($("#city1 td:nth-child(5) input").val()){
+            move.from_village = $("#city1 td:nth-child(5) input").val();
+        }
+        if($("#city1 td:nth-child(6) input").val()){
+            move.from_group = $("#city1 td:nth-child(6) input").val();
+        }
+        if($("#city1 td:nth-child(7) input").val()){
+            move.from_remake = $("#city1 td:nth-child(7) input").val();
+        }
+        if($("#city2 td:nth-child(2) input").val()){
+            move.to_city = $("#city2 td:nth-child(2) input").val();
+        }
+        if($("#city2 td:nth-child(3) input").val()){
+            move.to_disirict = $("#city2 td:nth-child(3) input").val();
+        }
+        if($("#city2 td:nth-child(4) input").val()){
+            move.to_town = $("#city2 td:nth-child(4) input").val();
+        }
+        if($("#city2 td:nth-child(5) input").val()){
+            move.to_village = $("#city2 td:nth-child(5) input").val();
+        }
+        if($("#city2 td:nth-child(6) input").val()){
+            move.to_group = $("#city2 td:nth-child(6) input").val();
+        }
+        if($("#city2 td:nth-child(7) input").val()){
+            move.to_remake = $("#city2 td:nth-child(7) input").val();
+        }
+        if(move.from_city || move.from_disirict || move.from_town || move.from_village || move.from_group || move.from_remake || move.to_city || move.to_disirict || move.to_town || move.to_village || move.to_group || move.to_remake){
+            data.move = move;
+        }
         //房子信息
         var house = new Object();
         if($("#main td:nth-child(2) input").val()){
@@ -420,16 +462,16 @@ $(function () {
         data.time = time;
         data.username = username;
         console.log(data);
-        // $.ajax({
-        //     url: "",
-        //     type: "post",
-        //     data: {data:data},
-        //     dataType: "json",
-        //     success: function (data) {
-        //         alert("提交成功");
-        //         $("#jqtable input").val("");
-        //     }
-        // });
+        $.ajax({
+            url: "/dataEntering.do",
+            type: "post",
+            data: {data:data},
+            dataType: "json",
+            success: function (data) {
+                alert("提交成功");
+                $("#jqtable input").val("");
+            }
+        });
     })
 
 })

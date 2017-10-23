@@ -116,21 +116,32 @@
             <td><input type="text"></td>
         </tr>
         <tr>
-            <td class="bgc" rowspan="2">所在地</td>
+            <td class="bgc" rowspan="3">搬迁信息</td>
+            <td class="bgc">分类</td>
             <td class="bgc">州市</td>
             <td class="bgc">区县</td>
             <td class="bgc">乡镇</td>
             <td class="bgc">村</td>
             <td class="bgc">组</td>
-            <td class="bgc" colspan="3">备注</td>
+            <td class="bgc" colspan="2">备注</td>
         </tr>
-        <tr id="city">
+        <tr id="city1">
+            <td class="bgc">迁入地</td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
-            <td colspan="3"><input type="text"></td>
+            <td colspan="2"><input type="text"></td>
+        </tr>
+        <tr id="city2">
+            <td class="bgc">迁出地</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
+            <td colspan="2"><input type="text"></td>
         </tr>
         <tr>
             <td class="bgc" rowspan="3">住房情况</td>
