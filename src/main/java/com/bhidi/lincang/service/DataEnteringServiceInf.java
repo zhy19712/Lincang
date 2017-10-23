@@ -1,9 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.Bank;
-import com.bhidi.lincang.bean.House;
-import com.bhidi.lincang.bean.Income;
-import com.bhidi.lincang.bean.People;
+import com.bhidi.lincang.bean.*;
 
 import java.util.List;
 
@@ -15,4 +12,6 @@ public interface DataEnteringServiceInf {
     int saveHouse(House house);
 
     int saveIncome(List<Income> incomeList);
+
+    int saveOutcome(List<Outcome> outcomeList);
 }

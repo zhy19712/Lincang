@@ -3,6 +3,7 @@ package com.bhidi.lincang.dao;
 import com.bhidi.lincang.bean.Bank;
 import com.bhidi.lincang.bean.House;
 import com.bhidi.lincang.bean.Income;
+import com.bhidi.lincang.bean.Outcome;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface DataEnteringMapper {
     int insertHouse(House house);
 
     int insertIncome(List<Income> incomeList);
+
+    int insertOutcome(List<Outcome> outcomeList);
 }

@@ -1,9 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.Bank;
-import com.bhidi.lincang.bean.House;
-import com.bhidi.lincang.bean.Income;
-import com.bhidi.lincang.bean.People;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.DataEnteringMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +27,9 @@ public class DataEnteringServiceImp implements DataEnteringServiceInf {
 
     public int saveIncome(List<Income> incomeList) {
         return dataEnteringMapper.insertIncome(incomeList);
+    }
+
+    public int saveOutcome(List<Outcome> outcomeList) {
+        return dataEnteringMapper.insertOutcome(outcomeList);
     }
 }
