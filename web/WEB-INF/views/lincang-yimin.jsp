@@ -147,7 +147,6 @@
                     </ul>
 					<button type="submit">确认上传</button>
 				</form>
-				<button id="test">测试</button>
 				<div id="allinfo_table_wrapper">
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
@@ -167,20 +166,6 @@
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
-		<div id="edit">
-			<table>
-				<tbody>
-					<tr>
-						<td>户主姓名</td>
-						<td><input type="text"></td>
-						<td>户主电话</td>
-						<td><input type="text"></td>
-						<td>所属水库</td>
-						<td><input type="text"></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
 	</div>
 </body>
 <script>

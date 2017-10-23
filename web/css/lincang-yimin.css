@@ -477,7 +477,7 @@ td{
 #new_table ul li input{
     margin-left: 20px;
 }
-#edit{
+#edit1,#edit2{
   position: fixed;
   top: 0;
   left: 0;
@@ -486,8 +486,8 @@ td{
   background-color: rgba(0,0,0,0.3);
   display: none;
 }
-#edit table{
-  width: 94%;
+#edit1 table,#edit2 table{
+  width: 96%;
   height: 500px;
   margin: 20px auto;
   background-color: #fff;
