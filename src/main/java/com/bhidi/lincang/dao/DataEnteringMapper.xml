@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bhidi.lincang.dao.DataEnteringMapper">
-
-    <!--<insert  id="stuffToOffice" parameterType="com.bhidi.lincang.bean.Bank">
-        insert into form_office (oid,created_at,author,dept,reviewer,keyword,
-        title,content,print,revision,copy,status)
-        values( #{id},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
-        #{title},#{content},#{print},#{revision},#{copy},#{status} )
-    </insert >-->
+    <!--int insertPeople();-->
+    <insert  id="insertPeople" parameterType="List">
+        insert into people (fid,reservoir,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at)
+        values
+        <foreach collection="list" separator="," item="people">
+            (
+            #{people.fid},#{people.reservoir},#{people.location}, #{people.name},#{people.master},
+            #{people.pid},#{people.gender},#{people.race},#{people.relation},#{people.education},
+            #{people.profession},#{people.home_size},#{people.imm_num},#{people.interviewer},#{people.interviewee},
+            #{people.created_at}
+            )
+        </foreach>
+    </insert >
     <!--Integer updateFormOffice(F_Stuff f_stuff);-->
 <!--    <update id="updateFormOffice" parameterType="com.bhidi.lincang.bean.Bank">
         update form_office
