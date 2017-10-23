@@ -210,6 +210,7 @@ public class People {
     public String getProfession() {
         return profession;
     }
+
     public String getInterviewer() {
         return interviewer;
     }
@@ -217,10 +218,36 @@ public class People {
     public String getInterviewee() {
         return interviewee;
     }
+
     public  String getCreated_at() {
         return created_at;
     }public void   setCreated_at(String created_at) {
         this.created_at = created_at;
     }
 
+    @Override
+    public String toString() {
+        return "People{" +
+                "id=" + id +
+                ", fid='" + fid + '\'' +
+                ", reservoir='" + reservoir + '\'' +
+                ", location='" + location + '\'' +
+                ", name='" + name + '\'' +
+                ", master=" + master +
+                ", pid='" + pid + '\'' +
+                ", gender='" + gender + '\'' +
+                ", race='" + race + '\'' +
+                ", phone='" + phone + '\'' +
+                ", relation='" + relation + '\'' +
+                ", education='" + education + '\'' +
+                ", profession='" + profession + '\'' +
+                ", home_size=" + home_size +
+                ", imm_num=" + imm_num +
+                ", prop=" + prop +
+                ", poor_reason='" + poor_reason + '\'' +
+                ", interviewer='" + interviewer + '\'' +
+                ", interviewee='" + interviewee + '\'' +
+                ", created_at='" + created_at + '\'' +
+                '}';
+    }
 }
