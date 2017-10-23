@@ -381,9 +381,23 @@ $(function () {
         data.prop = prop;
 
         var poor_reason = [];
+        var x = 0;
+        var reason1 = new Object();
+        var reason2 = new Object();
+        var reason3 = new Object();
         $.each($("#reason input[type='checkbox']:checked"),function () {
-            console.log($(this));
-            poor_reason.push($(this).val());
+            x += 1;
+            if(x == 1){
+                reason1.reason = $(this).val();
+                poor_reason.push(reason1);
+            }else if(x == 2){
+                reason2.reason = $(this).val();
+                poor_reason.push(reason2);
+            }else if(x == 3){
+                reason3.reason = $(this).val();
+                poor_reason.push(reason3);
+            }
+
         })
         if(poor_reason.length > 0){
             data.poor_reason = poor_reason;

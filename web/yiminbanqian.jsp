@@ -65,9 +65,9 @@
             <td class="bgc">开户人姓名</td>
             <td><input type="text" id="bank-user"></td>
             <td class="bgc">开户行名称</td>
-            <td colspan="2"><input type="text" id="bank-name"></td>
+            <td colspan="1"><input type="text" id="bank-name"></td>
             <td class="bgc">银行卡号</td>
-            <td colspan="2"><input type="text" id="bank-number"></td>
+            <td colspan="3"><input type="text" id="bank-number"></td>
         </tr>
         <tr>
             <td rowspan="5" class="bgc">家庭信息</td>
