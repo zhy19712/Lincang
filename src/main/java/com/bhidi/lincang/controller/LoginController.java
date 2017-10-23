@@ -20,7 +20,7 @@ import java.net.URLEncoder;
  * Created by admin on 2017/8/28.
  */
 @Controller
-public class Login {
+public class LoginController {
     @Autowired
     LoginServiceImp loginServiceImp;
 
