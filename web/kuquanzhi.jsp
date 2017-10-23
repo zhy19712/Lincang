@@ -53,7 +53,7 @@
             <tr>
                 <td rowspan="2" class="bgc">户主信息</td>
                 <td class="bgc">所属水库</td>
-                <td colspan="2"><input type="text" id="reservoir"></td>
+                <td colspan="1"><input type="text" id="reservoir"></td>
                 <td class="bgc">户主姓名</td>
                 <td colspan="2"><input type="text" id="householder"></td>
                 <td class="bgc">户主电话</td>
