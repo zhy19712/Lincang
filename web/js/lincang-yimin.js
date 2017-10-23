@@ -642,77 +642,55 @@ $(function(){
 
 
 	//区县列表信息
-	var mytable1 = $('#table1').DataTable({
-        ajax: {
-            url: "BasicInfoOfFamilyByName.do"
-        },
-        "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
-        "serverSide": true,
-        "columns": [
-            {data: "FID"},
-            {data: "NAME"},
-            {data: "PROP"},
-            {data: "HOME_SIZE"},
-            {data: "IMM_NUM"},
-            {data: "RESERVOIR"}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0.-1]
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+    // var mytable1 = $('#table1').DataTable({
+        //     ajax: {
+        //         url: "/pendingCapitalFlow.do?capitalstatus",
+        //         async:false
+        //     },
+        //     "order": [[1, 'desc']],
+        //     "serverSide": true,
+        //     "columns": [
+        //         {"data": "id"},
+        //         {"data": "title"},
+        //         {"data": "create_time"},
+        //         {"data": "report_person"},
+        //         {"data": "initiatorclass"},
+        //         {"data": "status"},
+        //         {"data": "status"},
+        //         {"data": null}
+        //     ],
+        //     "columnDefs": [
+        //         {
+        //             "searchable": false,
+        //             "orderable": false,
+        //             "targets": [7],
+        //             "render" :  function(data,type,row) {
+        //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+        //                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+        //                 return html;
+        //             }
+        //         }
+        //     ],
+        //     "language": {
+        //         "lengthMenu": "每页_MENU_ 条记录",
+        //         "zeroRecords": "没有找到记录",
+        //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+        //         "infoEmpty": "无记录",
+        //         "search": "搜索：",
+        //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+        //         "paginate": {
+        //             "previous": "上一页",
+        //             "next": "下一页"
+        //         }
+        //     }
+        // });
 
-    var mytable2 = $('#table2').DataTable({
-        ajax: {
-            url: "./FamilyInfoByFid.do"
-        },
-        "order": [[1, 'asc']],// dt默认是第一列升序排列 这里第一列为序号列，所以设置为不排序，并把默认的排序列设置到后面
-        "serverSide": true,
-        "columns": [
-            {data: "NAME"},
-            {data: "GENDER"},
-            {data: "RACE"},
-            {data: "PHONE"}
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
 
 
     $("#show").on("click",".about",function () {
 		var name = $(this).find(".name").text();
 		console.log(name);
-
-        // mytable.ajax.url("/list_task.jsp?name=双江拉祜族佤族布朗族傣族自治县").load(function (data) {
-			// console.log(data);
-        // },true);
-        /*mytable1.ajax.url("/list_task.jsp?name="+ encodeURI(encodeURI(name))).load();*/
-        mytable1.ajax.url("/BasicInfoOfFamilyByName.do?name="+ encodeURI(encodeURI(name))).load();
+        // mytable1.ajax.url("/BasicInfoOfFamilyByName.do?name="+ encodeURI(encodeURI(name))).load();
 		$("#show_info").css("display","block");
     });
 
@@ -819,4 +797,8 @@ $(function(){
     //     }
     // });
 
+	//弹框
+	$("#test").click(function () {
+		$("#edit").fadeIn();
+    })
 })
