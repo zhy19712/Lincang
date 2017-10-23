@@ -250,4 +250,58 @@ public class People {
                 ", created_at='" + created_at + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        People people = (People) o;
+
+        if (id != people.id) return false;
+        if (master != people.master) return false;
+        if (home_size != people.home_size) return false;
+        if (imm_num != people.imm_num) return false;
+        if (prop != people.prop) return false;
+        if (fid != null ? !fid.equals(people.fid) : people.fid != null) return false;
+        if (reservoir != null ? !reservoir.equals(people.reservoir) : people.reservoir != null) return false;
+        if (location != null ? !location.equals(people.location) : people.location != null) return false;
+        if (name != null ? !name.equals(people.name) : people.name != null) return false;
+        if (pid != null ? !pid.equals(people.pid) : people.pid != null) return false;
+        if (gender != null ? !gender.equals(people.gender) : people.gender != null) return false;
+        if (race != null ? !race.equals(people.race) : people.race != null) return false;
+        if (phone != null ? !phone.equals(people.phone) : people.phone != null) return false;
+        if (relation != null ? !relation.equals(people.relation) : people.relation != null) return false;
+        if (education != null ? !education.equals(people.education) : people.education != null) return false;
+        if (profession != null ? !profession.equals(people.profession) : people.profession != null) return false;
+        if (poor_reason != null ? !poor_reason.equals(people.poor_reason) : people.poor_reason != null) return false;
+        if (interviewer != null ? !interviewer.equals(people.interviewer) : people.interviewer != null) return false;
+        if (interviewee != null ? !interviewee.equals(people.interviewee) : people.interviewee != null) return false;
+        return created_at != null ? created_at.equals(people.created_at) : people.created_at == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (fid != null ? fid.hashCode() : 0);
+        result = 31 * result + (reservoir != null ? reservoir.hashCode() : 0);
+        result = 31 * result + (location != null ? location.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + master;
+        result = 31 * result + (pid != null ? pid.hashCode() : 0);
+        result = 31 * result + (gender != null ? gender.hashCode() : 0);
+        result = 31 * result + (race != null ? race.hashCode() : 0);
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (relation != null ? relation.hashCode() : 0);
+        result = 31 * result + (education != null ? education.hashCode() : 0);
+        result = 31 * result + (profession != null ? profession.hashCode() : 0);
+        result = 31 * result + home_size;
+        result = 31 * result + imm_num;
+        result = 31 * result + prop;
+        result = 31 * result + (poor_reason != null ? poor_reason.hashCode() : 0);
+        result = 31 * result + (interviewer != null ? interviewer.hashCode() : 0);
+        result = 31 * result + (interviewee != null ? interviewee.hashCode() : 0);
+        result = 31 * result + (created_at != null ? created_at.hashCode() : 0);
+        return result;
+    }
 }
