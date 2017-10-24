@@ -201,7 +201,7 @@
     //查看或编辑
     function edit(that) {
         var kind = $(that).val();
-        console.log(kind);
+        window.open("http://www.jb51.net")
     }
 </script>
 </html>

@@ -690,54 +690,10 @@ $(function(){
     $("#show").on("click",".about",function () {
 		var name = $(this).find(".name").text();
 		console.log(name);
-        // mytable1.ajax.url("/BasicInfoOfFamilyByName.do?name="+ encodeURI(encodeURI(name))).load();
+        mytable1.ajax.url("/TableAddByName.do?name="+ encodeURI(encodeURI(name))).load();
 		$("#show_info").css("display","block");
     });
 
-	$("#table1 tbody").on("click","tr",function () {
-		var fid = $(this).children("td:first-child").text();
-        $("#table2_wrapper").css("display","block");
-        mytable2.ajax.url("./FamilyInfoByFid.do?fid=" + encodeURI(encodeURI(fid))).load();
-		$("#family").css("display","block");
-		$.ajax({
-			url: "./FamilyDetailByFid.do",
-			data: {fid:fid},
-			dataType: "json",
-			success: function (data) {
-				console.log(data);
-				var index1 = data.inArea.indexOf(",");
-				var index2 = data.mainStructure.indexOf(",");
-				var index3 = data.outArea.indexOf(",");
-				var index4 = data.subStructure.indexOf(",");
-				var inArea = data.inArea.substring(0,index1);
-				var mainStructure = data.mainStructure.substring(0,index2);
-				var outArea = data.outArea.substring(0,index3);
-				var subStructure = data.subStructure.substring(0,index4);
-				if(data.prop == 0){
-					var prop = "是";
-				}else {
-					var prop = "否";
-				}
-				$(".f_name").text(data.name);
-				$(".f_id").text(data.pid);
-				$(".f_people").text(data.home_size);
-				$(".f_imm").text(data.imm_num);
-                $(".f_prop").text(prop);
-                $(".f_out").text(outArea);
-                $(".f_in").text(inArea);
-                $(".f_reason").text(data.poor_reason);
-                $(".f_mainhouse").text(mainStructure);
-                $(".f_mainarear").text(data.mainSize);
-                $(".f_bank").text(data.bank_name);
-                $(".f_number").text(data.account_number);
-                $(".f_work").text(data.income_source);
-                $(".f_money").text(data.income_sum);
-                $(".f_reservoir").text(data.reservoir);
-                $(".f_subhouse").text(subStructure);
-                $(".f_subarear").text(outArea);
-            }
-		})
-    })
 
 	//数据录入表格单选
 	$("#yes").click(function () {
@@ -753,6 +709,8 @@ $(function(){
         jQuery('#jqtable').print();
     });
 
+
+
     //所有信息展示表格
     var allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
@@ -762,8 +720,8 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "FID"},
             {"data": "TABLE_TYPE"},
+            {"data": "FID"},
             {"data": "NAME"},
             {"data": "RESERVOIR"},
             {"data": "FROM_DISTRICT"},
@@ -840,4 +798,6 @@ $(function(){
     };
     echart1.setOption(option);
     echart2.setOption(option);
+
+
 })
