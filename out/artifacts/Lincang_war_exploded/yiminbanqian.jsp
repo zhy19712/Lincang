@@ -58,7 +58,7 @@
             <td><input type="text" id="place"></td>
             <td class="bgc">户主姓名</td>
             <td><input type="text" id="householder"></td>
-            <td class="bgc">户主电话</td>
+            <td class="bgc">联系电话</td>
             <td><input type="text" id="number"></td>
         </tr>
         <tr>
@@ -465,7 +465,6 @@
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-sweep-to-right button">保存</a></li>
         <li><a class="hvr-bounce-to-bottom button">放弃</a></li>
     </ul>
 </form>

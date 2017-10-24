@@ -46,6 +46,36 @@
         #user_container2>div{
             width: 20%;
         }
+        #money_apply_wdo form{
+            width: 96%;
+            margin: 0 auto;
+        }
+        #title{
+            text-align: center;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        #money_apply_wdo table{
+            width: 100%;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+        }
+        #money_apply_wdo table td{
+            padding: 5px 0;
+            text-align: center;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+        }
+        #money_apply_wdo table input{
+            width: 100%;
+            outline: none;
+            border: none;
+            padding: 0 5px;
+        }
+        #money_apply_wdo table select{
+            width: 94%;
+            margin-left: 3%;
+        }
     </style>
 
 
@@ -105,10 +135,10 @@
                     <div class="nav-sm nav nav-stacked">
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
-                        <li id="header1" class="nav-header">我的登记</li>
+                        <li id="header1" class="nav-header">我的收文</li>
                         <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">收文登记</span></a></li>
 
-                        <li class="nav-header">我的事务</li>
+                        <li class="nav-header">我的待办</li>
                         <li id="dcl"><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
                         <li id="ycl"><a href="#new3"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
@@ -130,7 +160,7 @@
                                     <div>
                                         <ul class="breadcrumb">
                                             <li>
-                                                <a href="#">我的登记</a>
+                                                <a href="#">我的收文</a>
                                             </li>
                                             <li>
                                                 <a href="#">新建登记</a>
@@ -140,15 +170,12 @@
 
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
-                                               href="#">
+                                            <a data-toggle="tooltip" title="新建收文登记表" class="well top-block"
+                                               href="#" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
-
-                                                <div id="kind2">新建登记表</div>
-
+                                                <div id="kind2">新建收文登记表</div>
                                             </a>
                                         </div>
-                                        <span style="display: inline-block;vertical-align: middle;line-height: 60px;margin-right: 20px;">导入登记表:</span><input type="file" multiple="multiple">
 
                                     </div>
                                     <div class="box-inner">
@@ -282,42 +309,93 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm" action="" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
-                        <input id="oId" type="text" name="id" style="display: none" ></input>
-                        <input id="created_at" type="text" name="created_at" style="display: none" ></input>
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>标题</span>
-                                <input id="title" type="text">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-6" id="people">
-                                <span>上报人</span>
-                                <input id="input1" type="text" name="dept">
-                            </div>
-                            <div class="col-sm-6" id="time">
-                                <span>上报季度</span>
-                                <input id="input2" type="text" name="author">
-                            </div>
-                        </div>
-                        <div class="row myrow" id="night">
-                            <div class="col-sm-12">
-                                <span>上传文件</span>
-                                <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                    <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
-                                    <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" id="Commit" style="display:none"/>
-                            </div>
-                        </div>
-                        <textarea class="mytext" name="content" id="input3" cols="30" rows="10" placeholder="上报内容描述"></textarea>
+                        <p id="title">收文登记</p>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>年度</td>
+                                <td><input type="text" name="year"></td>
+                                <td>保管期限</td>
+                                <td><select name="time_limit">
+                                    <option value="1个月">1个月</option>
+                                    <option value="6个月">6个月</option>
+                                    <option value="1年">1年</option>
+                                    <option value="2年">2年</option>
+                                </select></td>
+                                <td>类别</td>
+                                <td colspan="2"><input type="text" name="kind"></td>
+                                <td>来文日期</td>
+                                <td colspan="2"><input type="text" name="document_time1"></td>
+                            </tr>
+                            <tr>
+                                <td>文件编号</td>
+                                <td><input type="text"></td>
+                                <td>登记号</td>
+                                <td><input type="text"></td>
+                                <td>全宗号</td>
+                                <td colspan="2"><input type="text"></td>
+                                <td>成文日期</td>
+                                <td colspan="2"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;">题名</td>
+                                <td colspan="9">
+                                    <textarea name="" cols="30" rows="10" style="width: 99%;outline: none;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>主题词</td>
+                                <td colspan="5"><input type="text"></td>
+                                <td>责任者</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>归档份数</td>
+                                <td><input type="text"></td>
+                                <td>页数</td>
+                                <td><input type="text"></td>
+                                <td>密级</td>
+                                <td><input type="text"></td>
+                                <td>机构问题</td>
+                                <td><input type="text"></td>
+                                <td>收件人</td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>来文机关</td>
+                                <td colspan="5"><input type="text"></td>
+                                <td>附件页数</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>实体分类号</td>
+                                <td><input type="text"></td>
+                                <td>分发情况</td>
+                                <td colspan="3"><input type="text"></td>
+                                <td>旧全宗</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>归档情况</td>
+                                <td><input type="text"></td>
+                                <td>登记日期</td>
+                                <td colspan="3"><input type="text"></td>
+                                <td>传阅情况</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;">处理情况</td>
+                                <td colspan="9"><textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                 </form>
@@ -1340,15 +1418,7 @@
     }
 
     function newForm() {
-        if(status == 1){
-            $("#people span").text("上报人");
-            $("#time span").text("上报季度");
-            $("#input3").css("display","block");
-        }else if(status == 3){
-            $("#people span").text("申请人");
-            $("#time span").text("申请原因");
-            $("#input3").css("display","none");
-        }
+
         $('#money_apply_wdo').modal('show');
     }
 
