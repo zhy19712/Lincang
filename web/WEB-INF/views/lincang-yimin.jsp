@@ -126,13 +126,13 @@
 		<div id="data_input">
             <div id="new_table">
 				<iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form action="" target="uploadFrame">
+                <form action="multipleExcelUpLoadExcel" target="uploadFrame">
                     <ul>
-						<li><a data-toggle="tooltip" title="新建库区安置登记表" class="well top-block"
+						<li><a data-toggle="tooltip" title="新建库区登记表" class="well top-block"
 							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
 							<i class="glyphicon glyphicon-pencil blue"></i>
 
-							<div>新建库区安置登记表</div>
+							<div>新建库区登记表</div>
 
 						</a>
 						</li>
@@ -201,7 +201,12 @@
     //查看或编辑
     function edit(that) {
         var kind = $(that).val();
-        window.open("http://www.jb51.net")
+        kind = encodeURI(encodeURI(kind))
+        var name1 = "库区安置登记表";
+        name1 = encodeURI(encodeURI(name1));
+        var name2 = "移民搬迁登记表";
+        name2 = encodeURI(encodeURI(name2));
+        window.open("/anzhi_detail.jsp?kind=" + kind);
     }
 </script>
 </html>

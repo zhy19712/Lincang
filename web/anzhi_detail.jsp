@@ -55,7 +55,7 @@
             <td colspan="1"><input type="text" id="reservoir"></td>
             <td class="bgc">户主姓名</td>
             <td colspan="2"><input type="text" id="householder"></td>
-            <td class="bgc">户主电话</td>
+            <td class="bgc">联系电话</td>
             <td colspan="2"><input type="text" id="number"></td>
         </tr>
         <tr>

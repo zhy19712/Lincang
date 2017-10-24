@@ -58,7 +58,7 @@
             <td><input type="text" id="place"></td>
             <td class="bgc">户主姓名</td>
             <td><input type="text" id="householder"></td>
-            <td class="bgc">户主电话</td>
+            <td class="bgc">联系电话</td>
             <td><input type="text" id="number"></td>
         </tr>
         <tr>

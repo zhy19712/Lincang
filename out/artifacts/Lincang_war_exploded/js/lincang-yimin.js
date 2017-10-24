@@ -650,8 +650,8 @@ $(function(){
             "order": [[1, 'desc']],
             "serverSide": true,
             "columns": [
-                {"data": "FID"},
-    				{"data": "TABLE_TYPE"},
+                	{"data": "TABLE_TYPE"},
+                	{"data": "FID"},
 					{"data": "NAME"},
 					{"data": "RESERVOIR"},
 					{"data": "FROM_DISTRICT"},
