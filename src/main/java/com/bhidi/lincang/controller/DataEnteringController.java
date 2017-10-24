@@ -72,9 +72,11 @@ public class DataEnteringController {
                 People people = new People();
                 if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
                     people.setFid( "KQ"+sdf.format(date) );
+                    people.setTable_type("库区安置登记表");
                 }
                 if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
                     people.setFid( "BQ"+sdf.format(date) );
+                    people.setTable_type("移民搬迁登记表");
                     people.setLocation( map.get("data[place]")[0]!= null?map.get("data[place]")[0]:"" );
                 }
                 people.setReservoir( map.get("data[reservoir]")[0] );
