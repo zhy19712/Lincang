@@ -191,11 +191,11 @@
                                             <table id="money_apply1" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
-                                                    <th>编号</th>
+                                                    <th>年度</th>
+                                                    <th>类别</th>
+                                                    <th>来文日期</th>
+                                                    <th>文件编号</th>
                                                     <th>标题</th>
-                                                    <th>创建时间</th>
-                                                    <th>发起人</th>
-                                                    <th>发起人类型</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
