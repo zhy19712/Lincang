@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.DataGetingMapper">
+    <!--Bank selectBankInfoByFid(String fid);-->
+    <select id="selectBankInfoByFid" resultType="com.bhidi.lincang.bean.Bank" parameterType="String">
+      select IFNULL(fid,"")as fid,IFNULL(account_name,"")as account_name,
+       IFNULL(bank_name,"")as bank_name,IFNULL(account_number,"")as account_number from bank
+       where fid = #{fid}
+    </select>
+    <!--House selectHouseInfoByFid(String fid);-->
+    <select id="selectHouseInfoByFid" resultType="com.bhidi.lincang.bean.House" parameterType="String">
+        select IFNULL(fid,"")as fid,IFNULL(main_size,"")as main_size,
+         IFNULL(main_structure1,"")as main_structure1,IFNULL(main_structure2,"")as main_structure2,
+         IFNULL(main_structure3,"")as main_structure3,IFNULL(main_structure4,"")as main_structure4,
+         IFNULL(main_structure5,"")as main_structure5,IFNULL(main_remark,"")as main_remark,
+         IFNULL(sub_size,"")as sub_size,IFNULL(sub_structure1,"")as sub_structure1,
+         IFNULL(sub_structure2,"")as sub_structure2,IFNULL(sub_structure3,"")as sub_structure3,
+         IFNULL(sub_structure4,"")as sub_structure4,IFNULL(sub_structure5,"")as sub_structure5,
+         IFNULL(sub_remark,"")as sub_remark from house
+        where fid = #{fid}
+    </select>
+    <!--List<Income> selectIncomeInfoByFid(String fid);-->
+    <select id="selectIncomeInfoByFid" resultType="com.bhidi.lincang.bean.Income" parameterType="String">
+        select IFNULL(fid,"")as fid,IFNULL(income_source,"")as income_source,
+        IFNULL(income_cate,"")as income_cate,IFNULL(income_quantity,"")as income_quantity,
+        IFNULL(income_unit,"")as income_unit,IFNULL(income_sum,"")as income_sum,
+        IFNULL(remark,"")as remark  from income
+        where fid = #{fid}
+    </select>
+    <!--List<Outcome> selectOutcomeInfosByFid(String fid);-->
+    <select id="selectOutcomeInfosByFid" resultType="com.bhidi.lincang.bean.Outcome" parameterType="String">
+        select IFNULL(fid,"")as fid,IFNULL(outcome_source,"")as outcome_source,
+        IFNULL(outcome_cate,"")as outcome_cate,IFNULL(outcome_quantity,"")as outcome_quantity,
+        IFNULL(outcome_unit,"")as outcome_unit,IFNULL(outcome_sum,"")as outcome_sum,
+        IFNULL(remark,"")as remark  from outcome
+        where fid = #{fid}
+    </select>
+    <!--Move selectMoveInfoByFid(String fid);-->
+    <select id="selectMoveInfoByFid" resultType="com.bhidi.lincang.bean.Move" parameterType="String">
+        select IFNULL(fid,"")as fid,
+        IFNULL(from_city,"")as from_city,IFNULL(from_district,"")as from_district,
+        IFNULL(from_town,"")as from_town,IFNULL(from_village,"")as from_village,
+        IFNULL(from_group,"")as from_group,IFNULL(from_remark,"")as from_remark,
+        IFNULL(to_city,"")as to_city,IFNULL(to_district,"")as to_district,
+        IFNULL(to_town,"")as to_town,IFNULL(to_village,"")as to_village,
+        IFNULL(to_group,"")as to_group,IFNULL(to_remark,"")as to_remark,
+        from move
+        where fid = #{fid}
+    </select>
+    <!--List<People> selectPeopleInfosByFid(String fid);-->
+    <select id="selectPeopleInfosByFid" resultType="com.bhidi.lincang.bean.People" parameterType="String">
+        select IFNULL(fid,"")as fid,
+        IFNULL(reservoir,"")as reservoir,IFNULL(phone,"")as phone,
+        IFNULL(prop,"")as prop,IFNULL(poor_reason,"")as poor_reason,
+        IFNULL(location,"")as location,IFNULL(name,"")as name,
+        IFNULL(master,"")as master,IFNULL(pid,"")as pid,
+        IFNULL(gender,"")as gender,IFNULL(race,"")as race,
+        IFNULL(relation,"")as relation,IFNULL(education,"")as education,
+        IFNULL(profession,"")as profession,IFNULL(home_size,"")as home_size,
+        IFNULL(imm_num,"")as imm_num,IFNULL(interviewer,"")as interviewer,
+        IFNULL(interviewee,"")as interviewee,IFNULL(created_at,"")as created_at,
+        IFNULL(table_type,"")as table_type
+        from people
+        where fid = #{fid}
+    </select>
+
+</mapper>
