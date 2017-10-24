@@ -14,7 +14,7 @@ $(function(){
 	//滚动条插件
 	$("#show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
-	$("#tab_content li").panel({iWheelStep:32});
+	$("#tab_content li:first-child").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
@@ -762,13 +762,13 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"FID": "id"},
-            {"TABLE_TYPE": "title"},
-            {"NAME": "create_time"},
-            {"RESERVOIR": "report_person"},
-            {"LOCATION": "initiatorclass"},
-            {"INTERVIEWER": "status"},
-            {"CREATED_AT": "status"},
+            {"data": "FID"},
+            {"data": "TABLE_TYPE"},
+            {"data": "NAME"},
+            {"data": "RESERVOIR"},
+            {"data": "LOCATION"},
+            {"data": "INTERVIEWER"},
+            {"data": "CREATED_AT"},
             {"data": null}
         ],
         "columnDefs": [
