@@ -762,13 +762,13 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"FID": "id"},
-            {"TABLE_TYPE": "title"},
-            {"NAME": "create_time"},
-            {"RESERVOIR": "report_person"},
-            {"LOCATION": "initiatorclass"},
-            {"INTERVIEWER": "status"},
-            {"CREATED_AT": "status"},
+            {"data": "FID"},
+            {"data": "TABLE_TYPE"},
+            {"data": "NAME"},
+            {"data": "RESERVOIR"},
+            {"data": "LOCATION"},
+            {"data": "INTERVIEWER"},
+            {"data": "CREATED_AT"},
             {"data": null}
         ],
         "columnDefs": [

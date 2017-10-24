@@ -14,7 +14,7 @@ $(function(){
 	//滚动条插件
 	$("#show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
-	$("#tab_content li").panel({iWheelStep:32});
+	$("#tab_content li:first-child").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
@@ -754,48 +754,48 @@ $(function(){
     });
 
     //所有信息展示表格
-    // var allinfo_table = $('#allinfo_table').DataTable({
-    //     ajax: {
-    //         url: "/pendingCapitalFlow.do?capitalstatus",
-    //         async:false
-    //     },
-    //     "order": [[1, 'desc']],
-    //     "serverSide": true,
-    //     "columns": [
-    //         {"data": "id"},
-    //         {"data": "title"},
-    //         {"data": "create_time"},
-    //         {"data": "report_person"},
-    //         {"data": "initiatorclass"},
-    //         {"data": "status"},
-    //         {"data": "status"},
-    //         {"data": null}
-    //     ],
-    //     "columnDefs": [
-    //         {
-    //             "searchable": false,
-    //             "orderable": false,
-    //             "targets": [7],
-    //             "render" :  function(data,type,row) {
-    //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-    //                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-    //                 return html;
-    //             }
-    //         }
-    //     ],
-    //     "language": {
-    //         "lengthMenu": "每页_MENU_ 条记录",
-    //         "zeroRecords": "没有找到记录",
-    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-    //         "infoEmpty": "无记录",
-    //         "search": "搜索：",
-    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
-    //         "paginate": {
-    //             "previous": "上一页",
-    //             "next": "下一页"
-    //         }
-    //     }
-    // });
+    var allinfo_table = $('#allinfo_table').DataTable({
+        ajax: {
+            url: "/FamilyInfoAdd.do",
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "FID"},
+            {"data": "TABLE_TYPE"},
+            {"data": "NAME"},
+            {"data": "RESERVOIR"},
+            {"data": "LOCATION"},
+            {"data": "INTERVIEWER"},
+            {"data": "CREATED_AT"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [7],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
 	var echart1 = echarts.init(document.getElementById('container1'));
 	var echart2 = echarts.init(document.getElementById('container2'));
