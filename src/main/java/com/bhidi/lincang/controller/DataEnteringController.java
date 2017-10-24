@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.DataEnteringServiceImp;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -119,7 +120,11 @@ public class DataEnteringController {
         //存储用户返回值
         int rePeople = 0;
         if (peopleList.size() > 0){
-            rePeople = dataEnteringServiceImp.savePerson(peopleList);
+            try {
+                rePeople = dataEnteringServiceImp.savePerson(peopleList);
+            } catch (Exception e) {
+                rePeople = -1;
+            }
         }
         //move信息
         Move move = new Move();
@@ -148,9 +153,12 @@ public class DataEnteringController {
         //存储move返回值
         int reMove= 0;
         if (move.getFid() != null){
-            reMove = dataEnteringServiceImp.saveMove(move);
+            try {
+                reMove = dataEnteringServiceImp.saveMove(move);
+            } catch (Exception e) {
+                reMove = -1;
+            }
         }
-
 
         //银行信息
         Bank bank = new Bank();
@@ -168,7 +176,11 @@ public class DataEnteringController {
         //存储银行返回值
         int reBank= 0;
         if (bank.getFid() != null){
-            reBank = dataEnteringServiceImp.saveBank(bank);
+            try {
+                reBank = dataEnteringServiceImp.saveBank(bank);
+            } catch (Exception e) {
+                reBank = -1;
+            }
         }
         //House信息
         House house = new House();
@@ -199,7 +211,11 @@ public class DataEnteringController {
         //存储house返回值
         int reRouse= 0;
         if (house.getFid() != null){
-            reRouse = dataEnteringServiceImp.saveHouse(house);
+            try {
+                reRouse = dataEnteringServiceImp.saveHouse(house);
+            } catch (Exception e) {
+                reRouse = -1;
+            }
         }
         //一个集合来收集income信息
         List<Income> incomeList = new ArrayList<Income>();
@@ -228,7 +244,11 @@ public class DataEnteringController {
         //income存储
         int reIncome= 0;
         if (incomeList.size() > 0){
-            reIncome = dataEnteringServiceImp.saveIncome(incomeList);
+            try {
+                reIncome = dataEnteringServiceImp.saveIncome(incomeList);
+            } catch (Exception e) {
+                reIncome = -1;
+            }
         }
         //一个集合来收集outcome信息
         List<Outcome> outcomeList = new ArrayList<Outcome>();
@@ -257,8 +277,30 @@ public class DataEnteringController {
         //outcome存储
         int reOutcome= 0;
         if (outcomeList.size() > 0){
-            reOutcome = dataEnteringServiceImp.saveOutcome(outcomeList);
+            try {
+                reOutcome = dataEnteringServiceImp.saveOutcome(outcomeList);
+            } catch (Exception e) {
+                reOutcome = -1;
+            }
         }
-        return "";
+        //rePeople,reMove,reBank,reRouse,reIncome,reOutcome
+        List<Integer> intList = new ArrayList<Integer>();
+        intList.add(rePeople);
+        intList.add(reMove);
+        intList.add(reBank);
+        intList.add(reRouse);
+        intList.add(reIncome);
+        intList.add(reOutcome);
+        String strResult = "";
+        for( int r = 0;r < intList.size();r++){
+            if( intList.get(r) == -1 ){
+                strResult = "failure";
+            } else {
+                strResult = "success";
+            }
+        }
+        Map mapResult = new HashMap();
+        mapResult.put("result",strResult);
+        return new Gson().toJson(mapResult);
     }
 }

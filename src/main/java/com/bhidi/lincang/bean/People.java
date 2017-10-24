@@ -35,7 +35,6 @@ public class People {
     private int home_size;
     //移民人数
     private int imm_num;
-
     //是否建档立卡
     private int prop;
     //致贫原因

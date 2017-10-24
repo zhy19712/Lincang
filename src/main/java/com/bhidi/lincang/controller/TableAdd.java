@@ -23,22 +23,22 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class Table {
+public class TableAdd {
     @ResponseBody
     @RequestMapping(value="/FamilyInfoAdd",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String NewForm(HttpServletRequest request,String fid) throws SQLException {
+    public String NewForm(HttpServletRequest request) throws SQLException {
             ResultSet rs = null;
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
             String table = "PEOPLE";
 
-            if( fid != null ){
+           /* if( fid != null ){
                 try {
                     fid = URLDecoder.decode(fid ,"utf-8");
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-            }
+            }*/
 
             //获取请求次数
             String draw = "0";
@@ -92,11 +92,9 @@ public class Table {
 
             List<Table_info> tasks = new ArrayList<Table_info>();
             if (conn != null) {
-                /*String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = 'NEW'";*/
                 String recordsFilteredSql = "select count(1) as recordsFiltered from " + table+" p,move m where p.fid = m.fid and p.MASTER = 1";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                /*String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = 'NEW'";*/
                 String recordsTotalSql = "select count(1) as recordsTotal from " + table+" p,move m where p.fid = m.fid and p.MASTER = 1";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
@@ -104,7 +102,6 @@ public class Table {
                 }
 
                 String searchSQL = "";
-                /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
                 String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.FROM_DISTRICT,'')as FROM_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
@@ -144,7 +141,6 @@ public class Table {
             info.put("recordsTotal", recordsTotal);
             info.put("recordsFiltered", recordsFiltered);
             info.put("draw", draw);
-            System.out.println(info);
             String json = new Gson().toJson(info);
             rs.close();
             stmt.close();

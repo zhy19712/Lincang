@@ -642,48 +642,48 @@ $(function(){
 
 
 	//区县列表信息
-    // var mytable1 = $('#table1').DataTable({
-        //     ajax: {
-        //         url: "/FamilyInfoAdd.do?name=" + encodeURI(encodeURI("云县"))),
-        //         async:false
-        //     },
-        //     "order": [[1, 'desc']],
-        //     "serverSide": true,
-        //     "columns": [
-        //         {"data": "FID"},
-    	//			{"data": "TABLE_TYPE"},
-		//			{"data": "NAME"},
-		//			{"data": "RESERVOIR"},
-		//			{"data": "FROM_DISTRICT"},
-		//			{"data": "INTERVIEWER"},
-		//			{"data": "CREATED_AT"},
-		//			{"data": null}
-        //     ],
-        //     "columnDefs": [
-        //         {
-        //             "searchable": false,
-        //             "orderable": false,
-        //             "targets": [7],
-        //             "render" :  function(data,type,row) {
-        //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-        //                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-        //                 return html;
-        //             }
-        //         }
-        //     ],
-        //     "language": {
-        //         "lengthMenu": "每页_MENU_ 条记录",
-        //         "zeroRecords": "没有找到记录",
-        //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-        //         "infoEmpty": "无记录",
-        //         "search": "搜索：",
-        //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
-        //         "paginate": {
-        //             "previous": "上一页",
-        //             "next": "下一页"
-        //         }
-        //     }
-        // });
+    var mytable1 = $('#table1').DataTable({
+            ajax: {
+                url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": "FID"},
+    				{"data": "TABLE_TYPE"},
+					{"data": "NAME"},
+					{"data": "RESERVOIR"},
+					{"data": "FROM_DISTRICT"},
+					{"data": "INTERVIEWER"},
+					{"data": "CREATED_AT"},
+					{"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [7],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
 
 
 
