@@ -155,8 +155,8 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>编号</th>
 								<th>分类</th>
+								<th>编号</th>
 								<th>户主姓名</th>
 								<th>所属水库</th>
 								<th>所在地(迁入地)</th>
@@ -197,6 +197,11 @@
         o.removeChild(int); //从父节点o上面移除子节点a
         o.removeChild(a);
         o.removeChild(span)
+    }
+    //查看或编辑
+    function edit(that) {
+        var kind = $(that).val();
+        window.open("http://www.jb51.net")
     }
 </script>
 </html>
