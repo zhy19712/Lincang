@@ -797,6 +797,8 @@ $(function(){
         }
     });
 
+
+    //统计分析图表
 	var echart1 = echarts.init(document.getElementById('container1'));
 	var echart2 = echarts.init(document.getElementById('container2'));
     var option = {
