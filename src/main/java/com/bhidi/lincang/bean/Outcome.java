@@ -83,6 +83,19 @@ public class Outcome {
     }
 
     @Override
+    public String toString() {
+        return "Outcome{" +
+                "fid='" + fid + '\'' +
+                ", outcome_source='" + outcome_source + '\'' +
+                ", outcome_cate='" + outcome_cate + '\'' +
+                ", outcome_quantity=" + outcome_quantity +
+                ", outcome_unit=" + outcome_unit +
+                ", outcome_sum=" + outcome_sum +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

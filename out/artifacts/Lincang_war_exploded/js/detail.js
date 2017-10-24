@@ -13,13 +13,13 @@ $(function () {
     $("#fid span").text(id1);
     var id2 = encodeURI(encodeURI(id1));
     console.log(kind,id1);
-    // $.ajax({
-    //     url: "",
-    //     type: "post",
-    //     data: {fid:id1},
-    //     dataType: "json",
-    //     seccess: function (data) {
-    //          console.log(data);
-    //     }
-    // })
+    $.ajax({
+        url: "/dataGeting.do",
+        type: "post",
+        data: {fid:id1},
+        dataType: "json",
+        seccess: function (data) {
+             console.log(data);
+        }
+    })
 })

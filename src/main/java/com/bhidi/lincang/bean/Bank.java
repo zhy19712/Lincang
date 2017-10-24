@@ -50,4 +50,14 @@ public class Bank {
     public void setAccount_number(String account_number) {
         this.account_number = account_number;
     }
+
+    @Override
+    public String toString() {
+        return "Bank{" +
+                "fid='" + fid + '\'' +
+                ", account_name='" + account_name + '\'' +
+                ", bank_name='" + bank_name + '\'' +
+                ", account_number='" + account_number + '\'' +
+                '}';
+    }
 }
