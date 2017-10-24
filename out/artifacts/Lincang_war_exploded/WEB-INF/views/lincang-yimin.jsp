@@ -51,11 +51,11 @@
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
+											<th>编号</th>
 											<th>分类</th>
 											<th>户主姓名</th>
 											<th>所属水库</th>
-											<th>所在地</th>
-											<th>迁入地</th>
+											<th>所在地(迁入地)</th>
 											<th>调查人</th>
 											<th>填表时间</th>
 											<th>操作</th>
@@ -153,11 +153,11 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
+								<th>编号</th>
 								<th>分类</th>
 								<th>户主姓名</th>
 								<th>所属水库</th>
-								<th>所在地</th>
-								<th>迁入地</th>
+								<th>所在地(迁入地)</th>
 								<th>调查人</th>
 								<th>填表时间</th>
 								<th>操作</th>

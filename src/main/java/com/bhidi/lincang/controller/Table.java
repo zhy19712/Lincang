@@ -92,11 +92,11 @@ public class Table {
             List<People> tasks = new ArrayList<People>();
             if (conn != null) {
                 /*String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where STATUS = 'NEW'";*/
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table+"where MASTER = 1";
+                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table+" where MASTER = 1";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
                 /*String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where STATUS = 'NEW'";*/
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table+"where MASTER = 1";
+                String recordsTotalSql = "select count(1) as recordsTotal from " + table+" where MASTER = 1";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
@@ -104,7 +104,7 @@ public class Table {
 
                 String searchSQL = "";
                 /*String sql = "SELECT * FROM " + table + " where STATUS = 'NEW'";*/
-                String sql = "SELECT IFNULL(p.FID,'') as NAME,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.FROM_DISTRICT,'')as LOCATION,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
+                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.FROM_DISTRICT,'')as LOCATION,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }

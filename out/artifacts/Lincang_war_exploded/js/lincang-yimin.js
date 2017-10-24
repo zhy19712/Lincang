@@ -756,18 +756,19 @@ $(function(){
     //所有信息展示表格
     var allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
-            url: "//FamilyInfoAdd.do",
+            url: "/FamilyInfoAdd.do",
             async:false
         },
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "FID"},
-            {"data": "NAME"},
-            {"data": "RESERVOIR"},
-            {"data": "LOCATION"},
-            {"data": "INTERVIEWER"},
-            {"data": "CREATED_AT"},
+            {"FID": "id"},
+            {"TABLE_TYPE": "title"},
+            {"NAME": "create_time"},
+            {"RESERVOIR": "report_person"},
+            {"LOCATION": "initiatorclass"},
+            {"INTERVIEWER": "status"},
+            {"CREATED_AT": "status"},
             {"data": null}
         ],
         "columnDefs": [
