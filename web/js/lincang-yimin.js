@@ -644,20 +644,20 @@ $(function(){
 	//区县列表信息
     // var mytable1 = $('#table1').DataTable({
         //     ajax: {
-        //         url: "/pendingCapitalFlow.do?capitalstatus",
+        //         url: "/FamilyInfoAdd.do?name=" + encodeURI(encodeURI("云县"))),
         //         async:false
         //     },
         //     "order": [[1, 'desc']],
         //     "serverSide": true,
         //     "columns": [
-        //         {"data": "id"},
-        //         {"data": "title"},
-        //         {"data": "create_time"},
-        //         {"data": "report_person"},
-        //         {"data": "initiatorclass"},
-        //         {"data": "status"},
-        //         {"data": "status"},
-        //         {"data": null}
+        //         {"data": "FID"},
+    	//			{"data": "TABLE_TYPE"},
+		//			{"data": "NAME"},
+		//			{"data": "RESERVOIR"},
+		//			{"data": "FROM_DISTRICT"},
+		//			{"data": "INTERVIEWER"},
+		//			{"data": "CREATED_AT"},
+		//			{"data": null}
         //     ],
         //     "columnDefs": [
         //         {
