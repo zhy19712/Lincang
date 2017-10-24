@@ -762,13 +762,13 @@ $(function(){
     //     "order": [[1, 'desc']],
     //     "serverSide": true,
     //     "columns": [
-    //         {"data": "id"},
-    //         {"data": "title"},
-    //         {"data": "create_time"},
-    //         {"data": "report_person"},
-    //         {"data": "initiatorclass"},
-    //         {"data": "status"},
-    //         {"data": "status"},
+    //         {"FID": "id"},
+    //         {"TABLE_TYPE": "title"},
+    //         {"NAME": "create_time"},
+    //         {"RESERVOIR": "report_person"},
+    //         {"LOCATION": "initiatorclass"},
+    //         {"INTERVIEWER": "status"},
+    //         {"CREATED_AT": "status"},
     //         {"data": null}
     //     ],
     //     "columnDefs": [

@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.jedate.js"></script>
-    <script src="js/table.js"></script>
+    <script src="js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color:    red;
@@ -465,7 +465,6 @@
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-sweep-to-right button">保存</a></li>
         <li><a class="hvr-bounce-to-bottom button">放弃</a></li>
     </ul>
 </form>
