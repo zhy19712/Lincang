@@ -324,33 +324,33 @@
                             <tbody>
                             <tr>
                                 <td>年度</td>
-                                <td><input type="text" name="year"></td>
+                                <td><input type="text" name="niandu"></td>
                                 <td>保管期限</td>
-                                <td><select name="time_limit">
+                                <td><select name="qixian">
                                     <option value="1个月">1个月</option>
                                     <option value="6个月">6个月</option>
                                     <option value="1年">1年</option>
                                     <option value="2年">2年</option>
                                 </select></td>
                                 <td>类别</td>
-                                <td colspan="2"><input type="text" name="kind"></td>
+                                <td colspan="2"><input type="text" name="leibie"></td>
                                 <td>来文日期</td>
-                                <td colspan="2"><input type="text" name="document_time1"></td>
+                                <td colspan="2"><input type="text" name="laiwenriqi"></td>
                             </tr>
                             <tr>
                                 <td>文件编号</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="wenjianhao"></td>
                                 <td>登记号</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="dengjihao"></td>
                                 <td>全宗号</td>
-                                <td colspan="2"><input type="text"></td>
+                                <td colspan="2"><input type="text" name="quanzonghao"></td>
                                 <td>成文日期</td>
-                                <td colspan="2"><input type="text"></td>
+                                <td colspan="2"><input type="text" name="chengwenriqi"></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">题名</td>
                                 <td colspan="9">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                    <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -362,47 +362,47 @@
                             </tr>
                             <tr>
                                 <td>主题词</td>
-                                <td colspan="5"><input type="text"></td>
+                                <td colspan="5"><input type="text" name="zhuti"></td>
                                 <td>责任者</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="zeren"></td>
                             </tr>
                             <tr>
                                 <td>归档份数</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="guidangyeshu"></td>
                                 <td>页数</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="yeshu"></td>
                                 <td>密级</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="miji"></td>
                                 <td>机构问题</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="jigou"></td>
                                 <td>收件人</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="shoujianren"></td>
                             </tr>
                             <tr>
                                 <td>来文机关</td>
-                                <td colspan="5"><input type="text"></td>
+                                <td colspan="5"><input type="text" name="laiwenjiguan"></td>
                                 <td>附件页数</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="fujianyeshu"></td>
                             </tr>
                             <tr>
                                 <td>实体分类号</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="shitihao"></td>
                                 <td>分发情况</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="fenfa"></td>
                                 <td>旧全宗</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="jiuquanzong"></td>
                             </tr>
                             <tr>
                                 <td>归档情况</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="guidangqingkuang"></td>
                                 <td>登记日期</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="dengjiriqi"></td>
                                 <td>传阅情况</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="chuanyue"></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
-                                <td colspan="9"><textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                                <td colspan="9"><textarea name="chuli" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
                             </tr>
                             </tbody>
                         </table>
@@ -704,48 +704,10 @@
         o.removeChild(a);
         o.removeChild(span)
     }
-    //资金申请
-    var money_apply1 = $('#money_apply1').DataTable({
-        ajax: {
-            url: "/capitalFlowForm.do?userstatus=1",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "id"},
-            {"data": "title"},
-            {"data": "create_time"},
-            {"data": "report_person"},
-            {"data": "initiatorclass"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+    //收文登记
+    $("#money_apply_wdo .btn-primary").click(function () {
+        $("#fileForm").submit();
+    })
 
     //待处理
     var sta1 = "市局规划科处理中";
