@@ -465,7 +465,6 @@
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-sweep-to-right button">保存</a></li>
         <li><a class="hvr-bounce-to-bottom button">放弃</a></li>
     </ul>
 </form>
