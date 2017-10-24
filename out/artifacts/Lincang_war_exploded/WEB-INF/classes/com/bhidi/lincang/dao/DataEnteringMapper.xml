@@ -46,16 +46,11 @@
             )
         </foreach>
     </insert >
-    <insert  id="saveMove" parameterType="com.bhidi.lincang.bean.Move">
+    <!--int insertMove(Move move);-->
+    <insert  id="insertMove" parameterType="com.bhidi.lincang.bean.Move">
         insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
         values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
         #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
     </insert >
-
-
-
-
-
-
 
 </mapper>

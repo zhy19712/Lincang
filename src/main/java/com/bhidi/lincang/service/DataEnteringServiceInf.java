@@ -14,4 +14,6 @@ public interface DataEnteringServiceInf {
     int saveIncome(List<Income> incomeList);
 
     int saveOutcome(List<Outcome> outcomeList);
+
+    int saveMove(Move move);
 }

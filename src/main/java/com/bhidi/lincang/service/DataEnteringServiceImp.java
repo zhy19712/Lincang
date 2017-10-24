@@ -32,4 +32,8 @@ public class DataEnteringServiceImp implements DataEnteringServiceInf {
     public int saveOutcome(List<Outcome> outcomeList) {
         return dataEnteringMapper.insertOutcome(outcomeList);
     }
+
+    public int saveMove(Move move) {
+        return dataEnteringMapper.insertMove(move);
+    }
 }

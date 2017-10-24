@@ -29,6 +29,8 @@ public class DataEnteringController {
         Map<String,String[]> map = request.getParameterMap();
         //设置一个数量来接受前端写了几个用户
         int peopleNum = 0;
+        //move的信息
+        int moveNum = 0;
         //house的数组
         int houseNum = 0;
         //致贫原因的数组
@@ -40,6 +42,9 @@ public class DataEnteringController {
         for (String key : map.keySet()) {
             if( key.startsWith("data[home_infos]") ){
                 peopleNum++;
+            }
+            if( key.startsWith("data[move]") ){
+                moveNum++;
             }
             if( key.startsWith("data[house]") ){
                 houseNum++;
@@ -70,22 +75,22 @@ public class DataEnteringController {
                 }
                 if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
                     people.setFid( "BQ"+sdf.format(date) );
-                    people.setLocation( map.get("data[place]")[0] );
+                    people.setLocation( map.get("data[place]")[0]!= null?map.get("data[place]")[0]:"" );
                 }
                 people.setReservoir( map.get("data[reservoir]")[0] );
                 if( map.get("data[home_infos]["+p+"][name]")[0].equals(map.get("data[householder]")[0]) ) {
                     people.setMaster(1);
-                    people.setPhone( map.get("data[tel_number]")[0] );
+                    people.setPhone( map.get("data[tel_number]")[0]!=null?map.get("data[tel_number]")[0]:"");
                 } else {
                     people.setMaster(0);
                 }
-                people.setName( map.get("data[home_infos]["+p+"][name]")[0] );
-                people.setPid( map.get("data[home_infos]["+p+"][id]")[0] );
-                people.setGender( map.get("data[home_infos]["+p+"][sex]")[0] );
-                people.setRace( map.get("data[home_infos]["+p+"][nation]")[0] );
-                people.setRelation( map.get("data[home_infos]["+p+"][relation]")[0] );
-                people.setEducation( map.get("data[home_infos]["+p+"][cultural]")[0] );
-                people.setProfession( map.get("data[home_infos]["+p+"][profession]")[0] );
+                people.setName( map.get("data[home_infos]["+p+"][name]")[0]!=null?map.get("data[home_infos]["+p+"][name]")[0]:"" );
+                people.setPid( map.get("data[home_infos]["+p+"][id]")[0]!=null?map.get("data[home_infos]["+p+"][id]")[0]:"" );
+                people.setGender( map.get("data[home_infos]["+p+"][sex]")[0]!=null?map.get("data[home_infos]["+p+"][sex]")[0]:"" );
+                people.setRace( map.get("data[home_infos]["+p+"][nation]")[0]!=null?map.get("data[home_infos]["+p+"][nation]")[0]:"" );
+                people.setRelation( map.get("data[home_infos]["+p+"][relation]")[0]!=null?map.get("data[home_infos]["+p+"][relation]")[0]:"" );
+                people.setEducation( map.get("data[home_infos]["+p+"][cultural]")[0]!=null?map.get("data[home_infos]["+p+"][cultural]")[0]:"" );
+                people.setProfession( map.get("data[home_infos]["+p+"][profession]")[0] !=null?map.get("data[home_infos]["+p+"][profession]")[0]:"");
                 people.setHome_size( peopleNum/7 );
                 people.setImm_num( peopleNum/7 );
                 people.setProp( (map.get("data[prop]")[0]).equals("是")?1:0 );
@@ -117,13 +122,33 @@ public class DataEnteringController {
         //move信息
         Move move = new Move();
         for (String key : map.keySet()) {
-            if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
-                move.setFid( "KQ"+sdf.format(date) );
-            }
-            if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
-                move.setFid( "BQ"+sdf.format(date) );
+            if(moveNum > 0){
+                if( "库区安置登记表".equals( map.get("data[kind]")[0] ) ){
+                    move.setFid( "KQ"+sdf.format(date) );
+                }
+                if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
+                    move.setFid( "BQ"+sdf.format(date) );
+                    move.setTo_city( map.get("data[move][to_city]")[0]!=null?map.get("data[move][to_city]")[0]:"" );
+                    move.setTo_district( map.get("data[move][to_disirict]")[0]!=null?map.get("data[move][to_disirict]")[0]:"" );
+                    move.setTo_town( map.get("data[move][to_town]")[0]!=null?map.get("data[move][to_town]")[0]:"" );
+                    move.setTo_village( map.get("data[move][to_village]")[0]!=null?map.get("data[move][to_village]")[0]:"" );
+                    move.setTo_group( map.get("data[move][to_group]")[0]!=null? map.get("data[move][to_group]")[0]:"");
+                    move.setTo_remark( map.get("data[move][to_remake]")[0]!=null? map.get("data[move][to_remake]")[0]:"");
+                }
+                move.setFrom_city( map.get("data[move][from_city]")[0]!=null?map.get("data[move][from_city]")[0]:"" );
+                move.setFrom_district( map.get("data[move][from_disirict]")[0]!=null?map.get("data[move][from_disirict]")[0]:"" );
+                move.setFrom_town( map.get("data[move][from_town]")[0]!=null?map.get("data[move][from_town]")[0]:"" );
+                move.setFrom_village( map.get("data[move][from_village]")[0]!=null?map.get("data[move][from_village]")[0]:"" );
+                move.setFrom_group( map.get("data[move][from_group]")[0]!=null?map.get("data[move][from_group]")[0]:"" );
+                move.setFrom_remark( map.get("data[move][from_remake]")[0]!=null? map.get("data[move][from_remake]")[0]:"");
             }
         }
+        //存储move返回值
+        int reMove= 0;
+        if (move.getFid() != null){
+            reMove = dataEnteringServiceImp.saveMove(move);
+        }
+
 
         //银行信息
         Bank bank = new Bank();
@@ -134,9 +159,9 @@ public class DataEnteringController {
             if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
                 bank.setFid( "BQ"+sdf.format(date) );
             }
-            bank.setAccount_name( map.get("data[bank_user]")[0] );
-            bank.setBank_name( map.get("data[bank_name]")[0] );
-            bank.setAccount_number( map.get("data[bank_number]")[0] );
+            bank.setAccount_name( map.get("data[bank_user]")[0]!=null?map.get("data[bank_user]")[0]:"" );
+            bank.setBank_name( map.get("data[bank_name]")[0]!=null?map.get("data[bank_name]")[0]:"" );
+            bank.setAccount_number( map.get("data[bank_number]")[0]!=null?map.get("data[bank_name]")[0]:"" );
         }
         //存储银行返回值
         int reBank= 0;
@@ -154,19 +179,19 @@ public class DataEnteringController {
                     house.setFid( "BQ"+sdf.format(date) );
                 }
                 house.setMain_size( map.get("data[house][main_arear]")[0] );
-                house.setMain_structure1( map.get("data[house][main_structure1]")[0] );
-                house.setMain_structure2( map.get("data[house][main_structure2]")[0] );
-                house.setMain_structure3( map.get("data[house][main_structure3]")[0] );
-                house.setMain_structure4( map.get("data[house][main_structure4]")[0] );
-                house.setMain_structure5( map.get("data[house][main_easy]")[0] );
-                house.setMain_remark( map.get("data[house][main_remark]")[0] );
-                house.setSub_size( map.get("data[house][sub_arear]")[0]);
-                house.setSub_structure1( map.get("data[house][sub_structure1]")[0] );
-                house.setSub_structure2( map.get("data[house][sub_structure2]")[0] );
-                house.setSub_structure3( map.get("data[house][sub_structure3]")[0] );
-                house.setSub_structure4( map.get("data[house][sub_structure4]")[0] );
-                house.setSub_structure5( map.get("data[house][sub_easy]")[0] );
-                house.setSub_remark( map.get("data[house][sub_remark]")[0] );
+                house.setMain_structure1( map.get("data[house][main_structure1]")[0]!=null?map.get("data[house][main_structure1]")[0]:"" );
+                house.setMain_structure2( map.get("data[house][main_structure2]")[0]!=null?map.get("data[house][main_structure2]")[0]:"");
+                house.setMain_structure3( map.get("data[house][main_structure3]")[0]!=null?map.get("data[house][main_structure3]")[0]:"" );
+                house.setMain_structure4( map.get("data[house][main_structure4]")[0]!=null?map.get("data[house][main_structure4]")[0]:"" );
+                house.setMain_structure5( map.get("data[house][main_easy]")[0]!=null?map.get("data[house][main_easy]")[0]:"" );
+                house.setMain_remark( map.get("data[house][main_remark]")[0]!=null?map.get("data[house][main_remark]")[0]:"" );
+                house.setSub_size( map.get("data[house][sub_arear]")[0]!=null?map.get("data[house][sub_arear]")[0]:"");
+                house.setSub_structure1( map.get("data[house][sub_structure1]")[0]!=null?map.get("data[house][sub_structure1]")[0]:"" );
+                house.setSub_structure2( map.get("data[house][sub_structure2]")[0]!=null?map.get("data[house][sub_structure2]")[0]:"" );
+                house.setSub_structure3( map.get("data[house][sub_structure3]")[0]!=null?map.get("data[house][sub_structure3]")[0]:"" );
+                house.setSub_structure4( map.get("data[house][sub_structure4]")[0]!=null?map.get("data[house][sub_structure4]")[0]:"" );
+                house.setSub_structure5( map.get("data[house][sub_easy]")[0]!=null?map.get("data[house][sub_easy]")[0]:"" );
+                house.setSub_remark( map.get("data[house][sub_remark]")[0]!=null?map.get("data[house][sub_remark]")[0]:"" );
             }
         }
         //存储house返回值
@@ -186,12 +211,12 @@ public class DataEnteringController {
                 if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
                     income.setFid( "BQ"+sdf.format(date) );
                 }
-                income.setIncome_source( map.get("data[money_info]["+p+"][kind]")[0] );
-                income.setIncome_cate( map.get("data[money_info]["+p+"][content]")[0] );
-                income.setIncome_quantity( Integer.parseInt(map.get("data[money_info]["+p+"][count]")[0]) );
-                income.setIncome_unit( Float.parseFloat(map.get("data[money_info]["+p+"][price]")[0]) );
-                income.setIncome_sum( Float.parseFloat(map.get("data[money_info]["+p+"][total]")[0]) );
-                income.setRemark( map.get("data[money_info]["+p+"][remark]")[0] );
+                income.setIncome_source( map.get("data[money_info]["+p+"][kind]")[0]!=null?map.get("data[money_info]["+p+"][kind]")[0]:"" );
+                income.setIncome_cate( map.get("data[money_info]["+p+"][content]")[0]!=null?map.get("data[money_info]["+p+"][content]")[0]:"" );
+                income.setIncome_quantity( Integer.parseInt(  map.get("data[money_info]["+p+"][count]")[0]!=null?map.get("data[money_info]["+p+"][count]")[0]:"0"  ) );
+                income.setIncome_unit( Float.parseFloat(  map.get("data[money_info]["+p+"][price]")[0]!=null?map.get("data[money_info]["+p+"][price]")[0]:"0.0"  ) );
+                income.setIncome_sum( Float.parseFloat(  map.get("data[money_info]["+p+"][total]")[0]!=null?map.get("data[money_info]["+p+"][total]")[0]:"0.0"  ) );
+                income.setRemark( map.get("data[money_info]["+p+"][remark]")[0]!=null?map.get("data[money_info]["+p+"][remark]")[0]:"" );
                 incomeSet.add(income);
             }
         }
@@ -215,12 +240,12 @@ public class DataEnteringController {
                 if( "移民搬迁登记表".equals( map.get("data[kind]")[0] ) ){
                     outcome.setFid( "BQ"+sdf.format(date) );
                 }
-                outcome.setOutcome_source( map.get("data[money_outcome]["+p+"][kind]")[0] );
-                outcome.setOutcome_cate( map.get("data[money_outcome]["+p+"][content]")[0] );
-                outcome.setOutcome_quantity( Integer.parseInt(map.get("data[money_outcome]["+p+"][count]")[0]) );
-                outcome.setOutcome_unit( Float.parseFloat(map.get("data[money_outcome]["+p+"][price]")[0]) );
-                outcome.setOutcome_sum( Float.parseFloat(map.get("data[money_outcome]["+p+"][total]")[0]) );
-                outcome.setRemark( map.get("data[money_outcome]["+p+"][remark]")[0] );
+                outcome.setOutcome_source( map.get("data[money_outcome]["+p+"][kind]")[0]!=null?map.get("data[money_outcome]["+p+"][kind]")[0]:"" );
+                outcome.setOutcome_cate( map.get("data[money_outcome]["+p+"][content]")[0]!=null?map.get("data[money_outcome]["+p+"][content]")[0]:"" );
+                outcome.setOutcome_quantity( Integer.parseInt(  map.get("data[money_outcome]["+p+"][count]")[0]!=null?map.get("data[money_outcome]["+p+"][count]")[0]:""  ) );
+                outcome.setOutcome_unit( Float.parseFloat(  map.get("data[money_outcome]["+p+"][price]")[0]!=null?map.get("data[money_outcome]["+p+"][price]")[0]:""  ) );
+                outcome.setOutcome_sum( Float.parseFloat(  map.get("data[money_outcome]["+p+"][total]")[0]!=null?map.get("data[money_outcome]["+p+"][total]")[0]:""  ) );
+                outcome.setRemark( map.get("data[money_outcome]["+p+"][remark]")[0]!=null?map.get("data[money_outcome]["+p+"][remark]")[0]:"" );
                 outcomeSet.add(outcome);
             }
         }
