@@ -162,4 +162,25 @@ public class House {
     public void setSub_remark(String sub_remark) {
         this.sub_remark = sub_remark;
     }
+
+    @Override
+    public String toString() {
+        return "House{" +
+                "fid='" + fid + '\'' +
+                ", main_size='" + main_size + '\'' +
+                ", main_structure1='" + main_structure1 + '\'' +
+                ", main_structure2='" + main_structure2 + '\'' +
+                ", main_structure3='" + main_structure3 + '\'' +
+                ", main_structure4='" + main_structure4 + '\'' +
+                ", main_structure5='" + main_structure5 + '\'' +
+                ", main_remark='" + main_remark + '\'' +
+                ", sub_size='" + sub_size + '\'' +
+                ", sub_structure1='" + sub_structure1 + '\'' +
+                ", sub_structure2='" + sub_structure2 + '\'' +
+                ", sub_structure3='" + sub_structure3 + '\'' +
+                ", sub_structure4='" + sub_structure4 + '\'' +
+                ", sub_structure5='" + sub_structure5 + '\'' +
+                ", sub_remark='" + sub_remark + '\'' +
+                '}';
+    }
 }

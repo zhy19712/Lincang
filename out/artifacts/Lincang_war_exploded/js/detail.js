@@ -12,14 +12,14 @@ $(function () {
     var id1 = decodeURI(decodeURI(id));
     $("#fid span").text(id1);
     var id2 = encodeURI(encodeURI(id1));
-    console.log(kind,id);
+    console.log(kind,id1);
     $.ajax({
         url: "/dataGeting.do",
         type: "post",
-        data: {id:id2},
+        data: {fid:id1},
         dataType: "json",
-        seccess: function () {
-
+        seccess: function (data) {
+             console.log(data);
         }
     })
 })

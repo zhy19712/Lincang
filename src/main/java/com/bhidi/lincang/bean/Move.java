@@ -142,4 +142,23 @@ public class Move {
     public void setTo_remark(String to_remark) {
         this.to_remark = to_remark;
     }
+
+    @Override
+    public String toString() {
+        return "Move{" +
+                "fid='" + fid + '\'' +
+                ", from_city='" + from_city + '\'' +
+                ", from_district='" + from_district + '\'' +
+                ", from_town='" + from_town + '\'' +
+                ", from_village='" + from_village + '\'' +
+                ", from_group='" + from_group + '\'' +
+                ", from_remark='" + from_remark + '\'' +
+                ", to_city='" + to_city + '\'' +
+                ", to_district='" + to_district + '\'' +
+                ", to_town='" + to_town + '\'' +
+                ", to_village='" + to_village + '\'' +
+                ", to_group='" + to_group + '\'' +
+                ", to_remark='" + to_remark + '\'' +
+                '}';
+    }
 }

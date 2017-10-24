@@ -83,6 +83,19 @@ public class Income {
     }
 
     @Override
+    public String toString() {
+        return "Income{" +
+                "fid='" + fid + '\'' +
+                ", income_source='" + income_source + '\'' +
+                ", income_cate='" + income_cate + '\'' +
+                ", income_quantity=" + income_quantity +
+                ", income_unit=" + income_unit +
+                ", income_sum=" + income_sum +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
