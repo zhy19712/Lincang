@@ -19,10 +19,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * Created by admin on 2017/8/21.
@@ -90,18 +87,19 @@ public class ExcelServiceImp implements ExcelServiceInf{
         String resultFirst = "";
         String resultSecond = "";
         for( int s = 0; s< SheetCount; s++ ){
+            String sss = workbook.getSheetAt(s).getSheetName().trim();
             if( "移民搬迁登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
                 Sheet sheet = workbook.getSheetAt(s);
                 resultFirst = first(sheet);
                 if(!"录入成功！".equals(resultFirst)){
-                    return resultFirst;
+                    return excelName + resultFirst;
                 }
             }
             if( "库区安置登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
                 Sheet sheet = workbook.getSheetAt(s);
                 resultSecond = second(sheet);
                 if(!"录入成功！".equals(resultSecond)){
-                    return resultSecond;
+                    return excelName + resultSecond;
                 }
             }
         }
@@ -137,63 +135,73 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //12获取所属水库
         Row row1 = firstSheet.getRow(1);
         Cell cell12 = row1.getCell(2);
+        String reservoir = "";
         if(cell12!=null){
             cell12.setCellType(Cell.CELL_TYPE_STRING);
+            reservoir = cell12.getStringCellValue();
         }
-        String reservoir = cell12.getStringCellValue();
+
        /* if( "".equals(reservoir) ){
             return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         /*System.out.println("所属水库："+reservoir);*/
         //14获取安置点
         Cell cell14 = row1.getCell(4);
+        String location = "";
         if(cell14!=null){
             cell14.setCellType(Cell.CELL_TYPE_STRING);
+            location = cell14.getStringCellValue();
         }
-        String location = cell14.getStringCellValue();
+
         /*if( "".equals(location) ){
             return "安置点不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         System.out.println("安置点："+location);
         //16获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
         Cell cell16 = row1.getCell(6);
+        String masterName = "";
         if(cell16!=null){
             cell16.setCellType(Cell.CELL_TYPE_STRING);
+            masterName = cell16.getStringCellValue();
         }
-        String masterName = cell16.getStringCellValue();
+
         /*if( "".equals(masterName) ){
             return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         System.out.println("户主姓名："+masterName);
         //18获取电话号码
         Cell cell18 = row1.getCell(8);
+        String phone = "";
         if(cell18!=null){
             cell18.setCellType(Cell.CELL_TYPE_STRING);
+            phone = cell18.getStringCellValue();
         }
-        String phone = cell18.getStringCellValue();
         System.out.println("电话号码："+masterName);
         //取出银行卡信息
         //22获取开户人姓名
         Row row2 = firstSheet.getRow(2);
         Cell cell22 = row2.getCell(2);
+        String account_name = "";
         if(cell22!=null){
             cell22.setCellType(Cell.CELL_TYPE_STRING);
+            account_name = cell22.getStringCellValue();
         }
-        String account_name = cell22.getStringCellValue();
         System.out.println("开户人姓名："+account_name);
         //24获取开户行名称
         Cell cell24 = row2.getCell(4);
+        String bank_name = "";
         if(cell24!=null){
             cell24.setCellType(Cell.CELL_TYPE_STRING);
+            bank_name = cell24.getStringCellValue();
         }
-        String bank_name = cell24.getStringCellValue();
         System.out.println("开户行名称："+bank_name);
-        //27获取银行卡号
-        Cell cell27 = row2.getCell(7);
-        if(cell27!=null){
-            cell27.setCellType(Cell.CELL_TYPE_STRING);
+        //26获取银行卡号
+        Cell cell26 = row2.getCell(6);
+        String account_number ="";
+        if(cell26!=null){
+            cell26.setCellType(Cell.CELL_TYPE_STRING);
+            account_number = cell26.getStringCellValue();
         }
-        String account_number = cell27.getStringCellValue();
         System.out.println("银行卡号："+account_number);
         Bank bank = new Bank();
         bank.setFid(fid);
@@ -201,8 +209,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
         //在这里应该添加事物的，先没有考虑如果插入不成功，会怎么办。
+        Integer intResultOfBank = 0;
         if( bank != null ){
-            Integer intResultOfBank =  excelMapper.saveBank(bank);
+            try {
+                intResultOfBank =  excelMapper.saveBank(bank);
+            } catch (Exception e) {
+                intResultOfBank = -1;
+            }
         }
 
 
@@ -225,7 +238,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             firstSheetlastColumn = range.getLastColumn();
             firstSheetfirstRow = range.getFirstRow();
             firstSheetlastRow = range.getLastRow();
-            if( firstSheetfirstRow == 4 & firstSheetfirstColumn == 0){
+            if( firstSheetfirstRow == 3 & firstSheetfirstColumn == 0){
                 System.out.println("第一列："+firstSheetfirstColumn+"；最后一列："+firstSheetlastColumn+"；第一行："+firstSheetfirstRow+"；最后一行："+firstSheetlastRow);
                 firstSheetbeginRow = firstSheetfirstRow;
                 firstSheetendRow = firstSheetlastRow;
@@ -249,44 +262,67 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 //取出剩下的东西
                 //姓名
                 Cell cell1 = row.getCell(1);
-                cell1.setCellType(Cell.CELL_TYPE_STRING);
-                String name = cell1.getStringCellValue();
+                String name = "";
+                if( cell1 != null ){
+                    cell1.setCellType(Cell.CELL_TYPE_STRING);
+                    name = cell1.getStringCellValue();
+                }
                 //身份证号
                 Cell cell2 = row.getCell(2);
-                cell2.setCellType(Cell.CELL_TYPE_STRING);
-                String pid = cell2.getStringCellValue();
+                String pid = "";
+                if( cell2 != null ){
+                    cell2.setCellType(Cell.CELL_TYPE_STRING);
+                    pid = cell2.getStringCellValue();
+                }
+
                 /*if( "".equals(pid) ){
                     return "身份证号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
                 }*/
                 //性别
                 Cell cell4 = row.getCell(4);
-                cell4.setCellType(Cell.CELL_TYPE_STRING);
-                String gender = cell4.getStringCellValue();
+                String gender = "";
+                if( cell4 != null ){
+                    cell4.setCellType(Cell.CELL_TYPE_STRING);
+                    gender = cell4.getStringCellValue();
+                }
                 //民族
                 Cell cell5 = row.getCell(5);
-                cell5.setCellType(Cell.CELL_TYPE_STRING);
-                String race = cell5.getStringCellValue();
+                String race ="";
+                if( cell5 != null ){
+                    cell5.setCellType(Cell.CELL_TYPE_STRING);
+                    race = cell5.getStringCellValue();
+                }
                 //与户主关系
                 Cell cell6 = row.getCell(6);
-                cell6.setCellType(Cell.CELL_TYPE_STRING);
-                String relation = cell6.getStringCellValue();
+                String relation ="";
+                if( cell6 != null ){
+                    cell6.setCellType(Cell.CELL_TYPE_STRING);
+                    relation = cell6.getStringCellValue();
+                }
                 //文化程度
                 Cell cell7 = row.getCell(7);
-                cell7.setCellType(Cell.CELL_TYPE_STRING);
-                String education = cell7.getStringCellValue();
+                String education = "";
+                if( cell7 != null ){
+                    cell7.setCellType(Cell.CELL_TYPE_STRING);
+                    education = cell7.getStringCellValue();
+                }
                 //现从事职业
                 Cell cell8 = row.getCell(8);
-                cell8.setCellType(Cell.CELL_TYPE_STRING);
-                String profession = cell8.getStringCellValue();
-
+                String profession ="";
+                if( cell8 != null ){
+                    cell8.setCellType(Cell.CELL_TYPE_STRING);
+                    profession = cell8.getStringCellValue();
+                }
                 //赋值
                 People peo = new People();
                 peo.setFid(fid);
+                peo.setTable_type(table_type);
                 peo.setReservoir(reservoir);
                 peo.setLocation(location);
                 peo.setName(name);
                 if( masterName.equals(name) ){
                     peo.setMaster(1);
+                    peo.setPhone(phone);
                 }else{
                     peo.setMaster(0);
                 }
@@ -304,29 +340,59 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row interview = firstSheet.getRow(firstSheetendRow + 42);
         //调查人
         Cell cellInterviewer = interview.getCell(4);
+        String interviewer ="";
         if(cellInterviewer!=null){
             cellInterviewer.setCellType(Cell.CELL_TYPE_STRING);
+            interviewer = cellInterviewer.getStringCellValue();
         }
-        String interviewer = cellInterviewer.getStringCellValue();
-        //调查人
+        //被调查人
         Cell cellInterviewee = interview.getCell(1);
+        String interviewee ="";
         if(cellInterviewee!=null){
             cellInterviewee.setCellType(Cell.CELL_TYPE_STRING);
+            interviewee = cellInterviewee.getStringCellValue();
         }
-        String interviewee = cellInterviewee.getStringCellValue();
-
-
+        //填表时间
+        Cell cellCreated_at = interview.getCell(7);
+        String created_at ="";
+        if(cellCreated_at!=null){
+            cellCreated_at.setCellType(Cell.CELL_TYPE_STRING);
+            created_at = cellCreated_at.getStringCellValue();
+        }
+        //取出来其他信息的行
+        Row other = firstSheet.getRow(firstSheetendRow + 41);
+        //是否建档立卡
+        Cell propInterviewer = other.getCell(2);
+        String prop ="";
+        if(propInterviewer!=null){
+            propInterviewer.setCellType(Cell.CELL_TYPE_STRING);
+            prop = propInterviewer.getStringCellValue();
+        }
+        //贫困原因
+        Cell poorInterviewer = other.getCell(4);
+        String poor_reason ="";
+        if(poorInterviewer!=null){
+            poorInterviewer.setCellType(Cell.CELL_TYPE_STRING);
+            poor_reason = poorInterviewer.getStringCellValue();
+        }
         //在这里给集合中的每个用户添加属性
         for( People p: pl ){
             p.setHome_size(num);
             p.setImm_num(num);
+            p.setProp("是".equals(prop)?1:0);
+            p.setPoor_reason(poor_reason);
             p.setInterviewee(interviewee);
             p.setInterviewer(interviewer);
-            p.setCreated_at( sdf.format( new Date() ) );
+            p.setCreated_at(created_at);
         }
         //调用Dao层将用户的存储到数据库中去
+        Integer intResultOfPeople = 0;
         if( pl.size() > 0 ){
-            Integer intResultOfPeople = excelMapper.batchSavePeople(pl);
+            try {
+                intResultOfPeople = excelMapper.batchSavePeople(pl);
+            } catch (Exception e) {
+                intResultOfPeople = -1;
+            }
         }
 
 
@@ -336,89 +402,101 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row rowLeave = firstSheet.getRow(firstSheetendRow + 2);
         //州市
         Cell cellLeave2 = rowLeave.getCell(2);
+        String from_city ="";
         if( cellLeave2 != null ){
             cellLeave2.setCellType(Cell.CELL_TYPE_STRING);
+            from_city = cellLeave2.getStringCellValue();
         }
-        String from_city = cellLeave2.getStringCellValue();
         System.out.println(from_city);
         //区县
         Cell cellLeave3 = rowLeave.getCell(3);
+        String from_district ="";
         if( cellLeave3 != null ){
             cellLeave3.setCellType(Cell.CELL_TYPE_STRING);
+            from_district = cellLeave3.getStringCellValue();
         }
-        String from_district = cellLeave3.getStringCellValue();
         System.out.println(from_district);
         //乡镇
         Cell cellLeave4 = rowLeave.getCell(4);
+        String from_town ="";
         if( cellLeave4 != null ){
             cellLeave4.setCellType(Cell.CELL_TYPE_STRING);
+            from_town = cellLeave4.getStringCellValue();
         }
-        String from_town = cellLeave4.getStringCellValue();
         System.out.println(from_town);
         //村
         Cell cellLeave5 = rowLeave.getCell(5);
+        String from_village ="";
         if( cellLeave5 != null ){
             cellLeave5.setCellType(Cell.CELL_TYPE_STRING);
+            from_village = cellLeave5.getStringCellValue();
         }
-        String from_village = cellLeave5.getStringCellValue();
         System.out.println(from_village);
         //组
         Cell cellLeave6 = rowLeave.getCell(6);
+        String from_group ="";
         if( cellLeave6 != null ){
             cellLeave6.setCellType(Cell.CELL_TYPE_STRING);
+            from_group = cellLeave6.getStringCellValue();
         }
-        String from_group = cellLeave6.getStringCellValue();
         System.out.println(from_group);
         //迁出备注
         Cell cellLeave7 = rowLeave.getCell(7);
+        String from_remark = "";
         if( cellLeave7 != null ){
             cellLeave7.setCellType(Cell.CELL_TYPE_STRING);
+            from_remark = cellLeave7.getStringCellValue();
         }
-        String from_remark = cellLeave7.getStringCellValue();
         System.out.println(from_remark);
         //迁入行
         Row rowTo= firstSheet.getRow(firstSheetendRow + 3);
         //州市
         Cell cellTo2 = rowTo.getCell(2);
+        String to_city ="";
         if( cellTo2 != null ){
             cellTo2.setCellType(Cell.CELL_TYPE_STRING);
+            to_city = cellTo2.getStringCellValue();
         }
-        String to_city = cellTo2.getStringCellValue();
         System.out.println(to_city);
         //区县
         Cell cellTo3 = rowTo.getCell(3);
+        String to_district ="";
         if( cellTo3 != null ){
             cellTo3.setCellType(Cell.CELL_TYPE_STRING);
+            to_district = cellTo3.getStringCellValue();
         }
-        String to_district = cellTo3.getStringCellValue();
         System.out.println(to_district);
         //乡镇
         Cell cellTo4 = rowTo.getCell(4);
+        String to_town ="";
         if( cellTo4 != null ){
             cellTo4.setCellType(Cell.CELL_TYPE_STRING);
+            to_town = cellTo4.getStringCellValue();
         }
-        String to_town = cellTo4.getStringCellValue();
         System.out.println(to_town);
         //村
         Cell cellTo5 = rowTo.getCell(5);
+        String to_village ="";
         if( cellTo5 != null ){
             cellTo5.setCellType(Cell.CELL_TYPE_STRING);
+            to_village = cellTo5.getStringCellValue();
         }
-        String to_village = cellTo5.getStringCellValue();
         System.out.println(to_village);
         //组
         Cell cellTo6 = rowTo.getCell(6);
+        String to_group = "";
         if( cellTo6 != null ){
             cellTo6.setCellType(Cell.CELL_TYPE_STRING);
+            to_group = cellTo6.getStringCellValue();
         }
-        String to_group = cellTo6.getStringCellValue();
         System.out.println(to_group);
         //迁入备注
         Cell cellTo7 = rowTo.getCell(7);
+        String to_remark ="";
         if( cellTo7 != null ){
             cellTo7.setCellType(Cell.CELL_TYPE_STRING);
+            to_remark = cellTo7.getStringCellValue();
         }
-        String to_remark = cellTo7.getStringCellValue();
         System.out.println(to_remark);
 
         //new一个对象出来，将这些数据注入
@@ -437,8 +515,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);
         //调用Dao层的方法插入数据库
+        Integer intResultOfMove = 0;
         if( move != null ){
-            Integer intResultOfMove = excelMapper.saveMove(move);
+            try {
+                intResultOfMove = excelMapper.saveMove(move);
+            } catch (Exception e) {
+                intResultOfMove = -1;
+            }
         }
 
 
@@ -446,103 +529,117 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row rowMainHouse = firstSheet.getRow(firstSheetendRow + 5);
         //主房面积
         Cell cellMainHouse2 = rowMainHouse.getCell(2);
+        String main_size ="";
         if( cellMainHouse2 != null ){
             cellMainHouse2.setCellType(Cell.CELL_TYPE_STRING);
+            main_size = cellMainHouse2.getStringCellValue();
         }
-        String main_size = cellMainHouse2.getStringCellValue();
         System.out.println("主房面积："+main_size);
         //砖混结构
         Cell cellMainHouse3 = rowMainHouse.getCell(3);
+        String main_structure1 ="";
         if( cellMainHouse3 != null ){
             cellMainHouse3.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure1 = cellMainHouse3.getStringCellValue();
         }
-        String main_structure1 = cellMainHouse3.getStringCellValue();
         System.out.println(main_structure1);
         //砖木结构
         Cell cellMainHouse4 = rowMainHouse.getCell(4);
+        String main_structure2 ="";
         if( cellMainHouse4 != null ){
             cellMainHouse4.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure2 = cellMainHouse4.getStringCellValue();
         }
-        String main_structure2 = cellMainHouse4.getStringCellValue();
         System.out.println(main_structure2);
         //土木结构
         Cell cellMainHouse5 = rowMainHouse.getCell(5);
+        String main_structure3 ="";
         if( cellMainHouse5 != null ){
             cellMainHouse5.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure3 = cellMainHouse5.getStringCellValue();
         }
-        String main_structure3 = cellMainHouse5.getStringCellValue();
         System.out.println(main_structure3);
         //木竹结构
         Cell cellMainHouse6 = rowMainHouse.getCell(6);
+        String main_structure4 ="";
         if( cellMainHouse6 != null ){
             cellMainHouse6.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure4 = cellMainHouse6.getStringCellValue();
         }
-        String main_structure4 = cellMainHouse6.getStringCellValue();
         System.out.println(main_structure4);
         //简易房
         Cell cellMainHouse7 = rowMainHouse.getCell(7);
+        String main_structure5 ="";
         if( cellMainHouse7 != null ){
             cellMainHouse7.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure5 = cellMainHouse7.getStringCellValue();
         }
-        String main_structure5 = cellMainHouse7.getStringCellValue();
         System.out.println(main_structure5);
         //主房备注
         Cell cellMainHouse8 = rowMainHouse.getCell(8);
+        String main_remark = "";
         if( cellMainHouse8 != null ){
             cellMainHouse8.setCellType(Cell.CELL_TYPE_STRING);
+            main_remark = cellMainHouse8.getStringCellValue();
         }
-        String main_remark = cellMainHouse8.getStringCellValue();
         System.out.println(main_remark);
         //附属房行
         Row rowSubHouse = firstSheet.getRow(firstSheetendRow + 6);
         //附属房面积
         Cell cellSubHouse2 = rowSubHouse.getCell(2);
+        String sub_size ="";
         if( cellSubHouse2 != null ){
             cellSubHouse2.setCellType(Cell.CELL_TYPE_STRING);
+            sub_size = cellSubHouse2.getStringCellValue();
         }
-        String sub_size = cellSubHouse2.getStringCellValue();
         System.out.println("附属房间面积："+sub_size);
         //砖混结构
         Cell cellSubHouse3 = rowSubHouse.getCell(3);
+        String sub_structure1 = "";
         if( cellSubHouse3 != null ){
             cellSubHouse3.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure1 = cellSubHouse3.getStringCellValue();
         }
-        String sub_structure1 = cellSubHouse3.getStringCellValue();
         System.out.println(sub_structure1);
         //砖木结构
         Cell cellSubHouse4 = rowSubHouse.getCell(4);
+        String sub_structure2 ="";
         if( cellSubHouse4 != null ){
             cellSubHouse4.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure2 = cellSubHouse4.getStringCellValue();
         }
-        String sub_structure2 = cellSubHouse4.getStringCellValue();
         System.out.println(sub_structure2);
         //土木结构
         Cell cellSubHouse5 = rowSubHouse.getCell(5);
+        String sub_structure3 ="";
         if( cellSubHouse5 != null ){
             cellSubHouse5.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure3 = cellSubHouse5.getStringCellValue();
         }
-        String sub_structure3 = cellSubHouse5.getStringCellValue();
         System.out.println(sub_structure3);
         //木竹结构
         Cell cellSubHouse6 = rowSubHouse.getCell(6);
+        String sub_structure4 ="";
         if( cellSubHouse6 != null ){
             cellSubHouse6.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure4 = cellSubHouse6.getStringCellValue();
         }
-        String sub_structure4 = cellSubHouse6.getStringCellValue();
         System.out.println(sub_structure4);
         //简易房
         Cell cellSubHouse7 = rowSubHouse.getCell(7);
+        String sub_structure5 ="";
         if( cellSubHouse7 != null ){
             cellSubHouse7.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure5 = cellSubHouse7.getStringCellValue();
         }
-        String sub_structure5 = cellSubHouse7.getStringCellValue();
         System.out.println(sub_structure5);
         //简易房
         Cell cellSubHouse8 = rowSubHouse.getCell(8);
+        String sub_remark = "";
         if( cellSubHouse8 != null ){
             cellSubHouse8.setCellType(Cell.CELL_TYPE_STRING);
+            sub_remark = cellSubHouse8.getStringCellValue();
         }
-        String sub_remark = cellSubHouse8.getStringCellValue();
         System.out.println(sub_remark);
         //new一个对象出来，将这些数据注入
         House house = new House();
@@ -562,8 +659,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_structure5(sub_structure5);
         house.setSub_remark(sub_remark);
         //调用Dao的方法将房屋信息插入数据库
+        Integer intResultOfHouse = 0;
         if( house != null ){
-            Integer intResultOfHouse =  excelMapper.saveHouse(house);
+            try {
+                intResultOfHouse =  excelMapper.saveHouse(house);
+            } catch (Exception e) {
+                intResultOfHouse = -1;
+            }
         }
 
 
@@ -576,24 +678,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 8);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source = "";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate ="";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity = "";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -601,24 +706,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum = "";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark = "";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -640,24 +748,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 16);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source = "";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate = "";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity = "";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -665,24 +776,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum = "";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark = "";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -704,24 +818,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 20);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source ="";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate ="";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity = "";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -729,24 +846,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum = "";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark = "";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -762,9 +882,15 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         System.out.println("集合添加了其他之后的长度："+listIncome.size());
         //调用Dao层的插入方法存储收入数据
+        Integer intResultOfIncome = 0;
         if( listIncome.size() > 0 ){
-            Integer intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+            try {
+                intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+            } catch (Exception e) {
+                intResultOfIncome = -1;
+            }
         }
+
 
 
         //支出的数据的取
@@ -775,24 +901,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //支出类别为种殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 23);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source = "";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate ="";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -800,24 +929,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit ="";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum ="";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark = "";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个支出对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -839,24 +971,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 29);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source = "";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate ="";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -864,24 +999,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit = "";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum = "";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark ="";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -903,24 +1041,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 33);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source ="";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate ="";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -928,24 +1069,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit = "";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum ="";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark ="";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -961,25 +1105,49 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
         //调用Dao层的方法存储支出数据
+        Integer intResultOfOutcome = 0;
         if( listOutcome.size() > 0 ){
-            Integer intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+            intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
         }
-
-        return "录入成功！";
+        //intResultOfPeople,intResultOfMove,intResultOfHouse,intResultOfIncome,intResultOfOutcome
+        List<Integer> intList = new ArrayList<Integer>();
+        intList.add(intResultOfPeople);
+        intList.add(intResultOfMove);
+        intList.add(intResultOfHouse);
+        intList.add(intResultOfIncome);
+        intList.add(intResultOfOutcome);
+        intList.add(intResultOfBank);
+        String strResult = "";
+        for( int r = 0;r < intList.size();r++){
+            if( intList.get(r) == -1 ){
+                strResult = "录入失败！";
+            } else {
+                strResult = "录入成功！";
+            }
+        }
+        /*Map mapResult = new HashMap();
+        mapResult.put("result",strResult);*/
+        return strResult;
     }
     /*
      * 录入excel文件第二个sheet的方法
      */
     public String second(Sheet firstSheet){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        //00获取移民编号
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date =  new Date();
+        //取到表格的类型
         Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
-        String fid = cell00.getStringCellValue();
+        String fid = "KQ"+sdf.format(date);
+        String table_type = "库区安置登记表";
+        //00获取移民编号
+        /*Row row0 = firstSheet.getRow(0);
+        Cell cell00 = row0.getCell(0);
+        String fid = cell00.getStringCellValue();*/
         /*if( "".equals(fid) ){
             return "表编号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
-        System.out.println(fid);
+       /* System.out.println(fid);*/
         //根据查询数据库中是否存在此户的数据，如果有，就请他们去修改页面进行修改，否则可以继续
        /* int ifexit = DBUtils.queryFid("select fid from people where fid = "+'"'+fid+'"');
         if( ifexit == 1 ){
@@ -990,16 +1158,18 @@ public class ExcelServiceImp implements ExcelServiceInf{
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         //22获取所属水库
-        Row row2 = firstSheet.getRow(2);
-        Cell cell22 = row2.getCell(2);
-        if(cell22!=null){
-            cell22.setCellType(Cell.CELL_TYPE_STRING);
+        Row row1 = firstSheet.getRow(1);
+        Cell cell12 = row1.getCell(2);
+        String reservoir ="";
+        if(cell12!=null){
+            cell12.setCellType(Cell.CELL_TYPE_STRING);
+            reservoir = cell12.getStringCellValue();
         }
-        String reservoir = cell22.getStringCellValue();
+        System.out.println("所属水库："+reservoir);
         /*if( "".equals(reservoir) ){
             return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
-        System.out.println("所属水库："+reservoir);
+
        /* //24获取安置点
         Cell cell24 = row2.getCell(4);
         if(cell24!=null){
@@ -1010,38 +1180,51 @@ public class ExcelServiceImp implements ExcelServiceInf{
             return "安置点不可以为空！";
         }
         System.out.println("安置点："+location);*/
-        //27获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
-        Cell cell27 = row2.getCell(7);
-        if(cell27!=null){
-            cell27.setCellType(Cell.CELL_TYPE_STRING);
+        //14获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
+        Cell cell14 = row1.getCell(4);
+        String masterName ="";
+        if(cell14!=null){
+            cell14.setCellType(Cell.CELL_TYPE_STRING);
+            masterName = cell14.getStringCellValue();
         }
-        String masterName = cell27.getStringCellValue();
+
         /*if( "".equals(masterName) ){
             return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         System.out.println("户主姓名："+masterName);
+        //17获取电话号码
+        Cell cell17 = row1.getCell(7);
+        String phone = "";
+        if(cell17!=null){
+            cell17.setCellType(Cell.CELL_TYPE_STRING);
+            phone = cell17.getStringCellValue();
+        }
+        System.out.println("电话号码："+masterName);
         //取出银行卡信息
-        //32获取开户人姓名
-        Row row3 = firstSheet.getRow(3);
-        Cell cell32 = row3.getCell(2);
-        if(cell32!=null){
-            cell32.setCellType(Cell.CELL_TYPE_STRING);
+        //22获取开户人姓名
+        Row row2 = firstSheet.getRow(2);
+        Cell cell22 = row2.getCell(2);
+        String account_name ="";
+        if(cell22!=null){
+            cell22.setCellType(Cell.CELL_TYPE_STRING);
+            account_name = cell22.getStringCellValue();
         }
-        String account_name = cell32.getStringCellValue();
         System.out.println("开户人姓名："+account_name);
-        //34获取开户行名称
-        Cell cell34 = row3.getCell(4);
-        if(cell34!=null){
-            cell34.setCellType(Cell.CELL_TYPE_STRING);
+        //24获取开户行名称
+        Cell cell24 = row2.getCell(4);
+        String bank_name ="";
+        if(cell24!=null){
+            cell24.setCellType(Cell.CELL_TYPE_STRING);
+            bank_name = cell24.getStringCellValue();
         }
-        String bank_name = cell34.getStringCellValue();
         System.out.println("开户行名称："+bank_name);
-        //37获取银行卡号
-        Cell cell37 = row3.getCell(7);
-        if(cell37!=null){
+        //27获取银行卡号
+        Cell cell27 = row2.getCell(7);
+        String account_number ="";
+        if(cell27!=null){
             cell27.setCellType(Cell.CELL_TYPE_STRING);
+            account_number = cell27.getStringCellValue();
         }
-        String account_number = cell37.getStringCellValue();
         System.out.println("银行卡号："+account_number);
         Bank bank = new Bank();
         bank.setFid(fid);
@@ -1049,8 +1232,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
         //存储数据库
+        Integer intResultOfBank = 0;
         if( bank != null ){
-            Integer intResult =  excelMapper.saveBank(bank);
+            try {
+                intResultOfBank =  excelMapper.saveBank(bank);
+            } catch (Exception e) {
+                intResultOfBank = -1;
+            }
         }
 
 
@@ -1072,7 +1260,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             firstSheetlastColumn = range.getLastColumn();
             firstSheetfirstRow = range.getFirstRow();
             firstSheetlastRow = range.getLastRow();
-            if( firstSheetfirstRow == 4 & firstSheetfirstColumn == 0){
+            if( firstSheetfirstRow == 3 & firstSheetfirstColumn == 0){
                 System.out.println("第一列："+firstSheetfirstColumn+"；最后一列："+firstSheetlastColumn+"；第一行："+firstSheetfirstRow+"；最后一行："+firstSheetlastRow);
                 firstSheetbeginRow = firstSheetfirstRow;
                 firstSheetendRow = firstSheetlastRow;
@@ -1096,44 +1284,65 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 //取出剩下的东西
                 //姓名
                 Cell cell1 = row.getCell(1);
-                cell1.setCellType(Cell.CELL_TYPE_STRING);
-                String name = cell1.getStringCellValue();
+                String name ="";
+                if( cell1 != null ){
+                    cell1.setCellType(Cell.CELL_TYPE_STRING);
+                    name = cell1.getStringCellValue();
+                }
                 //身份证号
                 Cell cell2 = row.getCell(2);
-                cell2.setCellType(Cell.CELL_TYPE_STRING);
-                String pid = cell2.getStringCellValue();
+                String pid = "";
+                if( cell2 != null ){
+                    cell2.setCellType(Cell.CELL_TYPE_STRING);
+                    pid = cell2.getStringCellValue();
+                }
                 /*if( "".equals(pid) ){
                     return "身份证号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
                 }*/
                 //性别
                 Cell cell4 = row.getCell(4);
-                cell4.setCellType(Cell.CELL_TYPE_STRING);
-                String gender = cell4.getStringCellValue();
+                String gender = "";
+                if( cell4 != null ){
+                    cell4.setCellType(Cell.CELL_TYPE_STRING);
+                    gender = cell4.getStringCellValue();
+                }
                 //民族
                 Cell cell5 = row.getCell(5);
-                cell5.setCellType(Cell.CELL_TYPE_STRING);
-                String race = cell5.getStringCellValue();
+                String race = "";
+                if( cell5 != null ){
+                    cell5.setCellType(Cell.CELL_TYPE_STRING);
+                    race = cell5.getStringCellValue();
+                }
                 //与户主关系
                 Cell cell6 = row.getCell(6);
-                cell6.setCellType(Cell.CELL_TYPE_STRING);
-                String relation = cell6.getStringCellValue();
+                String relation = "";
+                if( cell6 != null ){
+                    cell6.setCellType(Cell.CELL_TYPE_STRING);
+                    relation = cell6.getStringCellValue();
+                }
                 //文化程度
                 Cell cell7 = row.getCell(7);
-                cell7.setCellType(Cell.CELL_TYPE_STRING);
-                String education = cell7.getStringCellValue();
+                String education = "";
+                if( cell7 != null ){
+                    cell7.setCellType(Cell.CELL_TYPE_STRING);
+                    education = cell7.getStringCellValue();
+                }
                 //现从事职业
                 Cell cell8 = row.getCell(8);
-                cell8.setCellType(Cell.CELL_TYPE_STRING);
-                String profession = cell8.getStringCellValue();
-
+                String profession = "";
+                if( cell8 != null ){
+                    cell8.setCellType(Cell.CELL_TYPE_STRING);
+                    profession = cell8.getStringCellValue();
+                }
                 //赋值
                 People peo = new People();
                 peo.setFid(fid);
                 peo.setReservoir(reservoir);
-
+                peo.setTable_type(table_type);
                 peo.setName(name);
                 if( masterName.equals(name) ){
                     peo.setMaster(1);
+                    peo.setPhone(phone);
                 }else{
                     peo.setMaster(0);
                 }
@@ -1151,27 +1360,62 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row interview = firstSheet.getRow(firstSheetendRow + 41);
         //调查人
         Cell cellInterviewer = interview.getCell(4);
+        String interviewer ="";
         if(cellInterviewer!=null){
             cellInterviewer.setCellType(Cell.CELL_TYPE_STRING);
+            interviewer = cellInterviewer.getStringCellValue();
         }
-        String interviewer = cellInterviewer.getStringCellValue();
         //被调查人
         Cell cellInterviewee = interview.getCell(1);
+        String interviewee = "";
         if(cellInterviewee!=null){
             cellInterviewee.setCellType(Cell.CELL_TYPE_STRING);
+            interviewee = cellInterviewee.getStringCellValue();
         }
-        String interviewee = cellInterviewee.getStringCellValue();
+        //填表时间
+        Cell cellCreate_at = interview.getCell(7);
+        String create_at = "";
+        if(cellCreate_at!=null){
+            cellCreate_at.setCellType(Cell.CELL_TYPE_STRING);
+            create_at = cellCreate_at.getStringCellValue();
+        }
+        //取出来其他
+        Row other = firstSheet.getRow(firstSheetendRow + 40);
+        //是否建档立卡
+        Cell cellProp = other.getCell(2);
+        String prop = "";
+        if(cellProp!=null){
+            cellProp.setCellType(Cell.CELL_TYPE_STRING);
+            prop = cellProp.getStringCellValue();
+        }
+        //致贫原因
+        Cell cellPoor = other.getCell(4);
+        String poor_reason = "";
+        if(cellPoor!=null){
+            cellPoor.setCellType(Cell.CELL_TYPE_STRING);
+            poor_reason = cellPoor.getStringCellValue();
+        }
+
+
+
         //在这里给集合中的每个用户添加属性
         for( People p: pl ){
             p.setHome_size(num);
             p.setImm_num(num);
+            p.setProp("是".equals(prop)?1:0);
+            p.setPoor_reason(poor_reason);
             p.setInterviewee(interviewee);
             p.setInterviewer(interviewer);
-            p.setCreated_at( sdf.format( new Date() ) );
+            p.setCreated_at(create_at);
         }
         //调用Dao层方法将家庭成员信息的存储到数据库中去
+        Integer intResultOfPeople = 0;
         if( pl.size() > 0 ){
-            Integer intResultOfPeople = excelMapper.batchSavePeople(pl);
+            try {
+                intResultOfPeople = excelMapper.batchSavePeople(pl);
+            } catch (Exception e) {
+                intResultOfPeople = -1;
+            }
         }
 
 
@@ -1182,45 +1426,51 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row rowLeave = firstSheet.getRow(firstSheetendRow + 2);
         //州市
         Cell cellLeave2 = rowLeave.getCell(1);
+        String from_city ="";
         if( cellLeave2 != null ){
             cellLeave2.setCellType(Cell.CELL_TYPE_STRING);
+            from_city = cellLeave2.getStringCellValue();
         }
-        String from_city = cellLeave2.getStringCellValue();
         System.out.println(from_city);
         //区县
         Cell cellLeave3 = rowLeave.getCell(2);
+        String from_district = "";
         if( cellLeave3 != null ){
             cellLeave3.setCellType(Cell.CELL_TYPE_STRING);
+            from_district = cellLeave3.getStringCellValue();
         }
-        String from_district = cellLeave3.getStringCellValue();
         System.out.println(from_district);
         //乡镇
         Cell cellLeave4 = rowLeave.getCell(3);
+        String from_town = "";
         if( cellLeave4 != null ){
             cellLeave4.setCellType(Cell.CELL_TYPE_STRING);
+            from_town = cellLeave4.getStringCellValue();
         }
-        String from_town = cellLeave4.getStringCellValue();
         System.out.println(from_town);
         //村
         Cell cellLeave5 = rowLeave.getCell(4);
+        String from_village ="";
         if( cellLeave5 != null ){
             cellLeave5.setCellType(Cell.CELL_TYPE_STRING);
+            from_village = cellLeave5.getStringCellValue();
         }
-        String from_village = cellLeave5.getStringCellValue();
         System.out.println(from_village);
         //组
         Cell cellLeave6 = rowLeave.getCell(5);
+        String from_group = "";
         if( cellLeave6 != null ){
             cellLeave6.setCellType(Cell.CELL_TYPE_STRING);
+            from_group = cellLeave6.getStringCellValue();
         }
-        String from_group = cellLeave6.getStringCellValue();
         System.out.println(from_group);
         //迁出备注
         Cell cellLeave7 = rowLeave.getCell(6);
+        String from_remark ="";
         if( cellLeave7 != null ){
             cellLeave7.setCellType(Cell.CELL_TYPE_STRING);
+            from_remark = cellLeave7.getStringCellValue();
         }
-        String from_remark = cellLeave7.getStringCellValue();
         System.out.println(from_remark);
         /*//迁入行
         Row rowTo= firstSheet.getRow(firstSheetendRow + 3);
@@ -1283,8 +1533,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);*/
         //调用Dao层的方法插入数据库
+        Integer intResultOfMove =0;
         if( move != null ){
-            Integer intResultOfMove = excelMapper.saveMove(move);
+            try {
+                intResultOfMove = excelMapper.saveMove(move);
+            } catch (Exception e) {
+                intResultOfMove = -1;
+            }
         }
 
 
@@ -1292,103 +1547,117 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row rowMainHouse = firstSheet.getRow(firstSheetendRow + 4);
         //主房面积
         Cell cellMainHouse2 = rowMainHouse.getCell(2);
+        String main_size = "";
         if( cellMainHouse2 != null ){
             cellMainHouse2.setCellType(Cell.CELL_TYPE_STRING);
+            main_size = cellMainHouse2.getStringCellValue();
         }
-        String main_size = cellMainHouse2.getStringCellValue();
         System.out.println("主房面积："+main_size);
         //砖混结构
         Cell cellMainHouse3 = rowMainHouse.getCell(3);
+        String main_structure1 = "";
         if( cellMainHouse3 != null ){
             cellMainHouse3.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure1 = cellMainHouse3.getStringCellValue();
         }
-        String main_structure1 = cellMainHouse3.getStringCellValue();
         System.out.println(main_structure1);
         //砖木结构
         Cell cellMainHouse4 = rowMainHouse.getCell(4);
+        String main_structure2 = "";
         if( cellMainHouse4 != null ){
             cellMainHouse4.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure2 = cellMainHouse4.getStringCellValue();
         }
-        String main_structure2 = cellMainHouse4.getStringCellValue();
         System.out.println(main_structure2);
         //土木结构
         Cell cellMainHouse5 = rowMainHouse.getCell(5);
+        String main_structure3 = "";
         if( cellMainHouse5 != null ){
             cellMainHouse5.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure3 = cellMainHouse5.getStringCellValue();
         }
-        String main_structure3 = cellMainHouse5.getStringCellValue();
         System.out.println(main_structure3);
         //木竹结构
         Cell cellMainHouse6 = rowMainHouse.getCell(6);
+        String main_structure4 = "";
         if( cellMainHouse6 != null ){
             cellMainHouse6.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure4 = cellMainHouse6.getStringCellValue();
         }
-        String main_structure4 = cellMainHouse6.getStringCellValue();
         System.out.println(main_structure4);
         //简易房
         Cell cellMainHouse7 = rowMainHouse.getCell(7);
+        String main_structure5 = "";
         if( cellMainHouse7 != null ){
             cellMainHouse7.setCellType(Cell.CELL_TYPE_STRING);
+            main_structure5 = cellMainHouse7.getStringCellValue();
         }
-        String main_structure5 = cellMainHouse7.getStringCellValue();
         System.out.println(main_structure5);
         //主房备注
         Cell cellMainHouse8 = rowMainHouse.getCell(8);
+        String main_remark = "";
         if( cellMainHouse8 != null ){
             cellMainHouse8.setCellType(Cell.CELL_TYPE_STRING);
+            main_remark = cellMainHouse8.getStringCellValue();
         }
-        String main_remark = cellMainHouse8.getStringCellValue();
         System.out.println(main_remark);
         //附属房行
         Row rowSubHouse = firstSheet.getRow(firstSheetendRow + 5);
         //附属房面积
         Cell cellSubHouse2 = rowSubHouse.getCell(2);
+        String sub_size = "";
         if( cellSubHouse2 != null ){
             cellSubHouse2.setCellType(Cell.CELL_TYPE_STRING);
+            sub_size = cellSubHouse2.getStringCellValue();
         }
-        String sub_size = cellSubHouse2.getStringCellValue();
         System.out.println("附属房间面积："+sub_size);
         //砖混结构
         Cell cellSubHouse3 = rowSubHouse.getCell(3);
+        String sub_structure1 ="";
         if( cellSubHouse3 != null ){
             cellSubHouse3.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure1 = cellSubHouse3.getStringCellValue();
         }
-        String sub_structure1 = cellSubHouse3.getStringCellValue();
         System.out.println(sub_structure1);
         //砖木结构
         Cell cellSubHouse4 = rowSubHouse.getCell(4);
+        String sub_structure2 = "";
         if( cellSubHouse4 != null ){
             cellSubHouse4.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure2 = cellSubHouse4.getStringCellValue();
         }
-        String sub_structure2 = cellSubHouse4.getStringCellValue();
         System.out.println(sub_structure2);
         //土木结构
         Cell cellSubHouse5 = rowSubHouse.getCell(5);
+        String sub_structure3 = "";
         if( cellSubHouse5 != null ){
             cellSubHouse5.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure3 = cellSubHouse5.getStringCellValue();
         }
-        String sub_structure3 = cellSubHouse5.getStringCellValue();
         System.out.println(sub_structure3);
         //木竹结构
         Cell cellSubHouse6 = rowSubHouse.getCell(6);
+        String sub_structure4 = "";
         if( cellSubHouse6 != null ){
             cellSubHouse6.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure4 = cellSubHouse6.getStringCellValue();
         }
-        String sub_structure4 = cellSubHouse6.getStringCellValue();
         System.out.println(sub_structure4);
         //简易房
         Cell cellSubHouse7 = rowSubHouse.getCell(7);
+        String sub_structure5 ="";
         if( cellSubHouse7 != null ){
             cellSubHouse7.setCellType(Cell.CELL_TYPE_STRING);
+            sub_structure5 = cellSubHouse7.getStringCellValue();
         }
-        String sub_structure5 = cellSubHouse7.getStringCellValue();
         System.out.println(sub_structure5);
         //附属房备注
         Cell cellSubHouse8 = rowSubHouse.getCell(8);
+        String sub_remark = "";
         if( cellSubHouse8 != null ){
             cellSubHouse8.setCellType(Cell.CELL_TYPE_STRING);
+            sub_remark = cellSubHouse8.getStringCellValue();
         }
-        String sub_remark = cellSubHouse8.getStringCellValue();
         System.out.println(sub_remark);
         //new一个对象出来，将这些数据注入
         House house = new House();
@@ -1408,8 +1677,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_structure5(sub_structure5);
         house.setSub_remark(sub_remark);
         //调用Dao的方法将房屋信息插入数据库
+        Integer intResultOfHouse = 0;
         if( house != null ){
-            Integer intResultOfHouse =  excelMapper.saveHouse(house);
+            try {
+                intResultOfHouse =  excelMapper.saveHouse(house);
+            } catch (Exception e) {
+                intResultOfHouse = -1;
+            }
         }
 
         //取收入的数据
@@ -1420,24 +1694,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 7);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source = "";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate = "";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity ="";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -1445,24 +1722,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum = "";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark ="";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -1484,24 +1764,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 15);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source ="";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate ="";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity ="";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -1509,24 +1792,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum ="";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark ="";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -1548,24 +1834,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowIncomeType = firstSheet.getRow(firstSheetendRow + 19);
             Cell cellIncomeType1 = rowIncomeType.getCell(1);
+            String income_source ="";
             if( cellIncomeType1 != null ){
                 cellIncomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                income_source = cellIncomeType1.getStringCellValue();
             }
-            String income_source = cellIncomeType1.getStringCellValue();
             System.out.println("收入分类："+income_source);
             //内容为猪
             Cell cellIncome2 = rowIncome.getCell(2);
+            String income_cate ="";
             if( cellIncome2 != null ){
                 cellIncome2.setCellType(Cell.CELL_TYPE_STRING);
+                income_cate = cellIncome2.getStringCellValue();
             }
-            String income_cate = cellIncome2.getStringCellValue();
             System.out.println("收入内容："+income_cate);
             //猪的数量
             Cell cellIncome3 = rowIncome.getCell(3);
+            String income_quantity ="";
             if( cellIncome3 != null ){
                 cellIncome3.setCellType(Cell.CELL_TYPE_STRING);
+                income_quantity = cellIncome3.getStringCellValue();
             }
-            String income_quantity = cellIncome3.getStringCellValue();
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(income_quantity)){
@@ -1573,24 +1862,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
+            String income_unit ="";
             if( cellIncome4 != null ){
                 cellIncome4.setCellType(Cell.CELL_TYPE_STRING);
+                income_unit = cellIncome4.getStringCellValue();
             }
-            String income_unit = cellIncome4.getStringCellValue();
             System.out.println("收入单价："+income_unit);
             //猪的小计
             Cell cellIncome5 = rowIncome.getCell(5);
+            String income_sum ="";
             if( cellIncome5 != null ){
                 cellIncome5.setCellType(Cell.CELL_TYPE_STRING);
+                income_sum = cellIncome5.getStringCellValue();
             }
-            String income_sum = cellIncome5.getStringCellValue();
             System.out.println("收入小计："+income_sum);
             //备注
             Cell cellIncome6 = rowIncome.getCell(6);
+            String remark ="";
             if( cellIncome6 != null ){
                 cellIncome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellIncome6.getStringCellValue();
             }
-            String remark = cellIncome6.getStringCellValue();
             System.out.println("收入备注："+remark);
             //new一个对象出来，将数据存储进去
             Income income = new Income();
@@ -1606,39 +1898,47 @@ public class ExcelServiceImp implements ExcelServiceInf{
         }
         System.out.println("集合添加了其他之后的长度："+listIncome.size());
         //调用Dao层的插入方法存储收入数据
+        Integer intResultOfIncome = 0;
         if( listIncome.size() > 0 ){
-            Integer intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+            try {
+                intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+            } catch (Exception e) {
+                intResultOfIncome = -1;
+            }
         }
 
 
 
 
         //支出的数据的取
-        List<SqlParameterSource> listOutcome = new ArrayList<SqlParameterSource>();
+        List<Outcome> listOutcome = new ArrayList<Outcome>();
         //支出分类之种殖业支出，
         for(int outcomenum = (firstSheetendRow + 22);outcomenum< (firstSheetendRow + 28);outcomenum++ ){
             Row rowOutcome = firstSheet.getRow(outcomenum);
             //支出类别为种殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 22);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source ="";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate ="";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -1646,24 +1946,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit ="";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum ="";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark = "";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个支出对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -1674,8 +1977,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了种殖业支出之后的长度："+listOutcome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -1685,24 +1988,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 28);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source = "";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate = "";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -1710,24 +2016,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit = "";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum ="";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark = "";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -1738,8 +2047,8 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+           /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了养殖业支出之后的长度："+listOutcome.size());
         //在这里先不存储，继续去取下边的类别的数据
@@ -1749,24 +2058,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             //收入类别为养殖业的,类别要单独处理
             Row rowOutcomeType = firstSheet.getRow(firstSheetendRow + 32);
             Cell cellOutcomeType1 = rowOutcomeType.getCell(1);
+            String outcome_source ="";
             if( cellOutcomeType1 != null ){
                 cellOutcomeType1.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_source = cellOutcomeType1.getStringCellValue();
             }
-            String outcome_source = cellOutcomeType1.getStringCellValue();
             System.out.println("支出分类："+outcome_source);
             //内容
             Cell cellOutcome2 = rowOutcome.getCell(2);
+            String outcome_cate ="";
             if( cellOutcome2 != null ){
                 cellOutcome2.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_cate = cellOutcome2.getStringCellValue();
             }
-            String outcome_cate = cellOutcome2.getStringCellValue();
             System.out.println("支出内容："+outcome_cate);
             //数量
             Cell cellOutcome3 = rowOutcome.getCell(3);
+            String outcome_quantity ="";
             if( cellOutcome3 != null ){
                 cellOutcome3.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_quantity = cellOutcome3.getStringCellValue();
             }
-            String outcome_quantity = cellOutcome3.getStringCellValue();
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
             if("".equals(outcome_quantity)){
@@ -1774,24 +2086,27 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
+            String outcome_unit = "";
             if( cellOutcome4 != null ){
                 cellOutcome4.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_unit = cellOutcome4.getStringCellValue();
             }
-            String outcome_unit = cellOutcome4.getStringCellValue();
             System.out.println("支出单价："+outcome_unit);
             //小计
             Cell cellOutcome5 = rowOutcome.getCell(5);
+            String outcome_sum = "";
             if( cellOutcome5 != null ){
                 cellOutcome5.setCellType(Cell.CELL_TYPE_STRING);
+                outcome_sum = cellOutcome5.getStringCellValue();
             }
-            String outcome_sum = cellOutcome5.getStringCellValue();
             System.out.println("支出小计："+outcome_sum);
             //备注
             Cell cellOutcome6 = rowOutcome.getCell(6);
+            String remark = "";
             if( cellOutcome6 != null ){
                 cellOutcome6.setCellType(Cell.CELL_TYPE_STRING);
+                remark = cellOutcome6.getStringCellValue();
             }
-            String remark = cellOutcome6.getStringCellValue();
             System.out.println("支出备注："+remark);
             //new一个对象出来，将数据存储进去
             Outcome outcome = new Outcome();
@@ -1802,14 +2117,34 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
             outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
             outcome.setRemark(remark);
-            SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);
-            listOutcome.add(paramSource);
+            /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
+            listOutcome.add(outcome);
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
-        //调用jadbcTemplate的插入方法
-      /*  int[] hOut = excelDao.saveOutcome(listOutcome);
-        System.out.println("支出信息录入了："+hOut.length+"条；");*/
-        return "录入成功！";
+        //调用Dao层的方法存储支出数据
+        Integer intResultOfOutcome = 0;
+        if( listOutcome.size() > 0 ){
+            intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+        }
+        //intResultOfPeople,intResultOfMove,intResultOfHouse,intResultOfIncome,intResultOfOutcome
+        List<Integer> intList = new ArrayList<Integer>();
+        intList.add(intResultOfPeople);
+        intList.add(intResultOfMove);
+        intList.add(intResultOfHouse);
+        intList.add(intResultOfIncome);
+        intList.add(intResultOfOutcome);
+        intList.add(intResultOfBank);
+        String strResult = "";
+        for( int r = 0;r < intList.size();r++){
+            if( intList.get(r) == -1 ){
+                strResult = "录入失败！";
+            } else {
+                strResult = "录入成功！";
+            }
+        }
+        /*Map mapResult = new HashMap();
+        mapResult.put("result",strResult);*/
+        return strResult;
     }
     /*
      *判断一行是否为空的方法

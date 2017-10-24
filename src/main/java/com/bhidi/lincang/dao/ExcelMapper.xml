@@ -12,15 +12,15 @@
     </insert >
 
     <insert  id="batchSavePeople" parameterType="List">
-        insert into people (fid,reservoir,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at)
+        insert into people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at,table_type)
         values
         <foreach collection="list" separator="," item="people">
-        (
-            #{people.fid},#{people.reservoir},#{people.location}, #{people.name},#{people.master},
+            (
+            #{people.fid},#{people.reservoir},#{people.phone},#{people.prop},#{people.poor_reason},#{people.location}, #{people.name},#{people.master},
             #{people.pid},#{people.gender},#{people.race},#{people.relation},#{people.education},
             #{people.profession},#{people.home_size},#{people.imm_num},#{people.interviewer},#{people.interviewee},
-            #{people.created_at}
-        )
+            #{people.created_at},#{people.table_type}
+            )
         </foreach>
     </insert >
 
