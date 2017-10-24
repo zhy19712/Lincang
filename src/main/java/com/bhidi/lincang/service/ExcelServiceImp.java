@@ -74,7 +74,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 return serverPath+"-"+excelName+"文件内容为空！";
             }
             //00获取移民编号
-            Row row0 = sheet.getRow(0);
+           /* Row row0 = sheet.getRow(0);
             Cell cell00 = row0.getCell(0);
             String fid = cell00.getStringCellValue();
             if( "".equals(fid) ){
@@ -84,7 +84,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             String fidResult = excelMapper.queryPeopleByFid(fid);
             if( fidResult != null ){
                 return serverPath+"-"+excelName+"文件的fid为："+fid+"，数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   sheet名字："+sheet.getSheetName();
-            }
+            }*/
         }
         //在这里遍历sheet的名字，是什么名字的时候，调用哪个方法
         String resultFirst = "";
@@ -97,7 +97,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
                     return resultFirst;
                 }
             }
-            if( "库区登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
+            if( "库区安置登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
                 Sheet sheet = workbook.getSheetAt(s);
                 resultSecond = second(sheet);
                 if(!"录入成功！".equals(resultSecond)){
@@ -111,15 +111,15 @@ public class ExcelServiceImp implements ExcelServiceInf{
      * 录入excel文件第一个sheet的方法
      */
     public String first(Sheet firstSheet){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date =  new Date();
         //00获取移民编号
-        Row row0 = firstSheet.getRow(0);
+        /*Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
-        String fid = cell00.getStringCellValue();
+        String fid = cell00.getStringCellValue();*/
         /*if( "".equals(fid) ){
             return "表编号不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
-        System.out.println(fid);
         //根据查询数据库中是否存在此户的数据，如果有，就请他们去修改页面进行修改，否则可以继续
         /*int ifexit = DBUtils.queryFid("select fid from people where fid = "+'"'+fid+'"');
         if( ifexit == 1 ){
@@ -129,60 +129,71 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if( !"".equals(fidRes) ){
             return "数据库中已经存在你们家的信息，请前往修改页面进行修改。"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
-        //22获取所属水库
+        //取到表格的类型
+        Row row0 = firstSheet.getRow(0);
+        Cell cell00 = row0.getCell(0);
+        String fid = "BQ"+sdf.format(date);
+        String table_type = "移民搬迁登记表";
+        //12获取所属水库
+        Row row1 = firstSheet.getRow(1);
+        Cell cell12 = row1.getCell(2);
+        if(cell12!=null){
+            cell12.setCellType(Cell.CELL_TYPE_STRING);
+        }
+        String reservoir = cell12.getStringCellValue();
+       /* if( "".equals(reservoir) ){
+            return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
+        }*/
+        /*System.out.println("所属水库："+reservoir);*/
+        //14获取安置点
+        Cell cell14 = row1.getCell(4);
+        if(cell14!=null){
+            cell14.setCellType(Cell.CELL_TYPE_STRING);
+        }
+        String location = cell14.getStringCellValue();
+        /*if( "".equals(location) ){
+            return "安置点不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
+        }*/
+        System.out.println("安置点："+location);
+        //16获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
+        Cell cell16 = row1.getCell(6);
+        if(cell16!=null){
+            cell16.setCellType(Cell.CELL_TYPE_STRING);
+        }
+        String masterName = cell16.getStringCellValue();
+        /*if( "".equals(masterName) ){
+            return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
+        }*/
+        System.out.println("户主姓名："+masterName);
+        //18获取电话号码
+        Cell cell18 = row1.getCell(8);
+        if(cell18!=null){
+            cell18.setCellType(Cell.CELL_TYPE_STRING);
+        }
+        String phone = cell18.getStringCellValue();
+        System.out.println("电话号码："+masterName);
+        //取出银行卡信息
+        //22获取开户人姓名
         Row row2 = firstSheet.getRow(2);
         Cell cell22 = row2.getCell(2);
         if(cell22!=null){
             cell22.setCellType(Cell.CELL_TYPE_STRING);
         }
-        String reservoir = cell22.getStringCellValue();
-       /* if( "".equals(reservoir) ){
-            return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
-        System.out.println("所属水库："+reservoir);
-        //24获取安置点
+        String account_name = cell22.getStringCellValue();
+        System.out.println("开户人姓名："+account_name);
+        //24获取开户行名称
         Cell cell24 = row2.getCell(4);
         if(cell24!=null){
             cell24.setCellType(Cell.CELL_TYPE_STRING);
         }
-        String location = cell24.getStringCellValue();
-        /*if( "".equals(location) ){
-            return "安置点不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
-        System.out.println("安置点："+location);
-        //27获取户主姓名，以此来将下边的人来进行身份的鉴别，如果这个单元格里边没有值，取出来的是“”；空串。
+        String bank_name = cell24.getStringCellValue();
+        System.out.println("开户行名称："+bank_name);
+        //27获取银行卡号
         Cell cell27 = row2.getCell(7);
         if(cell27!=null){
             cell27.setCellType(Cell.CELL_TYPE_STRING);
         }
-        String masterName = cell27.getStringCellValue();
-        /*if( "".equals(masterName) ){
-            return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
-        System.out.println("户主姓名："+masterName);
-
-        //取出银行卡信息
-        //32获取开户人姓名
-        Row row3 = firstSheet.getRow(3);
-        Cell cell32 = row3.getCell(2);
-        if(cell32!=null){
-            cell32.setCellType(Cell.CELL_TYPE_STRING);
-        }
-        String account_name = cell32.getStringCellValue();
-        System.out.println("开户人姓名："+account_name);
-        //34获取开户行名称
-        Cell cell34 = row3.getCell(4);
-        if(cell34!=null){
-            cell34.setCellType(Cell.CELL_TYPE_STRING);
-        }
-        String bank_name = cell34.getStringCellValue();
-        System.out.println("开户行名称："+bank_name);
-        //37获取银行卡号
-        Cell cell37 = row3.getCell(7);
-        if(cell37!=null){
-            cell27.setCellType(Cell.CELL_TYPE_STRING);
-        }
-        String account_number = cell37.getStringCellValue();
+        String account_number = cell27.getStringCellValue();
         System.out.println("银行卡号："+account_number);
         Bank bank = new Bank();
         bank.setFid(fid);
@@ -1400,8 +1411,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if( house != null ){
             Integer intResultOfHouse =  excelMapper.saveHouse(house);
         }
-
-
 
         //取收入的数据
         List<Income> listIncome = new ArrayList<Income>();

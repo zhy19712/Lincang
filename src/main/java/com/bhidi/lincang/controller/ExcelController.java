@@ -63,7 +63,7 @@ public class ExcelController {
         return resultList;
     }
     /*
-     * 上传多个excel文件的方法
+     * 上传多个excel文件并且读取的方法
      */
     @RequestMapping(value="/multipleExcelUpLoadExcel",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String multipleExcelUpLoadExcel(@RequestParam("excels") MultipartFile[] excels, HttpServletRequest request, ModelMap map){
