@@ -51,11 +51,11 @@
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
+											<th>编号</th>
 											<th>分类</th>
 											<th>户主姓名</th>
 											<th>所属水库</th>
-											<th>所在地</th>
-											<th>迁入地</th>
+											<th>所在地(迁入地)</th>
 											<th>调查人</th>
 											<th>填表时间</th>
 											<th>操作</th>
@@ -67,6 +67,8 @@
 						<li>
 							<div id="container1"></div>
 							<div id="container2"></div>
+							<%--<div id="div1" style="width: 300px;height: 100px;background-color:red;"></div>--%>
+							<%--<div id="div2" style="width: 300px;height: 100px;background-color:blue;"></div>--%>
 						</li>
 					</ul>
 				</div>
@@ -153,11 +155,11 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
+								<th>编号</th>
 								<th>分类</th>
 								<th>户主姓名</th>
 								<th>所属水库</th>
-								<th>所在地</th>
-								<th>迁入地</th>
+								<th>所在地(迁入地)</th>
 								<th>调查人</th>
 								<th>填表时间</th>
 								<th>操作</th>

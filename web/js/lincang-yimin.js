@@ -14,7 +14,7 @@ $(function(){
 	//滚动条插件
 	$("#show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
-	$("#tab_content li").panel({iWheelStep:32});
+	$("#tab_content li:first-child").panel({iWheelStep:32});
 
 	//省市县三级联动插件
 	// $("#sel_city").citySelect({
