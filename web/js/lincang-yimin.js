@@ -753,6 +753,8 @@ $(function(){
         jQuery('#jqtable').print();
     });
 
+
+
     //所有信息展示表格
     var allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
@@ -762,8 +764,8 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "FID"},
             {"data": "TABLE_TYPE"},
+            {"data": "FID"},
             {"data": "NAME"},
             {"data": "RESERVOIR"},
             {"data": "FROM_DISTRICT"},
@@ -840,4 +842,6 @@ $(function(){
     };
     echart1.setOption(option);
     echart2.setOption(option);
+
+
 })
