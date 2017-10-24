@@ -18,8 +18,8 @@ $(function () {
     //     type: "post",
     //     data: {id:id2},
     //     dataType: "json",
-    //     seccess: function () {
-    //
+    //     seccess: function (data) {
+    //          console.log(data);
     //     }
     // })
 })
