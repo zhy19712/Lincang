@@ -46,11 +46,23 @@ public class People {
     private String interviewee;
     //创建时间
     private String created_at;
+    //表格类别
+    private String table_type;
 
     public People() {
     }
 
-    public People(int id, String fid, String reservoir, String location, String name, int master, String pid, String gender, String race, String phone, String relation, String education, String profession, int home_size, int imm_num, int prop, String poor_reason, String interviewer, String interviewee, String created_at) {
+    public People(String fid,String table_type, String reservoir, String location, String name, String interviewer, String created_at) {
+        this.fid = fid;
+        this.table_type = table_type;
+        this.reservoir = reservoir;
+        this.location = location;
+        this.name = name;
+        this.interviewer = interviewer;
+        this.created_at = created_at;
+    }
+
+    public People(int id, String fid, String reservoir, String location, String name, int master, String pid, String gender, String race, String phone, String relation, String education, String profession, int home_size, int imm_num, int prop, String poor_reason, String interviewer, String interviewee, String created_at, String table_type) {
         this.id = id;
         this.fid = fid;
         this.reservoir = reservoir;
@@ -71,6 +83,7 @@ public class People {
         this.interviewer = interviewer;
         this.interviewee = interviewee;
         this.created_at = created_at;
+        this.table_type = table_type;
     }
 
     public void setId(int id) {
@@ -225,6 +238,14 @@ public class People {
         this.created_at = created_at;
     }
 
+    public String getTable_type() {
+        return table_type;
+    }
+
+    public void setTable_type(String table_type) {
+        this.table_type = table_type;
+    }
+
     @Override
     public String toString() {
         return "People{" +
@@ -248,6 +269,7 @@ public class People {
                 ", interviewer='" + interviewer + '\'' +
                 ", interviewee='" + interviewee + '\'' +
                 ", created_at='" + created_at + '\'' +
+                ", table_type='" + table_type + '\'' +
                 '}';
     }
 
@@ -277,7 +299,8 @@ public class People {
         if (poor_reason != null ? !poor_reason.equals(people.poor_reason) : people.poor_reason != null) return false;
         if (interviewer != null ? !interviewer.equals(people.interviewer) : people.interviewer != null) return false;
         if (interviewee != null ? !interviewee.equals(people.interviewee) : people.interviewee != null) return false;
-        return created_at != null ? created_at.equals(people.created_at) : people.created_at == null;
+        if (created_at != null ? !created_at.equals(people.created_at) : people.created_at != null) return false;
+        return table_type != null ? table_type.equals(people.table_type) : people.table_type == null;
     }
 
     @Override
@@ -302,6 +325,7 @@ public class People {
         result = 31 * result + (interviewer != null ? interviewer.hashCode() : 0);
         result = 31 * result + (interviewee != null ? interviewee.hashCode() : 0);
         result = 31 * result + (created_at != null ? created_at.hashCode() : 0);
+        result = 31 * result + (table_type != null ? table_type.hashCode() : 0);
         return result;
     }
 }
