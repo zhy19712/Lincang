@@ -6,6 +6,9 @@ $(function(){
 	var tab_content_height = $(window).height() - 171;
 	$("#content").height(height);
 	$("#container").width(width);
+	var width1 = width - 100;
+	$("#container1").width(width1);
+	$("#container2").width(width1);
 	$("#show").height(show_height);
 	$("#tab_content li").height(tab_content_height);
 
@@ -776,7 +779,7 @@ $(function(){
         xAxis : [
             {
                 type : 'category',
-                data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                data : ['临翔区', '凤庆县', '永德县', '镇康县', '云县', '沧源佤族自治县', '耿马傣族佤族自治县','双江拉祜族佤族布朗族傣族自治县'],
                 axisTick: {
                     alignWithLabel: true
                 }
@@ -789,10 +792,10 @@ $(function(){
         ],
         series : [
             {
-                name:'直接访问',
+                name:'移民数量',
                 type:'bar',
                 barWidth: '60%',
-                data:[10, 52, 200, 334, 390, 330, 220]
+                data:[10, 52, 200, 334, 390, 330, 220,240]
             }
         ]
     };

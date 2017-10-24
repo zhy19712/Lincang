@@ -468,6 +468,7 @@ $(function () {
             data: {data:data},
             dataType: "json",
             success: function (data) {
+                console.log(data);
                 alert("提交成功");
                 $("#jqtable input").val("");
             }

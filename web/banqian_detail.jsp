@@ -29,6 +29,10 @@
         :-ms-input-placeholder { /* Internet Explorer 10+ */
             color:    red;
         }
+        #fid p{
+            text-align: right;
+            color: red;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +51,9 @@
 <form action="" style="width: 96%;margin: 10px auto;">
     <table id="jqtable">
         <tbody>
+        <tr>
+            <td colspan="9" id="fid"><p>移民搬迁登记表:<span></span></p></td>
+        </tr>
         <tr>
             <td colspan="9" id="kind">移民搬迁登记表</td>
         </tr>
