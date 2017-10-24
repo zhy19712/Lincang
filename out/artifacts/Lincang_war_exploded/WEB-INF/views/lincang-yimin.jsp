@@ -126,7 +126,7 @@
 		<div id="data_input">
             <div id="new_table">
 				<iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form action="multipleExcelUpLoadExcel" target="uploadFrame">
+                <form action="/excel/multipleExcelUpLoadExcel.do" target="uploadFrame" enctype="multipart/form-data" method="post">
                     <ul>
 						<li><a data-toggle="tooltip" title="新建库区登记表" class="well top-block"
 							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
