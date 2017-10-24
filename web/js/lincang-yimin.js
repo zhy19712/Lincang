@@ -766,7 +766,7 @@ $(function(){
             {"data": "TABLE_TYPE"},
             {"data": "NAME"},
             {"data": "RESERVOIR"},
-            {"data": "LOCATION"},
+            {"data": "FROM_DISTRICT"},
             {"data": "INTERVIEWER"},
             {"data": "CREATED_AT"},
             {"data": null}

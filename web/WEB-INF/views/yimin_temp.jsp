@@ -34,8 +34,8 @@
               <a href="#" id="add_1" onclick="add_click_file(1)"  >添加附件</a>
               <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
           </div>
-          test:<input type="text" name = "test"/>
-          <input type="submit" value="提交"/>
+          <%--test:<input type="text" name = "test"/>--%>
+          <input type="submit" value="多文件提交"/>
       </form>
 
 
@@ -64,7 +64,7 @@
               <a href="#" id="excel_add" onclick="add_click_excel(1)"  >添加附件</a>
               <input style="display:none;" id="add_excel_1" type="file" name = "excels" onChange="addExcel(1)"/>
           </div>
-          <input type="submit" value="提交"/>
+          <input type="submit" value="多excel文件提交"/>
       </form>
       <div>
           <c:if test="${error.size() > 0}">
