@@ -14,17 +14,17 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
-    <link href="../../css/app.css" rel="stylesheet">
-    <link href="../../css/chosen.min.css" rel="stylesheet">
-    <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link href="css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <link href="css/chosen.min.css" rel="stylesheet">
+    <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="../../css/mycss.css">
-    <link rel="stylesheet" href="../../css/oa.css">
-    <link rel="stylesheet" href="../../css/ui-choose.css">
-    <link rel="stylesheet" href="../../css/jquery.step.css">
-    <link rel="stylesheet" href="../../css/jedate.css">
-    <link rel="stylesheet" href="../../css/money.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/oa.css">
+    <link rel="stylesheet" href="css/ui-choose.css">
+    <link rel="stylesheet" href="css/jquery.step.css">
+    <link rel="stylesheet" href="css/jedate.css">
+    <link rel="stylesheet" href="css/money.css">
     <style>
         .last{
             border-bottom: 1px solid #000 !important;
@@ -46,7 +46,7 @@
         #user_container2>div{
             width: 20%;
         }
-        #money_apply_wdo form{
+        #money_apply_wdo form,#more{
             width: 96%;
             margin: 0 auto;
         }
@@ -55,24 +55,24 @@
             font-weight: 700;
             margin: 10px 0;
         }
-        #money_apply_wdo table{
+        #money_apply_wdo table,#more table{
             width: 100%;
             border-top: 1px solid #000;
             border-left: 1px solid #000;
         }
-        #money_apply_wdo table td{
+        #money_apply_wdo table td,#more table td{
             padding: 5px 0;
             text-align: center;
             border-right: 1px solid #000;
             border-bottom: 1px solid #000;
         }
-        #money_apply_wdo table input{
+        #money_apply_wdo table input,#more table input{
             width: 100%;
             outline: none;
             border: none;
             padding: 0 5px;
         }
-        #money_apply_wdo table select{
+        #money_apply_wdo table select,#more table select{
             width: 94%;
             margin-left: 3%;
         }
@@ -83,11 +83,11 @@
 
 
     <!-- jQuery -->
-    <script src="../../js/jquery.min.js"></script>
-    <script src="../../js/jquery-form.min.js"></script>
-    <script src="../../js/ui-choose.js"></script>
-    <script src="../../js/jquery.jedate.js"></script>
-    <script src="../../js/jquery.step.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-form.min.js"></script>
+    <script src="js/ui-choose.js"></script>
+    <script src="js/jquery.jedate.js"></script>
+    <script src="js/jquery.step.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -419,7 +419,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="select_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -444,6 +444,95 @@
                         <div class="user1_2"></div>
                         <div class="user1_3"></div>
                     </div>
+                </div>
+                <div id="more" style="height: 30px;overflow: hidden;transition: all 0.5s;">
+                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 30px;">查看收文登记详细信息</p>
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>年度</td>
+                            <td><input type="text" name="niandu"></td>
+                            <td>保管期限</td>
+                            <td><select name="qixian">
+                                <option value="1个月">1个月</option>
+                                <option value="6个月">6个月</option>
+                                <option value="1年">1年</option>
+                                <option value="2年">2年</option>
+                            </select></td>
+                            <td>类别</td>
+                            <td colspan="2"><input type="text" name="leibie"></td>
+                            <td>来文日期</td>
+                            <td colspan="2"><input type="text" name="laiwenriqi"></td>
+                        </tr>
+                        <tr>
+                            <td>文件编号</td>
+                            <td><input type="text" name="wenjianhao"></td>
+                            <td>登记号</td>
+                            <td><input type="text" name="dengjihao"></td>
+                            <td>全宗号</td>
+                            <td colspan="2"><input type="text" name="quanzonghao"></td>
+                            <td>成文日期</td>
+                            <td colspan="2"><input type="text" name="chengwenriqi"></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">题名</td>
+                            <td colspan="9">
+                                <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>上传附件</td>
+                            <td colspan="9"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <td>主题词</td>
+                            <td colspan="5"><input type="text" name="zhuti"></td>
+                            <td>责任者</td>
+                            <td colspan="3"><input type="text" name="zeren"></td>
+                        </tr>
+                        <tr>
+                            <td>归档份数</td>
+                            <td><input type="text" name="guidangyeshu"></td>
+                            <td>页数</td>
+                            <td><input type="text" name="yeshu"></td>
+                            <td>密级</td>
+                            <td><input type="text" name="miji"></td>
+                            <td>机构问题</td>
+                            <td><input type="text" name="jigou"></td>
+                            <td>收件人</td>
+                            <td><input type="text" name="shoujianren"></td>
+                        </tr>
+                        <tr>
+                            <td>来文机关</td>
+                            <td colspan="5"><input type="text" name="laiwenjiguan"></td>
+                            <td>附件页数</td>
+                            <td colspan="3"><input type="text" name="fujianyeshu"></td>
+                        </tr>
+                        <tr>
+                            <td>实体分类号</td>
+                            <td><input type="text" name="shitihao"></td>
+                            <td>分发情况</td>
+                            <td colspan="3"><input type="text" name="fenfa"></td>
+                            <td>旧全宗</td>
+                            <td colspan="3"><input type="text" name="jiuquanzong"></td>
+                        </tr>
+                        <tr>
+                            <td>归档情况</td>
+                            <td><input type="text" name="guidangqingkuang"></td>
+                            <td>登记日期</td>
+                            <td colspan="3"><input type="text" name="dengjiriqi"></td>
+                            <td>传阅情况</td>
+                            <td colspan="3"><input type="text" name="chuanyue"></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle;">处理情况</td>
+                            <td colspan="9"><textarea name="chuli" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <iframe name="uploadFrame" style="display:none;"></iframe>
                 <form action="" method="post"
@@ -657,17 +746,19 @@
 
 
 <!-- external javascript -->
-<script src="../../js/bootstrap.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <!-- library for cookie management -->
-<script src="../../js/jquery.cookie.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <!-- select or dropdown enhancer -->
-<script src="../../js/chosen.jquery.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
 <!-- for iOS style toggle switch -->
-<script src="../../js/jquery.iphone.toggle.js"></script>
+<script src="js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
-<script src="../../js/jquery.history.js"></script>
+<script src="js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="../../js/money.js"></script>
+
+<script src="js/money.js"></script>
+<script src="js/readmore.js"></script>
 <script>
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
@@ -837,96 +928,6 @@
 
 
 
-
-
-    //申请提交
-    $("#money_apply_wdo .btn-primary").click(function () {
-        var title = $("#title").val();
-        if(status == 1){
-            var username = $("#username").text();
-            var app_people=  $("#input1").val();
-            var app_time=  $("#input2").val();
-            var app_content=  $("#input3").val();
-            var datas= {
-                "report_person":app_people,
-                "report_quarter":app_time,
-                "report_text":app_content,
-                "title":title,
-                "username": username
-            };
-            if(app_people == ""){
-                alert("上报人不能为空")
-            }else if(app_time == ""){
-                alert("上报时间不能为空")
-            }else if(app_content == ""){
-                alert("上报内容不能为空")
-            }else if(title == ""){
-                alert("标题不能为空")
-            }else {
-                console.log(datas);
-                $.ajax({
-                    type: 'post',
-                    url: '/submitDataOfCapital.do?userstatus=1',
-                    data: datas,
-                    dataType: 'json',
-                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                    success: function (result) {
-                        if(result){
-                            alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-                        }else {
-                            alert("提交失败");
-                        }
-                        $("#money_apply_wdo").modal("hide");
-                        mywipeData();
-                    },
-                    error:function () {
-                        alert("系统错误");
-                    }
-                });
-            }
-        }else if(status == 3){
-            var username = $("#username").text();
-            var app_people=  $("#input1").val();
-            var app_reason=  $("#input2").val();
-            var datas= {
-                "report_person":app_people,
-                "report_reason":app_reason,
-                "title":title,
-                "username": username
-            };
-            if(app_people == ""){
-                alert("申请人不能为空")
-            }else if(app_time == ""){
-                alert("申请原因不能为空")
-            }else if(title == "") {
-                alert("标题不能为空")
-            }else {
-                console.log(datas);
-
-                $.ajax({
-                    type: 'post',
-                    url: '/submitDataOfCapital.do?userstatus=3',
-                    data: datas,
-                    dataType: 'json',
-                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                    success: function (result) {
-                        if(result){
-                            alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
-                        }else {
-                            alert("提交失败");
-                        }
-                        $("#money_apply_wdo").modal("hide");
-                        mywipeData();
-                    },
-                    error:function () {
-                        alert("系统错误");
-                    }
-                });
-            }
-        }
-    });
 
     // 清空数据
     function mywipeData() {
@@ -1416,8 +1417,18 @@
 
     function newForm() {
 
-        $('#money_apply_wdo').modal('show');
+//        $('#money_apply_wdo').modal('show');
+          $('#select_model').modal('show');
     }
+    var flag = false;
+    $("#first").click(function () {
+        flag = !flag;
+        if(flag == true){
+            $("#more").height(760);
+        }else {
+            $("#more").height(30);
+        }
+    })
 
     function applyForm() {
         $('#money_apply_wdo').modal('show');

@@ -37,6 +37,7 @@ public class DataGetingController {
         resultMap.put("outcome",outcomeList);
         resultMap.put("move",move);
         resultMap.put("people",peopleList);
+        System.out.print(resultMap);
         return new Gson().toJson(resultMap);
     }
 }

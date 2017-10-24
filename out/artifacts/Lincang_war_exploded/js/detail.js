@@ -18,7 +18,7 @@ $(function () {
         type: "post",
         data: {fid:id1},
         dataType: "json",
-        seccess: function (data) {
+        success: function (data) {
              console.log(data);
         }
     })
