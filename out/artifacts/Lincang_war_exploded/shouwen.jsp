@@ -76,6 +76,9 @@
             width: 94%;
             margin-left: 3%;
         }
+        textarea{
+            outline:none;
+        }
     </style>
 
 
@@ -347,8 +350,15 @@
                             <tr>
                                 <td style="vertical-align: middle;">题名</td>
                                 <td colspan="9">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;outline: none;"></textarea>
+                                    <textarea name="" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td>上传附件</td>
+                                <td colspan="9"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                    <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                                </div></td>
                             </tr>
                             <tr>
                                 <td>主题词</td>
@@ -669,6 +679,31 @@
         format: "YYYY-MM-DD"
     });
 
+    // 多文件上传
+    var fileIndex = 1;
+    function add_click_file(index){
+        $("#add_file_"+fileIndex).click();
+    }
+
+    function add(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
+        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
+        $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
+        $("#filesUpload").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
+        ++fileIndex;
+    }
+
+    function del_file(number) {
+        var o=document.getElementById("filesUpload");//获取父节点
+        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
