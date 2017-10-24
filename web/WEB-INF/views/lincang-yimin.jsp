@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
 	<script src="../../js/zUI.js"></script>
 	<script src="../../js/jquery.jedate.js"></script>
+	<script src="../../js/echarts.common.min.js"></script>
 	<script src="../../js/jQuery.print.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
 </head>
@@ -50,11 +51,11 @@
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
+											<th>编号</th>
 											<th>分类</th>
 											<th>户主姓名</th>
 											<th>所属水库</th>
-											<th>所在地</th>
-											<th>迁入地</th>
+											<th>所在地(迁入地)</th>
 											<th>调查人</th>
 											<th>填表时间</th>
 											<th>操作</th>
@@ -64,7 +65,8 @@
 							</div>
 						</li>
 						<li>
-							tab1
+							<div id="container1"></div>
+							<div id="container2"></div>
 						</li>
 					</ul>
 				</div>
@@ -151,11 +153,11 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
+								<th>编号</th>
 								<th>分类</th>
 								<th>户主姓名</th>
 								<th>所属水库</th>
-								<th>所在地</th>
-								<th>迁入地</th>
+								<th>所在地(迁入地)</th>
 								<th>调查人</th>
 								<th>填表时间</th>
 								<th>操作</th>
