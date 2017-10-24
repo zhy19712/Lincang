@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
 	<script src="../../js/zUI.js"></script>
 	<script src="../../js/jquery.jedate.js"></script>
+	<script src="../../js/echarts.common.min.js"></script>
 	<script src="../../js/jQuery.print.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
 </head>
@@ -64,7 +65,8 @@
 							</div>
 						</li>
 						<li>
-							tab1
+							<div id="container1"></div>
+							<div id="container2"></div>
 						</li>
 					</ul>
 				</div>

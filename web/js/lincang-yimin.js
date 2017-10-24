@@ -754,50 +754,88 @@ $(function(){
     });
 
     //所有信息展示表格
-    var allinfo_table = $('#allinfo_table').DataTable({
-        ajax: {
-            url: "//FamilyInfoAdd.do",
-            async:false
+    // var allinfo_table = $('#allinfo_table').DataTable({
+    //     ajax: {
+    //         url: "/pendingCapitalFlow.do?capitalstatus",
+    //         async:false
+    //     },
+    //     "order": [[1, 'desc']],
+    //     "serverSide": true,
+    //     "columns": [
+    //         {"FID": "id"},
+    //         {"TABLE_TYPE": "title"},
+    //         {"NAME": "create_time"},
+    //         {"RESERVOIR": "report_person"},
+    //         {"LOCATION": "initiatorclass"},
+    //         {"INTERVIEWER": "status"},
+    //         {"CREATED_AT": "status"},
+    //         {"data": null}
+    //     ],
+    //     "columnDefs": [
+    //         {
+    //             "searchable": false,
+    //             "orderable": false,
+    //             "targets": [7],
+    //             "render" :  function(data,type,row) {
+    //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+    //                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+    //                 return html;
+    //             }
+    //         }
+    //     ],
+    //     "language": {
+    //         "lengthMenu": "每页_MENU_ 条记录",
+    //         "zeroRecords": "没有找到记录",
+    //         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+    //         "infoEmpty": "无记录",
+    //         "search": "搜索：",
+    //         "infoFiltered": "(从 _MAX_ 条记录过滤)",
+    //         "paginate": {
+    //             "previous": "上一页",
+    //             "next": "下一页"
+    //         }
+    //     }
+    // });
+
+	var echart1 = echarts.init(document.getElementById('container1'));
+	var echart2 = echarts.init(document.getElementById('container2'));
+    var option = {
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
         },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "FID"},
-            {"data": "NAME"},
-            {"data": "RESERVOIR"},
-            {"data": "LOCATION"},
-            {"data": "INTERVIEWER"},
-            {"data": "CREATED_AT"},
-            {"data": null}
-        ],
-        "columnDefs": [
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
             {
-                "searchable": false,
-                "orderable": false,
-                "targets": [7],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
+                type : 'category',
+                data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                axisTick: {
+                    alignWithLabel: true
                 }
             }
         ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
+        yAxis : [
+            {
+                type : 'value'
             }
-        }
-    });
-
-	//弹框
-	$("#test").click(function () {
-		$("#edit").fadeIn();
-    })
+        ],
+        series : [
+            {
+                name:'直接访问',
+                type:'bar',
+                barWidth: '60%',
+                data:[10, 52, 200, 334, 390, 330, 220]
+            }
+        ]
+    };
+    echart1.setOption(option);
+    echart2.setOption(option);
 })

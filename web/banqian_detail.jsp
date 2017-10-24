@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.jedate.js"></script>
-    <script src="js/table.js"></script>
+    <script src="js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color:    red;
