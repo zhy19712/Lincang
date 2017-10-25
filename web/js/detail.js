@@ -13,6 +13,11 @@ $(function () {
     $("#fid span").text(id1);
     var id2 = encodeURI(encodeURI(id1));
     console.log(kind,id1);
+    if(kind == "查看"){
+        $("#btn-container .hvr-rectangle-in").css("display","none");
+    }else if(kind == "编辑"){
+        $("#btn-container .hvr-rectangle-in").css("display","inline-block");
+    }
     $.ajax({
         url: "/dataGeting.do",
         type: "post",
@@ -26,7 +31,7 @@ $(function () {
              $("#bank-name").val(data.bank.account_number);
              //人员信息
              $.each(data.people,function (i,n) {
-                 if(n.master == "户主"){
+                 if(n.master == 1){
                      $("#reservoir").val(n.reservoir);
                      $("#householder").val(n.relation);
                      $("#number").val(n.phone);
@@ -87,27 +92,27 @@ $(function () {
 
              //所在地
             $("#city td:nth-child(1) input").val(data.move.from_city);
-            $("#city td:nth-child(2) input").val(data.move.from_disirict);
+            $("#city td:nth-child(2) input").val(data.move.from_district);
             $("#city td:nth-child(3) input").val(data.move.from_town);
             $("#city td:nth-child(4) input").val(data.move.from_village);
             $("#city td:nth-child(5) input").val(data.move.from_group);
             $("#city td:nth-child(6) input").val(data.move.from_remake);
 
             //迁入地
-            $("#city1 td:nth-child(1) input").val(data.move.from_city);
-            $("#city1 td:nth-child(2) input").val(data.move.from_disirict);
-            $("#city1 td:nth-child(3) input").val(data.move.from_town);
-            $("#city1 td:nth-child(4) input").val(data.move.from_village);
-            $("#city1 td:nth-child(5) input").val(data.move.from_group);
-            $("#city1 td:nth-child(6) input").val(data.move.from_remake);
+            $("#city1 td:nth-child(2) input").val(data.move.from_city);
+            $("#city1 td:nth-child(3) input").val(data.move.from_district);
+            $("#city1 td:nth-child(4) input").val(data.move.from_town);
+            $("#city1 td:nth-child(5) input").val(data.move.from_village);
+            $("#city1 td:nth-child(6) input").val(data.move.from_group);
+            $("#city1 td:nth-child(7) input").val(data.move.from_remake);
 
             //迁出地
-            $("#city2 td:nth-child(1) input").val(data.move.to_city);
-            $("#city2 td:nth-child(2) input").val(data.move.to_disirict);
-            $("#city2 td:nth-child(3) input").val(data.move.to_town);
-            $("#city2 td:nth-child(4) input").val(data.move.to_village);
-            $("#city2 td:nth-child(5) input").val(data.move.to_group);
-            $("#city2 td:nth-child(6) input").val(data.move.to_remake);
+            $("#city2 td:nth-child(2) input").val(data.move.to_city);
+            $("#city2 td:nth-child(3) input").val(data.move.to_district);
+            $("#city2 td:nth-child(4) input").val(data.move.to_town);
+            $("#city2 td:nth-child(5) input").val(data.move.to_village);
+            $("#city2 td:nth-child(6) input").val(data.move.to_group);
+            $("#city2 td:nth-child(7) input").val(data.move.to_remake);
 
             //房子信息
             $("#main td:nth-child(2) input").val(data.house.main_size);
@@ -126,7 +131,121 @@ $(function () {
             $("#sub td:nth-child(7) input").val(data.house.sub_structure5);
             $("#sub td:nth-child(8) input").val(data.house.sub_remark);
 
+            //收入信息
+            function money_in(kind,data) {
+                $("#"+ kind +" td:nth-child(2) input").val(data.income_quantity);
+                $("#"+ kind +" td:nth-child(3) input").val(data.income_unit);
+                $("#"+ kind +" td:nth-child(4) input").val(data.income_sum);
+                $("#"+ kind +" td:nth-child(5) input").val(data.remake);
+            }
+            $.each(data.income,function (i,n) {
+                if(n.income_source == "养殖业收入"){
+                    if(n.income_cate == "猪"){
+                        $("#in_animal1 td:nth-child(3) input").val(n.income_quantity);
+                        $("#in_animal1 td:nth-child(4) input").val(n.income_unit);
+                        $("#in_animal1 td:nth-child(5) input").val(n.income_sum);
+                        $("#in_animal1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.income_cate == "牛"){
+                        money_in("in_animal2",n);
+                    }else if(n.income_cate == "羊"){
+                        money_in("in_animal3",n);
+                    }else if(n.income_cate == "鸡"){
+                        money_in("in_animal4",n);
+                    }else if(n.income_cate == "鸭"){
+                        money_in("in_animal5",n);
+                    }else if(n.income_cate == "渔业"){
+                        money_in("in_animal6",n);
+                    }else if(n.income_cate == "乳业"){
+                        money_in("in_animal7",n);
+                    }else if(n.income_cate == "其他"){
+                        money_in("in_animal8",n);
+                    }
+                }else if(n.income_source == "种植业收入"){
+                    if(n.income_cate == "粮食"){
+                        $("#in_botany1 td:nth-child(3) input").val(n.income_quantity);
+                        $("#in_botany1 td:nth-child(4) input").val(n.income_unit);
+                        $("#in_botany1 td:nth-child(5) input").val(n.income_sum);
+                        $("#in_botany1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.income_cate == "蔬菜"){
+                        money_in("in_botany2",n);
+                    }else if(n.income_cate == "水果"){
+                        money_in("in_botany3",n);
+                    }else if(n.income_cate == "其他"){
+                        money_in("in_botany4",n);
+                    }
+                }else if(n.income_source == "其他收入"){
+                    if(n.income_cate == "劳务酬劳"){
+                        $("#in_other1 td:nth-child(3) input").val(n.income_quantity);
+                        $("#in_other1 td:nth-child(4) input").val(n.income_unit);
+                        $("#in_other1 td:nth-child(5) input").val(n.income_sum);
+                        $("#in_other1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.income_cate == "房、耕地租赁"){
+                        money_in("in_other2",n);
+                    }
+                }
+            })
 
+            //支出信息
+            function money_out(kind,data) {
+                $("#"+ kind +" td:nth-child(2) input").val(data.outcome_quantity);
+                $("#"+ kind +" td:nth-child(3) input").val(data.outcome_unit);
+                $("#"+ kind +" td:nth-child(4) input").val(data.outcome_sum);
+                $("#"+ kind +" td:nth-child(5) input").val(data.remake);
+            }
+            $.each(data.outcome,function (i,n) {
+                if(n.outcome_source == "种植业支出"){
+                    if(n.outcome_cate == "籽种"){
+                        $("#out_botany1 td:nth-child(3) input").val(n.outcome_quantity);
+                        $("#out_botany1 td:nth-child(4) input").val(n.outcome_unit);
+                        $("#out_botany1 td:nth-child(5) input").val(n.outcome_sum);
+                        $("#out_botany1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.outcome_cate == "化肥、农药"){
+                        money_out("out_botany2",n);
+                    }else if(n.outcome_cate == "雇工"){
+                        money_out("out_botany3",n);
+                    }else if(n.outcome_cate == "机耕支出"){
+                        money_out("out_botany4",n);
+                    }else if(n.outcome_cate == "灌溉水电费"){
+                        money_out("out_botany5",n);
+                    }else if(n.outcome_cate == "承租耕地"){
+                        money_out("out_botany6",n);
+                    }
+                }else if(n.outcome_source == "养殖业支出"){
+                    if(n.outcome_cate == "幼种"){
+                        $("#out_animal1 td:nth-child(3) input").val(n.outcome_quantity);
+                        $("#out_animal1 td:nth-child(4) input").val(n.outcome_unit);
+                        $("#out_animal1 td:nth-child(5) input").val(n.outcome_sum);
+                        $("#out_animal1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.outcome_cate == "饲料"){
+                        money_out("out_animal2",n);
+                    }else if(n.outcome_cate == "疫病防治"){
+                        money_out("out_animal3",n);
+                    }else if(n.outcome_cate == "其他"){
+                        money_out("out_animal4",n);
+                    }
+                }else if(n.outcome_source == "生活支出"){
+                    if(n.outcome_cate == "主食"){
+                        $("#out_life1 td:nth-child(3) input").val(n.outcome_quantity);
+                        $("#out_life1 td:nth-child(4) input").val(n.outcome_unit);
+                        $("#out_life1 td:nth-child(5) input").val(n.outcome_sum);
+                        $("#out_life1 td:nth-child(6) input").val(n.remake);
+                    }else if(n.outcome_cate == "衣物"){
+                        money_out("out_life2",n);
+                    }else if(n.outcome_cate == "水、电费"){
+                        money_out("out_life3",n);
+                    }else if(n.outcome_cate == "通讯费"){
+                        money_out("out_life4",n);
+                    }else if(n.outcome_cate == "交通费"){
+                        money_out("out_life5",n);
+                    }else if(n.outcome_cate == "教育"){
+                        money_out("out_life6",n);
+                    }else if(n.outcome_cate == "医疗"){
+                        money_out("out_life7",n);
+                    }else if(n.outcome_cate == "其他"){
+                        money_out("out_life8",n);
+                    }
+                }
+            })
         }
     })
 })
