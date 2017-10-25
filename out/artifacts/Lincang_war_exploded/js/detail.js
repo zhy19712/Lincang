@@ -705,16 +705,16 @@ $(function () {
         data.time = time;
         data.username = username;
         console.log(data);
-        // $.ajax({
-        //     url: "/dataEntering.do",
-        //     type: "post",
-        //     data: {data:data},
-        //     dataType: "json",
-        //     success: function (data) {
-        //         console.log(data);
-        //         alert("提交成功");
-        //         $("#jqtable input").val("");
-        //     }
-        // });
+        $.ajax({
+            url: "/dataEditSaving.do",
+            type: "post",
+            data: {data:data},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                alert("提交成功");
+                $("#jqtable input").val("");
+            }
+        });
     })
 })

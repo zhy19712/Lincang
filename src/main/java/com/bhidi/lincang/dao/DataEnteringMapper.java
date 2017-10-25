@@ -18,4 +18,16 @@ public interface DataEnteringMapper {
     int insertOutcome(List<Outcome> outcomeList);
 
     int insertMove(Move move);
+
+    int deletePeople(String fid);
+
+    int updateMove(Move move);
+
+    int updateBank(Bank bank);
+
+    int updateHouse(House house);
+
+    int deleteIncome(String fid);
+
+    int deleteOutcome(String fid);
 }

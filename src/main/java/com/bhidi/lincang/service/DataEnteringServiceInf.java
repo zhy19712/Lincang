@@ -16,4 +16,16 @@ public interface DataEnteringServiceInf {
     int saveOutcome(List<Outcome> outcomeList);
 
     int saveMove(Move move);
+
+    int deletePerson(String fid);
+
+    int changeMove(Move move);
+
+    int changeBank(Bank bank);
+
+    int changeHouse(House house);
+
+    int deleteIncome(String fid);
+
+    int deleteOutcome(String fid);
 }

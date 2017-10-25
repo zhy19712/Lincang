@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public class DataEnteringServiceImp implements DataEnteringServiceInf {
+
     @Autowired
     DataEnteringMapper dataEnteringMapper;
-
 
     public int savePerson(List<People> peopleList) {
         return dataEnteringMapper.insertPeople(peopleList);
@@ -35,5 +35,29 @@ public class DataEnteringServiceImp implements DataEnteringServiceInf {
 
     public int saveMove(Move move) {
         return dataEnteringMapper.insertMove(move);
+    }
+
+    public int deletePerson(String fid) {
+        return dataEnteringMapper.deletePeople(fid);
+    }
+
+    public int changeMove(Move move) {
+        return dataEnteringMapper.updateMove(move);
+    }
+
+    public int changeBank(Bank bank) {
+        return dataEnteringMapper.updateBank(bank);
+    }
+
+    public int changeHouse(House house) {
+        return dataEnteringMapper.updateHouse(house);
+    }
+
+    public int deleteIncome(String fid) {
+        return dataEnteringMapper.deleteIncome(fid);
+    }
+
+    public int deleteOutcome(String fid) {
+        return dataEnteringMapper.deleteOutcome(fid);
     }
 }
