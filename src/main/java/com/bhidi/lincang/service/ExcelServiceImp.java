@@ -1520,7 +1520,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //new一个对象出来，将这些数据注入
         Move move = new Move();
         move.setFid(fid);
-        /*move.setTo_city(from_city);
+        /*move.setFrom_city(from_city);
         move.setFrom_district(from_district);
         move.setFrom_town(from_town);
         move.setFrom_village(from_village);
