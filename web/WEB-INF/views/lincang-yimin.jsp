@@ -202,15 +202,14 @@
     function edit(that) {
         var kind = $(that).val();
         kind = encodeURI(encodeURI(kind));
-        var name1 = "库区安置登记表";
-        name1 = encodeURI(encodeURI(name1));
-        var name2 = "移民搬迁登记表";
-        name2 = encodeURI(encodeURI(name2));
         var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         id = encodeURI(encodeURI(id));
-        if(table_kind == "")
-        window.open("/anzhi_detail.jsp?kind=" + kind + "&id=" + id);
+        if(table_kind == "库区安置登记表"){
+            window.open("/anzhi_detail.jsp?kind=" + kind + "&id=" + id);
+        }else if(table_kind == "移民搬迁登记表"){
+            window.open("/banqian_detail.jsp?kind=" + kind + "&id=" + id);
+		}
     }
 </script>
 </html>
