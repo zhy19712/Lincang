@@ -48,39 +48,44 @@ public class PictureController {
             for(int i = 0; i < listPictureCounty.size();i++){
                 //建立一个对象来存储一个整体的数据
                 PictureFull pictureFull = new PictureFull();
-                pictureFull.setName(listPictureCounty.get(i).getCountyName());
-                pictureFull.setLevel(listPictureCounty.get(i).getLevel());
-                pictureFull.setNum(listPictureCounty.get(i).getNum());
+                if( listPictureCounty.get(i).getCountyName()!=null ){
+                    pictureFull.setName(listPictureCounty.get(i).getCountyName());
+                    pictureFull.setLevel(listPictureCounty.get(i).getLevel());
+                    pictureFull.setNum(listPictureCounty.get(i).getNum());
 
-                List<PictureFull> listTown = new ArrayList<PictureFull>();
-                for(int j = 0; j < listPictureTown.size();j++){
-                    if( listPictureCounty.get(i).getCountyName().equals( listPictureTown.get(j).getCountyName() ) ){
-                        //设置一个镇级别数据的集合来装县对应的镇级别的所有数据
-                        PictureFull pictureFullTowm = new PictureFull();
-                        pictureFullTowm.setName(listPictureTown.get(j).getTownName());
-                        pictureFullTowm.setLevel(listPictureTown.get(j).getLevel());
-                        pictureFullTowm.setNum(listPictureTown.get(j).getNum());
-                        List<PictureFull> listVillage = new ArrayList<PictureFull>();
-                        for(int k = 0; k < listPictureVillage.size();k++){
-                            if( listPictureTown.get(j).getTownName().equals( listPictureVillage.get(k).getTownName() ) ){
-                                PictureFull pictureFullVillage = new PictureFull();
-                                pictureFullVillage.setName(listPictureVillage.get(k).getVillageName());
-                                pictureFullVillage.setLevel(listPictureVillage.get(k).getLevel());
-                                pictureFullVillage.setNum(listPictureVillage.get(k).getNum());
-                                listVillage.add(pictureFullVillage);
+                    List<PictureFull> listTown = new ArrayList<PictureFull>();
+                    for(int j = 0; j < listPictureTown.size();j++){
+                        if( listPictureCounty.get(i).getCountyName()!=null ){
+                            if( listPictureCounty.get(i).getCountyName().equals( listPictureTown.get(j).getCountyName() ) ){
+                                //设置一个镇级别数据的集合来装县对应的镇级别的所有数据
+                                PictureFull pictureFullTowm = new PictureFull();
+                                pictureFullTowm.setName(listPictureTown.get(j).getTownName());
+                                pictureFullTowm.setLevel(listPictureTown.get(j).getLevel());
+                                pictureFullTowm.setNum(listPictureTown.get(j).getNum());
+                                List<PictureFull> listVillage = new ArrayList<PictureFull>();
+                                for(int k = 0; k < listPictureVillage.size();k++){
+                                    if( listPictureTown.get(j).getTownName()!=null ){
+                                        if( listPictureTown.get(j).getTownName().equals( listPictureVillage.get(k).getTownName() ) ){
+                                            PictureFull pictureFullVillage = new PictureFull();
+                                            pictureFullVillage.setName(listPictureVillage.get(k).getVillageName());
+                                            pictureFullVillage.setLevel(listPictureVillage.get(k).getLevel());
+                                            pictureFullVillage.setNum(listPictureVillage.get(k).getNum());
+                                            listVillage.add(pictureFullVillage);
+                                        }
+                                    }
+                                }
+                                pictureFullTowm.setListChild(listVillage);
+                                listTown.add(pictureFullTowm);
                             }
-
                         }
-                        pictureFullTowm.setListChild(listVillage);
-                        listTown.add(pictureFullTowm);
                     }
+                    //这个集合的属性是需要去遍历镇级别的数据
+                    pictureFull.setListChild(listTown);
+                    //将对象添加进集合
+                    listPictureResult.add(pictureFull);
+                    map.put("result", listPictureResult);
                 }
-                //这个集合的属性是需要去遍历镇级别的数据
-                pictureFull.setListChild(listTown);
-                //将对象添加进集合
-                listPictureResult.add(pictureFull);
-                map.put("result", listPictureResult);
-            }
+                }
         } else {
             map.put("result", "数据库中没有信息！");
         }

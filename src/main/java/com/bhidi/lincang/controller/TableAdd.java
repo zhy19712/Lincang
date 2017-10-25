@@ -56,7 +56,7 @@ public class TableAdd {
 
 
             //定义列名
-            String[] cols = {"FID","TABLE_TYPE","NAME", "RESERVOIR", "TO_DISTRICT","INTERVIEWER","CREATED_AT"};
+            String[] cols = {"FID","TABLE_TYPE","NAME", "RESERVOIR", "FROM_DISTRICT","INTERVIEWER","CREATED_AT"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -74,7 +74,7 @@ public class TableAdd {
                 sArray.add(" TABLE_TYPE like '%" + searchValue + "%'");
                 sArray.add(" NAME like '%" + searchValue + "%'");
                 sArray.add(" RESERVOIR like '%" + searchValue + "%'");
-                sArray.add(" m.TO_DISTRICT like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_DISTRICT like '%" + searchValue + "%'");
                 sArray.add(" INTERVIEWER like '%" + searchValue + "%'");
                 sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             }
@@ -102,7 +102,7 @@ public class TableAdd {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
+                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.FROM_DISTRICT,'')as FROM_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -120,7 +120,7 @@ public class TableAdd {
                                 rs.getString("TABLE_TYPE"),
                                 rs.getString("NAME"),
                                 rs.getString("RESERVOIR"),
-                                rs.getString("TO_DISTRICT"),
+                                rs.getString("FROM_DISTRICT"),
                                 rs.getString("INTERVIEWER"),
                                 rs.getString("CREATED_AT")));
                 }

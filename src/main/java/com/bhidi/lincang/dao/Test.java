@@ -26,7 +26,7 @@ public class Test {
         if( list == null ){
             System.out.println("null");
         }
-        System.out.println(list);
+        System.out.println("".equals(null));
     }
 
 }
