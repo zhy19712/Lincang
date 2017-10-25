@@ -35,7 +35,7 @@ $(function () {
              $.each(data.people,function (i,n) {
                  if(n.master == 1){
                      $("#reservoir").val(n.reservoir);
-                     $("#householder").val(n.relation);
+                     $("#householder").val(n.name);
                      $("#number").val(n.phone);
                      $("#place").val(n.location);
                      if(n.prop == 1){
