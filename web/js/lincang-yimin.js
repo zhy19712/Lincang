@@ -657,7 +657,7 @@ $(function(){
                 	{"data": "FID"},
 					{"data": "NAME"},
 					{"data": "RESERVOIR"},
-					{"data": "TO_DISTRICT"},
+					{"data": "FROM_DISTRICT"},
 					{"data": "INTERVIEWER"},
 					{"data": "CREATED_AT"},
 					{"data": null}
@@ -727,7 +727,7 @@ $(function(){
             {"data": "FID"},
             {"data": "NAME"},
             {"data": "RESERVOIR"},
-            {"data": "TO_DISTRICT"},
+            {"data": "FROM_DISTRICT"},
             {"data": "INTERVIEWER"},
             {"data": "CREATED_AT"},
             {"data": null}
