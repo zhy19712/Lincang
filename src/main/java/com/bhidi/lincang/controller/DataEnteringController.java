@@ -139,12 +139,12 @@ public class DataEnteringController {
         if ( moveNum > 0 ) {
             if ("库区安置登记表".equals(type)) {
                 move.setFid("KQ" + sdf.format(date));
-                move.setFrom_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
-                move.setFrom_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
-                move.setFrom_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
-                move.setFrom_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
-                move.setFrom_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
-                move.setFrom_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
+                move.setTo_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
+                move.setTo_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
+                move.setTo_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
+                move.setTo_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
+                move.setTo_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
+                move.setTo_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
             }
             if ("移民搬迁登记表".equals(type)) {
                 move.setFid("BQ" + sdf.format(date));
