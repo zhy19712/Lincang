@@ -1426,52 +1426,52 @@ public class ExcelServiceImp implements ExcelServiceInf{
         Row rowLeave = firstSheet.getRow(firstSheetendRow + 2);
         //州市
         Cell cellLeave2 = rowLeave.getCell(1);
-        String from_city ="";
+        String to_city ="";
         if( cellLeave2 != null ){
             cellLeave2.setCellType(Cell.CELL_TYPE_STRING);
-            from_city = cellLeave2.getStringCellValue();
+            to_city = cellLeave2.getStringCellValue();
         }
-        System.out.println(from_city);
+        System.out.println(to_city);
         //区县
         Cell cellLeave3 = rowLeave.getCell(2);
-        String from_district = "";
+        String to_district = "";
         if( cellLeave3 != null ){
             cellLeave3.setCellType(Cell.CELL_TYPE_STRING);
-            from_district = cellLeave3.getStringCellValue();
+            to_district = cellLeave3.getStringCellValue();
         }
-        System.out.println(from_district);
+        System.out.println(to_district);
         //乡镇
         Cell cellLeave4 = rowLeave.getCell(3);
-        String from_town = "";
+        String to_town = "";
         if( cellLeave4 != null ){
             cellLeave4.setCellType(Cell.CELL_TYPE_STRING);
-            from_town = cellLeave4.getStringCellValue();
+            to_town = cellLeave4.getStringCellValue();
         }
-        System.out.println(from_town);
+        System.out.println(to_town);
         //村
         Cell cellLeave5 = rowLeave.getCell(4);
-        String from_village ="";
+        String to_village ="";
         if( cellLeave5 != null ){
             cellLeave5.setCellType(Cell.CELL_TYPE_STRING);
-            from_village = cellLeave5.getStringCellValue();
+            to_village = cellLeave5.getStringCellValue();
         }
-        System.out.println(from_village);
+        System.out.println(to_village);
         //组
         Cell cellLeave6 = rowLeave.getCell(5);
-        String from_group = "";
+        String to_group = "";
         if( cellLeave6 != null ){
             cellLeave6.setCellType(Cell.CELL_TYPE_STRING);
-            from_group = cellLeave6.getStringCellValue();
+            to_group = cellLeave6.getStringCellValue();
         }
-        System.out.println(from_group);
+        System.out.println(to_group);
         //迁出备注
         Cell cellLeave7 = rowLeave.getCell(6);
-        String from_remark ="";
+        String to_remark ="";
         if( cellLeave7 != null ){
             cellLeave7.setCellType(Cell.CELL_TYPE_STRING);
-            from_remark = cellLeave7.getStringCellValue();
+            to_remark = cellLeave7.getStringCellValue();
         }
-        System.out.println(from_remark);
+        System.out.println(to_remark);
         /*//迁入行
         Row rowTo= firstSheet.getRow(firstSheetendRow + 3);
         //州市
@@ -1520,18 +1520,18 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //new一个对象出来，将这些数据注入
         Move move = new Move();
         move.setFid(fid);
-        move.setFrom_city(from_city);
+        /*move.setTo_city(from_city);
         move.setFrom_district(from_district);
         move.setFrom_town(from_town);
         move.setFrom_village(from_village);
         move.setFrom_group(from_group);
-        move.setFrom_remark(from_remark);
-       /* move.setTo_city(to_city);
+        move.setFrom_remark(from_remark);*/
+        move.setTo_city(to_city);
         move.setTo_district(to_district);
         move.setTo_town(to_town);
         move.setTo_village(to_village);
         move.setTo_group(to_group);
-        move.setTo_remark(to_remark);*/
+        move.setTo_remark(to_remark);
         //调用Dao层的方法插入数据库
         Integer intResultOfMove =0;
         if( move != null ){
