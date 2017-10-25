@@ -209,6 +209,7 @@
         var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         id = encodeURI(encodeURI(id));
+        if(table_kind == "")
         window.open("/anzhi_detail.jsp?kind=" + kind + "&id=" + id);
     }
 </script>
