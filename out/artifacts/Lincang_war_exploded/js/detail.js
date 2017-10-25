@@ -19,13 +19,14 @@ $(function () {
         data: {fid:id1},
         dataType: "json",
         success: function (data) {
+            console.log(data);
             //银行账户信息
              $("#bank-user").val(data.bank.account_name);
              $("#bank-number").val(data.bank.account_number);
              $("#bank-name").val(data.bank.account_number);
              //人员信息
              $.each(data.people,function (i,n) {
-                 if(n.master == 1){
+                 if(n.master == "户主"){
                      $("#reservoir").val(n.reservoir);
                      $("#householder").val(n.relation);
                      $("#number").val(n.phone);
@@ -50,80 +51,80 @@ $(function () {
                      $("#time").val(n.created_at);
                  }
                 if(i == 0){
-                     $("#home_people1 td:first-child").val(n.name);
-                     $("#home_people1 td:nth-child(2)").val(n.pid);
-                     $("#home_people1 td:nth-child(3)").val(n.gender);
-                     $("#home_people1 td:nth-child(4)").val(n.race);
-                     $("#home_people1 td:nth-child(5)").val(n.relation);
-                     $("#home_people1 td:nth-child(6)").val(n.education);
-                     $("#home_people1 td:nth-child(7)").val(n.profession);
+                     $("#home_people1 td:first-child input").val(n.name);
+                     $("#home_people1 td:nth-child(2) input").val(n.pid);
+                     $("#home_people1 td:nth-child(3) input").val(n.gender);
+                     $("#home_people1 td:nth-child(4) input").val(n.race);
+                     $("#home_people1 td:nth-child(5) input").val(n.relation);
+                     $("#home_people1 td:nth-child(6) input").val(n.education);
+                     $("#home_people1 td:nth-child(7) input").val(n.profession);
                 }else if(i == 1){
-                    $("#home_people2 td:first-child").val(n.name);
-                    $("#home_people2 td:nth-child(2)").val(n.pid);
-                    $("#home_people2 td:nth-child(3)").val(n.gender);
-                    $("#home_people2 td:nth-child(4)").val(n.race);
-                    $("#home_people2 td:nth-child(5)").val(n.relation);
-                    $("#home_people2 td:nth-child(6)").val(n.education);
-                    $("#home_people2 td:nth-child(7)").val(n.profession);
+                    $("#home_people2 td:first-child input").val(n.name);
+                    $("#home_people2 td:nth-child(2) input").val(n.pid);
+                    $("#home_people2 td:nth-child(3) input").val(n.gender);
+                    $("#home_people2 td:nth-child(4) input").val(n.race);
+                    $("#home_people2 td:nth-child(5) input").val(n.relation);
+                    $("#home_people2 td:nth-child(6) input").val(n.education);
+                    $("#home_people2 td:nth-child(7) input").val(n.profession);
                 }else if(i == 2){
-                    $("#home_people3 td:first-child").val(n.name);
-                    $("#home_people3 td:nth-child(2)").val(n.pid);
-                    $("#home_people3 td:nth-child(3)").val(n.gender);
-                    $("#home_people3 td:nth-child(4)").val(n.race);
-                    $("#home_people3 td:nth-child(5)").val(n.relation);
-                    $("#home_people3 td:nth-child(6)").val(n.education);
-                    $("#home_people3 td:nth-child(7)").val(n.profession);
+                    $("#home_people3 td:first-child input").val(n.name);
+                    $("#home_people3 td:nth-child(2) input").val(n.pid);
+                    $("#home_people3 td:nth-child(3) input").val(n.gender);
+                    $("#home_people3 td:nth-child(4) input").val(n.race);
+                    $("#home_people3 td:nth-child(5) input").val(n.relation);
+                    $("#home_people3 td:nth-child(6) input").val(n.education);
+                    $("#home_people3 td:nth-child(7) input").val(n.profession);
                 }else if(i == 3){
-                    $("#home_people4 td:first-child").val(n.name);
-                    $("#home_people4 td:nth-child(2)").val(n.pid);
-                    $("#home_people4 td:nth-child(3)").val(n.gender);
-                    $("#home_people4 td:nth-child(4)").val(n.race);
-                    $("#home_people4 td:nth-child(5)").val(n.relation);
-                    $("#home_people4 td:nth-child(6)").val(n.education);
-                    $("#home_people4 td:nth-child(7)").val(n.profession);
+                    $("#home_people4 td:first-child input").val(n.name);
+                    $("#home_people4 td:nth-child(2) input").val(n.pid);
+                    $("#home_people4 td:nth-child(3) input").val(n.gender);
+                    $("#home_people4 td:nth-child(4) input").val(n.race);
+                    $("#home_people4 td:nth-child(5) input").val(n.relation);
+                    $("#home_people4 td:nth-child(6) input").val(n.education);
+                    $("#home_people4 td:nth-child(7) input").val(n.profession);
                 }
              });
 
              //所在地
-            $("#city td:nth-child(1)").val(data.move.to_city);
-            $("#city td:nth-child(2)").val(data.move.to_disirict);
-            $("#city td:nth-child(3)").val(data.move.to_town);
-            $("#city td:nth-child(4)").val(data.move.to_village);
-            $("#city td:nth-child(5)").val(data.move.to_group);
-            $("#city td:nth-child(6)").val(data.move.to_remake);
+            $("#city td:nth-child(1) input").val(data.move.to_city);
+            $("#city td:nth-child(2) input").val(data.move.to_disirict);
+            $("#city td:nth-child(3) input").val(data.move.to_town);
+            $("#city td:nth-child(4) input").val(data.move.to_village);
+            $("#city td:nth-child(5) input").val(data.move.to_group);
+            $("#city td:nth-child(6) input").val(data.move.to_remake);
 
             //迁入地
-            $("#city1 td:nth-child(1)").val(data.move.to_city);
-            $("#city1 td:nth-child(2)").val(data.move.to_disirict);
-            $("#city1 td:nth-child(3)").val(data.move.to_town);
-            $("#city1 td:nth-child(4)").val(data.move.to_village);
-            $("#city1 td:nth-child(5)").val(data.move.to_group);
-            $("#city1 td:nth-child(6)").val(data.move.to_remake);
+            $("#city1 td:nth-child(1) input").val(data.move.to_city);
+            $("#city1 td:nth-child(2) input").val(data.move.to_disirict);
+            $("#city1 td:nth-child(3) input").val(data.move.to_town);
+            $("#city1 td:nth-child(4) input").val(data.move.to_village);
+            $("#city1 td:nth-child(5) input").val(data.move.to_group);
+            $("#city1 td:nth-child(6) input").val(data.move.to_remake);
 
             //迁出地
-            $("#city2 td:nth-child(1)").val(data.move.from_city);
-            $("#city2 td:nth-child(2)").val(data.move.from_disirict);
-            $("#city2 td:nth-child(3)").val(data.move.from_town);
-            $("#city2 td:nth-child(4)").val(data.move.from_village);
-            $("#city2 td:nth-child(5)").val(data.move.from_group);
-            $("#city2 td:nth-child(6)").val(data.move.from_remake);
+            $("#city2 td:nth-child(1) input").val(data.move.from_city);
+            $("#city2 td:nth-child(2) input").val(data.move.from_disirict);
+            $("#city2 td:nth-child(3) input").val(data.move.from_town);
+            $("#city2 td:nth-child(4) input").val(data.move.from_village);
+            $("#city2 td:nth-child(5) input").val(data.move.from_group);
+            $("#city2 td:nth-child(6) input").val(data.move.from_remake);
 
             //房子信息
-            $("#main td:nth-child(2)").val(data.house.main_size);
-            $("#main td:nth-child(3)").val(data.house.main_structure1);
-            $("#main td:nth-child(4)").val(data.house.main_structure2);
-            $("#main td:nth-child(5)").val(data.house.main_structure3);
-            $("#main td:nth-child(6)").val(data.house.main_structure4);
-            $("#main td:nth-child(7)").val(data.house.main_structure5);
-            $("#main td:nth-child(8)").val(data.house.main_remark);
+            $("#main td:nth-child(2) input").val(data.house.main_size);
+            $("#main td:nth-child(3) input").val(data.house.main_structure1);
+            $("#main td:nth-child(4) input").val(data.house.main_structure2);
+            $("#main td:nth-child(5) input").val(data.house.main_structure3);
+            $("#main td:nth-child(6) input").val(data.house.main_structure4);
+            $("#main td:nth-child(7) input").val(data.house.main_structure5);
+            $("#main td:nth-child(8) input").val(data.house.main_remark);
 
-            $("#sub td:nth-child(2)").val(data.house.sub_size);
-            $("#sub td:nth-child(3)").val(data.house.sub_structure1);
-            $("#sub td:nth-child(4)").val(data.house.sub_structure2);
-            $("#sub td:nth-child(5)").val(data.house.sub_structure3);
-            $("#sub td:nth-child(6)").val(data.house.sub_structure4);
-            $("#sub td:nth-child(7)").val(data.house.sub_structure5);
-            $("#sub td:nth-child(8)").val(data.house.sub_remark);
+            $("#sub td:nth-child(2) input").val(data.house.sub_size);
+            $("#sub td:nth-child(3) input").val(data.house.sub_structure1);
+            $("#sub td:nth-child(4) input").val(data.house.sub_structure2);
+            $("#sub td:nth-child(5) input").val(data.house.sub_structure3);
+            $("#sub td:nth-child(6) input").val(data.house.sub_structure4);
+            $("#sub td:nth-child(7) input").val(data.house.sub_structure5);
+            $("#sub td:nth-child(8) input").val(data.house.sub_remark);
 
 
         }
