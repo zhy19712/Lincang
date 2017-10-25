@@ -399,6 +399,7 @@ td{
   width: 96%;
   border: none;
   outline: none;
+  text-align: center;
 }
 .bgc{
   background-color: #f2f2f2;

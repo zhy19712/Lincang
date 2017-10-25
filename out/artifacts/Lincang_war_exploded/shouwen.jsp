@@ -1417,8 +1417,8 @@
 
     function newForm() {
 
-//        $('#money_apply_wdo').modal('show');
-          $('#select_model').modal('show');
+        $('#money_apply_wdo').modal('show');
+//          $('#select_model').modal('show');
     }
     var flag = false;
     $("#first").click(function () {

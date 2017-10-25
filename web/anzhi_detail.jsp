@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/lincang-yimin.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.jedate.js"></script>
     <script src="js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
@@ -458,7 +459,6 @@
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-bounce-to-bottom button">关闭</a></li>
     </ul>
 </form>
 </body>
