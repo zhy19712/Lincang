@@ -83,6 +83,15 @@
             border: none;
             resize: none;
         }
+        #sel_model{
+            font-size: 0px;
+        }
+        #sel_model>div{
+            width: 50%;
+            display: inline-block;
+            vertical-align: top;
+            font-size: 14px;
+        }
     </style>
 
 
@@ -534,15 +543,61 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="tree_container">
-                    <ul>
-                        <li data-jstree='{"opened":true}'>Root node
+                <div id="sel_model">
+                    <div id="model">
+                        <p>选择模版</p>
+                        <select name="" id="sel1">
+                            <option>直接处理</option>
+                            <option>文件拟办单</option>
+                            <option>一科室提意见</option>
+                            <option>两科室提意见</option>
+                        </select>
+                    </div>
+                    <div id="sel_people">
+                        <p>选择处理人</p>
+                        <div id="tree_container">
                             <ul>
-                                <li>Child node 1</li>
-                                <li>Child node 2</li>
+                                <li data-jstree='{"opened":true}'>办公室
+                                    <ul>
+                                        <li>办公室1</li>
+                                        <li>办公室2</li>
+                                    </ul>
+                                </li>
                             </ul>
-                        </li>
-                    </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>科室1
+                                    <ul>
+                                        <li>科室1_1</li>
+                                        <li>科室1_2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>科室2
+                                    <ul>
+                                        <li>科室2_1</li>
+                                        <li>科室2_2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>分管领导
+                                    <ul>
+                                        <li>分管领导1</li>
+                                        <li>分管领导2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>主管领导
+                                    <ul>
+                                        <li>主管领导1</li>
+                                        <li>主管领导2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
@@ -670,7 +725,7 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="js/jstree.min.js"></script>
+<script src="js/jstree.js"></script>
 <script src="js/money.js"></script>
 <script>
 
@@ -695,6 +750,19 @@
         $("#add_file_"+fileIndex).click();
     }
 
+//    $("#tree_container>ul>li").attr({"aria-expanded":false,"class":"jstree-node jstree-closed"});
+
+    //处理人集合
+    var people_arr = [];
+    $("#select_model .btn-primary").click(function () {
+        people_arr = []
+        $.each($("#tree_container .jstree-leaf"),function (i,n) {
+            if($(n).attr("aria-selected") == "true"){
+                people_arr.push($(n).text())
+            }
+        })
+        console.log(people_arr)
+    })
     function add(index) {
         /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
         var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
