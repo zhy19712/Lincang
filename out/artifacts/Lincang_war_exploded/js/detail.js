@@ -262,7 +262,7 @@ $(function () {
     $("#time").jeDate({
         format: "YYYY-MM-DD"
     });
-    
+
     //表单提交
     $("#btn-container li:first-child").click(function () {
         var kind = $("#kind").text();
