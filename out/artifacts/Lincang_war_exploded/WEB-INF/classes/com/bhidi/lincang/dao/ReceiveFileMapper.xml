@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.ReceiveFileMapper">
+    <!--List<PictureCounty> queryCountyInfo();-->
+    <select id="queryCountyInfo" resultType="com.bhidi.lincang.bean.PictureCounty">
+        SELECT COUNT(p.name) as NUM,FROM_DISTRICT as countyName
+        FROM move m inner join people p
+        on m.`FID` = p.`FID` GROUP BY m.`FROM_DISTRICT`
+    </select>
+
+    <!--List<PictureCounty> queryTownInfo();-->
+    <select id="queryTownInfo" resultType="com.bhidi.lincang.bean.PictureTown">
+        SELECT FROM_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName
+        FROM move m inner join people p
+        on m.`FID` = p.`FID` GROUP BY m.`FROM_DISTRICT`,m.FROM_TOWN
+    </select>
+   <!-- List<PictureVillage> queryVillageInfo();-->
+    <select id="queryVillageInfo" resultType="com.bhidi.lincang.bean.PictureVillage">
+        SELECT FROM_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName,FROM_VILLAGE as villageName
+        FROM move m inner join people p
+        on m.`FID` = p.`FID` GROUP BY m.`FROM_DISTRICT`,m.FROM_TOWN,m.FROM_VILLAGE
+    </select>
+
+</mapper>
