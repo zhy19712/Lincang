@@ -358,7 +358,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post"
+                <form id = "fileForm" action="/reveiceFileRegistration.do" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
@@ -568,7 +568,7 @@
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">处理情况</td>
-                            <td colspan="9"><textarea name="chuli" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
                         </tr>
                         </tbody>
                     </table>

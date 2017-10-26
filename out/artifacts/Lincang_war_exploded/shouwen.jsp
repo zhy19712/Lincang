@@ -358,7 +358,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post"
+                <form id = "fileForm" action="/reveiceFileRegistration.do" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">

@@ -15,7 +15,8 @@ public class ReceiveFileController {
     @RequestMapping(value="/reveiceFileRegistration",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public String reveiceFileRegistration(HttpSession session, ReceiveFileAhead rfa){
         //获取当前用户
-
+        /*User user = (com.bhidi.lincang.bean.User)session.getAttribute("user");
+*/
         System.out.println(rfa.getYear());
         return "";
     }
