@@ -84,15 +84,46 @@
             resize: none;
         }
         #sel_model{
-            font-size: 0px;
             width: 96%;
             margin: 0 auto;
+            font-size: 0;
+            /*position: relative;*/
         }
         #sel_model>div{
-            width: 50%;
             display: inline-block;
             vertical-align: top;
+            width: 50%;
             font-size: 14px;
+        }
+
+        /*#sel_model>div{*/
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*left: 50%;*/
+            /*width: 50%;*/
+        /*}*/
+        /*#sel_model>div:first-child{*/
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            /*width: 50%;*/
+            /*font-size: 14px;*/
+        /*}*/
+        #select_people{
+            padding-left: 0;
+            line-height: 20px;
+        }
+        #select_people li{
+            list-style: none;
+            margin-top: 5px;
+        }
+        #select_people li:nth-child(2),#select_people li:nth-child(3){
+            display: none;
+        }
+        #select_people li span{
+            display: inline-block;
+            vertical-align: middle;
+            width: 150px;
         }
     </style>
 
@@ -554,9 +585,18 @@
                             <option>一科室提意见</option>
                             <option>两科室提意见</option>
                         </select>
+                        <ul id="select_people">
+                            <li><span>选择办公室处理人</span><input type="text"></li>
+                            <li><span>选择科室1处理人</span><input type="text"></li>
+                            <li><span>选择科室2处理人</span><input type="text"></li>
+                            <li><span>选择分管领导处理人</span><input type="text"></li>
+                            <li><span>选择主管领导处理人</span><input type="text"></li>
+                            <li><span>选择最终处理人</span><input type="text"></li>
+                            <li><span>选择归档人</span><input type="text"></li>
+                        </ul>
                     </div>
                     <div id="sel_people">
-                        <p>选择处理人</p>
+                        <p>选择办公室处理人</p>
                         <div id="tree_container">
                             <ul>
                                 <li data-jstree='{"opened":true}'>办公室
@@ -599,6 +639,7 @@
                                 </li>
                             </ul>
                         </div>
+                        <button>确认</button>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -754,17 +795,7 @@
 
 //    $("#tree_container>ul>li").attr({"aria-expanded":false,"class":"jstree-node jstree-closed"});
 
-    //处理人集合
-    var people_arr = [];
-    $("#select_model .btn-primary").click(function () {
-        people_arr = []
-        $.each($("#tree_container .jstree-leaf"),function (i,n) {
-            if($(n).attr("aria-selected") == "true"){
-                people_arr.push($(n).text())
-            }
-        })
-        console.log(people_arr)
-    })
+
     function add(index) {
         /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
         var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
@@ -789,133 +820,44 @@
         $("#fileForm").submit();
     })
 
-    //待处理
-    var sta1 = "市局规划科处理中";
-    var dcl_table = $('#dcl_table').DataTable({
-        ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "id"},
-            {"data": "title"},
-            {"data": "create_time"},
-            {"data": "report_person"},
-            {"data": "initiatorclass"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
+    //选择模版
+    $("#sel1").change(function () {
+        if($(this).val() == "一科室提意见"){
+            $("#select_people li:nth-child(2)").css("display","block");
+            $("#select_people li:nth-child(3)").css("display","none");
+        }else if($(this).val() == "两科室提意见"){
+            $("#select_people li:nth-child(2)").css("display","block");
+            $("#select_people li:nth-child(3)").css("display","block");
+        }else {
+            $("#select_people li:nth-child(2)").css("display","none");
+            $("#select_people li:nth-child(3)").css("display","none");
         }
     });
+    //选择处理人
+    $("#select_people li input").focus(function () {
+        var text = $(this).siblings("span").text();
+        $("#sel_people>p").text(text);
+    })
 
-    //已处理
-    var sta2 = "已通知区县";
-    var ycl_table = $('#ycl_table').DataTable({
-        ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "id"},
-            {"data": "title"},
-            {"data": "create_time"},
-            {"data": "report_person"},
-            {"data": "initiatorclass"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
+    //处理人集合
+    var people_arr = [];
+    $("#select_model .btn-primary").click(function () {
+        people_arr = []
+        $.each($("#tree_container .jstree-leaf"),function (i,n) {
+            if($(n).attr("aria-selected") == "true"){
+                people_arr.push($(n).text())
             }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
+        })
+        console.log(people_arr)
+    })
 
     var status,username;
     ~function() {
 
         status = $("#status").text();
         username = $("#username").text();
-        $("#user1").val("123");
+        $("#user1").val(username);
 
-
-        if(status == 2){
-            $("#header1").remove();
-            $("#m_apply1").remove();
-            $("#new1").remove();
-            $("#dcl").addClass("active");
-            $("#new2").addClass("active");
-            sta1 = "市局财务科处理中,市局财务科转账中";
-            sta2 = "已通知区县,市局规划科处理中,区县资金流向录入";
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-
-        }else if(status == 3){
-            $("#night").addClass("last");
-            $("#kind1").text("资金申请");
-            $("#kind2").text("资金申请");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
-            sta1 = "区县资金流向录入";
-            sta2 = "区县资金流向明细";
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-        }else if(status == 1){
-            $("#night").removeClass("last");
-            sta1 = "市局规划科处理中,市局规划科批复中";
-            sta2 = "已通知区县,市局财务科转账中";
-            console.log(sta1);
-            $("#kind1").text("市局资金计划上报");
-            $("#kind2").text("市局资金计划上报");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-        }
 
     }();
 
@@ -933,9 +875,9 @@
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
-//        console.log($("#user1").val())
-          $('#select_model').modal('show');
+        $('#shouwen_wdo').modal('show');
+        console.log($("#user1").val());
+//          $('#select_model').modal('show');
     }
     var flag = false;
     $("#first").click(function () {
