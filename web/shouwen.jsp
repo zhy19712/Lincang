@@ -51,7 +51,7 @@
             width: 96%;
             margin: 0 auto;
         }
-        #title{
+        .title{
             text-align: center;
             font-weight: 700;
             margin: 10px 0;
@@ -95,20 +95,6 @@
             width: 50%;
             font-size: 14px;
         }
-
-        /*#sel_model>div{*/
-            /*position: absolute;*/
-            /*top: 0;*/
-            /*left: 50%;*/
-            /*width: 50%;*/
-        /*}*/
-        /*#sel_model>div:first-child{*/
-            /*position: absolute;*/
-            /*top: 0;*/
-            /*left: 0;*/
-            /*width: 50%;*/
-            /*font-size: 14px;*/
-        /*}*/
         #select_people{
             padding-left: 0;
             line-height: 20px;
@@ -124,6 +110,17 @@
             display: inline-block;
             vertical-align: middle;
             width: 150px;
+        }
+        #model_container{
+            width: 96%;
+            margin: 0 auto;
+            position: relative;
+            height: 500px;
+        }
+        #model_container>div{
+            position: absolute;
+            top: 0;
+            left: 0;
         }
     </style>
 
@@ -365,7 +362,7 @@
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
-                        <p id="title">收文登记</p>
+                        <p class="title">收文登记</p>
                         <input id="user1" type="text" name="user" value="" style="display: none;">
                         <table>
                             <tbody>
@@ -586,13 +583,13 @@
                             <option>两科室提意见</option>
                         </select>
                         <ul id="select_people">
-                            <li><span>选择办公室处理人</span><input type="text"></li>
-                            <li><span>选择科室1处理人</span><input type="text"></li>
-                            <li><span>选择科室2处理人</span><input type="text"></li>
-                            <li><span>选择分管领导处理人</span><input type="text"></li>
-                            <li><span>选择主管领导处理人</span><input type="text"></li>
-                            <li><span>选择最终处理人</span><input type="text"></li>
-                            <li><span>选择归档人</span><input type="text"></li>
+                            <li><span>选择办公室处理人</span><input type="text" id="bangongshi"></li>
+                            <li><span>选择科室1处理人</span><input type="text" id="keshi1"></li>
+                            <li><span>选择科室2处理人</span><input type="text" id="keshi2"></li>
+                            <li><span>选择分管领导处理人</span><input type="text" id="fenguan"></li>
+                            <li><span>选择主管领导处理人</span><input type="text" id="zhuguan"></li>
+                            <li><span>选择办理人</span><input type="text" id="banli"></li>
+                            <li><span>选择归档人</span><input type="text" readonly="readonly" value="办公室1,办公室2" id="guidang"></li>
                         </ul>
                     </div>
                     <div id="sel_people">
@@ -641,6 +638,90 @@
                         </div>
                         <button>确认</button>
                     </div>
+                </div>
+                <div id="model_container">
+                    <%--<div id="model1">--%>
+                        <%--<p class="title"><input type="text" value="临沧市移民局文件处理笺"></p>--%>
+                        <%--<table>--%>
+                            <%--<tbody>--%>
+                            <%--<tr>--%>
+                                <%--<td>收文号</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                                <%--<td>来文机关</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                                <%--<td>来文号</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                                <%--<td>缓急</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                                <%--<td>密级</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                                <%--<td>份数</td>--%>
+                                <%--<td><input type="text"></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td>文件标题</td>--%>
+                                <%--<td colspan="11"><input type="text"></td>--%>
+                            <%--</tr>--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td rowspan="4" colspan="1">拟办意见</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><p style="height: 20px;line-height: 20px;">呈：<input type="text" style="width:70px;line-height: 20px;font-size:16px;text-align: center;">阅知</p></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text">阅知</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="11">局办公室<br>xxx年xx月xx日</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--<tr>--%>
+                                <%--<td class="middle">拟办意见</td>--%>
+                                <%--<td colspan="11">--%>
+                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td class="middle">主要领导批示</td>--%>
+                                <%--<td colspan="11">--%>
+                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td class="middle">办理结果</td>--%>
+                                <%--<td colspan="11">--%>
+                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td class="middle">分管领导批示</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="11">&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td rowspan="3" class="middle">办理结果</td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="5" rowspan="3"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                            <%--</tbody>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+                    <%--<div id="model2"></div>--%>
+                    <%--<div id="model3"></div>--%>
+                    <%--<div id="model4"></div>--%>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
@@ -817,6 +898,7 @@
     }
     //收文登记
     $("#shouwen_wdo .btn-primary").click(function () {
+        alert(123)
         $("#fileForm").submit();
     })
 
@@ -841,14 +923,28 @@
 
     //处理人集合
     var people_arr = [];
-    $("#select_model .btn-primary").click(function () {
+    $("#sel_people button").click(function () {
         people_arr = []
         $.each($("#tree_container .jstree-leaf"),function (i,n) {
             if($(n).attr("aria-selected") == "true"){
                 people_arr.push($(n).text())
             }
         })
-        console.log(people_arr)
+        var people = people_arr.toString();
+        var peole_kind = $("#sel_people>p").text();
+        if(peole_kind == "选择办公室处理人"){
+            $("#bangongshi").val(people);
+        }else if(peole_kind == "选择科室1处理人"){
+            $("#keshi1").val(people);
+        }else if(peole_kind == "选择科室2处理人"){
+            $("#keshi2").val(people);
+        }else if(peole_kind == "选择分管领导处理人"){
+            $("#fenguan").val(people);
+        }else if(peole_kind == "选择主管领导处理人"){
+            $("#zhuguan").val(people);
+        }else if(peole_kind == "选择办理人"){
+            $("#banli").val(people);
+        }
     })
 
     var status,username;
