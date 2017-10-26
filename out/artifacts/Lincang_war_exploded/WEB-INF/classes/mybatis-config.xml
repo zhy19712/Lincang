@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration SYSTEM "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	<settings>
+		<setting name="callSettersOnNulls" value="true"/> <!-- 返回空字段 -->
+	</settings>
+	<mappers>
+		<package name="com/bhidi/lincang/dao" />
+	</mappers>
+</configuration>

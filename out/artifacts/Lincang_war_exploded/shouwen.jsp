@@ -361,7 +361,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post"
+                <form id = "fileForm" action="/reveiceFileRegistration.do" method="post"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
@@ -371,7 +371,7 @@
                             <tbody>
                             <tr>
                                 <td>年度</td>
-                                <td><input type="text" name="niandu"></td>
+                                <td><input type="text" name="year"></td>
                                 <td>保管期限</td>
                                 <td><select name="qixian">
                                     <option value="1个月">1个月</option>
@@ -817,6 +817,7 @@
     }
     //收文登记
     $("#shouwen_wdo .btn-primary").click(function () {
+        alert("123")
         $("#fileForm").submit();
     })
 
@@ -876,7 +877,7 @@
     function newForm() {
 
         $('#shouwen_wdo').modal('show');
-        console.log($("#user1").val())
+        console.log($("#user1").val());
 //          $('#select_model').modal('show');
     }
     var flag = false;

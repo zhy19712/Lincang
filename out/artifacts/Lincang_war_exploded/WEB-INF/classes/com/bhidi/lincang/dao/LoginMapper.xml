@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.LoginMapper">
+
+    <select id="queryUserByUsername" parameterType="Map" resultMap="UserResultMap">
+        select
+        id,
+        uid,
+        username,
+        pass as password,
+        name,
+        dept,
+        phone1,
+        phone2,
+        level,
+        created_at
+        from user where username= #{username} and pass = #{password}
+    </select>
+
+    <resultMap type="com.bhidi.lincang.bean.User" id="UserResultMap">
+        <id column="id" property="id"/>
+        <collection property="roleList" select="queryRoleNameByUserid" column="id" ofType="String">
+        </collection>
+        <collection property="permissionList" select="queryPermissionName" column="id" ofType="String">
+        </collection>
+    </resultMap>
+
+    <select id="queryRoleNameByUserid" parameterType="Map" resultType="String">
+        select rolename from user_role ur,role r where ur.roleid = r.id and ur.userid = #{id}
+    </select>
+
+    <select id="queryPermissionName" parameterType="Map" resultType="String">
+        select authdescription from user_role ur,role r,role_privilege rp,privilege p
+        where ur.roleid = r.id and r.id = rp.roleid and rp.authorithid = p.id
+        and ur.userid = #{id}
+    </select>
+
+</mapper>
