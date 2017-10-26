@@ -1058,9 +1058,9 @@
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
-//        console.log($("#user1").val());
-          $('#select_model').modal('show');
+        $('#shouwen_wdo').modal('show');
+        console.log($("#user1").val());
+//          $('#select_model').modal('show');
     }
     var flag = false;
     $("#first").click(function () {
