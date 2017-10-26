@@ -114,13 +114,14 @@
         #model_container{
             width: 96%;
             margin: 0 auto;
-            position: relative;
-            height: 500px;
+            /*position: relative;*/
+            /*height: 500px;*/
         }
         #model_container>div{
-            position: absolute;
-            top: 0;
-            left: 0;
+            /*position: absolute;*/
+            /*top: 0;*/
+            /*left: 0;*/
+            width:100%;
         }
     </style>
 
@@ -640,85 +641,171 @@
                     </div>
                 </div>
                 <div id="model_container">
-                    <%--<div id="model1">--%>
-                        <%--<p class="title"><input type="text" value="临沧市移民局文件处理笺"></p>--%>
-                        <%--<table>--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td>收文号</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                                <%--<td>来文机关</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                                <%--<td>来文号</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                                <%--<td>缓急</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                                <%--<td>密级</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                                <%--<td>份数</td>--%>
-                                <%--<td><input type="text"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td>文件标题</td>--%>
-                                <%--<td colspan="11"><input type="text"></td>--%>
-                            <%--</tr>--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td rowspan="4" colspan="1">拟办意见</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><p style="height: 20px;line-height: 20px;">呈：<input type="text" style="width:70px;line-height: 20px;font-size:16px;text-align: center;">阅知</p></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text">阅知</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="11">局办公室<br>xxx年xx月xx日</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--<tr>--%>
-                                <%--<td class="middle">拟办意见</td>--%>
-                                <%--<td colspan="11">--%>
-                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td class="middle">主要领导批示</td>--%>
-                                <%--<td colspan="11">--%>
-                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td class="middle">办理结果</td>--%>
-                                <%--<td colspan="11">--%>
-                                    <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td class="middle">分管领导批示</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="11">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td rowspan="3" class="middle">办理结果</td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="5" rowspan="3"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
+                    <div id="model1">
+                        <p class="title"><input type="text" value="临沧市移民局文件处理笺"></p>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td>年度</td>
+                                <td><input type="text" name="niandu"></td>
+                                <td>保管期限</td>
+                                <td><select name="qixian">
+                                    <option value="1个月">1个月</option>
+                                    <option value="6个月">6个月</option>
+                                    <option value="1年">1年</option>
+                                    <option value="2年">2年</option>
+                                </select></td>
+                                <td>类别</td>
+                                <td colspan="2"><input type="text" name="leibie"></td>
+                                <td>来文日期</td>
+                                <td colspan="2"><input type="text" id="time1" readonly="readonly" name="laiwenriqi"></td>
+                            </tr>
+                            <tr>
+                                <td>文件编号</td>
+                                <td><input type="text" name="wenjianhao"></td>
+                                <td>登记号</td>
+                                <td><input type="text" name="dengjihao"></td>
+                                <td>全宗号</td>
+                                <td colspan="2"><input type="text" name="quanzonghao"></td>
+                                <td>成文日期</td>
+                                <td colspan="2"><input type="text" id="time2" readonly="readonly" name="chengwenriqi"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;">题名</td>
+                                <td colspan="9">
+                                    <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>上传附件</td>
+                                <td colspan="9"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                    <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td>主题词</td>
+                                <td colspan="5"><input type="text" name="zhuti"></td>
+                                <td>责任者</td>
+                                <td colspan="3"><input type="text" name="zeren"></td>
+                            </tr>
+                            <tr>
+                                <td>归档份数</td>
+                                <td><input type="text" name="guidangyeshu"></td>
+                                <td>页数</td>
+                                <td><input type="text" name="yeshu"></td>
+                                <td>密级</td>
+                                <td><input type="text" name="miji"></td>
+                                <td>机构问题</td>
+                                <td><input type="text" name="jigou"></td>
+                                <td>收件人</td>
+                                <td><input type="text" name="shoujianren"></td>
+                            </tr>
+                            <tr>
+                                <td>来文机关</td>
+                                <td colspan="5"><input type="text" name="laiwenjiguan"></td>
+                                <td>附件页数</td>
+                                <td colspan="3"><input type="text" name="fujianyeshu"></td>
+                            </tr>
+                            <tr>
+                                <td>实体分类号</td>
+                                <td><input type="text" name="shitihao"></td>
+                                <td>分发情况</td>
+                                <td colspan="3"><input type="text" name="fenfa"></td>
+                                <td>旧全宗</td>
+                                <td colspan="3"><input type="text" name="jiuquanzong"></td>
+                            </tr>
+                            <tr>
+                                <td>归档情况</td>
+                                <td><input type="text" name="guidangqingkuang"></td>
+                                <td>登记日期</td>
+                                <td colspan="3"><input type="text" id="time3" readonly="readonly" name="dengjiriqi"></td>
+                                <td>传阅情况</td>
+                                <td colspan="3"><input type="text" name="chuanyue"></td>
+                            </tr>
+                            <tr>
+                                <td style="vertical-align: middle;">处理情况</td>
+                                <td colspan="9"><textarea name="chuli" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                            <%--<table>--%>
+                                <%--<tbody>--%>
+                                <%--<tr>--%>
+                                    <%--<td>收文号</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                    <%--<td>来文机关</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                    <%--<td>来文号</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                    <%--<td>缓急</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                    <%--<td>密级</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                    <%--<td>份数</td>--%>
+                                    <%--<td><input type="text"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td>文件标题</td>--%>
+                                    <%--<td colspan="11"><input type="text"></td>--%>
+                                <%--</tr>--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td rowspan="4" colspan="1">拟办意见</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><p style="height: 20px;line-height: 20px;">呈：<input type="text" style="width:70px;line-height: 20px;font-size:16px;text-align: center;">阅知</p></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text">阅知</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="11" class="botttom_none"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="11">局办公室<br>xxx年xx月xx日</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--<tr>--%>
+                                    <%--<td class="middle">拟办意见</td>--%>
+                                    <%--<td colspan="11">--%>
+                                        <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="middle">主要领导批示</td>--%>
+                                    <%--<td colspan="11">--%>
+                                        <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="middle">办理结果</td>--%>
+                                    <%--<td colspan="11">--%>
+                                        <%--<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td class="middle">分管领导批示</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="11">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<textarea name="" id="" cols="30" rows="10" style="width: 99%;"></textarea>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td rowspan="3" class="middle">办理结果</td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="5" rowspan="3"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<tr>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<td colspan="2"><input type="text"></td>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</tr>&ndash;%&gt;--%>
+                                <%--</tbody>--%>
+                            <%--</table>--%>
+                    </div>
                     <%--<div id="model2"></div>--%>
                     <%--<div id="model3"></div>--%>
                     <%--<div id="model4"></div>--%>
@@ -971,9 +1058,9 @@
 
     function newForm() {
 
-        $('#shouwen_wdo').modal('show');
-        console.log($("#user1").val());
-//          $('#select_model').modal('show');
+//        $('#shouwen_wdo').modal('show');
+//        console.log($("#user1").val());
+          $('#select_model').modal('show');
     }
     var flag = false;
     $("#first").click(function () {
