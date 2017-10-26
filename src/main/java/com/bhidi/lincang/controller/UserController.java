@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class User {
+public class UserController {
     @ResponseBody
     @RequestMapping(value="/loginlogin",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public void login(HttpServletRequest request){

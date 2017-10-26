@@ -10,5 +10,7 @@ public class test {
 
         System.out.println("阿斯蒂芬"+"KQ"+sdf.format(date));
         System.out.println(0/7);
+
+        System.out.println("1科室提意见.docx".split("\\.").length);
     }
 }
