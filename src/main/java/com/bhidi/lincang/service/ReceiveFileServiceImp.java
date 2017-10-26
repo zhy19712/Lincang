@@ -1,4 +1,4 @@
 package com.bhidi.lincang.service;
 
-public class ReceiveFileServiceImp {
+public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
 }

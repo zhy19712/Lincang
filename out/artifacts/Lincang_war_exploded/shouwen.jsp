@@ -85,6 +85,8 @@
         }
         #sel_model{
             font-size: 0px;
+            width: 96%;
+            margin: 0 auto;
         }
         #sel_model>div{
             width: 50%;
