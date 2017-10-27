@@ -1,13 +1,9 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.ReceiveFileAhead;
+import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.dao.ReceiveFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,13 +18,22 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
     ReceiveFileMapper receiveFileMapper;
 
     public Map<String,Object> save(Map<String, Object> mapCondition){
-        ReceiveFileAhead rfaa = (ReceiveFileAhead)mapCondition.get("receiveFileAhead");
+        ReceiveFile rfaa = (ReceiveFile)mapCondition.get("receiveFileAhead");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
         HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
         String str = "";
         List<String> fileUploadList =  multipleUpload(files,request);
         String receivefileid = new Date().getTime()+"";
         rfaa.setReceivefileid(receivefileid);
+
+        for( int i = 0;i < fileUploadList.size();i++ ) {
+            if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
+                for( int t = 0;t < fileUploadList.size();t++ ) {
+                    //delete(request,fileUploadList.get(t).split("\\\\")[ (fileUploadList.get(t).split("\\\\").length)-1 ]);
+                    delete(fileUploadList.get(t));
+                }
+            }
+        }
 
         //结果的map
         Map<String,Object> mapResult = new HashMap();
@@ -46,6 +51,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 }
             }
         }
+        rfaa.setAttachmentpath(str);
         int as = receiveFileMapper.insert(rfaa);
         mapResult.put("path",str);
         mapResult.put("receivefileid",receivefileid);
@@ -53,7 +59,21 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return mapResult;
     }
 
-
+    /**
+     * 删除文件
+     */
+    /*public void delete(HttpServletRequest request,String fileName) {
+        // 得到上传服务器的物理路径
+        String fileUrl = request.getSession().getServletContext().getRealPath("upload//receivefile//" + fileName);
+        File file = new File(fileUrl);
+        file.delete();
+    }*/
+    public void delete(String path) {
+        // 得到上传服务器的物理路径
+        //String fileUrl = request.getSession().getServletContext().getRealPath("upload//receivefile//" + fileName);
+        File file = new File(path);
+        file.delete();
+    }
 
     public String singleUpload(MultipartFile file, HttpServletRequest request) {
         String pathpath = "";
@@ -81,7 +101,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 String ipStr = inetAddress.getHostAddress();
                 //System.out.println("本机的IP = " + ipStr);
                 //文件在服务器的位置
-                pathpath = request.getSession().getServletContext().getRealPath("upload\\"+fileNameSave);
+                pathpath = request.getSession().getServletContext().getRealPath("upload\\receivefile\\"+fileNameSave);
                 //System.out.println("文件在服务器上的位置为"+pathpath);
                 //取到文件的大小，long
                 Long fileSize = file.getSize();
@@ -100,11 +120,6 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
      * @return
      */
     public List<String> multipleUpload(MultipartFile[] files, HttpServletRequest request) {
-/*        //
-        Map mapResult = new HashMap()*/;
-        //声明一个集合来收集每个文件上传的结果
-        /*Set<String> resultSet = new HashSet<String>();*/
-
         List<String> resultFinal = new ArrayList<String>();
         //判断file数组不能为空并且长度大于0
         if (files != null && files.length > 0) {
@@ -117,17 +132,10 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                     resultFinal.add(resultSingle);
                 }
                 if (files.length == 1 && "".equals(file.getOriginalFilename())) {
-                    /*resultFinal = null;*/
+
                 }
             }
         }
-        //对单个文件的返回结果进行处理返回最终上传结果
-      /*  for( String s:resultSet ){
-            if( !"ok!".equals(s) ){
-                resultFinal.add(s);
-            }
-        }*/
-        /*mapResult.put("result",resultFinal);*/
         return resultFinal;
     }
 }

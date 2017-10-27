@@ -1,9 +1,9 @@
 package com.bhidi.lincang.dao;
 
-import com.bhidi.lincang.bean.ReceiveFileAhead;
+import com.bhidi.lincang.bean.ReceiveFile;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReceiveFileMapper {
-    int insert(ReceiveFileAhead rfaa);
+    int insert(ReceiveFile rfaa);
 }

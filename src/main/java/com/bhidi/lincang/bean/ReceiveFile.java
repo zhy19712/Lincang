@@ -1,6 +1,6 @@
 package com.bhidi.lincang.bean;
 
-public class ReceiveFileAhead {
+public class ReceiveFile {
     private int id;
     private String receivefileid;
     private String year;
@@ -32,10 +32,19 @@ public class ReceiveFileAhead {
     private String status;
     private String reveivereregisterpersonaccount;
 
-    public ReceiveFileAhead() {
+    public ReceiveFile() {
     }
 
-    public ReceiveFileAhead(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String reveivereregisterpersonaccount) {
+    public ReceiveFile( String year, String type, String cometime,String receivefileid, String title, String status) {
+        this.year = year;
+        this.type = type;
+        this.cometime = cometime;
+        this.receivefileid = receivefileid;
+        this.title = title;
+        this.status = status;
+    }
+
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String reveivereregisterpersonaccount) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -310,7 +319,7 @@ public class ReceiveFileAhead {
 
     @Override
     public String toString() {
-        return "ReceiveFileAhead{" +
+        return "ReceiveFile{" +
                 "id=" + id +
                 ", receivefileid='" + receivefileid + '\'' +
                 ", year='" + year + '\'' +
