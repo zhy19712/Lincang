@@ -146,6 +146,17 @@
         #fawen td,#dcl_table td,#ycl_table td{
             border-left:1px solid #000;
         }
+        #more tr:nth-child(4) td:nth-child(2)>div{
+            display: inline-block;
+            vertical-align: top;
+        }
+        #more tr:nth-child(4) td:nth-child(2)>div>span:nth-child(2){
+            color: #2fa4e7;
+            margin: 0 5px;
+        }
+        #more tr:nth-child(4) td:nth-child(2)>div>span:nth-child(2):hover{
+            text-decoration: underline;
+        }
     </style>
 
 
@@ -553,7 +564,7 @@
                         </tr>
                         <tr>
                             <td>下载附件</td>
-                            <td colspan="9"><a href="#">下载附件</a></td>
+                            <td colspan="9"></td>
                         </tr>
                         <tr>
                             <td>主题词</td>
@@ -603,7 +614,7 @@
                     </table>
                 </div>
                 <div id="model_info" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p style="line-height: 30px;margin-left: 24px;">点击查看模版名称及处理人</p>
+                    <p style="line-height: 30px;margin-left: 24px;font-size: 16px;cursor: pointer;">点击查看模版名称及处理人</p>
                     <p style="margin-left: 24px;">模版名称:<span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
                     <ul id="handle_people" style="padding-left: 0;margin-left: 24px;">
                         <li><span>办公室处理人</span><span id="bangonogshi_1">办公室1</span></li>
@@ -1298,8 +1309,7 @@
     //发文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
-            url: "/receiveFileDataTable.do",
-            async:false
+            url: "/receiveFileDataTable.do"
         },
         "order": [[1, 'desc']],
         "serverSide": true,
@@ -1341,8 +1351,49 @@
     //待处理
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/receiveFileDataTableByNameAndStatus.do",
-            async:false
+            url: "/receiveFileDataTableByNameAndStatus.do"
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "year"},
+            {"data": "type"},
+            {"data": "cometime"},
+            {"data": "receivefileid"},
+            {"data": "title"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [6],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
+    //已处理
+    var ycl_table = $('#ycl_table').DataTable({
+        ajax: {
+            url: "/receiveFileDataTableByNameAndStatusHave.do"
         },
         "order": [[1, 'desc']],
         "serverSide": true,
@@ -1440,6 +1491,12 @@
             success:function(data)
             {
                 console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#shouwen_wdo').modal('hide');
+                    $("#shouwen_wdo input").val("");
+                    $("#shouwen_wdo textarea").val("");
+                }
             }
         };
         $("#fileForm").ajaxSubmit(options);
@@ -1597,43 +1654,6 @@
 
 
     }();
-
-    function edit(that) {
-        var kind = $(that).val();
-        var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-        if(state == "文件处理"){
-            if(kind == "查看"){
-                $('#model_handle').modal('show');
-            }else if(kind == "编辑"){
-                $('#select_model').modal('show');
-            }
-        }else {
-            $('#model_handle').modal('show');
-        }
-        console.log(kind,state,id);
-        //查看发文登记信息
-        $.ajax({
-            url: "getReceiveFileInfoById.do",
-            type: "post",
-            dataType: "json",
-            data: {id:id},
-            success: function (data) {
-                console.log(data);
-            }
-        })
-    }
-
-
-
-    function newForm() {
-
-        $('#shouwen_wdo').modal('show');
-        $("#shouwen_wdo input").val("");
-        $("#shouwen_wdo textarea").val("");
-
-    }
-
     //查看登记信息
     var flag = false;
     $("#first").click(function () {
@@ -1665,50 +1685,115 @@
     })
 
 
-
-
-    //已处理
-    var ycl_table = $('#ycl_table').DataTable({
-        ajax: {
-            url: "/receiveFileDataTableByNameAndStatusHave.do",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "year"},
-            {"data": "type"},
-            {"data": "cometime"},
-            {"data": "receivefileid"},
-            {"data": "title"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
+    var file_arr = [];
+    var del_file_arr = [];
+    function edit(that) {
+        var kind = $(that).val();
+        var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+        if(state == "文件处理"){
+            if(kind == "查看"){
+                $('#model_handle').modal('show');
+                $("#model_info").css("display","none");
+                $("#model_container_1").css("display","none");
+            }else if(kind == "编辑"){
+                $('#select_model').modal('show');
             }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
+        }else {
+            $("#model_info").css("display","block");
+            $("#model_container_1").css("display","block");
+            $('#model_handle').modal('show');
         }
-    });
+        console.log(kind,state,id);
+        //查看发文登记信息
+        $.ajax({
+            url: "getReceiveFileInfoById.do",
+            type: "post",
+            dataType: "json",
+            data: {id:id},
+            success: function (data) {
+                console.log(data);
+                file_arr = data.attachmentpath.split(",");
+                $.each(file_arr,function (i,n) {
+                    var str = n.substring(73,79);
+                    var files = "";
+                        files  += ""
+                                + "<div>"
+                                + "<span class='file_name'>"+str+"</span>"
+                                + "<span class='del' onclick='del(this)'>删除</span>"
+                                + "<a href='#'>下载</a>"
+                                + "</div>"
+                    $("#more tr:nth-child(4) td:nth-child(2)").append(files);
+                    console.log(str)
+                })
+                $("#more tr:nth-child(1) td:nth-child(2) input").val(data.year);
+                $("#more tr:nth-child(1) td:nth-child(4) input").val(data.savetime);
+                $("#more tr:nth-child(1) td:nth-child(6) input").val(data.type);
+                $("#more tr:nth-child(1) td:nth-child(8) input").val(data.cometime);
+                $("#more tr:nth-child(2) td:nth-child(2) input").val(data.fileid);
+                $("#more tr:nth-child(2) td:nth-child(4) input").val(data.registrationnum);
+                $("#more tr:nth-child(2) td:nth-child(6) input").val(data.fileallid);
+                $("#more tr:nth-child(2) td:nth-child(8) input").val(data.	writtentime);
+                $("#more tr:nth-child(3) td:nth-child(2) textarea").val(data.title);
+
+
+                $("#more tr:nth-child(5) td:nth-child(2) input").val(data.keyword);
+                $("#more tr:nth-child(5) td:nth-child(4) input").val(data.responsibleperson);
+                $("#more tr:nth-child(6) td:nth-child(2) input").val(data.archivecopies);
+                $("#more tr:nth-child(6) td:nth-child(4) input").val(data.pagenum);
+                $("#more tr:nth-child(6) td:nth-child(6) input").val(data.secret);
+                $("#more tr:nth-child(6) td:nth-child(8) input").val(data.issues);
+                $("#more tr:nth-child(6) td:nth-child(10) input").val(data.receiveperson);
+                $("#more tr:nth-child(7) td:nth-child(2) input").val(data.comedepartment);
+                $("#more tr:nth-child(7) td:nth-child(4) input").val(data.attachmentpagenum);
+                $("#more tr:nth-child(8) td:nth-child(2) input").val(data.entitynum);
+                $("#more tr:nth-child(8) td:nth-child(4) input").val(data.distributionsituation);
+                $("#more tr:nth-child(8) td:nth-child(6) input").val(data.oldfond);
+                $("#more tr:nth-child(9) td:nth-child(2) input").val(data.archivesituation);
+                $("#more tr:nth-child(9) td:nth-child(4) input").val(data.registrationdate);
+                $("#more tr:nth-child(9) td:nth-child(6) input").val(data.circulationsituation);
+                $("#more tr:nth-child(10) td:nth-child(2) textarea").val(data.dealsituation);
+            }
+        })
+    }
+    //删除附件
+    function del(that) {
+        $(that).parent("div").remove();
+        del_file_arr.push($(that).siblings(".file_name").text())
+    }
+
+    function newForm() {
+
+        $('#shouwen_wdo').modal('show');
+        $("#shouwen_wdo input").val("");
+        $("#shouwen_wdo textarea").val("");
+
+    }
+
+    //提交
+    $("#model_handle .btn-primary").click(function () {
+        var delet_file = [];
+        if(del_file_arr.length > 0){
+            $.each(del_file_arr,function (i,n) {
+                var name = n;
+                $.each(file_arr,function (i,n) {
+                    var num = n.search(name);
+                    if(num > 0){
+                        delet_file.push(n);
+                    }
+                })
+
+            })
+        }
+        console.log(delet_file)
+    })
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
