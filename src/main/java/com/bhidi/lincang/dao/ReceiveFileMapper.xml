@@ -21,12 +21,25 @@
          #{reveivereregisterpersonaccount});
     </insert>
 
-    <!--List<PictureCounty> queryTownInfo();-->
-    <!--<select id="queryTownInfo" resultType="com.bhidi.lincang.bean.PictureTown">
-        SELECT FROM_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName
-        FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`FROM_DISTRICT`,m.FROM_TOWN
-    </select>-->
+    <!--ReceiveFile selectReceiveFileInfoById(String receivefileid);-->
+    <select id="selectReceiveFileInfoById" resultType="com.bhidi.lincang.bean.ReceiveFile">
+        SELECT IFNULL(receivefileid,"") as receivefileid,IFNULL(year,"") as year,
+        IFNULL(savetime,"") as savetime,IFNULL(type,"") as type,
+        IFNULL(cometime,"") as cometime, IFNULL(fileid,"") as fileid,
+        IFNULL(registrationnum,"") as registrationnum,IFNULL(fileallid,"") as fileallid,
+        IFNULL(writtentime,"") as writtentime,IFNULL(title,"") as title,
+        IFNULL(attachmentpath,"") as attachmentpath,IFNULL(keyword,"") as keyword,
+        IFNULL(responsibleperson,"") as responsibleperson,
+        IFNULL(archivecopies,"") as archivecopies,IFNULL(pagenum,"") as pagenum,
+        IFNULL(secret,"") as secret,IFNULL(issues,"") as issues,IFNULL(receiveperson,"") as receiveperson,
+        IFNULL(comedepartment,"") as comedepartment,IFNULL(attachmentpagenum,"") as attachmentpagenum,
+        IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
+        IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
+        IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
+        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonaccount,"") as reveivereregisterpersonaccount
+        FROM receivefile
+        where receivefileid = #{receivefileid}
+    </select>
    <!-- List<PictureVillage> queryVillageInfo();-->
     <!--<select id="queryVillageInfo" resultType="com.bhidi.lincang.bean.PictureVillage">
         SELECT FROM_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName,FROM_VILLAGE as villageName

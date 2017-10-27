@@ -21,6 +21,14 @@ public class ReceiveFileController {
     @Autowired
     ReceiveFileServiceImp receiveFileServiceImp;
 
+    /**
+     * 第一个流程的收文登记
+     * @param request
+     * @param session
+     * @param rfa
+     * @param files
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/reveiceFileRegistration",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String reveiceFileRegistration(HttpServletRequest request, HttpSession session, ReceiveFile rfa, @RequestParam("files") MultipartFile[] files){
@@ -41,4 +49,12 @@ public class ReceiveFileController {
         String result = new Gson().toJson(map);
         return result;
     }
+    @ResponseBody
+    @RequestMapping(value="/getReceiveFileInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getReceiveFileInfoById( String id ){
+        ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(id);
+        String result = new Gson().toJson(rf);
+        return result;
+    }
+
 }

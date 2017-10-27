@@ -31,6 +31,11 @@ public class ReceiveFile {
     private String dealsituation;
     private String status;
     private String reveivereregisterpersonaccount;
+    private String modeltype;
+    private String department1;
+    private String department2;
+    private String fenguanname;
+    private String zhuguanname;
 
     public ReceiveFile() {
     }
@@ -44,7 +49,7 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String reveivereregisterpersonaccount) {
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String reveivereregisterpersonaccount, String modeltype, String department1, String department2, String fenguanname, String zhuguanname) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -75,6 +80,11 @@ public class ReceiveFile {
         this.dealsituation = dealsituation;
         this.status = status;
         this.reveivereregisterpersonaccount = reveivereregisterpersonaccount;
+        this.modeltype = modeltype;
+        this.department1 = department1;
+        this.department2 = department2;
+        this.fenguanname = fenguanname;
+        this.zhuguanname = zhuguanname;
     }
 
     public int getId() {
@@ -317,6 +327,46 @@ public class ReceiveFile {
         this.reveivereregisterpersonaccount = reveivereregisterpersonaccount;
     }
 
+    public String getModeltype() {
+        return modeltype;
+    }
+
+    public void setModeltype(String modeltype) {
+        this.modeltype = modeltype;
+    }
+
+    public String getDepartment1() {
+        return department1;
+    }
+
+    public void setDepartment1(String department1) {
+        this.department1 = department1;
+    }
+
+    public String getDepartment2() {
+        return department2;
+    }
+
+    public void setDepartment2(String department2) {
+        this.department2 = department2;
+    }
+
+    public String getFenguanname() {
+        return fenguanname;
+    }
+
+    public void setFenguanname(String fenguanname) {
+        this.fenguanname = fenguanname;
+    }
+
+    public String getZhuguanname() {
+        return zhuguanname;
+    }
+
+    public void setZhuguanname(String zhuguanname) {
+        this.zhuguanname = zhuguanname;
+    }
+
     @Override
     public String toString() {
         return "ReceiveFile{" +
@@ -350,6 +400,11 @@ public class ReceiveFile {
                 ", dealsituation='" + dealsituation + '\'' +
                 ", status='" + status + '\'' +
                 ", reveivereregisterpersonaccount='" + reveivereregisterpersonaccount + '\'' +
+                ", modeltype='" + modeltype + '\'' +
+                ", department1='" + department1 + '\'' +
+                ", department2='" + department2 + '\'' +
+                ", fenguanname='" + fenguanname + '\'' +
+                ", zhuguanname='" + zhuguanname + '\'' +
                 '}';
     }
 }

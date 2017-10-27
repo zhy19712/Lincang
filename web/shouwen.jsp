@@ -1653,15 +1653,15 @@
         }
         console.log(kind,state,id);
         //查看发文登记信息
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            dataType: "json",
-//            data: {id:id},
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "getReceiveFileInfoById.do",
+            type: "post",
+            dataType: "json",
+            data: {id:id},
+            success: function (data) {
+                console.log(data);
+            }
+        })
     }
 
 
