@@ -1577,6 +1577,15 @@
         text = JSON.stringify(text);
         console.log(people_list);
         console.log(text);
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            data: {model:model,people_list:people_list,text:text},
+//            dataType:"json",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
     })
 
     var username;
@@ -1598,6 +1607,16 @@
             $('#model_handle').modal('show');
         }
         console.log(kind,state,id);
+        //查看发文登记信息
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            dataType: "json",
+//            data: {id:id},
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
     }
 
 
@@ -1605,6 +1624,8 @@
     function newForm() {
 
         $('#shouwen_wdo').modal('show');
+        $("#shouwen_wdo input").val("");
+        $("#shouwen_wdo textarea").val("");
 
     }
 
@@ -1632,7 +1653,6 @@
 
 
     //已处理
-    var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
             url: "/receiveFileDataTableByNameAndStatusHave.do",

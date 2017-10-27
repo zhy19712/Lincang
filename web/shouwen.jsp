@@ -1607,6 +1607,7 @@
             $('#model_handle').modal('show');
         }
         console.log(kind,state,id);
+        //查看发文登记信息
 //        $.ajax({
 //            url: "",
 //            type: "post",
@@ -1652,7 +1653,6 @@
 
 
     //已处理
-    var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
             url: "/receiveFileDataTableByNameAndStatusHave.do",
