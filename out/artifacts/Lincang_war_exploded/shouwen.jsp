@@ -143,6 +143,9 @@
             vertical-align: middle;
             width: 150px;
         }
+        #dcl_table td,#ycl_table td{
+            border-left:1px solid #000;
+        }
     </style>
 
 
@@ -1291,6 +1294,92 @@
 <script src="js/money.js"></script>
 <script>
 
+    //发文登记
+    var fawen = $('#fawen').DataTable({
+        ajax: {
+            url: "/receiveFileDataTable.do",
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "year"},
+            {"data": "type"},
+            {"data": "cometime"},
+            {"data": "receivefileid"},
+            {"data": "title"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [6],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
+    //待处理
+    var dcl_table = $('#dcl_table').DataTable({
+        ajax: {
+            url: "/receiveFileDataTableByNameAndStatus.do",
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "year"},
+            {"data": "type"},
+            {"data": "cometime"},
+            {"data": "receivefileid"},
+            {"data": "title"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [6],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
     //获取角色名称
     var role = $("#roleList").text();
     var num  = role.search(/办公室/i);
@@ -1490,26 +1579,33 @@
         console.log(text);
     })
 
-    var status,username;
+    var username;
     ~function() {
 
-        status = $("#status").text();
         username = $("#username").text();
         $("#user1").val(username);
 
+
     }();
 
-
-
+    function edit(that) {
+        var kind = $(that).val();
+        var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+        if(state == "文件处理"){
+            $('#select_model').modal('show');
+        }else {
+            $('#model_handle').modal('show');
+        }
+        console.log(kind,state,id);
+    }
 
 
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
-//        console.log($("#user1").val());
-          $('#select_model').modal('show');
-//          $('#model_handle').modal('show');
+        $('#shouwen_wdo').modal('show');
+
     }
 
     //查看登记信息
@@ -1533,92 +1629,7 @@
     })
 
 
-    //发文登记
-    var fawen = $('#fawen').DataTable({
-        ajax: {
-            url: "/receiveFileDataTable.do",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "year"},
-            {"data": "type"},
-            {"data": "cometime"},
-            {"data": "receivefileid"},
-            {"data": "title"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
 
-    //待处理
-    var sta1 = "市局规划科处理中";
-    var dcl_table = $('#dcl_table').DataTable({
-        ajax: {
-            url: "/receiveFileDataTableByNameAndStatus.do",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "year"},
-            {"data": "type"},
-            {"data": "cometime"},
-            {"data": "receivefileid"},
-            {"data": "title"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
 
     //已处理
 //    var sta2 = "已通知区县";
