@@ -390,33 +390,33 @@
                             <tbody>
                             <tr>
                                 <td>年度</td>
-                                <td><input type="text" name="niandu"></td>
+                                <td><input type="text" name="year"></td>
                                 <td>保管期限</td>
-                                <td><select name="qixian">
+                                <td><select name="savetime">
                                     <option value="1个月">1个月</option>
                                     <option value="6个月">6个月</option>
                                     <option value="1年">1年</option>
                                     <option value="2年">2年</option>
                                 </select></td>
                                 <td>类别</td>
-                                <td colspan="2"><input type="text" name="leibie"></td>
+                                <td colspan="2"><input type="text" name="type"></td>
                                 <td>来文日期</td>
-                                <td colspan="2"><input type="text" id="time1" readonly="readonly" name="laiwenriqi"></td>
+                                <td colspan="2"><input type="text" id="time1" readonly="readonly" name="cometime"></td>
                             </tr>
                             <tr>
                                 <td>文件编号</td>
-                                <td><input type="text" name="wenjianhao"></td>
+                                <td><input type="text" name="fileid"></td>
                                 <td>登记号</td>
-                                <td><input type="text" name="dengjihao"></td>
+                                <td><input type="text" name="registrationnum"></td>
                                 <td>全宗号</td>
-                                <td colspan="2"><input type="text" name="quanzonghao"></td>
+                                <td colspan="2"><input type="text" name="fileallid"></td>
                                 <td>成文日期</td>
-                                <td colspan="2"><input type="text" id="time2" readonly="readonly" name="chengwenriqi"></td>
+                                <td colspan="2"><input type="text" id="time2" readonly="readonly" name="writtentime"></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">题名</td>
                                 <td colspan="9">
-                                    <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                    <textarea name="title" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -428,47 +428,50 @@
                             </tr>
                             <tr>
                                 <td>主题词</td>
-                                <td colspan="5"><input type="text" name="zhuti"></td>
+                                <td colspan="5"><input type="text" name="keyword"></td>
                                 <td>责任者</td>
-                                <td colspan="3"><input type="text" name="zeren"></td>
+                                <td colspan="3"><input type="text" name="responsibleperson"></td>
                             </tr>
                             <tr>
                                 <td>归档份数</td>
-                                <td><input type="text" name="guidangyeshu"></td>
+                                <td><input type="text" name="archivecopies"></td>
                                 <td>页数</td>
-                                <td><input type="text" name="yeshu"></td>
+                                <td><input type="text" name="pagenum"></td>
                                 <td>密级</td>
-                                <td><input type="text" name="miji"></td>
+                                <td><input type="text" name="secret"></td>
                                 <td>机构问题</td>
-                                <td><input type="text" name="jigou"></td>
+                                <td><input type="text" name="issues"></td>
                                 <td>收件人</td>
-                                <td><input type="text" name="shoujianren"></td>
+                                <td><input type="text" name="receiveperson"></td>
                             </tr>
                             <tr>
                                 <td>来文机关</td>
-                                <td colspan="5"><input type="text" name="laiwenjiguan"></td>
+                                <td colspan="5"><input type="text" name="comedepartment"></td>
                                 <td>附件页数</td>
-                                <td colspan="3"><input type="text" name="fujianyeshu"></td>
+                                <td colspan="3"><input type="text" name="attachmentpagenum"></td>
                             </tr>
                             <tr>
                                 <td>实体分类号</td>
-                                <td><input type="text" name="shitihao"></td>
+                                <td><input type="text" name="entitynum"></td>
                                 <td>分发情况</td>
-                                <td colspan="3"><input type="text" name="fenfa"></td>
+                                <td colspan="3"><input type="text" name="distributionsituation"></td>
                                 <td>旧全宗</td>
-                                <td colspan="3"><input type="text" name="jiuquanzong"></td>
+                                <td colspan="3"><input type="text" name="oldfond"></td>
                             </tr>
                             <tr>
                                 <td>归档情况</td>
-                                <td><input type="text" name="guidangqingkuang"></td>
+                                <td><input type="text" name="archivesituation"></td>
                                 <td>登记日期</td>
-                                <td colspan="3"><input type="text" id="time3" readonly="readonly" name="dengjiriqi"></td>
+                                <td colspan="3"><input type="text" id="time3" readonly="readonly" name="registrationdate"></td>
                                 <td>传阅情况</td>
-                                <td colspan="3"><input type="text" name="chuanyue"></td>
+                                <td colspan="3"><input type="text" name="circulationsituation"></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
-                                <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
+
+                                <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+
+
                             </tr>
                             </tbody>
                         </table>
@@ -1413,9 +1416,9 @@
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
+        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
-          $('#select_model').modal('show');
+//          $('#select_model').modal('show');
 //          $('#model_handle').modal('show');
     }
 

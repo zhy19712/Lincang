@@ -135,4 +135,22 @@ public class User {
     public void setPermissionList(List<String> permissionList) {
         this.permissionList = permissionList;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", dept='" + dept + '\'' +
+                ", phone1='" + phone1 + '\'' +
+                ", phone2='" + phone2 + '\'' +
+                ", level=" + level +
+                ", created_at='" + created_at + '\'' +
+                ", roleList=" + roleList +
+                ", permissionList=" + permissionList +
+                '}';
+    }
 }
