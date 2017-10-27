@@ -107,7 +107,7 @@
         </tr>
         <tr>
             <td class="middle">文件标题</td>
-            <td colspan="11"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+            <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
         </tr>
         <tr>
             <td class="middle" rowspan="3">
@@ -127,27 +127,27 @@
         </tr>
         <tr>
             <td colspan="5">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" cols="30" rows="10"></textarea>
             </td>
-            <td colspan="3"><textarea name="" id="" cols="30" rows="10"></textarea></td>
-            <td colspan="3"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+            <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
+            <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
         </tr>
         <tr>
             <td class="middle">主要领导批示意见</td>
             <td colspan="11">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" cols="30" rows="10"></textarea>
             </td>
         </tr>
         <tr>
             <td class="middle">分管领导批示</td>
             <td colspan="11">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" cols="30" rows="10"></textarea>
             </td>
         </tr>
         <tr>
             <td class="middle">办理结果</td>
             <td colspan="11">
-                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <textarea name="" cols="30" rows="10"></textarea>
             </td>
         </tr>
         </tbody>

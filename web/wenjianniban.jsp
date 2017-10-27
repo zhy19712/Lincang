@@ -103,30 +103,30 @@
             </tr>
             <tr>
                 <td class="middle">文件标题</td>
-                <td colspan="7"><textarea name="" id="" cols="30" rows="10"></textarea></td>
+                <td colspan="7"><textarea name="" cols="30" rows="10"></textarea></td>
             </tr>
             <tr>
                 <td colspan="8">
                     <p class="left">局领导批示:</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" cols="30" rows="10"></textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan="8">
                     <p class="left">分管领导意见:</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" cols="30" rows="10"></textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan="8">
                     <p class="left">拟办意见:</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" cols="30" rows="10"></textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan="8">
                     <p class="left">办理结果:</p>
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <textarea name="" cols="30" rows="10"></textarea>
                 </td>
             </tr>
         </tbody>
