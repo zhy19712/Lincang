@@ -380,7 +380,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="/reveiceFileRegistration.do" method="post"
+                <form id = "fileForm"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
@@ -471,7 +471,7 @@
 
                                 <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
 
-                                <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
+
                             </tr>
                             </tbody>
                         </table>
@@ -1138,7 +1138,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1202,7 +1202,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1287,6 +1287,7 @@
 <script src="js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="js/jstree.js"></script>
+<script src="js/jquery-form.min.js"></script>
 <script src="js/money.js"></script>
 <script>
 
@@ -1343,7 +1344,15 @@
     }
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
-        $("#fileForm").submit();
+        var options  = {
+            url:'reveiceFileRegistration.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+            }
+        };
+        $("#fileForm").ajaxSubmit(options);
     })
 
     //选择模版
@@ -1397,6 +1406,81 @@
         }else if(peole_kind == "选择办理人"){
             $("#banli").val(people);
         }
+    });
+
+    //办公室选择模版及信息提交
+    $("#select_model .btn-primary").click(function(){
+        var model = $("#sel1").val()
+        var bangongshi = $("#bangongshi").val();
+        var keshi1 = $("#keshi1").val();
+        var keshi2 = $("#keshi2").val();
+        var fenguan = $("#fenguan").val();
+        var zhuguan = $("#zhuguan").val();
+        var banli = $("#banli").val();
+        var guidang = $("#guidang").val();
+        var people_list = new Object();
+        if(bangongshi){
+            people_list.office = bangongshi;
+        }
+        if(keshi1){
+            people_list.department1 = keshi1;
+        }
+        if(keshi2){
+            people_list.department2 = keshi2;
+        }
+        if(fenguan){
+            people_list.branch_leader = fenguan;
+        }
+        if(zhuguan){
+            people_list.main_leader = zhuguan;
+        }
+        if(banli){
+            people_list.transactor = banli;
+        }
+        if(guidang){
+            people_list.archive = guidang;
+        }
+        var text = new Object();
+        if(model == "直接处理"){
+            text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
+            text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
+        }else if(model == "文件拟办单"){
+            text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
+            text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
+            text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
+            text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
+            text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
+        }else if(model == "一科室提意见"){
+            text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+        }else if(model == "两科室提意见"){
+            text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+        }
+        console.log(text);
+        people_list = JSON.stringify(people_list);
+        text = JSON.stringify(text);
+        console.log(people_list);
+        console.log(text);
     })
 
     var status,username;
@@ -1405,7 +1489,6 @@
         status = $("#status").text();
         username = $("#username").text();
         $("#user1").val(username);
-
 
     }();
 
@@ -1416,9 +1499,9 @@
 
     function newForm() {
 
-        $('#shouwen_wdo').modal('show');
+//        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
-//          $('#select_model').modal('show');
+          $('#select_model').modal('show');
 //          $('#model_handle').modal('show');
     }
 

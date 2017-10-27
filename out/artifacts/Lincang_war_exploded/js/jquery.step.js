@@ -3,7 +3,6 @@ var step2;
   $(function() {
 
     step= $("#myStep").step();
-    step2= $("#myStep1").step();
     step2= $("#myStep2").step();
 
     $("#preBtn").click(function(event) {
