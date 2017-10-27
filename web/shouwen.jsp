@@ -468,11 +468,10 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
-<<<<<<< HEAD
+
                                 <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
-=======
-                                <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
->>>>>>> origin/master
+
+
                             </tr>
                             </tbody>
                         </table>
@@ -1417,10 +1416,10 @@
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
+        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
 //          $('#select_model').modal('show');
-          $('#model_handle').modal('show');
+//          $('#model_handle').modal('show');
     }
 
     //查看登记信息

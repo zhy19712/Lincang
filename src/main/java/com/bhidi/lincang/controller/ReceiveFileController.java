@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.ReceiveFileServiceImp;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,9 +41,8 @@ public class ReceiveFileController {
         mapCondition.put("request",request);
         //在这里把条件给到文件进行存储，然后把文件的url存储
         Map<String,Object> map = receiveFileServiceImp.save(mapCondition);
-        System.out.println(map);
-        return "";
+        String result = new Gson().toJson(map);
+        System.out.println(result);
+        return result;
     }
-
-
 }

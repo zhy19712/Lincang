@@ -46,7 +46,6 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 }
             }
         }
-        rfaa.setAttachmentpath(str);
         int as = receiveFileMapper.insert(rfaa);
         mapResult.put("path",str);
         mapResult.put("receivefileid",receivefileid);

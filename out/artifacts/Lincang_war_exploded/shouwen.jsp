@@ -56,18 +56,18 @@
             font-weight: 700;
             margin: 10px 0;
         }
-        #shouwen_wdo table,#more table{
+        #shouwen_wdo table,#more table,#more1 table,#model_container table,#model_container_1 table{
             width: 100%;
             border-top: 1px solid #000;
             border-left: 1px solid #000;
         }
-        #shouwen_wdo table td,#more table td{
+        table td{
             padding: 5px 0;
             text-align: center;
             border-right: 1px solid #000;
             border-bottom: 1px solid #000;
         }
-        #shouwen_wdo table input,#more table input{
+        #shouwen_wdo table input,#more table input,#more1 table input{
             width: 100%;
             outline: none;
             border: none;
@@ -82,6 +82,7 @@
             outline:none;
             border: none;
             resize: none;
+            width: 100%;
         }
         #sel_model{
             width: 96%;
@@ -99,7 +100,7 @@
             padding-left: 0;
             line-height: 20px;
         }
-        #select_people li{
+        li{
             list-style: none;
             margin-top: 5px;
         }
@@ -187,6 +188,7 @@
         </div>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
+        <span id="roleList" style="display:none;width:0;height:0;">${user.roleList}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -251,13 +253,13 @@
 
 
                                         <div class="box-content">
-                                            <table id="money_apply1" class="display" width="100%" cellspacing="0">
+                                            <table id="fawen" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>年度</th>
                                                     <th>类别</th>
                                                     <th>来文日期</th>
-                                                    <th>文件编号</th>
+                                                    <th>收文编号</th>
                                                     <th>标题</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
@@ -466,7 +468,11 @@
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
+
                                 <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+
+                                <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
+
                             </tr>
                             </tbody>
                         </table>
@@ -1411,10 +1417,10 @@
 
     function newForm() {
 
-//        $('#shouwen_wdo').modal('show');
+        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
 //          $('#select_model').modal('show');
-          $('#model_handle').modal('show');
+//          $('#model_handle').modal('show');
     }
 
     //查看登记信息
@@ -1438,8 +1444,136 @@
     })
 
 
+    //发文登记
+//    var fawen = $('#fawen').DataTable({
+//        ajax: {
+//            url: "/capitalFlowForm.do?userstatus=1",
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
+    //待处理
+//    var sta1 = "市局规划科处理中";
+//    var dcl_table = $('#dcl_table').DataTable({
+//        ajax: {
+//            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
+    //已处理
+//    var sta2 = "已通知区县";
+//    var ycl_table = $('#ycl_table').DataTable({
+//        ajax: {
+//            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
 
 </script>
