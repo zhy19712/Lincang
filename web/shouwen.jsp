@@ -1415,8 +1415,8 @@
 
 //        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
-//          $('#select_model').modal('show');
-          $('#model_handle').modal('show');
+          $('#select_model').modal('show');
+//          $('#model_handle').modal('show');
     }
 
     //查看登记信息

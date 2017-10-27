@@ -253,13 +253,13 @@
 
 
                                         <div class="box-content">
-                                            <table id="money_apply1" class="display" width="100%" cellspacing="0">
+                                            <table id="fawen" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
                                                     <th>年度</th>
                                                     <th>类别</th>
                                                     <th>来文日期</th>
-                                                    <th>文件编号</th>
+                                                    <th>收文编号</th>
                                                     <th>标题</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
@@ -1415,8 +1415,8 @@
 
 //        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
-//          $('#select_model').modal('show');
-          $('#model_handle').modal('show');
+          $('#select_model').modal('show');
+//          $('#model_handle').modal('show');
     }
 
     //查看登记信息
@@ -1440,8 +1440,136 @@
     })
 
 
+    //发文登记
+//    var fawen = $('#fawen').DataTable({
+//        ajax: {
+//            url: "/capitalFlowForm.do?userstatus=1",
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
+    //待处理
+//    var sta1 = "市局规划科处理中";
+//    var dcl_table = $('#dcl_table').DataTable({
+//        ajax: {
+//            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
+    //已处理
+//    var sta2 = "已通知区县";
+//    var ycl_table = $('#ycl_table').DataTable({
+//        ajax: {
+//            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
+//            async:false
+//        },
+//        "order": [[1, 'desc']],
+//        "serverSide": true,
+//        "columns": [
+//            {"data": "id"},
+//            {"data": "title"},
+//            {"data": "create_time"},
+//            {"data": "report_person"},
+//            {"data": "initiatorclass"},
+//            {"data": "status"},
+//            {"data": null}
+//        ],
+//        "columnDefs": [
+//            {
+//                "searchable": false,
+//                "orderable": false,
+//                "targets": [6],
+//                "render" :  function(data,type,row) {
+//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+//                    return html;
+//                }
+//            }
+//        ],
+//        "language": {
+//            "lengthMenu": "每页_MENU_ 条记录",
+//            "zeroRecords": "没有找到记录",
+//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+//            "infoEmpty": "无记录",
+//            "search": "搜索：",
+//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+//            "paginate": {
+//                "previous": "上一页",
+//                "next": "下一页"
+//            }
+//        }
+//    });
 
 
 </script>
