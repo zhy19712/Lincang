@@ -23,7 +23,7 @@ public class ReceiveFileController {
 
     @ResponseBody
     @RequestMapping(value="/reveiceFileRegistration",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String reveiceFileRegistration(HttpServletRequest request,HttpSession session, ReceiveFileAhead rfa, @RequestParam("files") MultipartFile[] files){
+    public String reveiceFileRegistration(HttpServletRequest request, HttpSession session, ReceiveFile rfa, @RequestParam("files") MultipartFile[] files){
         //获取当前用户
         User user = (User)session.getAttribute("user");
         //取出来当前用户的账号名存储进ReceiveFileAhead

@@ -1,6 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.ReceiveFileAhead;
+import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.dao.ReceiveFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +18,22 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
     ReceiveFileMapper receiveFileMapper;
 
     public Map<String,Object> save(Map<String, Object> mapCondition){
-        ReceiveFileAhead rfaa = (ReceiveFileAhead)mapCondition.get("receiveFileAhead");
+        ReceiveFile rfaa = (ReceiveFile)mapCondition.get("receiveFileAhead");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
         HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
         String str = "";
         List<String> fileUploadList =  multipleUpload(files,request);
         String receivefileid = new Date().getTime()+"";
         rfaa.setReceivefileid(receivefileid);
+
+        for( int i = 0;i < fileUploadList.size();i++ ) {
+            if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
+                for( int t = 0;t < fileUploadList.size();t++ ) {
+                    //delete(request,fileUploadList.get(t).split("\\\\")[ (fileUploadList.get(t).split("\\\\").length)-1 ]);
+                    delete(fileUploadList.get(t));
+                }
+            }
+        }
 
         //结果的map
         Map<String,Object> mapResult = new HashMap();
@@ -50,7 +59,21 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return mapResult;
     }
 
-
+    /**
+     * 删除文件
+     */
+    /*public void delete(HttpServletRequest request,String fileName) {
+        // 得到上传服务器的物理路径
+        String fileUrl = request.getSession().getServletContext().getRealPath("upload//receivefile//" + fileName);
+        File file = new File(fileUrl);
+        file.delete();
+    }*/
+    public void delete(String path) {
+        // 得到上传服务器的物理路径
+        //String fileUrl = request.getSession().getServletContext().getRealPath("upload//receivefile//" + fileName);
+        File file = new File(path);
+        file.delete();
+    }
 
     public String singleUpload(MultipartFile file, HttpServletRequest request) {
         String pathpath = "";
@@ -78,7 +101,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 String ipStr = inetAddress.getHostAddress();
                 //System.out.println("本机的IP = " + ipStr);
                 //文件在服务器的位置
-                pathpath = request.getSession().getServletContext().getRealPath("upload\\"+fileNameSave);
+                pathpath = request.getSession().getServletContext().getRealPath("upload\\receivefile\\"+fileNameSave);
                 //System.out.println("文件在服务器上的位置为"+pathpath);
                 //取到文件的大小，long
                 Long fileSize = file.getSize();
