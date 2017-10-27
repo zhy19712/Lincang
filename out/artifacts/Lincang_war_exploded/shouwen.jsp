@@ -290,11 +290,11 @@
                                             <table id="dcl_table" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
-                                                    <th>编号</th>
+                                                    <th>年度</th>
+                                                    <th>类别</th>
+                                                    <th>来文日期</th>
+                                                    <th>收文编号</th>
                                                     <th>标题</th>
-                                                    <th>创建时间</th>
-                                                    <th>发起人</th>
-                                                    <th>发起人类型</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -327,11 +327,11 @@
                                             <table id="ycl_table" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
-                                                    <th>编号</th>
+                                                    <th>年度</th>
+                                                    <th>类别</th>
+                                                    <th>来文日期</th>
+                                                    <th>收文编号</th>
                                                     <th>标题</th>
-                                                    <th>创建时间</th>
-                                                    <th>发起人</th>
-                                                    <th>发起人类型</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -380,7 +380,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="/reveiceFileRegistration.do" method="post"
+                <form id = "fileForm"
                       enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
@@ -1055,19 +1055,19 @@
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1094,13 +1094,13 @@
                             <tr>
                                 <td colspan="8">
                                     <p class="left">局领导批示:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">分管领导意见:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -1112,7 +1112,7 @@
                             <tr>
                                 <td colspan="8">
                                     <p class="left">办理结果:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1138,7 +1138,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1159,24 +1159,24 @@
                                 <td colspan="5">
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
-                                <td colspan="6"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="6"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1202,7 +1202,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1224,19 +1224,19 @@
                                 <td colspan="5">
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="3"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
+                                <td colspan="3"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -1287,6 +1287,7 @@
 <script src="js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="js/jstree.js"></script>
+<script src="js/jquery-form.min.js"></script>
 <script src="js/money.js"></script>
 <script>
 
@@ -1343,12 +1344,23 @@
     }
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
-        $("#fileForm").submit();
+        var options  = {
+            url:'reveiceFileRegistration.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+            }
+        };
+        $("#fileForm").ajaxSubmit(options);
     })
 
     //选择模版
     $("#sel1").change(function () {
         $("#model_container>div").css("display","none");
+        $("#select_people li input").val("");
+        $("#model_container input").val("");
+        $("#model_container textarea").val("");
         if($(this).val() == "一科室提意见"){
             $("#select_people li:nth-child(2)").css("display","block");
             $("#select_people li:nth-child(3)").css("display","none");
@@ -1397,6 +1409,85 @@
         }else if(peole_kind == "选择办理人"){
             $("#banli").val(people);
         }
+    });
+
+    //办公室选择模版及信息提交
+    $("#select_model .btn-primary").click(function(){
+        var model = $("#sel1").val()
+        var bangongshi = $("#bangongshi").val();
+        var keshi1 = $("#keshi1").val();
+        var keshi2 = $("#keshi2").val();
+        var fenguan = $("#fenguan").val();
+        var zhuguan = $("#zhuguan").val();
+        var banli = $("#banli").val();
+        var guidang = $("#guidang").val();
+        var people_list = new Object();
+        if(bangongshi){
+            people_list.office = bangongshi;
+        }
+        if(keshi1){
+            people_list.department1 = keshi1;
+        }
+        if(keshi2){
+            people_list.department2 = keshi2;
+        }
+        if(fenguan){
+            people_list.branch_leader = fenguan;
+        }
+        if(zhuguan){
+            people_list.main_leader = zhuguan;
+        }
+        if(banli){
+            people_list.transactor = banli;
+        }
+        if(guidang){
+            people_list.archive = guidang;
+        }
+        var text = new Object();
+        if(model == "直接处理"){
+            text.filename = $("#model1 .title input").val();
+            text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
+            text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
+        }else if(model == "文件拟办单"){
+            text.filename = $("#model2 .title input").val();
+            text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
+            text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
+            text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
+            text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
+            text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
+        }else if(model == "一科室提意见"){
+            text.filename = $("#model3 .title input").val();
+            text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+        }else if(model == "两科室提意见"){
+            text.filename = $("#model4 .title input").val();
+            text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+        }
+        console.log(text);
+        people_list = JSON.stringify(people_list);
+        text = JSON.stringify(text);
+        console.log(people_list);
+        console.log(text);
     })
 
     var status,username;
@@ -1405,7 +1496,6 @@
         status = $("#status").text();
         username = $("#username").text();
         $("#user1").val(username);
-
 
     }();
 
@@ -1416,9 +1506,9 @@
 
     function newForm() {
 
-        $('#shouwen_wdo').modal('show');
+//        $('#shouwen_wdo').modal('show');
 //        console.log($("#user1").val());
-//          $('#select_model').modal('show');
+          $('#select_model').modal('show');
 //          $('#model_handle').modal('show');
     }
 
