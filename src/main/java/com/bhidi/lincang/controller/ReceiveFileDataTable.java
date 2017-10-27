@@ -91,17 +91,17 @@ public class ReceiveFileDataTable {
 
             List<ReceiveFile> tasks = new ArrayList<ReceiveFile>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table;
+                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1 = 1";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table;
+                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1 = 1";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM "+table;
+                String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where 1 = 1";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
