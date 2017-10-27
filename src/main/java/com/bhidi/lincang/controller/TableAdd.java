@@ -70,7 +70,7 @@ public class TableAdd {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
-                sArray.add(" FID like '%" + searchValue + "%'");
+                sArray.add(" p.FID like '%" + searchValue + "%'");
                 sArray.add(" TABLE_TYPE like '%" + searchValue + "%'");
                 sArray.add(" NAME like '%" + searchValue + "%'");
                 sArray.add(" RESERVOIR like '%" + searchValue + "%'");

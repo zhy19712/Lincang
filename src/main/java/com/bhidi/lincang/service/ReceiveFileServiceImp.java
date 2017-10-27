@@ -59,6 +59,10 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return mapResult;
     }
 
+    public ReceiveFile getReceiveFileInfoById(String receivefileid) {
+        return receiveFileMapper.selectReceiveFileInfoById(receivefileid);
+    }
+
     /**
      * 删除文件
      */

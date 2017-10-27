@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReceiveFileMapper {
     int insert(ReceiveFile rfaa);
+
+    ReceiveFile selectReceiveFileInfoById(String receivefileid);
 }
