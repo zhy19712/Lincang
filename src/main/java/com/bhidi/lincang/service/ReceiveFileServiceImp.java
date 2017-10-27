@@ -4,10 +4,6 @@ import com.bhidi.lincang.bean.ReceiveFileAhead;
 import com.bhidi.lincang.dao.ReceiveFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +42,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 }
             }
         }
+        rfaa.setAttachmentpath(str);
         int as = receiveFileMapper.insert(rfaa);
         mapResult.put("path",str);
         mapResult.put("receivefileid",receivefileid);
@@ -100,11 +97,6 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
      * @return
      */
     public List<String> multipleUpload(MultipartFile[] files, HttpServletRequest request) {
-/*        //
-        Map mapResult = new HashMap()*/;
-        //声明一个集合来收集每个文件上传的结果
-        /*Set<String> resultSet = new HashSet<String>();*/
-
         List<String> resultFinal = new ArrayList<String>();
         //判断file数组不能为空并且长度大于0
         if (files != null && files.length > 0) {
@@ -117,17 +109,10 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                     resultFinal.add(resultSingle);
                 }
                 if (files.length == 1 && "".equals(file.getOriginalFilename())) {
-                    /*resultFinal = null;*/
+
                 }
             }
         }
-        //对单个文件的返回结果进行处理返回最终上传结果
-      /*  for( String s:resultSet ){
-            if( !"ok!".equals(s) ){
-                resultFinal.add(s);
-            }
-        }*/
-        /*mapResult.put("result",resultFinal);*/
         return resultFinal;
     }
 }

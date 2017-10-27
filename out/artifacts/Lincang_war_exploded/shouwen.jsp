@@ -471,7 +471,6 @@
 
                                 <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
 
-                                <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
 
                             </tr>
                             </tbody>
