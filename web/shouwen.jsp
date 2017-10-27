@@ -143,7 +143,7 @@
             vertical-align: middle;
             width: 150px;
         }
-        #dcl_table td,#ycl_table td{
+        #fawen td,#dcl_table td,#ycl_table td{
             border-left:1px solid #000;
         }
     </style>
@@ -522,7 +522,7 @@
                     </div>
                 </div>
                 <div id="more" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 30px;">查看收文登记详细信息</p>
+                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 30px;">点击查看收文登记详细信息</p>
                     <table>
                         <tbody>
                         <tr>
@@ -602,7 +602,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="model_info">
+                <div id="model_info" style="height: 30px;overflow: hidden;transition: all 0.5s;">
+                    <p style="line-height: 30px;margin-left: 24px;font-size: 16px;">点击查看模版名称及处理人</p>
                     <p style="margin-left: 24px;">模版名称:<span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
                     <ul id="handle_people" style="padding-left: 0;margin-left: 24px;">
                         <li><span>办公室处理人</span><span id="bangonogshi_1">办公室1</span></li>
@@ -1297,8 +1298,7 @@
     //发文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
-            url: "/receiveFileDataTable.do",
-            async:false
+            url: "/receiveFileDataTable.do"
         },
         "order": [[1, 'desc']],
         "serverSide": true,
@@ -1340,8 +1340,49 @@
     //待处理
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/receiveFileDataTableByNameAndStatus.do",
-            async:false
+            url: "/receiveFileDataTableByNameAndStatus.do"
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "year"},
+            {"data": "type"},
+            {"data": "cometime"},
+            {"data": "receivefileid"},
+            {"data": "title"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [6],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
+    //已处理
+    var ycl_table = $('#ycl_table').DataTable({
+        ajax: {
+            url: "/receiveFileDataTableByNameAndStatusHave.do"
         },
         "order": [[1, 'desc']],
         "serverSide": true,
@@ -1602,7 +1643,11 @@
         var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
         if(state == "文件处理"){
-            $('#select_model').modal('show');
+            if(kind == "查看"){
+                $('#model_handle').modal('show');
+            }else if(kind == "编辑"){
+                $('#select_model').modal('show');
+            }
         }else {
             $('#model_handle').modal('show');
         }
@@ -1648,52 +1693,21 @@
             $("#more1").height(30);
         }
     })
-
-
-
-
-    //已处理
-    var ycl_table = $('#ycl_table').DataTable({
-        ajax: {
-            url: "/receiveFileDataTableByNameAndStatusHave.do",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "year"},
-            {"data": "type"},
-            {"data": "cometime"},
-            {"data": "receivefileid"},
-            {"data": "title"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
+    //查看模版选择及处理人
+    var m_flag = false;
+    $("#model_info>p:first-child").click(function () {
+        m_flag = !m_flag;
+        if(m_flag == true){
+            $("#model_info").height(240);
+        }else {
+            $("#model_info").height(30);
         }
-    });
+    })
+
+
+
+
+
 </script>
 </body>
 </html>

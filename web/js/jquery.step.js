@@ -1,8 +1,10 @@
 ﻿var step;
+var step1;
 var step2;
   $(function() {
 
     step= $("#myStep").step();
+    step1 = $("#myStep1").step();
     step2= $("#myStep2").step();
 
     $("#preBtn").click(function(event) {
