@@ -104,7 +104,7 @@
             list-style: none;
             margin-top: 5px;
         }
-        #select_people li:nth-child(2),#select_people li:nth-child(3){
+        #select_people li:nth-child(1),#select_people li:nth-child(2){
             display: none;
         }
         #select_people li span{
@@ -983,13 +983,11 @@
                             <option>两科室提意见</option>
                         </select>
                         <ul id="select_people">
-                            <li><span>选择办公室处理人</span><input type="text" id="bangongshi"></li>
                             <li><span>选择科室1处理人</span><input type="text" id="keshi1"></li>
                             <li><span>选择科室2处理人</span><input type="text" id="keshi2"></li>
                             <li><span>选择分管领导处理人</span><input type="text" id="fenguan"></li>
                             <li><span>选择主管领导处理人</span><input type="text" id="zhuguan"></li>
                             <li><span>选择办理人</span><input type="text" id="banli"></li>
-                            <li><span>选择归档人</span><input type="text" readonly="readonly" value="办公室1,办公室2" id="guidang"></li>
                         </ul>
                     </div>
                     <div id="sel_people">
@@ -1514,16 +1512,16 @@
         $("#model_container input").val("");
         $("#model_container textarea").val("");
         if($(this).val() == "一科室提意见"){
-            $("#select_people li:nth-child(2)").css("display","block");
-            $("#select_people li:nth-child(3)").css("display","none");
+            $("#select_people li:nth-child(1)").css("display","block");
+            $("#select_people li:nth-child(2)").css("display","none");
             $("#model_container>#model3").css({"display":"block"});
         }else if($(this).val() == "两科室提意见"){
+            $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","block");
-            $("#select_people li:nth-child(3)").css("display","block");
             $("#model_container>#model4").css({"display":"block"});
         }else {
+            $("#select_people li:nth-child(1)").css("display","none");
             $("#select_people li:nth-child(2)").css("display","none");
-            $("#select_people li:nth-child(3)").css("display","none");
             if($(this).val() == "直接处理"){
                 $("#model_container>#model1").css({"display":"block"});
             }else if($(this).val() == "文件拟办单"){
@@ -1566,18 +1564,13 @@
     //办公室选择模版及信息提交
     $("#select_model .btn-primary").click(function(){
         var receivefileid = $("#receivefileid").text();
-        var model = $("#sel1").val()
-        var bangongshi = $("#bangongshi").val();
+        var model = $("#sel1").val();
         var keshi1 = $("#keshi1").val();
         var keshi2 = $("#keshi2").val();
         var fenguan = $("#fenguan").val();
         var zhuguan = $("#zhuguan").val();
         var banli = $("#banli").val();
-        var guidang = $("#guidang").val();
         var people_list = new Object();
-        if(bangongshi){
-            people_list.office = bangongshi;
-        }
         if(keshi1){
             people_list.department1 = keshi1;
         }
@@ -1592,9 +1585,6 @@
         }
         if(banli){
             people_list.transactor = banli;
-        }
-        if(guidang){
-            people_list.archive = guidang;
         }
         var text = new Object();
         if(model == "直接处理"){
