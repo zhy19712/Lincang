@@ -208,11 +208,9 @@
             success:function(data)
             {
                 console.log(data);
+                var data = JSON.parse(data);
                 if(data.result == "success"){
                     alert("提交成功");
-                    $('#shouwen_wdo').modal('hide');
-                    $("#shouwen_wdo input").val("");
-                    $("#shouwen_wdo textarea").val("");
                 }else {
                     alert("提交失败");
                 }
