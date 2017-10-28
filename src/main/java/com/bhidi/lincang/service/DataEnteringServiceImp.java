@@ -17,44 +17,56 @@ public class DataEnteringServiceImp implements DataEnteringServiceInf {
         return dataEnteringMapper.insertPeople(peopleList);
     }
 
-    public int saveBank(Bank bank) {
-        return dataEnteringMapper.insertBank(bank);
-    }
-
-    public int saveHouse(House house) {
-        return dataEnteringMapper.insertHouse(house);
-    }
-
-    public int saveIncome(List<Income> incomeList) {
-        return dataEnteringMapper.insertIncome(incomeList);
-    }
-
-    public int saveOutcome(List<Outcome> outcomeList) {
-        return dataEnteringMapper.insertOutcome(outcomeList);
+    public int deletePerson(String fid) {
+        return dataEnteringMapper.deletePeople(fid);
     }
 
     public int saveMove(Move move) {
         return dataEnteringMapper.insertMove(move);
     }
 
-    public int deletePerson(String fid) {
-        return dataEnteringMapper.deletePeople(fid);
-    }
-
     public int changeMove(Move move) {
         return dataEnteringMapper.updateMove(move);
+    }
+
+    public int deleteMove(String fid) {
+        return dataEnteringMapper.deleteMove(fid);
+    }
+
+    public int saveBank(Bank bank) {
+        return dataEnteringMapper.insertBank(bank);
     }
 
     public int changeBank(Bank bank) {
         return dataEnteringMapper.updateBank(bank);
     }
 
+    public int deleteBank(String fid) {
+        return dataEnteringMapper.deleteBank(fid);
+    }
+
+    public int saveHouse(House house) {
+        return dataEnteringMapper.insertHouse(house);
+    }
+
     public int changeHouse(House house) {
         return dataEnteringMapper.updateHouse(house);
     }
 
+    public int deleteHouse(String fid) {
+        return dataEnteringMapper.deleteHouse(fid);
+    }
+
+    public int saveIncome(List<Income> incomeList) {
+        return dataEnteringMapper.insertIncome(incomeList);
+    }
+
     public int deleteIncome(String fid) {
         return dataEnteringMapper.deleteIncome(fid);
+    }
+
+    public int saveOutcome(List<Outcome> outcomeList) {
+        return dataEnteringMapper.insertOutcome(outcomeList);
     }
 
     public int deleteOutcome(String fid) {

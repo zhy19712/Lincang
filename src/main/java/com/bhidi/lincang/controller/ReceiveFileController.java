@@ -56,5 +56,4 @@ public class ReceiveFileController {
         String result = new Gson().toJson(rf);
         return result;
     }
-
 }

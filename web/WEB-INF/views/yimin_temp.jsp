@@ -96,6 +96,11 @@
       <input type="button" value="家庭基本信息" onclick="familyclick()">
       <hr>
       <input type="button" value="家庭人数信息" onclick="familyNumClick()">
+
+      <form action="/file/download.do" method="get" target="test">
+          <input type="path" name = "path"/>
+          <input type="submit" value="下载按钮测试"/>
+      </form>
   </body>
 
 
