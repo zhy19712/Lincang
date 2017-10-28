@@ -53,9 +53,9 @@
             <tr>
                 <td rowspan="2" class="bgc">户主信息</td>
                 <td class="bgc">所属水库</td>
-                <td colspan="1"><input type="text" id="reservoir"></td>
+                <td colspan="1"><input type="text" id="reservoir" required="required" placeholder="*此项为必填项"></td>
                 <td class="bgc">户主姓名</td>
-                <td colspan="2"><input type="text" id="householder"></td>
+                <td colspan="2"><input type="text" id="householder" required="required" placeholder="*此项为必填项"></td>
                 <td class="bgc">联系电话</td>
                 <td colspan="2"><input type="text" id="number"></td>
             </tr>
@@ -78,7 +78,7 @@
                 <td class="bgc">职业</td>
             </tr>
             <tr id="home_people1">
-                <td><input type="text"></td>
+                <td><input type="text" required="required" placeholder="*此项为必填项"></td>
                 <td colspan="2"><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -123,8 +123,8 @@
                 <td class="bgc" colspan="3">备注</td>
             </tr>
             <tr id="city">
-                <td><input type="text"></td>
-                <td><input type="text"></td>
+                <td><input type="text" required="required" placeholder="*此项为必填项"></td>
+                <td><input type="text" required="required" placeholder="*此项为必填项"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
                 <td><input type="text"></td>
@@ -444,9 +444,9 @@
                 <td class="bgc">被调查人签字</td>
                 <td colspan="2"><input type="text" id="respondent"></td>
                 <td class="bgc">调查人签字</td>
-                <td colspan="2"><input type="text" id="inquirer"></td>
+                <td colspan="2"><input type="text" id="inquirer" required="required" placeholder="*此项为必填项"></td>
                 <td class="bgc">填表时间</td>
-                <td colspan="2"><input type="text" id="time" readonly="readonly"></td>
+                <td colspan="2"><input type="text" id="time" readonly="readonly" required="required" placeholder="*此项为必填项"></td>
             </tr>
             </tbody>
         </table>
