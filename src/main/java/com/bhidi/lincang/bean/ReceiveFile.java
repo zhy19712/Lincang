@@ -36,11 +36,14 @@ public class ReceiveFile {
     private String modelchoicename;
     private String department1name;
     private String department2name;
+    private String department1person;
+    private String department2person;
+    private String department1namedelete;
+    private String department2namedelete;
     private String fenguanname;
     private String zhuguanname;
     private String implementperson;
-    private String department1namedelete;
-    private String department2namedelete;
+
     private String fenguannamedelete;
     private String zhuguannamedelete;
     private String implementpersondelete;
@@ -57,7 +60,7 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String fenguanname, String zhuguanname, String implementperson, String department1namedelete, String department2namedelete, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete) {
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String department1person, String department2person, String department1namedelete, String department2namedelete, String fenguanname, String zhuguanname, String implementperson, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -92,11 +95,13 @@ public class ReceiveFile {
         this.modelchoicename = modelchoicename;
         this.department1name = department1name;
         this.department2name = department2name;
+        this.department1person = department1person;
+        this.department2person = department2person;
+        this.department1namedelete = department1namedelete;
+        this.department2namedelete = department2namedelete;
         this.fenguanname = fenguanname;
         this.zhuguanname = zhuguanname;
         this.implementperson = implementperson;
-        this.department1namedelete = department1namedelete;
-        this.department2namedelete = department2namedelete;
         this.fenguannamedelete = fenguannamedelete;
         this.zhuguannamedelete = zhuguannamedelete;
         this.implementpersondelete = implementpersondelete;
@@ -438,6 +443,22 @@ public class ReceiveFile {
         this.implementpersondelete = implementpersondelete;
     }
 
+    public String getDepartment1person() {
+        return department1person;
+    }
+
+    public void setDepartment1person(String department1person) {
+        this.department1person = department1person;
+    }
+
+    public String getDepartment2person() {
+        return department2person;
+    }
+
+    public void setDepartment2person(String department2person) {
+        this.department2person = department2person;
+    }
+
     @Override
     public String toString() {
         return "ReceiveFile{" +
@@ -475,11 +496,13 @@ public class ReceiveFile {
                 ", modelchoicename='" + modelchoicename + '\'' +
                 ", department1name='" + department1name + '\'' +
                 ", department2name='" + department2name + '\'' +
+                ", department1person='" + department1person + '\'' +
+                ", department2person='" + department2person + '\'' +
+                ", department1namedelete='" + department1namedelete + '\'' +
+                ", department2namedelete='" + department2namedelete + '\'' +
                 ", fenguanname='" + fenguanname + '\'' +
                 ", zhuguanname='" + zhuguanname + '\'' +
                 ", implementperson='" + implementperson + '\'' +
-                ", department1namedelete='" + department1namedelete + '\'' +
-                ", department2namedelete='" + department2namedelete + '\'' +
                 ", fenguannamedelete='" + fenguannamedelete + '\'' +
                 ", zhuguannamedelete='" + zhuguannamedelete + '\'' +
                 ", implementpersondelete='" + implementpersondelete + '\'' +
