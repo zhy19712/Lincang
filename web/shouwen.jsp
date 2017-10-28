@@ -1635,7 +1635,7 @@
 //        $.ajax({
 //            url: "",
 //            type: "post",
-//            data: {model:model,people_list:people_list,text:text,receivefileid:receivefileid},
+//            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
 //            dataType:"json",
 //            success: function (data) {
 //                console.log(data);
