@@ -36,16 +36,13 @@
         #user_container1,#user_container2{
             font-size: 0;
         }
-        #user_container1>div,#user_container2>div{
+        #user_container1>div,#user_container>div{
             display: inline-block;
             vertical-align: middle;
             word-wrap: break-word;
             text-align: center;
             font-size: 20px;
-            width: 33%;
-        }
-        #user_container2>div{
-            width: 20%;
+            width: 16%;
         }
         #shouwen_wdo form,#more,#more1,#model_info{
             width: 96%;
@@ -184,7 +181,7 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="oa.jsp" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <span style="font-size: 26px;">临沧市移民开发局</span></a>
         <!-- logo ends -->
 
@@ -222,7 +219,7 @@
                         <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">收文登记</span></a></li>
 
                         <li class="nav-header">我的待办</li>
-                        <li id="dcl"><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
+                        <li id="dcl"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
                         <li id="ycl"><a href="#new3"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
                 </div>
@@ -517,11 +514,12 @@
                     <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>收文登记中</p></li>
-                                <li><p>文件处理中</p></li>
-                                <li><p>签批中</p></li>
-                                <li><p>办理中</p></li>
+                                <li><p>办公室收文登记</p></li>
+                                <li><p>办公室处理文件</p></li>
+                                <li><p>签批</p></li>
+                                <li><p>处理处置</p></li>
                                 <li><p>办公室归档</p></li>
+                                <li><p>结束</p></li>
                             </ul>
                         </div>
                     </div>
@@ -531,6 +529,7 @@
                         <div class="user1_3"></div>
                         <div class="user1_4"></div>
                         <div class="user1_5"></div>
+                        <div class="user1_6"></div>
                     </div>
                 </div>
                 <div id="more" style="height: 30px;overflow: hidden;transition: all 0.5s;">
@@ -876,11 +875,12 @@
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
-                                <li><p>收文登记中</p></li>
-                                <li><p>文件处理中</p></li>
-                                <li><p>签批中</p></li>
-                                <li><p>办理中</p></li>
+                                <li><p>办公室收文登记</p></li>
+                                <li><p>办公室处理文件</p></li>
+                                <li><p>签批</p></li>
+                                <li><p>处理处置</p></li>
                                 <li><p>办公室归档</p></li>
+                                <li><p>结束</p></li>
                             </ul>
                         </div>
                     </div>
@@ -890,6 +890,7 @@
                         <div class="user_3"></div>
                         <div class="user_4"></div>
                         <div class="user_5"></div>
+                        <div class="user_6"></div>
                     </div>
                 </div>
                 <div id="more1" style="height: 30px;overflow: hidden;transition: all 0.5s;">
@@ -1442,6 +1443,13 @@
         }
     });
 
+
+    //待办事务的显示条数
+    setTimeout(function () {
+        var info = dcl_table.page.info();
+        $("#nav_num").text(info.recordsTotal)
+    },0);
+
     //获取角色名称
     var role = $("#roleList").text();
     var num  = role.search(/办公室/i);
@@ -1545,6 +1553,7 @@
         var text = $(this).siblings("span").text();
         $("#sel_people>p").text(text);
     })
+
 
     //处理人集合
     var people_arr = [];
@@ -1760,44 +1769,32 @@
     var file_arr = [];
     var del_file_arr = [];
     function edit(that) {
+        //查看发文登记信息
         var kind = $(that).val();
         var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-        $("#receivefileid").text(id);
-        if(state == "办公室处理文件"){
-            if(kind == "查看"){
-                $('#model_handle').modal('show');
-                $("#model_info").css("display","none");
-                $("#model_container_1").css("display","none");
-            }else if(kind == "编辑"){
-                $('#select_model').modal('show');
-            }
-        }else {
-            $("#model_info").css("display","block");
-            $("#model_container_1").css("display","block");
-            $('#model_handle').modal('show');
-        }
-        console.log(kind,state,id);
-        //查看发文登记信息
+        var mydata;
         $.ajax({
             url: "getReceiveFileInfoById.do",
+            async: false,
             type: "post",
             dataType: "json",
             data: {id:id},
             success: function (data) {
+                mydata = data;
                 console.log(data);
                 file_arr = data.attachmentpath.split(",");
                 $.each(file_arr,function (i,n) {
                     var end = n.lastIndexOf("-");
                     var str = n.substring(73,end);
                     var files = "";
-                        files  += ""
-                                + "<div>"
-                                + "<span class='file_name' style='color: #000;'>"+str+"</span>"
-                                + "<span class='file_url' style='display: none;'>"+n+"</span>"
-                                + "<span class='del' onclick='del(this)'>删除</span>"
-                                + "<span onclick='download(this)'>下载</span>"
-                                + "</div>"
+                    files  += ""
+                        + "<div>"
+                        + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                        + "<span class='file_url' style='display: none;'>"+n+"</span>"
+                        + "<span class='del' onclick='del(this)'>删除</span>"
+                        + "<span onclick='download(this)'>下载</span>"
+                        + "</div>"
                     $("#more tr:nth-child(4) td:nth-child(2)").append(files);
                     console.log(str)
                 })
@@ -1830,6 +1827,32 @@
                 $("#more tr:nth-child(10) td:nth-child(2) textarea").val(data.dealsituation);
             }
         })
+        $("#receivefileid").text(id);
+        if(state == "办公室处理文件"){
+            if(kind == "查看"){
+                $('#model_handle').modal('show');
+                $('#model_handle .btn-primary').css('display','none');
+                $("#model_info").css("display","none");
+                $("#model_container_1").css("display","none");
+            }else if(kind == "编辑"){
+                $('#select_model').modal('show');
+            }
+            step1.goStep(2);
+            step.goStep(2);
+            $(".user1_1").text(mydata.reveivereregisterpersonname);
+            $(".user_1").text(mydata.reveivereregisterpersonname);
+        }else {
+            $("#model_info").css("display","block");
+            $("#model_container_1").css("display","block");
+            $('#model_handle').modal('show');
+            if(kind == "查看"){
+                $('#model_handle .btn-primary').css('display','none');
+            }else if(kind == "编辑"){
+                $('#model_handle .btn-primary').css('display','block');
+            }
+        }
+        console.log(kind,state,id);
+
     }
     //删除附件
     function del(that) {
