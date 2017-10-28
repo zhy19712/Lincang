@@ -203,6 +203,7 @@
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
         <span id="roleList" style="display:none;width:0;height:0;">${user.roleList}</span>
+        <span id="receivefileid" style="display:none;"></span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -1562,6 +1563,7 @@
 
     //办公室选择模版及信息提交
     $("#select_model .btn-primary").click(function(){
+        var receivefileid = $("#receivefileid").text();
         var model = $("#sel1").val()
         var bangongshi = $("#bangongshi").val();
         var keshi1 = $("#keshi1").val();
@@ -1637,6 +1639,7 @@
         text = JSON.stringify(text);
         console.log(people_list);
         console.log(text);
+        console.log(receivefileid);
 //        $.ajax({
 //            url: "",
 //            type: "post",
@@ -1693,7 +1696,8 @@
         var kind = $(that).val();
         var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
-        if(state == "文件处理"){
+        $("#receivefileid").text(id);
+        if(state == "办公室处理文件"){
             if(kind == "查看"){
                 $('#model_handle').modal('show');
                 $("#model_info").css("display","none");
@@ -1722,7 +1726,7 @@
                     var files = "";
                         files  += ""
                                 + "<div>"
-                                + "<span class='file_name'>"+str+"</span>"
+                                + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                                 + "<span class='file_url' style='display: none;'>"+n+"</span>"
                                 + "<span class='del' onclick='del(this)'>删除</span>"
                                 + "<span onclick='download(this)'>下载</span>"
@@ -1769,6 +1773,15 @@
     function download(that) {
         var url = $(that).siblings(".file_url").text();
         console.log(url);
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            data: {url:url},
+//            dataType: "json",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
     }
 
     function newForm() {
