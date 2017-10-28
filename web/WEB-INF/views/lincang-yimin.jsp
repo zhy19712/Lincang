@@ -127,7 +127,7 @@
 		<div id="data_input">
             <div id="new_table">
 				<iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form  id="excel" target="uploadFrame" enctype="multipart/form-data">
+                <form id="excel" target="uploadFrame" enctype="multipart/form-data">
                     <ul>
 						<li><a data-toggle="tooltip" title="新建库区登记表" class="well top-block"
 							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
@@ -150,7 +150,7 @@
 							<input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
 						</div>
                     </ul>
-					<button id="submit">确认导入</button>
+					<button id="submit" type="submit">确认导入</button>
 				</form>
 				<div id="allinfo_table_wrapper">
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
@@ -201,25 +201,25 @@
     }
 
     //导入Excel回调
-	$("#submit").click(function () {
-        var options  = {
-            url:'/excel/multipleExcelUpLoadExcel.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#shouwen_wdo').modal('hide');
-//                    $("#shouwen_wdo input").val("");
-//                    $("#shouwen_wdo textarea").val("");
-//                }else {
-//                    alert("提交失败");
-//                }
-            }
-        };
-        $("#excel").ajaxSubmit(options);
-    })
+//	$("#submit").click(function () {
+//        var options  = {
+//            url:'/excel/multipleExcelUpLoadExcel.do',
+//            type:'post',
+//            success:function(data)
+//            {
+//                console.log(data);
+////                if(data.result == "success"){
+////                    alert("提交成功");
+////                    $('#shouwen_wdo').modal('hide');
+////                    $("#shouwen_wdo input").val("");
+////                    $("#shouwen_wdo textarea").val("");
+////                }else {
+////                    alert("提交失败");
+////                }
+//            }
+//        };
+//        $("#excel").ajaxSubmit(options);
+//    })
     //查看或编辑
     function edit(that) {
         var kind = $(that).val();

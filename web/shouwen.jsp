@@ -150,11 +150,11 @@
             display: inline-block;
             vertical-align: top;
         }
-        #more tr:nth-child(4) td:nth-child(2)>div>span:nth-child(2){
+        #more tr:nth-child(4) td:nth-child(2)>div>span{
             color: #2fa4e7;
             margin: 0 5px;
         }
-        #more tr:nth-child(4) td:nth-child(2)>div>span:nth-child(2):hover{
+        #more tr:nth-child(4) td:nth-child(2)>div>span:hover{
             text-decoration: underline;
         }
     </style>
@@ -1656,7 +1656,7 @@
 
 
     }();
-    //查看登记信息
+    //查看登记信息按钮
     var flag = false;
     $("#first").click(function () {
         flag = !flag;
@@ -1722,9 +1722,10 @@
                     var files = "";
                         files  += ""
                                 + "<div>"
-                                + "<span class='file_name'>"+str+"</span>"
+                                + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                                + "<span class='file_url' style='display: none;'>"+n+"</span>"
                                 + "<span class='del' onclick='del(this)'>删除</span>"
-                                + "<a href='#'>下载</a>"
+                                + "<span onclick='download(this)'>下载</span>"
                                 + "</div>"
                     $("#more tr:nth-child(4) td:nth-child(2)").append(files);
                     console.log(str)
@@ -1763,6 +1764,20 @@
     function del(that) {
         $(that).parent("div").remove();
         del_file_arr.push($(that).siblings(".file_name").text())
+    }
+    //下载附件
+    function download(that) {
+        var url = $(that).siblings(".file_url").text();
+        console.log(url);
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            data: {url:url},
+//            dataType: "json",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
     }
 
     function newForm() {
