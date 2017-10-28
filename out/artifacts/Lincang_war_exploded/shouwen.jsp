@@ -1497,6 +1497,8 @@
                     $('#shouwen_wdo').modal('hide');
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
+                    fawen.ajax.url("/receiveFileDataTable.do").load();
+                    dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
                 }else {
                     alert("提交失败");
                 }
@@ -1643,7 +1645,7 @@
 //        $.ajax({
 //            url: "",
 //            type: "post",
-//            data: {model:model,people_list:people_list,text:text},
+//            data: {model:model,people_list:people_list,text:text,receivefileid:receivefileid},
 //            dataType:"json",
 //            success: function (data) {
 //                console.log(data);

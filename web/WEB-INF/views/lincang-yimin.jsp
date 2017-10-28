@@ -201,25 +201,25 @@
     }
 
     //导入Excel回调
-//	$("#submit").click(function () {
-//        var options  = {
-//            url:'/excel/multipleExcelUpLoadExcel.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-////                if(data.result == "success"){
-////                    alert("提交成功");
-////                    $('#shouwen_wdo').modal('hide');
-////                    $("#shouwen_wdo input").val("");
-////                    $("#shouwen_wdo textarea").val("");
-////                }else {
-////                    alert("提交失败");
-////                }
-//            }
-//        };
-//        $("#excel").ajaxSubmit(options);
-//    })
+	$("#submit").click(function () {
+        var options  = {
+            url:'/excel/multipleExcelUpLoadExcel.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#shouwen_wdo').modal('hide');
+                    $("#shouwen_wdo input").val("");
+                    $("#shouwen_wdo textarea").val("");
+                }else {
+                    alert("提交失败");
+                }
+            }
+        };
+        $("#excel").ajaxSubmit(options);
+    })
     //查看或编辑
     function edit(that) {
         var kind = $(that).val();
