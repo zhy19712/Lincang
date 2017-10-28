@@ -66,6 +66,7 @@ public class ExcelController {
     /*
      * 上传多个excel文件并且读取的方法
      */
+    @ResponseBody
     @RequestMapping(value="/multipleExcelUpLoadExcel",method= RequestMethod.POST,produces = "text/html;charset=UTF-8")
     public String multipleExcelUpLoadExcel(@RequestParam("files") MultipartFile[] excels, HttpServletRequest request, ModelMap map){
         //建立两个返回值集合
@@ -110,7 +111,7 @@ public class ExcelController {
                 }
             }
         }
-        map.put("result",errorList);
+        map.put("result",errorList.size()==0?"success":errorList);
         return new Gson().toJson(map);
     }
     /*
