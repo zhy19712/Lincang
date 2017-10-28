@@ -212,7 +212,7 @@
                 if(data.result == "success"){
                     alert("提交成功");
                 }else {
-                    alert("提交失败");
+                    alert("请导入正确格式的Excel文件");
                 }
             }
         };
