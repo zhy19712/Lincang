@@ -106,7 +106,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         return "录入成功！";
     }
     /*
-     * 录入excel文件第一个sheet的方法
+     * 录入excel文件第一个sheet的方法--移民搬迁登记表
      */
     public String first(Sheet firstSheet){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -1130,7 +1130,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         return strResult;
     }
     /*
-     * 录入excel文件第二个sheet的方法
+     * 录入excel文件第二个sheet的方法——库区安置登记表
      */
     public String second(Sheet firstSheet){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");

@@ -1,6 +1,9 @@
 package com.bhidi.lincang.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -123,12 +126,10 @@ public class FileController {
     }
     /**
      * 文件下载功能
-     * @param request
-     * @param response
      * @throws Exception
      */
-    @RequestMapping("/down")
-    public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{
+    //@RequestMapping("/down")
+   /* public void down(HttpServletRequest request,HttpServletResponse response) throws Exception{
         //模拟文件，myfile.txt为需要下载的文件
         String fileName = request.getSession().getServletContext().getRealPath("upload")+"/myfile.txt";
         //获取输入流
@@ -148,5 +149,50 @@ public class FileController {
             out.flush();
         }
         out.close();
+    }*/
+    @RequestMapping("/download")
+    public ResponseEntity<byte[]> downloadImg(HttpSession session,String path) throws IOException{
+        //=============造响应体=============
+        //1、创建一个ResponseEntity对象。这个对象里面既有响应头还有响应体；
+        ServletContext servletContext = session.getServletContext();
+        //1、获取到图片的流，直接交给浏览器；ServletContext.可以从当前项目下获取资源
+        //2、获取到图片的流;
+        System.out.println(path);
+        path = path.replaceAll("\\\\","/");
+        System.out.println(path);
+        /*path = path.replaceFirst("/","//");
+        System.out.println(path);*/
+        File file = new File(path);
+
+        InputStream is = new FileInputStream(file);
+        //InputStream is = servletContext.getResourceAsStream(path);
+        //创建一个和流一样多的数组
+        byte[] body = new byte[is.available()];
+        //3、将流的数据放在数组里面
+        is.read(body);
+        is.close();
+
+        //==============造响应头================
+        HttpHeaders headers = new HttpHeaders();
+        //文件下载的响应头
+        //按照以前乱码的解决方式；
+
+        //文件名乱码解决
+        String filename = path.split("/")[ path.split("/").length - 1 ];
+        String filenameSecond = filename.split("\\.")[filename.split("\\.").length-1];//docx
+        String filenameFirst = filename.split("-")[0];
+        filename = filenameFirst + "." + filenameSecond;
+        filename = new String(filename.getBytes("GBK"),"ISO8859-1");
+
+        headers.add("Content-Disposition", "attachment; filename="+filename);
+
+
+        //第一个参数代表给浏览器的响应数据（响应体）
+        //第二个参数代表当前响应的响应头（定制响应头）MultiValueMap
+        //第三个参数代表当前响应状态码（statusCode）HttpStatus
+        ResponseEntity<byte[]> re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+
+        return re;
     }
+
 }

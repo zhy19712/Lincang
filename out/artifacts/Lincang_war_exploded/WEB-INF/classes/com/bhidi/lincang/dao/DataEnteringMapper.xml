@@ -18,11 +18,44 @@
     <delete id="deletePeople" parameterType="String">
         delete from people where fid  = #{fid}
     </delete>
+    <!--int insertMove(Move move);-->
+    <insert  id="insertMove" parameterType="com.bhidi.lincang.bean.Move">
+        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
+        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
+        #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
+    </insert >
+    <!--int deleteMove(String fid);-->
+    <delete id="deleteMove" parameterType="String">
+        delete from move where fid  = #{fid}
+    </delete>
+    <!--int updateMove(Move move);-->
+    <update  id="updateMove" parameterType="com.bhidi.lincang.bean.Move">
+        update move
+        <trim prefix="set" suffixOverrides=",">
+            <if test="from_city!=null">from_city = #{from_city},</if>
+            <if test="from_district!=null">from_district = #{from_district},</if>
+            <if test="from_town!=null">from_town = #{from_town},</if>
+            <if test="from_village!=null">from_village = #{from_village},</if>
+            <if test="from_group!=null">from_group = #{from_group},</if>
+            <if test="from_remark!=null">from_remark = #{from_remark},</if>
+            <if test="to_city!=null">to_city = #{to_city},</if>
+            <if test="to_district!=null">to_district = #{to_district},</if>
+            <if test="to_town!=null">to_town = #{to_town},</if>
+            <if test="to_village!=null">to_village = #{to_village},</if>
+            <if test="to_group!=null">to_group = #{to_group},</if>
+            <if test="to_remark!=null">to_remark = #{to_remark},</if>
+        </trim>
+        where fid = #{fid}
+    </update>
     <!--int insertBank(Bank bank);-->
     <insert  id="insertBank" parameterType="com.bhidi.lincang.bean.Bank">
         insert into bank (fid,account_name,bank_name,account_number)
         values( #{fid},#{account_name},#{bank_name},#{account_number} )
     </insert >
+    <!--int deleteBank(String fid);-->
+    <delete id="deleteBank" parameterType="String">
+        delete from bank where fid  = #{fid}
+    </delete>
     <!--int updateBank(Bank bank);-->
     <update  id="updateBank" parameterType="com.bhidi.lincang.bean.Bank">
         update bank
@@ -40,6 +73,10 @@
         #{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},
         #{sub_remark} )
     </insert >
+    <!--int deleteHouse(String fid);-->
+    <delete id="deleteHouse" parameterType="String">
+        delete from house where fid  = #{fid}
+    </delete>
     <!--int updateHouse(House house);-->
     <update  id="updateHouse" parameterType="com.bhidi.lincang.bean.House">
         update house
@@ -91,29 +128,5 @@
     <delete id="deleteOutcome" parameterType="String">
         delete from outcome where fid  = #{fid}
     </delete>
-    <!--int insertMove(Move move);-->
-    <insert  id="insertMove" parameterType="com.bhidi.lincang.bean.Move">
-        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
-        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
-        #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
-    </insert >
-   <!--int updateMove(Move move);-->
-    <update  id="updateMove" parameterType="com.bhidi.lincang.bean.Move">
-        update move
-            <trim prefix="set" suffixOverrides=",">
-                <if test="from_city!=null">from_city = #{from_city},</if>
-                <if test="from_district!=null">from_district = #{from_district},</if>
-                <if test="from_town!=null">from_town = #{from_town},</if>
-                <if test="from_village!=null">from_village = #{from_village},</if>
-                <if test="from_group!=null">from_group = #{from_group},</if>
-                <if test="from_remark!=null">from_remark = #{from_remark},</if>
-                <if test="to_city!=null">to_city = #{to_city},</if>
-                <if test="to_district!=null">to_district = #{to_district},</if>
-                <if test="to_town!=null">to_town = #{to_town},</if>
-                <if test="to_village!=null">to_village = #{to_village},</if>
-                <if test="to_group!=null">to_group = #{to_group},</if>
-                <if test="to_remark!=null">to_remark = #{to_remark},</if>
-            </trim>
-        where fid = #{fid}
-    </update>
+
 </mapper>

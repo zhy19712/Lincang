@@ -30,6 +30,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
             if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
                 for( int t = 0;t < fileUploadList.size();t++ ) {
                     //delete(request,fileUploadList.get(t).split("\\\\")[ (fileUploadList.get(t).split("\\\\").length)-1 ]);
+                    System.out.println(fileUploadList.get(t));
                     delete(fileUploadList.get(t));
                 }
             }
@@ -74,7 +75,6 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
     }*/
     public void delete(String path) {
         // 得到上传服务器的物理路径
-        //String fileUrl = request.getSession().getServletContext().getRealPath("upload//receivefile//" + fileName);
         File file = new File(path);
         file.delete();
     }
@@ -105,7 +105,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
                 String ipStr = inetAddress.getHostAddress();
                 //System.out.println("本机的IP = " + ipStr);
                 //文件在服务器的位置
-                pathpath = request.getSession().getServletContext().getRealPath("upload\\receivefile\\"+fileNameSave);
+                pathpath = request.getSession().getServletContext().getRealPath("upload/receivefile/"+fileNameSave);
                 //System.out.println("文件在服务器上的位置为"+pathpath);
                 //取到文件的大小，long
                 Long fileSize = file.getSize();

@@ -139,12 +139,12 @@ public class DataEnteringController {
         if ( moveNum > 0 ) {
             if ("库区安置登记表".equals(type)) {
                 move.setFid("KQ" + sdf.format(date));
-                move.setFrom_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
-                move.setFrom_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
-                move.setFrom_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
-                move.setFrom_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
-                move.setFrom_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
-                move.setFrom_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
+                move.setTo_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
+                move.setTo_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
+                move.setTo_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
+                move.setTo_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
+                move.setTo_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
+                move.setTo_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
             }
             if ("移民搬迁登记表".equals(type)) {
                 move.setFid("BQ" + sdf.format(date));
@@ -228,12 +228,12 @@ public class DataEnteringController {
         }
 
         //存储house返回值
-        int reRouse= 0;
+        int reHouse= 0;
         if (house.getFid() != null){
             try {
-                reRouse = dataEnteringServiceImp.saveHouse(house);
+                reHouse = dataEnteringServiceImp.saveHouse(house);
             } catch (Exception e) {
-                reRouse = -1;
+                reHouse = -1;
             }
         }
         //一个集合来收集income信息
@@ -304,7 +304,7 @@ public class DataEnteringController {
         intList.add(rePeople);
         intList.add(reMove);
         intList.add(reBank);
-        intList.add(reRouse);
+        intList.add(reHouse);
         intList.add(reIncome);
         intList.add(reOutcome);
         String strResult = "";
@@ -442,12 +442,12 @@ public class DataEnteringController {
         if ( moveNum > 0 ) {
             if ("库区安置登记表".equals(type)) {
                 move.setFid(fid);
-                move.setFrom_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
-                move.setFrom_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
-                move.setFrom_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
-                move.setFrom_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
-                move.setFrom_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
-                move.setFrom_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
+                move.setTo_city( map.containsKey("data[location][city]")?map.get("data[location][city]")[0]:"" );
+                move.setTo_district( map.containsKey("data[location][county]")?map.get("data[location][county]")[0]:"" );
+                move.setTo_town( map.containsKey("data[location][town]")?map.get("data[location][town]")[0]:"" );
+                move.setTo_village( map.containsKey("data[location][village]")?map.get("data[location][village]")[0]:"" );
+                move.setTo_group( map.containsKey("data[location][group]")?map.get("data[location][group]")[0]:"" );
+                move.setTo_remark( map.containsKey("data[location][remark]")?map.get("data[location][remark]")[0]:"");
             }
             if ("移民搬迁登记表".equals(type)) {
                 move.setFid(fid);
@@ -472,7 +472,8 @@ public class DataEnteringController {
         int reMove= 0;
         if (move.getFid() != null){
             try {
-                reMove = dataEnteringServiceImp.changeMove(move);
+                int deleteNum = dataEnteringServiceImp.deleteMove(fid);
+                reMove = dataEnteringServiceImp.saveMove(move);
             } catch (Exception e) {
                 reMove = -1;
             }
@@ -495,7 +496,8 @@ public class DataEnteringController {
         int reBank= 0;
         if (bank.getFid() != null){
             try {
-                reBank = dataEnteringServiceImp.changeBank(bank);
+                int deleteNum = dataEnteringServiceImp.deleteBank(fid);
+                reBank = dataEnteringServiceImp.saveBank(bank);
             } catch (Exception e) {
                 reBank = -1;
             }
@@ -531,12 +533,13 @@ public class DataEnteringController {
         }
 
         //存储house返回值
-        int reRouse= 0;
+        int reHouse= 0;
         if (house.getFid() != null){
             try {
-                reRouse = dataEnteringServiceImp.changeHouse(house);
+                int deleteNum = dataEnteringServiceImp.deleteHouse(fid);
+                reHouse = dataEnteringServiceImp.saveHouse(house);
             } catch (Exception e) {
-                reRouse = -1;
+                reHouse = -1;
             }
         }
         //一个集合来收集income信息
@@ -609,7 +612,7 @@ public class DataEnteringController {
         intList.add(rePeople);
         intList.add(reMove);
         intList.add(reBank);
-        intList.add(reRouse);
+        intList.add(reHouse);
         intList.add(reIncome);
         intList.add(reOutcome);
         String strResult = "";
