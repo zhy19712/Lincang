@@ -1304,7 +1304,18 @@
 <script src="js/jquery-form.min.js"></script>
 <script src="js/money.js"></script>
 <script>
-
+    //数组去重
+    Array.prototype.unique3 = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    }
     //发文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
@@ -1551,14 +1562,34 @@
             var people = people_arr.toString();
             $("#bangongshi").val(people);
         }else if(peole_kind == "选择科室1处理人"){
+            var arr1 = [];
             $.each($("#tree_container .jstree-leaf"),function (i,n) {
                 if($(n).attr("aria-selected") == "true"){
                     people_arr.push($(n).text())
+                    arr1.push($(n).parent("ul").siblings("a").text());
                 }
             })
+            arr1 = arr1.unique3();
+            if(arr1.length >1){
+                alert("此处不能选择多个部门");
+                return;
+            }
             var people = people_arr.toString();
             $("#keshi1").val(people);
         }else if(peole_kind == "选择科室2处理人"){
+            var arr2 = [];
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                    arr2.push($(n).parent("ul").siblings("a").text());
+                }
+            })
+            arr2 = arr2.unique3();
+            if(arr2.length > 1){
+                alert("此处不能选择多个部门");
+                return;
+            }
+            var people = people_arr.toString();
             $("#keshi2").val(people);
         }else if(peole_kind == "选择分管领导处理人"){
             $.each($("#tree_container .jstree-leaf"),function (i,n) {

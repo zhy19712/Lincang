@@ -1304,7 +1304,18 @@
 <script src="js/jquery-form.min.js"></script>
 <script src="js/money.js"></script>
 <script>
-
+    //数组去重
+    Array.prototype.unique3 = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    }
     //发文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
@@ -1538,25 +1549,71 @@
     //处理人集合
     var people_arr = [];
     $("#sel_people button").click(function () {
-        people_arr = []
-        $.each($("#tree_container .jstree-leaf"),function (i,n) {
-            if($(n).attr("aria-selected") == "true"){
-                people_arr.push($(n).text())
-            }
-        })
-        var people = people_arr.toString();
+        people_arr = [];
         var peole_kind = $("#sel_people>p").text();
+
+
         if(peole_kind == "选择办公室处理人"){
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                }
+            })
+            var people = people_arr.toString();
             $("#bangongshi").val(people);
         }else if(peole_kind == "选择科室1处理人"){
+            var arr1 = [];
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                    arr1.push($(n).parent("ul").siblings("a").text());
+                }
+            })
+            arr1 = arr1.unique3();
+            if(arr1.length >1){
+                alert("此处不能选择多个部门");
+                return;
+            }
+            var people = people_arr.toString();
             $("#keshi1").val(people);
         }else if(peole_kind == "选择科室2处理人"){
+            var arr2 = [];
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                    arr2.push($(n).parent("ul").siblings("a").text());
+                }
+            })
+            arr2 = arr2.unique3();
+            if(arr2.length > 1){
+                alert("此处不能选择多个部门");
+                return;
+            }
+            var people = people_arr.toString();
             $("#keshi2").val(people);
         }else if(peole_kind == "选择分管领导处理人"){
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                }
+            })
+            var people = people_arr.toString();
             $("#fenguan").val(people);
         }else if(peole_kind == "选择主管领导处理人"){
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                }
+            })
+            var people = people_arr.toString();
             $("#zhuguan").val(people);
         }else if(peole_kind == "选择办理人"){
+            $.each($("#tree_container .jstree-leaf"),function (i,n) {
+                if($(n).attr("aria-selected") == "true"){
+                    people_arr.push($(n).text())
+                }
+            })
+            var people = people_arr.toString();
             $("#banli").val(people);
         }
     });
@@ -1597,6 +1654,9 @@
             text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
             text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
             text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
+            text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
         }else if(model == "文件拟办单"){
             text.filename = $("#model2 .title input").val();
             text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
@@ -1605,6 +1665,9 @@
             text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
             text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
             text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
+            text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
+            text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
         }else if(model == "一科室提意见"){
             text.filename = $("#model3 .title input").val();
             text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
@@ -1615,6 +1678,11 @@
             text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
             text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
             text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+            text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
+            text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
+            text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
+            text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
         }else if(model == "两科室提意见"){
             text.filename = $("#model4 .title input").val();
             text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
@@ -1625,6 +1693,13 @@
             text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
             text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
             text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+            text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
+            text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
+            text.department1 = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
+            text.department1advice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.department2 = $("#model3 tr:nth-child(4) td:nth-child(3) input").val();
+            text.department2advice = $("#model3 tr:nth-child(5) td:nth-child(3) textarea").val();
         }
         console.log(text);
         people_list = JSON.stringify(people_list);
@@ -1632,15 +1707,15 @@
         console.log(people_list);
         console.log(text);
         console.log(receivefileid);
-        $.ajax({
-            url: "saveReceiveFileModelInfo.do",
-            type: "post",
-            data: {model:model,people_list:people_list,text:text,receivefileid:receivefileid},
-            dataType:"json",
-            success: function (data) {
-                console.log(data);
-            }
-        })
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+//            dataType:"json",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
     })
 
     var username;
