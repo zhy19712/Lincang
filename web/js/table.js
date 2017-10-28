@@ -33,10 +33,6 @@ $(function () {
         var bank_number = $("#bank-number").val();
         var bank_name = $("#bank-name").val();
         var number = $("#number").val();
-        if(!reservoir || !householder || !bank_user || !bank_name || !bank_number){
-            alert("没有填写必填项");
-            return;
-        }
         if(place){
             data.place = place;
         }
@@ -453,15 +449,26 @@ $(function () {
         var inquirer = $("#inquirer").val();
         var time = $("#time").val();
 
-        if(!respondent || !inquirer || !time){
-            alert("请将必填项输入完整");
-            return;
-        }
         data.respondent = respondent;
         data.inquirer = inquirer;
         data.time = time;
         data.username = username;
         console.log(data);
+        if(!data.reservoir || !data.householder || !data.inquirer){
+            alert("请输入必填项");
+            return;
+        }
+        if(kind == "库区安置登记表"){
+            if(!$("#city td:nth-child(1) input").val() || !$("#city td:nth-child(2) input").val() || !$("#home_people1 td:first-child input").val()){
+                alert("请输入必填项");
+                return;
+            }
+        }else if(kind == "移民搬迁登记表"){
+            if(!$("#city1 td:nth-child(2) input").val() || !$("#city1 td:nth-child(3) input").val() || !$("#home_people1 td:first-child input").val()){
+                alert("请输入必填项");
+                return;
+            }
+        }
         $.ajax({
             url: "/dataEntering.do",
             type: "post",

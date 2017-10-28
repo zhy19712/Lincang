@@ -1496,6 +1496,8 @@
                     $('#shouwen_wdo').modal('hide');
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
+                }else {
+                    alert("提交失败");
                 }
             }
         };
@@ -1715,7 +1717,8 @@
                 console.log(data);
                 file_arr = data.attachmentpath.split(",");
                 $.each(file_arr,function (i,n) {
-                    var str = n.substring(73,79);
+                    var end = n.lastIndexOf("-");
+                    var str = n.substring(73,end);
                     var files = "";
                         files  += ""
                                 + "<div>"
@@ -1772,20 +1775,19 @@
 
     //提交
     $("#model_handle .btn-primary").click(function () {
-        var delet_file = [];
+        var delete_file = [];
         if(del_file_arr.length > 0){
             $.each(del_file_arr,function (i,n) {
                 var name = n;
                 $.each(file_arr,function (i,n) {
                     var num = n.search(name);
                     if(num > 0){
-                        delet_file.push(n);
+                        delete_file.push(n);
                     }
                 })
-
             })
         }
-        console.log(delet_file)
+        console.log(delete_file)
     })
 
 

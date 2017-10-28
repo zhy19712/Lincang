@@ -1496,6 +1496,8 @@
                     $('#shouwen_wdo').modal('hide');
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
+                }else {
+                    alert("提交失败");
                 }
             }
         };
@@ -1715,7 +1717,8 @@
                 console.log(data);
                 file_arr = data.attachmentpath.split(",");
                 $.each(file_arr,function (i,n) {
-                    var str = n.substring(73,79);
+                    var end = n.lastIndexOf("-");
+                    var str = n.substring(73,end);
                     var files = "";
                         files  += ""
                                 + "<div>"
