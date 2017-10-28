@@ -30,12 +30,20 @@ public class ReceiveFile {
     private String circulationsituation;
     private String dealsituation;
     private String status;
-    private String reveivereregisterpersonaccount;
+
     private String modeltype;
-    private String department1;
-    private String department2;
+    private String reveivereregisterpersonname;
+    private String modelchoicename;
+    private String department1name;
+    private String department2name;
     private String fenguanname;
     private String zhuguanname;
+    private String implementperson;
+    private String department1namedelete;
+    private String department2namedelete;
+    private String fenguannamedelete;
+    private String zhuguannamedelete;
+    private String implementpersondelete;
 
     public ReceiveFile() {
     }
@@ -49,7 +57,7 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String reveivereregisterpersonaccount, String modeltype, String department1, String department2, String fenguanname, String zhuguanname) {
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String fenguanname, String zhuguanname, String implementperson, String department1namedelete, String department2namedelete, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -79,12 +87,19 @@ public class ReceiveFile {
         this.circulationsituation = circulationsituation;
         this.dealsituation = dealsituation;
         this.status = status;
-        this.reveivereregisterpersonaccount = reveivereregisterpersonaccount;
         this.modeltype = modeltype;
-        this.department1 = department1;
-        this.department2 = department2;
+        this.reveivereregisterpersonname = reveivereregisterpersonname;
+        this.modelchoicename = modelchoicename;
+        this.department1name = department1name;
+        this.department2name = department2name;
         this.fenguanname = fenguanname;
         this.zhuguanname = zhuguanname;
+        this.implementperson = implementperson;
+        this.department1namedelete = department1namedelete;
+        this.department2namedelete = department2namedelete;
+        this.fenguannamedelete = fenguannamedelete;
+        this.zhuguannamedelete = zhuguannamedelete;
+        this.implementpersondelete = implementpersondelete;
     }
 
     public int getId() {
@@ -319,14 +334,6 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public String getReveivereregisterpersonaccount() {
-        return reveivereregisterpersonaccount;
-    }
-
-    public void setReveivereregisterpersonaccount(String reveivereregisterpersonaccount) {
-        this.reveivereregisterpersonaccount = reveivereregisterpersonaccount;
-    }
-
     public String getModeltype() {
         return modeltype;
     }
@@ -335,20 +342,36 @@ public class ReceiveFile {
         this.modeltype = modeltype;
     }
 
-    public String getDepartment1() {
-        return department1;
+    public String getReveivereregisterpersonname() {
+        return reveivereregisterpersonname;
     }
 
-    public void setDepartment1(String department1) {
-        this.department1 = department1;
+    public void setReveivereregisterpersonname(String reveivereregisterpersonname) {
+        this.reveivereregisterpersonname = reveivereregisterpersonname;
     }
 
-    public String getDepartment2() {
-        return department2;
+    public String getModelchoicename() {
+        return modelchoicename;
     }
 
-    public void setDepartment2(String department2) {
-        this.department2 = department2;
+    public void setModelchoicename(String modelchoicename) {
+        this.modelchoicename = modelchoicename;
+    }
+
+    public String getDepartment1name() {
+        return department1name;
+    }
+
+    public void setDepartment1name(String department1name) {
+        this.department1name = department1name;
+    }
+
+    public String getDepartment2name() {
+        return department2name;
+    }
+
+    public void setDepartment2name(String department2name) {
+        this.department2name = department2name;
     }
 
     public String getFenguanname() {
@@ -365,6 +388,54 @@ public class ReceiveFile {
 
     public void setZhuguanname(String zhuguanname) {
         this.zhuguanname = zhuguanname;
+    }
+
+    public String getImplementperson() {
+        return implementperson;
+    }
+
+    public void setImplementperson(String implementperson) {
+        this.implementperson = implementperson;
+    }
+
+    public String getDepartment1namedelete() {
+        return department1namedelete;
+    }
+
+    public void setDepartment1namedelete(String department1namedelete) {
+        this.department1namedelete = department1namedelete;
+    }
+
+    public String getDepartment2namedelete() {
+        return department2namedelete;
+    }
+
+    public void setDepartment2namedelete(String department2namedelete) {
+        this.department2namedelete = department2namedelete;
+    }
+
+    public String getFenguannamedelete() {
+        return fenguannamedelete;
+    }
+
+    public void setFenguannamedelete(String fenguannamedelete) {
+        this.fenguannamedelete = fenguannamedelete;
+    }
+
+    public String getZhuguannamedelete() {
+        return zhuguannamedelete;
+    }
+
+    public void setZhuguannamedelete(String zhuguannamedelete) {
+        this.zhuguannamedelete = zhuguannamedelete;
+    }
+
+    public String getImplementpersondelete() {
+        return implementpersondelete;
+    }
+
+    public void setImplementpersondelete(String implementpersondelete) {
+        this.implementpersondelete = implementpersondelete;
     }
 
     @Override
@@ -399,12 +470,19 @@ public class ReceiveFile {
                 ", circulationsituation='" + circulationsituation + '\'' +
                 ", dealsituation='" + dealsituation + '\'' +
                 ", status='" + status + '\'' +
-                ", reveivereregisterpersonaccount='" + reveivereregisterpersonaccount + '\'' +
                 ", modeltype='" + modeltype + '\'' +
-                ", department1='" + department1 + '\'' +
-                ", department2='" + department2 + '\'' +
+                ", reveivereregisterpersonname='" + reveivereregisterpersonname + '\'' +
+                ", modelchoicename='" + modelchoicename + '\'' +
+                ", department1name='" + department1name + '\'' +
+                ", department2name='" + department2name + '\'' +
                 ", fenguanname='" + fenguanname + '\'' +
                 ", zhuguanname='" + zhuguanname + '\'' +
+                ", implementperson='" + implementperson + '\'' +
+                ", department1namedelete='" + department1namedelete + '\'' +
+                ", department2namedelete='" + department2namedelete + '\'' +
+                ", fenguannamedelete='" + fenguannamedelete + '\'' +
+                ", zhuguannamedelete='" + zhuguannamedelete + '\'' +
+                ", implementpersondelete='" + implementpersondelete + '\'' +
                 '}';
     }
 }

@@ -36,7 +36,7 @@ public class ReceiveFileController {
         User user = (User)session.getAttribute("user");
         //取出来当前用户的账号名存储进ReceiveFileAhead
         if( user!=null ){
-            rfa.setReveivereregisterpersonaccount( user.getUsername() );
+            rfa.setReveivereregisterpersonname( user.getUsername() );
         }
         rfa.setStatus("办公室处理文件");
 
