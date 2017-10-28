@@ -49,11 +49,43 @@ public class ReceiveFileController {
         String result = new Gson().toJson(map);
         return result;
     }
+
+    /**
+     * 列表里的查看功能
+     * @param id
+     * @return
+     */
     @ResponseBody
     @RequestMapping(value="/getReceiveFileInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getReceiveFileInfoById( String id ){
         ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(id);
         String result = new Gson().toJson(rf);
         return result;
+    }
+    /**
+     * 第二步，选择模板，和各个步骤的处理人
+     */
+    @ResponseBody
+    @RequestMapping(value="/saveReceiveFileModelInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String saveReceiveFileModelInfo(String receivefileid,String modelname,
+                                       String people_list,
+                                       String text){
+        String modeltype = "";
+        //根据modelname来判断给数据库中存储的名字
+        if( modelname.equals("直接处理") ){
+            modeltype = "model_zhijiechuli";
+            //先将处理人信息和模板类型存储进receivefile表，在选择对应的表存储对应的信息
+        }
+        if( modelname.equals("文件拟办单") ){
+            modeltype = "model_wenjianniban";
+        }
+        if( modelname.equals("一科室提意见") ){
+            modeltype = "model_yikeshi";
+        }
+        if( modelname.equals("两科室提意见") ){
+            modeltype = "model_erkeshi";
+        }
+        //String result = new Gson().toJson(rf);
+        return "";
     }
 }
