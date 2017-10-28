@@ -10,7 +10,7 @@
         issues,  receiveperson, comedepartment,attachmentpagenum,
         entitynum,  distributionsituation,  oldfond, archivesituation,
          registrationdate, circulationsituation, dealsituation,  status,
-         reveivereregisterpersonaccount)
+         reveivereregisterpersonname)
         values (#{receivefileid},#{year}, #{savetime},
         #{type}, #{cometime},#{fileid}, #{registrationnum},#{fileallid},
         #{writtentime}, #{title},  #{attachmentpath},#{keyword},
@@ -18,7 +18,7 @@
         #{issues},  #{receiveperson}, #{comedepartment},#{attachmentpagenum},
         #{entitynum},  #{distributionsituation},  #{oldfond}, #{archivesituation},
          #{registrationdate}, #{circulationsituation}, #{dealsituation},  #{status},
-         #{reveivereregisterpersonaccount});
+         #{reveivereregisterpersonname});
     </insert>
 
     <!--ReceiveFile selectReceiveFileInfoById(String receivefileid);-->
@@ -36,7 +36,7 @@
         IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
         IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
         IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
-        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonaccount,"") as reveivereregisterpersonaccount
+        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname
         FROM receivefile
         where receivefileid = #{receivefileid}
     </select>
