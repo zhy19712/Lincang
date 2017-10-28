@@ -10,7 +10,7 @@ public class Table_info {
     //所属水库
     private String RESERVOIR;
 
-    private String FROM_DISTRICT;
+    private String TO_DISTRICT;
 
     //调查人
     private String INTERVIEWER;
@@ -19,12 +19,12 @@ public class Table_info {
     private String CREATED_AT;
 
 
-    public Table_info(String FID, String TABLE_TYPE, String NAME, String RESERVOIR, String FROM_DISTRICT, String INTERVIEWER, String CREATED_AT) {
+    public Table_info(String FID, String TABLE_TYPE, String NAME, String RESERVOIR, String TO_DISTRICT, String INTERVIEWER, String CREATED_AT) {
         this.FID = FID;
         this.TABLE_TYPE = TABLE_TYPE;
         this.NAME = NAME;
         this.RESERVOIR = RESERVOIR;
-        this.FROM_DISTRICT = FROM_DISTRICT;
+        this.TO_DISTRICT = TO_DISTRICT;
         this.INTERVIEWER = INTERVIEWER;
         this.CREATED_AT = CREATED_AT;
     }
@@ -61,12 +61,12 @@ public class Table_info {
         this.RESERVOIR = RESERVOIR;
     }
 
-    public String getFROM_DISTRICT() {
-        return FROM_DISTRICT;
+    public String getTO_DISTRICT() {
+        return TO_DISTRICT;
     }
 
-    public void setFROM_DISTRICT(String FROM_DISTRICT) {
-        this.FROM_DISTRICT = FROM_DISTRICT;
+    public void setTO_DISTRICT(String TO_DISTRICT) {
+        this.TO_DISTRICT = TO_DISTRICT;
     }
 
     public String getINTERVIEWER() {
@@ -92,7 +92,7 @@ public class Table_info {
                 ", TABLE_TYPE='" + TABLE_TYPE + '\'' +
                 ", NAME='" + NAME + '\'' +
                 ", RESERVOIR='" + RESERVOIR + '\'' +
-                ", FROM_DISTRICT='" + FROM_DISTRICT + '\'' +
+                ", TO_DISTRICT='" + TO_DISTRICT + '\'' +
                 ", INTERVIEWER='" + INTERVIEWER + '\'' +
                 ", CREATED_AT='" + CREATED_AT + '\'' +
                 '}';

@@ -28,11 +28,11 @@ public class DataGetingController {
         List<People> peopleList = dataGetingServiceImp.getPeopleInfosByFid(fid);
         //返回结果的map
         Map<String,Object> resultMap = new HashMap<String,Object>();
-        resultMap.put("bank",bank);
-        resultMap.put("house",house);
+        resultMap.put("bank",bank!=null?bank:"");
+        resultMap.put("house",house!=null?house:"");
         resultMap.put("income",incomeList);
         resultMap.put("outcome",outcomeList);
-        resultMap.put("move",move);
+        resultMap.put("move",move!=null?move:"");
         resultMap.put("people",peopleList);
         System.out.print(resultMap);
         return new Gson().toJson(resultMap);

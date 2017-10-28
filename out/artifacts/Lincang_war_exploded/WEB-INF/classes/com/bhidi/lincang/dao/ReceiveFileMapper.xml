@@ -42,9 +42,9 @@
     </select>
    <!-- List<PictureVillage> queryVillageInfo();-->
     <!--<select id="queryVillageInfo" resultType="com.bhidi.lincang.bean.PictureVillage">
-        SELECT FROM_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName,FROM_VILLAGE as villageName
+        SELECT TO_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName,FROM_VILLAGE as villageName
         FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`FROM_DISTRICT`,m.FROM_TOWN,m.FROM_VILLAGE
+        on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.FROM_TOWN,m.FROM_VILLAGE
     </select>-->
 
 </mapper>
