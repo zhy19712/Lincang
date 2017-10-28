@@ -1,6 +1,7 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.service.ExcelServiceImp;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -109,8 +110,8 @@ public class ExcelController {
                 }
             }
         }
-        map.put("error",errorList);
-        return "yimin_temp";
+        map.put("result",errorList);
+        return new Gson().toJson(map);
     }
     /*
      * 单个excel文件的上传
