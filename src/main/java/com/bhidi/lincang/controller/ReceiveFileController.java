@@ -38,7 +38,7 @@ public class ReceiveFileController {
         if( user!=null ){
             rfa.setReveivereregisterpersonaccount( user.getUsername() );
         }
-        rfa.setStatus("收文处理");
+        rfa.setStatus("办公室处理文件");
 
         Map<String,Object> mapCondition = new HashMap();
         mapCondition.put("receiveFileAhead",rfa);

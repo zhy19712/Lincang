@@ -48,7 +48,7 @@ public class PictureController {
             for(int i = 0; i < listPictureCounty.size();i++){
                 //建立一个对象来存储一个整体的数据
                 PictureFull pictureFull = new PictureFull();
-                if( listPictureCounty.get(i).getCountyName()!=null ){
+                if( listPictureCounty.get(i).getCountyName()!=null & !"".equals(listPictureCounty.get(i).getCountyName())){
                     pictureFull.setName(listPictureCounty.get(i).getCountyName());
                     pictureFull.setLevel(listPictureCounty.get(i).getLevel());
                     pictureFull.setNum(listPictureCounty.get(i).getNum());

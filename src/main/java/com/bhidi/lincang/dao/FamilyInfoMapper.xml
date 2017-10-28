@@ -3,7 +3,7 @@
 <mapper namespace="com.bhidi.lincang.dao.FamilyInfoMapper">
     <!--People BasicInfoOfFamily(String name);-->
     <select id="BasicInfoOfFamily" parameterType="String" resultType="com.bhidi.lincang.bean.People">
-        SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.FROM_DISTRICT = #{name} AND p.`MASTER` = '1'
+        SELECT p.* FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.TO_DISTRICT = #{name} AND p.`MASTER` = '1'
     </select>
     <!--List<People> queryFamilyInfoByFid(String fid);-->
     <select id="queryFamilyInfoByFid" parameterType="String" resultType="com.bhidi.lincang.bean.People">
@@ -11,7 +11,7 @@
     </select>
     <!--PeopleMore queryFamilyDetailByFid(String fid);-->
     <select id="queryFamilyDetailByFid" parameterType="String" resultType="com.bhidi.lincang.bean.PeopleMore">
-        SELECT IFNULL(p.name,"")as name,IFNULL(p.pid,"")as pid,IFNULL(p.RESERVOIR,"")as reservoir,IFNULL(p.home_size,"")as home_size,IFNULL(p.imm_num,"")as imm_num,IFNULL(p.prop,"")as prop,IFNULL(p.poor_reason,"")AS poor_reason,IFNULL(GROUP_CONCAT(m.FROM_CITY,m.FROM_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE),"")AS outarea,
+        SELECT IFNULL(p.name,"")as name,IFNULL(p.pid,"")as pid,IFNULL(p.RESERVOIR,"")as reservoir,IFNULL(p.home_size,"")as home_size,IFNULL(p.imm_num,"")as imm_num,IFNULL(p.prop,"")as prop,IFNULL(p.poor_reason,"")AS poor_reason,IFNULL(GROUP_CONCAT(m.FROM_CITY,m.TO_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE),"")AS outarea,
         IFNULL(GROUP_CONCAT(m.TO_CITY,m.TO_DISTRICT,m.TO_TOWN,m.TO_VILLAGE),"")AS inarea,
         IFNULL(GROUP_CONCAT(h.MAIN_STRUCTURE1,h.MAIN_STRUCTURE2,h.MAIN_STRUCTURE3,h.MAIN_STRUCTURE4,h.MAIN_STRUCTURE5),"") AS mainstructure,
         IFNULL(h.main_size,"") AS mainsize,
