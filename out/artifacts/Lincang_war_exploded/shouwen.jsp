@@ -1803,9 +1803,10 @@
                 if(data.attachmentpath != ""){
                     file_arr = data.attachmentpath.split(",");
                     $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\");
                         var end = n.lastIndexOf("-");
                         var filekind_index = n.lastIndexOf(".");
-                        var str = n.substring(73,end);
+                        var str = n.substring(start,end);
                         var filekind = n.substring(filekind_index);
                         str = str + filekind;
                         var files = "";
@@ -1894,8 +1895,8 @@
             }
             step1.goStep(2);
             step.goStep(2);
-            $(".user1_1").text(mydata.reveivereregisterpersonname);
-            $(".user_1").text(mydata.reveivereregisterpersonname);
+            $(".user1_1").text(mydata.odelchoicename);
+            $(".user_1").text(mydata.odelchoicename);
             $("#select_model .modal-header h3").text("收文管理-" + id);
             $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
@@ -1996,6 +1997,34 @@
                         $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
                         $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
                     }
+                    step1.goStep(3);
+                    step.goStep(3);
+                    $(".user1_1").text(mydata.odelchoicename);
+                    $(".user_1").text(mydata.odelchoicename);
+                    $(".user1_2").text(mydata.reveivereregisterpersonname);
+                    $(".user_2").text(mydata.reveivereregisterpersonname);
+                }else if(mydata1.status == "分管领导签批"){
+                    $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
+                    step1.goStep(3);
+                    step.goStep(3);
+                    $(".user1_1").text(mydata.odelchoicename);
+                    $(".user_1").text(mydata.odelchoicename);
+                    $(".user1_2").text(mydata.reveivereregisterpersonname);
+                    $(".user_2").text(mydata.reveivereregisterpersonname);
+                }else if(mydata1.status == "主管领导签批"){
+                    $("#model1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model2 tr:nth-child(3) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model3 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model4 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                    step1.goStep(3);
+                    step.goStep(3);
+                    $(".user1_1").text(mydata.odelchoicename);
+                    $(".user_1").text(mydata.odelchoicename);
+                    $(".user1_2").text(mydata.reveivereregisterpersonname);
+                    $(".user_2").text(mydata.reveivereregisterpersonname);
                 }
             }
         }
@@ -2050,7 +2079,7 @@
 //                $.ajax({
 //                    url: "",
 //                    type: "post",
-//                    data: {department1advice:department1advice,department2advice:department2advice,ReceiveFile:mydata1},
+//                    data: {text:text,ReceiveFile:mydata1},
 //                    dataType: "json",
 //                    success: function (data) {
 //                        console.log(data);
