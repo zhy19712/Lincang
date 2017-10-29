@@ -925,7 +925,7 @@
                         </tr>
                         <tr>
                             <td>下载附件</td>
-                            <td colspan="9"><a href="#">下载附件</a></td>
+                            <td colspan="9"><a href="#"></a></td>
                         </tr>
                         <tr>
                             <td>主题词</td>
@@ -1168,7 +1168,7 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
+                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
                             </tr>
                             <tr>
                                 <td colspan="5">
@@ -1232,8 +1232,8 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
                             </tr>
                             <tr>
                                 <td colspan="5">
@@ -1452,8 +1452,10 @@
 
     //获取角色名称
     var role = $("#roleList").text();
-    var num  = role.search(/办公室/i);
-    if(num < 0){
+    var last = role.lastIndexOf("]");
+    role = role.substring(1,last);
+    console.log(role);
+    if(role == "办公室"){
         $("#header1").remove();
         $("#m_apply1").remove();
         $("#new1").remove();
@@ -1705,10 +1707,10 @@
             text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
             text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
             text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department1 = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
-            text.department1advice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.department2 = $("#model3 tr:nth-child(4) td:nth-child(3) input").val();
-            text.department2advice = $("#model3 tr:nth-child(5) td:nth-child(3) textarea").val();
+            text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
+            text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
+            text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
         }
         console.log(text);
         people_list = JSON.stringify(people_list);
@@ -1796,6 +1798,7 @@
                         + "<span onclick='download(this)'>下载</span>"
                         + "</div>"
                     $("#more tr:nth-child(4) td:nth-child(2)").append(files);
+                    $("#more1 tr:nth-child(4) td:nth-child(2)").append(files);
                     console.log(str)
                 })
                 $("#more tr:nth-child(1) td:nth-child(2) input").val(data.year);
@@ -1825,6 +1828,35 @@
                 $("#more tr:nth-child(9) td:nth-child(4) input").val(data.registrationdate);
                 $("#more tr:nth-child(9) td:nth-child(6) input").val(data.circulationsituation);
                 $("#more tr:nth-child(10) td:nth-child(2) textarea").val(data.dealsituation);
+
+
+                $("#more1 tr:nth-child(1) td:nth-child(2) input").val(data.year);
+                $("#more1 tr:nth-child(1) td:nth-child(4) input").val(data.savetime);
+                $("#more1 tr:nth-child(1) td:nth-child(6) input").val(data.type);
+                $("#more1 tr:nth-child(1) td:nth-child(8) input").val(data.cometime);
+                $("#more1 tr:nth-child(2) td:nth-child(2) input").val(data.fileid);
+                $("#more1 tr:nth-child(2) td:nth-child(4) input").val(data.registrationnum);
+                $("#more1 tr:nth-child(2) td:nth-child(6) input").val(data.fileallid);
+                $("#more1 tr:nth-child(2) td:nth-child(8) input").val(data.	writtentime);
+                $("#more1 tr:nth-child(3) td:nth-child(2) textarea").val(data.title);
+
+
+                $("#more1 tr:nth-child(5) td:nth-child(2) input").val(data.keyword);
+                $("#more1 tr:nth-child(5) td:nth-child(4) input").val(data.responsibleperson);
+                $("#more1 tr:nth-child(6) td:nth-child(2) input").val(data.archivecopies);
+                $("#more1 tr:nth-child(6) td:nth-child(4) input").val(data.pagenum);
+                $("#more1 tr:nth-child(6) td:nth-child(6) input").val(data.secret);
+                $("#more1 tr:nth-child(6) td:nth-child(8) input").val(data.issues);
+                $("#more1 tr:nth-child(6) td:nth-child(10) input").val(data.receiveperson);
+                $("#more1 tr:nth-child(7) td:nth-child(2) input").val(data.comedepartment);
+                $("#more1 tr:nth-child(7) td:nth-child(4) input").val(data.attachmentpagenum);
+                $("#more1 tr:nth-child(8) td:nth-child(2) input").val(data.entitynum);
+                $("#more1 tr:nth-child(8) td:nth-child(4) input").val(data.distributionsituation);
+                $("#more1 tr:nth-child(8) td:nth-child(6) input").val(data.oldfond);
+                $("#more1 tr:nth-child(9) td:nth-child(2) input").val(data.archivesituation);
+                $("#more1 tr:nth-child(9) td:nth-child(4) input").val(data.registrationdate);
+                $("#more1 tr:nth-child(9) td:nth-child(6) input").val(data.circulationsituation);
+                $("#more1 tr:nth-child(10) td:nth-child(2) textarea").val(data.dealsituation);
             }
         })
         $("#receivefileid").text(id);
