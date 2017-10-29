@@ -82,7 +82,7 @@ public class ReceiveFileController {
             //先将处理人信息和模板类型存储进receivefile表，在选择对应的表存储对应的信息
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileid);
-            rf.setStatus("签批");
+            rf.setStatus("分管领导签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
             //判断两个科室的名字
@@ -143,7 +143,7 @@ public class ReceiveFileController {
             modeltype = "model_wenjianniban";
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileid);
-            rf.setStatus("签批");
+            rf.setStatus("分管领导签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
             //判断两个科室的名字
@@ -201,7 +201,7 @@ public class ReceiveFileController {
             modeltype = "model_yikeshi";
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileid);
-            rf.setStatus("签批");
+            rf.setStatus("科室签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
             //判断两个科室的名字
@@ -262,7 +262,7 @@ public class ReceiveFileController {
             modeltype = "model_erkeshi";
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileid);
-            rf.setStatus("签批");
+            rf.setStatus("科室签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
             //判断两个科室的名字
