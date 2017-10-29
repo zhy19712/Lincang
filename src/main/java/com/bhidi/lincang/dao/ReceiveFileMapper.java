@@ -28,4 +28,12 @@ public interface ReceiveFileMapper {
     Model_Yikeshi getInfoFromYikeshi(String receivefileid);
 
     Model_Erkeshi getInfoFromErkeshi(String receivefileid);
+
+    int updateModelZhijiechuli(Model_Zhijiechuli meme);
+
+    int updateModelWenjiannibandan(Model_Wenjianniban meme);
+
+    int updateModelYikeshi(Model_Yikeshi meme);
+
+    int updateModelErkeshi(Model_Erkeshi meme);
 }

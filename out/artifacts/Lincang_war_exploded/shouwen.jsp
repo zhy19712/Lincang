@@ -1895,8 +1895,8 @@
             }
             step1.goStep(2);
             step.goStep(2);
-            $(".user1_1").text(mydata.odelchoicename);
-            $(".user_1").text(mydata.odelchoicename);
+            $(".user1_1").text(mydata.modelchoicename);
+            $(".user_1").text(mydata.modelchoicename);
             $("#select_model .modal-header h3").text("收文管理-" + id);
             $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
@@ -2075,16 +2075,18 @@
                 text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
             }
         }
+        var text2 = JSON.stringify(text);
+        var mydata2 = JSON.stringify(mydata1);
         console.log(text,mydata1);
-//                $.ajax({
-//                    url: "",
-//                    type: "post",
-//                    data: {text:text,ReceiveFile:mydata1},
-//                    dataType: "json",
-//                    success: function (data) {
-//                        console.log(data);
-//                    }
-//                })
+                $.ajax({
+                    url: "/updateReceiveFileAndModelInfo.do",
+                    type: "post",
+                    data: {text:text2,receivedata:mydata2},
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
     })
 
 

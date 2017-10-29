@@ -103,7 +103,7 @@ public class ReceiveFileDataTable {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where 1 = 1";
+                String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where 1 = 1";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -175,14 +175,14 @@ public class ReceiveFileDataTable {
                 status = " and ( status = '办公室处理文件')";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
-                //status = " and (department1persondelete like '%"+name+"%'or department2persondelete like '%"+name+"%')";
-                status = "and ( status = '科室签批')";
+                status = " and ( status = '科室签批') and (department1person like '%"+name+"%'or department2person like '%"+name+"%')";
+                //status = "and ( status = '科室签批')";
             }
             if( "分管领导".equals(roleList.get(0)) ){
-                status = " and ( status = '分管领导签批') and fenguannamedelete like '%"+name+"%'";
+                status = " and ( status = '分管领导签批') and fenguanname like '%"+name+"%'";
             }
             if( "主管领导".equals(roleList.get(0)) ){
-                status = " and ( status = '主管领导签批') and zhuguannamedelete like '%"+name+"%'";
+                status = " and ( status = '主管领导签批') and zhuguanname like '%"+name+"%'";
             }
         }
 
@@ -255,7 +255,7 @@ public class ReceiveFileDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE status END) as status FROM " + table + " where 1=1 "+status;
+            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where 1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -328,7 +328,8 @@ public class ReceiveFileDataTable {
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
                 //status = " and modeltype != 'model_zhijeichuli' and modeltype != 'model_wenjianniban' and (status != '办公室处理文件') and ((status != '科室一签批' and department1persondelete not like '%"+name+"%') and (status != '科室二签批' and department2persondelete not like '%"+name+"%'))";
-                status = "and modeltype != 'model_zhijeichuli' and modeltype != 'model_wenjianniban' and(status != '办公室处理文件' and status != '科室签批')";
+                status = " and ( status = '科室签批') and (department1persondelete like '%"+name+"%'or department2persondelete like '%"+name+"%')";
+                //status = "and modeltype != 'model_zhijeichuli' and modeltype != 'model_wenjianniban' and(status != '办公室处理文件' and status != '科室签批')";
             }
             if( "分管领导".equals(roleList.get(0)) ){
                 //status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批') and fenguannamedelete not like '%"+name+"%'";
@@ -409,7 +410,7 @@ public class ReceiveFileDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where  1=1 "+status;
+            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where  1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }

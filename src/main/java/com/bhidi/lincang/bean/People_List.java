@@ -58,14 +58,5 @@ public class People_List {
         this.transactor = transactor;
     }
 
-    @Override
-    public String toString() {
-        return "People_List{" +
-                "department1='" + department1 + '\'' +
-                ", department2='" + department2 + '\'' +
-                ", branch_leader='" + branch_leader + '\'' +
-                ", main_leader='" + main_leader + '\'' +
-                ", transactor='" + transactor + '\'' +
-                '}';
-    }
+
 }
