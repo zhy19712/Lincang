@@ -147,11 +147,17 @@
             display: inline-block;
             vertical-align: top;
         }
-        #more tr:nth-child(4) td:nth-child(2)>div>span{
+        #more tr:nth-child(4) td:nth-child(2)>div button,#more1 tr:nth-child(4) td:nth-child(2)>div button{
+            background: transparent;
+            border: none;
+            margin: 0;
+            padding: 0;
+        }
+        #more tr:nth-child(4) td:nth-child(2)>div span,#more1 tr:nth-child(4) td:nth-child(2)>div span,#more tr:nth-child(4) td:nth-child(2)>div button,#more1 tr:nth-child(4) td:nth-child(2)>div button{
             color: #2fa4e7;
             margin: 0 5px;
         }
-        #more tr:nth-child(4) td:nth-child(2)>div>span:hover{
+        #more tr:nth-child(4) td:nth-child(2)>div span:hover,#more1 tr:nth-child(4) td:nth-child(2)>div span:hover,#more tr:nth-child(4) td:nth-child(2)>div button:hover,#more1 tr:nth-child(4) td:nth-child(2)>div button:hover{
             text-decoration: underline;
         }
     </style>
@@ -1794,14 +1800,20 @@
                 file_arr = data.attachmentpath.split(",");
                 $.each(file_arr,function (i,n) {
                     var end = n.lastIndexOf("-");
+                    var filekind_index = n.lastIndexOf(".");
                     var str = n.substring(73,end);
+                    var filekind = n.substring(filekind_index);
+                    str = str + filekind;
                     var files = "";
                     files  += ""
                         + "<div>"
+                        + "<iframe name='downloadFrame' style='display:none;'></iframe>"
+                        + "<form action='/file/download.do' method='get' target='downloadFrame'>"
                         + "<span class='file_name' style='color: #000;'>"+str+"</span>"
-                        + "<span class='file_url' style='display: none;'>"+n+"</span>"
+                        + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
                         + "<span class='del' onclick='del(this)'>删除</span>"
-                        + "<span onclick='download(this)'>下载</span>"
+                        + "<button type='submit'>下载</button>"
+                        + "</form>"
                         + "</div>"
                     $("#more tr:nth-child(4) td:nth-child(2)").append(files);
                     $("#more1 tr:nth-child(4) td:nth-child(2)").append(files);
@@ -1898,19 +1910,19 @@
         del_file_arr.push($(that).siblings(".file_name").text())
     }
     //下载附件
-    function download(that) {
-        var url = $(that).siblings(".file_url").text();
-        console.log(url);
-        $.ajax({
-            url: "/file/download.do",
-            type: "get",
-            data: {path:url},
-            dataType: "json",
-            success: function (data) {
-                console.log(data);
-            }
-        })
-    }
+//    function download(that) {
+//        var url = $(that).siblings(".file_url").text();
+//        console.log(url);
+//        $.ajax({
+//            url: "/file/download.do",
+//            type: "get",
+//            data: {path:url},
+//            dataType: "form",
+//            success: function (data) {
+//                console.log(data);
+//            }
+//        })
+//    }
 
     function newForm() {
 
