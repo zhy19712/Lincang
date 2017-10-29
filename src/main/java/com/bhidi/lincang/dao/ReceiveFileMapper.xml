@@ -76,6 +76,49 @@
         </trim>
         where receivefileid = #{receivefileid}
     </update>
+    <!--int updateModelZhijiechuli(Model_Zhijiechuli meme);-->
+    <update id="updateModelZhijiechuli" parameterType="com.bhidi.lincang.bean.Model_Zhijiechuli">
+        update model_zhijiechuli
+        <trim prefix="set" suffixOverrides=",">
+            <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
+            <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
+            <if test="result!=null">result = #{result},</if>
+        </trim>
+        where receivefileid = #{receivefileid}
+    </update>
+   <!-- int updateModelWenjiannibandan(Model_Wenjianniban meme);-->
+    <update id="updateModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Wenjianniban">
+        update model_wenjianniban
+        <trim prefix="set" suffixOverrides=",">
+            <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
+            <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
+            <if test="result!=null">result = #{result},</if>
+        </trim>
+        where receivefileid = #{receivefileid}
+    </update>
+    <!--int updateModelYikeshi(Model_Yikeshi meme);-->
+    <update id="updateModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
+        update model_yikeshi
+        <trim prefix="set" suffixOverrides=",">
+            <if test="departmentadvice!=null">departmentadvice = #{departmentadvice},</if>
+            <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
+            <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
+            <if test="result!=null">result = #{result},</if>
+        </trim>
+        where receivefileid = #{receivefileid}
+    </update>
+    <!--int updateModelErkeshi(Model_Erkeshi meme);-->
+    <update id="updateModelErkeshi" parameterType="com.bhidi.lincang.bean.Model_Erkeshi">
+        update model_erkeshi
+        <trim prefix="set" suffixOverrides=",">
+            <if test="department1advice!=null">department1advice = #{department1advice},</if>
+            <if test="department2advice!=null">department2advice = #{department2advice},</if>
+            <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
+            <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
+            <if test="result!=null">result = #{result},</if>
+        </trim>
+        where receivefileid = #{receivefileid}
+    </update>
     <!--int insertModelErkeshi(Model_Erkeshi meme);-->
     <insert id="insertModelErkeshi" parameterType="com.bhidi.lincang.bean.Model_Erkeshi">
         insert into model_erkeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,

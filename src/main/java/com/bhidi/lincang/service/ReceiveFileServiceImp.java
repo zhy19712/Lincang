@@ -68,6 +68,22 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return receiveFileMapper.getInfoFromErkeshi(receivefileid);
     }
 
+    public int updateModelZhijiechuli(Model_Zhijiechuli meme) {
+        return receiveFileMapper.updateModelZhijiechuli(meme);
+    }
+
+    public int updateModelWenjiannibandan(Model_Wenjianniban meme) {
+        return receiveFileMapper.updateModelWenjiannibandan(meme);
+    }
+
+    public int updateModelYikeshi(Model_Yikeshi meme) {
+        return receiveFileMapper.updateModelYikeshi(meme);
+    }
+
+    public int updateModelErkeshi(Model_Erkeshi meme) {
+        return receiveFileMapper.updateModelErkeshi(meme);
+    }
+
     public Map<String,Object> save(Map<String, Object> mapCondition){
         ReceiveFile rfaa = (ReceiveFile)mapCondition.get("receiveFileAhead");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");

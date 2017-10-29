@@ -86,11 +86,11 @@ public class ReceiveFileController {
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
             //判断两个科室的名字
-            rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
+            //rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
             //rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
-            rf.setDepartment1person(pl.getDepartment1());
+            //rf.setDepartment1person(pl.getDepartment1());
             //rf.setDepartment2person(pl.getDepartment2());
-            rf.setDepartment1persondelete(pl.getDepartment1());
+            //rf.setDepartment1persondelete(pl.getDepartment1());
             //rf.setDepartment2persondelete(pl.getDepartment2());
             rf.setFenguanname(pl.getBranch_leader());
             rf.setFenguannamedelete(pl.getBranch_leader());
@@ -359,6 +359,271 @@ public class ReceiveFileController {
         }
         mapResult.put("ReceiveFile",rf!=null?rf:"");
         String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 第四步，模板选择之后点击编辑之后的提交
+     */
+    @ResponseBody
+    @RequestMapping(value="/updateReceiveFileAndModelInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String updateReceiveFileAndModelInfo(HttpSession session,ReceiveFile receivefileinfo,String text){
+        //取到当前用户的角色
+        User user = (User)session.getAttribute("user");
+        String role  = user.getRoleList().get(0);
+        int er =0;
+        int mer =0;
+        String modeltype = "";
+        //根据modelname来判断给数据库中存储的名字
+        if( receivefileinfo.getModeltype().equals("直接处理") ){
+            ReceiveFile rf = new ReceiveFile();
+            rf.setReceivefileid(receivefileinfo.getReceivefileid());
+            if(role == "分管领导"){
+                String fenguanname = receivefileinfo.getFenguanname();
+                String fenguannamedelete = receivefileinfo.getFenguannamedelete();
+                rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                if( fenguanname.equals(fenguannamedelete+","+user.getName()) ){
+                    rf.setStatus("主管领导签批");
+                } else {
+                    rf.setStatus("分管领导签批");
+                }
+            }
+            if(role == "主管领导"){
+                rf.setZhuguannamedelete(receivefileinfo.getZhuguannamedelete() +","+user.getName());
+                if(receivefileinfo.getZhuguanname().equals(receivefileinfo.getZhuguannamedelete()+","+user.getName())){
+                    rf.setStatus("处理处置");
+                } else {
+                    rf.setStatus("主管领导签批");
+                }
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                rf.setImplementpersondelete(receivefileinfo.getImplementpersondelete()+","+user.getName());
+                if(receivefileinfo.getImplementperson().equals(receivefileinfo.getImplementpersondelete()+","+user.getName())){
+                    rf.setStatus("归档");
+                } else {
+                    rf.setStatus("处理处置");
+                }
+            }
+            //去更新receivefile表
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
+            //接下来就是更新model_zhijiechuli表
+            Model_Zhijiechuli meme = new Model_Zhijiechuli();
+            //把text中的内容取出来
+            JSONObject object = JSONObject.fromObject(text);
+            Model_Zhijiechuli me= (Model_Zhijiechuli) JSONObject.toBean(object,Model_Zhijiechuli.class);
+            meme.setReceivefileid(receivefileinfo.getReceivefileid());
+            meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            meme.setResult(me.getResult());
+            //去修改model_zhijiechuli表
+            try {
+                mer = receiveFileServiceImp.updateModelZhijiechuli(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
+        }
+
+
+
+
+        if( receivefileinfo.getModeltype().equals("文件拟办单") ){
+            ReceiveFile rf = new ReceiveFile();
+            rf.setReceivefileid(receivefileinfo.getReceivefileid());
+            if(role == "分管领导"){
+                String fenguanname = receivefileinfo.getFenguanname();
+                String fenguannamedelete = receivefileinfo.getFenguannamedelete();
+                rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                if( fenguanname.equals(fenguannamedelete+","+user.getName()) ){
+                    rf.setStatus("主管领导签批");
+                } else {
+                    rf.setStatus("分管领导签批");
+                }
+            }
+            if(role == "主管领导"){
+                rf.setZhuguannamedelete(receivefileinfo.getZhuguannamedelete() +","+user.getName());
+                if(receivefileinfo.getZhuguanname().equals(receivefileinfo.getZhuguannamedelete()+","+user.getName())){
+                    rf.setStatus("处理处置");
+                } else {
+                    rf.setStatus("主管领导签批");
+                }
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                rf.setImplementpersondelete(receivefileinfo.getImplementpersondelete()+","+user.getName());
+                if(receivefileinfo.getImplementperson().equals(receivefileinfo.getImplementpersondelete()+","+user.getName())){
+                    rf.setStatus("归档");
+                } else {
+                    rf.setStatus("处理处置");
+                }
+            }
+            //去更新receivefile表
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
+            //接下来就是更新model_wenjianniban表
+            Model_Wenjianniban meme = new Model_Wenjianniban();
+            //把text中的内容取出来
+            JSONObject object = JSONObject.fromObject(text);
+            Model_Wenjianniban me= (Model_Wenjianniban) JSONObject.toBean(object,Model_Wenjianniban.class);
+            meme.setReceivefileid(receivefileinfo.getReceivefileid());
+            meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            meme.setResult(me.getResult());
+            //去修改model_erkeshi表
+            try {
+                mer = receiveFileServiceImp.updateModelWenjiannibandan(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
+        }
+
+
+
+
+        if( receivefileinfo.getModeltype().equals("一科室提意见") ){
+            ReceiveFile rf = new ReceiveFile();
+            rf.setReceivefileid(receivefileinfo.getReceivefileid());
+            if(role !="分管领导" & role !="主管领导"){
+                rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
+                if( receivefileinfo.getDepartment1person().equals(receivefileinfo.getDepartment1persondelete()+","+user.getName()) ){
+                    rf.setStatus("分管领导签批");
+                } else {
+                    rf.setStatus("科室签批");
+                }
+            }
+            if(role == "分管领导"){
+                String fenguanname = receivefileinfo.getFenguanname();
+                String fenguannamedelete = receivefileinfo.getFenguannamedelete();
+                rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                if( fenguanname.equals(fenguannamedelete+","+user.getName()) ){
+                    rf.setStatus("主管领导签批");
+                } else {
+                    rf.setStatus("分管领导签批");
+                }
+            }
+            if(role == "主管领导"){
+                rf.setZhuguannamedelete(receivefileinfo.getZhuguannamedelete() +","+user.getName());
+                if(receivefileinfo.getZhuguanname().equals(receivefileinfo.getZhuguannamedelete()+","+user.getName())){
+                    rf.setStatus("处理处置");
+                } else {
+                    rf.setStatus("主管领导签批");
+                }
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                rf.setImplementpersondelete(receivefileinfo.getImplementpersondelete()+","+user.getName());
+                if(receivefileinfo.getImplementperson().equals(receivefileinfo.getImplementpersondelete()+","+user.getName())){
+                    rf.setStatus("归档");
+                } else {
+                    rf.setStatus("处理处置");
+                }
+            }
+            //去更新receivefile表
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
+            //接下来就是更新model_yikeshi表
+            Model_Yikeshi meme = new Model_Yikeshi();
+            //把text中的内容取出来
+            JSONObject object = JSONObject.fromObject(text);
+            Model_Yikeshi me= (Model_Yikeshi) JSONObject.toBean(object,Model_Yikeshi.class);
+            meme.setReceivefileid(receivefileinfo.getReceivefileid());
+            meme.setDepartmentadvice(me.getDepartmentadvice());;
+            meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            meme.setResult(me.getResult());
+            //去修改model_yikeshi表
+            try {
+                mer = receiveFileServiceImp.updateModelYikeshi(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
+        }
+
+
+
+
+        if( receivefileinfo.getModeltype().equals("两科室提意见") ){
+            ReceiveFile rf = new ReceiveFile();
+            rf.setReceivefileid(receivefileinfo.getReceivefileid());
+            if(role !="分管领导" & role !="主管领导"){
+                if( role == receivefileinfo.getDepartment1name() ){
+                    rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
+                } else  {
+                    rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete()+","+user.getName());
+                }
+                if( rf.getDepartment1person().equals(rf.getDepartment1persondelete()) & rf.getDepartment2person().equals(rf.getDepartment2persondelete()) ){
+                    rf.setStatus("分管领导签批");
+                } else {
+                    rf.setStatus("科室签批");
+                }
+            }
+            if(role == "分管领导"){
+                String fenguanname = receivefileinfo.getFenguanname();
+                String fenguannamedelete = receivefileinfo.getFenguannamedelete();
+                rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                if( fenguanname.equals(fenguannamedelete+","+user.getName()) ){
+                    rf.setStatus("主管领导签批");
+                } else {
+                    rf.setStatus("分管领导签批");
+                }
+            }
+            if(role == "主管领导"){
+                rf.setZhuguannamedelete(receivefileinfo.getZhuguannamedelete() +","+user.getName());
+                if(receivefileinfo.getZhuguanname().equals(receivefileinfo.getZhuguannamedelete()+","+user.getName())){
+                    rf.setStatus("处理处置");
+                } else {
+                    rf.setStatus("主管领导签批");
+                }
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                rf.setImplementpersondelete(receivefileinfo.getImplementpersondelete()+","+user.getName());
+                if(receivefileinfo.getImplementperson().equals(receivefileinfo.getImplementpersondelete()+","+user.getName())){
+                    rf.setStatus("归档");
+                } else {
+                    rf.setStatus("处理处置");
+                }
+            }
+            //去更新receivefile表
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
+            //接下来就是更新model_erkeshi表
+            Model_Erkeshi meme = new Model_Erkeshi();
+            //把text中的内容取出来
+            JSONObject object = JSONObject.fromObject(text);
+            Model_Erkeshi me= (Model_Erkeshi) JSONObject.toBean(object,Model_Erkeshi.class);
+            meme.setReceivefileid(receivefileinfo.getReceivefileid());
+            if(role == receivefileinfo.getDepartment1name()){
+                meme.setDepartment1advice(me.getDepartment1advice());
+            }
+            if(role == receivefileinfo.getDepartment2name()){
+                meme.setDepartment2advice(me.getDepartment2advice());
+            }
+            meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            meme.setResult(me.getResult());
+            //去更新model_erkeshi表
+            try {
+                mer = receiveFileServiceImp.updateModelErkeshi(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( mer == -1 || er == -1){
+            map.put("result","failuer");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
         return result;
     }
 }

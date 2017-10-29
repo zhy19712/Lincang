@@ -28,4 +28,12 @@ public interface ReceiveFileServiceInf {
     Model_Yikeshi getModelYikeshiInfoById(String receivefileid);
 
     Model_Erkeshi getModelErkeshiInfoById(String receivefileid);
+
+    int updateModelZhijiechuli(Model_Zhijiechuli meme);
+
+    int updateModelWenjiannibandan(Model_Wenjianniban meme);
+
+    int updateModelYikeshi(Model_Yikeshi meme);
+
+    int updateModelErkeshi(Model_Erkeshi meme);
 }
