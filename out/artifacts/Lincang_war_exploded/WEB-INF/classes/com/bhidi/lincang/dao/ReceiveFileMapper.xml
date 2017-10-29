@@ -37,7 +37,7 @@
         IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
         IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
         IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname,
-        IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") asdepartment1name,
+        IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") as department1name,
         IFNULL(department1person,"") as department1person,IFNULL(department1persondelete,"") as department1persondelete,
         IFNULL(department2name,"") as department2name,IFNULL(department2person,"") as department2person,
         IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,

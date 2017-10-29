@@ -2031,13 +2031,22 @@
             })
         }
         console.log(delete_file)
+        var text = new Object();
+        text.departmentadvice = "";
+        text.department1advice = "";
+        text.department2advice = "";
+        text.branchleaderinstruction = "";
+        text.mainleaderinstruction = "";
+        text.result = "";
         if(mydata1.status == "科室签批"){
             if(mydata1.modeltype == "一科室提意见"){
-                var departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
             }else if(mydata1.modeltype == "两科室提意见"){
-                var department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                var department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
-                console.log(department1advice,department2advice,mydata1);
+                text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+            }
+        }
+        console.log(text,mydata1);
 //                $.ajax({
 //                    url: "",
 //                    type: "post",
@@ -2047,8 +2056,6 @@
 //                        console.log(data);
 //                    }
 //                })
-            }
-        }
     })
 
 
