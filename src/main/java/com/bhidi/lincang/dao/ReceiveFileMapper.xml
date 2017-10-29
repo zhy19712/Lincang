@@ -97,7 +97,7 @@
         where receivefileid = #{receivefileid}
     </update>
     <!--int updateModelYikeshi(Model_Yikeshi meme);-->
-    <update id="updateModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
+    <update id="updateModelYikeshi" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
         update model_yikeshi
         <trim prefix="set" suffixOverrides=",">
             <if test="departmentadvice!=null">departmentadvice = #{departmentadvice},</if>

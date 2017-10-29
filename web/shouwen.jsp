@@ -2046,16 +2046,18 @@
                 text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
             }
         }
+        var text2 = JSON.stringify(text);
+        var mydata2 = JSON.stringify(mydata1);
         console.log(text,mydata1);
-//                $.ajax({
-//                    url: "",
-//                    type: "post",
-//                    data: {text:text,ReceiveFile:mydata1},
-//                    dataType: "json",
-//                    success: function (data) {
-//                        console.log(data);
-//                    }
-//                })
+                $.ajax({
+                    url: "/updateReceiveFileAndModelInfo.do",
+                    type: "post",
+                    data: {text:text2,receivedata:mydata2},
+                    dataType: "json",
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
     })
 
 
