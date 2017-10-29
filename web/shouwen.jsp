@@ -1901,15 +1901,15 @@
     function download(that) {
         var url = $(that).siblings(".file_url").text();
         console.log(url);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {url:url},
-//            dataType: "json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "/file/download.do",
+            type: "post",
+            data: {url:url},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
     }
 
     function newForm() {
