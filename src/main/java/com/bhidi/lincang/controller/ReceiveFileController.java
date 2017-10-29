@@ -73,6 +73,8 @@ public class ReceiveFileController {
                                        String text){
         JSONObject jsonobject = JSONObject.fromObject(people_list);
         People_List pl= (People_List)JSONObject.toBean(jsonobject,People_List.class);
+        int er =0;
+        int mer =0;
         String modeltype = "";
         //根据modelname来判断给数据库中存储的名字
         if( modelname.equals("直接处理") ){
@@ -97,7 +99,11 @@ public class ReceiveFileController {
             rf.setImplementperson(pl.getTransactor());
             rf.setImplementpersondelete(pl.getTransactor());
             //去更新receivefile表
-            int er = receiveFileServiceImp.updateReceiveFile(rf);
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
             //接下来就是更新model_zhijiechuli表
             Model_Zhijiechuli meme = new Model_Zhijiechuli();
             //把text中的内容取出来
@@ -127,7 +133,11 @@ public class ReceiveFileController {
             meme.setResult(me.getResult());
             meme.setImplementperson(pl.getTransactor());
             //去插入model_erkeshi表
-            int mer = receiveFileServiceImp.insertModelZhijiechuli(meme);
+            try {
+                mer = receiveFileServiceImp.insertModelZhijiechuli(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
         }
         if( modelname.equals("文件拟办单") ){
             modeltype = "model_wenjianniban";
@@ -150,7 +160,11 @@ public class ReceiveFileController {
             rf.setImplementperson(pl.getTransactor());
             rf.setImplementpersondelete(pl.getTransactor());
             //去更新receivefile表
-            int er = receiveFileServiceImp.updateReceiveFile(rf);
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
             //接下来就是更新model_wenjianniban表
             Model_Wenjianniban meme = new Model_Wenjianniban();
             //把text中的内容取出来
@@ -177,7 +191,11 @@ public class ReceiveFileController {
             meme.setResult(me.getResult());
             meme.setImplementperson(pl.getTransactor());
             //去插入model_erkeshi表
-            int mer = receiveFileServiceImp.insertModelWenjiannibandan(meme);
+            try {
+                mer = receiveFileServiceImp.insertModelWenjiannibandan(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
         }
         if( modelname.equals("一科室提意见") ){
             modeltype = "model_yikeshi";
@@ -200,7 +218,11 @@ public class ReceiveFileController {
             rf.setImplementperson(pl.getTransactor());
             rf.setImplementpersondelete(pl.getTransactor());
             //去更新receivefile表
-            int er = receiveFileServiceImp.updateReceiveFile(rf);
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
             //接下来就是更新model_erkeshi表
             Model_Yikeshi meme = new Model_Yikeshi();
             //把text中的内容取出来
@@ -230,7 +252,11 @@ public class ReceiveFileController {
             meme.setResult(me.getResult());
             meme.setImplementperson(pl.getTransactor());
             //去插入model_erkeshi表
-            int mer = receiveFileServiceImp.insertModelYikeshi(meme);
+            try {
+                mer = receiveFileServiceImp.insertModelYikeshi(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
         }
         if( modelname.equals("两科室提意见") ){
             modeltype = "model_erkeshi";
@@ -253,7 +279,11 @@ public class ReceiveFileController {
             rf.setImplementperson(pl.getTransactor());
             rf.setImplementpersondelete(pl.getTransactor());
             //去更新receivefile表
-            int er = receiveFileServiceImp.updateReceiveFile(rf);
+            try {
+                er = receiveFileServiceImp.updateReceiveFile(rf);
+            } catch (Exception e) {
+                er = -1;
+            }
             //接下来就是更新model_erkeshi表
             Model_Erkeshi meme = new Model_Erkeshi();
             //把text中的内容取出来
@@ -283,9 +313,19 @@ public class ReceiveFileController {
             meme.setResult(me.getResult());
             meme.setImplementperson(pl.getTransactor());
             //去插入model_erkeshi表
-            int mer = receiveFileServiceImp.insertModelErkeshi(meme);
+            try {
+                mer = receiveFileServiceImp.insertModelErkeshi(meme);
+            } catch (Exception e) {
+                mer = -1;
+            }
         }
-        //String result = new Gson().toJson(rf);
-        return "";
+        Map<String,String> map = new HashMap<>();
+        if( mer == -1 || er == -1){
+            map.put("result","failuer");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
     }
 }
