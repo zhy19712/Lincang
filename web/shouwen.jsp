@@ -2050,7 +2050,7 @@
 //                $.ajax({
 //                    url: "",
 //                    type: "post",
-//                    data: {department1advice:department1advice,department2advice:department2advice,ReceiveFile:mydata1},
+//                    data: {text:text,ReceiveFile:mydata1},
 //                    dataType: "json",
 //                    success: function (data) {
 //                        console.log(data);
