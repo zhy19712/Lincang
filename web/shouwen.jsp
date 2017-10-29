@@ -1898,15 +1898,15 @@
             $("#select_model .modal-header h3").text("收文管理-" + id);
             $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
-//            $.ajax({
-//                url:"",
-//                type: "post",
-//                data: {id:id},
-//                dataType: "json",
-//                success: function(data){
-//                    console.log(data);
-//                }
-//            })
+            $.ajax({
+                url:"/getReceiveFileAndModelInfo.do",
+                type: "post",
+                data: {receivefileid:id},
+                dataType: "json",
+                success: function(data){
+                    console.log(data);
+                }
+            })
             $("#model_info").css("display","block");
             $("#model_container_1").css("display","block");
             $('#model_handle').modal('show');

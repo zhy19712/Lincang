@@ -20,4 +20,12 @@ public interface ReceiveFileServiceInf {
     int insertModelWenjiannibandan(Model_Wenjianniban meme);
 
     int insertModelZhijiechuli(Model_Zhijiechuli meme);
+
+    Model_Zhijiechuli getModelZhijiechuliInfoById(String receivefileid);
+
+    Model_Wenjianniban getModelWenjiannibanInfoById(String receivefileid);
+
+    Model_Yikeshi getModelYikeshiInfoById(String receivefileid);
+
+    Model_Erkeshi getModelErkeshiInfoById(String receivefileid);
 }

@@ -17,6 +17,57 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
     @Autowired
     ReceiveFileMapper receiveFileMapper;
 
+
+
+    public ReceiveFile getReceiveFileInfoById(String receivefileid) {
+        return receiveFileMapper.selectReceiveFileInfoById(receivefileid);
+    }
+
+    public String getDepartmentNameByName(String department1) {
+        return receiveFileMapper.selectDepartmentNameByName(department1);
+    }
+
+
+    public int updateReceiveFile(ReceiveFile rf) {
+        return receiveFileMapper.updateReceiveFile(rf);
+    }
+
+
+    public int insertModelErkeshi(Model_Erkeshi meme) {
+        return receiveFileMapper.insertModelErkeshi(meme);
+    }
+
+
+    public int insertModelYikeshi(Model_Yikeshi meme) {
+        return receiveFileMapper.insertModelYikeshi(meme);
+    }
+
+
+    public int insertModelWenjiannibandan(Model_Wenjianniban meme) {
+        return receiveFileMapper.insertModelWenjiannibandan(meme);
+    }
+
+
+    public int insertModelZhijiechuli(Model_Zhijiechuli meme) {
+        return receiveFileMapper.insertModelZhijiechuli(meme);
+    }
+
+    public Model_Zhijiechuli getModelZhijiechuliInfoById(String receivefileid) {
+        return receiveFileMapper.getInfoFromZhijiechuli(receivefileid);
+    }
+
+    public Model_Wenjianniban getModelWenjiannibanInfoById(String receivefileid) {
+        return receiveFileMapper.getInfoFromWenjianniban(receivefileid);
+    }
+
+    public Model_Yikeshi getModelYikeshiInfoById(String receivefileid) {
+        return receiveFileMapper.getInfoFromYikeshi(receivefileid);
+    }
+
+    public Model_Erkeshi getModelErkeshiInfoById(String receivefileid) {
+        return receiveFileMapper.getInfoFromErkeshi(receivefileid);
+    }
+
     public Map<String,Object> save(Map<String, Object> mapCondition){
         ReceiveFile rfaa = (ReceiveFile)mapCondition.get("receiveFileAhead");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
@@ -59,41 +110,6 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         mapResult.put("result","success");
         return mapResult;
     }
-
-    public ReceiveFile getReceiveFileInfoById(String receivefileid) {
-        return receiveFileMapper.selectReceiveFileInfoById(receivefileid);
-    }
-
-    @Override
-    public String getDepartmentNameByName(String department1) {
-        return receiveFileMapper.selectDepartmentNameByName(department1);
-    }
-
-    @Override
-    public int updateReceiveFile(ReceiveFile rf) {
-        return receiveFileMapper.updateReceiveFile(rf);
-    }
-
-    @Override
-    public int insertModelErkeshi(Model_Erkeshi meme) {
-        return receiveFileMapper.insertModelErkeshi(meme);
-    }
-
-    @Override
-    public int insertModelYikeshi(Model_Yikeshi meme) {
-        return receiveFileMapper.insertModelYikeshi(meme);
-    }
-
-    @Override
-    public int insertModelWenjiannibandan(Model_Wenjianniban meme) {
-        return receiveFileMapper.insertModelWenjiannibandan(meme);
-    }
-
-    @Override
-    public int insertModelZhijiechuli(Model_Zhijiechuli meme) {
-        return receiveFileMapper.insertModelZhijiechuli(meme);
-    }
-
     /**
      * 删除文件
      */

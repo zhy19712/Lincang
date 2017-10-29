@@ -623,13 +623,11 @@
                     <p style="line-height: 30px;margin-left: 24px;font-size: 16px;cursor: pointer;">点击查看模版名称及处理人</p>
                     <p style="margin-left: 24px;">模版名称:<span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
                     <ul id="handle_people" style="padding-left: 0;margin-left: 24px;">
-                        <li><span>办公室处理人</span><span id="bangonogshi_1">办公室1</span></li>
                         <li><span>科室1处理人</span><span id="keshi1_1">科室1</span></li>
                         <li><span>科室2处理人</span><span id="keshi2_1">科室2</span></li>
                         <li><span>分管领导处理人</span><span id="fenguan_1">分管领导</span></li>
                         <li><span>主管领导处理人</span><span id="zhuguan_1">主管领导处理人</span></li>
                         <li><span>办理人</span><span id="banli_1">办理人</span></li>
-                        <li><span>归档人</span><span id="guidang_1">办理人</span></li>
                     </ul>
                 </div>
                 <div id="model_container_1">
@@ -1900,6 +1898,15 @@
             $("#select_model .modal-header h3").text("收文管理-" + id);
             $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
+            $.ajax({
+                url:"/getReceiveFileAndModelInfo.do",
+                type: "post",
+                data: {receivefileid:id},
+                dataType: "json",
+                success: function(data){
+                    console.log(data);
+                }
+            })
             $("#model_info").css("display","block");
             $("#model_container_1").css("display","block");
             $('#model_handle').modal('show');

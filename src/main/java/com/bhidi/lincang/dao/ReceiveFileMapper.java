@@ -20,4 +20,12 @@ public interface ReceiveFileMapper {
     int insertModelWenjiannibandan(Model_Wenjianniban meme);
 
     int insertModelZhijiechuli(Model_Zhijiechuli meme);
+
+    Model_Zhijiechuli getInfoFromZhijiechuli(String receivefileid);
+
+    Model_Wenjianniban getInfoFromWenjianniban(String receivefileid);
+
+    Model_Yikeshi getInfoFromYikeshi(String receivefileid);
+
+    Model_Erkeshi getInfoFromErkeshi(String receivefileid);
 }

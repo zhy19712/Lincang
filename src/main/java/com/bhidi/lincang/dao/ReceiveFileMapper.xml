@@ -36,7 +36,14 @@
         IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
         IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
         IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
-        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname
+        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname,
+        IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") asdepartment1name,
+        IFNULL(department1person,"") as department1person,IFNULL(department1persondelete,"") as department1persondelete,
+        IFNULL(department2name,"") as department2name,IFNULL(department2person,"") as department2person,
+        IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
+        IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
+        IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
+        IFNULL(implementpersondelete,"") as implementpersondelete
         FROM receivefile
         where receivefileid = #{receivefileid}
     </select>
@@ -112,4 +119,24 @@
         #{mainleaderinstruction},#{branchleaderinstruction},
         #{result},#{implementperson});
     </insert>
+    <!--Model_Zhijiechuli getInfoFromZhijiechuli(String receivefileid);-->
+    <select id="getInfoFromZhijiechuli" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Zhijiechuli">
+        select *
+        from model_zhijiechuli where receivefileid = #{receivefileid}
+    </select>
+    <!--Model_Wenjianniban getInfoFromWenjianniban(String receivefileid);-->
+    <select id="getInfoFromWenjianniban" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Wenjianniban">
+        select *
+        from model_wenjianniban where receivefileid = #{receivefileid}
+    </select>
+    <!--Model_Yikeshi getInfoFromYikeshi(String receivefileid);-->
+    <select id="getInfoFromYikeshi" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Yikeshi">
+        select *
+        from model_yikeshi where receivefileid = #{receivefileid}
+    </select>
+   <!-- Model_Erkeshi getInfoFromErkeshi(String receivefileid);-->
+    <select id="getInfoFromErkeshi" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Erkeshi">
+        select *
+        from model_erkeshi where receivefileid = #{receivefileid}
+    </select>
 </mapper>

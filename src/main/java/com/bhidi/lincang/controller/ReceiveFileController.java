@@ -328,4 +328,37 @@ public class ReceiveFileController {
         String result = new Gson().toJson(map);
         return result;
     }
+    /**
+     * 模板选择完成之后的查看
+     */
+    @ResponseBody
+    @RequestMapping(value="/getReceiveFileAndModelInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getReceiveFileAndModelInfo(String receivefileid){
+        ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(receivefileid);
+        String modeltype = rf.getModeltype();
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if(modeltype.equals("model_zhijiechuli")){
+            rf.setModeltype("直接处理");
+            Model_Zhijiechuli mz = receiveFileServiceImp.getModelZhijiechuliInfoById(receivefileid);
+            mapResult.put("model",mz!=null?mz:"");
+        }
+        if(modeltype.equals("model_wenjianniban")){
+            rf.setModeltype("文件拟办单");
+            Model_Wenjianniban mw = receiveFileServiceImp.getModelWenjiannibanInfoById(receivefileid);
+            mapResult.put("model",mw!=null?mw:"");
+        }
+        if(modeltype.equals("model_yikeshi")){
+            rf.setModeltype("一科室提意见");
+            Model_Yikeshi my = receiveFileServiceImp.getModelYikeshiInfoById(receivefileid);
+            mapResult.put("model",my!=null?my:"");
+        }
+        if(modeltype.equals("model_erkeshi")){
+            rf.setModeltype("两科室提意见");
+            Model_Erkeshi me = receiveFileServiceImp.getModelErkeshiInfoById(receivefileid);
+            mapResult.put("model",me!=null?me:"");
+        }
+        mapResult.put("ReceiveFile",rf!=null?rf:"");
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
 }
