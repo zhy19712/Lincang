@@ -51,7 +51,7 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="oa.jsp"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+        <a class="navbar-brand" href="/tohome.htm"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <span>临沧市移民开发局</span></a>
         <!-- logo ends -->
 

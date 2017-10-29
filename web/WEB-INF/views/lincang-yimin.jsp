@@ -1,9 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>临沧市移民局</title>
 	<link rel="stylesheet" href="../../css/mybs.css">
 	<link href="../../css/app.css" rel="stylesheet">
 	<link rel="stylesheet" href="../../css/reset.css">
@@ -12,8 +18,12 @@
 	<link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="../../css/jedate.css">
 	<link rel="stylesheet" href="../../css/style.css">
+	<link rel="shortcut icon" href="../../img/favicon.ico">
+	<link rel="stylesheet" href="../../css/mybs.css">
+	<link rel="stylesheet" href="../../css/app.css">
 
 	<script src="../../js/jquery.min.js"></script>
+	<script src="../../js/jquery.cookie.js"></script>
 	<script src="../../js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LTqCYH5OsxDXuPREC7tYCrgRGjVtaLQw"></script>
 	<script src="../../js/zUI.js"></script>
@@ -22,19 +32,41 @@
 	<script src="../../js/jQuery.print.js"></script>
 	<script src="../../js/jquery-form.min.js"></script>
 	<script src="../../js/lincang-yimin.js"></script>
+
 </head>
 <body>
-	<div id="header">
-		<img src="../../img/logo.png" alt="" class="logo">
-		<div class="search" style="font-size:16px;">
-			<c:if test="${user==null}">
-				<a href="/toLogin.htm" target="_blank">请登录</a>
-			</c:if>
-			<c:if test="${user!=null}">
-				欢迎${user.username}, <a href="logout.do" >注销</a>
-			</c:if>
+	<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+
+		<div class="navbar-inner">
+			<!-- 小屏幕时的导航按键 starts -->
+			<button type="button" class="navbar-toggle pull-left animated flip">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!-- 小屏幕时的导航按键 ends -->
+			<!-- logo starts -->
+			<a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+				<span style="font-size: 26px;">临沧市移民开发局</span></a>
+			<!-- logo ends -->
+
+			<!-- user dropdown starts -->
+			<div class="btn-group pull-right">
+				<div class="btn btn-default">
+					<i class="glyphicon glyphicon-user"></i>
+					<c:if test="${user==null}">
+						<a href="/toLogin.htm" target="_blank">请登录</a>
+					</c:if>
+					<c:if test="${user!=null}">
+						欢迎${user.username}<a href="logout.do" >注销</a>
+					</c:if>
+				</div>
+			</div>
+			<span id="status" style="display:none;width:0;height:0;">${user.level}</span>
+			<span id="username" style="display:none;width:0;height:0;">${user.username}</span>
+			<!-- user dropdown ends -->
 		</div>
-		<span id="username" style="display:none;width:0;height:0;">${user.username}</span>
 	</div>
 	<div id="content">
 		<div id="container-wrapper">

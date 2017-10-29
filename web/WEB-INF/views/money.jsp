@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="oa.jsp" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <span style="font-size: 26px;">临沧市移民开发局</span></a>
         <!-- logo ends -->
 
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">市局资金计划上报</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li id="dcl"><a href="#new2"><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
+                        <li id="dcl"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
                         <li id="ycl"><a href="#new3"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
                 </div>
@@ -161,10 +161,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>流程类型</th>
                                                         <th>标题</th>
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
-                                                        <th>发起人类型</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -195,10 +195,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>流程类型</th>
                                                         <th>标题</th>
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
-                                                        <th>发起人类型</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -232,10 +232,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 <thead>
                                                     <tr>
                                                         <th>编号</th>
+                                                        <th>流程类型</th>
                                                         <th>标题</th>
                                                         <th>创建时间</th>
                                                         <th>发起人</th>
-                                                        <th>发起人类型</th>
                                                         <th>当前状态</th>
                                                         <th>操作</th>
                                                     </tr>
@@ -600,10 +600,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+            {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
@@ -644,10 +644,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+            {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
@@ -688,10 +688,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         "serverSide": true,
         "columns": [
             {"data": "id"},
+            {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
             {"data": "report_person"},
-            {"data": "initiatorclass"},
             {"data": "status"},
             {"data": null}
         ],
@@ -720,6 +720,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
     });
+
+    //气泡显示
+    setTimeout(function () {
+        var info = dcl_table.page.info();
+        $("#nav_num").text(info.recordsTotal)
+    },0);
     var status;
     ~function() {
 

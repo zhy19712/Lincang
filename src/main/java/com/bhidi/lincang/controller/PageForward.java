@@ -47,6 +47,11 @@ public class PageForward {
         return "login";
     }
 
+    @RequestMapping(value = "/tohome", method = RequestMethod.GET)
+    public String to_home(){
+        return "home";
+    }
+
 
     @RequestMapping(value = "/oa", method = RequestMethod.GET)
     public String to_oa(){
