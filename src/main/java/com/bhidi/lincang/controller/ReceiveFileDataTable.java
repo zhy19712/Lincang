@@ -172,7 +172,16 @@ public class ReceiveFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = "办公室处理文件";
+                status = " and ( status = '办公室处理文件')";
+            }
+            if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
+                status = " and (department1persondelete like '%"+name+"%'or department2persondelete like '%"+name+"%')";
+            }
+            if( "分管领导".equals(roleList.get(0)) ){
+                status = " and ( status = '分管领导签批') and fenguannamedelete like '%"+name+"%'";
+            }
+            if( "主管领导".equals(roleList.get(0)) ){
+                status = " and ( status = '主管领导签批') and zhuguannamedelete like '%"+name+"%'";
             }
         }
 
@@ -235,17 +244,17 @@ public class ReceiveFileDataTable {
 
         List<ReceiveFile> tasks = new ArrayList<ReceiveFile>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where status = '"+status+"'";
+            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where status = '"+status+"'";
+            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1=1 "+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where status = '"+status+"'";
+            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -314,7 +323,16 @@ public class ReceiveFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = " and ( status != '办公室处理文件')";
+                status = " and (status != '办公室处理文件')";
+            }
+            if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
+                status = " and modeltype != 'model_zhijeichuli' and modeltype != 'model_wenjianniban' and (status != '办公室处理文件') and ((status != '科室一签批' and department1persondelete not like '%"+name+"%') and (status != '科室二签批' and department2persondelete not like '%"+name+"%'))";
+            }
+            if( "分管领导".equals(roleList.get(0)) ){
+                status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批') and fenguannamedelete not like '%"+name+"%'";
+            }
+            if( "主管领导".equals(roleList.get(0)) ){
+                status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批' and status != '主管领导签批') and zhuguannamedelete not like '%"+name+"%'";
             }
         }
 
