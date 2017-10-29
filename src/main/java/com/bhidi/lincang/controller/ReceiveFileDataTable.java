@@ -171,7 +171,7 @@ public class ReceiveFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( roleList.size() > 0 ){
-            if( "办公室".equals(roleList.get(0)) ){
+            if( "市局办公室".equals(roleList.get(0)) ){
                 status = "办公室处理文件";
             }
         }
@@ -313,7 +313,7 @@ public class ReceiveFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( roleList.size() > 0 ){
-            if( "办公室".equals(roleList.get(0)) ){
+            if( "市局办公室".equals(roleList.get(0)) ){
                 status = " and ( status != '办公室处理文件')";
             }
         }

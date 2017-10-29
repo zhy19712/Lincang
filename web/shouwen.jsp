@@ -1455,7 +1455,7 @@
     var last = role.lastIndexOf("]");
     role = role.substring(1,last);
     console.log(role);
-    if(role == "办公室"){
+    if(role != "市局办公室"){
         $("#header1").remove();
         $("#m_apply1").remove();
         $("#new1").remove();
@@ -1718,15 +1718,15 @@
         console.log(people_list);
         console.log(text);
         console.log(receivefileid);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
-//            dataType:"json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "",
+            type: "post",
+            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+            dataType:"json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
     })
 
     var username;
