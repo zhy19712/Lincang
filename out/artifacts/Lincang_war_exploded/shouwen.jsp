@@ -1515,7 +1515,6 @@
         fawen.ajax.url("/receiveFileDataTable.do").load();
         dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
         ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
-        setTimeout(acount,10);
     }
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
@@ -1531,6 +1530,7 @@
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
                     table_refresh();
+                    setTimeout(acount,10);
                 }else {
                     alert("提交失败");
                 }

@@ -255,7 +255,7 @@ public class ReceiveFileDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
+            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE '' END) as status FROM " + table + " where 1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
