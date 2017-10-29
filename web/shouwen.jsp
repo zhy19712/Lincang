@@ -1696,10 +1696,10 @@
             text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
             text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
             text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department1 = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
-            text.department1advice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.department2 = $("#model3 tr:nth-child(4) td:nth-child(3) input").val();
-            text.department2advice = $("#model3 tr:nth-child(5) td:nth-child(3) textarea").val();
+            text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
+            text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
+            text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
         }
         console.log(text);
         people_list = JSON.stringify(people_list);
@@ -1707,15 +1707,15 @@
         console.log(people_list);
         console.log(text);
         console.log(receivefileid);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
-//            dataType:"json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "/saveReceiveFileModelInfo.do",
+            type: "post",
+            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+            dataType:"json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
     })
 
     var username;

@@ -40,11 +40,76 @@
         FROM receivefile
         where receivefileid = #{receivefileid}
     </select>
-   <!-- List<PictureVillage> queryVillageInfo();-->
-    <!--<select id="queryVillageInfo" resultType="com.bhidi.lincang.bean.PictureVillage">
-        SELECT TO_DISTRICT as countyName,count(p.name) as NUM,FROM_TOWN as townName,FROM_VILLAGE as villageName
-        FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.FROM_TOWN,m.FROM_VILLAGE
-    </select>-->
 
+    <!--String selectDepartmentNameByName(String department1);-->
+    <select id="selectDepartmentNameByName" parameterType="String" resultType="String">
+        select r.rolename
+        from user u,user_role ur,role r where u.id = ur.userid and ur.roleid = r.id and u.name = #{name}
+    </select>
+
+    <!--int updateReceiveFile(ReceiveFile rf);-->
+    <update id="updateReceiveFile" parameterType="com.bhidi.lincang.bean.ReceiveFile">
+        update ReceiveFile
+        <trim prefix="set" suffixOverrides=",">
+            <if test="modeltype!=null">modeltype = #{modeltype},</if>
+            <if test="modelchoicename!=null">modelchoicename = #{modelchoicename},</if>
+            <if test="department1name!=null">department1name = #{department1name},</if>
+            <if test="department1person!=null">department1person = #{department1person},</if>
+            <if test="department1persondelete!=null">department1persondelete = #{department1persondelete},</if>
+            <if test="department2name!=null">department2name = #{department2name},</if>
+            <if test="department2person!=null">department2person = #{department2person},</if>
+            <if test="department2persondelete!=null">department2persondelete = #{department2persondelete},</if>
+            <if test="fenguanname!=null">fenguanname = #{fenguanname},</if>
+            <if test="zhuguanname!=null">zhuguanname = #{zhuguanname},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="fenguannamedelete!=null">fenguannamedelete = #{fenguannamedelete},</if>
+            <if test="zhuguannamedelete!=null">zhuguannamedelete = #{zhuguannamedelete},</if>
+            <if test="implementperson!=null">implementperson = #{implementperson},</if>
+            <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
+        </trim>
+        where receivefileid = #{receivefileid}
+    </update>
+    <!--int insertModelErkeshi(Model_Erkeshi meme);-->
+    <insert id="insertModelErkeshi" parameterType="com.bhidi.lincang.bean.Model_Erkeshi">
+        insert into model_erkeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+         urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,department1name,
+         department1person,department1advice,department2name,department2person,department2advice,
+         mainleaderinstruction,branchleaderinstruction,result,implementperson)
+        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+         #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
+         #{department1name},#{department1person},#{department1advice},#{department2name},
+         #{department2person},#{department2advice},#{mainleaderinstruction},#{branchleaderinstruction},
+         #{result},#{implementperson});
+    </insert>
+    <!--int insertModelYikeshi(Model_Yikeshi meme);-->
+    <insert id="insertModelYikeshi" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
+        insert into model_yikeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+        urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,department,
+        departmentperson,departmentadvice,
+        mainleaderinstruction,branchleaderinstruction,result,implementperson)
+        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+        #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
+        #{department},#{departmentperson},#{departmentadvice},#{mainleaderinstruction},#{branchleaderinstruction},
+        #{result},#{implementperson});
+    </insert>
+    <!--int insertModelWenjiannibandan(Model_Wenjianniban meme);-->
+    <insert id="insertModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Wenjianniban">
+        insert into model_wenjianniban(filename,receivefileid,dispatchfiledepartment,filenum,receivefileregisterid,
+        receivefiledate,filetitle,suggestion,mainleader,branchleader,
+        mainleaderinstruction,branchleaderinstruction,result,implementperson)
+        values (#{filename},#{receivefileid},#{dispatchfiledepartment},#{filenum},#{receivefileregisterid},
+        #{receivefiledate},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
+        #{mainleaderinstruction},#{branchleaderinstruction},
+        #{result},#{implementperson});
+    </insert>
+    <!--int insertModelZhijiechuli(Model_Zhijiechuli meme);-->
+    <insert id="insertModelZhijiechuli" parameterType="com.bhidi.lincang.bean.Model_Zhijiechuli">
+        insert into model_zhijiechuli(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+        urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,
+        mainleaderinstruction,branchleaderinstruction,result,implementperson)
+        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+        #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
+        #{mainleaderinstruction},#{branchleaderinstruction},
+        #{result},#{implementperson});
+    </insert>
 </mapper>
