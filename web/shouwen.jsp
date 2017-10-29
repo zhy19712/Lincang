@@ -514,7 +514,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>模版处理</h3>
+                    <h3></h3>
                 </div>
                 <div id="container1" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
@@ -875,7 +875,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>选择模版及处理人</h3>
+                    <h3></h3>
                 </div>
                 <div id="container" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
@@ -1451,10 +1451,11 @@
 
 
     //待办事务的显示条数
-    setTimeout(function () {
+    function acount() {
         var info = dcl_table.page.info();
         $("#nav_num").text(info.recordsTotal)
-    },0);
+    }
+    setTimeout(acount,10);
 
     //获取角色名称
     var role = $("#roleList").text();
@@ -1509,6 +1510,7 @@
         o.removeChild(a);
         o.removeChild(span)
     }
+    //表格刷新
     function table_refresh() {
         fawen.ajax.url("/receiveFileDataTable.do").load();
         dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
@@ -1528,6 +1530,7 @@
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
                     table_refresh();
+                    setTimeout(acount,10);
                 }else {
                     alert("提交失败");
                 }
@@ -1797,28 +1800,30 @@
             success: function (data) {
                 mydata = data;
                 console.log(data);
-                file_arr = data.attachmentpath.split(",");
-                $.each(file_arr,function (i,n) {
-                    var end = n.lastIndexOf("-");
-                    var filekind_index = n.lastIndexOf(".");
-                    var str = n.substring(73,end);
-                    var filekind = n.substring(filekind_index);
-                    str = str + filekind;
-                    var files = "";
-                    files  += ""
-                        + "<div>"
-                        + "<iframe name='downloadFrame' style='display:none;'></iframe>"
-                        + "<form action='/file/download.do' method='get' target='downloadFrame'>"
-                        + "<span class='file_name' style='color: #000;'>"+str+"</span>"
-                        + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
-                        + "<span class='del' onclick='del(this)'>删除</span>"
-                        + "<button type='submit'>下载</button>"
-                        + "</form>"
-                        + "</div>"
-                    $("#more tr:nth-child(4) td:nth-child(2)").append(files);
-                    $("#more1 tr:nth-child(4) td:nth-child(2)").append(files);
-                    console.log(str)
-                })
+                if(data.attachmentpath != ""){
+                    file_arr = data.attachmentpath.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(73,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div>"
+                            + "<iframe name='downloadFrame' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<span class='del' onclick='del(this)'>删除</span>"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $("#more tr:nth-child(4) td:nth-child(2)").append(files);
+                        $("#more1 tr:nth-child(4) td:nth-child(2)").append(files);
+                        console.log(str)
+                    });
+                }
                 $("#more tr:nth-child(1) td:nth-child(2) input").val(data.year);
                 $("#more tr:nth-child(1) td:nth-child(4) input").val(data.savetime);
                 $("#more tr:nth-child(1) td:nth-child(6) input").val(data.type);
@@ -1891,6 +1896,8 @@
             step.goStep(2);
             $(".user1_1").text(mydata.reveivereregisterpersonname);
             $(".user_1").text(mydata.reveivereregisterpersonname);
+            $("#select_model .modal-header h3").text("收文管理-" + id);
+            $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
             $("#model_info").css("display","block");
             $("#model_container_1").css("display","block");
@@ -1898,7 +1905,7 @@
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');
             }else if(kind == "编辑"){
-                $('#model_handle .btn-primary').css('display','block');
+                $('#model_handle .btn-primary').css('display','inline-block');
             }
         }
         console.log(kind,state,id);
@@ -1909,20 +1916,6 @@
         $(that).parent("div").remove();
         del_file_arr.push($(that).siblings(".file_name").text())
     }
-    //下载附件
-//    function download(that) {
-//        var url = $(that).siblings(".file_url").text();
-//        console.log(url);
-//        $.ajax({
-//            url: "/file/download.do",
-//            type: "get",
-//            data: {path:url},
-//            dataType: "form",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
-//    }
 
     function newForm() {
 
