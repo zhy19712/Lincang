@@ -1,6 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.ReceiveFile;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.ReceiveFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,6 +62,36 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
 
     public ReceiveFile getReceiveFileInfoById(String receivefileid) {
         return receiveFileMapper.selectReceiveFileInfoById(receivefileid);
+    }
+
+    @Override
+    public String getDepartmentNameByName(String department1) {
+        return receiveFileMapper.selectDepartmentNameByName(department1);
+    }
+
+    @Override
+    public int updateReceiveFile(ReceiveFile rf) {
+        return receiveFileMapper.updateReceiveFile(rf);
+    }
+
+    @Override
+    public int insertModelErkeshi(Model_Erkeshi meme) {
+        return receiveFileMapper.insertModelErkeshi(meme);
+    }
+
+    @Override
+    public int insertModelYikeshi(Model_Yikeshi meme) {
+        return receiveFileMapper.insertModelYikeshi(meme);
+    }
+
+    @Override
+    public int insertModelWenjiannibandan(Model_Wenjianniban meme) {
+        return receiveFileMapper.insertModelWenjiannibandan(meme);
+    }
+
+    @Override
+    public int insertModelZhijiechuli(Model_Zhijiechuli meme) {
+        return receiveFileMapper.insertModelZhijiechuli(meme);
     }
 
     /**

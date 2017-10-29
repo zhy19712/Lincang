@@ -1718,15 +1718,15 @@
         console.log(people_list);
         console.log(text);
         console.log(receivefileid);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
-//            dataType:"json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "/saveReceiveFileModelInfo.do",
+            type: "post",
+            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+            dataType:"json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
     })
 
     var username;

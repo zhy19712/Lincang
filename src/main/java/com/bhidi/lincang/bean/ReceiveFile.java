@@ -38,12 +38,11 @@ public class ReceiveFile {
     private String department2name;
     private String department1person;
     private String department2person;
-    private String department1namedelete;
-    private String department2namedelete;
+    private String department1persondelete;
+    private String department2persondelete;
     private String fenguanname;
     private String zhuguanname;
     private String implementperson;
-
     private String fenguannamedelete;
     private String zhuguannamedelete;
     private String implementpersondelete;
@@ -60,7 +59,7 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String department1person, String department2person, String department1namedelete, String department2namedelete, String fenguanname, String zhuguanname, String implementperson, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete) {
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String department1person, String department2person, String department1persondelete, String department2persondelete, String fenguanname, String zhuguanname, String implementperson, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -97,8 +96,8 @@ public class ReceiveFile {
         this.department2name = department2name;
         this.department1person = department1person;
         this.department2person = department2person;
-        this.department1namedelete = department1namedelete;
-        this.department2namedelete = department2namedelete;
+        this.department1persondelete = department1persondelete;
+        this.department2persondelete = department2persondelete;
         this.fenguanname = fenguanname;
         this.zhuguanname = zhuguanname;
         this.implementperson = implementperson;
@@ -403,20 +402,21 @@ public class ReceiveFile {
         this.implementperson = implementperson;
     }
 
-    public String getDepartment1namedelete() {
-        return department1namedelete;
+
+    public String getDepartment1persondelete() {
+        return department1persondelete;
     }
 
-    public void setDepartment1namedelete(String department1namedelete) {
-        this.department1namedelete = department1namedelete;
+    public void setDepartment1persondelete(String department1persondelete) {
+        this.department1persondelete = department1persondelete;
     }
 
-    public String getDepartment2namedelete() {
-        return department2namedelete;
+    public String getDepartment2persondelete() {
+        return department2persondelete;
     }
 
-    public void setDepartment2namedelete(String department2namedelete) {
-        this.department2namedelete = department2namedelete;
+    public void setDepartment2persondelete(String department2persondelete) {
+        this.department2persondelete = department2persondelete;
     }
 
     public String getFenguannamedelete() {
@@ -498,8 +498,8 @@ public class ReceiveFile {
                 ", department2name='" + department2name + '\'' +
                 ", department1person='" + department1person + '\'' +
                 ", department2person='" + department2person + '\'' +
-                ", department1namedelete='" + department1namedelete + '\'' +
-                ", department2namedelete='" + department2namedelete + '\'' +
+                ", department1persondelete='" + department1persondelete + '\'' +
+                ", department2persondelete='" + department2persondelete + '\'' +
                 ", fenguanname='" + fenguanname + '\'' +
                 ", zhuguanname='" + zhuguanname + '\'' +
                 ", implementperson='" + implementperson + '\'' +
