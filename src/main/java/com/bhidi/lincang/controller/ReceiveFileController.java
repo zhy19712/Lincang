@@ -319,7 +319,7 @@ public class ReceiveFileController {
                 mer = -1;
             }
         }
-        Map<String,String> map = new HashMap<>();
+        Map<String,String> map = new HashMap<String,String>();
         if( mer == -1 || er == -1){
             map.put("result","failuer");
         } else {
