@@ -1903,8 +1903,8 @@
         console.log(url);
         $.ajax({
             url: "/file/download.do",
-            type: "post",
-            data: {url:url},
+            type: "get",
+            data: {path:url},
             dataType: "json",
             success: function (data) {
                 console.log(data);

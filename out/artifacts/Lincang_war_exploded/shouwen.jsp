@@ -1503,6 +1503,11 @@
         o.removeChild(a);
         o.removeChild(span)
     }
+    function table_refresh() {
+        fawen.ajax.url("/receiveFileDataTable.do").load();
+        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
+        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
+    }
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
         var options  = {
@@ -1516,8 +1521,7 @@
                     $('#shouwen_wdo').modal('hide');
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
-                    fawen.ajax.url("/receiveFileDataTable.do").load();
-                    dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
+                    table_refresh();
                 }else {
                     alert("提交失败");
                 }
@@ -1725,6 +1729,8 @@
             dataType:"json",
             success: function (data) {
                 console.log(data);
+                table_refresh();
+                $('#select_model').modal('show');
             }
         })
     })
@@ -1895,15 +1901,15 @@
     function download(that) {
         var url = $(that).siblings(".file_url").text();
         console.log(url);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            data: {url:url},
-//            dataType: "json",
-//            success: function (data) {
-//                console.log(data);
-//            }
-//        })
+        $.ajax({
+            url: "/file/download.do",
+            type: "get",
+            data: {path:url},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
     }
 
     function newForm() {
