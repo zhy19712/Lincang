@@ -1784,6 +1784,7 @@
 
     var file_arr = [];
     var del_file_arr = [];
+    var mydata1;
     function edit(that) {
         //查看发文登记信息
         var kind = $(that).val();
@@ -1900,20 +1901,102 @@
         }else {
             $.ajax({
                 url:"/getReceiveFileAndModelInfo.do",
+                async: false,
                 type: "post",
                 data: {receivefileid:id},
                 dataType: "json",
                 success: function(data){
                     console.log(data);
+                    mydata1 = data.ReceiveFile
+                    var model_name = data.ReceiveFile.modeltype
+                    $("#model_name").text(model_name);
+                    $("#keshi1_1").text(data.ReceiveFile.department1person);
+                    $("#keshi2_1").text(data.ReceiveFile.department2person);
+                    $("#fenguan_1").text(data.ReceiveFile.fenguanname);
+                    $("#zhuguan_1").text(data.ReceiveFile.zhuguanname);
+                    $("#banli_1").text(data.ReceiveFile.implementperson);
+                    $("#model_container_1>div").css("display","none");
+                    if(model_name == "直接处理"){
+                        $("#model1_1").css("display","block");
+                        $("#model1_1 .title input").val(data.model.filename);
+                        $("#model1_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
+                        $("#model1_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
+                        $("#model1_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
+                        $("#model1_1 tr:first-child td:nth-child(8) input").val(data.model.urgency);
+                        $("#model1_1 tr:first-child td:nth-child(10) input").val(data.model.secret);
+                        $("#model1_1 tr:first-child td:nth-child(12) input").val(data.model.copys);
+                        $("#model1_1 tr:nth-child(2) td:nth-child(2) input").val(data.model.filetitle);
+                        $("#model1_1 tr:nth-child(3) td:nth-child(2) textarea").val(data.model.suggestion);
+                        $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val(data.model.branchleaderinstruction);
+                        $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val(data.model.mainleaderinstruction);
+                        $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.result);
+                    }else if(model_name == "文件拟办单"){
+                        $("#model2_1").css("display","block");
+                        $("#model2_1 .title input").val(data.model.filename);
+                        $("#model2_1 tr:first-child td:nth-child(2) input").val(data.model.dispatchfiledepartment);
+                        $("#model2_1 tr:first-child td:nth-child(4) input").val(data.model.filenum);
+                        $("#model2_1 tr:first-child td:nth-child(6) input").val(data.model.receivefileregisterid);
+                        $("#model2_1 tr:first-child td:nth-child(8) input").val(data.model.receivefiledate);
+                        $("#model2_1 tr:nth-child(2) td:nth-child(2) textarea").val(data.model.filetitle);
+                        $("#model2_1 tr:nth-child(5) td textarea").val(data.model.suggestion);
+                        $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val(data.model.mainleaderinstruction);
+                        $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val(data.model.branchleaderinstruction);
+                        $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.result);
+                    }else if(model_name == "一科室提意见"){
+                        $("#model3_1").css("display","block");
+                        $("#model3_1 .title input").val(data.model.filename);
+                        $("#model3_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
+                        $("#model3_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
+                        $("#model3_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
+                        $("#model3_1 tr:first-child td:nth-child(8) input").val(data.model.urgency);
+                        $("#model3_1 tr:first-child td:nth-child(10) input").val(data.model.secret);
+                        $("#model3_1 tr:first-child td:nth-child(12) input").val(data.model.copys);
+                        $("#model3_1 tr:nth-child(2) td:nth-child(2) textarea").val(data.model.filetitle);
+                        $("#model3_1 tr:nth-child(5) td:nth-child(1) textarea").val(data.model.suggestion);
+                        $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.mainleaderinstruction);
+                        $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val(data.model.branchleaderinstruction);
+                        $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val(data.model.result);
+                        $("#model3_1 tr:nth-child(4) td:nth-child(2) input").val(data.model.department);
+                        $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val(data.model.departmentadvice);
+                    }else if(model_name == "两科室提意见"){
+                        $("#model4_1").css("display","block");
+                        $("#model4_1 .title input").val(data.model.filename);
+                        $("#model4_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
+                        $("#model4_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
+                        $("#model4_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
+                        $("#model4_1 tr:first-child td:nth-child(8) input").val(data.model.urgency);
+                        $("#model4_1 tr:first-child td:nth-child(10) input").val(data.model.secret);
+                        $("#model4_1 tr:first-child td:nth-child(12) input").val(data.model.copys);
+                        $("#model4_1 tr:nth-child(2) td:nth-child(2) textarea").val(data.model.filetitle);
+                        $("#model4_1 tr:nth-child(5) td:nth-child(1) textarea").val(data.model.suggestion);
+                        $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.mainleaderinstruction);
+                        $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val(data.model.branchleaderinstruction);
+                        $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val(data.model.result);
+                        $("#model4_1 tr:nth-child(4) td:nth-child(2) input").val(data.model.department1name);
+                        $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val(data.model.department1advice);
+                        $("#model4_1 tr:nth-child(4) td:nth-child(3) input").val(data.model.department2name);
+                        $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val(data.model.department2advice);
+                    }
                 }
-            })
+            });
             $("#model_info").css("display","block");
             $("#model_container_1").css("display","block");
             $('#model_handle').modal('show');
+            $("#model_handle input").attr("readonly",true);
+            $("#model_handle textarea").attr("readonly",true);
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');
             }else if(kind == "编辑"){
                 $('#model_handle .btn-primary').css('display','inline-block');
+                if(mydata1.status == "科室签批"){
+                    if(mydata1.modeltype == "一科室提意见"){
+                        $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);
+                        $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                    }else if(mydata1.modeltype == "两科室提意见"){
+                        $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                        $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
+                    }
+                }
             }
         }
         console.log(kind,state,id);
@@ -1948,6 +2031,31 @@
             })
         }
         console.log(delete_file)
+        var text = new Object();
+        text.departmentadvice = "";
+        text.department1advice = "";
+        text.department2advice = "";
+        text.branchleaderinstruction = "";
+        text.mainleaderinstruction = "";
+        text.result = "";
+        if(mydata1.status == "科室签批"){
+            if(mydata1.modeltype == "一科室提意见"){
+                text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+            }else if(mydata1.modeltype == "两科室提意见"){
+                text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+            }
+        }
+        console.log(text,mydata1);
+//                $.ajax({
+//                    url: "",
+//                    type: "post",
+//                    data: {department1advice:department1advice,department2advice:department2advice,ReceiveFile:mydata1},
+//                    dataType: "json",
+//                    success: function (data) {
+//                        console.log(data);
+//                    }
+//                })
     })
 
 
