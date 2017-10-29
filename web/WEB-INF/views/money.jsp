@@ -281,7 +281,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="modal-header">
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3>资金上报</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm" action="" method="post"
@@ -338,7 +338,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>详细信息</h3>
+                    <h3></h3>
                 </div>
                 <div id="container" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
@@ -469,7 +469,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>详细信息</h3>
+                    <h3></h3>
                 </div>
                 <div id="container2" style="width: 100%;height: 160px">
                     <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
@@ -869,6 +869,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         $("#edit2").modal('show');
         var kind = $(that).val();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        $("#edit2 .modal-header h3").text("搬迁补偿-"+id);
         $.ajax({
             url: "/getCatipalDataById.do",
             type: "post",
@@ -913,6 +914,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             var kind = $(that).val();
             var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
             $("#edit .btn-primary").css("display","none");
+            $("#edit .modal-header h3").text("搬迁补偿-"+id);
             $.ajax({
                 url: "/getCatipalDataById.do",
                 type: "post",

@@ -1738,8 +1738,9 @@
             dataType:"json",
             success: function (data) {
                 console.log(data);
+                $('#select_model').modal('hide');
                 table_refresh();
-                $('#select_model').modal('show');
+                setTimeout(acount,10);
             }
         })
     })
