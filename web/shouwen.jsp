@@ -2161,23 +2161,23 @@
         console.log(state);
         if(state == "办公室归档"){
             console.log(id);
-//            $.ajax({
-//                url: "",
-//                type: "",
-//                data: {id:id},
-//                dataType: "json",
-//                success: function(data){
-//                    if(data.result == "success"){
-//                        alert("归档成功");
- //           $('#model_handle').modal('hide');
-//                        $("#model_handle input").val("");
-//                        $("#model_handle textarea").val("");
-//                        $("#model_handle .title").val("临沧市移民局文件处理笺");
-//                        table_refresh();
-//                        setTimeout(acount,100);
-//                    }
-//                }
-//            })
+            $.ajax({
+                url: "/toConfirm.do",
+                type: "POST",
+                data: {receivefileid:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.result == "success"){
+                        alert("归档成功");
+            $('#model_handle').modal('hide');
+                        $("#model_handle input").val("");
+                        $("#model_handle textarea").val("");
+                        $("#model_handle .title").val("临沧市移民局文件处理笺");
+                        table_refresh();
+                        setTimeout(acount,100);
+                    }
+                }
+            })
         }else {
             var text = new Object();
             text.departmentadvice = "";

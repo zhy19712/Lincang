@@ -791,10 +791,12 @@ public class ReceiveFileController {
      */
     @ResponseBody
     @RequestMapping(value="/toConfirm",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String toConfirm(String receivefileid){
+    public String toConfirm(String receivefileid,HttpSession session){
+        User user = (User)session.getAttribute("user");
         ReceiveFile rf = new ReceiveFile();
         rf.setReceivefileid(receivefileid);
         rf.setStatus("结束");
+        rf.setConfirmperson( user.getName() );
         int re = 0;
         try {
             re = receiveFileServiceImp.updateReceiveFile(rf);
