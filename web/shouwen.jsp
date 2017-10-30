@@ -1070,13 +1070,6 @@
                                     </ul>
                                 </li>
                             </ul>
-                            <ul>
-                                <li data-jstree='{"opened":true}'>区县
-                                    <ul>
-                                        <li>qxtest</li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
                         <button>确认</button>
                     </div>
