@@ -1344,7 +1344,6 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -1894,9 +1893,9 @@
                         $("#model2_1 tr:first-child td:nth-child(8) input").val(data.model.receivefiledate);
                         $("#model2_1 tr:nth-child(2) td:nth-child(2) textarea").val(data.model.filetitle);
                         $("#model2_1 tr:nth-child(5) td textarea").val(data.model.suggestion);
-                        $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val(data.model.mainleaderinstruction);
-                        $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val(data.model.branchleaderinstruction);
-                        $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.result);
+                        $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").val(data.model.mainleaderinstruction);
+                        $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").val(data.model.branchleaderinstruction);
+                        $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val(data.model.result);
                     }else if(model_name == "一科室提意见"){
                         $("#model3_1").css("display","block");
                         $("#model3_1 .title input").val(data.model.filename);
@@ -1960,7 +1959,7 @@
                 $(".user_2").text(mydata1.modelchoicename);
             }else if(mydata1.status == "分管领导签批"){
                 $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
-                $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").attr("readonly",false);
                 $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
@@ -1979,7 +1978,7 @@
                 }
             }else if(mydata1.status == "主管领导签批"){
                 $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
-                $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").attr("readonly",false);
                 $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
@@ -2000,7 +1999,7 @@
                 }
             }else if(mydata1.status == "处理处置"){
                 $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
-                $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").attr("readonly",false);
                 $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(4);
@@ -2145,9 +2144,13 @@
             dataType:"json",
             success: function (data) {
                 console.log(data);
-                $('#select_model').modal('hide');
-                table_refresh();
-                setTimeout(acount,10);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#select_model').modal('hide');
+                    table_refresh();
+                    setTimeout(acount,100);
+                }
+
             }
         })
     })
@@ -2194,7 +2197,7 @@
                 if(mydata1.modeltype == "直接处理"){
                     text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "文件拟办单"){
-                    text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+                    text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").val();
                 }else if(mydata1.modeltype == "一科室提意见"){
                     text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "两科室提意见"){
@@ -2204,7 +2207,7 @@
                 if(mydata1.modeltype == "直接处理"){
                     text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "文件拟办单"){
-                    text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val();
+                    text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").val();
                 }else if(mydata1.modeltype == "一科室提意见"){
                     text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "两科室提意见"){
@@ -2214,7 +2217,7 @@
                 if(mydata1.modeltype == "直接处理"){
                     text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "文件拟办单"){
-                    text.result = $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                    text.result = $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val();
                 }else if(mydata1.modeltype == "一科室提意见"){
                     text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
                 }else if(mydata1.modeltype == "两科室提意见"){
