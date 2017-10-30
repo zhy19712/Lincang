@@ -980,7 +980,7 @@
                 </div>
                 <div id="sel_model">
                     <div id="model">
-                        <p>选择模版</p>
+                        <p style="color: red;">选择模版</p>
                         <select name="" id="sel1">
                             <option>直接处理</option>
                             <option>文件拟办单</option>
@@ -996,7 +996,7 @@
                         </ul>
                     </div>
                     <div id="sel_people">
-                        <p>选择办公室处理人</p>
+                        <p style="color: red;">选择分管领导处理人</p>
                         <div id="tree_container">
                             <ul>
                                 <li data-jstree='{"opened":true}'>办公室
@@ -1548,13 +1548,16 @@
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","none");
             $("#model_container>#model3").css({"display":"block"});
+            $("#sel_people>p:first-child").text("选择科室1处理人");
         }else if($(this).val() == "两科室提意见"){
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","block");
             $("#model_container>#model4").css({"display":"block"});
+            $("#sel_people>p:first-child").text("选择科室1处理人");
         }else {
             $("#select_people li:nth-child(1)").css("display","none");
             $("#select_people li:nth-child(2)").css("display","none");
+            $("#sel_people>p:first-child").text("选择分管领导处理人");
             if($(this).val() == "直接处理"){
                 $("#model_container>#model1").css({"display":"block"});
             }else if($(this).val() == "文件拟办单"){
