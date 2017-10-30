@@ -1542,7 +1542,7 @@
         $("#select_people li input").val("");
         $("#model_container input").val("");
         $("#model_container textarea").val("");
-        $("#model_container .title").val("临沧市移民局文件处理笺");
+        $("#model_container .title input").val("临沧市移民局文件处理笺");
         if($(this).val() == "一科室提意见"){
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","none");
@@ -1576,7 +1576,6 @@
     $("#sel_people button").click(function () {
         people_arr = [];
         var peole_kind = $("#sel_people>p").text();
-
 
         if(peole_kind == "选择办公室处理人"){
             $.each($("#tree_container .jstree-leaf"),function (i,n) {
