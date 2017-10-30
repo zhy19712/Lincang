@@ -417,7 +417,7 @@ public class ReceiveFileController {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
                 if(implementperson.split(",").length == (rf.getImplementpersondelete().split(",").length)){
-                    rf.setStatus("归档");
+                    rf.setStatus("办公室归档");
                 } else {
                     rf.setStatus("处理处置");
                 }
@@ -489,7 +489,7 @@ public class ReceiveFileController {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
-                    rf.setStatus("归档");
+                    rf.setStatus("办公室归档");
                 } else {
                     rf.setStatus("处理处置");
                 }
@@ -572,7 +572,7 @@ public class ReceiveFileController {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
-                    rf.setStatus("归档");
+                    rf.setStatus("办公室归档");
                 } else {
                     rf.setStatus("处理处置");
                 }
@@ -668,7 +668,7 @@ public class ReceiveFileController {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
-                    rf.setStatus("归档");
+                    rf.setStatus("办公室归档");
                 } else {
                     rf.setStatus("处理处置");
                 }
