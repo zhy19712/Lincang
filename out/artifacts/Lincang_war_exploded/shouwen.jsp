@@ -1708,6 +1708,16 @@
         console.log(delete_file)
         if(delete_file.length>0){
             console.log(id,delete_file);
+            var mydelete = JSON.stringify(delete_file);
+//            $.ajax({
+//                url: "",
+//                type: "post",
+//                data: {receivefileid:id,path:mydelete},
+//                dataType: "json",
+//                success: function(data){
+//                    console.log(data);
+//                }
+//            })
         }
     }
 
@@ -1920,13 +1930,18 @@
             $('#model_handle').modal('show');
             $("#model_handle input").attr("readonly",true);
             $("#model_handle textarea").attr("readonly",true);
+            $("#handle_people li:first-child").css("display","none");
+            $("#handle_people li:nth-child(2)").css("display","none");
             if(mydata1.status == "科室签批"){
                 if(mydata1.modeltype == "一科室提意见"){
                     $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);
                     $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
                     $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
                     $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
                 }
                 step1.goStep(3);
                 step.goStep(3);
@@ -1947,8 +1962,11 @@
                 $(".user_2").text(mydata1.modelchoicename);
                 if(mydata1.modeltype == "一科室提意见"){
                     $(".user1_3").text(mydata1.department1person);
+                    $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
                 }
             }else if(mydata1.status == "主管领导签批"){
                 $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
@@ -1963,8 +1981,11 @@
                 $(".user_2").text(mydata1.reveivereregisterpersonname);
                 if(mydata1.modeltype == "一科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
+                    $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
                 }else {
                     $(".user1_3").text(mydata1.fenguanname);
                 }
@@ -1981,10 +2002,13 @@
                 $(".user_2").text(mydata1.reveivereregisterpersonname);
                 if(mydata1.modeltype == "一科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
                 }else {
                     $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
                 }
             }else if(mydata1.status == "办公室归档"){
                 step1.goStep(5);
@@ -1995,8 +2019,11 @@
                 $(".user_2").text(mydata1.reveivereregisterpersonname);
                 if(mydata1.modeltype == "一科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
                     $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
                 }else {
                     $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
                 }
@@ -2180,7 +2207,7 @@
                         $("#model_handle textarea").val("");
                         $("#model_handle .title").val("临沧市移民局文件处理笺");
                         table_refresh();
-                        setTimeout(acount,10);
+                        setTimeout(acount,100);
                     }
                 }
             })
