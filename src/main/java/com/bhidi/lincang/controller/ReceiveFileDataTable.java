@@ -172,7 +172,7 @@ public class ReceiveFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = " and ( status = '办公室处理文件' or status = '办公室归档')";
+                status = " and ( (status = '办公室处理文件' or status = '办公室归档') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) )";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
                 status = " and ( ( status = '科室签批' and (department1person like '%"+name+"%'or department2person like '%"+name+"%') and department1persondelete not like '%"+name+"%'and department2persondelete not like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') )";
@@ -324,7 +324,7 @@ public class ReceiveFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = " and ( status != '办公室处理文件' and status != '办公室归档' )";
+                status = " and ( (status != '办公室处理文件' and status != '办公室归档' and status != '处理处置') or (status = '处理处置' and implementpersondelete like '%"+name+"%' ) )";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
                 //status = " and modeltype != 'model_zhijeichuli' and modeltype != 'model_wenjianniban' and (status != '办公室处理文件') and ((status != '科室一签批' and department1persondelete not like '%"+name+"%') and (status != '科室二签批' and department2persondelete not like '%"+name+"%'))";
