@@ -35,9 +35,9 @@ public class ReceiveFileController {
     public String reveiceFileRegistration(HttpServletRequest request, HttpSession session, ReceiveFile rfa, @RequestParam("files") MultipartFile[] files){
         //获取当前用户
         User user = (User)session.getAttribute("user");
-        //取出来当前用户的账号名存储进ReceiveFileAhead
+        //取出来当前用户的账号名存储进ReceiveFile
         if( user!=null ){
-            rfa.setReveivereregisterpersonname( user.getUsername() );
+            rfa.setReveivereregisterpersonname( user.getName() );
         }
         rfa.setStatus("办公室处理文件");
 
@@ -93,11 +93,11 @@ public class ReceiveFileController {
             //rf.setDepartment1persondelete(pl.getDepartment1());
             //rf.setDepartment2persondelete(pl.getDepartment2());
             rf.setFenguanname(pl.getBranch_leader());
-            rf.setFenguannamedelete(pl.getBranch_leader());
+            rf.setFenguannamedelete("");
             rf.setZhuguanname(pl.getMain_leader());
-            rf.setZhuguannamedelete(pl.getMain_leader());
+            rf.setZhuguannamedelete("");
             rf.setImplementperson(pl.getTransactor());
-            rf.setImplementpersondelete(pl.getTransactor());
+            rf.setImplementpersondelete("");
             //去更新receivefile表
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
@@ -154,11 +154,11 @@ public class ReceiveFileController {
             //rf.setDepartment1persondelete(pl.getDepartment1());
             //rf.setDepartment2persondelete(pl.getDepartment2());
             rf.setFenguanname(pl.getBranch_leader());
-            rf.setFenguannamedelete(pl.getBranch_leader());
+            rf.setFenguannamedelete("");
             rf.setZhuguanname(pl.getMain_leader());
-            rf.setZhuguannamedelete(pl.getMain_leader());
+            rf.setZhuguannamedelete("");
             rf.setImplementperson(pl.getTransactor());
-            rf.setImplementpersondelete(pl.getTransactor());
+            rf.setImplementpersondelete("");
             //去更新receivefile表
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
@@ -209,14 +209,14 @@ public class ReceiveFileController {
             //rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
             rf.setDepartment1person(pl.getDepartment1());
             //rf.setDepartment2person(pl.getDepartment2());
-            rf.setDepartment1persondelete(pl.getDepartment1());
+            rf.setDepartment1persondelete("");
             //rf.setDepartment2persondelete(pl.getDepartment2());
             rf.setFenguanname(pl.getBranch_leader());
-            rf.setFenguannamedelete(pl.getBranch_leader());
+            rf.setFenguannamedelete("");
             rf.setZhuguanname(pl.getMain_leader());
-            rf.setZhuguannamedelete(pl.getMain_leader());
+            rf.setZhuguannamedelete("");
             rf.setImplementperson(pl.getTransactor());
-            rf.setImplementpersondelete(pl.getTransactor());
+            rf.setImplementpersondelete("");
             //去更新receivefile表
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
@@ -270,14 +270,14 @@ public class ReceiveFileController {
             rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
             rf.setDepartment1person(pl.getDepartment1());
             rf.setDepartment2person(pl.getDepartment2());
-            rf.setDepartment1persondelete(pl.getDepartment1());
-            rf.setDepartment2persondelete(pl.getDepartment2());
+            rf.setDepartment1persondelete("");
+            rf.setDepartment2persondelete("");
             rf.setFenguanname(pl.getBranch_leader());
-            rf.setFenguannamedelete(pl.getBranch_leader());
+            rf.setFenguannamedelete("");
             rf.setZhuguanname(pl.getMain_leader());
-            rf.setZhuguannamedelete(pl.getMain_leader());
+            rf.setZhuguannamedelete("");
             rf.setImplementperson(pl.getTransactor());
-            rf.setImplementpersondelete(pl.getTransactor());
+            rf.setImplementpersondelete("");
             //去更新receivefile表
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
@@ -387,7 +387,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
                 }
-                if( fenguanname.equals(rf.getFenguannamedelete()) ){
+                if( fenguanname.split(",").length == (rf.getFenguannamedelete().split(",").length) ){
                     rf.setStatus("主管领导签批");
                 } else {
                     rf.setStatus("分管领导签批");
@@ -402,7 +402,7 @@ public class ReceiveFileController {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
                 }
 
-                if(zhuguanname.equals( rf.getZhuguannamedelete()) ){
+                if(zhuguanname.split(",").length == ( rf.getZhuguannamedelete().split(",").length) ){
                     rf.setStatus("处理处置");
                 } else {
                     rf.setStatus("主管领导签批");
@@ -416,7 +416,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
-                if(implementperson.equals(rf.getImplementpersondelete())){
+                if(implementperson.split(",").length == (rf.getImplementpersondelete().split(",").length)){
                     rf.setStatus("归档");
                 } else {
                     rf.setStatus("处理处置");
@@ -459,7 +459,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
                 }
-                if( fenguanname.equals(rf.getFenguannamedelete()) ){
+                if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
                 } else {
                     rf.setStatus("分管领导签批");
@@ -474,7 +474,7 @@ public class ReceiveFileController {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
                 }
 
-                if(zhuguanname.equals( rf.getZhuguannamedelete()) ){
+                if(zhuguanname.split(",").length ==  rf.getZhuguannamedelete().split(",").length ){
                     rf.setStatus("处理处置");
                 } else {
                     rf.setStatus("主管领导签批");
@@ -488,7 +488,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
-                if(implementperson.equals(rf.getImplementpersondelete())){
+                if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("归档");
                 } else {
                     rf.setStatus("处理处置");
@@ -529,7 +529,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
                 }
-                if( receivefileinfo.getDepartment1person().equals(rf.getDepartment1persondelete()) ){
+                if( receivefileinfo.getDepartment1person().split(",").length == rf.getDepartment1persondelete().split(",").length ){
                     rf.setStatus("分管领导签批");
                 } else {
                     rf.setStatus("科室签批");
@@ -543,7 +543,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
                 }
-                if( fenguanname.equals(rf.getFenguannamedelete()) ){
+                if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
                 } else {
                     rf.setStatus("分管领导签批");
@@ -557,7 +557,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
                 }
-                if(zhuguanname.equals( rf.getZhuguannamedelete()) ){
+                if(zhuguanname.split(",").length == rf.getZhuguannamedelete().split(",").length ){
                     rf.setStatus("处理处置");
                 } else {
                     rf.setStatus("主管领导签批");
@@ -571,7 +571,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
-                if(implementperson.equals(rf.getImplementpersondelete())){
+                if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("归档");
                 } else {
                     rf.setStatus("处理处置");
@@ -624,7 +624,7 @@ public class ReceiveFileController {
                     }
 
                 }
-                if( receivefileinfo.getDepartment1person().equals(rf.getDepartment1persondelete()) & receivefileinfo.getDepartment2person().equals(rf.getDepartment2persondelete()) ){
+                if( (receivefileinfo.getDepartment1person().split(",").length == rf.getDepartment1persondelete().split(",").length) & (receivefileinfo.getDepartment2person().split(",").length == rf.getDepartment2persondelete().split(",").length) ){
                     rf.setStatus("分管领导签批");
                 } else {
                     rf.setStatus("科室签批");
@@ -638,7 +638,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
                 }
-                if( fenguanname.equals(rf.getFenguannamedelete()) ){
+                if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
                 } else {
                     rf.setStatus("分管领导签批");
@@ -653,7 +653,7 @@ public class ReceiveFileController {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
                 }
 
-                if(zhuguanname.equals( rf.getZhuguannamedelete()) ){
+                if(zhuguanname.split(",").length ==  rf.getZhuguannamedelete().split(",").length ){
                     rf.setStatus("处理处置");
                 } else {
                     rf.setStatus("主管领导签批");
@@ -667,7 +667,7 @@ public class ReceiveFileController {
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
                 }
-                if(implementperson.equals(rf.getImplementpersondelete())){
+                if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("归档");
                 } else {
                     rf.setStatus("处理处置");
