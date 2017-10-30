@@ -1727,7 +1727,9 @@
 
     //删除附件
     var del_path;
+    var $that;
     function del(that) {
+        $that = $(that);
         $(that).parent("form").parent("div").parent("td").parent("tr").parent("tbody").parent("table").parent("div").siblings(".delete_wrapper").css("display","block");
         del_path = $(that).siblings(".file_url").val();
     }
@@ -1736,6 +1738,7 @@
     })
     $(".confirm").click(function () {
         console.log(del_path,id);
+        var $this = $(this);
         $.ajax({
             url: "/pathDelete.do",
             type: "post",
@@ -1744,7 +1747,8 @@
             success: function(data){
                 console.log(data);
                 if(data.result == "success"){
-                    $(this).parent(".delete").parent(".delete_wrapper").css("display","none");
+                    $this.parent(".delete").parent(".delete_wrapper").css("display","none");
+                    $that.parent("form").parent("div").remove();
                 }
             }
         })
