@@ -2136,7 +2136,6 @@
 
     //办公室选择模版及信息提交
     $("#select_model .btn-primary").click(function(){
-        delete_file();
         var receivefileid = $("#receivefileid").text();
         var model = $("#sel1").val();
         var keshi1 = $("#keshi1").val();
@@ -2244,7 +2243,6 @@
 
     //提交
     $("#model_handle .btn-primary").click(function () {
-        delete_file();
         console.log(state);
         if(state == "办公室归档"){
             console.log(id);
