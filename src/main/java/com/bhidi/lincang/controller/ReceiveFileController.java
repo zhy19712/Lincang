@@ -379,7 +379,7 @@ public class ReceiveFileController {
         if( receivefileinfo.getModeltype().equals("直接处理") ){
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") &role.equals("分管领导")){
                 String fenguanname = receivefileinfo.getFenguanname();
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
@@ -393,7 +393,7 @@ public class ReceiveFileController {
                     rf.setStatus("分管领导签批");
                 }
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 String zhuguanname = receivefileinfo.getZhuguanname();
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
@@ -408,7 +408,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -434,13 +434,13 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 meme.setMainleaderinstruction(me.getMainleaderinstruction());
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") &receivefileinfo.getImplementperson().contains(user.getName())){
                 meme.setResult(me.getResult());
             }
             //去修改model_zhijiechuli表
@@ -457,7 +457,7 @@ public class ReceiveFileController {
         if( receivefileinfo.getModeltype().equals("文件拟办单") ){
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 String fenguanname = receivefileinfo.getFenguanname();
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
@@ -471,7 +471,7 @@ public class ReceiveFileController {
                     rf.setStatus("分管领导签批");
                 }
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 String zhuguanname = receivefileinfo.getZhuguanname();
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
@@ -486,7 +486,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -512,13 +512,13 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 meme.setMainleaderinstruction(me.getMainleaderinstruction());
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 meme.setResult(me.getResult());
             }
             //去修改model_erkeshi表
@@ -535,7 +535,7 @@ public class ReceiveFileController {
         if( receivefileinfo.getModeltype().equals("一科室提意见") ){
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role !="分管领导" & role !="主管领导"){
+            if(receivefileinfo.getStatus().equals("科室签批") & role !="分管领导" & role !="主管领导"){
                 if(receivefileinfo.getDepartment1persondelete().equals("")){
                     rf.setDepartment1persondelete(user.getName());
                 } else {
@@ -547,7 +547,7 @@ public class ReceiveFileController {
                     rf.setStatus("科室签批");
                 }
             }
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 String fenguanname = receivefileinfo.getFenguanname();
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
@@ -561,7 +561,7 @@ public class ReceiveFileController {
                     rf.setStatus("分管领导签批");
                 }
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 String zhuguanname = receivefileinfo.getZhuguanname();
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
@@ -575,7 +575,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -601,16 +601,16 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals(receivefileinfo.getDepartment1name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name())){
                 meme.setDepartmentadvice(me.getDepartmentadvice());
             }
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 meme.setMainleaderinstruction(me.getMainleaderinstruction());
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 meme.setResult(me.getResult());
             }
             //去修改model_yikeshi表
@@ -627,7 +627,7 @@ public class ReceiveFileController {
         if( receivefileinfo.getModeltype().equals("两科室提意见") ){
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role !="分管领导" & role !="主管领导"){
+            if(receivefileinfo.getStatus().equals("科室签批") & role !="分管领导" & role !="主管领导"){
                 if( role.equals(receivefileinfo.getDepartment1name()) ){
                     rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete());
                     if(receivefileinfo.getDepartment1persondelete().equals("")){
@@ -650,7 +650,7 @@ public class ReceiveFileController {
                     rf.setStatus("科室签批");
                 }
             }
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 String fenguanname = receivefileinfo.getFenguanname();
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
@@ -664,7 +664,7 @@ public class ReceiveFileController {
                     rf.setStatus("分管领导签批");
                 }
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 String zhuguanname = receivefileinfo.getZhuguanname();
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
@@ -679,7 +679,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -705,19 +705,19 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(role.equals(receivefileinfo.getDepartment1name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name())){
                 meme.setDepartment1advice(me.getDepartment1advice());
             }
-            if(role.equals(receivefileinfo.getDepartment2name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment2name())){
                 meme.setDepartment2advice(me.getDepartment2advice());
             }
-            if(role.equals("分管领导")){
+            if(receivefileinfo.getStatus().equals("分管领导签批") & role.equals("分管领导")){
                 meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
             }
-            if(role.equals("主管领导")){
+            if(receivefileinfo.getStatus().equals("主管领导签批") & role.equals("主管领导")){
                 meme.setMainleaderinstruction(me.getMainleaderinstruction());
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 meme.setResult(me.getResult());
             }
             //去更新model_erkeshi表

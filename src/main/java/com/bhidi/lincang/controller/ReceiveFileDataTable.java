@@ -175,14 +175,14 @@ public class ReceiveFileDataTable {
                 status = " and ( status = '办公室处理文件' or status = '办公室归档')";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
-                status = " and ( ( status = '科室签批' and (department1person like '%"+name+"%'or department2person like '%"+name+"%') and department1persondelete not like '%"+name+"%'and department2persondelete not like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%') )";
+                status = " and ( ( status = '科室签批' and (department1person like '%"+name+"%'or department2person like '%"+name+"%') and department1persondelete not like '%"+name+"%'and department2persondelete not like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') )";
                 //status = "and ( status = '科室签批')";
             }
             if( "分管领导".equals(roleList.get(0)) ){
-                status = " and ( (status = '分管领导签批' and fenguanname like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%') )";
+                status = " and ( (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') )";
             }
             if( "主管领导".equals(roleList.get(0)) ){
-                status = " and ( (status = '主管领导签批' and zhuguanname like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%') )";
+                status = " and ( (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') )";
             }
         }
 
@@ -333,11 +333,11 @@ public class ReceiveFileDataTable {
             }
             if( "分管领导".equals(roleList.get(0)) ){
                 //status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批') and fenguannamedelete not like '%"+name+"%'";
-                status = " and ( (status != '办公室处理文件' and status != '科室签批' and status != '分管领导签批' and fenguannamedelete like '%"+name+"%') or (status = '处理处置' and implementpersondelete like '%"+name+"%') )";
+                status = " and ( (status != '办公室处理文件' and status != '科室签批'  and fenguannamedelete like '%"+name+"%') or (status = '处理处置' and implementpersondelete like '%"+name+"%') )";
             }
             if( "主管领导".equals(roleList.get(0)) ){
                 //status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批' and status != '主管领导签批') and zhuguannamedelete not like '%"+name+"%'";
-                status = " and ( (status != '办公室处理文件' and status != '科室签批'and status != '分管领导签批' and status != '主管领导签批' and zhuguannamedelete like '%"+name+"%') or (status = '处理处置' and implementpersondelete like '%"+name+"%') )";
+                status = " and ( (status != '办公室处理文件' and status != '科室签批'and status != '分管领导签批' and zhuguannamedelete like '%"+name+"%') or (status = '处理处置' and implementpersondelete like '%"+name+"%') )";
             }
         }
 
