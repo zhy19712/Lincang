@@ -1528,7 +1528,7 @@
                     $("#shouwen_wdo input").val("");
                     $("#shouwen_wdo textarea").val("");
                     table_refresh();
-                    setTimeout(acount,10);
+                    setTimeout(acount,100);
                 }else {
                     alert(data.result);
                 }
@@ -1641,109 +1641,6 @@
         }
     });
 
-    //办公室选择模版及信息提交
-    $("#select_model .btn-primary").click(function(){
-        var receivefileid = $("#receivefileid").text();
-        var model = $("#sel1").val();
-        var keshi1 = $("#keshi1").val();
-        var keshi2 = $("#keshi2").val();
-        var fenguan = $("#fenguan").val();
-        var zhuguan = $("#zhuguan").val();
-        var banli = $("#banli").val();
-        var people_list = new Object();
-        if(keshi1){
-            people_list.department1 = keshi1;
-        }
-        if(keshi2){
-            people_list.department2 = keshi2;
-        }
-        if(fenguan){
-            people_list.branch_leader = fenguan;
-        }
-        if(zhuguan){
-            people_list.main_leader = zhuguan;
-        }
-        if(banli){
-            people_list.transactor = banli;
-        }
-        var text = new Object();
-        if(model == "直接处理"){
-            text.filename = $("#model1 .title input").val();
-            text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
-            text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
-            text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
-        }else if(model == "文件拟办单"){
-            text.filename = $("#model2 .title input").val();
-            text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
-            text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
-            text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
-            text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
-            text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
-            text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
-            text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
-        }else if(model == "一科室提意见"){
-            text.filename = $("#model3 .title input").val();
-            text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
-            text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
-            text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
-            text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
-        }else if(model == "两科室提意见"){
-            text.filename = $("#model4 .title input").val();
-            text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
-            text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
-            text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
-            text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
-            text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
-        }
-        console.log(text);
-        people_list = JSON.stringify(people_list);
-        text = JSON.stringify(text);
-        console.log(people_list);
-        console.log(text);
-        console.log(receivefileid);
-        $.ajax({
-            url: "/saveReceiveFileModelInfo.do",
-            type: "post",
-            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
-            dataType:"json",
-            success: function (data) {
-                console.log(data);
-                $('#select_model').modal('hide');
-                table_refresh();
-                setTimeout(acount,10);
-            }
-        })
-    })
-
     var username;
     ~function() {
 
@@ -1787,11 +1684,56 @@
     var del_file_arr = [];
     var mydata1;
     var mydata;
+    var id;
+
+    //删除附件
+    function del(that) {
+        $(that).parent("form").parent("div").remove();
+        del_file_arr.push($(that).siblings(".file_name").text());
+    }
+    function delete_file() {
+        var delete_file = [];
+        if(del_file_arr.length > 0){
+            $.each(del_file_arr,function (i,n) {
+                var index = n.lastIndexOf(".");
+                var name = n.substring(0,index);
+                $.each(file_arr,function (i,n) {
+                    var num = n.search(name);
+                    if(num > 0){
+                        delete_file.push(n);
+                    }
+                })
+            });
+        }
+        console.log(delete_file)
+        if(delete_file.length>0){
+            console.log(id,delete_file);
+            var mydelete = JSON.stringify(delete_file);
+//            $.ajax({
+//                url: "",
+//                type: "post",
+//                data: {receivefileid:id,path:mydelete},
+//                dataType: "json",
+//                success: function(data){
+//                    console.log(data);
+//                }
+//            })
+        }
+    }
+
+    function newForm() {
+
+        $('#shouwen_wdo').modal('show');
+        $("#shouwen_wdo input").val("");
+        $("#shouwen_wdo textarea").val("");
+
+    }
+    //编辑查看按钮
     function edit(that) {
         //查看发文登记信息
         var kind = $(that).val();
         var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+        id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
         $.ajax({
             url: "getReceiveFileInfoById.do",
             async: false,
@@ -1802,7 +1744,8 @@
                 mydata = data;
                 console.log(data);
                 if(data.attachmentpath != ""){
-                    $("#more tr:nth-child(4) td:nth-child(2)").val("");
+                    $("#more tr:nth-child(4) td:nth-child(2)").empty();
+                    $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
                     file_arr = data.attachmentpath.split(",");
                     $.each(file_arr,function (i,n) {
                         var start = n.lastIndexOf("\\") + 1;
@@ -1987,126 +1930,205 @@
             $('#model_handle').modal('show');
             $("#model_handle input").attr("readonly",true);
             $("#model_handle textarea").attr("readonly",true);
+            if(mydata1.status == "科室签批"){
+                if(mydata1.modeltype == "一科室提意见"){
+                    $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);
+                    $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
+                }
+                step1.goStep(3);
+                step.goStep(3);
+                $(".user1_1").text(mydata1.reveivereregisterpersonname);
+                $(".user_1").text(mydata1.reveivereregisterpersonname);
+                $(".user1_2").text(mydata1.modelchoicename);
+                $(".user_2").text(mydata1.modelchoicename);
+            }else if(mydata1.status == "分管领导签批"){
+                $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
+                step1.goStep(3);
+                step.goStep(3);
+                $(".user1_1").text(mydata1.reveivereregisterpersonname);
+                $(".user_1").text(mydata1.reveivereregisterpersonname);
+                $(".user1_2").text(mydata1.modelchoicename);
+                $(".user_2").text(mydata1.modelchoicename);
+                if(mydata1.modeltype == "一科室提意见"){
+                    $(".user1_3").text(mydata1.department1person);
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
+                }
+            }else if(mydata1.status == "主管领导签批"){
+                $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                step1.goStep(3);
+                step.goStep(3);
+                $(".user1_1").text(mydata1.modelchoicename);
+                $(".user_1").text(mydata1.modelchoicename);
+                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+                $(".user_2").text(mydata1.reveivereregisterpersonname);
+                if(mydata1.modeltype == "一科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
+                }else {
+                    $(".user1_3").text(mydata1.fenguanname);
+                }
+            }else if(mydata1.status == "处理处置"){
+                $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
+                $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
+                step1.goStep(4);
+                step.goStep(4);
+                $(".user1_1").text(mydata1.modelchoicename);
+                $(".user_1").text(mydata1.modelchoicename);
+                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+                $(".user_2").text(mydata1.reveivereregisterpersonname);
+                if(mydata1.modeltype == "一科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }else {
+                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }
+            }else if(mydata1.status == "办公室归档"){
+                step1.goStep(5);
+                step.goStep(5);
+                $(".user1_1").text(mydata1.modelchoicename);
+                $(".user_1").text(mydata1.modelchoicename);
+                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+                $(".user_2").text(mydata1.reveivereregisterpersonname);
+                if(mydata1.modeltype == "一科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }else {
+                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }
+                $(".user1_4").text(mydata1.implementperson);
+            }
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');
             }else if(kind == "编辑"){
                 $('#model_handle .btn-primary').css('display','inline-block');
-                if(mydata1.status == "科室签批"){
-                    if(mydata1.modeltype == "一科室提意见"){
-                        $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);
-                        $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
-                    }else if(mydata1.modeltype == "两科室提意见"){
-                        $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
-                        $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
-                    }
-                    step1.goStep(3);
-                    step.goStep(3);
-                    $(".user1_1").text(mydata1.reveivereregisterpersonname);
-                    $(".user_1").text(mydata1.reveivereregisterpersonname);
-                    $(".user1_2").text(mydata1.modelchoicename);
-                    $(".user_2").text(mydata1.modelchoicename);
-                }else if(mydata1.status == "分管领导签批"){
-                    $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
-                    step1.goStep(3);
-                    step.goStep(3);
-                    $(".user1_1").text(mydata1.reveivereregisterpersonname);
-                    $(".user_1").text(mydata1.reveivereregisterpersonname);
-                    $(".user1_2").text(mydata1.modelchoicename);
-                    $(".user_2").text(mydata1.modelchoicename);
-                    if(mydata1.modeltype == "一科室提意见"){
-                        $(".user1_3").text(mydata1.department1person);
-                    }else if(mydata1.modeltype == "两科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
-                    }
-                }else if(mydata1.status == "主管领导签批"){
-                    $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
-                    step1.goStep(3);
-                    step.goStep(3);
-                    $(".user1_1").text(mydata1.modelchoicename);
-                    $(".user_1").text(mydata1.modelchoicename);
-                    $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                    $(".user_2").text(mydata1.reveivereregisterpersonname);
-                    if(mydata1.modeltype == "一科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
-                    }else if(mydata1.modeltype == "两科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
-                    }else {
-                        $(".user1_3").text(mydata1.fenguanname);
-                    }
-                }else if(mydata1.status == "处理处置"){
-                    $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
-                    step1.goStep(4);
-                    step.goStep(4);
-                    $(".user1_1").text(mydata1.modelchoicename);
-                    $(".user_1").text(mydata1.modelchoicename);
-                    $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                    $(".user_2").text(mydata1.reveivereregisterpersonname);
-                    if(mydata1.modeltype == "一科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }else if(mydata1.modeltype == "两科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }else {
-                        $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }
-                }else if(mydata1.status == "办公室归档"){
-                    step1.goStep(5);
-                    step.goStep(5);
-                    $(".user1_1").text(mydata1.modelchoicename);
-                    $(".user_1").text(mydata1.modelchoicename);
-                    $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                    $(".user_2").text(mydata1.reveivereregisterpersonname);
-                    if(mydata1.modeltype == "一科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }else if(mydata1.modeltype == "两科室提意见"){
-                        $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }else {
-                        $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    }
-                    $(".user1_4").text(mydata1.implementperson);
-                }
             }
         }
         console.log(kind,state,id);
 
     }
-    //删除附件
-    function del(that) {
-        $(that).parent("div").remove();
-        del_file_arr.push($(that).siblings(".file_name").text())
-    }
 
-    function newForm() {
-
-        $('#shouwen_wdo').modal('show');
-        $("#shouwen_wdo input").val("");
-        $("#shouwen_wdo textarea").val("");
-
-    }
+    //办公室选择模版及信息提交
+    $("#select_model .btn-primary").click(function(){
+        delete_file();
+        var receivefileid = $("#receivefileid").text();
+        var model = $("#sel1").val();
+        var keshi1 = $("#keshi1").val();
+        var keshi2 = $("#keshi2").val();
+        var fenguan = $("#fenguan").val();
+        var zhuguan = $("#zhuguan").val();
+        var banli = $("#banli").val();
+        var people_list = new Object();
+        if(keshi1){
+            people_list.department1 = keshi1;
+        }
+        if(keshi2){
+            people_list.department2 = keshi2;
+        }
+        if(fenguan){
+            people_list.branch_leader = fenguan;
+        }
+        if(zhuguan){
+            people_list.main_leader = zhuguan;
+        }
+        if(banli){
+            people_list.transactor = banli;
+        }
+        var text = new Object();
+        if(model == "直接处理"){
+            text.filename = $("#model1 .title input").val();
+            text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
+            text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
+            text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
+        }else if(model == "文件拟办单"){
+            text.filename = $("#model2 .title input").val();
+            text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
+            text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
+            text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
+            text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
+            text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
+            text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
+            text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
+        }else if(model == "一科室提意见"){
+            text.filename = $("#model3 .title input").val();
+            text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+            text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
+            text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
+            text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
+            text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
+        }else if(model == "两科室提意见"){
+            text.filename = $("#model4 .title input").val();
+            text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
+            text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
+            text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
+            text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
+            text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
+            text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
+            text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
+            text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+            text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
+            text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
+            text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
+            text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
+            text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
+            text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
+            text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
+        }
+        console.log(text);
+        people_list = JSON.stringify(people_list);
+        text = JSON.stringify(text);
+        console.log(people_list);
+        console.log(text);
+        console.log(receivefileid);
+        $.ajax({
+            url: "/saveReceiveFileModelInfo.do",
+            type: "post",
+            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+            dataType:"json",
+            success: function (data) {
+                console.log(data);
+                $('#select_model').modal('hide');
+                table_refresh();
+                setTimeout(acount,10);
+            }
+        })
+    })
 
     //提交
     $("#model_handle .btn-primary").click(function () {
-        var delete_file = [];
-        if(del_file_arr.length > 0){
-            $.each(del_file_arr,function (i,n) {
-                var name = n;
-                $.each(file_arr,function (i,n) {
-                    var num = n.search(name);
-                    if(num > 0){
-                        delete_file.push(n);
-                    }
-                })
-            })
-        }
-        console.log(delete_file)
+        delete_file();
         var text = new Object();
         text.departmentadvice = "";
         text.department1advice = "";
@@ -2161,7 +2183,15 @@
                 data: {text:text2,receivedata:mydata2},
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $('#model_handle').modal('hide');
+                        $("#model_handle input").val("");
+                        $("#model_handle textarea").val("");
+                        $("#model_handle .title").val("临沧市移民局文件处理笺");
+                        table_refresh();
+                        setTimeout(acount,10);
+                    }
                 }
             })
     })
