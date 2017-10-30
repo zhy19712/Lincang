@@ -1530,7 +1530,7 @@
                     table_refresh();
                     setTimeout(acount,10);
                 }else {
-                    alert("提交失败");
+                    alert(data.result);
                 }
             }
         };
@@ -1543,6 +1543,7 @@
         $("#select_people li input").val("");
         $("#model_container input").val("");
         $("#model_container textarea").val("");
+        $("#model_container .title").val("临沧市移民局文件处理笺");
         if($(this).val() == "一科室提意见"){
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","none");
@@ -1801,6 +1802,7 @@
                 mydata = data;
                 console.log(data);
                 if(data.attachmentpath != ""){
+                    $("#more tr:nth-child(4) td:nth-child(2)").val("");
                     file_arr = data.attachmentpath.split(",");
                     $.each(file_arr,function (i,n) {
                         var start = n.lastIndexOf("\\") + 1;
