@@ -73,6 +73,7 @@
             <if test="zhuguannamedelete!=null">zhuguannamedelete = #{zhuguannamedelete},</if>
             <if test="implementperson!=null">implementperson = #{implementperson},</if>
             <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
+            <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
         </trim>
         where receivefileid = #{receivefileid}
     </update>
