@@ -751,7 +751,7 @@ public class ReceiveFileController {
         ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(receivefileid);
         String attachmentpath = rf.getAttachmentpath();
         String[] paths = attachmentpath.split(",");
-        path = path.replaceAll("\\\\\\\\","\\\\");
+        //path = path.replaceAll("\\\\\\\\","\\\\");
         List<String> pathList = new ArrayList<String>();
         for( int i = 0; i < paths.length; i++ ){
             if( !paths[i].equals(path) ){
@@ -770,9 +770,9 @@ public class ReceiveFileController {
         newrf.setReceivefileid( rf.getReceivefileid() );
         newrf.setAttachmentpath( attachmentpathfinal );
         if( rf.getAttachmentdeleteperson().equals("") ){
-            newrf.setAttachmentdeleteperson(user.getName()+path);
+            newrf.setAttachmentdeleteperson(user.getName()+"-"+path);
         } else {
-            newrf.setAttachmentdeleteperson(rf.getAttachmentdeleteperson() +"," +user.getName()+path);
+            newrf.setAttachmentdeleteperson(rf.getAttachmentdeleteperson() +"," +user.getName()+"-"+path);
         }
 
         int re = 0;

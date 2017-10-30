@@ -1736,18 +1736,18 @@
     })
     $(".confirm").click(function () {
         console.log(del_path,id);
-        //            $.ajax({
-//                url: "/pathDelete.do",
-//                type: "post",
-//                data: {receivefileid:id,path:del_path},
-//                dataType: "json",
-//                success: function(data){
-//                    console.log(data);
-//                    if(data.result == "success"){
-//                        $(this).parent(".delete").parent(".delete_wrapper").css("display","none");
-//                    }
-//                }
-//            })
+        $.ajax({
+            url: "/pathDelete.do",
+            type: "post",
+            data: {receivefileid:id,path:del_path},
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                if(data.result == "success"){
+                    $(this).parent(".delete").parent(".delete_wrapper").css("display","none");
+                }
+            }
+        })
     })
 
 

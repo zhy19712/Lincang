@@ -43,7 +43,8 @@
         IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
         IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
         IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
-        IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson
+        IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson,
+        IFNULL(attachmentdeleteperson,"") as attachmentdeleteperson
         FROM receivefile
         where receivefileid = #{receivefileid}
     </select>
@@ -74,6 +75,8 @@
             <if test="implementperson!=null">implementperson = #{implementperson},</if>
             <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
             <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
+            <if test="attachmentpath!=null">attachmentpath = #{attachmentpath},</if>
+            <if test="attachmentdeleteperson!=null">attachmentdeleteperson = #{attachmentdeleteperson},</if>
         </trim>
         where receivefileid = #{receivefileid}
     </update>
