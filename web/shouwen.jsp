@@ -2119,17 +2119,49 @@
                 text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
                 text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
             }
+        }else if(mydata1.status == "分管领导签批"){
+            if(mydata1.modeltype == "直接处理"){
+                text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "文件拟办单"){
+                text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "一科室提意见"){
+                text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "两科室提意见"){
+                text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+            }
+        }else if(mydata1.status == "主管领导签批"){
+            if(mydata1.modeltype == "直接处理"){
+                text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "文件拟办单"){
+                text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "一科室提意见"){
+                text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "两科室提意见"){
+                text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }
+        }else if(mydata1.status == "处理处置"){
+            if(mydata1.modeltype == "直接处理"){
+                text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "文件拟办单"){
+                text.result = $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "一科室提意见"){
+                text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
+            }else if(mydata1.status == "两科室提意见"){
+                text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
+            }
         }
         console.log(text,mydata1);
-//                $.ajax({
-//                    url: "",
-//                    type: "post",
-//                    data: {text:text,ReceiveFile:mydata1},
-//                    dataType: "json",
-//                    success: function (data) {
-//                        console.log(data);
-//                    }
-//                })
+        var text2 = JSON.stringify(text);
+        var mydata2 = JSON.stringify(mydata1);
+            $.ajax({
+                url: "/updateReceiveFileAndModelInfo.do",
+                type: "post",
+                data: {text:text2,receivedata:mydata2},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                }
+            })
     })
 
 
