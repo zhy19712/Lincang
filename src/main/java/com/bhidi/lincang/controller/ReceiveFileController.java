@@ -321,7 +321,7 @@ public class ReceiveFileController {
         }
         Map<String,String> map = new HashMap<String,String>();
         if( mer == -1 || er == -1){
-            map.put("result","failuer");
+            map.put("result","failure");
         } else {
             map.put("result","success");
         }
@@ -434,9 +434,15 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            meme.setMainleaderinstruction(me.getMainleaderinstruction());
-            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
-            meme.setResult(me.getResult());
+            if(role.equals("分管领导")){
+                meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            }
+            if(role.equals("主管领导")){
+                meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                meme.setResult(me.getResult());
+            }
             //去修改model_zhijiechuli表
             try {
                 mer = receiveFileServiceImp.updateModelZhijiechuli(meme);
@@ -506,9 +512,15 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            meme.setMainleaderinstruction(me.getMainleaderinstruction());
-            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
-            meme.setResult(me.getResult());
+            if(role.equals("分管领导")){
+                meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            }
+            if(role.equals("主管领导")){
+                meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                meme.setResult(me.getResult());
+            }
             //去修改model_erkeshi表
             try {
                 mer = receiveFileServiceImp.updateModelWenjiannibandan(meme);
@@ -589,10 +601,18 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            meme.setDepartmentadvice(me.getDepartmentadvice());;
-            meme.setMainleaderinstruction(me.getMainleaderinstruction());
-            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
-            meme.setResult(me.getResult());
+            if(role.equals(receivefileinfo.getDepartment1name())){
+                meme.setDepartmentadvice(me.getDepartmentadvice());
+            }
+            if(role.equals("分管领导")){
+                meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            }
+            if(role.equals("主管领导")){
+                meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                meme.setResult(me.getResult());
+            }
             //去修改model_yikeshi表
             try {
                 mer = receiveFileServiceImp.updateModelYikeshi(meme);
@@ -691,9 +711,15 @@ public class ReceiveFileController {
             if(role.equals(receivefileinfo.getDepartment2name())){
                 meme.setDepartment2advice(me.getDepartment2advice());
             }
-            meme.setMainleaderinstruction(me.getMainleaderinstruction());
-            meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
-            meme.setResult(me.getResult());
+            if(role.equals("分管领导")){
+                meme.setBranchleaderinstruction(me.getBranchleaderinstruction());
+            }
+            if(role.equals("主管领导")){
+                meme.setMainleaderinstruction(me.getMainleaderinstruction());
+            }
+            if(receivefileinfo.getImplementperson().contains(user.getName())){
+                meme.setResult(me.getResult());
+            }
             //去更新model_erkeshi表
             try {
                 mer = receiveFileServiceImp.updateModelErkeshi(meme);
@@ -703,7 +729,81 @@ public class ReceiveFileController {
         }
         Map<String,String> map = new HashMap<String,String>();
         if( mer == -1 || er == -1){
-            map.put("result","failuer");
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
+    }
+
+    /**
+     * 附件删除按钮
+     * @param receivefileid
+     * @param path
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/pathDelete",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String pathDelete(String receivefileid,String path){
+        //先把receivefileid对应的attachmentpath查出来
+        ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(receivefileid);
+        String attachmentpath = rf.getAttachmentpath();
+        String[] paths = attachmentpath.split(",");
+        path = path.replaceAll("\\\\\\\\","\\\\");
+        List<String> pathList = new ArrayList<String>();
+        for( int i = 0; i < paths.length; i++ ){
+            if( !paths[i].equals(path) ){
+                pathList.add(paths[i]);
+            }
+        }
+        String attachmentpathfinal = "";
+        for( int t = 0; t < pathList.size(); t++  ){
+            if( t <  (pathList.size()-1) ){
+                attachmentpathfinal = pathList.get(t)+ ",";
+            } else {
+                attachmentpathfinal = pathList.get(t);
+            }
+        }
+        ReceiveFile newrf = new ReceiveFile();
+        newrf.setReceivefileid( rf.getReceivefileid() );
+        newrf.setAttachmentpath( attachmentpathfinal );
+        int re = 0;
+        try {
+            re = receiveFileServiceImp.updateReceiveFile(newrf);
+        } catch (Exception e) {
+            re = -1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( re == -1 ){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
+    }
+
+    /**
+     * 确认归档按钮
+     * @param receivefileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/toConfirm",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String toConfirm(String receivefileid){
+        ReceiveFile rf = new ReceiveFile();
+        rf.setReceivefileid(receivefileid);
+        rf.setStatus("结束");
+        int re = 0;
+        try {
+            re = receiveFileServiceImp.updateReceiveFile(rf);
+        } catch (Exception e) {
+            re = -1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( re == -1 ){
+            map.put("result","failure");
         } else {
             map.put("result","success");
         }
