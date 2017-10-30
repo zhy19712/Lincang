@@ -143,7 +143,7 @@
         #fawen td,#dcl_table td,#ycl_table td{
             border-left:1px solid #000;
         }
-        #more tr:nth-child(4) td:nth-child(2)>div{
+        #more tr:nth-child(4) td:nth-child(2)>div,#more1 tr:nth-child(4) td:nth-child(2)>div{
             display: inline-block;
             vertical-align: top;
         }
@@ -159,6 +159,26 @@
         }
         #more tr:nth-child(4) td:nth-child(2)>div span:hover,#more1 tr:nth-child(4) td:nth-child(2)>div span:hover,#more tr:nth-child(4) td:nth-child(2)>div button:hover,#more1 tr:nth-child(4) td:nth-child(2)>div button:hover{
             text-decoration: underline;
+        }
+        .delete_wrapper{
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 999;
+            display: none;
+        }
+        .delete{
+            position: absolute;
+            top: 450px;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 200px;
+            line-height:20px;
+            text-align: center;
+            font-size: 14px;
+            background-color: #fff;
         }
     </style>
 
@@ -860,6 +880,13 @@
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
+                <div class="delete_wrapper">
+                    <div class="delete">
+                        <p style="color: red;">确定删除此附件吗？</p>
+                        <button class="cancel">取消</button>
+                        <button class="confirm">确认</button>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -1272,12 +1299,22 @@
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
+                <div class="delete_wrapper">
+                    <div class="delete">
+                        <p style="color: red;">确定删除此附件吗？</p>
+                        <button class="cancel">取消</button>
+                        <button class="confirm">确认</button>
+                    </div>
+                </div>
 
             </div>
         </div>
     </div>
 
 </div>
+
+
+
 
 <footer class="row">
     <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
@@ -1689,39 +1726,62 @@
     var state;
 
     //删除附件
+    var del_path;
     function del(that) {
-        $(that).parent("form").parent("div").remove();
-        del_file_arr.push($(that).siblings(".file_name").text());
+        $(that).parent("form").parent("div").parent("td").parent("tr").parent("tbody").parent("table").parent("div").siblings(".delete_wrapper").css("display","block");
+        del_path = $(that).siblings(".file_url").val();
     }
-    function delete_file() {
-        var delete_file = [];
-        if(del_file_arr.length > 0){
-            $.each(del_file_arr,function (i,n) {
-                var index = n.lastIndexOf(".");
-                var name = n.substring(0,index);
-                $.each(file_arr,function (i,n) {
-                    var num = n.search(name);
-                    if(num > 0){
-                        delete_file.push(n);
-                    }
-                })
-            });
-        }
-        console.log(delete_file)
-        if(delete_file.length>0){
-            console.log(id,delete_file);
-            var mydelete = JSON.stringify(delete_file);
-            $.ajax({
-                url: "/pathDelete.do",
-                type: "post",
-                data: {receivefileid:id,path:mydelete},
-                dataType: "json",
-                success: function(data){
-                    console.log(data);
-                }
-            })
-        }
-    }
+    $(".cancel").click(function () {
+        $(this).parent(".delete").parent(".delete_wrapper").css("display","none");
+    })
+    $(".confirm").click(function () {
+        console.log(del_path,id);
+        //            $.ajax({
+//                url: "/pathDelete.do",
+//                type: "post",
+//                data: {receivefileid:id,path:del_path},
+//                dataType: "json",
+//                success: function(data){
+//                    console.log(data);
+//                    if(data.result == "success"){
+//                        $(this).parent(".delete").parent(".delete_wrapper").css("display","none");
+//                    }
+//                }
+//            })
+    })
+
+
+
+
+//    function delete_file() {
+//        var delete_file = [];
+//        if(del_file_arr.length > 0){
+//            $.each(del_file_arr,function (i,n) {
+//                var index = n.lastIndexOf(".");
+//                var name = n.substring(0,index);
+//                $.each(file_arr,function (i,n) {
+//                    var num = n.search(name);
+//                    if(num > 0){
+//                        delete_file.push(n);
+//                    }
+//                })
+//            });
+//        }
+//        console.log(delete_file)
+//        if(delete_file.length>0){
+//            console.log(id,delete_file);
+//            var mydelete = JSON.stringify(delete_file);
+//            $.ajax({
+//                url: "/pathDelete.do",
+//                type: "post",
+//                data: {receivefileid:id,path:mydelete},
+//                dataType: "json",
+//                success: function(data){
+//                    console.log(data);
+//                }
+//            })
+//        }
+//    }
 
     function newForm() {
 
@@ -2053,7 +2113,7 @@
                     $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
                 }
                 $(".user1_4").text(mydata1.implementperson);
-                $(".user1_5").text(mydata1.implementperson);
+                $(".user1_5").text(mydata1.confirmperson);
             }
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');

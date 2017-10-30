@@ -43,7 +43,7 @@
         IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
         IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
         IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
-        IFNULL(implementpersondelete,"") as implementpersondelete
+        IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson
         FROM receivefile
         where receivefileid = #{receivefileid}
     </select>
