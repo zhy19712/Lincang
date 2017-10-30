@@ -1688,6 +1688,7 @@
     var mydata1;
     var mydata;
     var id;
+    var state;
 
     //删除附件
     function del(that) {
@@ -1735,8 +1736,13 @@
     function edit(that) {
         //查看发文登记信息
         var kind = $(that).val();
-        var state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+        if(state == "办公室归档"){
+            $("#model_handle .btn-primary").text("确认归档");
+        }else {
+            $("#model_handle .btn-primary").text("提交");
+        }
         $.ajax({
             url: "getReceiveFileInfoById.do",
             async: false,
@@ -1830,7 +1836,7 @@
                 $("#more1 tr:nth-child(9) td:nth-child(6) input").val(data.circulationsituation);
                 $("#more1 tr:nth-child(10) td:nth-child(2) textarea").val(data.dealsituation);
             }
-        })
+        });
         $("#receivefileid").text(id);
         if(state == "办公室处理文件"){
             if(kind == "查看"){
@@ -2149,54 +2155,75 @@
     //提交
     $("#model_handle .btn-primary").click(function () {
         delete_file();
-        var text = new Object();
-        text.departmentadvice = "";
-        text.department1advice = "";
-        text.department2advice = "";
-        text.branchleaderinstruction = "";
-        text.mainleaderinstruction = "";
-        text.result = "";
-        if(mydata1.status == "科室签批"){
-            if(mydata1.modeltype == "一科室提意见"){
-                text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "两科室提意见"){
-                text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+        console.log(state);
+        if(state == "办公室归档"){
+            console.log(id);
+//            $.ajax({
+//                url: "",
+//                type: "",
+//                data: {id:id},
+//                dataType: "json",
+//                success: function(data){
+//                    if(data.result == "success"){
+//                        alert("归档成功");
+ //           $('#model_handle').modal('hide');
+//                        $("#model_handle input").val("");
+//                        $("#model_handle textarea").val("");
+//                        $("#model_handle .title").val("临沧市移民局文件处理笺");
+//                        table_refresh();
+//                        setTimeout(acount,100);
+//                    }
+//                }
+//            })
+        }else {
+            var text = new Object();
+            text.departmentadvice = "";
+            text.department1advice = "";
+            text.department2advice = "";
+            text.branchleaderinstruction = "";
+            text.mainleaderinstruction = "";
+            text.result = "";
+            if(mydata1.status == "科室签批"){
+                if(mydata1.modeltype == "一科室提意见"){
+                    text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                    text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+                }
+            }else if(mydata1.status == "分管领导签批"){
+                if(mydata1.modeltype == "直接处理"){
+                    text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "文件拟办单"){
+                    text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "一科室提意见"){
+                    text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+                }
+            }else if(mydata1.status == "主管领导签批"){
+                if(mydata1.modeltype == "直接处理"){
+                    text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "文件拟办单"){
+                    text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "一科室提意见"){
+                    text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                }
+            }else if(mydata1.status == "处理处置"){
+                if(mydata1.modeltype == "直接处理"){
+                    text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "文件拟办单"){
+                    text.result = $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "一科室提意见"){
+                    text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
+                }
             }
-        }else if(mydata1.status == "分管领导签批"){
-            if(mydata1.modeltype == "直接处理"){
-                text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "文件拟办单"){
-                text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "一科室提意见"){
-                text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "两科室提意见"){
-                text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
-            }
-        }else if(mydata1.status == "主管领导签批"){
-            if(mydata1.modeltype == "直接处理"){
-                text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "文件拟办单"){
-                text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "一科室提意见"){
-                text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "两科室提意见"){
-                text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-            }
-        }else if(mydata1.status == "处理处置"){
-            if(mydata1.modeltype == "直接处理"){
-                text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "文件拟办单"){
-                text.result = $("#model2_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "一科室提意见"){
-                text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
-            }else if(mydata1.modeltype == "两科室提意见"){
-                text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
-            }
-        }
-        console.log(text,mydata1);
-        var text2 = JSON.stringify(text);
-        var mydata2 = JSON.stringify(mydata1);
+            console.log(text,mydata1);
+            var text2 = JSON.stringify(text);
+            var mydata2 = JSON.stringify(mydata1);
             $.ajax({
                 url: "/updateReceiveFileAndModelInfo.do",
                 type: "post",
@@ -2214,6 +2241,7 @@
                     }
                 }
             })
+        }
     })
 
 

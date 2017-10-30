@@ -333,7 +333,7 @@ public class ReceiveFileDataTable {
             }
             if( "分管领导".equals(roleList.get(0)) ){
                 //status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批') and fenguannamedelete not like '%"+name+"%'";
-                status = " and ( (status != '办公室处理文件' and status != '科室签批'  and fenguannamedelete like '%"+name+"%') or (status = '处理处置' and implementpersondelete like '%"+name+"%') )";
+                status = " and ( (status != '办公室处理文件' and status != '科室签批'  and fenguannamedelete like '%"+name+"%') or ( implementpersondelete like '%"+name+"%') )";
             }
             if( "主管领导".equals(roleList.get(0)) ){
                 //status = " and (status != '办公室处理文件' and status != '科室一签批'and status != '科室二签批' and status != '分管领导签批' and status != '主管领导签批') and zhuguannamedelete not like '%"+name+"%'";
