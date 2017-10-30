@@ -745,8 +745,9 @@ public class ReceiveFileController {
      */
     @ResponseBody
     @RequestMapping(value="/pathDelete",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String pathDelete(String receivefileid,String path){
+    public String pathDelete(HttpSession session,String receivefileid,String path){
         //先把receivefileid对应的attachmentpath查出来
+        User user = (User)session.getAttribute("user");
         ReceiveFile rf = receiveFileServiceImp.getReceiveFileInfoById(receivefileid);
         String attachmentpath = rf.getAttachmentpath();
         String[] paths = attachmentpath.split(",");
@@ -768,6 +769,12 @@ public class ReceiveFileController {
         ReceiveFile newrf = new ReceiveFile();
         newrf.setReceivefileid( rf.getReceivefileid() );
         newrf.setAttachmentpath( attachmentpathfinal );
+        if( rf.getAttachmentdeleteperson().equals("") ){
+            newrf.setAttachmentdeleteperson(user.getName()+path);
+        } else {
+            newrf.setAttachmentdeleteperson(rf.getAttachmentdeleteperson() +"," +user.getName()+path);
+        }
+
         int re = 0;
         try {
             re = receiveFileServiceImp.updateReceiveFile(newrf);
