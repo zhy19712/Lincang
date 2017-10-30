@@ -1052,14 +1052,14 @@
                             <ul>
                                 <li data-jstree='{"opened":true}'>主管领导
                                     <ul>
-                                        <li>admin</li>
+                                        <li>mainleader</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
                                 <li data-jstree='{"opened":true}'>分管领导
                                     <ul>
-                                        <li>admin-pre</li>
+                                        <li>branchleader</li>
                                     </ul>
                                 </li>
                             </ul>
