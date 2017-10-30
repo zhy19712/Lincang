@@ -1709,15 +1709,15 @@
         if(delete_file.length>0){
             console.log(id,delete_file);
             var mydelete = JSON.stringify(delete_file);
-//            $.ajax({
-//                url: "",
-//                type: "post",
-//                data: {receivefileid:id,path:mydelete},
-//                dataType: "json",
-//                success: function(data){
-//                    console.log(data);
-//                }
-//            })
+            $.ajax({
+                url: "/pathDelete.do",
+                type: "post",
+                data: {receivefileid:id,path:mydelete},
+                dataType: "json",
+                success: function(data){
+                    console.log(data);
+                }
+            })
         }
     }
 
