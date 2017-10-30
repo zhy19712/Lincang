@@ -516,7 +516,7 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3></h3>
                 </div>
-                <div id="container1" style="width: 100%;height: 160px">
+                <div id="container1" style="width: 100%;">
                     <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
