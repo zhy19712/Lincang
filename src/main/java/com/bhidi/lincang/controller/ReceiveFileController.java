@@ -635,6 +635,15 @@ public class ReceiveFileController {
                     }else {
                         rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
                     }
+                    int len1 = receivefileinfo.getDepartment1person().split(",").length;
+                    int len2 = rf.getDepartment1persondelete().equals("")?0:rf.getDepartment1persondelete().split(",").length;
+                    int len3 = receivefileinfo.getDepartment2person().split(",").length;
+                    int len4 = receivefileinfo.getDepartment2persondelete().equals("")?0:receivefileinfo.getDepartment2persondelete().split(",").length;
+                    if( ( len1==len2 ) & ( len3==len4 ) ){
+                        rf.setStatus("分管领导签批");
+                    } else {
+                        rf.setStatus("科室签批");
+                    }
                 } else  {
                     rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete());
                     if(receivefileinfo.getDepartment2persondelete().equals("")){
@@ -642,13 +651,17 @@ public class ReceiveFileController {
                     } else {
                         rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete()+","+user.getName());
                     }
+                    int len1 = receivefileinfo.getDepartment1person().split(",").length;
+                    int len2 = receivefileinfo.getDepartment1persondelete().equals("")?0:receivefileinfo.getDepartment1persondelete().split(",").length;
+                    int len3 = receivefileinfo.getDepartment2person().split(",").length;
+                    int len4 = rf.getDepartment2persondelete().equals("")?0:rf.getDepartment2persondelete().split(",").length;
+                    if( (len1 == len2) & ( len3== len4) ){
+                        rf.setStatus("分管领导签批");
+                    } else {
+                        rf.setStatus("科室签批");
+                    }
+                }
 
-                }
-                if( (receivefileinfo.getDepartment1person().split(",").length == rf.getDepartment1persondelete().split(",").length) & (receivefileinfo.getDepartment2person().split(",").length == rf.getDepartment2persondelete().split(",").length) ){
-                    rf.setStatus("分管领导签批");
-                } else {
-                    rf.setStatus("科室签批");
-                }
             }
             if(receivefileinfo.getStatus().equals("分管领导签批")){
                 String fenguanname = receivefileinfo.getFenguanname();
