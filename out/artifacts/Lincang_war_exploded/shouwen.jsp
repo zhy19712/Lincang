@@ -1542,7 +1542,7 @@
         $("#select_people li input").val("");
         $("#model_container input").val("");
         $("#model_container textarea").val("");
-        $("#model_container .title").val("临沧市移民局文件处理笺");
+        $("#model_container .title input").val("临沧市移民局文件处理笺");
         if($(this).val() == "一科室提意见"){
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","none");
@@ -1576,7 +1576,6 @@
     $("#sel_people button").click(function () {
         people_arr = [];
         var peole_kind = $("#sel_people>p").text();
-
 
         if(peole_kind == "选择办公室处理人"){
             $.each($("#tree_container .jstree-leaf"),function (i,n) {
@@ -2036,6 +2035,25 @@
                     $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
                 }
                 $(".user1_4").text(mydata1.implementperson);
+            }else if(mydata1.status == "结束"){
+                step1.goStep(6);
+                step.goStep(6);
+                $(".user1_1").text(mydata1.modelchoicename);
+                $(".user_1").text(mydata1.modelchoicename);
+                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+                $(".user_2").text(mydata1.reveivereregisterpersonname);
+                if(mydata1.modeltype == "一科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
+                }else if(mydata1.modeltype == "两科室提意见"){
+                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+                    $("#handle_people li:first-child").css("display","block");
+                    $("#handle_people li:nth-child(2)").css("display","block");
+                }else {
+                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+                }
+                $(".user1_4").text(mydata1.implementperson);
+                $(".user1_5").text(mydata1.implementperson);
             }
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');
@@ -2161,23 +2179,23 @@
         console.log(state);
         if(state == "办公室归档"){
             console.log(id);
-//            $.ajax({
-//                url: "",
-//                type: "",
-//                data: {id:id},
-//                dataType: "json",
-//                success: function(data){
-//                    if(data.result == "success"){
-//                        alert("归档成功");
- //           $('#model_handle').modal('hide');
-//                        $("#model_handle input").val("");
-//                        $("#model_handle textarea").val("");
-//                        $("#model_handle .title").val("临沧市移民局文件处理笺");
-//                        table_refresh();
-//                        setTimeout(acount,100);
-//                    }
-//                }
-//            })
+            $.ajax({
+                url: "/toConfirm.do",
+                type: "post",
+                data: {receivefileid:id},
+                dataType: "json",
+                success: function(data){
+                    if(data.result == "success"){
+                        alert("归档成功");
+                        $('#model_handle').modal('hide');
+                        $("#model_handle input").val("");
+                        $("#model_handle textarea").val("");
+                        $("#model_handle .title").val("临沧市移民局文件处理笺");
+                        table_refresh();
+                        setTimeout(acount,100);
+                    }
+                }
+            })
         }else {
             var text = new Object();
             text.departmentadvice = "";
