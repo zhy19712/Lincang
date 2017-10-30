@@ -1028,40 +1028,52 @@
                             <ul>
                                 <li data-jstree='{"opened":true}'>办公室
                                     <ul>
-                                        <li>办公室1</li>
-                                        <li>办公室2</li>
+                                        <li>muzhifang</li>
+                                        <li>yuanlu</li>
+                                        <li>bgstest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>科室1
+                                <li data-jstree='{"opened":true}'>规划科
                                     <ul>
-                                        <li>科室1_1</li>
-                                        <li>科室1_2</li>
+                                        <li>yangzaipei</li>
+                                        <li>ghtest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>科室2
+                                <li data-jstree='{"opened":true}'>财务科
                                     <ul>
-                                        <li>科室2_1</li>
-                                        <li>科室2_2</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":true}'>分管领导
-                                    <ul>
-                                        <li>分管领导1</li>
-                                        <li>分管领导2</li>
+                                        <li>caiwutest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
                                 <li data-jstree='{"opened":true}'>主管领导
                                     <ul>
-                                        <li>主管领导1</li>
-                                        <li>主管领导2</li>
+                                        <li>admin</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>分管领导
+                                    <ul>
+                                        <li>admin-pre</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>其他科室
+                                    <ul>
+                                        <li>qttest</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>区县
+                                    <ul>
+                                        <li>qxtest</li>
                                     </ul>
                                 </li>
                             </ul>
