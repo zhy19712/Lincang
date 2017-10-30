@@ -408,7 +408,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -486,7 +486,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -575,7 +575,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
@@ -679,7 +679,7 @@ public class ReceiveFileController {
                     rf.setStatus("主管领导签批");
                 }
             }
-            if(receivefileinfo.getImplementperson().contains(user.getName())){
+            if(receivefileinfo.getStatus().equals("处理处置") & receivefileinfo.getImplementperson().contains(user.getName())){
                 String implementperson = receivefileinfo.getImplementperson();
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
