@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -372,8 +370,6 @@ public class DataEnteringController {
                 System.out.println("key= "+ key + " and value= " + value );
             }
         }
-        /*SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-        Date date =  new Date();*/
         //一个集合来收集用户信息
         List<People> peopleList = new ArrayList<People>();
         Set<People> peopleSet = new HashSet();

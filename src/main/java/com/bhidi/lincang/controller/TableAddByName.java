@@ -1,6 +1,5 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.FamilyInfoByName;
 import com.bhidi.lincang.bean.Table_info;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;

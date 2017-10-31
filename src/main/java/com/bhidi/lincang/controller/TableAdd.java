@@ -1,7 +1,5 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.FamilyAllInfo;
-import com.bhidi.lincang.bean.People;
 import com.bhidi.lincang.bean.Table_info;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
@@ -11,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
