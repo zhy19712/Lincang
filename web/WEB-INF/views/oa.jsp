@@ -34,9 +34,36 @@
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/jquery-form.min.js"></script>
-    <script src="../../js/jQuery.print.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
+    <style>
+        .mytable{
+            width: 100%;
+            font-size: 12px;
+            border-top: 1px solid red;
+            border-left: 1px solid red;
+            line-height: 30px;
+            text-align: center;
+        }
+        .mytable td{
+            border-right: 1px solid red;
+            border-bottom: 1px solid red;
+        }
+        .mytable input{
+            width: 100%;
+            padding: 0 5px;
+            outline: none;
+            border: none;
+        }
+        .mytable textarea{
+            border: none;
+            resize: none;
+            outline: none;
+        }
+        .red{
+            color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -84,21 +111,13 @@
                     <div class="nav-sm nav nav-stacked">
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
-                        <li><a href="#home"><i class="glyphicon glyphicon-home"></i><span> 首页</span></a></li>
 
                         <li class="nav-header">我的表单</li>
-                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 待办表单</span></a></li>
-                        <li><a href="#progress1"><i class="glyphicon glyphicon-refresh"></i><span> 在办表单</span></a></li>
-                        <li><a href="#completed1"><i class="glyphicon glyphicon-check"></i><span> 已办表单</span></a></li>
+                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 申请表单</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待办事务</span></a></li>
-                        <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 在办事务</span></a></li>
-                        <li><a href="#completed2"><i class="glyphicon glyphicon-check"></i><span> 已归档事务</span></a></li>
-
-                        <li class="nav-header">我的审批</li>
-                        <li><a href="#new3"><i class="glyphicon glyphicon-tags"></i><span> 待审批表单</span><span class="notification red">3</span></a></li>
-                        <li><a href="#completed3"><i class="glyphicon glyphicon-check"></i><span> 审批记录</span></a></li>
+                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
+                        <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -150,7 +169,7 @@
                                     </div>
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 全部列表</h2>
                                         </div>
 
 
@@ -160,81 +179,15 @@
                                                 <tr>
                                                     <th>编号</th>
                                                     <th>标题</th>
-                                                    <th>时间</th>
+                                                    <th>创建时间</th>
+                                                    <th>拟稿单位</th>
+                                                    <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
                                                 </thead>
                                             </table>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="tab-pane" id="progress1">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的表单</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">在办表单</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
-                                        </div>
-
-
-                                        <div class="box-content">
-                                            <table id="SubmittedTable_Stuff" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>标题</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="completed1">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的表单</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">已办表单</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 以办列表</h2>
-
-                                        </div>
-
-
-                                        <div class="box-content">
-                                            <table id="OverTable_Stuff" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>标题</th>
-                                                    <th>时间</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-                                    </div>
-
-
-
                                 </div>
 
                                 <div class="tab-pane" id="new2">
@@ -258,10 +211,10 @@
                                                 <thead>
                                                 <tr>
                                                     <th>编号</th>
-                                                    <th>接收时间</th>
-                                                    <th>科室</th>
-                                                    <th>报稿</th>
                                                     <th>标题</th>
+                                                    <th>创建时间</th>
+                                                    <th>拟稿单位</th>
+                                                    <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
 
@@ -280,7 +233,7 @@
                                                 <a href="#">我的事务</a>
                                             </li>
                                             <li>
-                                                <a href="#">在办事务</a>
+                                                <a href="#">已办事务</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -294,48 +247,11 @@
                                             <table id="SubmittedTable_Office" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
-                                                    <th>提交时间</th>
-                                                    <th>缓级</th>
-                                                    <th>报稿</th>
-                                                    <th>标题</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-
-
-                                    </div>
-
-
-                                </div>
-                                <div class="tab-pane" id="completed2">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的事务</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">已归档事务</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已归档事务</h2>
-
-                                        </div>
-                                        <div class="box-content">
-                                            <table id="OverTable_Office" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
                                                     <th>编号</th>
-                                                    <th>提交时间</th>
-                                                    <th>缓级</th>
-                                                    <th>报稿</th>
                                                     <th>标题</th>
+                                                    <th>创建时间</th>
+                                                    <th>拟稿单位</th>
+                                                    <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
                                                 </thead>
@@ -346,83 +262,7 @@
                                     </div>
 
 
-
                                 </div>
-                                <div class="tab-pane" id="new3">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的审批</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">待审批表单</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待审批表单</h2>
-
-                                        </div>
-                                        <div class="box-content">
-                                            <table id="NewTable_Approval" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>接收时间</th>
-                                                    <th>科室</th>
-                                                    <th>报稿</th>
-                                                    <th>标题</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-
-
-                                    </div>
-
-
-
-                                </div>
-                                <div class="tab-pane" id="completed3">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">我的审批</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">审批记录</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div class="box-inner">
-                                        <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 审批记录</h2>
-
-                                        </div>
-                                        <div class="box-content">
-                                            <table id="OverTable_Approval" class="display" width="100%" cellspacing="0">
-                                                <thead>
-                                                <tr>
-                                                    <th>编号</th>
-                                                    <th>接收时间</th>
-                                                    <th>科室</th>
-                                                    <th>报稿</th>
-                                                    <th>标题</th>
-                                                    <th>操作</th>
-                                                </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
-
-
-                                    </div>
-
-                                </div>
-
-
 
                             </div>
 
@@ -457,96 +297,56 @@
                     <h3 id="form-kind">填写表单</h3>
                 </div>
 
-
-                <div class="modal-body" style="font-size: 0;width: 100%;" id="print1">
-                    <input id="oId" type="text" name="id" style="display: none" ></input>
-                    <input id="created_at" type="text" name="created_at" style="display: none" ></input>
-                    <div class="row myrow">
-                        <div class="col-sm-5">
-                            <span>拟稿单位</span>
-                            <input id="input1" type="text" name="dept" readonly="true" value="">
-                        </div>
-                        <div class="col-sm-3">
-                            <span>拟稿</span>
-                            <input id="input2" type="text" name="author" readonly="true" value="">
-                        </div>
-                        <div class="col-sm-4">
-                            <span>科室核稿</span>
-                            <input id="input3" type="text" name="reviewer" readonly="true" value="">
-                        </div>
+                <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
+                <form id = "fileForm" enctype="multipart/form-data"  target="uploadFrame">
+                    <div class="modal-body" style="font-size: 0;width: 100%;" id="print1">
+                        <table class="mytable">
+                            <tbody>
+                            <tr>
+                                <td class="red">拟稿单位</td>
+                                <td colspan="3"><input type="text" name="dept"></td>
+                                <td class="red">拟稿</td>
+                                <td><input type="text" name="author"></td>
+                                <td class="red">科室核稿</td>
+                                <td><input type="text" name="reviewer"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">印刷</td>
+                                <td colspan="3"><input type="text" name="print"></td>
+                                <td class="red">校对</td>
+                                <td><input type="text" name="revision"></td>
+                                <td class="red">份数</td>
+                                <td><input type="text" name="copy"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">上传附件</td>
+                                <td colspan="9">
+                                    <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                        <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
+                                        <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="red">主题词</td>
+                                <td colspan="7"><input type="text" name="keyword"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">标题</td>
+                                <td colspan="7"><input type="text" name="title"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="row myrow">
-                        <div class="col-sm-5">
-                            <span>印刷</span>
-                            <input id="input4" type="text" name="print" readonly="true">
-                        </div>
-                        <div class="col-sm-3">
-                            <span>校对</span>
-                            <input id="input5" type="text" name="revision"readonly="true">
-                        </div>
-                        <div class="col-sm-4">
-                            <span>份数</span>
-                            <input id="input6" type="text" name="copy" readonly="true">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-sm-12">
-
-                            <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                            <form id = "fileForm" action="" method="post"
-                                  enctype="multipart/form-data"  target="uploadFrame">
-
-
-                            <span>附件</span>
-                            <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
-                                <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
-                            </div>
-                            <%--<input type="button" id="Commit" style="display:none"/>--%>
-
-                            </form>
-
-
-
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-sm-12">
-                            <span>主题词</span>
-                            <input id="input8" type="text" name="keyword" readonly="true">
-                        </div>
-                    </div>
-                    <div class="row myrow last">
-                        <div class="col-sm-12">
-                            <span>标题</span>
-                            <input id="input9" type="text" name="title" readonly="true">
-                        </div>
-                    </div>
-                    <textarea class="mytext" name="content" id="input10" cols="30" rows="10" placeholder="内容" readonly="true"></textarea>
-                    <div class="row myrow" id="app1">
-                        <div class="col-sm-6">
-                            <span>审批人</span>
-                            <input id="app-people" type="text" name="print" readonly="true">
-                        </div>
-                        <div class="col-sm-6">
-                            <span>审批时间</span>
-                            <input id="app-time" type="text" name="revision"readonly="true">
-                        </div>
-                    </div>
-                    <div class="row myrow" id="app2">
-                        <div class="col-sm-12">
-                            <span>审批意见</span>
-                            <input id="app-view" type="text" name="print" readonly="true">
-                        </div>
-                    </div>
-                </div>
+                </form>
 
 
                 <div class="modal-footer">
-                    <a href="#" id="btn-print" class="btn btn-info">打印</a>
-                    <a href="#" id="btn-up" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" id="btn-save" class="btn btn-success">保存</a>
-                    <a href="#" id="btn-submit" class="btn btn-primary">提交</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
 
@@ -554,182 +354,291 @@
         </div>
     </div>
 
+    <div class="modal fade" id="select_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
 
-
-    <div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+
+
+
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3>选择处理人</h3>
                 </div>
-                <div class="modal-body">
-                    <div class="row myrow">
-                        <div class="col-lg-3">
-                            <span>临移（）</span>
-                            <input id="input_office1" type="text">
-
-                        </div>
-                        <div class="col-lg-3">
-                            <span>日期</span>
-                            <input id="input_office2" type="text">
-                        </div>
-                        <div class="col-lg-3">
-                            <span>缓级</span>
-                            <input id="input_office3" type="text">
-                        </div>
-                        <div class="col-lg-3">
-                            <span>密级</span>
-                            <input id="input_office4" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-3">
-                            <span>签发</span>
-                            <input id="input_office5" type="text">
-
-                        </div>
-                        <div class="col-lg-3">
-                            <span>审稿</span>
-                            <input id="input_office6" type="text">
-                        </div>
-                        <div class="col-lg-6">
-                            <span>会签</span>
-                            <input id="input_office7" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-12">
-                            <span>抄报：</span>
-                            <input id="input_office8" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-12">
-                            <span>抄送：</span>
-                            <input id="input_office9" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-12">
-                            <span>发：</span>
-                            <input id="input_office10" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-5">
-                            <span>拟稿单位</span>
-                            <input id="input_office11" type="text">
-                        </div>
-                        <div class="col-lg-3">
-                            <span>拟稿</span>
-                            <input id="input_office12" type="text">
-                        </div>
-                        <div class="col-lg-4">
-                            <span>科室核稿</span>
-                            <input id="input_office13" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-5">
-                            <span>印刷</span>
-                            <input id="input_office14" type="text">
-                        </div>
-                        <div class="col-lg-3">
-                            <span>校对</span>
-                            <input id="input_office15" type="text">
-                        </div>
-                        <div class="col-lg-4">
-                            <span>份数</span>
-                            <input id="input_office16" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-12">
-                            <span>附件</span>
-                            <input id="input_office17" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow">
-                        <div class="col-lg-12">
-                            <span>主题词</span>
-                            <input id="input_office18" type="text">
-                        </div>
-                    </div>
-                    <div class="row myrow last">
-                        <div class="col-lg-12">
-                            <span>标题</span>
-                            <input id="input_office19" type="text">
-                        </div>
-                    </div>
-                    <textarea class="mytext" name="" id="input_office20" cols="30" rows="10" placeholder="内容"></textarea>
 
 
+                <div class="modal-body" style="font-size: 0;width: 100%;">
+                    <div class="bgc_info">
+                        <table class="mytable">
+                            <tbody>
+                            <tr>
+                                <td class="red">临沧(</td>
+                                <td><input type="text" name="dept"></td>
+                                <td style="padding: 0 15px;">)号</td>
+                                <td class="red" style="padding: 0 5px;">日期</td>
+                                <td><input type="text" name="author"></td>
+                                <td class="red" style="padding: 0 5px;">缓级</td>
+                                <td><input type="text" name="reviewer"></td>
+                                <td class="red" style="padding: 0 5px;">密级</td>
+                                <td><input type="text" name="reviewer"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <p>签发</p>
+                                    <textarea name="" cols="30" rows="10"></textarea>
+                                </td>
+                                <td colspan="2">
+                                    <p>审稿</p>
+                                    <textarea name="" cols="30" rows="10"></textarea>
+                                </td>
+                                <td colspan="2">
+                                    <p>会签</p>
+                                    <textarea name="" cols="30" rows="10"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <p>抄报</p>
+                                    <textarea name="" cols="30" rows="10"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="red" style="width: 79px">抄送</td>
+                                <td colspan="8"><input type="text" name="keyword"></td>
+                            </tr>
+                            <tr>
+                                <td class="red" style="width: 79px;border-bottom: none;">发</td>
+                                <td colspan="8" style="border-bottom: none;"><input type="text" name="title"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="fawen_info">
+                        <table class="mytable">
+                            <tbody>
+                            <tr>
+                                <td class="red">拟稿单位</td>
+                                <td colspan="3"><input type="text" name="dept"></td>
+                                <td class="red">拟稿</td>
+                                <td><input type="text" name="author"></td>
+                                <td class="red">科室核稿</td>
+                                <td><input type="text" name="reviewer"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">印刷</td>
+                                <td colspan="3"><input type="text" name="print"></td>
+                                <td class="red">校对</td>
+                                <td><input type="text" name="revision"></td>
+                                <td class="red">份数</td>
+                                <td><input type="text" name="copy"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">下载</td>
+                                <td colspan="9"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">主题词</td>
+                                <td colspan="7"><input type="text" name="keyword"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">标题</td>
+                                <td colspan="7"><input type="text" name="title"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
+
+
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
-                    <a href="#" class="btn btn-success" data-dismiss="modal">保存</a>
-                    <a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#"  class="btn btn-primary">提交</a>
                 </div>
+
+
             </div>
         </div>
     </div>
 
+    <%--<div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
+         <%--aria-hidden="true">--%>
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
+                    <%--<h3>填写表单</h3>--%>
+                <%--</div>--%>
+                <%--<div class="modal-body">--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>临移（）</span>--%>
+                            <%--<input id="input_office1" type="text">--%>
 
-    <div class="modal fade" id="flow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true">
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>日期</span>--%>
+                            <%--<input id="input_office2" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>缓级</span>--%>
+                            <%--<input id="input_office3" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>密级</span>--%>
+                            <%--<input id="input_office4" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>签发</span>--%>
+                            <%--<input id="input_office5" type="text">--%>
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>公文流转</h3>
-                </div>
-                <div class="modal-body">
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>审稿</span>--%>
+                            <%--<input id="input_office6" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-6">--%>
+                            <%--<span>会签</span>--%>
+                            <%--<input id="input_office7" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>抄报：</span>--%>
+                            <%--<input id="input_office8" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>抄送：</span>--%>
+                            <%--<input id="input_office9" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>发：</span>--%>
+                            <%--<input id="input_office10" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-5">--%>
+                            <%--<span>拟稿单位</span>--%>
+                            <%--<input id="input_office11" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>拟稿</span>--%>
+                            <%--<input id="input_office12" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-4">--%>
+                            <%--<span>科室核稿</span>--%>
+                            <%--<input id="input_office13" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-5">--%>
+                            <%--<span>印刷</span>--%>
+                            <%--<input id="input_office14" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-3">--%>
+                            <%--<span>校对</span>--%>
+                            <%--<input id="input_office15" type="text">--%>
+                        <%--</div>--%>
+                        <%--<div class="col-lg-4">--%>
+                            <%--<span>份数</span>--%>
+                            <%--<input id="input_office16" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>附件</span>--%>
+                            <%--<input id="input_office17" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>主题词</span>--%>
+                            <%--<input id="input_office18" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="row myrow last">--%>
+                        <%--<div class="col-lg-12">--%>
+                            <%--<span>标题</span>--%>
+                            <%--<input id="input_office19" type="text">--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<textarea class="mytext" name="" id="input_office20" cols="30" rows="10" placeholder="内容"></textarea>--%>
 
-                    <div id="wrap">
-                        <div>
-                            <img src="../../img/员工.png" class="head head_pic1" alt="员工">
-                            <p class="staff status1" >申请人</p>
-                            <div class="details details1">
-                                <p>姓名：<span>小吴</span></p>
-                                <p>提交时间：<span>2017-06-18 16：30</span></p>
-                            </div>
-                        </div>
 
-                        <div class="hr hr1"></div>
 
-                        <div>
-                            <img src="../../img/中层.png" class="head head_pic2" alt="中层">
-                            <p class="staff status2">办公室</p>
-                            <div class="details details2">
-                                <p>审核状态：<span>通过</span></p>
-                                <p>审核人：<span>小明</span></p>
-                                <p>审核时间：<span>2017-06-18 16：30</span></p>
-                            </div>
-                        </div>
+                <%--</div>--%>
+                <%--<div class="modal-footer">--%>
+                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>--%>
+                    <%--<a href="#" class="btn btn-success" data-dismiss="modal">保存</a>--%>
+                    <%--<a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
 
-                        <div class="hr hr2"></div>
 
-                        <div>
-                            <img src="../../img/高层.png" class="head head_pic3" alt="高层">
-                            <p class="staff status3">审批领导</p>
-                            <div class="details details3">
-                                <p>审核状态：<span>未审核</span></p>
-                                <p>审批人：<span>小秋</span></p>
-                                <p>审核时间：<span>2017-06-18 16：30</span></p>
-                            </div>
-                        </div>
+    <%--<div class="modal fade" id="flow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
+         <%--aria-hidden="true">--%>
 
-                    </div>
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
+                    <%--<h3>公文流转</h3>--%>
+                <%--</div>--%>
+                <%--<div class="modal-body">--%>
 
-                </div>
-                </div>
+                    <%--<div id="wrap">--%>
+                        <%--<div>--%>
+                            <%--<img src="../../img/员工.png" class="head head_pic1" alt="员工">--%>
+                            <%--<p class="staff status1" >申请人</p>--%>
+                            <%--<div class="details details1">--%>
+                                <%--<p>姓名：<span>小吴</span></p>--%>
+                                <%--<p>提交时间：<span>2017-06-18 16：30</span></p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-            </div>
-        </div>
+                        <%--<div class="hr hr1"></div>--%>
+
+                        <%--<div>--%>
+                            <%--<img src="../../img/中层.png" class="head head_pic2" alt="中层">--%>
+                            <%--<p class="staff status2">办公室</p>--%>
+                            <%--<div class="details details2">--%>
+                                <%--<p>审核状态：<span>通过</span></p>--%>
+                                <%--<p>审核人：<span>小明</span></p>--%>
+                                <%--<p>审核时间：<span>2017-06-18 16：30</span></p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="hr hr2"></div>--%>
+
+                        <%--<div>--%>
+                            <%--<img src="../../img/高层.png" class="head head_pic3" alt="高层">--%>
+                            <%--<p class="staff status3">审批领导</p>--%>
+                            <%--<div class="details details3">--%>
+                                <%--<p>审核状态：<span>未审核</span></p>--%>
+                                <%--<p>审批人：<span>小秋</span></p>--%>
+                                <%--<p>审核时间：<span>2017-06-18 16：30</span></p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+
+                    <%--</div>--%>
+
+                <%--</div>--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
+        <%--</div>--%>
     </div>
 
     <footer class="row">
@@ -745,29 +654,12 @@
 
 <script>
 
-    ~function() {
-
-        var status=$("#status").text();
-
-        if(status == 2){
-            $("#myTab > li:gt(8)").remove();
-
-        }else if(status == 3){
-            $("#myTab > li:gt(4)").remove();
-        }
-
-    }();
+    var status=$("#status").text();
 
     function newForm() {
-        $("#form-kind").text("填写表单");
-        $("#app1").css("display","none");
-        $("#app2").css("display","none");
+        $('#form_stuff input').val('');
         $('#form_stuff').modal('show');
-        $("#btn-save").css("display","inline-block");
-        $("#btn-submit").css("display","inline-block");
-        $("#btn-up").text("放弃").css("display","inline-block");
-        $("#fileForm input").attr("readonly",false);
-        $("#fileForm textarea").attr("readonly",false);
+//        $('#select_model').modal('show');
     }
 
 
