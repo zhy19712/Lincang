@@ -40,12 +40,6 @@ public class CapitalThingsFormController {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "CAPITALFLOW";
-        /*String initiatorclass = "";
-        if( "1".equals(userstatus) || "2".equals(userstatus) ){
-            initiatorclass = "1";
-        } else {
-            initiatorclass = userstatus;
-        }*/
         String status = "";
         if( capitalstatus != null ){
             try {
@@ -64,11 +58,6 @@ public class CapitalThingsFormController {
                 }
             }
             status += ")";
-            /*if( strs.length == 1 ){
-                status = "("+"status = "+"'"+strs[0]+"'"+")";
-            } else if ( strs.length == 2 ){
-                status = "("+"status = "+"'"+strs[0]+"'"+"or status = "+"'"+strs[1]+"'"+")";
-            }*/
         }
         //获取请求次数
         String draw = "0";
