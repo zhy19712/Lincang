@@ -1028,40 +1028,45 @@
                             <ul>
                                 <li data-jstree='{"opened":true}'>办公室
                                     <ul>
-                                        <li>办公室1</li>
-                                        <li>办公室2</li>
+                                        <li>muzhifang</li>
+                                        <li>yuanlu</li>
+                                        <li>bgstest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>科室1
+                                <li data-jstree='{"opened":true}'>规划科
                                     <ul>
-                                        <li>科室1_1</li>
-                                        <li>科室1_2</li>
+                                        <li>yangzaipei</li>
+                                        <li>ghtest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>科室2
+                                <li data-jstree='{"opened":true}'>财务科
                                     <ul>
-                                        <li>科室2_1</li>
-                                        <li>科室2_2</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":true}'>分管领导
-                                    <ul>
-                                        <li>分管领导1</li>
-                                        <li>分管领导2</li>
+                                        <li>caiwutest</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
                                 <li data-jstree='{"opened":true}'>主管领导
                                     <ul>
-                                        <li>主管领导1</li>
-                                        <li>主管领导2</li>
+                                        <li>mainleader</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>分管领导
+                                    <ul>
+                                        <li>branchleader</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-jstree='{"opened":true}'>其他科室
+                                    <ul>
+                                        <li>qttest</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1489,7 +1494,14 @@
         var info = dcl_table.page.info();
         $("#nav_num").text(info.recordsTotal)
     }
-    setTimeout(acount,10);
+    setTimeout(acount,100);
+
+    //表格刷新
+    function table_refresh() {
+        fawen.ajax.url("/receiveFileDataTable.do").load();
+        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
+        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
+    }
 
     //获取角色名称
     var role = $("#roleList").text();
@@ -1544,12 +1556,7 @@
         o.removeChild(a);
         o.removeChild(span)
     }
-    //表格刷新
-    function table_refresh() {
-        fawen.ajax.url("/receiveFileDataTable.do").load();
-        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
-        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
-    }
+
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
         var options  = {
@@ -2131,7 +2138,6 @@
 
     //办公室选择模版及信息提交
     $("#select_model .btn-primary").click(function(){
-        delete_file();
         var receivefileid = $("#receivefileid").text();
         var model = $("#sel1").val();
         var keshi1 = $("#keshi1").val();
@@ -2239,7 +2245,6 @@
 
     //提交
     $("#model_handle .btn-primary").click(function () {
-        delete_file();
         console.log(state);
         if(state == "办公室归档"){
             console.log(id);
