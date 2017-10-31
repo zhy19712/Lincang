@@ -101,6 +101,10 @@
           <input type="path" name = "path"/>
           <input type="submit" value="下载按钮测试"/>
       </form>
+
+      <form action="/getDepartmentAndStaff.do" method="post" target="test">
+          <input type="submit" value="下载按钮测试"/>
+      </form>
   </body>
 
 
