@@ -1,6 +1,5 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.FamilyInfoByName;
 import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.system.DBConfig;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.sql.Connection;
@@ -40,7 +38,6 @@ public class ReceiveFileDataTable {
                     e.printStackTrace();
                 }
             }
-
 
             //获取请求次数
             String draw = "0";
@@ -185,14 +182,6 @@ public class ReceiveFileDataTable {
                 status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
             }
         }
-
-        /*if( name != null ){
-            try {
-                name = URLDecoder.decode(name,"utf-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-        }*/
 
         //获取请求次数
         String draw = "0";
