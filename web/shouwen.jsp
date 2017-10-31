@@ -1494,7 +1494,14 @@
         var info = dcl_table.page.info();
         $("#nav_num").text(info.recordsTotal)
     }
-    setTimeout(acount,10);
+    setTimeout(acount,100);
+
+    //表格刷新
+    function table_refresh() {
+        fawen.ajax.url("/receiveFileDataTable.do").load();
+        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
+        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
+    }
 
     //获取角色名称
     var role = $("#roleList").text();
@@ -1549,12 +1556,7 @@
         o.removeChild(a);
         o.removeChild(span)
     }
-    //表格刷新
-    function table_refresh() {
-        fawen.ajax.url("/receiveFileDataTable.do").load();
-        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
-        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
-    }
+
     //收文登记提交
     $("#shouwen_wdo .btn-primary").click(function () {
         var options  = {

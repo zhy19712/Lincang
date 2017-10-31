@@ -614,7 +614,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -721,11 +720,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
     });
 
-    //气泡显示
-    setTimeout(function () {
+    //待办事务的显示条数
+    function acount() {
         var info = dcl_table.page.info();
         $("#nav_num").text(info.recordsTotal)
-    },0);
+    }
+    setTimeout(acount,100);
+
+    //表格刷新
+//    function table_refresh() {
+//        money_apply1.ajax.url("/receiveFileDataTable.do").load();
+//        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
+//        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
+//    }
     var status;
     ~function() {
 
@@ -803,7 +810,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     success: function (result) {
                         if(result){
                             alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
+                            setTimeout(acount,100);
                         }else {
                             alert("提交失败");
                         }
@@ -843,7 +850,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     success: function (result) {
                         if(result){
                             alert("提交成功");
-                            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
+                            setTimeout(acount,100);
                         }else {
                             alert("提交失败");
                         }
@@ -1009,6 +1016,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     sta2 = "已通知区县,市局财务科转账中";
                                                     dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                     ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                    setTimeout(acount,100);
                                                     $("#pifu_content").val("");
                                                 }
                                             })
@@ -1043,6 +1051,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                     sta2 = "已通知区县,市局规划科处理中,区县资金流向录入";
                                                     dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                     ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                    setTimeout(acount,100);
                                                     $("#chuli_content").val("");
                                                 }
                                             })
@@ -1125,6 +1134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         sta2 = "市局规划科处理中,已通知区县";
                                         dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                         ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                        setTimeout(acount,100);
                                         mywipeData();
                                     }
                                 })
@@ -1214,6 +1224,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         sta2 = "已通知区县";
                                         dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                         ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                        setTimeout(acount,100);
                                         mywipeData();
                                         $("#uc_03 li").removeClass("selected");
                                     }
@@ -1290,6 +1301,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 sta2 = "区县资金流向明细";
                                                 dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                 ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                setTimeout(acount,100);
                                                 $("#luru_content").val("");
                                             }
                                         })
@@ -1321,6 +1333,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                                 sta2 = "区县资金流向明细";
                                                 dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
                                                 ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
+                                                setTimeout(acount,100);
                                                 $("#luru_content").val("");
                                             }
                                         })
