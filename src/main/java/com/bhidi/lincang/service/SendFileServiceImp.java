@@ -29,6 +29,8 @@ public class SendFileServiceImp implements SendFileServiceInf{
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //查找数据库中对应的id的数据
         SendFile storeHouse = getSendFileInfoBySendFileId(sf.getSendfileid());
+        String approver = storeHouse.getApprover();
+        String implementperson = storeHouse.getImplementperson();
         if( "办公室审核处理".equals(storeHouse.getStatus()) ){
             //说明这次的处理人是办公室的人
             sf.setOfficeprocesstime(sdf.format(now));
@@ -36,6 +38,8 @@ public class SendFileServiceImp implements SendFileServiceInf{
             sf.setStatus("签批");
         }
         if( "签批".equals(storeHouse.getStatus()) & storeHouse.getApprover().contains(user.getName()) ){
+            sf.setApprover(approver);
+            sf.setImplementperson(implementperson);
             //说明这次的处理人是签批人，这里有可能有两个
             if(storeHouse.getApproverdelete().equals("")){
                 sf.setApproverdelete(user.getName());
@@ -51,6 +55,8 @@ public class SendFileServiceImp implements SendFileServiceInf{
             }
         }
         if( "处理处置".equals(storeHouse.getStatus()) & storeHouse.getImplementperson().contains(user.getName()) ){
+            sf.setApprover(approver);
+            sf.setImplementperson(implementperson);
             //说明这次调用这个方法的是处理人，有可能有两个
             if(storeHouse.getImplementpersondelete().equals("")){
                 sf.setImplementpersondelete(user.getName());
