@@ -1,8 +1,6 @@
 package com.bhidi.lincang.dao;
 
-import com.bhidi.lincang.bean.PictureCounty;
-import com.bhidi.lincang.bean.PictureTown;
-import com.bhidi.lincang.bean.PictureVillage;
+import com.bhidi.lincang.bean.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +14,8 @@ public interface PictureMapper {
     List<PictureVillage> queryVillageInfo();
 
     int pictureSum();
+
+    List<AnZhiKind> selectAnZhi();
+
+    List<KuQuKind> selectKuQu();
 }

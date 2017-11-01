@@ -1,5 +1,6 @@
 package com.bhidi.lincang.service;
 
+import com.bhidi.lincang.bean.AnZhiKind;
 import com.bhidi.lincang.bean.PictureCounty;
 import com.bhidi.lincang.bean.PictureTown;
 import com.bhidi.lincang.bean.PictureVillage;
@@ -14,4 +15,6 @@ public interface PictureServiceInf {
     List<PictureVillage> queryVillageInfo();
 
     int pictureSum();
+
+    List<AnZhiKind> getAnZhi();
 }

@@ -25,5 +25,14 @@
         SELECT count(*) AS intsum
         FROM people
     </select>
-
+    <!--List<AnZhiKind> selectAnZhi();-->
+    <select id="selectAnZhi" resultType="com.bhidi.lincang.bean.AnZhiKind">
+        SELECT count(*) AS numOfAnZhi,location AS anZhiName
+        FROM people GROUP BY location HAVING location IS NOT NULL
+    </select>
+    <!--List<KuQuKind> selectKuQu();-->
+    <select id="selectKuQu" resultType="com.bhidi.lincang.bean.KuQuKind">
+        SELECT count(*) AS numOfKuQu,reservoir AS kuQuName
+        FROM people GROUP BY reservoir HAVING reservoir IS NOT NULL
+    </select>
 </mapper>

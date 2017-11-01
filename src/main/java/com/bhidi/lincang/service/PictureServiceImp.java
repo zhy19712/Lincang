@@ -1,8 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.PictureCounty;
-import com.bhidi.lincang.bean.PictureTown;
-import com.bhidi.lincang.bean.PictureVillage;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.PictureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,5 +26,13 @@ public class PictureServiceImp implements PictureServiceInf {
 
     public int pictureSum() {
         return pictureMapper.pictureSum();
+    }
+
+    public List<AnZhiKind> getAnZhi() {
+        return pictureMapper.selectAnZhi();
+    }
+
+    public List<KuQuKind> getKuQu() {
+        return pictureMapper.selectKuQu();
     }
 }
