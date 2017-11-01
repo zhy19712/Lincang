@@ -214,7 +214,7 @@ $("#form_stuff .btn-primary").click(function () {
                 alert("提交成功");
                 $('#form_stuff').modal('hide');
             }else {
-                alert("删除失败")
+                alert("提交失败")
             }
         },
         error:function () {
