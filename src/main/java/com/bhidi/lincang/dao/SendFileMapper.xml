@@ -4,9 +4,10 @@
     <!--int insert(SendFile sfa);-->
     <insert id="insert" parameterType="com.bhidi.lincang.bean.SendFile">
         INSERT INTO sendfile(sendfileid,createdtime,applicant,dept,author,reviewer,print,
-         revision,copy,attachmentpath,keyword,title,content,status)
+         revision,copy,attachmentpath,keyword,title,content,status,approverdelete,implementpersondelete)
         VALUES (#{sendfileid},#{createdtime},#{applicant},#{dept},#{author},#{reviewer},#{print},
-         #{revision},#{copy},#{attachmentpath},#{keyword},#{title},#{content},#{status});
+         #{revision},#{copy},#{attachmentpath},#{keyword},#{title},#{content},#{status},
+         #{approverdelete},#{implementpersondelete});
     </insert>
     <!--ReceiveFile selectSendFileInfoBySendFileId(String sendFileid);-->
     <select id="selectSendFileInfoBySendFileId" resultType="com.bhidi.lincang.bean.SendFile">
