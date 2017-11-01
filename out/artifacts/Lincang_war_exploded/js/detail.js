@@ -717,4 +717,9 @@ $(function () {
             }
         });
     })
+
+    //打印插件
+    $("#jqprint").click(function () {
+        jQuery('#jqtable').print();
+    });
 })

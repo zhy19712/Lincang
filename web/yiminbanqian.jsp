@@ -41,7 +41,7 @@
     </style>
 </head>
 <body>
-<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+<div style="margin-bottom: 0;height: 70px;" class="navbar navbar-default" role="navigation">
 
     <div class="navbar-inner">
         <!-- 小屏幕时的导航按键 starts -->
@@ -65,7 +65,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username}<a href="logout.do" >注销</a>
+                    欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>

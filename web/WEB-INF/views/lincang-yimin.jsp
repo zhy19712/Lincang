@@ -59,7 +59,7 @@
 						<a href="/toLogin.htm" target="_blank">请登录</a>
 					</c:if>
 					<c:if test="${user!=null}">
-						欢迎${user.username}<a href="logout.do" >注销</a>
+						欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
 					</c:if>
 				</div>
 			</div>
@@ -125,7 +125,7 @@
 				</ul>
 			</div>
 			<div class="right">
-				<p class="title">为您找到<span>41364</span>移民</p>
+				<p class="title">为您找到<span id="total_people"></span>移民</p>
 				<div id="sel_city">
 					<!-- <select class="prov"></select> 
                     <select class="city" disabled="disabled"></select>
@@ -159,8 +159,8 @@
 		<div id="data_input">
             <div id="new_table">
 				<iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id="excel" target="uploadFrame" enctype="multipart/form-data">
-                    <ul>
+                <form style="margin-top: 10px;" id="excel" target="uploadFrame" enctype="multipart/form-data">
+                    <ul style="display: inline-block;">
 						<li><a data-toggle="tooltip" title="新建库区登记表" class="well top-block"
 							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
 							<i class="glyphicon glyphicon-pencil blue"></i>
@@ -177,12 +177,12 @@
 
 						</a>
 						</li>
-						<div id="filesUpload" style="width:80%;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
-							<a href="#" id="add_1" onclick="add_click_file(1)">导入Excel</a>
-							<input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
-						</div>
                     </ul>
-					<button id="submit" type="submit">确认导入</button>
+					<div id="filesUpload" style="display:inline-block;line-height:16px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+						<a href="#" id="add_1" onclick="add_click_file(1)">导入Excel</a>
+						<input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
+					</div>
+					<button id="submit" type="submit" style="vertical-align: middle;margin-bottom: 10px;">确认导入</button>
 				</form>
 				<div id="allinfo_table_wrapper">
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">

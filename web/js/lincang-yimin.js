@@ -1,9 +1,12 @@
 $(function(){
 	//自适应宽高
 	var height = $(window).height() - 66;
+	if(height<730){
+		height = 730;
+	}
 	var width = $(window).width() - 360;
-	var show_height = $(window).height() - 247;
-	var tab_content_height = $(window).height() - 171;
+	var show_height = height - 181;
+	var tab_content_height = height - 105;
 	$("#content").height(height);
 	$("#container").width(width);
 	var width1 = width - 100;
@@ -643,6 +646,16 @@ $(function(){
 		}
     })
 
+	//获取总人数
+	$.ajax({
+		url: "/pictureSum.do",
+		type: "post",
+		dataType: "json",
+		success: function (data) {
+			$("#total_people").text(data)
+        }
+	})
+
 
 	//区县列表信息
     var mytable1 = $('#table1').DataTable({
@@ -713,7 +726,6 @@ $(function(){
     });
 
 
-
     //所有信息展示表格
     var allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
@@ -760,9 +772,29 @@ $(function(){
 
 
     //统计分析图表
+	var datax_anzhi = [];
+	var datay_anzhi = [];
+	var datax_kuqu = [];
+	var datay_kuqu = [];
+	$.ajax({
+		url: "/numOfKind.do",
+		type: "post",
+		async: false,
+		dataType: "json",
+		success: function (data) {
+			$.each(data.anZhi,function (i,n) {
+				datax_anzhi.push(n.anZhiName);
+				datay_anzhi.push(n.numOfAnZhi);
+            });
+			$.each(data.kuQu,function (i,n) {
+                datax_kuqu.push(n.kuQuName);
+                datay_kuqu.push(n.numOfKuQu)
+            })
+        }
+	})
 	var echart1 = echarts.init(document.getElementById('container1'));
 	var echart2 = echarts.init(document.getElementById('container2'));
-    var option = {
+    var option1 = {
         color: ['#3398DB'],
         tooltip : {
             trigger: 'axis',
@@ -779,7 +811,7 @@ $(function(){
         xAxis : [
             {
                 type : 'category',
-                data : ['临翔区', '凤庆县', '永德县', '镇康县', '云县', '沧源佤族自治县', '耿马傣族佤族自治县','双江拉祜族佤族布朗族傣族自治县'],
+                data : datax_anzhi,
                 axisTick: {
                     alignWithLabel: true
                 }
@@ -795,12 +827,49 @@ $(function(){
                 name:'移民数量',
                 type:'bar',
                 barWidth: '60%',
-                data:[10, 52, 200, 334, 390, 330, 220,240]
+                data:datay_anzhi
             }
         ]
     };
-    echart1.setOption(option);
-    echart2.setOption(option);
+    var option2 = {
+        color: ['#3398DB'],
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : datax_kuqu,
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : [
+            {
+                name:'移民数量',
+                type:'bar',
+                barWidth: '60%',
+                data:datay_kuqu
+            }
+        ]
+    };
+    echart1.setOption(option1);
+    echart2.setOption(option2);
 
 
 })
