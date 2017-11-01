@@ -35,7 +35,7 @@
 
 </head>
 <body>
-	<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+	<div style="margin-bottom: 0;height: 70px;" class="navbar navbar-default" role="navigation">
 
 		<div class="navbar-inner">
 			<!-- 小屏幕时的导航按键 starts -->
@@ -125,7 +125,7 @@
 				</ul>
 			</div>
 			<div class="right">
-				<p class="title">为您找到<span>41364</span>移民</p>
+				<p class="title">为您找到<span id="total_people"></span>移民</p>
 				<div id="sel_city">
 					<!-- <select class="prov"></select> 
                     <select class="city" disabled="disabled"></select>

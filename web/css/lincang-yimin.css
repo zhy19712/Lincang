@@ -99,6 +99,7 @@
 }
 #content{
   position: relative;
+  top: -14px;
 }
 #data_input,#data_analysis{
   position: absolute;

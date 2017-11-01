@@ -643,6 +643,16 @@ $(function(){
 		}
     })
 
+	//获取总人数
+	$.ajax({
+		url: "/pictureSum.do",
+		type: "post",
+		dataType: "json",
+		success: function (data) {
+			console.log(data);
+        }
+	})
+
 
 	//区县列表信息
     var mytable1 = $('#table1').DataTable({
