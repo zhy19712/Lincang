@@ -1,6 +1,7 @@
 package com.bhidi.lincang.service;
 
 import com.bhidi.lincang.bean.SendFile;
+import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.dao.SendFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,54 @@ public class SendFileServiceImp implements SendFileServiceInf{
         return sendFileMapper.selectSendFileInfoBySendFileId(sendFileid);
     }
 
-    public int updateSendFile(SendFile sf) {
+    public int updateSendFile(Map<String,Object> mapCondition) {
+        SendFile sf = (SendFile)mapCondition.get("sendFile");
+        User user = (User)mapCondition.get("user");
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //查找数据库中对应的id的数据
+        SendFile storeHouse = getSendFileInfoBySendFileId(sf.getSendfileid());
+        if( "办公室审核处理".equals(storeHouse.getStatus()) ){
+            //说明这次的处理人是办公室的人
+            sf.setOfficeprocesstime(sdf.format(now));
+            sf.setOfficeprocessperson(user.getName());
+            sf.setStatus("签批");
+        }
+        if("签批".equals(storeHouse.getStatus())){
+            //说明这次的处理人是签批人，这里有可能有两个
+            if(storeHouse.getApproverdelete().equals("")){
+                sf.setApproverdelete(user.getName());
+                sf.setApprovertime(sdf.format(now));
+            } else {
+                sf.setApproverdelete(","+user.getName());
+                sf.setApprovertime(storeHouse.getApprovertime()+","+sdf.format(now));
+            }
+            if(storeHouse.getApprover().split(",").length== sf.getApproverdelete().split(",").length){
+                sf.setStatus("处理处置");
+            } else {
+                sf.setStatus("签批");
+            }
+        }
+        if("处理处置".equals(storeHouse.getStatus())){
+            //说明这次调用这个方法的是处理人，有可能有两个
+            if(storeHouse.getImplementpersondelete().equals("")){
+                sf.setImplementpersondelete(user.getName());
+                sf.setImplementpersontime(sdf.format(now));
+            } else {
+                sf.setImplementpersondelete(","+user.getName());
+                sf.setImplementpersontime(storeHouse.getImplementpersontime()+","+sdf.format(now));
+            }
+            if(storeHouse.getImplementperson().split(",").length== sf.getImplementpersondelete().split(",").length){
+                sf.setStatus("办公室归档");
+            } else {
+                sf.setStatus("处理处置");
+            }
+        }
+        if("办公室归档".equals(storeHouse.getStatus())){
+            sf.setStatus("结束");
+            sf.setConfirmperson(user.getName());
+            sf.setConfirmtime(sdf.format(now));
+        }
         return sendFileMapper.updateSendFile(sf);
     }
 
