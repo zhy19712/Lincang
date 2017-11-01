@@ -210,13 +210,16 @@ function edit(that) {
     status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
     var kind = $(that).val();
     console.log(id,status);
+    var mydata;
     $.ajax({
         url: "/getSendFileInfoBySendFileId.do",
         type: "post",
+        async: false,
         data: {sendFileid:id},
         dataType: "json",
         success: function (data) {
             console.log(data);
+            mydata = data;
             $("#leader").text(data.approver);
             $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
@@ -264,16 +267,46 @@ function edit(that) {
                 });
             }
         }
-    })
+    });
+    $("#select_model .btn-primary").text("提交");
     $('#select_model').modal('show');
     $("#select_model input").attr("readonly",true);
     if(status == "办公室审核处理"){
         $("#select_model input").attr("readonly",false);
         $("#people_list").css("display","none");
         $("#sel_model").css("display","block");
+        step.goStep(2);
+        // $(".user_1").text(mydata.reveivereregisterpersonname);
     }else {
         $("#people_list").css("display","block");
         $("#sel_model").css("display","none");
+        if(status == "签批"){
+            step.goStep(3);
+            // $(".user_1").text(mydata.reveivereregisterpersonname);
+            // $(".user_2").text(mydata.reveivereregisterpersonname);
+            $("#select_model tr:nth-child(2) td:nth-child(1) textarea").attr("readonly",false);
+            $("#select_model tr:nth-child(2) td:nth-child(3) textarea").attr("readonly",false);
+        }else if(status == "处理处置"){
+            step.goStep(4);
+            // $(".user_1").text(mydata.reveivereregisterpersonname);
+            // $(".user_2").text(mydata.reveivereregisterpersonname);
+            // $(".user_3").text(mydata.reveivereregisterpersonname);
+            $("#select_model tr:nth-child(12) td:nth-child(2) textarea").attr("readonly",false);
+        }else if(status == "办公室归档"){
+            step.goStep(5);
+            // $(".user_1").text(mydata.reveivereregisterpersonname);
+            // $(".user_2").text(mydata.reveivereregisterpersonname);
+            // $(".user_3").text(mydata.reveivereregisterpersonname);
+            // $(".user_4").text(mydata.reveivereregisterpersonname);
+            $("#select_model .btn-primary").text("确认归档");
+        }else if(status == "结束"){
+            step.goStep(6);
+            // $(".user_1").text(mydata.reveivereregisterpersonname);
+            // $(".user_2").text(mydata.reveivereregisterpersonname);
+            // $(".user_3").text(mydata.reveivereregisterpersonname);
+            // $(".user_4").text(mydata.reveivereregisterpersonname);
+            // $(".user_5").text(mydata.reveivereregisterpersonname);
+        }
     }
     if(kind == "查看"){
         $("#select_model .btn-primary").css("display","none");
