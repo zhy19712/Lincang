@@ -116,7 +116,6 @@ public class PictureController {
         resultMap.put("kuQu",kuQu);
         Gson gson = new Gson();
         String result = gson.toJson(resultMap);
-        System.out.println(result);
         return result;
     }
 }
