@@ -141,12 +141,19 @@ var ycl_table = $('#SubmittedTable_Office').DataTable({
     }
 });
 
+//表格刷新
+function table_refresh() {
+    fawen.ajax.url("/sendFileDataTableFirst.do").load();
+    dcl_table.ajax.url("/sendFileDataTableSecond.do").load();
+    ycl_table.ajax.url("/sendFileDataTableThird.do").load();
+}
 
 //待办事务的显示条数
-setTimeout(function () {
+function acount(){
     var info=dcl_table.page.info();
     $("#nav_num").text(info.recordsTotal)
-},0);
+}
+setTimeout(acount,0);
 
 //树形插件
 $('#tree_container').jstree({
@@ -273,8 +280,14 @@ function edit(that) {
     $("#select_model input").attr("readonly",true);
     if(status == "办公室审核处理"){
         $("#select_model input").attr("readonly",false);
-        $("#people_list").css("display","none");
-        $("#sel_model").css("display","block");
+        if(kind == "查看"){
+            $("#people_list").css("display","none");
+            $("#sel_model").css("display","none");
+        }else if(kind == "编辑"){
+            $("#people_list").css("display","none");
+            $("#sel_model").css("display","block");
+        }
+
         step.goStep(2);
         // $(".user_1").text(mydata.reveivereregisterpersonname);
     }else {
@@ -325,6 +338,8 @@ $("#form_stuff .btn-primary").click(function () {
             console.log(data);
             if(data.result == "success"){
                 alert("提交成功");
+                table_refresh();
+                acount();
                 $('#form_stuff').modal('hide');
             }else {
                 alert("提交失败")
@@ -394,6 +409,8 @@ $("#select_model .btn-primary").click(function () {
         success: function (data) {
             if(data.result == "success"){
                 alert("提交成功");
+                table_refresh();
+                acount();
                 $("#select_model").modal("hide");
             }else {
                 alert("提交失败");
