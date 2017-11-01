@@ -40,7 +40,7 @@ public class SendFileDataTable {
             String status = "";
             if( roleList.size() > 0 ) {
                 if ("市局办公室".equals(roleList.get(0))) {
-                    status = "1 = 1";
+                    status = "";
                 }
             }
 
@@ -174,7 +174,7 @@ public class SendFileDataTable {
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
                 //status = " and ( (status = '办公室处理文件' or status = '办公室归档') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) or ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) )  or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%'))";
-                status = "and ( (status = '办公室处理文件') or ( status = '签批' and approver like '%"+name+"%' approver not like '%"+name+"%' ) or ( status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) )";
+                status = "and ( (status = '办公室审核处理') or ( status = '签批' and approver like '%"+name+"%' and approverdelete not like '%"+name+"%' ) or ( status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) )";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
                 status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
