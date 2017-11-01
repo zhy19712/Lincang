@@ -27,7 +27,6 @@ public class TableAdd {
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
             String table = "PEOPLE";
-
            /* if( fid != null ){
                 try {
                     fid = URLDecoder.decode(fid ,"utf-8");
@@ -35,7 +34,6 @@ public class TableAdd {
                     e.printStackTrace();
                 }
             }*/
-
             //获取请求次数
             String draw = "0";
             draw = request.getParameter("draw");
@@ -43,14 +41,10 @@ public class TableAdd {
             String start = request.getParameter("start");
             //数据长度
             String length = request.getParameter("length");
-
             //总记录数
             String recordsTotal = "0";
-
             //过滤后记录数
             String recordsFiltered = "";
-
-
             //定义列名
             String[] cols = {"FID","TABLE_TYPE","NAME", "RESERVOIR", "TO_DISTRICT","INTERVIEWER","CREATED_AT"};
             String orderColumn = "0";
@@ -59,10 +53,8 @@ public class TableAdd {
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
-
             //获取用户过滤框里的字符
             String searchValue = request.getParameter("search[value]");
-
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
@@ -76,7 +68,6 @@ public class TableAdd {
                 sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             }
 
-
             String individualSearch = "";
             if (sArray.size() == 1) {
                 individualSearch = sArray.get(0);
@@ -86,7 +77,6 @@ public class TableAdd {
                 }
                 individualSearch += sArray.get(sArray.size() - 1);
             }
-
             List<Table_info> tasks = new ArrayList<Table_info>();
             if (conn != null) {
                 String recordsFilteredSql = "select count(1) as recordsFiltered from " + table+" p,move m where p.fid = m.fid and p.MASTER = 1";
@@ -109,7 +99,6 @@ public class TableAdd {
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
 
-
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                         tasks.add(new Table_info(
@@ -121,7 +110,6 @@ public class TableAdd {
                                 rs.getString("INTERVIEWER"),
                                 rs.getString("CREATED_AT")));
                 }
-
                 if (searchValue != "") {
                     rs = stmt.executeQuery(recordsFilteredSql);
                     while (rs.next()) {
@@ -131,8 +119,6 @@ public class TableAdd {
                     recordsFiltered = recordsTotal;
                 }
             }
-
-
             Map<Object, Object> info = new HashMap<Object, Object>();
             info.put("data", tasks);
             info.put("recordsTotal", recordsTotal);

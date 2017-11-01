@@ -37,8 +37,6 @@ public class Table_Family {
                     e.printStackTrace();
                 }
             }
-
-
             //获取请求次数
             String draw = "0";
             draw = request.getParameter("draw");
@@ -46,14 +44,10 @@ public class Table_Family {
             String start = request.getParameter("start");
             //数据长度
             String length = request.getParameter("length");
-
             //总记录数
             String recordsTotal = "0";
-
             //过滤后记录数
             String recordsFiltered = "";
-
-
             //定义列名
             String[] cols = {"FID","NAME", "PROP", "HOME_SIZE", "IMM_NUM","RESERVOIR"};
             String orderColumn = "0";
@@ -62,10 +56,8 @@ public class Table_Family {
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
-
             //获取用户过滤框里的字符
             String searchValue = request.getParameter("search[value]");
-
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
@@ -77,7 +69,6 @@ public class Table_Family {
                 sArray.add(" IMM_NUM like '%" + searchValue + "%'");
                 sArray.add(" RESERVOIR like '%" + searchValue + "%'");
             }
-
 
             String individualSearch = "";
             if (sArray.size() == 1) {
@@ -114,7 +105,6 @@ public class Table_Family {
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
 
-
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     tasks.add(new FamilyInfoByName (
@@ -135,7 +125,6 @@ public class Table_Family {
                     recordsFiltered = recordsTotal;
                 }
             }
-
 
             Map<Object, Object> info = new HashMap<Object, Object>();
             info.put("data", tasks);

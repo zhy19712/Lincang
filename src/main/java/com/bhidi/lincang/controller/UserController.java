@@ -32,7 +32,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value="/getDepartmentAndStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getDepartmentAndStaff(){
-        //查询出所有的用户
+        //查询出所有的用户和相对应的角色
         List<DepartmentAndStaff> resList=  userServiceImp.getDepartmentAndStaff();
         String result = new Gson().toJson(resList);
         return result;

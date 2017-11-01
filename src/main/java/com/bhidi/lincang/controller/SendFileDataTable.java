@@ -28,7 +28,7 @@ public class SendFileDataTable {
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
             String table = "sendfile";
-
+            //获取到当前用户
             User user = (User)request.getSession().getAttribute("user");
             String name = "";
             List<String> roleList = new ArrayList<String>();
@@ -45,7 +45,6 @@ public class SendFileDataTable {
                     status = "applicant = "+name;
                 }
             }
-
             //获取请求次数
             String draw = "0";
             draw = request.getParameter("draw");
@@ -53,14 +52,10 @@ public class SendFileDataTable {
             String start = request.getParameter("start");
             //数据长度
             String length = request.getParameter("length");
-
             //总记录数
             String recordsTotal = "0";
-
             //过滤后记录数
             String recordsFiltered = "";
-
-
             //定义列名
             String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
             String orderColumn = "0";
@@ -69,10 +64,8 @@ public class SendFileDataTable {
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
-
             //获取用户过滤框里的字符
             String searchValue = request.getParameter("search[value]");
-
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
@@ -83,7 +76,6 @@ public class SendFileDataTable {
                 sArray.add(" dept like '%" + searchValue + "%'");
                 sArray.add(" status like '%" + searchValue + "%'");
             }
-
 
             String individualSearch = "";
             if (sArray.size() == 1) {
@@ -97,26 +89,25 @@ public class SendFileDataTable {
 
             List<SendFile> tasks = new ArrayList<SendFile>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
+                String recordsFilteredSql = "SELECT count(1) AS recordsFiltered FROM " + table + " WHERE 1=1 "+status;
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1=1 "+status;
+                String recordsTotalSql = "SELECT count(1) AS recordsTotal FROM " + table + " WHERE 1=1 "+status;
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
+                String sql = "SELECT IFNULL(sendfileid,'') AS sendfileid,IFNULL(title,'') AS title,IFNULL(createdtime,'') AS createdtime,IFNULL(dept,'') AS dept,IFNULL(status,'') AS status FROM " + table + " WHERE 1=1 "+status;
                 if (individualSearch != "") {
-                    searchSQL = " and " + "("+individualSearch+")";
+                    searchSQL = " AND " + "("+individualSearch+")";
                 }
                 sql += searchSQL;
                 recordsFilteredSql += searchSQL;
                 sql += " order by " + orderColumn + " " + orderDir;
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
-
 
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
@@ -150,7 +141,7 @@ public class SendFileDataTable {
     }
 
     /**
-     * 待处理的事物（根据用户角色判断状态，根据名字判断是否是这个人的处理的东西）
+     * 待处理的事物（根据用户角色判断状态，再根据名字判断是否是这个人处理的东西）
      * @param request
      * @return
      * @throws SQLException
@@ -162,7 +153,6 @@ public class SendFileDataTable {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "sendfile";
-
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
         String name = "";
@@ -175,19 +165,18 @@ public class SendFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = "and ( (status = '办公室审核处理') or ( status = '签批' and approver like '%"+name+"%' and approverdelete not like '%"+name+"%' ) or ( status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) )";
+                status = " AND ( (status = '办公室审核处理') OR (status = '办公室归档') OR ( status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%' ) OR ( status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' ) )";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
-                status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
+                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
             }
             if( "分管领导".equals(roleList.get(0)) ){
-                status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
+                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
             }
             if( "主管领导".equals(roleList.get(0)) ){
-                status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
+                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
             }
         }
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -195,14 +184,10 @@ public class SendFileDataTable {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
         String orderColumn = "0";
@@ -211,10 +196,8 @@ public class SendFileDataTable {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
@@ -225,7 +208,6 @@ public class SendFileDataTable {
             sArray.add(" dept like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -239,26 +221,25 @@ public class SendFileDataTable {
 
         List<SendFile> tasks = new ArrayList<SendFile>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
+            String recordsFilteredSql = "SELECT count(1) AS recordsFiltered FROM " + table + " WHERE 1=1 "+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1=1 "+status;
+            String recordsTotalSql = "SELECT count(1) AS recordsTotal FROM " + table + " WHERE 1=1 "+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
+            String sql = "SELECT IFNULL(sendfileid,'') AS sendfileid,IFNULL(title,'') AS title,IFNULL(createdtime,'') AS createdtime,IFNULL(dept,'') AS dept,IFNULL(status,'') AS status FROM " + table + " WHERE 1=1 "+status;
             if (individualSearch != "") {
-                searchSQL = " and " + "("+individualSearch+")";
+                searchSQL = " AND " + "("+individualSearch+")";
             }
             sql += searchSQL;
             recordsFilteredSql += searchSQL;
             sql += " order by " + orderColumn + " " + orderDir;
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
-
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -304,7 +285,6 @@ public class SendFileDataTable {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "receivefile";
-
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
         String name = "";
@@ -313,20 +293,10 @@ public class SendFileDataTable {
             name = user.getName();
             roleList = user.getRoleList();
         }
-        //根据角色名字判断状态
         String status = "";
         if( roleList.size() > 0 ){
-            /*if( "市局办公室".equals(roleList.get(0)) ){
-            }
-            if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
-            }
-            if( "分管领导".equals(roleList.get(0)) ){
-            }
-            if( "主管领导".equals(roleList.get(0)) ){
-            }*/
-            status = "AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
+            status = " AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
         }
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -334,14 +304,10 @@ public class SendFileDataTable {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
         String orderColumn = "0";
@@ -350,10 +316,8 @@ public class SendFileDataTable {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
@@ -364,7 +328,6 @@ public class SendFileDataTable {
             sArray.add(" dept like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -378,26 +341,25 @@ public class SendFileDataTable {
 
         List<SendFile> tasks = new ArrayList<SendFile>();
         if (conn != null) {
-            String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
+            String recordsFilteredSql = "SELECT count(1) AS recordsFiltered FROM " + table + " WHERE 1=1 "+status;
             stmt = conn.createStatement();
             //获取数据库总记录数
-            String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where  1=1 "+status;
+            String recordsTotalSql = "SELECT count(1) AS recordsTotal FROM " + table + " WHERE  1=1 "+status;
             rs = stmt.executeQuery(recordsTotalSql);
             while (rs.next()) {
                 recordsTotal = rs.getString("recordsTotal");
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
+            String sql = "SELECT IFNULL(sendfileid,'') AS sendfileid,IFNULL(title,'') AS title,IFNULL(createdtime,'') AS createdtime,IFNULL(dept,'') AS dept,IFNULL(status,'') AS status FROM " + table + " WHERE 1=1 "+status;
             if (individualSearch != "") {
-                searchSQL = " and " + "("+individualSearch+")";
+                searchSQL = " AND " + "("+individualSearch+")";
             }
             sql += searchSQL;
             recordsFilteredSql += searchSQL;
             sql += " order by " + orderColumn + " " + orderDir;
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
-
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {

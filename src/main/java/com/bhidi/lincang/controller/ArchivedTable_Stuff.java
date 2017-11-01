@@ -26,7 +26,6 @@ public class ArchivedTable_Stuff {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "FORM_STUFF";
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -34,14 +33,10 @@ public class ArchivedTable_Stuff {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"ID", "TITLE", "CREATED_AT"};
         String orderColumn = "0";
@@ -50,7 +45,6 @@ public class ArchivedTable_Stuff {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
         List<String> sArray = new ArrayList<String>();
@@ -91,7 +85,6 @@ public class ArchivedTable_Stuff {
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
 
-
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 tasks.add(new Form_Stuff(rs.getInt("ID"),
@@ -108,8 +101,6 @@ public class ArchivedTable_Stuff {
                 recordsFiltered = recordsTotal;
             }
         }
-
-
         Map<Object, Object> info = new HashMap<Object, Object>();
         info.put("data", tasks);
         info.put("recordsTotal", recordsTotal);
