@@ -1,10 +1,12 @@
 package com.bhidi.lincang.controller;
 
+import com.bhidi.lincang.bean.People_List;
 import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.SendFileServiceImp;
 import com.google.gson.Gson;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -64,12 +66,14 @@ public class SendFileController {
     }
     /**
      * 办公室的处理之后的提交按钮
-     * @param sf
+     * @param text
      * @return
      */
     @ResponseBody
     @RequestMapping(value="/updateSendFileInfoBySendFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String updateSendFileInfoBySendFileId( SendFile sf,HttpSession session ){
+    public String updateSendFileInfoBySendFileId( String text,HttpSession session ){
+        JSONObject jsonobject = JSONObject.fromObject(text);
+        SendFile sf= (SendFile)JSONObject.toBean(jsonobject,SendFile.class);
         User user = (User)session.getAttribute("user");
         Map<String,Object> mapCondition = new HashMap();
         mapCondition.put("sendFile",sf);
