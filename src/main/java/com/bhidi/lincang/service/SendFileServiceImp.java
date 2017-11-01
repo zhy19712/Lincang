@@ -35,7 +35,7 @@ public class SendFileServiceImp implements SendFileServiceInf{
             sf.setOfficeprocessperson(user.getName());
             sf.setStatus("签批");
         }
-        if("签批".equals(storeHouse.getStatus())){
+        if( "签批".equals(storeHouse.getStatus()) & storeHouse.getApprover().contains(user.getName()) ){
             //说明这次的处理人是签批人，这里有可能有两个
             if(storeHouse.getApproverdelete().equals("")){
                 sf.setApproverdelete(user.getName());
@@ -50,7 +50,7 @@ public class SendFileServiceImp implements SendFileServiceInf{
                 sf.setStatus("签批");
             }
         }
-        if("处理处置".equals(storeHouse.getStatus())){
+        if( "处理处置".equals(storeHouse.getStatus()) & storeHouse.getImplementperson().contains(user.getName()) ){
             //说明这次调用这个方法的是处理人，有可能有两个
             if(storeHouse.getImplementpersondelete().equals("")){
                 sf.setImplementpersondelete(user.getName());

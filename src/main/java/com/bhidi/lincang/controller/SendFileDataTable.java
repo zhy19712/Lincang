@@ -166,16 +166,9 @@ public class SendFileDataTable {
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
                 status = " AND ( (status = '办公室审核处理') OR (status = '办公室归档') OR ( status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%' ) OR ( status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' ) )";
+            } else {
+                status = " AND ( (approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' )  )";
             }
-//            if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
-//                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
-//            }
-//            if( "分管领导".equals(roleList.get(0)) ){
-//                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
-//            }
-//            if( "主管领导".equals(roleList.get(0)) ){
-//                status = " AND ( ( status = '科室签批' AND ((department1person LIKE '%"+name+"%' AND department1persondelete NOT LIKE '%"+name+"%') OR (department2person LIKE '%"+name+"%'AND department2persondelete NOT LIKE '%"+name+"%')) ) OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '分管领导签批' AND fenguanname LIKE '%"+name+"%' AND fenguannamedelete NOT LIKE '%"+name+"%' ) OR (status = '主管领导签批' AND zhuguanname LIKE '%"+name+"%' AND zhuguannamedelete NOT LIKE '%"+name+"%') )";
-//            }
         }
         //获取请求次数
         String draw = "0";
@@ -284,7 +277,7 @@ public class SendFileDataTable {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
-        String table = "receivefile";
+        String table = "sendfile";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
         String name = "";

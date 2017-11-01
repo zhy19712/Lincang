@@ -97,49 +97,49 @@ var dcl_table = $('#NewTable_Office').DataTable({
 
 // 已办表单的datatables
 
-// var ycl_table = $('#SubmittedTable_Office').DataTable({
-//     ajax: {
-//         url: "/sform_stuff.do"
-//     },
-//     "order": [[2, 'asc']],
-//     "serverSide": true,
-//     "columns": [
-//         {"data": "sendfileid"},
-        // {"data": "title"},
-        // {"data": "createdtime"},
-        // {"data": "dept"},
-        // {"data": "status"},
-//         {"data": null}
-//     ],
-//     "columnDefs": [
-//         {
-//             "searchable": false,
-//             "orderable": false,
-//             "targets": [5],
-//             "render" :  function(data,type,row) {
-//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-//                 return html;
-//             }
-//         },
-//         {
-//             "searchable": false,
-//             "orderable": false,
-//             "targets": [0]
-//         }
-//     ],
-//     "language": {
-//         "lengthMenu": "每页_MENU_ 条记录",
-//         "zeroRecords": "没有找到记录",
-//         "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-//         "infoEmpty": "无记录",
-//         "search": "搜索：",
-//         "infoFiltered": "(从 _MAX_ 条记录过滤)",
-//         "paginate": {
-//             "previous": "上一页",
-//             "next": "下一页"
-//         }
-//     }
-// });
+var ycl_table = $('#SubmittedTable_Office').DataTable({
+    ajax: {
+        url: "/sendFileDataTableThird.do"
+    },
+    "order": [[2, 'asc']],
+    "serverSide": true,
+    "columns": [
+        {"data": "sendfileid"},
+        {"data": "title"},
+        {"data": "createdtime"},
+        {"data": "dept"},
+        {"data": "status"},
+        {"data": null}
+    ],
+    "columnDefs": [
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [5],
+            "render" :  function(data,type,row) {
+                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                return html;
+            }
+        },
+        {
+            "searchable": false,
+            "orderable": false,
+            "targets": [0]
+        }
+    ],
+    "language": {
+        "lengthMenu": "每页_MENU_ 条记录",
+        "zeroRecords": "没有找到记录",
+        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+        "infoEmpty": "无记录",
+        "search": "搜索：",
+        "infoFiltered": "(从 _MAX_ 条记录过滤)",
+        "paginate": {
+            "previous": "上一页",
+            "next": "下一页"
+        }
+    }
+});
 
 
 //待办事务的显示条数
