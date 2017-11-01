@@ -14,4 +14,6 @@ public interface PictureMapper {
     List<PictureTown> queryTownInfo();
 
     List<PictureVillage> queryVillageInfo();
+
+    int pictureSum();
 }
