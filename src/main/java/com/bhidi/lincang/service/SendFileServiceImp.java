@@ -45,7 +45,7 @@ public class SendFileServiceImp implements SendFileServiceInf{
                 sf.setApproverdelete(user.getName());
                 sf.setApprovertime(sdf.format(now));
             } else {
-                sf.setApproverdelete(","+user.getName());
+                sf.setApproverdelete(storeHouse.getApproverdelete()+","+user.getName());
                 sf.setApprovertime(storeHouse.getApprovertime()+","+sdf.format(now));
             }
             if(storeHouse.getApprover().split(",").length== sf.getApproverdelete().split(",").length){
@@ -62,7 +62,7 @@ public class SendFileServiceImp implements SendFileServiceInf{
                 sf.setImplementpersondelete(user.getName());
                 sf.setImplementpersontime(sdf.format(now));
             } else {
-                sf.setImplementpersondelete(","+user.getName());
+                sf.setImplementpersondelete(storeHouse.getImplementpersondelete()+","+user.getName());
                 sf.setImplementpersontime(storeHouse.getImplementpersontime()+","+sdf.format(now));
             }
             if(storeHouse.getImplementperson().split(",").length== sf.getImplementpersondelete().split(",").length){
