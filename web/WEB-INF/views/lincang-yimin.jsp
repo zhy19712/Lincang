@@ -244,7 +244,7 @@
                 if(data.result == "success"){
                     alert("提交成功");
                 }else {
-                    alert("请导入正确格式的Excel文件");
+                    alert(data.result);
                 }
             }
         };
