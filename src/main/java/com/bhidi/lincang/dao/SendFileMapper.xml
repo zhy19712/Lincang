@@ -46,7 +46,7 @@
             <if test="title!=null">title = #{title},</if>
             <if test="content!=null">content = #{content},</if>
             <if test="officeprocesstime!=null">officeprocesstime = #{officeprocesstime},</if>
-            <if test="officeprocessperson!=null">status = #{officeprocessperson},</if>
+            <if test="officeprocessperson!=null">officeprocessperson = #{officeprocessperson},</if>
             <if test="status!=null">status = #{status},</if>
             <if test="sn!=null">sn = #{sn},</if>
             <if test="date!=null">date = #{date},</if>

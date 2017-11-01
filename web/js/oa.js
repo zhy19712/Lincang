@@ -321,7 +321,7 @@ $("#select_model .btn-primary").click(function () {
     var text = new Object();
     text.approver = lingdao;
     text.implementperson = banli;
-    text.id = id;
+    text.sendfileid = id;
     text.status = status;
     text.sn = sn;
     text.date = date;
@@ -344,14 +344,14 @@ $("#select_model .btn-primary").click(function () {
     text.content = content;
     console.log(lingdao,banli,text);
     var mytext = JSON.stringify(text);
-    // $.ajax({
-    //     url: "",
-    //     type: "post",
-    //     data: {text:mytext},
-    //     dataType: "json",
-    //     success: function (data) {
-    //         console.log(data);
-    //     }
-    // })
+    $.ajax({
+        url: "/updateSendFileInfoBySendFileId.do",
+        type: "post",
+        data: {text:mytext},
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+        }
+    })
 })
 
