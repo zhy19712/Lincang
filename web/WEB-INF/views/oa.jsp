@@ -25,6 +25,8 @@
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link rel="stylesheet" href="../../css/jquery.step.css">
+    <link rel="stylesheet" href="../../js/themes/default/style.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="../../css/mycss.css">
     <link rel="stylesheet" href="../../css/oa.css">
@@ -34,6 +36,9 @@
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/jquery-form.min.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/jquery.step.js"></script>
+    <script src="../../js/jstree.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <style>
@@ -71,6 +76,38 @@
         }
         p{
             margin:0;
+        }
+        #sel_model{
+            width: 96%;
+            margin: 0 auto;
+            font-size: 0;
+        }
+        #sel_model>div{
+            display: inline-block;
+            vertical-align: top;
+            width: 50%;
+            font-size: 14px;
+        }
+        #select_people{
+            padding-left: 0;
+            line-height: 20px;
+        }
+        li{
+            list-style: none;
+            margin-top: 5px;
+        }
+        #select_people li span{
+            display: inline-block;
+            vertical-align: middle;
+            width: 150px;
+        }
+        #user_container1>div,#user_container>div{
+            display: inline-block;
+            vertical-align: middle;
+            word-wrap: break-word;
+            text-align: center;
+            font-size: 20px;
+            width: 16.5%;
         }
     </style>
 </head>
@@ -378,52 +415,89 @@
 
 
                 <div class="modal-body" style="font-size: 0;width: 100%;">
-                    <%--<div class="bgc_info">--%>
-                        <%--<table class="mytable">--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td class="red">临沧(</td>--%>
-                                <%--<td><input type="text" name="dept"></td>--%>
-                                <%--<td style="padding: 0 15px;color: red;">)号</td>--%>
-                                <%--<td class="red" style="padding: 0 5px;">日期</td>--%>
-                                <%--<td><input type="text" name="author"></td>--%>
-                                <%--<td class="red" style="padding: 0 5px;">缓级</td>--%>
-                                <%--<td><input type="text" name="reviewer"></td>--%>
-                                <%--<td class="red" style="padding: 0 5px;">密级</td>--%>
-                                <%--<td><input type="text" name="reviewer"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td colspan="5">--%>
-                                    <%--<p style="text-align: left;padding-left: 22px;color: red;">签发</p>--%>
-                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
-                                <%--</td>--%>
-                                <%--<td colspan="2">--%>
-                                    <%--<p style="text-align: left;padding-left: 5px;color: red;">审稿</p>--%>
-                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
-                                <%--</td>--%>
-                                <%--<td colspan="2">--%>
-                                    <%--<p style="text-align: left;padding-left: 5px;color: red;">会签</p>--%>
-                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td colspan="9">--%>
-                                    <%--<p style="text-align: left;padding-left: 22px;color: red;">抄报</p>--%>
-                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
-                                <%--</td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td class="red" style="width: 79px">抄送</td>--%>
-                                <%--<td colspan="8"><input type="text" name="keyword"></td>--%>
-                            <%--</tr>--%>
-                            <%--<tr>--%>
-                                <%--<td class="red" style="width: 79px;border-bottom: none;">发</td>--%>
-                                <%--<td colspan="8" style="border-bottom: none;"><input type="text" name="title"></td>--%>
-                            <%--</tr>--%>
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
+                    <div id="container" style="width: 100%;height: 160px">
+                        <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
+                            <div class="step-header">
+                                <ul>
+                                    <li><p>发文起草</p></li>
+                                    <li><p>办公室审核处理</p></li>
+                                    <li><p>签批</p></li>
+                                    <li><p>处理处置</p></li>
+                                    <li><p>办公室归档</p></li>
+                                    <li><p>结束</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="user_container" style="width:80%;margin: 0 auto;margin-top: 85px;">
+                            <div class="user_1">user1</div>
+                            <div class="user_2">user1</div>
+                            <div class="user_3">user1</div>
+                            <div class="user_4">user1</div>
+                            <div class="user_5">user1</div>
+                            <div class="user_6">user1</div>
+                        </div>
+                    </div>
+                    <div id="sel_model">
+                        <div id="model">
+                            <ul id="select_people">
+                                <li><span>选择领导签批人</span><input type="text" id="lingdao"></li>
+                                <li><span>选择办理人</span><input type="text" id="banli"></li>
+                            </ul>
+                        </div>
+                        <div id="sel_people">
+                            <p style="color: red;">选择领导签批人</p>
+                            <div id="tree_container">
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>办公室
+                                        <ul>
+                                            <li>muzhifang</li>
+                                            <li>yuanlu</li>
+                                            <li>bgstest</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>规划科
+                                        <ul>
+                                            <li>yangzaipei</li>
+                                            <li>ghtest</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>财务科
+                                        <ul>
+                                            <li>caiwutest</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>主管领导
+                                        <ul>
+                                            <li>mainleader</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>分管领导
+                                        <ul>
+                                            <li>branchleader</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":true}'>其他科室
+                                        <ul>
+                                            <li>qttest</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button>确认</button>
+                        </div>
+                    </div>
                     <div class="fawen_info">
+                        <p class="red" style="font-size: 18px;text-align: center;line-height: 40px;">临沧市移民局发文稿纸</p>
                         <table class="mytable">
                             <tbody>
                             <tr>
@@ -512,181 +586,6 @@
             </div>
         </div>
     </div>
-
-    <%--<div class="modal fade" id="form_office" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
-         <%--aria-hidden="true">--%>
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
-                    <%--<h3>填写表单</h3>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body">--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>临移（）</span>--%>
-                            <%--<input id="input_office1" type="text">--%>
-
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>日期</span>--%>
-                            <%--<input id="input_office2" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>缓级</span>--%>
-                            <%--<input id="input_office3" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>密级</span>--%>
-                            <%--<input id="input_office4" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>签发</span>--%>
-                            <%--<input id="input_office5" type="text">--%>
-
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>审稿</span>--%>
-                            <%--<input id="input_office6" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-6">--%>
-                            <%--<span>会签</span>--%>
-                            <%--<input id="input_office7" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>抄报：</span>--%>
-                            <%--<input id="input_office8" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>抄送：</span>--%>
-                            <%--<input id="input_office9" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>发：</span>--%>
-                            <%--<input id="input_office10" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-5">--%>
-                            <%--<span>拟稿单位</span>--%>
-                            <%--<input id="input_office11" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>拟稿</span>--%>
-                            <%--<input id="input_office12" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-4">--%>
-                            <%--<span>科室核稿</span>--%>
-                            <%--<input id="input_office13" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-5">--%>
-                            <%--<span>印刷</span>--%>
-                            <%--<input id="input_office14" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-3">--%>
-                            <%--<span>校对</span>--%>
-                            <%--<input id="input_office15" type="text">--%>
-                        <%--</div>--%>
-                        <%--<div class="col-lg-4">--%>
-                            <%--<span>份数</span>--%>
-                            <%--<input id="input_office16" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>附件</span>--%>
-                            <%--<input id="input_office17" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>主题词</span>--%>
-                            <%--<input id="input_office18" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<div class="row myrow last">--%>
-                        <%--<div class="col-lg-12">--%>
-                            <%--<span>标题</span>--%>
-                            <%--<input id="input_office19" type="text">--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-                    <%--<textarea class="mytext" name="" id="input_office20" cols="30" rows="10" placeholder="内容"></textarea>--%>
-
-
-
-                <%--</div>--%>
-                <%--<div class="modal-footer">--%>
-                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>--%>
-                    <%--<a href="#" class="btn btn-success" data-dismiss="modal">保存</a>--%>
-                    <%--<a href="#" class="btn btn-primary" data-dismiss="modal">提交</a>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-
-
-    <%--<div class="modal fade" id="flow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
-         <%--aria-hidden="true">--%>
-
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
-                    <%--<h3>公文流转</h3>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body">--%>
-
-                    <%--<div id="wrap">--%>
-                        <%--<div>--%>
-                            <%--<img src="../../img/员工.png" class="head head_pic1" alt="员工">--%>
-                            <%--<p class="staff status1" >申请人</p>--%>
-                            <%--<div class="details details1">--%>
-                                <%--<p>姓名：<span>小吴</span></p>--%>
-                                <%--<p>提交时间：<span>2017-06-18 16：30</span></p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="hr hr1"></div>--%>
-
-                        <%--<div>--%>
-                            <%--<img src="../../img/中层.png" class="head head_pic2" alt="中层">--%>
-                            <%--<p class="staff status2">办公室</p>--%>
-                            <%--<div class="details details2">--%>
-                                <%--<p>审核状态：<span>通过</span></p>--%>
-                                <%--<p>审核人：<span>小明</span></p>--%>
-                                <%--<p>审核时间：<span>2017-06-18 16：30</span></p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="hr hr2"></div>--%>
-
-                        <%--<div>--%>
-                            <%--<img src="../../img/高层.png" class="head head_pic3" alt="高层">--%>
-                            <%--<p class="staff status3">审批领导</p>--%>
-                            <%--<div class="details details3">--%>
-                                <%--<p>审核状态：<span>未审核</span></p>--%>
-                                <%--<p>审批人：<span>小秋</span></p>--%>
-                                <%--<p>审核时间：<span>2017-06-18 16：30</span></p>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-
-                    <%--</div>--%>
-
-                <%--</div>--%>
-                <%--</div>--%>
-
-            <%--</div>--%>
-        <%--</div>--%>
     </div>
 
     <footer class="row">
@@ -706,8 +605,8 @@
 
     function newForm() {
         $('#form_stuff input').val('');
-//        $('#form_stuff').modal('show');
-        $('#select_model').modal('show');
+        $('#form_stuff').modal('show');
+//        $('#select_model').modal('show');
     }
 
 
