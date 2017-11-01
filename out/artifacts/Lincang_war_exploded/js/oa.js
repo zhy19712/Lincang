@@ -204,9 +204,10 @@ function del_file(number) {
 }
 
 //编辑查看按钮
+var id,status;
 function edit(that) {
-    var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-    var status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+    id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+    status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
     console.log(id,status);
     $('#select_model').modal('show');
     $.ajax({
@@ -310,6 +311,10 @@ $("#select_model .btn-primary").click(function () {
     var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
     var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
     var text = new Object();
+    text.approver = lingdao;
+    text.implementperson = banli;
+    text.id = id;
+    text.status = status;
     text.sn = sn;
     text.date = date;
     text.urgency = urgency;
@@ -330,5 +335,14 @@ $("#select_model .btn-primary").click(function () {
     text.title = title;
     text.content = content;
     console.log(lingdao,banli,text);
+    // $.ajax({
+    //     url: "",
+    //     type: "post",
+    //     data: {},
+    //     dataType: "json",
+    //     success: function (data) {
+    //         console.log(data);
+    //     }
+    // })
 })
 
