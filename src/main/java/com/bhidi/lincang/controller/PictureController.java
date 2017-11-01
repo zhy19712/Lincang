@@ -1,9 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.PictureCounty;
-import com.bhidi.lincang.bean.PictureFull;
-import com.bhidi.lincang.bean.PictureTown;
-import com.bhidi.lincang.bean.PictureVillage;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.PictureServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.SynchronousQueue;
 
 @Controller
@@ -103,5 +102,20 @@ public class PictureController {
     public String pictureSum(){
         int sum = pictureServiceImp.pictureSum();
         return sum+"";
+    }
+    /**
+     * 按照库区分类和按照安置点分类
+     */
+    @ResponseBody
+    @RequestMapping(value="/numOfKind",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String numOfKind(){
+        List<AnZhiKind> anZhi= pictureServiceImp.getAnZhi();
+        List<KuQuKind> kuQu= pictureServiceImp.getKuQu();
+        Map<String,Object> resultMap = new HashMap<String,Object>();
+        resultMap.put("anZhi",anZhi);
+        resultMap.put("kuQu",kuQu);
+        Gson gson = new Gson();
+        String result = gson.toJson(resultMap);
+        return result;
     }
 }
