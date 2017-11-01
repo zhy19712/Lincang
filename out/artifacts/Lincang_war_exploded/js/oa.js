@@ -7,7 +7,7 @@
 
 // 全部列表datatables
 
-var NewTable_Stuff = $('#NewTable_Stuff').DataTable({
+var all_table = $('#NewTable_Stuff').DataTable({
     ajax: {
         url: "/sendFileDataTableFirst.do"
     },
@@ -27,7 +27,7 @@ var NewTable_Stuff = $('#NewTable_Stuff').DataTable({
             "orderable": false,
             "targets": [5],
             "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>";
+                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                 return html;
             }
         },
@@ -53,7 +53,7 @@ var NewTable_Stuff = $('#NewTable_Stuff').DataTable({
 
 
 //待办列表的datatables
-var NewTable_Office = $('#NewTable_Office').DataTable({
+var dcl_table = $('#NewTable_Office').DataTable({
     ajax: {
         url: "/sendFileDataTableSecond.do",
         async:false
@@ -74,8 +74,8 @@ var NewTable_Office = $('#NewTable_Office').DataTable({
             "orderable": false,
             "targets": [5],
             "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' value='查看'/>";
-                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;'  value='编辑'/>" ;
+                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                 return html;
             }
         }
@@ -97,26 +97,27 @@ var NewTable_Office = $('#NewTable_Office').DataTable({
 
 // 已办表单的datatables
 
-// var SubmittedTable_Office = $('#SubmittedTable_Office').DataTable({
+// var ycl_table = $('#SubmittedTable_Office').DataTable({
 //     ajax: {
 //         url: "/sform_stuff.do"
 //     },
 //     "order": [[2, 'asc']],
 //     "serverSide": true,
 //     "columns": [
-//         {"data": "ID"},
-//         {"data": "TITLE"},
-//         {"data": "CREATED_AT"},
+//         {"data": "sendfileid"},
+        // {"data": "title"},
+        // {"data": "createdtime"},
+        // {"data": "dept"},
+        // {"data": "status"},
 //         {"data": null}
 //     ],
 //     "columnDefs": [
 //         {
 //             "searchable": false,
 //             "orderable": false,
-//             "targets": [3],
+//             "targets": [5],
 //             "render" :  function(data,type,row) {
-//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='编辑'/>"
-//                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='flow(this)' value='流程'/>" ;
+//                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
 //                 return html;
 //             }
 //         },
@@ -142,11 +143,10 @@ var NewTable_Office = $('#NewTable_Office').DataTable({
 
 
 //待办事务的显示条数
-// setTimeout(function () {
-//     var info=newForm_office.page.info();
-//     $("#nav_num").text(info.recordsTotal)
-// },0);
-
+setTimeout(function () {
+    var info=dcl_table.page.info();
+    $("#nav_num").text(info.recordsTotal)
+},0);
 
 //树形插件
 $('#tree_container').jstree({
@@ -203,6 +203,66 @@ function del_file(number) {
     o.removeChild(span)
 }
 
+//编辑查看按钮
+function edit(that) {
+    var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+    var status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+    console.log(id,status);
+    $('#select_model').modal('show');
+    $.ajax({
+        url: "/getSendFileInfoBySendFileId.do",
+        type: "post",
+        data: {sendFileid:id},
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
+            $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
+            $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
+            $(".mytable tr:nth-child(1) td:nth-child(9) input").val(data.secret);
+            $(".mytable tr:nth-child(2) td:nth-child(1) textarea").val(data.qianfa);
+            $(".mytable tr:nth-child(2) td:nth-child(2) textarea").val(data.shengao);
+            $(".mytable tr:nth-child(2) td:nth-child(3) textarea").val(data.huiqian);
+            $(".mytable tr:nth-child(3) td:nth-child(1) textarea").val(data.chaobao);
+            $(".mytable tr:nth-child(4) td:nth-child(2) input").val(data.chaosong);
+            $(".mytable tr:nth-child(5) td:nth-child(2) input").val(data.fa);
+            $(".mytable tr:nth-child(6) td:nth-child(2) input").val(data.dept);
+            $(".mytable tr:nth-child(6) td:nth-child(4) input").val(data.author);
+            $(".mytable tr:nth-child(6) td:nth-child(6) input").val(data.reviewer);
+            $(".mytable tr:nth-child(7) td:nth-child(2) input").val(data.print);
+            $(".mytable tr:nth-child(7) td:nth-child(4) input").val(data.revision);
+            $(".mytable tr:nth-child(7) td:nth-child(6) input").val(data.copy);
+            $(".mytable tr:nth-child(9) td:nth-child(2) input").val(data.keyword);
+            $(".mytable tr:nth-child(10) td:nth-child(2) input").val(data.title);
+            $(".mytable tr:nth-child(11) td:nth-child(1) textarea").val(data.content);
+            $(".mytable tr:nth-child(8) td:nth-child(2)").empty();
+            var file_arr = data.attachmentpath.split(",");
+            if(data.attachmentpath != ""){
+                var file_arr = data.attachmentpath.split(",");
+                $.each(file_arr,function (i,n) {
+                    var start = n.lastIndexOf("\\") + 1;
+                    var end = n.lastIndexOf("-");
+                    var filekind_index = n.lastIndexOf(".");
+                    var str = n.substring(start,end);
+                    var filekind = n.substring(filekind_index);
+                    str = str + filekind;
+                    var files = "";
+                    files  += ""
+                        + "<div class='download_wrapper' style='display: inline-block;margin: 0 5px;'>"
+                        + "<iframe name='downloadFrame' style='display:none;'></iframe>"
+                        + "<form action='/file/download.do' method='get' target='downloadFrame'>"
+                        + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                        + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                        + "<button type='submit'>下载</button>"
+                        + "</form>"
+                        + "</div>"
+                    $(".mytable tr:nth-child(8) td:nth-child(2)").append(files);
+                    console.log(str)
+                });
+            }
+        }
+    })
+}
 
 //  新建表单 表单提交
 $("#form_stuff .btn-primary").click(function () {

@@ -109,6 +109,16 @@
             font-size: 20px;
             width: 16.5%;
         }
+        .download_wrapper button{
+            background: transparent;
+            border: none;
+            margin: 0;
+            padding: 0;
+            color: #2fa4e7;
+        }
+        .download_wrapper button:hover{
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -606,7 +616,6 @@
     function newForm() {
         $('#form_stuff input').val('');
         $('#form_stuff').modal('show');
-//        $('#select_model').modal('show');
     }
 
 

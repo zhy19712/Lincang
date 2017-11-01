@@ -1820,9 +1820,9 @@
             success: function (data) {
                 mydata = data;
                 console.log(data);
+                $("#more tr:nth-child(4) td:nth-child(2)").empty();
+                $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
                 if(data.attachmentpath != ""){
-                    $("#more tr:nth-child(4) td:nth-child(2)").empty();
-                    $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
                     file_arr = data.attachmentpath.split(",");
                     $.each(file_arr,function (i,n) {
                         var start = n.lastIndexOf("\\") + 1;
