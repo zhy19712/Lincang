@@ -26,7 +26,6 @@ public class ArchivedTable_Office {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "FORM_OFFICE";
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -34,14 +33,10 @@ public class ArchivedTable_Office {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"OID","CREATED_AT", "DEPT", "AUTHOR", "TITLE"};
         String orderColumn = "0";
@@ -50,10 +45,8 @@ public class ArchivedTable_Office {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
@@ -64,7 +57,6 @@ public class ArchivedTable_Office {
             sArray.add(" AUTHOR like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -98,7 +90,6 @@ public class ArchivedTable_Office {
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
 
-
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 tasks.add(new Form_Office(
@@ -118,8 +109,6 @@ public class ArchivedTable_Office {
                 recordsFiltered = recordsTotal;
             }
         }
-
-
         Map<Object, Object> info = new HashMap<Object, Object>();
         info.put("data", tasks);
         info.put("recordsTotal", recordsTotal);

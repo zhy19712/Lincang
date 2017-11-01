@@ -3,15 +3,15 @@
 <mapper namespace="com.bhidi.lincang.dao.FormOfficeMapper">
 
     <insert  id="stuffToOffice" parameterType="com.bhidi.lincang.bean.Bank">
-        insert into form_office (oid,created_at,author,dept,reviewer,keyword,
+        INSERT INTO form_office (oid,created_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
-        values( #{id},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
-         #{title},#{content},#{print},#{revision},#{copy},#{status} )
+        VALUES( #{id},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
+        #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
     <!--Integer updateFormOffice(F_Stuff f_stuff);-->
     <update id="updateFormOffice" parameterType="com.bhidi.lincang.bean.Bank">
-        update form_office
-        set
+        UPDATE form_office
+        SET
         created_at = #{sent_at},
         author = #{author},
         dept = #{dept},
@@ -23,7 +23,7 @@
         revision = #{revision},
         copy = #{copy},
         status = #{status}
-        where oid = #{id}
+        WHERE oid = #{id}
     </update>
 
 </mapper>

@@ -3,17 +3,17 @@
 <mapper namespace="com.bhidi.lincang.dao.ExcelMapper">
 
     <select id="queryPeopleByFid" parameterType="String" resultType="String">
-        select fid from people where fid = #{fid} order by id LIMIT 1
+        SELECT fid FROM people WHERE fid = #{fid} ORDER BY id LIMIT 1
     </select>
 
     <insert  id="saveBank" parameterType="com.bhidi.lincang.bean.Bank">
-        insert into bank (fid,account_name,bank_name,account_number)
-        values( #{fid},#{account_name},#{bank_name},#{account_number} )
+        INSERT INTO bank (fid,account_name,bank_name,account_number)
+        VALUES( #{fid},#{account_name},#{bank_name},#{account_number} )
     </insert >
 
     <insert  id="batchSavePeople" parameterType="List">
-        insert into people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at,table_type)
-        values
+        INSERT INTO people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at,table_type)
+        VALUES
         <foreach collection="list" separator="," item="people">
             (
             #{people.fid},#{people.reservoir},#{people.phone},#{people.prop},#{people.poor_reason},#{people.location}, #{people.name},#{people.master},
@@ -25,19 +25,19 @@
     </insert >
 
     <insert  id="saveMove" parameterType="com.bhidi.lincang.bean.Move">
-        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
-        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
+        INSERT INTO move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
+        VALUES( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
         #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
     </insert >
 
     <insert  id="saveHouse" parameterType="com.bhidi.lincang.bean.House">
-        insert into house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
-        values( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},#{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},#{sub_remark} )
+        INSERT INTO house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
+        VALUES( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},#{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},#{sub_remark} )
     </insert >
 
     <insert  id="batchSaveIncome" parameterType="List">
-        insert into income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
-        values
+        INSERT INTO income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
+        VALUES
         <foreach collection="list" separator="," item="income">
             (
             #{income.fid},#{income.income_source},#{income.income_cate},#{income.income_quantity},#{income.income_unit},
@@ -47,8 +47,8 @@
     </insert >
 
     <insert  id="batchSaveOutcome" parameterType="List">
-        insert into outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
-        values
+        INSERT INTO outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
+        VALUES
         <foreach collection="list" separator="," item="outcome">
             (
             #{outcome.fid},#{outcome.outcome_source},#{outcome.outcome_cate},#{outcome.outcome_quantity},#{outcome.outcome_unit},

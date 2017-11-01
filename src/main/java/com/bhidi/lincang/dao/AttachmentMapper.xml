@@ -5,8 +5,8 @@
     <!--int save(Attachment att);-->
     <insert  id="save" parameterType="com.bhidi.lincang.bean.Attachment" useGeneratedKeys="true"
     keyProperty="id">
-        insert into attachment (name,path,size)
-        values( #{name},#{path},#{size} )
+        INSERT INTO attachment (name,path,size)
+        VALUES ( #{name},#{path},#{size} )
     </insert >
 
 </mapper>

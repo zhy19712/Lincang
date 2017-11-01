@@ -34,7 +34,7 @@
     </select>
     <!--int updateSendFile(SendFile sf);-->
     <update id="updateSendFile" parameterType="com.bhidi.lincang.bean.SendFile">
-        update ReceiveFile
+        UPDATE sendfile
         <trim prefix="set" suffixOverrides=",">
             <if test="dept!=null">dept = #{dept},</if>
             <if test="author!=null">author = #{author},</if>
@@ -67,6 +67,6 @@
             <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
             <if test="confirmtime!=null">confirmtime = #{confirmtime},</if>
         </trim>
-        where sendfileid = #{sendfileid}
+        WHERE sendfileid = #{sendfileid}
     </update>
 </mapper>

@@ -3,61 +3,62 @@
 <mapper namespace="com.bhidi.lincang.dao.ReceiveFileMapper">
     <!--int insert(ReceiveFile rfaa);-->
     <insert id="insert" parameterType="com.bhidi.lincang.bean.ReceiveFile">
-        insert into receivefile(receivefileid,year, savetime,
+        INSERT INTO receivefile(receivefileid,year, savetime,
         type, cometime,fileid, registrationnum,fileallid,
         writtentime, title,  attachmentpath,keyword,
         responsibleperson, archivecopies, pagenum, secret,
         issues,  receiveperson, comedepartment,attachmentpagenum,
         entitynum,  distributionsituation,  oldfond, archivesituation,
-         registrationdate, circulationsituation, dealsituation,  status,
-         reveivereregisterpersonname)
-        values (#{receivefileid},#{year}, #{savetime},
+        registrationdate, circulationsituation, dealsituation,  status,
+        reveivereregisterpersonname)
+        VALUES (#{receivefileid},#{year}, #{savetime},
         #{type}, #{cometime},#{fileid}, #{registrationnum},#{fileallid},
         #{writtentime}, #{title},  #{attachmentpath},#{keyword},
         #{responsibleperson}, #{archivecopies}, #{pagenum}, #{secret},
         #{issues},  #{receiveperson}, #{comedepartment},#{attachmentpagenum},
         #{entitynum},  #{distributionsituation},  #{oldfond}, #{archivesituation},
-         #{registrationdate}, #{circulationsituation}, #{dealsituation},  #{status},
-         #{reveivereregisterpersonname});
+        #{registrationdate}, #{circulationsituation}, #{dealsituation},  #{status},
+        #{reveivereregisterpersonname});
     </insert>
 
     <!--ReceiveFile selectReceiveFileInfoById(String receivefileid);-->
     <select id="selectReceiveFileInfoById" resultType="com.bhidi.lincang.bean.ReceiveFile">
-    SELECT IFNULL(receivefileid,"") as receivefileid,IFNULL(year,"") as year,
-    IFNULL(savetime,"") as savetime,IFNULL(type,"") as type,
-    IFNULL(cometime,"") as cometime, IFNULL(fileid,"") as fileid,
-    IFNULL(registrationnum,"") as registrationnum,IFNULL(fileallid,"") as fileallid,
-    IFNULL(writtentime,"") as writtentime,IFNULL(title,"") as title,
-    IFNULL(attachmentpath,"") as attachmentpath,IFNULL(keyword,"") as keyword,
-    IFNULL(responsibleperson,"") as responsibleperson,
-    IFNULL(archivecopies,"") as archivecopies,IFNULL(pagenum,"") as pagenum,
-    IFNULL(secret,"") as secret,IFNULL(issues,"") as issues,IFNULL(receiveperson,"") as receiveperson,
-    IFNULL(comedepartment,"") as comedepartment,IFNULL(attachmentpagenum,"") as attachmentpagenum,
-    IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
-    IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
-    IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
-    IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname,
-    IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") as department1name,
-    IFNULL(department1person,"") as department1person,IFNULL(department1persondelete,"") as department1persondelete,
-    IFNULL(department2name,"") as department2name,IFNULL(department2person,"") as department2person,
-    IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
-    IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
-    IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
-    IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson,
-    IFNULL(attachmentdeleteperson,"") as attachmentdeleteperson
-    FROM receivefile
-    where receivefileid = #{receivefileid}
-</select>
+        SELECT IFNULL(receivefileid,"") AS receivefileid,IFNULL(year,"") AS year,
+        IFNULL(savetime,"") AS savetime,IFNULL(type,"") AS type,
+        IFNULL(cometime,"") AS cometime, IFNULL(fileid,"") AS fileid,
+        IFNULL(registrationnum,"") AS registrationnum,IFNULL(fileallid,"") AS fileallid,
+        IFNULL(writtentime,"") AS writtentime,IFNULL(title,"") AS title,
+        IFNULL(attachmentpath,"") AS attachmentpath,IFNULL(keyword,"") AS keyword,
+        IFNULL(responsibleperson,"") AS responsibleperson,
+        IFNULL(archivecopies,"") AS archivecopies,IFNULL(pagenum,"") AS pagenum,
+        IFNULL(secret,"") AS secret,IFNULL(issues,"") AS issues,IFNULL(receiveperson,"") AS receiveperson,
+        IFNULL(comedepartment,"") AS comedepartment,IFNULL(attachmentpagenum,"") AS attachmentpagenum,
+        IFNULL(entitynum,"") AS entitynum,IFNULL(distributionsituation,"") AS distributionsituation,
+        IFNULL(oldfond,"") AS oldfond,IFNULL(archivesituation,"") AS archivesituation,
+        IFNULL(registrationdate,"") AS registrationdate,IFNULL(circulationsituation,"") AS circulationsituation,
+        IFNULL(dealsituation,"") AS dealsituation,IFNULL(status,"") AS status,IFNULL(reveivereregisterpersonname,"") AS reveivereregisterpersonname,
+        IFNULL(modeltype,"") AS modeltype,IFNULL(modelchoicename,"") AS modelchoicename,IFNULL(department1name,"") AS department1name,
+        IFNULL(department1person,"") AS department1person,IFNULL(department1persondelete,"") AS department1persondelete,
+        IFNULL(department2name,"") AS department2name,IFNULL(department2person,"") AS department2person,
+        IFNULL(department2persondelete,"") AS department2persondelete,IFNULL(fenguanname,"") AS fenguanname,
+        IFNULL(zhuguanname,"") AS zhuguanname,IFNULL(fenguannamedelete,"") AS fenguannamedelete,
+        IFNULL(zhuguannamedelete,"") AS zhuguannamedelete,IFNULL(implementperson,"") AS implementperson,
+        IFNULL(implementpersondelete,"") AS implementpersondelete,IFNULL(confirmperson,"") AS confirmperson,
+        IFNULL(attachmentdeleteperson,"") AS attachmentdeleteperson
+        FROM receivefile
+        WHERE receivefileid = #{receivefileid}
+    </select>
 
     <!--String selectDepartmentNameByName(String department1);-->
     <select id="selectDepartmentNameByName" parameterType="String" resultType="String">
-        select r.rolename
-        from user u,user_role ur,role r where u.id = ur.userid and ur.roleid = r.id and u.name = #{name}
+        SELECT r.rolename
+        FROM user u,user_role ur,role r
+        WHERE u.id = ur.userid AND ur.roleid = r.id AND u.name = #{name}
     </select>
 
     <!--int updateReceiveFile(ReceiveFile rf);-->
     <update id="updateReceiveFile" parameterType="com.bhidi.lincang.bean.ReceiveFile">
-        update ReceiveFile
+        UPDATE ReceiveFile
         <trim prefix="set" suffixOverrides=",">
             <if test="modeltype!=null">modeltype = #{modeltype},</if>
             <if test="modelchoicename!=null">modelchoicename = #{modelchoicename},</if>
@@ -78,42 +79,42 @@
             <if test="attachmentpath!=null">attachmentpath = #{attachmentpath},</if>
             <if test="attachmentdeleteperson!=null">attachmentdeleteperson = #{attachmentdeleteperson},</if>
         </trim>
-        where receivefileid = #{receivefileid}
+        WHERE receivefileid = #{receivefileid}
     </update>
     <!--int updateModelZhijiechuli(Model_Zhijiechuli meme);-->
     <update id="updateModelZhijiechuli" parameterType="com.bhidi.lincang.bean.Model_Zhijiechuli">
-        update model_zhijiechuli
+        UPDATE model_zhijiechuli
         <trim prefix="set" suffixOverrides=",">
             <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
             <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
             <if test="result!=null">result = #{result},</if>
         </trim>
-        where receivefileid = #{receivefileid}
+        WHERE receivefileid = #{receivefileid}
     </update>
    <!-- int updateModelWenjiannibandan(Model_Wenjianniban meme);-->
     <update id="updateModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Wenjianniban">
-        update model_wenjianniban
+        UPDATE model_wenjianniban
         <trim prefix="set" suffixOverrides=",">
             <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
             <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
             <if test="result!=null">result = #{result},</if>
         </trim>
-        where receivefileid = #{receivefileid}
+        WHERE receivefileid = #{receivefileid}
     </update>
     <!--int updateModelYikeshi(Model_Yikeshi meme);-->
     <update id="updateModelYikeshi" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
-        update model_yikeshi
+        UPDATE model_yikeshi
         <trim prefix="set" suffixOverrides=",">
             <if test="departmentadvice!=null">departmentadvice = #{departmentadvice},</if>
             <if test="mainleaderinstruction!=null">mainleaderinstruction = #{mainleaderinstruction},</if>
             <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
             <if test="result!=null">result = #{result},</if>
         </trim>
-        where receivefileid = #{receivefileid}
+        WHERE receivefileid = #{receivefileid}
     </update>
     <!--int updateModelErkeshi(Model_Erkeshi meme);-->
     <update id="updateModelErkeshi" parameterType="com.bhidi.lincang.bean.Model_Erkeshi">
-        update model_erkeshi
+        UPDATE model_erkeshi
         <trim prefix="set" suffixOverrides=",">
             <if test="department1advice!=null">department1advice = #{department1advice},</if>
             <if test="department2advice!=null">department2advice = #{department2advice},</if>
@@ -121,69 +122,73 @@
             <if test="branchleaderinstruction!=null">branchleaderinstruction = #{branchleaderinstruction},</if>
             <if test="result!=null">result = #{result},</if>
         </trim>
-        where receivefileid = #{receivefileid}
+        WHERE receivefileid = #{receivefileid}
     </update>
     <!--int insertModelErkeshi(Model_Erkeshi meme);-->
     <insert id="insertModelErkeshi" parameterType="com.bhidi.lincang.bean.Model_Erkeshi">
-        insert into model_erkeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
-         urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,department1name,
-         department1person,department1advice,department2name,department2person,department2advice,
-         mainleaderinstruction,branchleaderinstruction,result,implementperson)
-        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
-         #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
-         #{department1name},#{department1person},#{department1advice},#{department2name},
-         #{department2person},#{department2advice},#{mainleaderinstruction},#{branchleaderinstruction},
-         #{result},#{implementperson});
+        INSERT INTO model_erkeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+        urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,department1name,
+        department1person,department1advice,department2name,department2person,department2advice,
+        mainleaderinstruction,branchleaderinstruction,result,implementperson)
+        VALUES (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+        #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
+        #{department1name},#{department1person},#{department1advice},#{department2name},
+        #{department2person},#{department2advice},#{mainleaderinstruction},#{branchleaderinstruction},
+        #{result},#{implementperson});
     </insert>
     <!--int insertModelYikeshi(Model_Yikeshi meme);-->
     <insert id="insertModelYikeshi" parameterType="com.bhidi.lincang.bean.Model_Yikeshi">
-        insert into model_yikeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+        INSERT INTO model_yikeshi(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
         urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,department,
         departmentperson,departmentadvice,
         mainleaderinstruction,branchleaderinstruction,result,implementperson)
-        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+        VALUES (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
         #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
         #{department},#{departmentperson},#{departmentadvice},#{mainleaderinstruction},#{branchleaderinstruction},
         #{result},#{implementperson});
     </insert>
     <!--int insertModelWenjiannibandan(Model_Wenjianniban meme);-->
     <insert id="insertModelWenjiannibandan" parameterType="com.bhidi.lincang.bean.Model_Wenjianniban">
-        insert into model_wenjianniban(filename,receivefileid,dispatchfiledepartment,filenum,receivefileregisterid,
+        INSERT INTO model_wenjianniban(filename,receivefileid,dispatchfiledepartment,filenum,receivefileregisterid,
         receivefiledate,filetitle,suggestion,mainleader,branchleader,
         mainleaderinstruction,branchleaderinstruction,result,implementperson)
-        values (#{filename},#{receivefileid},#{dispatchfiledepartment},#{filenum},#{receivefileregisterid},
+        VALUES (#{filename},#{receivefileid},#{dispatchfiledepartment},#{filenum},#{receivefileregisterid},
         #{receivefiledate},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
         #{mainleaderinstruction},#{branchleaderinstruction},
         #{result},#{implementperson});
     </insert>
     <!--int insertModelZhijiechuli(Model_Zhijiechuli meme);-->
     <insert id="insertModelZhijiechuli" parameterType="com.bhidi.lincang.bean.Model_Zhijiechuli">
-        insert into model_zhijiechuli(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
+        INSERT INTO model_zhijiechuli(filename,receivefileid,receivefilenum,comefiledepartment,comefilenum,
         urgency,secret,copys,filetitle,suggestion,mainleader,branchleader,
         mainleaderinstruction,branchleaderinstruction,result,implementperson)
-        values (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
+        VALUES (#{filename},#{receivefileid},#{receivefilenum},#{comefiledepartment},#{comefilenum},
         #{urgency},#{secret},#{copys},#{filetitle},#{suggestion},#{mainleader},#{branchleader},
         #{mainleaderinstruction},#{branchleaderinstruction},
         #{result},#{implementperson});
     </insert>
     <!--Model_Zhijiechuli getInfoFromZhijiechuli(String receivefileid);-->
     <select id="getInfoFromZhijiechuli" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Zhijiechuli">
-        select *
-        from model_zhijiechuli where receivefileid = #{receivefileid}
+        SELECT *
+        FROM model_zhijiechuli
+        WHERE receivefileid = #{receivefileid}
     </select>
     <!--Model_Wenjianniban getInfoFromWenjianniban(String receivefileid);-->
     <select id="getInfoFromWenjianniban" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Wenjianniban">
-        select *
-        from model_wenjianniban where receivefileid = #{receivefileid}
+        SELECT *
+        FROM model_wenjianniban
+        WHERE receivefileid = #{receivefileid}
     </select>
     <!--Model_Yikeshi getInfoFromYikeshi(String receivefileid);-->
     <select id="getInfoFromYikeshi" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Yikeshi">
-        select *
-        from model_yikeshi where receivefileid = #{receivefileid}
+        SELECT *
+        FROM model_yikeshi
+        WHERE receivefileid = #{receivefileid}
     </select>
    <!-- Model_Erkeshi getInfoFromErkeshi(String receivefileid);-->
     <select id="getInfoFromErkeshi" parameterType="String" resultType="com.bhidi.lincang.bean.Model_Erkeshi">
-        select *
-        from model_erkeshi where receivefileid = #{receivefileid}
+        SELECT *
+        FROM model_erkeshi
+        WHERE receivefileid = #{receivefileid}
     </select>
 </mapper>

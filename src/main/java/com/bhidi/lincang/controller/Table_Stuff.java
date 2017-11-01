@@ -35,14 +35,10 @@ public class Table_Stuff {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"ID", "TITLE", "CREATED_AT"};
         String orderColumn = "0";
@@ -51,11 +47,8 @@ public class Table_Stuff {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
-
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
@@ -63,7 +56,6 @@ public class Table_Stuff {
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -97,7 +89,6 @@ public class Table_Stuff {
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
 
-
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
                     tasks.add(new Form_Stuff(rs.getInt("ID"),
@@ -114,7 +105,6 @@ public class Table_Stuff {
                 recordsFiltered = recordsTotal;
             }
         }
-
 
         Map<Object, Object> info = new HashMap<Object, Object>();
         info.put("data", tasks);

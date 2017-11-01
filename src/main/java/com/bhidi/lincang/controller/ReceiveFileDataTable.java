@@ -38,7 +38,6 @@ public class ReceiveFileDataTable {
                     e.printStackTrace();
                 }
             }
-
             //获取请求次数
             String draw = "0";
             draw = request.getParameter("draw");
@@ -46,14 +45,10 @@ public class ReceiveFileDataTable {
             String start = request.getParameter("start");
             //数据长度
             String length = request.getParameter("length");
-
             //总记录数
             String recordsTotal = "0";
-
             //过滤后记录数
             String recordsFiltered = "";
-
-
             //定义列名
             String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
             String orderColumn = "0";
@@ -62,10 +57,8 @@ public class ReceiveFileDataTable {
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
-
             //获取用户过滤框里的字符
             String searchValue = request.getParameter("search[value]");
-
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
@@ -77,7 +70,6 @@ public class ReceiveFileDataTable {
                 sArray.add(" title like '%" + searchValue + "%'");
                 sArray.add(" status like '%" + searchValue + "%'");
             }
-
 
             String individualSearch = "";
             if (sArray.size() == 1) {
@@ -110,7 +102,6 @@ public class ReceiveFileDataTable {
                 sql += " order by " + orderColumn + " " + orderDir;
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
-
 
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
@@ -157,7 +148,6 @@ public class ReceiveFileDataTable {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "receivefile";
-
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
         String name = "";
@@ -183,7 +173,6 @@ public class ReceiveFileDataTable {
                 status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
             }
         }
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -191,14 +180,10 @@ public class ReceiveFileDataTable {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
         String orderColumn = "0";
@@ -207,10 +192,8 @@ public class ReceiveFileDataTable {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
@@ -222,7 +205,6 @@ public class ReceiveFileDataTable {
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -255,7 +237,6 @@ public class ReceiveFileDataTable {
             sql += " order by " + orderColumn + " " + orderDir;
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
-
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -302,7 +283,6 @@ public class ReceiveFileDataTable {
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
         String table = "receivefile";
-
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
         String name = "";
@@ -344,7 +324,6 @@ public class ReceiveFileDataTable {
                 status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) ) or ( status = '分管领导签批' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) )or ( status = '主管领导签批' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) ) or ( status = '处理处置' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) )or ( status = '办公室归档' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) ) or ( status = '结束' and ((department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%')) )or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete like '%"+name+"%') or (status = '办公室归档' and implementperson like '%"+name+"%' and implementpersondelete like '%"+name+"%') or (status = '结束' and implementperson like '%"+name+"%' and implementpersondelete like '%"+name+"%')or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%' ) or (status = '主管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%' )or (status = '处理处置' and fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%' )or (status = '办公室归档' and fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%' )or (status = '结束' and fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%' )  or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete like '%"+name+"%')or (status = '处理处置' and zhuguanname like '%"+name+"%' and zhuguannamedelete like '%"+name+"%')or (status = '办公室归档' and zhuguanname like '%"+name+"%' and zhuguannamedelete like '%"+name+"%')or (status = '结束' and zhuguanname like '%"+name+"%' and zhuguannamedelete like '%"+name+"%') )";
             }
         }
-
         /*if( name != null ){
             try {
                 name = URLDecoder.decode(name,"utf-8");
@@ -352,7 +331,6 @@ public class ReceiveFileDataTable {
                 e.printStackTrace();
             }
         }*/
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -360,14 +338,10 @@ public class ReceiveFileDataTable {
         String start = request.getParameter("start");
         //数据长度
         String length = request.getParameter("length");
-
         //总记录数
         String recordsTotal = "0";
-
         //过滤后记录数
         String recordsFiltered = "";
-
-
         //定义列名
         String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
         String orderColumn = "0";
@@ -376,10 +350,8 @@ public class ReceiveFileDataTable {
         //获取排序方式 默认为asc
         String orderDir = "asc";
         orderDir = request.getParameter("order[0][dir]");
-
         //获取用户过滤框里的字符
         String searchValue = request.getParameter("search[value]");
-
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
@@ -391,7 +363,6 @@ public class ReceiveFileDataTable {
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
-
 
         String individualSearch = "";
         if (sArray.size() == 1) {
@@ -424,7 +395,6 @@ public class ReceiveFileDataTable {
             sql += " order by " + orderColumn + " " + orderDir;
             recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
             sql += " limit " + start + ", " + length;
-
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
