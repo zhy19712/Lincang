@@ -75,6 +75,8 @@ public class SendFileServiceImp implements SendFileServiceInf{
             sf.setStatus("结束");
             sf.setConfirmperson(user.getName());
             sf.setConfirmtime(sdf.format(now));
+            sf.setApprover(approver);
+            sf.setImplementperson(implementperson);
         }
         return sendFileMapper.updateSendFile(sf);
     }
