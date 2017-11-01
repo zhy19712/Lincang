@@ -42,7 +42,7 @@ public class SendFileDataTable {
                 if ("市局办公室".equals(roleList.get(0))) {
                     status = "";
                 } else {
-                    status = "applicant = "+name;
+                    status = " AND applicant = '"+name+"'";
                 }
             }
             //获取请求次数
