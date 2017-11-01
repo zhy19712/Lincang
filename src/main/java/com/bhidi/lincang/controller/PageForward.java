@@ -62,7 +62,7 @@ public class PageForward {
     }
     @RequestMapping(value = "/money", method = RequestMethod.GET)
     public String to_money(){
-        /*return "money";*/
-        return "yimin_temp";
+        return "money";
+        /*return "yimin_temp";*/
     }
 }

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="css/app.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.jedate.js"></script>
+    <script src="js/jQuery.print.js"></script>
     <script src="js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
@@ -45,7 +46,7 @@
     </style>
 </head>
 <body>
-<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+<div style="margin-bottom: 0;height: 70px;" class="navbar navbar-default" role="navigation">
 
     <div class="navbar-inner">
         <!-- 小屏幕时的导航按键 starts -->
@@ -69,7 +70,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username}<a href="logout.do" >注销</a>
+                    欢迎${user.name}<a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
@@ -502,6 +503,7 @@
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
+        <li id="jqprint"><a class="hvr-back-pulse button">打印</a></li>
     </ul>
 </form>
 </body>

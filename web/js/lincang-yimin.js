@@ -1,9 +1,12 @@
 $(function(){
 	//自适应宽高
 	var height = $(window).height() - 66;
+	if(height<730){
+		height = 730;
+	}
 	var width = $(window).width() - 360;
-	var show_height = $(window).height() - 247;
-	var tab_content_height = $(window).height() - 171;
+	var show_height = height - 181;
+	var tab_content_height = height - 105;
 	$("#content").height(height);
 	$("#container").width(width);
 	var width1 = width - 100;
