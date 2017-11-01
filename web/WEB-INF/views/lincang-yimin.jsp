@@ -100,8 +100,6 @@
 						<li>
 							<div id="container1"></div>
 							<div id="container2"></div>
-							<%--<div id="div1" style="width: 300px;height: 100px;background-color:red;"></div>--%>
-							<%--<div id="div2" style="width: 300px;height: 100px;background-color:blue;"></div>--%>
 						</li>
 					</ul>
 				</div>
