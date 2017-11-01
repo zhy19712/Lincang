@@ -208,8 +208,8 @@ var id,status;
 function edit(that) {
     id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
     status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+    var kind = $(that).val();
     console.log(id,status);
-    $('#select_model').modal('show');
     $.ajax({
         url: "/getSendFileInfoBySendFileId.do",
         type: "post",
@@ -217,6 +217,8 @@ function edit(that) {
         dataType: "json",
         success: function (data) {
             console.log(data);
+            $("#leader").text(data.approver);
+            $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
             $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
             $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
@@ -263,6 +265,12 @@ function edit(that) {
             }
         }
     })
+    $('#select_model').modal('show');
+    if(kind == "查看"){
+        $("#select_model .btn-primary").css("display","none");
+    }else if(kind == "编辑"){
+        $("#select_model .btn-primary").css("display","inline-block");
+    }
 }
 
 //  新建表单 表单提交
