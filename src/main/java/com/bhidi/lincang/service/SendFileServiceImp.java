@@ -1,6 +1,5 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.dao.SendFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +17,13 @@ public class SendFileServiceImp implements SendFileServiceInf{
     @Autowired
     SendFileMapper sendFileMapper;
 
+    public SendFile getSendFileInfoBySendFileId(String sendFileid) {
+        return sendFileMapper.selectSendFileInfoBySendFileId(sendFileid);
+    }
+
+    public int updateSendFile(SendFile sf) {
+        return sendFileMapper.updateSendFile(sf);
+    }
 
     public Map<String,Object> save(Map<String, Object> mapCondition){
         SendFile sfa = (SendFile)mapCondition.get("sendFile");
@@ -133,4 +139,5 @@ public class SendFileServiceImp implements SendFileServiceInf{
         }
         return resultFinal;
     }
+
 }

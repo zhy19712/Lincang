@@ -1,6 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.ReceiveFile;
+import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,20 +20,27 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class ReceiveFileDataTable {
+public class SendFileDataTable {
     @ResponseBody
-    @RequestMapping(value="/receiveFileDataTable",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String receiveFileDataTable(HttpServletRequest request,String name) throws SQLException {
+    @RequestMapping(value="/sendFileDataTableFirst",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String sendFileDataTableFirst(HttpServletRequest request) throws SQLException {
             ResultSet rs = null;
             Statement stmt = null;
             Connection conn = new DBConfig().getConn();
-            String table = "receivefile";
+            String table = "sendfile";
 
-            if( name != null ){
-                try {
-                    name = URLDecoder.decode(name,"utf-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+            User user = (User)request.getSession().getAttribute("user");
+            String name = "";
+            List<String> roleList = new ArrayList<String>();
+            if( user!=null ){
+                name = user.getName();
+                roleList = user.getRoleList();
+            }
+
+            String status = "";
+            if( roleList.size() > 0 ) {
+                if ("市局办公室".equals(roleList.get(0))) {
+                    status = "1 = 1";
                 }
             }
 
@@ -55,7 +60,7 @@ public class ReceiveFileDataTable {
 
 
             //定义列名
-            String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+            String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -70,11 +75,10 @@ public class ReceiveFileDataTable {
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
                 searchValue = searchValue.replaceAll("'","");
-                sArray.add(" year like '%" + searchValue + "%'");
-                sArray.add(" type like '%" + searchValue + "%'");
-                sArray.add(" cometime like '%" + searchValue + "%'");
-                sArray.add(" receivefileid like '%" + searchValue + "%'");
+                sArray.add(" sendfileid like '%" + searchValue + "%'");
                 sArray.add(" title like '%" + searchValue + "%'");
+                sArray.add(" createdtime like '%" + searchValue + "%'");
+                sArray.add(" dept like '%" + searchValue + "%'");
                 sArray.add(" status like '%" + searchValue + "%'");
             }
 
@@ -89,19 +93,19 @@ public class ReceiveFileDataTable {
                 individualSearch += sArray.get(sArray.size() - 1);
             }
 
-            List<ReceiveFile> tasks = new ArrayList<ReceiveFile>();
+            List<SendFile> tasks = new ArrayList<SendFile>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1 = 1";
+                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1 = 1";
+                String recordsTotalSql = "select count(1) as recordsTotal from " + table + " where 1=1 "+status;
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where 1 = 1";
+                String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -114,12 +118,11 @@ public class ReceiveFileDataTable {
 
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
-                    tasks.add(new ReceiveFile (
-                            rs.getString("year"),
-                            rs.getString("type"),
-                            rs.getString("cometime"),
-                            rs.getString("receivefileid"),
+                    tasks.add(new SendFile(
+                            rs.getString("sendfileid"),
                             rs.getString("title"),
+                            rs.getString("createdtime"),
+                            rs.getString("dept"),
                             rs.getString("status")));
                 }
 
@@ -151,12 +154,12 @@ public class ReceiveFileDataTable {
      * @throws SQLException
      */
     @ResponseBody
-    @RequestMapping(value="/receiveFileDataTableByNameAndStatus",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String receiveFileDataTableByNameAndStatus(HttpServletRequest request) throws SQLException {
+    @RequestMapping(value="/sendFileDataTableSecond",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String sendFileDataTableSecond(HttpServletRequest request) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
-        String table = "receivefile";
+        String table = "sendfile";
 
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
@@ -170,7 +173,8 @@ public class ReceiveFileDataTable {
         String status = "";
         if( roleList.size() > 0 ){
             if( "市局办公室".equals(roleList.get(0)) ){
-                status = " and ( (status = '办公室处理文件' or status = '办公室归档') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) or ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) )  or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%'))";
+                //status = " and ( (status = '办公室处理文件' or status = '办公室归档') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) or ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) )  or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%'))";
+                status = "and ( (status = '办公室处理文件') or ( status = '签批' and approver like '%"+name+"%' approver not like '%"+name+"%' ) or ( status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) )";
             }
             if( !"市局办公室".equals(roleList.get(0)) & !"分管领导".equals(roleList.get(0)) & !"主管领导".equals(roleList.get(0))){
                 status = " and ( ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) ) or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%') )";
@@ -200,7 +204,7 @@ public class ReceiveFileDataTable {
 
 
         //定义列名
-        String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+        String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -215,11 +219,10 @@ public class ReceiveFileDataTable {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
-            sArray.add(" year like '%" + searchValue + "%'");
-            sArray.add(" type like '%" + searchValue + "%'");
-            sArray.add(" cometime like '%" + searchValue + "%'");
-            sArray.add(" receivefileid like '%" + searchValue + "%'");
+            sArray.add(" sendfileid like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
+            sArray.add(" createdtime like '%" + searchValue + "%'");
+            sArray.add(" dept like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
 
@@ -234,7 +237,7 @@ public class ReceiveFileDataTable {
             individualSearch += sArray.get(sArray.size() - 1);
         }
 
-        List<ReceiveFile> tasks = new ArrayList<ReceiveFile>();
+        List<SendFile> tasks = new ArrayList<SendFile>();
         if (conn != null) {
             String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
             stmt = conn.createStatement();
@@ -246,7 +249,7 @@ public class ReceiveFileDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where 1=1 "+status;
+            String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -259,12 +262,11 @@ public class ReceiveFileDataTable {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new ReceiveFile (
-                        rs.getString("year"),
-                        rs.getString("type"),
-                        rs.getString("cometime"),
-                        rs.getString("receivefileid"),
+                tasks.add(new SendFile(
+                        rs.getString("sendfileid"),
                         rs.getString("title"),
+                        rs.getString("createdtime"),
+                        rs.getString("dept"),
                         rs.getString("status")));
             }
 
@@ -296,8 +298,8 @@ public class ReceiveFileDataTable {
      * @throws SQLException
      */
     @ResponseBody
-    @RequestMapping(value="/receiveFileDataTableByNameAndStatusHave",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
-    public String receiveFileDataTableByNameAndStatusHave(HttpServletRequest request) throws SQLException {
+    @RequestMapping(value="/sendFileDataTableThird",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public String sendFileDataTableThird(HttpServletRequest request) throws SQLException {
         ResultSet rs = null;
         Statement stmt = null;
         Connection conn = new DBConfig().getConn();
@@ -369,7 +371,7 @@ public class ReceiveFileDataTable {
 
 
         //定义列名
-        String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+        String[] cols = {"sendfileid","title", "createdtime", "dept","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -384,11 +386,10 @@ public class ReceiveFileDataTable {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
-            sArray.add(" year like '%" + searchValue + "%'");
-            sArray.add(" type like '%" + searchValue + "%'");
-            sArray.add(" cometime like '%" + searchValue + "%'");
-            sArray.add(" receivefileid like '%" + searchValue + "%'");
+            sArray.add(" sendfileid like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
+            sArray.add(" createdtime like '%" + searchValue + "%'");
+            sArray.add(" dept like '%" + searchValue + "%'");
             sArray.add(" status like '%" + searchValue + "%'");
         }
 
@@ -403,7 +404,7 @@ public class ReceiveFileDataTable {
             individualSearch += sArray.get(sArray.size() - 1);
         }
 
-        List<ReceiveFile> tasks = new ArrayList<ReceiveFile>();
+        List<SendFile> tasks = new ArrayList<SendFile>();
         if (conn != null) {
             String recordsFilteredSql = "select count(1) as recordsFiltered from " + table + " where 1=1 "+status;
             stmt = conn.createStatement();
@@ -415,7 +416,7 @@ public class ReceiveFileDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(year,'')as year,IFNULL(type,'') as type,IFNULL(cometime,'') as cometime,IFNULL(receivefileid,'') as receivefileid,IFNULL(title,'') as title,(CASE WHEN STATUS='科室签批' OR STATUS='分管领导签批' OR STATUS = '主管领导签批' THEN '签批' ELSE STATUS END) as status FROM " + table + " where  1=1 "+status;
+            String sql = "SELECT IFNULL(sendfileid,'')as sendfileid,IFNULL(title,'') as title,IFNULL(createdtime,'') as createdtime,IFNULL(dept,'') as dept,IFNULL(status,'') as status FROM " + table + " where 1=1 "+status;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -428,12 +429,11 @@ public class ReceiveFileDataTable {
 
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new ReceiveFile (
-                        rs.getString("year"),
-                        rs.getString("type"),
-                        rs.getString("cometime"),
-                        rs.getString("receivefileid"),
+                tasks.add(new SendFile(
+                        rs.getString("sendfileid"),
                         rs.getString("title"),
+                        rs.getString("createdtime"),
+                        rs.getString("dept"),
                         rs.getString("status")));
             }
 

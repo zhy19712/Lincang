@@ -40,6 +40,14 @@ public class SendFile {
     public SendFile() {
     }
 
+    public SendFile(String sendfileid, String title, String createdtime, String dept, String status) {
+        this.sendfileid = sendfileid;
+        this.title = title;
+        this.createdtime = createdtime;
+        this.dept = dept;
+        this.status = status;
+    }
+
     public SendFile(int id, String sendfileid, String createdtime, String applicant, String dept, String author, String reviewer, String print, String revision, String copy, String attachmentpath, String keyword, String title, String content, String officeprocesstime, String officeprocessperson, String status, String sn, String date, String urgency, String secret, String qianfa, String shengao, String huiqian, String chaobao, String chaosong, String fa, String approver, String approverdelete, String approvertime, String implementperson, String implementpersondelete, String implementpersontime, String confirmperson, String confirmtime) {
         this.id = id;
         this.sendfileid = sendfileid;

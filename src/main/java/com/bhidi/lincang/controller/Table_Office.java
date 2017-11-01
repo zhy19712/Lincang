@@ -58,6 +58,7 @@ public class Table_Office {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
+                searchValue = searchValue.replaceAll("'","");
                 sArray.add(" OID like '%" + searchValue + "%'");
                 sArray.add(" CREATED_AT like '%" + searchValue + "%'");
                 sArray.add(" DEPT like '%" + searchValue + "%'");
@@ -170,6 +171,7 @@ public class Table_Office {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" OID like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             sArray.add(" DEPT like '%" + searchValue + "%'");

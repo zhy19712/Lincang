@@ -59,7 +59,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         int SheetCount = workbook.getNumberOfSheets();
         System.out.println("Sheet的数量"+SheetCount);
         if(SheetCount == 0){
-            return serverPath+"-"+excelName+"文件中无sheet！";
+            return excelName+"文件中无sheet！";
         }
         //在这里先判断是否fid为空，为空的话返回，就不插入了，不为空的话判断数据库中是否有关于这个fid的内容
         for( int s = 0; s< SheetCount; s++ ){
@@ -68,7 +68,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             int rowcount = sheet.getLastRowNum();
 
             if( rowcount == 0 ){
-                return serverPath+"-"+excelName+"文件内容为空！";
+                return excelName+"文件中第"+(s+1)+"个sheet为空！";
             }
             //00获取移民编号
            /* Row row0 = sheet.getRow(0);
