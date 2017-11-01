@@ -4,31 +4,31 @@
 
     <insert id="saveFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff" useGeneratedKeys="true"
              keyProperty="id">
-        insert into form_stuff (created_at,sent_at,author,dept,reviewer,keyword,
+        INSERT INTO form_stuff (created_at,sent_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
-        values( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
-         #{title},#{content},#{print},#{revision},#{copy},#{status} )
+        VALUES( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
+        #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
 
     <insert id="submittedFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff" useGeneratedKeys="true"
              keyProperty="id">
-        insert into form_stuff (created_at,sent_at,author,dept,reviewer,keyword,
+        INSERT INTO form_stuff (created_at,sent_at,author,dept,reviewer,keyword,
         title,content,print,revision,copy,status)
-        values( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
+        VALUES( #{created_at},#{sent_at},#{author},#{dept},#{reviewer},#{keyword},
         #{title},#{content},#{print},#{revision},#{copy},#{status} )
     </insert >
     <!--F_Stuff queryStuffById(int id);-->
     <select id="queryStuffById" parameterType="int" resultType="com.bhidi.lincang.bean.F_Stuff">
-        select * from form_stuff where id = #{id}
+        SELECT * FROM form_stuff WHERE id = #{id}
     </select>
     <!--int deleteStuffById(int id);-->
     <delete id="deleteStuffById" parameterType="int">
-        delete from form_stuff where id = #{id}
+        DELETE FROM form_stuff WHERE id = #{id}
     </delete>
     <!--Integer updateFormStuff(F_Stuff f_stuff);-->
     <update id="updateFormStuff" parameterType="com.bhidi.lincang.bean.F_Stuff">
-        update form_stuff
-        set
+        UPDATE form_stuff
+        SET
         created_at = #{created_at},
         sent_at = #{sent_at},
         author = #{author},
@@ -41,6 +41,6 @@
         revision = #{revision},
         copy = #{copy},
         status = #{status}
-        where id = #{id}
+        WHERE id = #{id}
     </update>
 </mapper>

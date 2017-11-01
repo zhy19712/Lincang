@@ -3,18 +3,19 @@
 <mapper namespace="com.bhidi.lincang.dao.LoginMapper">
 
     <select id="queryUserByUsername" parameterType="Map" resultMap="UserResultMap">
-        select
+        SELECT
         id,
         uid,
         username,
-        pass as password,
+        pass AS password,
         name,
         dept,
         phone1,
         phone2,
         level,
         created_at
-        from user where username= #{username} and pass = #{password}
+        FROM user
+        WHERE username= #{username} AND pass = #{password}
     </select>
 
     <resultMap type="com.bhidi.lincang.bean.User" id="UserResultMap">
@@ -26,13 +27,16 @@
     </resultMap>
 
     <select id="queryRoleNameByUserid" parameterType="Map" resultType="String">
-        select rolename from user_role ur,role r where ur.roleid = r.id and ur.userid = #{id}
+        SELECT rolename
+        FROM user_role ur,role r
+        WHERE ur.roleid = r.id AND ur.userid = #{id}
     </select>
 
     <select id="queryPermissionName" parameterType="Map" resultType="String">
-        select authdescription from user_role ur,role r,role_privilege rp,privilege p
-        where ur.roleid = r.id and r.id = rp.roleid and rp.authorithid = p.id
-        and ur.userid = #{id}
+        SELECT authdescription
+        FROM user_role ur,role r,role_privilege rp,privilege p
+        WHERE ur.roleid = r.id AND r.id = rp.roleid AND rp.authorithid = p.id
+        AND ur.userid = #{id}
     </select>
 
 </mapper>

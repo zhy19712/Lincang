@@ -11,12 +11,12 @@
     </select>
     <!--PeopleMore queryFamilyDetailByFid(String fid);-->
     <select id="queryFamilyDetailByFid" parameterType="String" resultType="com.bhidi.lincang.bean.PeopleMore">
-        SELECT IFNULL(p.name,"")as name,IFNULL(p.pid,"")as pid,IFNULL(p.RESERVOIR,"")as reservoir,IFNULL(p.home_size,"")as home_size,IFNULL(p.imm_num,"")as imm_num,IFNULL(p.prop,"")as prop,IFNULL(p.poor_reason,"")AS poor_reason,IFNULL(GROUP_CONCAT(m.FROM_CITY,m.TO_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE),"")AS outarea,
+        SELECT IFNULL(p.name,"") AS name,IFNULL(p.pid,"") AS pid,IFNULL(p.RESERVOIR,"") AS reservoir,IFNULL(p.home_size,"") AS home_size,IFNULL(p.imm_num,"") AS imm_num,IFNULL(p.prop,"") AS prop,IFNULL(p.poor_reason,"") AS poor_reason,IFNULL(GROUP_CONCAT(m.FROM_CITY,m.TO_DISTRICT,m.FROM_TOWN,m.FROM_VILLAGE),"") AS outarea,
         IFNULL(GROUP_CONCAT(m.TO_CITY,m.TO_DISTRICT,m.TO_TOWN,m.TO_VILLAGE),"")AS inarea,
         IFNULL(GROUP_CONCAT(h.MAIN_STRUCTURE1,h.MAIN_STRUCTURE2,h.MAIN_STRUCTURE3,h.MAIN_STRUCTURE4,h.MAIN_STRUCTURE5),"") AS mainstructure,
         IFNULL(h.main_size,"") AS mainsize,
         IFNULL(GROUP_CONCAT(h.SUB_STRUCTURE1,h.SUB_STRUCTURE2,h.SUB_STRUCTURE3,h.SUB_STRUCTURE4,h.SUB_STRUCTURE5),"") AS substructure,
-        IFNULL(h.sub_size,"") AS subsize,IFNULL(b.bank_name,"")as bank_name,IFNULL(b.account_number,"")as account_number,
+        IFNULL(h.sub_size,"") AS subsize,IFNULL(b.bank_name,"") AS bank_name,IFNULL(b.account_number,"") AS account_number,
         IFNULL(GROUP_CONCAT(DISTINCT(i.INCOME_SOURCE)),"") AS income_source,
         IFNULL(SUM(i.INCOME_SUM),"") AS income_sum
         FROM people p,move m,house h,bank b,income i WHERE p.master = 1 AND p.fid = m.fid AND p.fid = h.fid AND p.fid = b.fid AND p.fid = i.fid

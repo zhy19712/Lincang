@@ -3,8 +3,8 @@
 <mapper namespace="com.bhidi.lincang.dao.DataEnteringMapper">
     <!--int insertPeople();-->
     <insert  id="insertPeople" parameterType="List">
-        insert into people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at,table_type)
-        values
+        INSERT INTO people (fid,reservoir,phone,prop,poor_reason,location,name,master,pid,gender,race,relation,education,profession,home_size,imm_num,interviewer,interviewee,created_at,table_type)
+        VALUES
         <foreach collection="list" separator="," item="people">
             (
             #{people.fid},#{people.reservoir},#{people.phone},#{people.prop},#{people.poor_reason},
@@ -16,21 +16,21 @@
     </insert >
     <!--int deletePeople(String fid);-->
     <delete id="deletePeople" parameterType="String">
-        delete from people where fid  = #{fid}
+        DELETE FROM people WHERE fid  = #{fid}
     </delete>
     <!--int insertMove(Move move);-->
     <insert  id="insertMove" parameterType="com.bhidi.lincang.bean.Move">
-        insert into move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
-        values( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
+        INSERT INTO move (fid,from_city,from_district,from_town,from_village,from_group,from_remark,to_city,to_district,to_town,to_village,to_group,to_remark)
+        VALUES( #{fid},#{from_city},#{from_district},#{from_town},#{from_village},#{from_group},#{from_remark},
         #{to_city},#{to_district},#{to_town},#{to_village},#{to_group},#{to_remark} )
     </insert >
     <!--int deleteMove(String fid);-->
     <delete id="deleteMove" parameterType="String">
-        delete from move where fid  = #{fid}
+        DELETE FROM move WHERE fid  = #{fid}
     </delete>
     <!--int updateMove(Move move);-->
     <update  id="updateMove" parameterType="com.bhidi.lincang.bean.Move">
-        update move
+        UPDATE move
         <trim prefix="set" suffixOverrides=",">
             <if test="from_city!=null">from_city = #{from_city},</if>
             <if test="from_district!=null">from_district = #{from_district},</if>
@@ -45,41 +45,41 @@
             <if test="to_group!=null">to_group = #{to_group},</if>
             <if test="to_remark!=null">to_remark = #{to_remark},</if>
         </trim>
-        where fid = #{fid}
+        WHERE fid = #{fid}
     </update>
     <!--int insertBank(Bank bank);-->
     <insert  id="insertBank" parameterType="com.bhidi.lincang.bean.Bank">
-        insert into bank (fid,account_name,bank_name,account_number)
-        values( #{fid},#{account_name},#{bank_name},#{account_number} )
+        INSERT INTO bank (fid,account_name,bank_name,account_number)
+        VALUES( #{fid},#{account_name},#{bank_name},#{account_number} )
     </insert >
     <!--int deleteBank(String fid);-->
     <delete id="deleteBank" parameterType="String">
-        delete from bank where fid  = #{fid}
+        DELETE FROM bank WHERE fid  = #{fid}
     </delete>
     <!--int updateBank(Bank bank);-->
     <update  id="updateBank" parameterType="com.bhidi.lincang.bean.Bank">
-        update bank
+        UPDATE bank
         <trim prefix="set" suffixOverrides=",">
             <if test="account_name!=null">account_name = #{account_name},</if>
             <if test="bank_name!=null">bank_name = #{bank_name},</if>
             <if test="account_number!=null">account_number = #{account_number},</if>
         </trim>
-        where fid = #{fid}
+        WHERE fid = #{fid}
     </update>
     <!--int insertHouse(House house);-->
     <insert  id="insertHouse" parameterType="com.bhidi.lincang.bean.House">
-        insert into house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
-        values( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},
+        INSERT INTO house (fid,main_size,main_structure1,main_structure2,main_structure3,main_structure4,main_structure5,main_remark,sub_size,sub_structure1,sub_structure2,sub_structure3,sub_structure4,sub_structure5,sub_remark)
+        VALUES( #{fid},#{main_size},#{main_structure1},#{main_structure2},#{main_structure3},#{main_structure4},#{main_structure5},
         #{main_remark},#{sub_size},#{sub_structure1},#{sub_structure2},#{sub_structure3},#{sub_structure4},#{sub_structure5},
         #{sub_remark} )
     </insert >
     <!--int deleteHouse(String fid);-->
     <delete id="deleteHouse" parameterType="String">
-        delete from house where fid  = #{fid}
+        DELETE FROM house WHERE fid  = #{fid}
     </delete>
     <!--int updateHouse(House house);-->
     <update  id="updateHouse" parameterType="com.bhidi.lincang.bean.House">
-        update house
+        UPDATE house
         <trim prefix="set" suffixOverrides=",">
             <if test="main_size!=null">main_size = #{main_size},</if>
             <if test="main_structure1!=null">main_structure1 = #{main_structure1},</if>
@@ -96,12 +96,12 @@
             <if test="sub_structure5!=null">sub_structure5 = #{sub_structure5},</if>
             <if test="sub_remark!=null">sub_remark = #{sub_remark},</if>
         </trim>
-        where fid = #{fid}
+        WHERE fid = #{fid}
     </update>
     <!--int insertIncome(List<Income> incomeList);-->
     <insert  id="insertIncome" parameterType="List">
-        insert into income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
-        values
+        INSERT INTO income (fid,income_source,income_cate,income_quantity,income_unit,income_sum,remark)
+        VALUES
         <foreach collection="list" separator="," item="income">
             (
             #{income.fid},#{income.income_source},#{income.income_cate},#{income.income_quantity},#{income.income_unit},
@@ -111,12 +111,12 @@
     </insert >
     <!--int deleteIncome(String fid);-->
     <delete id="deleteIncome" parameterType="String">
-        delete from income where fid  = #{fid}
+        DELETE FROM income WHERE fid  = #{fid}
     </delete>
     <!--int insertOutcome(List<Outcome> outcomeList);-->
     <insert  id="insertOutcome" parameterType="List">
-        insert into outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
-        values
+        INSERT INTO outcome (fid,outcome_source,outcome_cate,outcome_quantity,outcome_unit,outcome_sum,remark)
+        VALUES
         <foreach collection="list" separator="," item="outcome">
             (
             #{outcome.fid},#{outcome.outcome_source},#{outcome.outcome_cate},#{outcome.outcome_quantity},#{outcome.outcome_unit},
@@ -126,7 +126,7 @@
     </insert >
     <!--int deleteOutcome(String fid);-->
     <delete id="deleteOutcome" parameterType="String">
-        delete from outcome where fid  = #{fid}
+        DELETE FROM outcome WHERE fid  = #{fid}
     </delete>
 
 </mapper>

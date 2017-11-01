@@ -3,22 +3,22 @@
 <mapper namespace="com.bhidi.lincang.dao.PictureMapper">
     <!--List<PictureCounty> queryCountyInfo();-->
     <select id="queryCountyInfo" resultType="com.bhidi.lincang.bean.PictureCounty">
-        SELECT COUNT(p.name) as NUM,TO_DISTRICT as countyName
-        FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`
+        SELECT COUNT(p.name) AS NUM,TO_DISTRICT AS countyName
+        FROM move m INNER JOIN people p
+        ON m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`
     </select>
 
     <!--List<PictureCounty> queryTownInfo();-->
     <select id="queryTownInfo" resultType="com.bhidi.lincang.bean.PictureTown">
-        SELECT TO_DISTRICT as countyName,count(p.name) as NUM,TO_TOWN as townName
-        FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.TO_TOWN
+        SELECT TO_DISTRICT AS countyName,count(p.name) AS NUM,TO_TOWN AS townName
+        FROM move m INNER JOIN people p
+        ON m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.TO_TOWN
     </select>
    <!-- List<PictureVillage> queryVillageInfo();-->
     <select id="queryVillageInfo" resultType="com.bhidi.lincang.bean.PictureVillage">
-        SELECT TO_DISTRICT as countyName,count(p.name) as NUM,TO_TOWN as townName,TO_VILLAGE as villageName
-        FROM move m inner join people p
-        on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.TO_TOWN,m.TO_VILLAGE
+        SELECT TO_DISTRICT AS countyName,count(p.name) AS NUM,TO_TOWN AS townName,TO_VILLAGE AS villageName
+        FROM move m INNER JOIN people p
+        ON m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.TO_TOWN,m.TO_VILLAGE
     </select>
     <!--int pictureSum();-->
     <select id="pictureSum" resultType="int">

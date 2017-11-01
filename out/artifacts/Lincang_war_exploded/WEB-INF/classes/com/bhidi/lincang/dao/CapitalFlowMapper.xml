@@ -5,44 +5,44 @@
     <!-- int submitData(Map map);-->
     <insert  id="submitData" parameterType="Map" useGeneratedKeys="true"
     keyProperty="id">
-        insert into capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status,guihuakeshenqing,quxianshenqingren)
-        values( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status},#{guihuakeshenqing},#{quxianshenqingren})
+        INSERT INTO capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status,guihuakeshenqing,quxianshenqingren)
+        VALUES( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status},#{guihuakeshenqing},#{quxianshenqingren})
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
-        select IFNULL(id,'')as id,
-         IFNULL(title,'')as title,
-         IFNULL(create_time,'')as create_time,
-         IFNULL(report_person,'')as report_person,
-         IFNULL(report_reason,'')as report_reason,
-         IFNULL(report_quarter,'')as report_quarter,
-         IFNULL(report_text,'')as report_text,
-         IFNULL(report_failname,'')as report_failname,
-         IFNULL(initiatorclass,'')as initiatorclass,
-         IFNULL(status,'')as status,
-         IFNULL(money_source,'')as money_source,
-         IFNULL(arrival_time,'')as arrival_time,
-         IFNULL(amount,'')as amount,
-         IFNULL(finance_time,'')as finance_time,
-         IFNULL(toarea_time,'')as toarea_time,
-         IFNULL(areaname,'')as areaname,
-         IFNULL(text,'')as text,
-         IFNULL(replytext,'')as replytext,
-         IFNULL(dealtext,'')as dealtext,
-         IFNULL(capitalflowinstruction,'')as capitalflowinstruction,
-         IFNULL(guihuakeshenqing,'')as guihuakeshenqing,
-         IFNULL(quxianshenqingren,'')as quxianshenqingren,
-         IFNULL(caiwuchuliren,'')as caiwuchuliren,
-         IFNULL(guihuachuliren,'')as guihuachuliren,
-         IFNULL(guihuapifuren,'')as guihuapifuren,
-         IFNULL(caiwuzhuanzhangren,'')as caiwuzhuanzhangren,
-         IFNULL(quxianbaocunren,'')as quxianbaocunren,
-         IFNULL(quxiantijiaoren,'')as quxiantijiaoren
-         from capitalflow where id = #{id}
+        SELECT IFNULL(id,'') AS id,
+         IFNULL(title,'') AS title,
+         IFNULL(create_time,'') AS create_time,
+         IFNULL(report_person,'') AS report_person,
+         IFNULL(report_reason,'') AS report_reason,
+         IFNULL(report_quarter,'') AS report_quarter,
+         IFNULL(report_text,'') AS report_text,
+         IFNULL(report_failname,'') AS report_failname,
+         IFNULL(initiatorclass,'') AS initiatorclass,
+         IFNULL(status,'') AS status,
+         IFNULL(money_source,'') AS money_source,
+         IFNULL(arrival_time,'') AS arrival_time,
+         IFNULL(amount,'') AS amount,
+         IFNULL(finance_time,'') AS finance_time,
+         IFNULL(toarea_time,'') AS toarea_time,
+         IFNULL(areaname,'') AS areaname,
+         IFNULL(text,'') AS text,
+         IFNULL(replytext,'') AS replytext,
+         IFNULL(dealtext,'') AS dealtext,
+         IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
+         IFNULL(guihuakeshenqing,'') AS guihuakeshenqing,
+         IFNULL(quxianshenqingren,'') AS quxianshenqingren,
+         IFNULL(caiwuchuliren,'') AS caiwuchuliren,
+         IFNULL(guihuachuliren,'') AS guihuachuliren,
+         IFNULL(guihuapifuren,'') AS guihuapifuren,
+         IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
+         IFNULL(quxianbaocunren,'') AS quxianbaocunren,
+         IFNULL(quxiantijiaoren,'') AS quxiantijiaoren
+         FROM capitalflow WHERE id = #{id}
     </select >
     <!--int updateCatipalDataById(Map<String, String> map);-->
     <update  id="updateCatipalDataById" parameterType="Map">
-        update capitalflow
+        UPDATE capitalflow
         <trim prefix="set" suffixOverrides=",">
             <if test="create_time!=null">create_time = #{create_time},</if>
             <if test="report_person!=null">report_person = #{report_person},</if>
@@ -69,6 +69,6 @@
             <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
             <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
-        where id = #{id}
+        WHERE id = #{id}
     </update >
 </mapper>
