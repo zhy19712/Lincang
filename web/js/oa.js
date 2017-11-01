@@ -214,8 +214,11 @@ $("#form_stuff .btn-primary").click(function () {
                 alert("提交成功");
                 $('#form_stuff').modal('hide');
             }else {
-                alert(data.result);
+                alert("删除失败")
             }
+        },
+        error:function () {
+            alert("系统错误");
         }
     };
     $("#fileForm").ajaxSubmit(options);

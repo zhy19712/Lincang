@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bhidi.lincang.dao.ReceiveFileMapper">
-    <!--String insert(ReceiveFile rfaa);-->
+    <!--int insert(ReceiveFile rfaa);-->
     <insert id="insert" parameterType="com.bhidi.lincang.bean.ReceiveFile">
         insert into receivefile(receivefileid,year, savetime,
         type, cometime,fileid, registrationnum,fileallid,
