@@ -48,6 +48,7 @@
         .mytable td{
             border-right: 1px solid red;
             border-bottom: 1px solid red;
+            padding: 0 3px;
         }
         .mytable input{
             width: 100%;
@@ -59,9 +60,17 @@
             border: none;
             resize: none;
             outline: none;
+            width: 99%;
+            height: 100px;
         }
         .red{
             color: red;
+        }
+        .text_left{
+            text-align: left;
+        }
+        p{
+            margin:0;
         }
     </style>
 </head>
@@ -369,57 +378,96 @@
 
 
                 <div class="modal-body" style="font-size: 0;width: 100%;">
-                    <div class="bgc_info">
+                    <%--<div class="bgc_info">--%>
+                        <%--<table class="mytable">--%>
+                            <%--<tbody>--%>
+                            <%--<tr>--%>
+                                <%--<td class="red">临沧(</td>--%>
+                                <%--<td><input type="text" name="dept"></td>--%>
+                                <%--<td style="padding: 0 15px;color: red;">)号</td>--%>
+                                <%--<td class="red" style="padding: 0 5px;">日期</td>--%>
+                                <%--<td><input type="text" name="author"></td>--%>
+                                <%--<td class="red" style="padding: 0 5px;">缓级</td>--%>
+                                <%--<td><input type="text" name="reviewer"></td>--%>
+                                <%--<td class="red" style="padding: 0 5px;">密级</td>--%>
+                                <%--<td><input type="text" name="reviewer"></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td colspan="5">--%>
+                                    <%--<p style="text-align: left;padding-left: 22px;color: red;">签发</p>--%>
+                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                <%--</td>--%>
+                                <%--<td colspan="2">--%>
+                                    <%--<p style="text-align: left;padding-left: 5px;color: red;">审稿</p>--%>
+                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                <%--</td>--%>
+                                <%--<td colspan="2">--%>
+                                    <%--<p style="text-align: left;padding-left: 5px;color: red;">会签</p>--%>
+                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td colspan="9">--%>
+                                    <%--<p style="text-align: left;padding-left: 22px;color: red;">抄报</p>--%>
+                                    <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                <%--</td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td class="red" style="width: 79px">抄送</td>--%>
+                                <%--<td colspan="8"><input type="text" name="keyword"></td>--%>
+                            <%--</tr>--%>
+                            <%--<tr>--%>
+                                <%--<td class="red" style="width: 79px;border-bottom: none;">发</td>--%>
+                                <%--<td colspan="8" style="border-bottom: none;"><input type="text" name="title"></td>--%>
+                            <%--</tr>--%>
+                            <%--</tbody>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+                    <div class="fawen_info">
                         <table class="mytable">
                             <tbody>
                             <tr>
                                 <td class="red">临沧(</td>
                                 <td><input type="text" name="dept"></td>
-                                <td style="padding: 0 15px;">)号</td>
-                                <td class="red" style="padding: 0 5px;">日期</td>
+                                <td class="red">)号</td>
+                                <td class="red">日期</td>
                                 <td><input type="text" name="author"></td>
-                                <td class="red" style="padding: 0 5px;">缓级</td>
+                                <td class="red">缓级</td>
                                 <td><input type="text" name="reviewer"></td>
-                                <td class="red" style="padding: 0 5px;">密级</td>
+                                <td class="red">密级</td>
                                 <td><input type="text" name="reviewer"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <p>签发</p>
+                                    <p class="red text-left">签发</p>
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
                                 <td colspan="2">
-                                    <p>审稿</p>
+                                    <p class="red text-left">审稿</p>
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
                                 <td colspan="2">
-                                    <p>会签</p>
+                                    <p class="red text-left">会签</p>
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="9">
-                                    <p>抄报</p>
+                                    <p class="red text-left">抄报</p>
                                     <textarea name="" cols="30" rows="10"></textarea>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="red" style="width: 79px">抄送</td>
+                                <td class="red">抄送</td>
                                 <td colspan="8"><input type="text" name="keyword"></td>
                             </tr>
                             <tr>
-                                <td class="red" style="width: 79px;border-bottom: none;">发</td>
-                                <td colspan="8" style="border-bottom: none;"><input type="text" name="title"></td>
+                                <td class="red">发</td>
+                                <td colspan="8"><input type="text" name="title"></td>
                             </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="fawen_info">
-                        <table class="mytable">
-                            <tbody>
                             <tr>
                                 <td class="red">拟稿单位</td>
-                                <td colspan="3"><input type="text" name="dept"></td>
+                                <td colspan="4"><input type="text" name="dept"></td>
                                 <td class="red">拟稿</td>
                                 <td><input type="text" name="author"></td>
                                 <td class="red">科室核稿</td>
@@ -427,7 +475,7 @@
                             </tr>
                             <tr>
                                 <td class="red">印刷</td>
-                                <td colspan="3"><input type="text" name="print"></td>
+                                <td colspan="4"><input type="text" name="print"></td>
                                 <td class="red">校对</td>
                                 <td><input type="text" name="revision"></td>
                                 <td class="red">份数</td>
@@ -435,18 +483,18 @@
                             </tr>
                             <tr>
                                 <td class="red">下载</td>
-                                <td colspan="9"></td>
+                                <td colspan="8"></td>
                             </tr>
                             <tr>
                                 <td class="red">主题词</td>
-                                <td colspan="7"><input type="text" name="keyword"></td>
+                                <td colspan="8"><input type="text" name="keyword"></td>
                             </tr>
                             <tr>
                                 <td class="red">标题</td>
-                                <td colspan="7"><input type="text" name="title"></td>
+                                <td colspan="8"><input type="text" name="title"></td>
                             </tr>
                             <tr>
-                                <td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                                <td colspan="9"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
                             </tr>
                             </tbody>
                         </table>
@@ -658,8 +706,8 @@
 
     function newForm() {
         $('#form_stuff input').val('');
-        $('#form_stuff').modal('show');
-//        $('#select_model').modal('show');
+//        $('#form_stuff').modal('show');
+        $('#select_model').modal('show');
     }
 
 

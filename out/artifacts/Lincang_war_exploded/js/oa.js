@@ -250,6 +250,21 @@ function del_file(number) {
 
 //  新建表单 表单提交
 $("#form_stuff .btn-primary").click(function () {
+    // var options  = {
+    //     url:'reveiceFileRegistration.do',
+    //     type:'post',
+    //     success:function(data)
+    //     {
+    //         console.log(data);
+    //         if(data.result == "success"){
+    //             alert("提交成功");
+    //             $('#form_stuff').modal('hide');
+    //         }else {
+    //             alert(data.result);
+    //         }
+    //     }
+    // };
+    // $("#fileForm").ajaxSubmit(options);
     var options  = {
         url:'/submitSendFile.do',
         type:'post',
