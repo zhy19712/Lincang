@@ -439,12 +439,12 @@
                             </div>
                         </div>
                         <div id="user_container" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                            <div class="user_1">user1</div>
-                            <div class="user_2">user1</div>
-                            <div class="user_3">user1</div>
-                            <div class="user_4">user1</div>
-                            <div class="user_5">user1</div>
-                            <div class="user_6">user1</div>
+                            <div class="user_1"></div>
+                            <div class="user_2"></div>
+                            <div class="user_3"></div>
+                            <div class="user_4"></div>
+                            <div class="user_5"></div>
+                            <div class="user_6"></div>
                         </div>
                     </div>
                     <div id="people_list" style="font-size: 12px;margin-left: 20px;line-height: 30px;">
