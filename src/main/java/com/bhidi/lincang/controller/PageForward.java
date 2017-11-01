@@ -49,7 +49,6 @@ public class PageForward {
         return "home";
     }
 
-
     @RequestMapping(value = "/oa", method = RequestMethod.GET)
     public String to_oa(){
         return "oa";
@@ -58,11 +57,10 @@ public class PageForward {
     @RequestMapping(value = "/yimin", method = RequestMethod.GET)
     public String to_yimin(){
         return "lincang-yimin";
-        /*return "yimin_temp";*/
     }
     @RequestMapping(value = "/money", method = RequestMethod.GET)
     public String to_money(){
-        /*return "money";*/
-        return "yimin_temp";
+        return "money";
+        /*return "yimin_temp";*/
     }
 }
