@@ -447,9 +447,9 @@
                             <div class="user_6">user1</div>
                         </div>
                     </div>
-                    <div id="people_list">
-                        <p><span>签批领导:</span><span id="leader"></span></p>
-                        <p><span>办理人员:</span><span id="people"></span></p>
+                    <div id="people_list" style="font-size: 12px;margin-left: 20px;line-height: 30px;">
+                        <p><span>签批领导:</span><span id="leader" style="margin-left: 10px;"></span></p>
+                        <p><span>办理人员:</span><span id="people" style="margin-left: 10px;"></span></p>
                     </div>
                     <div id="sel_model">
                         <div id="model">

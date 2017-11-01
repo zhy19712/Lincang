@@ -208,8 +208,8 @@ var id,status;
 function edit(that) {
     id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
     status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+    var kind = $(that).val();
     console.log(id,status);
-    $('#select_model').modal('show');
     $.ajax({
         url: "/getSendFileInfoBySendFileId.do",
         type: "post",
@@ -217,6 +217,8 @@ function edit(that) {
         dataType: "json",
         success: function (data) {
             console.log(data);
+            $("#leader").text(data.approver);
+            $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
             $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
             $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
@@ -263,6 +265,21 @@ function edit(that) {
             }
         }
     })
+    $('#select_model').modal('show');
+    $("#select_model input").attr("readonly",true);
+    if(status == "办公室审核处理"){
+        $("#select_model input").attr("readonly",false);
+        $("#people_list").css("display","none");
+        $("#sel_model").css("display","block");
+    }else {
+        $("#people_list").css("display","block");
+        $("#sel_model").css("display","none");
+    }
+    if(kind == "查看"){
+        $("#select_model .btn-primary").css("display","none");
+    }else if(kind == "编辑"){
+        $("#select_model .btn-primary").css("display","inline-block");
+    }
 }
 
 //  新建表单 表单提交
@@ -342,7 +359,12 @@ $("#select_model .btn-primary").click(function () {
         data: {text:mytext},
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            if(data.result == "success"){
+                alert("提交成功");
+                $("#select_model").modal("hide");
+            }else {
+                alert("提交失败");
+            }
         }
     })
 })

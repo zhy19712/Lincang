@@ -266,6 +266,15 @@ function edit(that) {
         }
     })
     $('#select_model').modal('show');
+    $("#select_model input").attr("readonly",true);
+    if(status == "办公室审核处理"){
+        $("#select_model input").attr("readonly",false);
+        $("#people_list").css("display","none");
+        $("#sel_model").css("display","block");
+    }else {
+        $("#people_list").css("display","block");
+        $("#sel_model").css("display","none");
+    }
     if(kind == "查看"){
         $("#select_model .btn-primary").css("display","none");
     }else if(kind == "编辑"){
@@ -350,7 +359,12 @@ $("#select_model .btn-primary").click(function () {
         data: {text:mytext},
         dataType: "json",
         success: function (data) {
-            console.log(data);
+            if(data.result == "success"){
+                alert("提交成功");
+                $("#select_model").modal("hide");
+            }else {
+                alert("提交失败");
+            }
         }
     })
 })
