@@ -17,13 +17,16 @@
 //         {"data": "ID"},
 //         {"data": "TITLE"},
 //         {"data": "CREATED_AT"},
+//         {"data": "CREATED_AT"},
+//         {"data": "CREATED_AT"},
+//         {"data": "CREATED_AT"},
 //         {"data": null}
 //     ],
 //     "columnDefs": [
 //         {
 //             "searchable": false,
 //             "orderable": false,
-//             "targets": [3],
+//             "targets": [5],
 //             "render" :  function(data,type,row) {
 //                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='detail(this)' value='查看'/>";
 //                 return html;
