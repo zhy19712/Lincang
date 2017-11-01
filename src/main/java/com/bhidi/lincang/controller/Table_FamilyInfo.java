@@ -68,6 +68,7 @@ public class Table_FamilyInfo {
 
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
+                searchValue = searchValue.replaceAll("'","");
                 sArray.add(" NAME like '%" + searchValue + "%'");
                 sArray.add(" GENDER like '%" + searchValue + "%'");
                 sArray.add(" RACE like '%" + searchValue + "%'");

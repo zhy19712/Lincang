@@ -58,6 +58,7 @@ public class Table_Stuff {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" ID like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
@@ -164,6 +165,7 @@ public class Table_Stuff {
         String searchValue = request.getParameter("search[value]");
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" ID like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
@@ -229,6 +231,4 @@ public class Table_Stuff {
         conn.close();
         return json;
     }
-
-
 }

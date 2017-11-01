@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,5 +52,33 @@ public class SendFileController {
         String result = new Gson().toJson(map);
         return result;
     }
-        //获取当前用户
+    /**
+     * 列表里的查看功能
+     * @param sendFileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getSendFileInfoBySendFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getSendFileInfoBySendFileId( String sendFileid ){
+        SendFile rf = sendFileServiceImp.getSendFileInfoBySendFileId(sendFileid);
+        String result = new Gson().toJson(rf);
+        return result;
+    }
+    /**
+     * 办公室的处理之后的提交按钮
+     * @param sf
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/updateSendFileInfoBySendFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String updateSendFileInfoBySendFileId( SendFile sf,HttpSession session ){
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        User user = (User)session.getAttribute("user");
+        sf.setOfficeprocesstime(sdf.format(now));
+        sf.setOfficeprocessperson(user.getName());
+        sf.setStatus("签批");
+        int er = sendFileServiceImp.updateSendFile(sf);
+        return "";
+    }
 }

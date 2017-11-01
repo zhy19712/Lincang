@@ -103,7 +103,7 @@ public class ExcelController {
         //删除已经上传但是内部有问题的Excel文件
         for( String s :resultRead){
             if( ! ("录入成功！".equals(s)) ){
-                errorList.add(s.split("-")[1]);
+                errorList.add(s);
                 if( !s.contains("数据库中已经存在你们家的信息") ){
                 //调用删除服务器上文件的方法！
                 String filePath =  s.split("-")[0];

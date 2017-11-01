@@ -23,31 +23,31 @@
 
     <!--ReceiveFile selectReceiveFileInfoById(String receivefileid);-->
     <select id="selectReceiveFileInfoById" resultType="com.bhidi.lincang.bean.ReceiveFile">
-        SELECT IFNULL(receivefileid,"") as receivefileid,IFNULL(year,"") as year,
-        IFNULL(savetime,"") as savetime,IFNULL(type,"") as type,
-        IFNULL(cometime,"") as cometime, IFNULL(fileid,"") as fileid,
-        IFNULL(registrationnum,"") as registrationnum,IFNULL(fileallid,"") as fileallid,
-        IFNULL(writtentime,"") as writtentime,IFNULL(title,"") as title,
-        IFNULL(attachmentpath,"") as attachmentpath,IFNULL(keyword,"") as keyword,
-        IFNULL(responsibleperson,"") as responsibleperson,
-        IFNULL(archivecopies,"") as archivecopies,IFNULL(pagenum,"") as pagenum,
-        IFNULL(secret,"") as secret,IFNULL(issues,"") as issues,IFNULL(receiveperson,"") as receiveperson,
-        IFNULL(comedepartment,"") as comedepartment,IFNULL(attachmentpagenum,"") as attachmentpagenum,
-        IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
-        IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
-        IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
-        IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname,
-        IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") as department1name,
-        IFNULL(department1person,"") as department1person,IFNULL(department1persondelete,"") as department1persondelete,
-        IFNULL(department2name,"") as department2name,IFNULL(department2person,"") as department2person,
-        IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
-        IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
-        IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
-        IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson,
-        IFNULL(attachmentdeleteperson,"") as attachmentdeleteperson
-        FROM receivefile
-        where receivefileid = #{receivefileid}
-    </select>
+    SELECT IFNULL(receivefileid,"") as receivefileid,IFNULL(year,"") as year,
+    IFNULL(savetime,"") as savetime,IFNULL(type,"") as type,
+    IFNULL(cometime,"") as cometime, IFNULL(fileid,"") as fileid,
+    IFNULL(registrationnum,"") as registrationnum,IFNULL(fileallid,"") as fileallid,
+    IFNULL(writtentime,"") as writtentime,IFNULL(title,"") as title,
+    IFNULL(attachmentpath,"") as attachmentpath,IFNULL(keyword,"") as keyword,
+    IFNULL(responsibleperson,"") as responsibleperson,
+    IFNULL(archivecopies,"") as archivecopies,IFNULL(pagenum,"") as pagenum,
+    IFNULL(secret,"") as secret,IFNULL(issues,"") as issues,IFNULL(receiveperson,"") as receiveperson,
+    IFNULL(comedepartment,"") as comedepartment,IFNULL(attachmentpagenum,"") as attachmentpagenum,
+    IFNULL(entitynum,"") as entitynum,IFNULL(distributionsituation,"") as distributionsituation,
+    IFNULL(oldfond,"") as oldfond,IFNULL(archivesituation,"") as archivesituation,
+    IFNULL(registrationdate,"") as registrationdate,IFNULL(circulationsituation,"") as circulationsituation,
+    IFNULL(dealsituation,"") as dealsituation,IFNULL(status,"") as status,IFNULL(reveivereregisterpersonname,"") as reveivereregisterpersonname,
+    IFNULL(modeltype,"") as modeltype,IFNULL(modelchoicename,"") as modelchoicename,IFNULL(department1name,"") as department1name,
+    IFNULL(department1person,"") as department1person,IFNULL(department1persondelete,"") as department1persondelete,
+    IFNULL(department2name,"") as department2name,IFNULL(department2person,"") as department2person,
+    IFNULL(department2persondelete,"") as department2persondelete,IFNULL(fenguanname,"") as fenguanname,
+    IFNULL(zhuguanname,"") as zhuguanname,IFNULL(fenguannamedelete,"") as fenguannamedelete,
+    IFNULL(zhuguannamedelete,"") as zhuguannamedelete,IFNULL(implementperson,"") as implementperson,
+    IFNULL(implementpersondelete,"") as implementpersondelete,IFNULL(confirmperson,"") as confirmperson,
+    IFNULL(attachmentdeleteperson,"") as attachmentdeleteperson
+    FROM receivefile
+    where receivefileid = #{receivefileid}
+</select>
 
     <!--String selectDepartmentNameByName(String department1);-->
     <select id="selectDepartmentNameByName" parameterType="String" resultType="String">

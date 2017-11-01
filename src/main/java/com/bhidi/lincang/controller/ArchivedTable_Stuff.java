@@ -55,6 +55,7 @@ public class ArchivedTable_Stuff {
         String searchValue = request.getParameter("search[value]");
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" ID like '%" + searchValue + "%'");
             sArray.add(" TITLE like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");

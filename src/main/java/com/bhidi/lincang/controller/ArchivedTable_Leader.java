@@ -58,6 +58,7 @@ public class ArchivedTable_Leader {
 
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" RID like '%" + searchValue + "%'");
             sArray.add(" CREATED_AT like '%" + searchValue + "%'");
             sArray.add(" DEPT like '%" + searchValue + "%'");

@@ -82,6 +82,7 @@ public class CapitalThingsFormController {
         String searchValue = request.getParameter("search[value]");
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
+            searchValue = searchValue.replaceAll("'","");
             sArray.add(" id like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
