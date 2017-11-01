@@ -167,7 +167,7 @@ public class SendFileDataTable {
             if( "市局办公室".equals(roleList.get(0)) ){
                 status = " AND ( (status = '办公室审核处理') OR (status = '办公室归档') OR ( status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%' ) OR ( status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' ) )";
             } else {
-                status = " AND ( (approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' )  )";
+                status = " AND ( (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' )  )";
             }
         }
         //获取请求次数

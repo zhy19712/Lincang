@@ -42,6 +42,8 @@ public class SendFileController {
             sf.setApplicant( user.getName() );
         }
         sf.setStatus("办公室审核处理");
+        sf.setApproverdelete("");
+        sf.setImplementpersondelete("");
 
         Map<String,Object> mapCondition = new HashMap();
         mapCondition.put("sendFile",sf);
