@@ -146,6 +146,34 @@
 // },0);
 
 
+//树形插件
+$('#tree_container').jstree({
+    "plugins" : ["checkbox"]
+});
+
+//选择处理人
+$("#select_people li input").focus(function () {
+    var text = $(this).siblings("span").text();
+    $("#sel_people>p").text(text);
+})
+//处理人集合
+var people_arr = [];
+$("#sel_people button").click(function () {
+    people_arr = [];
+    var peole_kind = $("#sel_people>p").text();
+    $.each($("#tree_container .jstree-leaf"),function (i,n) {
+        if($(n).attr("aria-selected") == "true"){
+            people_arr.push($(n).text())
+        }
+    })
+    var people = people_arr.toString();
+    if(peole_kind == "选择领导签批人"){
+        $("#lingdao").val(people);
+    }else if(peole_kind == "选择办理人"){
+        $("#banli").val(people);
+    }
+});
+
 
 // 多文件上传
 var fileIndex = 1;
@@ -174,207 +202,68 @@ function del_file(number) {
 }
 
 
-//新建表单 表单放弃
-// $("#form_stuff .btn-danger").click(function () {
-//         wipeData()
-// });
-
-//新建表单 表单关闭 x
-// $("#close_stuff").click(function(){
-//     wipeData()
-// });
-
-// 新建表单 表单保存
-// $("#form_stuff .btn-success").click(function () {
-//     var dept=  $("#input1").val();
-//     var author=  $("#input2").val();
-//     var reviewer=  $("#input3").val();
-//     var print=  $("#input4").val();
-//     var revision=  $("#input5").val();
-//     var copy=  $("#input6").val();
-//     var keyword=  $("#input8").val();
-//     var title=  $("#input9").val();
-//     var content=  $("#input10").val();
-//     var attachment= $("#filesUpload > span");
-//     var arrAttachment=[];
-//     var id=$("#oId").text();
-//     var created_at=$("#created_at").text();
-//     for(var i=0;i<attachment.length;i++){
-//         arrAttachment.push(attachment.eq(i).text());
-//     }
-//     var datas= {
-//         "dept":dept,
-//         "author":author,
-//         "reviewer":reviewer,
-//         "print":print,
-//         "revision":revision,
-//         "copy":copy,
-//         "keyword":keyword,
-//         "title":title,
-//         "content":content,
-//         "id":id,
-//         "created_at":created_at
-//     };
-//
-//     if(dept == ""){
-//         alert("拟稿单位不能为空");
-//     }else if(author == ""){
-//         alert("拟稿不能为空");
-//     }else if(title == ""){
-//         alert("标题不能为空");
-//     }else if(content == ""){
-//         alert("内容不能为空");
-//     }else{
-//         $.ajax({
-//             url: '/saveFormData.do',
-//             type: 'post',
-//             data: datas,
-//             dataType: 'json',
-//             async: false,
-//             contentType: "application/x-www-form-urlencoded; charset=utf-8",
-//             success: function (data) {
-//                 if(data){
-//                     alert("保存成功");
-//                 }else {
-//                     alert("保存失败");
-//                 }
-//                 $("#form_stuff").modal("hide");
-//                 wipeData();
-//             },
-//             error:function () {
-//                 alert("系统错误");
-//             }
-//         });
-//     }
-// });
-
 //  新建表单 表单提交
 $("#form_stuff .btn-primary").click(function () {
-    // var options  = {
-    //     url:'reveiceFileRegistration.do',
-    //     type:'post',
-    //     success:function(data)
-    //     {
-    //         console.log(data);
-    //         if(data.result == "success"){
-    //             alert("提交成功");
-    //             $('#form_stuff').modal('hide');
-    //         }else {
-    //             alert(data.result);
-    //         }
-    //     }
-    // };
-    // $("#fileForm").ajaxSubmit(options);
+    var options  = {
+        url:'/submitSendFile.do',
+        type:'post',
+        success:function(data)
+        {
+            console.log(data);
+            if(data.result == "success"){
+                alert("提交成功");
+                $('#form_stuff').modal('hide');
+            }else {
+                alert(data.result);
+            }
+        }
+    };
+    $("#fileForm").ajaxSubmit(options);
 });
 
-// #NewTable_Stuff 表格操作，查看按钮
-function detail(that) {
-    var kind = $(that).val();
-    $("#form-kind").text("表单详情");
-    $("#app1").css("display","none");
-    $("#app2").css("display","none");
-    $("#btn-save").css("display","none");
-    if(kind == "查看"){
-        $("#btn-submit").css("display","none");
-        $("#fileForm input").attr("readonly",true);
-        $("#fileForm textarea").attr("readonly",true);
-    }else {
-        $("#btn-submit").css("display","inline-block");
-        $("#fileForm input").attr("readonly",false);
-        $("#fileForm textarea").attr("readonly",false);
-    }
-    $("#btn-up").text("关闭").css("display","inline-block");
-    var oid = $(that).parents("tr").children("td:nth-child(1)").text();
-    var title = $(that).parents("tr").children("td:nth-child(2)").text();
-    var time = $(that).parents("tr").children("td:nth-child(3)").text();
-    $.ajax({
-        url: '/queryStuffById.do',
-        type: 'post',
-        data: "id="+oid,
-        dataType: 'json',
-        async: false,
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        success: function (data) {
-            $("#input1").val(data.dept);
-            $("#input2").val(data.author);
-            $("#input3").val(data.reviewer);
-            $("#input4").val(data.print);
-            $("#input5").val(data.revision);
-            $("#input6").val(data.copy);
-            $("#input8").val(data.keyword);
-            $("#input9").val(data.title);
-            $("#input10").val(data.content);
-            $("#oId").text(data.id);
-            $("#created_at").text(data.created_at);
-            $('#form_stuff').modal('show');
-        }
-    });
-}
-
-//删除按钮
-function deleteOrder(that) {
-    var oid = $(that).parents("tr").children("td:nth-child(1)").text();
-    $.ajax({
-        url: '/deleteStuffById.do',
-        type: 'post',
-        data: "id="+oid,
-        dataType: 'json',
-        async: false,
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        success: function (val) {
-            if(val){
-                newForm_stuff.ajax.url("/nform_stuff.do").load();
-                alert("删除成功")
-            }else {
-                alert("删除失败")
-            }
-        },
-        error:function () {
-            alert("系统错误");
-        }
-    })
-}
-
-// #comForm_stuff 表格操作，查看按钮
-function comdetail(that) {
-    $("#form-kind").text("表单详情");
-    $("#app1").css("display","block");
-    $("#app2").css("display","block");
-    $("#btn-save").css("display","none");
-    $("#btn-submit").css("display","none");
-    $("#fileForm input").attr("readonly",true);
-    $("#fileForm textarea").attr("readonly",true);
-    $("#btn-up").text("关闭").css("display","inline-block");
-    var oid = $(that).parents("tr").children("td:nth-child(1)").text();
-    var title = $(that).parents("tr").children("td:nth-child(2)").text();
-    var time = $(that).parents("tr").children("td:nth-child(3)").text();
-    $.ajax({
-        url: '/queryStuffById.do',
-        type: 'post',
-        data: "id="+oid,
-        dataType: 'json',
-        async: false,
-        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-        success: function (data) {
-            $("#input1").val(data.dept);
-            $("#input2").val(data.author);
-            $("#input3").val(data.reviewer);
-            $("#input4").val(data.print);
-            $("#input5").val(data.revision);
-            $("#input6").val(data.copy);
-            $("#input8").val(data.keyword);
-            $("#input9").val(data.title);
-            $("#input10").val(data.content);
-            $("#oId").text(data.id);
-            $("#created_at").text(data.created_at);
-            $('#form_stuff').modal('show');
-        }
-    })
-}
-
-
-//待办事务  编辑按钮
-function detail_office(that){
-
-}
+//办公室提交
+$("#select_model .btn-primary").click(function () {
+    var lingdao = $("#lingdao").val();
+    var banli = $("#banli").val();
+    var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
+    var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
+    var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
+    var secret = $("#select_model tr:nth-child(1) td:nth-child(9) input").val();
+    var qianfa = $("#select_model tr:nth-child(2) td:nth-child(1) textarea").val();
+    var shengao = $("#select_model tr:nth-child(2) td:nth-child(2) textarea").val();
+    var huiqian = $("#select_model tr:nth-child(2) td:nth-child(3) textarea").val();
+    var chaobao = $("#select_model tr:nth-child(3) td:nth-child(1) textarea").val();
+    var chaosong = $("#select_model tr:nth-child(4) td:nth-child(2) input").val();
+    var fa = $("#select_model tr:nth-child(5) td:nth-child(2) input").val();
+    var dept = $("#select_model tr:nth-child(6) td:nth-child(2) input").val();
+    var author = $("#select_model tr:nth-child(6) td:nth-child(4) input").val();
+    var reviewer = $("#select_model tr:nth-child(6) td:nth-child(6) input").val();
+    var print = $("#select_model tr:nth-child(7) td:nth-child(2) input").val();
+    var revision = $("#select_model tr:nth-child(7) td:nth-child(4) input").val();
+    var copy = $("#select_model tr:nth-child(7) td:nth-child(6) input").val();
+    var keyword = $("#select_model tr:nth-child(9) td:nth-child(2) input").val();
+    var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
+    var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
+    var text = new Object();
+    text.sn = sn;
+    text.date = date;
+    text.urgency = urgency;
+    text.secret = secret;
+    text.qianfa = qianfa;
+    text.shengao = shengao;
+    text.huiqian = huiqian;
+    text.chaobao = chaobao;
+    text.chaosong = chaosong;
+    text.fa = fa;
+    text.dept = dept;
+    text.author = author;
+    text.reviewer = reviewer;
+    text.print = print;
+    text.revision = revision;
+    text.copy = copy;
+    text.keyword = keyword;
+    text.title = title;
+    text.content = content;
+    console.log(lingdao,banli,text);
+})
 

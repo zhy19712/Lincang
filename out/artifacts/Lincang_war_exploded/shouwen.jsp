@@ -85,7 +85,6 @@
             width: 96%;
             margin: 0 auto;
             font-size: 0;
-            /*position: relative;*/
         }
         #sel_model>div{
             display: inline-block;
