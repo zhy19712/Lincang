@@ -643,6 +643,16 @@ $(function(){
 		}
     })
 
+	//获取总人数
+	$.ajax({
+		url: "/pictureSum.do",
+		type: "post",
+		dataType: "json",
+		success: function (data) {
+			$("#total_people").text(data)
+        }
+	})
+
 
 	//区县列表信息
     var mytable1 = $('#table1').DataTable({
@@ -711,7 +721,6 @@ $(function(){
     $("#jqprint").click(function () {
         jQuery('#jqtable').print();
     });
-
 
 
     //所有信息展示表格

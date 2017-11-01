@@ -649,7 +649,7 @@ $(function(){
 		type: "post",
 		dataType: "json",
 		success: function (data) {
-			console.log(data);
+			$("#total_people").text(data)
         }
 	})
 
@@ -723,7 +723,6 @@ $(function(){
     });
 
 
-
     //所有信息展示表格
     var allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
@@ -770,6 +769,14 @@ $(function(){
 
 
     //统计分析图表
+	$.ajax({
+		url: "/numOfKind.do",
+		type: "post",
+		dataType: "json",
+		success: function (data) {
+			console.log(data)
+        }
+	})
 	var echart1 = echarts.init(document.getElementById('container1'));
 	var echart2 = echarts.init(document.getElementById('container2'));
     var option = {

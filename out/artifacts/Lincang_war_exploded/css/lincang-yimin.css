@@ -99,6 +99,7 @@
 }
 #content{
   position: relative;
+  top: -14px;
 }
 #data_input,#data_analysis{
   position: absolute;
@@ -461,9 +462,13 @@ td{
 }
 #new_table ul{
     margin-top: 10px;
+    margin: 0;
+    padding: 0;
 }
 #new_table ul li{
-    margin-top: 20px;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
 }
 #new_table ul li:first-child,#new_table ul li:nth-child(2){
     display: inline-block;
