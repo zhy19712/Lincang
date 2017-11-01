@@ -72,13 +72,23 @@ public class SendFileController {
     @ResponseBody
     @RequestMapping(value="/updateSendFileInfoBySendFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String updateSendFileInfoBySendFileId( SendFile sf,HttpSession session ){
-        Date now = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         User user = (User)session.getAttribute("user");
-        sf.setOfficeprocesstime(sdf.format(now));
-        sf.setOfficeprocessperson(user.getName());
-        sf.setStatus("签批");
-        int er = sendFileServiceImp.updateSendFile(sf);
-        return "";
+        Map<String,Object> mapCondition = new HashMap();
+        mapCondition.put("sendFile",sf);
+        mapCondition.put("user",user);
+        int er = 0;
+        try {
+            er = sendFileServiceImp.updateSendFile(mapCondition);
+        } catch (Exception e) {
+            er = -1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( er == -1){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
     }
 }
