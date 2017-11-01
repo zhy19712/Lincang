@@ -335,7 +335,7 @@ $("#select_model .btn-primary").click(function () {
     text.title = title;
     text.content = content;
     console.log(lingdao,banli,text);
-    var mytext = JSON.toString(text);
+    var mytext = JSON.stringify(text);
     // $.ajax({
     //     url: "",
     //     type: "post",
