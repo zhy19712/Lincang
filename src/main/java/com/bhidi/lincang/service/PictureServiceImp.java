@@ -14,18 +14,19 @@ public class PictureServiceImp implements PictureServiceInf {
     @Autowired
     PictureMapper pictureMapper;
 
-
     public List<PictureCounty> queryCountyInfo() {
         return pictureMapper.queryCountyInfo();
     }
-
 
     public List<PictureTown> queryTownInfo() {
         return pictureMapper.queryTownInfo();
     }
 
-
     public List<PictureVillage> queryVillageInfo() {
         return pictureMapper.queryVillageInfo();
+    }
+
+    public int pictureSum() {
+        return pictureMapper.pictureSum();
     }
 }

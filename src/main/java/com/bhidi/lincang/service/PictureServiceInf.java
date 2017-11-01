@@ -12,4 +12,6 @@ public interface PictureServiceInf {
     List<PictureTown> queryTownInfo();
 
     List<PictureVillage> queryVillageInfo();
+
+    int pictureSum();
 }

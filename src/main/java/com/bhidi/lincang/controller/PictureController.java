@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.SynchronousQueue;
 
 @Controller
 public class PictureController {
@@ -93,5 +94,14 @@ public class PictureController {
         String result = gson.toJson(map);
         System.out.println(result);
         return result;
+    }
+    /**
+     * 处理前台地图上总的移民数
+     */
+    @ResponseBody
+    @RequestMapping(value="/pictureSum",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String pictureSum(){
+        int sum = pictureServiceImp.pictureSum();
+        return sum+"";
     }
 }

@@ -20,5 +20,10 @@
         FROM move m inner join people p
         on m.`FID` = p.`FID` GROUP BY m.`TO_DISTRICT`,m.TO_TOWN,m.TO_VILLAGE
     </select>
+    <!--int pictureSum();-->
+    <select id="pictureSum" resultType="int">
+        SELECT count(*) AS intsum
+        FROM people
+    </select>
 
 </mapper>
