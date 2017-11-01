@@ -93,7 +93,7 @@ public class TableAddByName {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE m.TO_DISTRICT = '"+ name +"' AND p.`MASTER` = '1'";
+                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM people p INNER JOIN move m ON p.`FID` = m.`FID` WHERE (m.TO_DISTRICT = '"+ name +"' OR m.TO_TOWN = '"+ name +"') AND p.`MASTER` = '1'";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
