@@ -58,9 +58,15 @@ public class PageForward {
     public String to_yimin(){
         return "lincang-yimin";
     }
+
     @RequestMapping(value = "/money", method = RequestMethod.GET)
     public String to_money(){
         return "money";
         /*return "yimin_temp";*/
+    }
+
+    @RequestMapping(value = "/tofeiwenjianguanli", method = RequestMethod.GET)
+    public String tofeiwenjianguanli(){
+        return "feiwenjianguanli";
     }
 }

@@ -166,6 +166,7 @@
                             <li class="nav-header">协同办公</li>
                             <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
                             <li><a href="/shouwen.jsp"><i class="glyphicon glyphicon-edit"></i><span> 收文管理</span></a></li>
+                            <li><a href="/tofeiwenjianguanli.htm"><i class="glyphicon glyphicon-edit"></i><span> 非文件管理</span></a></li>
                         </ul>
                     </div>
                 </div>
