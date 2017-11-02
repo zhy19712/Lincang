@@ -28,7 +28,7 @@
         IFNULL(approver,"") AS approver,IFNULL(approverdelete,"") AS approverdelete,
         IFNULL(approvertime,"") AS approvertime,
         IFNULL(implementperson,"") AS implementperson,IFNULL(implementpersondelete,"") AS implementpersondelete,
-        IFNULL(implementpersontime,"") AS implementpersontime,
+        IFNULL(implementpersontime,"") AS implementpersontime,IFNULL(result,"") AS result,
         IFNULL(confirmperson,"") AS confirmperson,IFNULL(confirmtime,"") AS confirmtime
         FROM sendfile
         WHERE sendfileid = #{sendfileid}

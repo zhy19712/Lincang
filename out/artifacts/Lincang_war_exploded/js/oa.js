@@ -282,8 +282,10 @@ function edit(that) {
     $("#select_model .btn-primary").text("提交");
     $('#select_model').modal('show');
     $("#select_model input").attr("readonly",true);
+    $("#select_model textarea").attr("readonly",true);
     if(status == "办公室审核处理"){
         $("#select_model input").attr("readonly",false);
+        $("#select_model textarea").attr("readonly",false);
         if(kind == "查看"){
             $("#people_list").css("display","none");
             $("#sel_model").css("display","none");
