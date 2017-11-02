@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.NonFileManagementMapper">
+    <!--int insert(NonFileManagement nfm);-->
+    <insert id="insert" parameterType="com.bhidi.lincang.bean.NonFileManagement">
+        INSERT INTO nonfilemanagement(nonfileid,title,formsubmitperson,infokind,content,
+        attachmentpath,submitperson,submittime,officecontent,officetime,status)
+        VALUES (#{nonfileid},#{title},#{formsubmitperson},#{infokind},#{content},
+        #{attachmentpath},#{submitperson},#{submittime},#{officecontent},#{officetime},#{status});
+    </insert>
+</mapper>
