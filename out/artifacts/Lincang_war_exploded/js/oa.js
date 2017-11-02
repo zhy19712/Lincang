@@ -287,6 +287,9 @@ function edit(that) {
     if(status == "办公室审核处理"){
         $("#select_model input").attr("readonly",false);
         $("#select_model textarea").attr("readonly",false);
+        $("#select_model tr:nth-child(2) td:nth-child(1) textarea").attr("readonly",true);
+        $("#select_model tr:nth-child(2) td:nth-child(3) textarea").attr("readonly",true);
+        $("#select_model tr:nth-child(12) td:nth-child(2) textarea").attr("readonly",true);
         if(kind == "查看"){
             $("#people_list").css("display","none");
             $("#sel_model").css("display","none");
