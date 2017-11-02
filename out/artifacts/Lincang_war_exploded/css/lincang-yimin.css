@@ -401,6 +401,7 @@ td{
   border: none;
   outline: none;
   text-align: center;
+  padding: 0;
 }
 .bgc{
   background-color: #f2f2f2;
