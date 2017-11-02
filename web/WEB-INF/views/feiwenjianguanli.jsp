@@ -796,7 +796,7 @@
             step.goStep(2);
             $(".user_1").text(mydata.submitperson);
             $(".user_2").text("");
-        }else if(state == "结束"){
+        }else if(state == "签收" || state == "采用" ){
             step.goStep(3);
             $(".user_1").text(mydata.submitperson);
             $(".user_2").text(mydata.officeperson);
@@ -816,7 +816,7 @@
         text.infokind = infokind;
         text.content = content;
         text.officecontent = officecontent;
-        text.result = "签收";
+        text.status = "签收";
         console.log(text);
         var mytext = JSON.stringify(text)
         $.ajax({
@@ -848,7 +848,7 @@
         text.infokind = infokind;
         text.content = content;
         text.officecontent = officecontent;
-        text.result = "采用";
+        text.status = "采用";
         console.log(text);
         var mytext = JSON.stringify(text)
         $.ajax({
