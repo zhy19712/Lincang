@@ -69,7 +69,6 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
         User user = (User)mapCondition.get("user");
         Date now = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        nfm.setStatus("结束");
         nfm.setOfficeperson(user.getName());
         nfm.setOfficetime(sdf.format(now));
         return nonFileManagementMapper.updateNonFileManagement(nfm);
