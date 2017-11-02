@@ -46,14 +46,14 @@
         .mytable{
             width: 100%;
             font-size: 12px;
-            border-top: 1px solid red;
-            border-left: 1px solid red;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
             line-height: 30px;
             text-align: center;
         }
         .mytable td{
-            border-right: 1px solid red;
-            border-bottom: 1px solid red;
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
             padding: 0 3px;
         }
         .mytable input{
@@ -189,16 +189,6 @@
                     <div class="box-inner ">
                         <div class="box-content">
                             <div id="myTabContent" class="tab-content">
-                                <div class="tab-pane active" id="home">
-                                    <div>
-                                        <ul class="breadcrumb">
-                                            <li>
-                                                <a href="#">首页</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    home
-                                </div>
 
                                 <div class="tab-pane active" id="new1">
                                     <div>
@@ -777,8 +767,8 @@
                 console.log(data);
                 if(data.result == "success"){
                     alert("提交成功");
-                    table_refresh();
-                    acount();
+//                    table_refresh();
+//                    acount();
                     $('#form_stuff').modal('hide');
                 }else {
                     alert("提交失败")
