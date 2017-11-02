@@ -65,6 +65,7 @@
             <if test="implementperson!=null">implementperson = #{implementperson},</if>
             <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
             <if test="implementpersontime!=null">implementpersontime = #{implementpersontime},</if>
+            <if test="result!=null">result = #{result},</if>
             <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
             <if test="confirmtime!=null">confirmtime = #{confirmtime},</if>
         </trim>
