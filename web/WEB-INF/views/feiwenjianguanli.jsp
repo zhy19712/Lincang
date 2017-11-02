@@ -197,7 +197,7 @@
                                                 <a href="#">我的表单</a>
                                             </li>
                                             <li>
-                                                <a href="#">待办表单</a>
+                                                <a href="#">申请表单</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -725,9 +725,11 @@
     });
 
     //编辑查看按钮
+    var id;
     function edit(that) {
+        var mydata;
         var kind = $(that).val();
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
         $('#modle_handle').modal('show');
         if(kind == "查看"){
@@ -740,10 +742,12 @@
         console.log(kind,id);
         $.ajax({
             url: "/getNonFileManagementInfoByNonFileId.do",
+            async: false,
             type: "post",
             dataType: "json",
             data: {nonfileid:id},
             success: function (data) {
+                mydata = data;
                 console.log(data)
                 $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val(data.title);
                 $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val(data.formsubmitperson);
@@ -777,6 +781,14 @@
                 }
             }
         })
+        if(state == "办公室签收并处理"){
+            step.goStep(2);
+            $(".user_1").text(mydata.submitperson);
+        }else if(state == "结束"){
+            step.goStep(3);
+            $(".user_1").text(mydata.submitperson);
+            $(".user_2").text(mydata.officeperson);
+        }
     }
     //办公室提交
     $("#modle_handle .btn-primary").click(function () {
@@ -786,12 +798,45 @@
         var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
         var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
         var text = new Object();
+        text.nonfileid = id;
         text.title = title;
         text.formsubmitperson = formsubmitperson;
         text.infokind = infokind;
         text.content = content;
         text.officecontent = officecontent;
-        text.status = "签收";
+        text.result = "签收";
+        console.log(text);
+        var mytext = JSON.stringify(text)
+        $.ajax({
+            url: "/updateNonFileManagementInfo.do",
+            type: "post",
+            data: {text:mytext},
+            success: function (data) {
+                if(data.result == "success"){
+                    alert("提交成功");
+                    table_refresh();
+                    acount();
+                    $('#form_stuff').modal('hide');
+                }else {
+                    alert("提交失败");
+                }
+            }
+        })
+    })
+    $("#modle_handle .btn-success").click(function () {
+        var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
+        var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
+        var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
+        var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
+        var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
+        var text = new Object();
+        text.nonfileid = id;
+        text.title = title;
+        text.formsubmitperson = formsubmitperson;
+        text.infokind = infokind;
+        text.content = content;
+        text.officecontent = officecontent;
+        text.result = "采用";
         console.log(text);
         var mytext = JSON.stringify(text)
         $.ajax({
