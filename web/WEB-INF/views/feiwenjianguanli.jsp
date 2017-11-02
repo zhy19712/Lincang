@@ -393,7 +393,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="model_handel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="modle_handle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -447,7 +447,7 @@
                             </tr>
                             <tr>
                                 <td>办公室处理</td>
-                                <td><textarea cols="30" rows="10"></textarea></td>
+                                <td colspan="3"><textarea cols="30" rows="10"></textarea></td>
                             </tr>
                             </tbody>
                         </table>
@@ -458,7 +458,8 @@
 
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                    <a href="#"  class="btn btn-primary">提交</a>
+                    <a href="#"  class="btn btn-primary">签收</a>
+                    <a href="#"  class="btn btn-success">采用</a>
                 </div>
 
 
@@ -571,107 +572,107 @@
 
 
     //待办列表的datatables
-//    var dcl_table = $('#NewTable_Office').DataTable({
-//        ajax: {
-//            url: "/sendFileDataTableSecond.do",
-//            async:false
-//        },
-//        "order": [[1, 'asc']],
-//        "serverSide": true,
-//        "columns": [
-//            {"data": "sendfileid"},
-//            {"data": "title"},
-//            {"data": "createdtime"},
-//            {"data": "dept"},
-//            {"data": "status"},
-//            {"data": null}
-//        ],
-//        "columnDefs": [
-//            {
-//                "searchable": false,
-//                "orderable": false,
-//                "targets": [5],
-//                "render" :  function(data,type,row) {
-//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-//                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-//                    return html;
-//                }
-//            }
-//        ],
-//        "language": {
-//            "lengthMenu": "每页_MENU_ 条记录",
-//            "zeroRecords": "没有找到记录",
-//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-//            "infoEmpty": "无记录",
-//            "search": "搜索：",
-//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-//            "paginate": {
-//                "previous": "上一页",
-//                "next": "下一页"
-//            }
-//        }
-//    });
+    var dcl_table = $('#NewTable_Office').DataTable({
+        ajax: {
+            url: "/pendingNonFileManagementDataTable.do",
+            async:false
+        },
+        "order": [[1, 'asc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "nonfileid"},
+            {"data": "title"},
+            {"data": "infokind"},
+            {"data": "submitperson"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [5],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
+                }
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
 
     // 已办表单的datatables
 
-//    var ycl_table = $('#SubmittedTable_Office').DataTable({
-//        ajax: {
-//            url: "/sendFileDataTableThird.do"
-//        },
-//        "order": [[2, 'asc']],
-//        "serverSide": true,
-//        "columns": [
-//            {"data": "sendfileid"},
-//            {"data": "title"},
-//            {"data": "createdtime"},
-//            {"data": "dept"},
-//            {"data": "status"},
-//            {"data": null}
-//        ],
-//        "columnDefs": [
-//            {
-//                "searchable": false,
-//                "orderable": false,
-//                "targets": [5],
-//                "render" :  function(data,type,row) {
-//                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-//                    return html;
-//                }
-//            },
-//            {
-//                "searchable": false,
-//                "orderable": false,
-//                "targets": [0]
-//            }
-//        ],
-//        "language": {
-//            "lengthMenu": "每页_MENU_ 条记录",
-//            "zeroRecords": "没有找到记录",
-//            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-//            "infoEmpty": "无记录",
-//            "search": "搜索：",
-//            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-//            "paginate": {
-//                "previous": "上一页",
-//                "next": "下一页"
-//            }
-//        }
-//    });
+    var ycl_table = $('#SubmittedTable_Office').DataTable({
+        ajax: {
+            url: "/handledNonFileManagementDataTable.do"
+        },
+        "order": [[2, 'asc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "nonfileid"},
+            {"data": "title"},
+            {"data": "infokind"},
+            {"data": "submitperson"},
+            {"data": "status"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [5],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    return html;
+                }
+            },
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0]
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
     //表格刷新
-//    function table_refresh() {
-//        all_table.ajax.url("/sendFileDataTableFirst.do").load();
-//        dcl_table.ajax.url("/sendFileDataTableSecond.do").load();
-//        ycl_table.ajax.url("/sendFileDataTableThird.do").load();
-//    }
+    function table_refresh() {
+        all_table.ajax.url("/allNonFileManagementDataTable.do").load();
+        dcl_table.ajax.url("/pendingNonFileManagementDataTable.do").load();
+        ycl_table.ajax.url("/handledNonFileManagementDataTable.do").load();
+    }
 
     //待办事务的显示条数
-//    function acount(){
-//        var info=dcl_table.page.info();
-//        $("#nav_num").text(info.recordsTotal)
-//    }
-//    setTimeout(acount,0);
+    function acount(){
+        var info=dcl_table.page.info();
+        $("#nav_num").text(info.recordsTotal)
+    }
+    setTimeout(acount,0);
 
     // 多文件上传
     var fileIndex = 1;
@@ -709,8 +710,8 @@
                 console.log(data);
                 if(data.result == "success"){
                     alert("提交成功");
-//                    table_refresh();
-//                    acount();
+                    table_refresh();
+                    acount();
                     $('#form_stuff').modal('hide');
                 }else {
                     alert("提交失败")
@@ -727,11 +728,14 @@
     function edit(that) {
         var kind = $(that).val();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-        $('#model_handle').modal('show');
+        var state = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
+        $('#modle_handle').modal('show');
         if(kind == "查看"){
-            $("#model_handel .btn-primary").css("display","none");
+            $("#modle_handle .btn-primary").css("display","none");
+            $("#modle_handle .btn-success").css("display","none");
         }else if(kind == "编辑"){
-            $("#model_handel .btn-primary").css("display","inline-block");
+                $("#modle_handle .btn-primary").css("display","inline-block");
+                $("#modle_handle .btn-success").css("display","inline-block");
         }
         console.log(kind,id);
         $.ajax({
@@ -741,9 +745,62 @@
             data: {nonfileid:id},
             success: function (data) {
                 console.log(data)
+                $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val(data.title);
+                $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val(data.formsubmitperson);
+                $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val(data.infokind);
+                $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val(data.content);
+                $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val(data.officecontent);
+                $("#modle_handle tr:nth-child(4) td:nth-child(2)").empty();
+                var file_arr = data.attachmentpath.split(",");
+                if(data.attachmentpath != ""){
+                    var file_arr = data.attachmentpath.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\") + 1;
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(start,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div class='download_wrapper' style='display: inline-block;margin: 0 5px;'>"
+                            + "<iframe name='downloadFrame' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $("#modle_handle tr:nth-child(4) td:nth-child(2)").append(files);
+                        console.log(str)
+                    });
+                }
             }
         })
     }
+    //办公室提交
+    $("#model_handle .btn-primary").click(function () {
+        var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
+        var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
+        var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
+        var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
+        var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
+        var text = new Object();
+        text.title = title;
+        text.formsubmitperson = formsubmitperson;
+        text.infokind = infokind;
+        text.content = content;
+        text.officecontent = officecontent;
+        text.status = "签收";
+        $.ajax({
+            url: "/updateNonFileManagementInfo.do"
+            type: "post",
+            data: {text:text},
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    })
 </script>
 </body>
 </html>
