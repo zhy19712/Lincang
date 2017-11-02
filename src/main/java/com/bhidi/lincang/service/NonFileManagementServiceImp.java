@@ -1,6 +1,8 @@
 package com.bhidi.lincang.service;
 
 import com.bhidi.lincang.bean.NonFileManagement;
+import com.bhidi.lincang.bean.SendFile;
+import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.dao.NonFileManagementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,6 +63,18 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
         mapResult.put("result","success");
         return mapResult;
     }
+
+    public int updateNonFileManagement(Map<String, Object> mapCondition) {
+        NonFileManagement nfm = (NonFileManagement)mapCondition.get("nonfilemanagement");
+        User user = (User)mapCondition.get("user");
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        nfm.setStatus("结束");
+        nfm.setOfficeperson(user.getName());
+        nfm.setOfficetime(sdf.format(now));
+        return nonFileManagementMapper.updateNonFileManagement(nfm);
+    }
+
     /**
      * 删除文件
      */

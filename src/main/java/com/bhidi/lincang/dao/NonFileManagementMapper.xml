@@ -8,4 +8,19 @@
         VALUES (#{nonfileid},#{title},#{formsubmitperson},#{infokind},#{content},
         #{attachmentpath},#{submitperson},#{submittime},#{officecontent},#{officetime},#{status});
     </insert>
+    <!--int updateNonFileManagement(NonFileManagement nfm);-->
+    <update id="updateNonFileManagement" parameterType="com.bhidi.lincang.bean.NonFileManagement">
+        UPDATE nonfilemanagement
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title!=null">title = #{title},</if>
+            <if test="formsubmitperson!=null">formsubmitperson = #{formsubmitperson},</if>
+            <if test="infokind!=null">infokind = #{infokind},</if>
+            <if test="content!=null">content = #{content},</if>
+            <if test="officeperson!=null">officeperson = #{officeperson},</if>
+            <if test="officecontent!=null">officecontent = #{officecontent},</if>
+            <if test="officetime!=null">officetime = #{officetime},</if>
+            <if test="status!=null">status = #{status},</if>
+        </trim>
+        WHERE nonfileid = #{nonfileid}
+    </update>
 </mapper>
