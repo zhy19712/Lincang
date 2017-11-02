@@ -13,7 +13,6 @@ public class NonFileManagement {
     private String officeperson;
     private String officecontent;
     private String officetime;
-    private String result;
     private String status;
 
     public NonFileManagement() {
@@ -27,7 +26,7 @@ public class NonFileManagement {
         this.status = status;
     }
 
-    public NonFileManagement(int id, String nonfileid, String title, String formsubmitperson, String infokind, String content, String attachmentpath, String submitperson, String submittime, String officeperson, String officecontent, String officetime, String result, String status) {
+    public NonFileManagement(int id, String nonfileid, String title, String formsubmitperson, String infokind, String content, String attachmentpath, String submitperson, String submittime, String officeperson, String officecontent, String officetime, String status) {
         this.id = id;
         this.nonfileid = nonfileid;
         this.title = title;
@@ -40,7 +39,6 @@ public class NonFileManagement {
         this.officeperson = officeperson;
         this.officecontent = officecontent;
         this.officetime = officetime;
-        this.result = result;
         this.status = status;
     }
 
@@ -140,14 +138,6 @@ public class NonFileManagement {
         this.officetime = officetime;
     }
 
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -171,7 +161,6 @@ public class NonFileManagement {
                 ", officeperson='" + officeperson + '\'' +
                 ", officecontent='" + officecontent + '\'' +
                 ", officetime='" + officetime + '\'' +
-                ", result='" + result + '\'' +
                 ", status='" + status + '\'' +
                 '}';
     }
