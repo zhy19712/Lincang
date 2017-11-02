@@ -54,6 +54,18 @@ public class NonFileManagementController {
         return result;
     }
     /**
+     * 列表里的查看功能
+     * @param nonfileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getNonFileManagementInfoByNonFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getNonFileManagementInfoByNonFileId( String nonfileid ){
+        NonFileManagement nfm = nonFileManagementServiceImp.getNonFileManagementInfoByNonFileId(nonfileid);
+        String result = new Gson().toJson(nfm);
+        return result;
+    }
+    /**
      * 办公室的处理之后的提交按钮
      * @param text
      * @return
@@ -62,14 +74,14 @@ public class NonFileManagementController {
     @RequestMapping(value="/updateNonFileManagementInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String updateNonFileManagementInfo( String text,HttpSession session ){
         JSONObject jsonobject = JSONObject.fromObject(text);
-        NonFileManagement nfm= (NonFileManagement)JSONObject.toBean(jsonobject,SendFile.class);
+        NonFileManagement nfm= (NonFileManagement)JSONObject.toBean(jsonobject,NonFileManagement.class);
         User user = (User)session.getAttribute("user");
         Map<String,Object> mapCondition = new HashMap();
         mapCondition.put("nonfilemanagement",nfm);
         mapCondition.put("user",user);
         int er = 0;
         try {
-            //er = nonFileManagementServiceImp.updateNonFileManagement(mapCondition);
+            er = nonFileManagementServiceImp.updateNonFileManagement(mapCondition);
         } catch (Exception e) {
             er = -1;
         }

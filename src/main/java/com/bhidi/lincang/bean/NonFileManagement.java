@@ -10,6 +10,7 @@ public class NonFileManagement {
     private String attachmentpath;
     private String submitperson;
     private String submittime;
+    private String officeperson;
     private String officecontent;
     private String officetime;
     private String status;
@@ -17,7 +18,15 @@ public class NonFileManagement {
     public NonFileManagement() {
     }
 
-    public NonFileManagement(int id, String nonfileid, String title, String formsubmitperson, String infokind, String content, String attachmentpath, String submitperson, String submittime, String officecontent, String officetime, String status) {
+    public NonFileManagement(String nonfileid, String title, String infokind, String submitperson, String status) {
+        this.nonfileid = nonfileid;
+        this.title = title;
+        this.infokind = infokind;
+        this.submitperson = submitperson;
+        this.status = status;
+    }
+
+    public NonFileManagement(int id, String nonfileid, String title, String formsubmitperson, String infokind, String content, String attachmentpath, String submitperson, String submittime, String officeperson, String officecontent, String officetime, String status) {
         this.id = id;
         this.nonfileid = nonfileid;
         this.title = title;
@@ -27,6 +36,7 @@ public class NonFileManagement {
         this.attachmentpath = attachmentpath;
         this.submitperson = submitperson;
         this.submittime = submittime;
+        this.officeperson = officeperson;
         this.officecontent = officecontent;
         this.officetime = officetime;
         this.status = status;
@@ -104,6 +114,14 @@ public class NonFileManagement {
         this.submittime = submittime;
     }
 
+    public String getOfficeperson() {
+        return officeperson;
+    }
+
+    public void setOfficeperson(String officeperson) {
+        this.officeperson = officeperson;
+    }
+
     public String getOfficecontent() {
         return officecontent;
     }
@@ -140,6 +158,7 @@ public class NonFileManagement {
                 ", attachmentpath='" + attachmentpath + '\'' +
                 ", submitperson='" + submitperson + '\'' +
                 ", submittime='" + submittime + '\'' +
+                ", officeperson='" + officeperson + '\'' +
                 ", officecontent='" + officecontent + '\'' +
                 ", officetime='" + officetime + '\'' +
                 ", status='" + status + '\'' +
