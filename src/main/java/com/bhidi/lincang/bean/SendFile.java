@@ -34,6 +34,7 @@ public class SendFile {
     private String implementperson;
     private String implementpersondelete;
     private String implementpersontime;
+    private String result;
     private String confirmperson;
     private String confirmtime;
 
@@ -48,7 +49,7 @@ public class SendFile {
         this.status = status;
     }
 
-    public SendFile(int id, String sendfileid, String createdtime, String applicant, String dept, String author, String reviewer, String print, String revision, String copy, String attachmentpath, String keyword, String title, String content, String officeprocesstime, String officeprocessperson, String status, String sn, String date, String urgency, String secret, String qianfa, String shengao, String huiqian, String chaobao, String chaosong, String fa, String approver, String approverdelete, String approvertime, String implementperson, String implementpersondelete, String implementpersontime, String confirmperson, String confirmtime) {
+    public SendFile(int id, String sendfileid, String createdtime, String applicant, String dept, String author, String reviewer, String print, String revision, String copy, String attachmentpath, String keyword, String title, String content, String officeprocesstime, String officeprocessperson, String status, String sn, String date, String urgency, String secret, String qianfa, String shengao, String huiqian, String chaobao, String chaosong, String fa, String approver, String approverdelete, String approvertime, String implementperson, String implementpersondelete, String implementpersontime, String result, String confirmperson, String confirmtime) {
         this.id = id;
         this.sendfileid = sendfileid;
         this.createdtime = createdtime;
@@ -82,6 +83,7 @@ public class SendFile {
         this.implementperson = implementperson;
         this.implementpersondelete = implementpersondelete;
         this.implementpersontime = implementpersontime;
+        this.result = result;
         this.confirmperson = confirmperson;
         this.confirmtime = confirmtime;
     }
@@ -350,6 +352,14 @@ public class SendFile {
         this.implementpersontime = implementpersontime;
     }
 
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
+
     public String getConfirmperson() {
         return confirmperson;
     }
@@ -402,6 +412,7 @@ public class SendFile {
                 ", implementperson='" + implementperson + '\'' +
                 ", implementpersondelete='" + implementpersondelete + '\'' +
                 ", implementpersontime='" + implementpersontime + '\'' +
+                ", result='" + result + '\'' +
                 ", confirmperson='" + confirmperson + '\'' +
                 ", confirmtime='" + confirmtime + '\'' +
                 '}';

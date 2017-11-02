@@ -28,7 +28,7 @@
         IFNULL(approver,"") AS approver,IFNULL(approverdelete,"") AS approverdelete,
         IFNULL(approvertime,"") AS approvertime,
         IFNULL(implementperson,"") AS implementperson,IFNULL(implementpersondelete,"") AS implementpersondelete,
-        IFNULL(implementpersontime,"") AS implementpersontime,
+        IFNULL(implementpersontime,"") AS implementpersontime,IFNULL(result,"") AS result,
         IFNULL(confirmperson,"") AS confirmperson,IFNULL(confirmtime,"") AS confirmtime
         FROM sendfile
         WHERE sendfileid = #{sendfileid}
@@ -65,6 +65,7 @@
             <if test="implementperson!=null">implementperson = #{implementperson},</if>
             <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
             <if test="implementpersontime!=null">implementpersontime = #{implementpersontime},</if>
+            <if test="result!=null">result = #{result},</if>
             <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
             <if test="confirmtime!=null">confirmtime = #{confirmtime},</if>
         </trim>
