@@ -34,8 +34,8 @@ public class NonFileManagementController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/nonFileManagementSubmit",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String nonFileManagementSubmit(HttpServletRequest request, HttpSession session, NonFileManagement nfm, @RequestParam("files") MultipartFile[] files){
+    @RequestMapping(value="/submitNonFileManagement",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String submitNonFileManagement(HttpServletRequest request, HttpSession session, NonFileManagement nfm, @RequestParam("files") MultipartFile[] files){
         //获取当前用户
         User user = (User)session.getAttribute("user");
         //取出来当前用户的账号名存储进NonFileManagement

@@ -769,26 +769,26 @@
 
     //  新建表单 表单提交
     $("#form_stuff .btn-primary").click(function () {
-//        var options  = {
-//            url:'/submitSendFile.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    table_refresh();
-//                    acount();
-//                    $('#form_stuff').modal('hide');
-//                }else {
-//                    alert("提交失败")
-//                }
-//            },
-//            error:function () {
-//                alert("系统错误");
-//            }
-//        };
-//        $("#fileForm").ajaxSubmit(options);
+        var options  = {
+            url:'/submitNonFileManagement.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    table_refresh();
+                    acount();
+                    $('#form_stuff').modal('hide');
+                }else {
+                    alert("提交失败")
+                }
+            },
+            error:function () {
+                alert("系统错误");
+            }
+        };
+        $("#fileForm").ajaxSubmit(options);
     });
 </script>
 </body>
