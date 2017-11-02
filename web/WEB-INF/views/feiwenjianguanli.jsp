@@ -108,7 +108,7 @@
             word-wrap: break-word;
             text-align: center;
             font-size: 20px;
-            width: 16.5%;
+            width: 33.3%;
         }
         .download_wrapper button{
             background: transparent;
@@ -370,7 +370,7 @@
                                 </tr>
                                 <tr>
                                     <td>上传附件</td>
-                                    <td colspan="9">
+                                    <td colspan="3">
                                         <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                             <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                             <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
@@ -403,7 +403,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>选择处理人</h3>
+                    <h3>办公室处理</h3>
                 </div>
 
 
@@ -412,11 +412,8 @@
                         <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                             <div class="step-header">
                                 <ul>
-                                    <li><p>发文起草</p></li>
-                                    <li><p>办公室审核处理</p></li>
-                                    <li><p>签批</p></li>
-                                    <li><p>处理处置</p></li>
-                                    <li><p>办公室归档</p></li>
+                                    <li><p>信息提交</p></li>
+                                    <li><p>办公室签收并处理</p></li>
                                     <li><p>结束</p></li>
                                 </ul>
                             </div>
@@ -425,88 +422,32 @@
                             <div class="user_1"></div>
                             <div class="user_2"></div>
                             <div class="user_3"></div>
-                            <div class="user_4"></div>
-                            <div class="user_5"></div>
-                            <div class="user_6"></div>
                         </div>
                     </div>
-                    <div class="fawen_info">
-                        <p class="red" style="font-size: 18px;text-align: center;line-height: 40px;">临沧市移民局发文稿纸</p>
+                    <div class="con_info">
                         <table class="mytable">
                             <tbody>
                             <tr>
-                                <td class="red">临沧(</td>
-                                <td><input type="text" name="dept"></td>
-                                <td class="red">)号</td>
-                                <td class="red">日期</td>
-                                <td><input type="text" name="author" id="time1"></td>
-                                <td class="red">缓级</td>
-                                <td><input type="text" name="reviewer"></td>
-                                <td class="red">密级</td>
-                                <td><input type="text" name="reviewer"></td>
+                                <td>标题</td>
+                                <td colspan="3"><input type="text" name="title"></td>
                             </tr>
                             <tr>
-                                <td colspan="5">
-                                    <p class="red text-left">签发</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
-                                </td>
-                                <td colspan="2">
-                                    <p class="red text-left">审稿</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
-                                </td>
-                                <td colspan="2">
-                                    <p class="red text-left">会签</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                <td>提交人</td>
+                                <td><input type="text" name="formsubmitperson"></td>
+                                <td>信息分类</td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>下载附件</td>
+                                <td colspan="3">
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="9">
-                                    <p class="red text-left">抄报</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="red">抄送</td>
-                                <td colspan="8"><input type="text" name="keyword"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">发</td>
-                                <td colspan="8"><input type="text" name="title"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">拟稿单位</td>
-                                <td colspan="4"><input type="text" name="dept"></td>
-                                <td class="red">拟稿</td>
-                                <td><input type="text" name="author"></td>
-                                <td class="red">科室核稿</td>
-                                <td><input type="text" name="reviewer"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">印刷</td>
-                                <td colspan="4"><input type="text" name="print"></td>
-                                <td class="red">校对</td>
-                                <td><input type="text" name="revision"></td>
-                                <td class="red">份数</td>
-                                <td><input type="text" name="copy"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">下载</td>
-                                <td colspan="8"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">主题词</td>
-                                <td colspan="8"><input type="text" name="keyword"></td>
-                            </tr>
-                            <tr>
-                                <td class="red">标题</td>
-                                <td colspan="8"><input type="text" name="title"></td>
-                            </tr>
-                            <tr>
-                                <td colspan="9"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>办理结果</td>
-                                <td colspan="8"><textarea name="content" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                                <td>办公室处理</td>
+                                <td><textarea cols="30" rows="10"></textarea></td>
                             </tr>
                             </tbody>
                         </table>
@@ -780,6 +721,18 @@
         };
         $("#fileForm").ajaxSubmit(options);
     });
+
+    //编辑查看按钮
+    function edit(that) {
+        var kind = $(that).val();
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        $('#model_handle').modal('show');
+        if(kind == "查看"){
+            $("#model_handel .btn-primary").css("display","none");
+        }else if(kind == "编辑"){
+            $("#model_handel .btn-primary").css("display","inline-block");
+        }
+    }
 </script>
 </body>
 </html>
