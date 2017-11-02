@@ -411,10 +411,13 @@ td{
 }
 #jqtable label{
   vertical-align: middle;
+  margin-top: 5px;
+  margin-bottom: 0 !important;
 }
 #jqtable li{
   display: inline-block;
   vertical-align: middle;
+  margin-left: 5px;
 }
 #btn-container{
   margin-top: 10px;
