@@ -800,6 +800,7 @@
             step.goStep(3);
             $(".user_1").text(mydata.submitperson);
             $(".user_2").text(mydata.officeperson);
+            $("#container ul li:nth-child(3) p").text(state);
         }
     }
     //办公室提交
