@@ -252,6 +252,7 @@ function edit(that) {
             $(".mytable tr:nth-child(9) td:nth-child(2) input").val(data.keyword);
             $(".mytable tr:nth-child(10) td:nth-child(2) input").val(data.title);
             $(".mytable tr:nth-child(11) td:nth-child(1) textarea").val(data.content);
+            $(".mytable tr:nth-child(12) td:nth-child(2) textarea").val(data.result);
             $(".mytable tr:nth-child(8) td:nth-child(2)").empty();
             var file_arr = data.attachmentpath.split(",");
             if(data.attachmentpath != ""){
