@@ -287,7 +287,7 @@
 
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已办列表</h2>
 
                                         </div>
                                         <div class="box-content">
@@ -520,6 +520,7 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="../../js/app.js"></script>
 <script>
 
     // 全部列表datatables
@@ -732,6 +733,16 @@
         }else if(kind == "编辑"){
             $("#model_handel .btn-primary").css("display","inline-block");
         }
+        console.log(kind,id);
+        $.ajax({
+            url: "/getNonFileManagementInfoByNonFileId.do",
+            type: "post",
+            dataType: "json",
+            data: {nonfileid:id},
+            success: function (data) {
+                console.log(data)
+            }
+        })
     }
 </script>
 </body>

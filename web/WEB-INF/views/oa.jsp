@@ -287,7 +287,7 @@
 
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 在办列表</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已办列表</h2>
 
                                         </div>
                                         <div class="box-content">
