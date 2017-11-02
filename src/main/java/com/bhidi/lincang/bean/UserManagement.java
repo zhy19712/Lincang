@@ -1,6 +1,6 @@
 package com.bhidi.lincang.bean;
 
-public class UserRegistration {
+public class UserManagement {
     //账号
     private String username;
     //密码
@@ -12,10 +12,10 @@ public class UserRegistration {
     //联系电话
     private String phone1;
 
-    public UserRegistration() {
+    public UserManagement() {
     }
 
-    public UserRegistration(String username, String pass, String name, String rolename, String phone1) {
+    public UserManagement(String username, String pass, String name, String rolename, String phone1) {
         this.username = username;
         this.pass = pass;
         this.name = name;
@@ -25,7 +25,7 @@ public class UserRegistration {
 
     @Override
     public String toString() {
-        return "UserRegistration{" +
+        return "UserManagement{" +
                 "username='" + username + '\'' +
                 ", pass='" + pass + '\'' +
                 ", name='" + name + '\'' +
