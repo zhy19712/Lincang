@@ -15,6 +15,7 @@
 <html>
 <head>
     <title>移民搬迁登记表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/jedate.css">
     <link rel="stylesheet" href="css/lincang-yimin.css">
@@ -80,7 +81,7 @@
     </div>
 </div>
 <form action="" style="width: 96%;margin: 10px auto;">
-    <table id="jqtable">
+    <table id="jqtable" border-collapse="separate">
         <tbody>
         <tr>
             <td colspan="9" id="fid"><p>移民搬迁登记表:<span></span></p></td>

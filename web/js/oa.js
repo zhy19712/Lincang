@@ -381,6 +381,7 @@ $("#select_model .btn-primary").click(function () {
     var keyword = $("#select_model tr:nth-child(9) td:nth-child(2) input").val();
     var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
     var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
+    var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
     var text = new Object();
     text.approver = lingdao;
     text.implementperson = banli;
@@ -405,6 +406,7 @@ $("#select_model .btn-primary").click(function () {
     text.keyword = keyword;
     text.title = title;
     text.content = content;
+    text.result = result;
     console.log(lingdao,banli,text);
     var mytext = JSON.stringify(text);
     $.ajax({
