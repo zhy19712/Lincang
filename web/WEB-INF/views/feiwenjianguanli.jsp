@@ -779,7 +779,7 @@
         })
     }
     //办公室提交
-    $("#model_handle .btn-primary").click(function () {
+    $("#modle_handle .btn-primary").click(function () {
         var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
         var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
         var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
@@ -792,12 +792,21 @@
         text.content = content;
         text.officecontent = officecontent;
         text.status = "签收";
+        console.log(text);
+        var mytext = JSON.stringify(text)
         $.ajax({
-            url: "/updateNonFileManagementInfo.do"
+            url: "/updateNonFileManagementInfo.do",
             type: "post",
-            data: {text:text},
+            data: {text:mytext},
             success: function (data) {
-                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    table_refresh();
+                    acount();
+                    $('#form_stuff').modal('hide');
+                }else {
+                    alert("提交失败");
+                }
             }
         })
     })
