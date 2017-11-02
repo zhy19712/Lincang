@@ -75,6 +75,10 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
         return nonFileManagementMapper.updateNonFileManagement(nfm);
     }
 
+    public NonFileManagement getNonFileManagementInfoByNonFileId(String nonfileid) {
+        return nonFileManagementMapper.selectNonFileManagementInfoByNonFileId(nonfileid);
+    }
+
     /**
      * 删除文件
      */

@@ -54,6 +54,18 @@ public class NonFileManagementController {
         return result;
     }
     /**
+     * 列表里的查看功能
+     * @param nonfileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getNonFileManagementInfoByNonFileId",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getNonFileManagementInfoByNonFileId( String nonfileid ){
+        NonFileManagement nfm = nonFileManagementServiceImp.getNonFileManagementInfoByNonFileId(nonfileid);
+        String result = new Gson().toJson(nfm);
+        return result;
+    }
+    /**
      * 办公室的处理之后的提交按钮
      * @param text
      * @return

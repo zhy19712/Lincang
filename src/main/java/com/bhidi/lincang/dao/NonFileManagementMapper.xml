@@ -8,6 +8,18 @@
         VALUES (#{nonfileid},#{title},#{formsubmitperson},#{infokind},#{content},
         #{attachmentpath},#{submitperson},#{submittime},#{officecontent},#{officetime},#{status});
     </insert>
+    <!--NonFileManagement selectNonFileManagementInfoByNonFileId(String nonfileid);-->
+    <select id="selectNonFileManagementInfoByNonFileId" parameterType="String" resultType="com.bhidi.lincang.bean.NonFileManagement">
+        SELECT IFNULL(nonfileid,"") AS nonfileid,IFNULL(title,"") AS title,
+        IFNULL(formsubmitperson,"") AS formsubmitperson,IFNULL(infokind,"") AS infokind,
+        IFNULL(content,"") AS content, IFNULL(attachmentpath,"") AS attachmentpath,
+        IFNULL(submitperson,"") AS submitperson,IFNULL(submittime,"") AS submittime,
+        IFNULL(officeperson,"") AS officeperson,IFNULL(officecontent,"") AS officecontent,
+        IFNULL(officetime,"") AS officetime,IFNULL(status,"") AS status
+        FROM nonfilemanagement
+        WHERE nonfileid = #{nonfileid}
+    </select>
+
     <!--int updateNonFileManagement(NonFileManagement nfm);-->
     <update id="updateNonFileManagement" parameterType="com.bhidi.lincang.bean.NonFileManagement">
         UPDATE nonfilemanagement
