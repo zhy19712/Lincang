@@ -154,6 +154,7 @@
             </div>
         </div>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
+        <span id="roleList" style="display:none;width:0;height:0;">${user.roleList}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -172,9 +173,9 @@
                         <li class="nav-header">我的表单</li>
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 申请表单</span></a></li>
 
-                        <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
-                        <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
+                        <li id="header2" class="nav-header">我的事务</li>
+                        <li id="dcl2"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
+                        <li id="ycl2"><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -524,6 +525,16 @@
 <script src="../../js/app.js"></script>
 <script>
 
+    var role = $("#roleList").text();
+    var last = role.lastIndexOf("]");
+    role = role.substring(1,last);
+    console.log(role);
+    if(role != "市局办公室"){
+        $("#header2").remove();
+        $("#dcl2").remove();
+        $("#ycl2").remove();
+    }
+
     // 全部列表datatables
 
     var all_table = $('#NewTable_Stuff').DataTable({
@@ -784,6 +795,7 @@
         if(state == "办公室签收并处理"){
             step.goStep(2);
             $(".user_1").text(mydata.submitperson);
+            $(".user_2").text("");
         }else if(state == "结束"){
             step.goStep(3);
             $(".user_1").text(mydata.submitperson);
@@ -816,7 +828,7 @@
                     alert("提交成功");
                     table_refresh();
                     acount();
-                    $('#form_stuff').modal('hide');
+                    $('#modle_handle').modal('hide');
                 }else {
                     alert("提交失败");
                 }
@@ -848,7 +860,7 @@
                     alert("提交成功");
                     table_refresh();
                     acount();
-                    $('#form_stuff').modal('hide');
+                    $('#modle_handle').modal('hide');
                 }else {
                     alert("提交失败");
                 }

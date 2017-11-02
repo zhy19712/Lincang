@@ -300,6 +300,10 @@ function edit(that) {
 
         step.goStep(2);
         $(".user_1").text(mydata.applicant);
+        $(".user_2").text("");
+        $(".user_3").text("");
+        $(".user_4").text("");
+        $(".user_5").text("");
     }else {
         $("#people_list").css("display","block");
         $("#sel_model").css("display","none");
@@ -307,6 +311,9 @@ function edit(that) {
             step.goStep(3);
             $(".user_1").text(mydata.applicant);
             $(".user_2").text(mydata.officeprocessperson);
+            $(".user_3").text("");
+            $(".user_4").text("");
+            $(".user_5").text("");
             $("#select_model tr:nth-child(2) td:nth-child(1) textarea").attr("readonly",false);
             $("#select_model tr:nth-child(2) td:nth-child(3) textarea").attr("readonly",false);
         }else if(status == "处理处置"){
@@ -314,6 +321,8 @@ function edit(that) {
             $(".user_1").text(mydata.applicant);
             $(".user_2").text(mydata.officeprocessperson);
             $(".user_3").text(mydata.approverdelete);
+            $(".user_4").text("");
+            $(".user_5").text("");
             $("#select_model tr:nth-child(12) td:nth-child(2) textarea").attr("readonly",false);
         }else if(status == "办公室归档"){
             step.goStep(5);
@@ -321,6 +330,7 @@ function edit(that) {
             $(".user_2").text(mydata.officeprocessperson);
             $(".user_3").text(mydata.approverdelete);
             $(".user_4").text(mydata.implementpersondelete);
+            $(".user_5").text("");
             $("#select_model .btn-primary").text("确认归档");
         }else if(status == "结束"){
             step.goStep(6);
