@@ -28,6 +28,7 @@
     <link rel="stylesheet" href="../../css/jquery.step.css">
     <link rel="stylesheet" href="../../js/themes/default/style.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
     <link rel="stylesheet" href="../../css/mycss.css">
     <link rel="stylesheet" href="../../css/oa.css">
 
@@ -519,7 +520,7 @@
                                 <td><input type="text" name="dept"></td>
                                 <td class="red">)号</td>
                                 <td class="red">日期</td>
-                                <td><input type="text" name="author"></td>
+                                <td><input type="text" name="author" id="time1"></td>
                                 <td class="red">缓级</td>
                                 <td><input type="text" name="reviewer"></td>
                                 <td class="red">密级</td>
@@ -586,7 +587,7 @@
                             </tr>
                             <tr>
                                 <td>办理结果</td>
-                                <td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                                <td colspan="8"><textarea name="content" cols="30" rows="10" style="width: 99%;"></textarea></td>
                             </tr>
                             </tbody>
                         </table>
