@@ -24,6 +24,11 @@
         <property name="password" value="${jdbc.password}"></property>
         <property name="jdbcUrl" value="${jdbc.jdbcurl}"></property>
         <property name="driverClass" value="${jdbc.driverclass}"></property>
+        <property name="initialPoolSize" value="10"/>
+        <property name="testConnectionOnCheckin" value="true"/>
+        <property name="idleConnectionTestPeriod" value="60"/>
+        <property name="testConnectionOnCheckout" value="false"/>
+        <property name="preferredTestQuery" value="SELECT 1"/>
     </bean>
 
     <!--Spring提供了一个类叫JdbcTemplate，便捷的操作数据库。自动获取连接关闭资源...

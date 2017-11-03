@@ -28,7 +28,7 @@ public class UserManagementController {
         return result;
     }
     @ResponseBody
-    @RequestMapping(value="/getDepartment",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/getDepartmenttttt",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String setUserInfo(UserManagement um){
         return "";
     }
