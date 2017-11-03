@@ -1,6 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.DepartmentAndStaff;
+import com.bhidi.lincang.bean.UserManagement;
 import com.bhidi.lincang.service.UserManagementServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,13 @@ public class UserManagementController {
     @RequestMapping(value="/getDepartment",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getDepartment(){
         //查询出所有的用户和相对应的角色
-        //List<DepartmentAndStaff> resList=  userManagementServiceImp.getDepartmentAndStaff();
-        //String result = new Gson().toJson(resList);
-        //return result;
+        List<String> departmentList=  userManagementServiceImp.getDepartment();
+        String result = new Gson().toJson(departmentList);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value="/getDepartment",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String setUserInfo(UserManagement um){
         return "";
     }
 }

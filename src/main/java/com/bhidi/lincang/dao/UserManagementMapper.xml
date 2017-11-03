@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.UserManagementMapper">
+    <!--List<String> selectDepartment();-->
+    <select id="selectDepartment" resultType="String">
+        SELECT rolename
+        FROM role
+    </select>
+    <!--int insert(SendFile sfa);-->
+    <insert id="insert" parameterType="com.bhidi.lincang.bean.SendFile">
+        INSERT INTO sendfile(sendfileid,createdtime,applicant,dept,author,reviewer,print,
+         revision,copy,attachmentpath,keyword,title,content,status,approverdelete,implementpersondelete)
+        VALUES (#{sendfileid},#{createdtime},#{applicant},#{dept},#{author},#{reviewer},#{print},
+         #{revision},#{copy},#{attachmentpath},#{keyword},#{title},#{content},#{status},
+         #{approverdelete},#{implementpersondelete});
+    </insert>
+
+
+    <!--int updateSendFile(SendFile sf);-->
+    <update id="updateSendFile" parameterType="com.bhidi.lincang.bean.SendFile">
+        UPDATE sendfile
+        <trim prefix="set" suffixOverrides=",">
+            <if test="dept!=null">dept = #{dept},</if>
+            <if test="author!=null">author = #{author},</if>
+            <if test="reviewer!=null">reviewer = #{reviewer},</if>
+            <if test="print!=null">print = #{print},</if>
+            <if test="revision!=null">revision = #{revision},</if>
+            <if test="copy!=null">copy = #{copy},</if>
+            <if test="keyword!=null">keyword = #{keyword},</if>
+            <if test="title!=null">title = #{title},</if>
+            <if test="content!=null">content = #{content},</if>
+            <if test="officeprocesstime!=null">officeprocesstime = #{officeprocesstime},</if>
+            <if test="officeprocessperson!=null">officeprocessperson = #{officeprocessperson},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="sn!=null">sn = #{sn},</if>
+            <if test="date!=null">date = #{date},</if>
+            <if test="urgency!=null">urgency = #{urgency},</if>
+            <if test="secret!=null">secret = #{secret},</if>
+            <if test="qianfa!=null">qianfa = #{qianfa},</if>
+            <if test="shengao!=null">shengao = #{shengao},</if>
+            <if test="huiqian!=null">huiqian = #{huiqian},</if>
+            <if test="chaobao!=null">chaobao = #{chaobao},</if>
+            <if test="chaosong!=null">chaosong = #{chaosong},</if>
+            <if test="fa!=null">fa = #{fa},</if>
+            <if test="approver!=null">approver = #{approver},</if>
+            <if test="approverdelete!=null">approverdelete = #{approverdelete},</if>
+            <if test="approvertime!=null">approvertime = #{approvertime},</if>
+            <if test="implementperson!=null">implementperson = #{implementperson},</if>
+            <if test="implementpersondelete!=null">implementpersondelete = #{implementpersondelete},</if>
+            <if test="implementpersontime!=null">implementpersontime = #{implementpersontime},</if>
+            <if test="result!=null">result = #{result},</if>
+            <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
+            <if test="confirmtime!=null">confirmtime = #{confirmtime},</if>
+        </trim>
+        WHERE sendfileid = #{sendfileid}
+    </update>
+</mapper>
