@@ -779,7 +779,7 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
+                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
@@ -843,8 +843,8 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;">科</td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
@@ -1025,47 +1025,47 @@
                         <p style="color: red;">选择分管领导处理人</p>
                         <div id="tree_container">
                             <ul>
-                                <li data-jstree='{"opened":true}'>办公室
+                                <li data-jstree='{"opened":false}'>办公室
                                     <ul>
-                                        <li>muzhifang</li>
-                                        <li>yuanlu</li>
-                                        <li>bgstest</li>
+                                        <li>穆志芳</li>
+                                        <li>袁璐</li>
+                                        <li>办公室测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>规划科
+                                <li data-jstree='{"opened":false}'>规划科
                                     <ul>
-                                        <li>yangzaipei</li>
-                                        <li>ghtest</li>
+                                        <li>杨再培</li>
+                                        <li>规划测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>财务科
+                                <li data-jstree='{"opened":false}'>财务科
                                     <ul>
-                                        <li>caiwutest</li>
+                                        <li>财务测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>主管领导
+                                <li data-jstree='{"opened":false}'>主管领导
                                     <ul>
-                                        <li>mainleader</li>
+                                        <li>主管领导测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>分管领导
+                                <li data-jstree='{"opened":false}'>分管领导
                                     <ul>
-                                        <li>branchleader</li>
+                                        <li>分管领导测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
                             <ul>
-                                <li data-jstree='{"opened":true}'>其他科室
+                                <li data-jstree='{"opened":false}'>其他科室
                                     <ul>
-                                        <li>qttest</li>
+                                        <li>其他用户测试账号</li>
                                     </ul>
                                 </li>
                             </ul>
@@ -1526,9 +1526,13 @@
     });
 
     //树形插件
-    $('#tree_container').jstree({
+    var jstree = $('#tree_container').jstree({
         "plugins" : ["checkbox"]
     });
+//    $('#tree_container').on('changed.jstree', function (e, data) {
+//        console.log(data);
+//        $('#tree_container').jstree(true).toggle_node(data.deselected);
+//    })
     // 多文件上传
     var fileIndex = 1;
     function add_click_file(index){
@@ -1615,74 +1619,48 @@
 
 
     //处理人集合
-    var people_arr = [];
     $("#sel_people button").click(function () {
-        people_arr = [];
+
+        var people_arr = [];
+        var arr = [];
+        $.each($("#tree_container").jstree().get_selected(true),function (i,n) {
+            if(n.parent != "#"){
+                console.log(n);
+                people_arr.push(n.text);
+                arr.push(n.parent);
+            }
+        })
         var peole_kind = $("#sel_people>p").text();
+        var people = people_arr.toString();
 
         if(peole_kind == "选择办公室处理人"){
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                }
-            })
-            var people = people_arr.toString();
             $("#bangongshi").val(people);
         }else if(peole_kind == "选择科室1处理人"){
-            var arr1 = [];
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                    arr1.push($(n).parent("ul").siblings("a").text());
-                }
-            })
-            arr1 = arr1.unique3();
-            if(arr1.length >1){
+            arr = arr.unique3();
+            if(arr.length >1){
                 alert("此处不能选择多个部门");
                 return;
+            }else {
+                $("#keshi1").val(people);
             }
-            var people = people_arr.toString();
-            $("#keshi1").val(people);
         }else if(peole_kind == "选择科室2处理人"){
-            var arr2 = [];
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                    arr2.push($(n).parent("ul").siblings("a").text());
-                }
-            })
-            arr2 = arr2.unique3();
-            if(arr2.length > 1){
+            arr = arr.unique3();
+            if(arr.length > 1){
                 alert("此处不能选择多个部门");
                 return;
+            }else {
+                $("#keshi2").val(people);
             }
-            var people = people_arr.toString();
-            $("#keshi2").val(people);
         }else if(peole_kind == "选择分管领导处理人"){
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                }
-            })
-            var people = people_arr.toString();
             $("#fenguan").val(people);
         }else if(peole_kind == "选择主管领导处理人"){
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                }
-            })
-            var people = people_arr.toString();
             $("#zhuguan").val(people);
         }else if(peole_kind == "选择办理人"){
-            $.each($("#tree_container .jstree-leaf"),function (i,n) {
-                if($(n).attr("aria-selected") == "true"){
-                    people_arr.push($(n).text())
-                }
-            })
-            var people = people_arr.toString();
             $("#banli").val(people);
         }
+
+
+
     });
 
     var username;
@@ -1913,6 +1891,7 @@
                 $("#model_info").css("display","none");
                 $("#model_container_1").css("display","none");
             }else if(kind == "编辑"){
+                $("#select_people input").val("");
                 $('#select_model').modal('show');
             }
             step1.goStep(2);
@@ -2136,201 +2115,216 @@
     }
 
     //办公室选择模版及信息提交
+    var b_flag = true;
     $("#select_model .btn-primary").click(function(){
-        var receivefileid = $("#receivefileid").text();
-        var model = $("#sel1").val();
-        var keshi1 = $("#keshi1").val();
-        var keshi2 = $("#keshi2").val();
-        var fenguan = $("#fenguan").val();
-        var zhuguan = $("#zhuguan").val();
-        var banli = $("#banli").val();
-        var people_list = new Object();
-        if(keshi1){
-            people_list.department1 = keshi1;
-        }
-        if(keshi2){
-            people_list.department2 = keshi2;
-        }
-        if(fenguan){
-            people_list.branch_leader = fenguan;
-        }
-        if(zhuguan){
-            people_list.main_leader = zhuguan;
-        }
-        if(banli){
-            people_list.transactor = banli;
-        }
-        var text = new Object();
-        if(model == "直接处理"){
-            text.filename = $("#model1 .title input").val();
-            text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
-            text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
-            text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
-        }else if(model == "文件拟办单"){
-            text.filename = $("#model2 .title input").val();
-            text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
-            text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
-            text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
-            text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
-            text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
-            text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
-            text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
-        }else if(model == "一科室提意见"){
-            text.filename = $("#model3 .title input").val();
-            text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
-            text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
-            text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
-            text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
-        }else if(model == "两科室提意见"){
-            text.filename = $("#model4 .title input").val();
-            text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
-            text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
-            text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
-            text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
-            text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
-            text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
-            text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
-            text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
-            text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
-            text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
-            text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
-            text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
-            text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
-            text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
-            text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
-        }
-        console.log(text);
-        people_list = JSON.stringify(people_list);
-        text = JSON.stringify(text);
-        console.log(people_list);
-        console.log(text);
-        console.log(receivefileid);
-        $.ajax({
-            url: "/saveReceiveFileModelInfo.do",
-            type: "post",
-            data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
-            dataType:"json",
-            success: function (data) {
-                console.log(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                    $('#select_model').modal('hide');
-                    table_refresh();
-                    setTimeout(acount,100);
-                }
-
+        if(b_flag){
+            b_flag = false;
+            var receivefileid = $("#receivefileid").text();
+            var model = $("#sel1").val();
+            var keshi1 = $("#keshi1").val();
+            var keshi2 = $("#keshi2").val();
+            var fenguan = $("#fenguan").val();
+            var zhuguan = $("#zhuguan").val();
+            var banli = $("#banli").val();
+            var people_list = new Object();
+            if(keshi1){
+                people_list.department1 = keshi1;
             }
-        })
+            if(keshi2){
+                people_list.department2 = keshi2;
+            }
+            if(fenguan){
+                people_list.branch_leader = fenguan;
+            }
+            if(zhuguan){
+                people_list.main_leader = zhuguan;
+            }
+            if(banli){
+                people_list.transactor = banli;
+            }
+            var text = new Object();
+            if(model == "直接处理"){
+                text.filename = $("#model1 .title input").val();
+                text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
+                text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
+                text.comefilenum = $("#model1 tr:first-child td:nth-child(6) input").val();
+                text.urgency = $("#model1 tr:first-child td:nth-child(8) input").val();
+                text.secret = $("#model1 tr:first-child td:nth-child(10) input").val();
+                text.copys = $("#model1 tr:first-child td:nth-child(12) input").val();
+                text.filetitle = $("#model1 tr:nth-child(2) td:nth-child(2) input").val();
+                text.suggestion = $("#model1 tr:nth-child(3) td:nth-child(2) textarea").val();
+                text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
+                text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }else if(model == "文件拟办单"){
+                text.filename = $("#model2 .title input").val();
+                text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
+                text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
+                text.receivefileregisterid = $("#model2 tr:first-child td:nth-child(6) input").val();
+                text.receivefiledate = $("#model2 tr:first-child td:nth-child(8) input").val();
+                text.filetitle = $("#model2 tr:nth-child(2) td:nth-child(2) textarea").val();
+                text.suggestion = $("#model2 tr:nth-child(5) td textarea").val();
+                text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
+                text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
+                text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
+            }else if(model == "一科室提意见"){
+                text.filename = $("#model3 .title input").val();
+                text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
+                text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
+                text.comefilenum = $("#model3 tr:first-child td:nth-child(6) input").val();
+                text.urgency = $("#model3 tr:first-child td:nth-child(8) input").val();
+                text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
+                text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
+                text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
+                text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+                text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
+                text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
+                text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
+                text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
+                text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
+            }else if(model == "两科室提意见"){
+                text.filename = $("#model4 .title input").val();
+                text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
+                text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
+                text.comefilenum = $("#model4 tr:first-child td:nth-child(6) input").val();
+                text.urgency = $("#model4 tr:first-child td:nth-child(8) input").val();
+                text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
+                text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
+                text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
+                text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+                text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
+                text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
+                text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
+                text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
+                text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
+                text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
+            }
+            console.log(text);
+            people_list = JSON.stringify(people_list);
+            text = JSON.stringify(text);
+            console.log(people_list);
+            console.log(text);
+            console.log(receivefileid);
+            $.ajax({
+                url: "/saveReceiveFileModelInfo.do",
+                type: "post",
+                data: {modelname:model,people_list:people_list,text:text,receivefileid:receivefileid},
+                dataType:"json",
+                success: function (data) {
+                    console.log(data);
+                    if(data.result == "success"){
+                        $('#select_model').modal('hide');
+                        table_refresh();
+                        setTimeout(acount,100);
+                        alert("提交成功");
+                        b_flag = true;
+                    }else {
+                        alert("提交失败");
+                        b_flag = true;
+                    }
+                }
+            })
+        }
     })
 
     //提交
+    var t_flag = true;
     $("#model_handle .btn-primary").click(function () {
-        console.log(state);
-        if(state == "办公室归档"){
-            console.log(id);
-            $.ajax({
-                url: "/toConfirm.do",
-                type: "post",
-                data: {receivefileid:id},
-                dataType: "json",
-                success: function(data){
-                    if(data.result == "success"){
-                        alert("归档成功");
-                        $('#model_handle').modal('hide');
-                        $("#model_handle input").val("");
-                        $("#model_handle textarea").val("");
-                        $("#model_handle .title").val("临沧市移民局文件处理笺");
-                        table_refresh();
-                        setTimeout(acount,100);
+        if(t_flag){
+            t_flag = false;
+            if(state == "办公室归档"){
+                console.log(id);
+                $.ajax({
+                    url: "/toConfirm.do",
+                    type: "post",
+                    data: {receivefileid:id},
+                    dataType: "json",
+                    success: function(data){
+                        if(data.result == "success"){
+                            alert("归档成功");
+                            $('#model_handle').modal('hide');
+                            $("#model_handle input").val("");
+                            $("#model_handle textarea").val("");
+                            $("#model_handle .title").val("临沧市移民局文件处理笺");
+                            table_refresh();
+                            setTimeout(acount,100);
+                        }
+                    }
+                })
+            }else {
+                var text = new Object();
+                text.departmentadvice = "";
+                text.department1advice = "";
+                text.department2advice = "";
+                text.branchleaderinstruction = "";
+                text.mainleaderinstruction = "";
+                text.result = "";
+                if(mydata1.status == "科室签批"){
+                    if(mydata1.modeltype == "一科室提意见"){
+                        text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "两科室提意见"){
+                        text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                        text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+                    }
+                }else if(mydata1.status == "分管领导签批"){
+                    if(mydata1.modeltype == "直接处理"){
+                        text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "文件拟办单"){
+                        text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").val();
+                    }else if(mydata1.modeltype == "一科室提意见"){
+                        text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "两科室提意见"){
+                        text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
+                    }
+                }else if(mydata1.status == "主管领导签批"){
+                    if(mydata1.modeltype == "直接处理"){
+                        text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "文件拟办单"){
+                        text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").val();
+                    }else if(mydata1.modeltype == "一科室提意见"){
+                        text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "两科室提意见"){
+                        text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                    }
+                }else if(mydata1.status == "处理处置"){
+                    if(mydata1.modeltype == "直接处理"){
+                        text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "文件拟办单"){
+                        text.result = $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val();
+                    }else if(mydata1.modeltype == "一科室提意见"){
+                        text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
+                    }else if(mydata1.modeltype == "两科室提意见"){
+                        text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
                     }
                 }
-            })
-        }else {
-            var text = new Object();
-            text.departmentadvice = "";
-            text.department1advice = "";
-            text.department2advice = "";
-            text.branchleaderinstruction = "";
-            text.mainleaderinstruction = "";
-            text.result = "";
-            if(mydata1.status == "科室签批"){
-                if(mydata1.modeltype == "一科室提意见"){
-                    text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                    text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
-                }
-            }else if(mydata1.status == "分管领导签批"){
-                if(mydata1.modeltype == "直接处理"){
-                    text.branchleaderinstruction = $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "文件拟办单"){
-                    text.branchleaderinstruction = $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").val();
-                }else if(mydata1.modeltype == "一科室提意见"){
-                    text.branchleaderinstruction = $("#model3_1 tr:nth-child(7) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
-                }
-            }else if(mydata1.status == "主管领导签批"){
-                if(mydata1.modeltype == "直接处理"){
-                    text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "文件拟办单"){
-                    text.mainleaderinstruction = $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").val();
-                }else if(mydata1.modeltype == "一科室提意见"){
-                    text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-                }
-            }else if(mydata1.status == "处理处置"){
-                if(mydata1.modeltype == "直接处理"){
-                    text.result = $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "文件拟办单"){
-                    text.result = $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val();
-                }else if(mydata1.modeltype == "一科室提意见"){
-                    text.result = $("#model3_1 tr:nth-child(8) td:nth-child(2) textarea").val();
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
-                }
+                console.log(text,mydata1);
+                var text2 = JSON.stringify(text);
+                var mydata2 = JSON.stringify(mydata1);
+                $.ajax({
+                    url: "/updateReceiveFileAndModelInfo.do",
+                    type: "post",
+                    data: {text:text2,receivedata:mydata2},
+                    dataType: "json",
+                    success: function (data) {
+                        if(data.result == "success"){
+                            $('#model_handle').modal('hide');
+                            $("#model_handle input").val("");
+                            $("#model_handle textarea").val("");
+                            $("#model_handle .title").val("临沧市移民局文件处理笺");
+                            table_refresh();
+                            setTimeout(acount,100);
+                            alert("提交成功");
+                            t_flag = true;
+                        }else {
+                            alert("提交失败");
+                            t_flag = true;
+                        }
+                    }
+                })
             }
-            console.log(text,mydata1);
-            var text2 = JSON.stringify(text);
-            var mydata2 = JSON.stringify(mydata1);
-            $.ajax({
-                url: "/updateReceiveFileAndModelInfo.do",
-                type: "post",
-                data: {text:text2,receivedata:mydata2},
-                dataType: "json",
-                success: function (data) {
-                    if(data.result == "success"){
-                        alert("提交成功");
-                        $('#model_handle').modal('hide');
-                        $("#model_handle input").val("");
-                        $("#model_handle textarea").val("");
-                        $("#model_handle .title").val("临沧市移民局文件处理笺");
-                        table_refresh();
-                        setTimeout(acount,100);
-                    }
-                }
-            })
         }
+
     })
 
 

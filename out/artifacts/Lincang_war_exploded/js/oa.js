@@ -170,13 +170,13 @@ $("#select_people li input").focus(function () {
     $("#sel_people>p").text(text);
 })
 //处理人集合
-var people_arr = [];
 $("#sel_people button").click(function () {
-    people_arr = [];
     var peole_kind = $("#sel_people>p").text();
-    $.each($("#tree_container .jstree-leaf"),function (i,n) {
-        if($(n).attr("aria-selected") == "true"){
-            people_arr.push($(n).text())
+    var people_arr = [];
+    $.each($("#tree_container").jstree().get_selected(true),function (i,n) {
+        if(n.parent != "#"){
+            console.log(n);
+            people_arr.push(n.text);
         }
     })
     var people = people_arr.toString();
@@ -349,95 +349,108 @@ function edit(that) {
 }
 
 //  新建表单 表单提交
+var x_flag = true;
 $("#form_stuff .btn-primary").click(function () {
-    var options  = {
-        url:'/submitSendFile.do',
-        type:'post',
-        success:function(data)
-        {
-            console.log(data);
-            if(data.result == "success"){
-                alert("提交成功");
-                table_refresh();
-                acount();
-                $('#form_stuff').modal('hide');
-            }else {
-                alert("提交失败")
+    if(x_flag){
+        x_flag = false;
+        var options  = {
+            url:'/submitSendFile.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    table_refresh();
+                    acount();
+                    $('#form_stuff').modal('hide');
+                    alert("提交成功");
+                    x_flag = true;
+                }else {
+                    alert("提交失败");
+                    x_flag = true;
+                }
+            },
+            error:function () {
+                alert("系统错误");
             }
-        },
-        error:function () {
-            alert("系统错误");
-        }
-    };
-    $("#fileForm").ajaxSubmit(options);
+        };
+        $("#fileForm").ajaxSubmit(options);
+    }
 });
 
 //办公室提交
+var b_flag = true;
 $("#select_model .btn-primary").click(function () {
-    var lingdao = $("#lingdao").val();
-    var banli = $("#banli").val();
-    var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
-    var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
-    var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
-    var secret = $("#select_model tr:nth-child(1) td:nth-child(9) input").val();
-    var qianfa = $("#select_model tr:nth-child(2) td:nth-child(1) textarea").val();
-    var shengao = $("#select_model tr:nth-child(2) td:nth-child(2) textarea").val();
-    var huiqian = $("#select_model tr:nth-child(2) td:nth-child(3) textarea").val();
-    var chaobao = $("#select_model tr:nth-child(3) td:nth-child(1) textarea").val();
-    var chaosong = $("#select_model tr:nth-child(4) td:nth-child(2) input").val();
-    var fa = $("#select_model tr:nth-child(5) td:nth-child(2) input").val();
-    var dept = $("#select_model tr:nth-child(6) td:nth-child(2) input").val();
-    var author = $("#select_model tr:nth-child(6) td:nth-child(4) input").val();
-    var reviewer = $("#select_model tr:nth-child(6) td:nth-child(6) input").val();
-    var print = $("#select_model tr:nth-child(7) td:nth-child(2) input").val();
-    var revision = $("#select_model tr:nth-child(7) td:nth-child(4) input").val();
-    var copy = $("#select_model tr:nth-child(7) td:nth-child(6) input").val();
-    var keyword = $("#select_model tr:nth-child(9) td:nth-child(2) input").val();
-    var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
-    var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
-    var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
-    var text = new Object();
-    text.approver = lingdao;
-    text.implementperson = banli;
-    text.sendfileid = id;
-    text.status = status;
-    text.sn = sn;
-    text.date = date;
-    text.urgency = urgency;
-    text.secret = secret;
-    text.qianfa = qianfa;
-    text.shengao = shengao;
-    text.huiqian = huiqian;
-    text.chaobao = chaobao;
-    text.chaosong = chaosong;
-    text.fa = fa;
-    text.dept = dept;
-    text.author = author;
-    text.reviewer = reviewer;
-    text.print = print;
-    text.revision = revision;
-    text.copy = copy;
-    text.keyword = keyword;
-    text.title = title;
-    text.content = content;
-    text.result = result;
-    console.log(lingdao,banli,text);
-    var mytext = JSON.stringify(text);
-    $.ajax({
-        url: "/updateSendFileInfoBySendFileId.do",
-        type: "post",
-        data: {text:mytext},
-        dataType: "json",
-        success: function (data) {
-            if(data.result == "success"){
-                alert("提交成功");
-                table_refresh();
-                acount();
-                $("#select_model").modal("hide");
-            }else {
-                alert("提交失败");
+    if(b_flag){
+        b_flag = false;
+        var lingdao = $("#lingdao").val();
+        var banli = $("#banli").val();
+        var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
+        var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
+        var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
+        var secret = $("#select_model tr:nth-child(1) td:nth-child(9) input").val();
+        var qianfa = $("#select_model tr:nth-child(2) td:nth-child(1) textarea").val();
+        var shengao = $("#select_model tr:nth-child(2) td:nth-child(2) textarea").val();
+        var huiqian = $("#select_model tr:nth-child(2) td:nth-child(3) textarea").val();
+        var chaobao = $("#select_model tr:nth-child(3) td:nth-child(1) textarea").val();
+        var chaosong = $("#select_model tr:nth-child(4) td:nth-child(2) input").val();
+        var fa = $("#select_model tr:nth-child(5) td:nth-child(2) input").val();
+        var dept = $("#select_model tr:nth-child(6) td:nth-child(2) input").val();
+        var author = $("#select_model tr:nth-child(6) td:nth-child(4) input").val();
+        var reviewer = $("#select_model tr:nth-child(6) td:nth-child(6) input").val();
+        var print = $("#select_model tr:nth-child(7) td:nth-child(2) input").val();
+        var revision = $("#select_model tr:nth-child(7) td:nth-child(4) input").val();
+        var copy = $("#select_model tr:nth-child(7) td:nth-child(6) input").val();
+        var keyword = $("#select_model tr:nth-child(9) td:nth-child(2) input").val();
+        var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
+        var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
+        var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
+        var text = new Object();
+        text.approver = lingdao;
+        text.implementperson = banli;
+        text.sendfileid = id;
+        text.status = status;
+        text.sn = sn;
+        text.date = date;
+        text.urgency = urgency;
+        text.secret = secret;
+        text.qianfa = qianfa;
+        text.shengao = shengao;
+        text.huiqian = huiqian;
+        text.chaobao = chaobao;
+        text.chaosong = chaosong;
+        text.fa = fa;
+        text.dept = dept;
+        text.author = author;
+        text.reviewer = reviewer;
+        text.print = print;
+        text.revision = revision;
+        text.copy = copy;
+        text.keyword = keyword;
+        text.title = title;
+        text.content = content;
+        text.result = result;
+        console.log(lingdao,banli,text);
+        var mytext = JSON.stringify(text);
+        $.ajax({
+            url: "/updateSendFileInfoBySendFileId.do",
+            type: "post",
+            data: {text:mytext},
+            dataType: "json",
+            success: function (data) {
+                if(data.result == "success"){
+                    table_refresh();
+                    acount();
+                    $("#select_model").modal("hide");
+                    alert("提交成功");
+                    b_flag = true;
+                }else {
+                    alert("提交失败");
+                    b_flag = true;
+                }
             }
-        }
-    })
+        })
+    }
+
 })
 

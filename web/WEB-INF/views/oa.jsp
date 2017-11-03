@@ -453,7 +453,7 @@
                             <p style="color: red;">选择领导签批人</p>
                             <div id="tree_container">
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>办公室
+                                    <li data-jstree='{"opened":false}'>办公室
                                         <ul>
                                             <li>穆志芳</li>
                                             <li>袁璐</li>
@@ -462,7 +462,7 @@
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>规划科
+                                    <li data-jstree='{"opened":false}'>规划科
                                         <ul>
                                             <li>杨再培</li>
                                             <li>规划测试账号</li>
@@ -470,28 +470,28 @@
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>财务科
+                                    <li data-jstree='{"opened":false}'>财务科
                                         <ul>
                                             <li>财务测试账号</li>
                                         </ul>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>主管领导
+                                    <li data-jstree='{"opened":false}'>主管领导
                                         <ul>
                                             <li>主管领导测试账号</li>
                                         </ul>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>分管领导
+                                    <li data-jstree='{"opened":false}'>分管领导
                                         <ul>
                                             <li>分管领导测试账号</li>
                                         </ul>
                                     </li>
                                 </ul>
                                 <ul>
-                                    <li data-jstree='{"opened":true}'>其他科室
+                                    <li data-jstree='{"opened":false}'>其他科室
                                         <ul>
                                             <li>其他用户测试账号</li>
                                         </ul>
