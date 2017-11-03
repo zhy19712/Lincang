@@ -25,9 +25,9 @@
         <property name="jdbcUrl" value="${jdbc.jdbcurl}"></property>
         <property name="driverClass" value="${jdbc.driverclass}"></property>
         <property name="initialPoolSize" value="10"/>
-        <property name="testConnectionOnCheckin" value="false"/>
+        <property name="testConnectionOnCheckin" value="true"/>
         <property name="idleConnectionTestPeriod" value="60"/>
-        <property name="testConnectionOnCheckout" value="true"/>
+        <property name="testConnectionOnCheckout" value="false"/>
         <property name="preferredTestQuery" value="SELECT 1"/>
     </bean>
 
