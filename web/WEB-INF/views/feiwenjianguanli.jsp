@@ -59,6 +59,7 @@
         .mytable input{
             width: 100%;
             padding: 0 5px;
+            line-height: 16px;
             outline: none;
             border: none;
         }
@@ -71,6 +72,9 @@
         }
         .red{
             color: red;
+        }
+        input{
+            line-height: 16px !important;
         }
         .text_left{
             text-align: left;
@@ -108,7 +112,7 @@
             word-wrap: break-word;
             text-align: center;
             font-size: 20px;
-            width: 33.3%;
+            width: 50%;
         }
         .download_wrapper button{
             background: transparent;
@@ -414,15 +418,13 @@
                             <div class="step-header">
                                 <ul>
                                     <li><p>信息提交</p></li>
-                                    <li><p>办公室签收并处理</p></li>
-                                    <li><p>结束</p></li>
+                                    <li><p>办公室处理处置</p></li>
                                 </ul>
                             </div>
                         </div>
                         <div id="user_container" style="width:80%;margin: 0 auto;margin-top: 85px;">
                             <div class="user_1"></div>
                             <div class="user_2"></div>
-                            <div class="user_3"></div>
                         </div>
                     </div>
                     <div class="con_info">
@@ -797,10 +799,9 @@
             $(".user_1").text(mydata.submitperson);
             $(".user_2").text("");
         }else if(state == "签收" || state == "采用" ){
-            step.goStep(3);
+            step.goStep(2);
             $(".user_1").text(mydata.submitperson);
             $(".user_2").text(mydata.officeperson);
-            $("#container ul li:nth-child(3) p").text(state);
         }
     }
     //办公室提交

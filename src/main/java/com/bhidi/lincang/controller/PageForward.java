@@ -69,4 +69,9 @@ public class PageForward {
     public String tofeiwenjianguanli(){
         return "feiwenjianguanli";
     }
+
+    @RequestMapping(value = "/zhunianbuchang", method = RequestMethod.GET)
+    public String tozhunianbuchang(){
+        return "zhunianbuchang";
+    }
 }
