@@ -69,4 +69,28 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
     public RegisterInfo getRegisterInfoById(int id) {
         return userManagementMapper.selectRegisterInfoById(id);
     }
+
+    public Map<String, String> update(Map<String, Object> mapCondition) {
+        RegisterInfo ri = (RegisterInfo)mapCondition.get("registerInfo");
+        //先根据单位和部门来得到user表中的dept应该填什么
+        int dept = userManagementMapper.selectDept(ri);
+        ri.setDepartment(dept+"");
+        //把用户修改
+        int userid = userManagementMapper.updateUser(ri);
+        //查出来对应的角色的id
+        int roleid = userManagementMapper.selectRoleid(ri);
+        //将两个id修改user_role表
+        Map<String,Object> mapConditionCondition = new HashMap<String,Object>();
+        mapConditionCondition.put("userid",ri.getId());
+        mapConditionCondition.put("roleid",roleid);
+        int user_role_result = userManagementMapper.updateUserRole(mapConditionCondition);
+        //返回的map
+        Map<String,String> mapResult = new HashMap<String, String>();
+        if(userid == -1 | user_role_result == -1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        return mapResult;
+    }
 }

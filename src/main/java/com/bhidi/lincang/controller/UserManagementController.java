@@ -78,7 +78,7 @@ public class UserManagementController {
     public String getRegisterInfoById(RegisterInfo ri){
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("registerInfo",ri);
-        Map<String,String> mapResult= userManagementServiceImp.register(mapCondition);
+        Map<String,String> mapResult= userManagementServiceImp.update(mapCondition);
         String result = new Gson().toJson(mapResult);
         return result;
     }
