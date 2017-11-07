@@ -44,6 +44,24 @@ public class UserManagementDataTable {
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
+            /*if("id".equals(orderColumn)){
+                orderColumn = "u.id";
+            }
+            if("username".equals(orderColumn)){
+                orderColumn = "u.username";
+            }
+            if("role".equals(orderColumn)){
+                orderColumn = "r.rolename";
+            }
+            if("name".equals(orderColumn)){
+                orderColumn = "u.name";
+            }
+            if("unit".equals(orderColumn)){
+                orderColumn = "ud.unit";
+            }
+            if("department".equals(orderColumn)){
+                orderColumn = "ud.department";
+            }*/
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
@@ -55,10 +73,10 @@ public class UserManagementDataTable {
                 searchValue = searchValue.replaceAll("'","");
                 sArray.add(" u.id like '%" + searchValue + "%'");
                 sArray.add(" u.username like '%" + searchValue + "%'");
-                sArray.add(" r.rolename like '%" + searchValue + "%'");
                 sArray.add(" u.name like '%" + searchValue + "%'");
+                sArray.add(" r.rolename like '%" + searchValue + "%'");
                 sArray.add(" ud.unit like '%" + searchValue + "%'");
-                sArray.add(" ud.unit like '%" + searchValue + "%'");
+                sArray.add(" ud.department like '%" + searchValue + "%'");
             }
 
             String individualSearch = "";
@@ -83,7 +101,7 @@ public class UserManagementDataTable {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id";
+                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }

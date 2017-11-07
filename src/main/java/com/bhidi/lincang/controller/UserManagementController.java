@@ -74,11 +74,23 @@ public class UserManagementController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/getRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getRegisterInfoById(RegisterInfo ri){
+    @RequestMapping(value="/updateRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String updateRegisterInfoById(RegisterInfo ri){
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("registerInfo",ri);
-        Map<String,String> mapResult= userManagementServiceImp.register(mapCondition);
+        Map<String,String> mapResult= userManagementServiceImp.update(mapCondition);
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 编辑之后的提交
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/delsteRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String delsteRegisterInfoById(int id){
+        Map<String,String> mapResult= userManagementServiceImp.delsteRegisterInfoById(id);
         String result = new Gson().toJson(mapResult);
         return result;
     }
