@@ -16,4 +16,6 @@ public interface UserManagementServiceInf {
     RegisterInfo getRegisterInfoById(int id);
 
     Map<String,String> update(Map<String, Object> mapCondition);
+
+    Map<String,String> delsteRegisterInfoById(int id);
 }

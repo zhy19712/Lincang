@@ -12,6 +12,7 @@ import java.util.*;
 @Service
 public class UserManagementServiceImp implements UserManagementServiceInf{
     @Autowired
+
     UserManagementMapper userManagementMapper;
 
     public List<String> getRoles() {
@@ -92,5 +93,9 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
             mapResult.put("result","success");
         }
         return mapResult;
+    }
+
+    public Map<String, String> delsteRegisterInfoById(int id) {
+        return userManagementMapper.deleteRegisterInfoById(id);
     }
 }
