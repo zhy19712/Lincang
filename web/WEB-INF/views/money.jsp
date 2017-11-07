@@ -553,9 +553,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </div>
 
 <footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
-
-    <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+    <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
             href="http://www.bhidi.com">北京院</a></p>
 </footer>
 

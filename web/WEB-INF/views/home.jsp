@@ -25,6 +25,7 @@
     <link href="../../css/app.css" rel="stylesheet">
     <link href="../../css/chosen.min.css" rel="stylesheet">
     <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link rel="stylesheet" href="../../css/mycommon.css">
 
 <%--<link rel="stylesheet" href="../../css/reset.css">
     <link rel="stylesheet" href="../../css/home.css">--%>
@@ -108,12 +109,32 @@
         #circle span:first-child{
             background-color: #2fa4e7;
         }
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(../../images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
+        #bg div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
     </style>
 </head>
 
 <body>
 
-<div id="mycontainer" style="width: 1200px;margin: 0 auto;">
+<div id="bg">
+    <div></div>
+</div>
     <!-- topbar starts -->
     <div class="navbar navbar-default" role="navigation">
 
@@ -127,8 +148,8 @@
             </button>
             <!-- 小屏幕时的导航按键 ends -->
             <!-- logo starts -->
-            <a class="navbar-brand" href="/tohome.htm" style="width: 300px"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-                <span style="font-size: 26px;">临沧市移民开发局</span></a>
+            <a class="navbar-brand" href="/tohome.htm" style="width: 500px"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+                <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
             <!-- logo ends -->
 
             <!-- user dropdown starts -->
@@ -148,116 +169,116 @@
 
 
     </div>
+    <div id="mycontainer" style="width: 1200px;margin: 0 auto;">
     <!-- topbar ends -->
-    <div class="ch-container">
-        <div class="row">
+        <div class="ch-container">
+            <div class="row">
 
-            <!-- left menu starts -->
-            <div class="col-sm-2 col-lg-2">
-                <div class="sidebar-nav">
-                    <div class="nav-canvas">
-                        <div class="nav-sm nav nav-stacked">
+                <!-- left menu starts -->
+                <div class="col-sm-2 col-lg-2">
+                    <div class="sidebar-nav">
+                        <div class="nav-canvas">
+                            <div class="nav-sm nav nav-stacked">
+                            </div>
+                            <ul class="nav nav-pills nav-stacked main-menu">
+                                <li class="nav-header">移民搬迁</li>
+                                <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 移民管理</span></a></li>
+                                <li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿</span></a></li>
+                                <li><a href="/zhunianbuchang.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿2</span></a></li>
+
+                                <li class="nav-header">协同办公</li>
+                                <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
+                                <li><a href="/shouwen.jsp"><i class="glyphicon glyphicon-edit"></i><span> 收文管理</span></a></li>
+                                <li><a href="/tofeiwenjianguanli.htm"><i class="glyphicon glyphicon-edit"></i><span> 非文件管理</span></a></li>
+                            </ul>
                         </div>
-                        <ul class="nav nav-pills nav-stacked main-menu">
-                            <li class="nav-header">移民搬迁</li>
-                            <li><a href="/yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 移民管理</span></a></li>
-                            <li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿</span></a></li>
-                            <li><a href="/zhunianbuchang.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿2</span></a></li>
-
-                            <li class="nav-header">协同办公</li>
-                            <li><a href="/oa.htm"><i class="glyphicon glyphicon-edit"></i><span> 发文管理</span></a></li>
-                            <li><a href="/shouwen.jsp"><i class="glyphicon glyphicon-edit"></i><span> 收文管理</span></a></li>
-                            <li><a href="/tofeiwenjianguanli.htm"><i class="glyphicon glyphicon-edit"></i><span> 非文件管理</span></a></li>
-                        </ul>
                     </div>
                 </div>
-            </div>
-            <!--/span-->
-            <!-- left menu ends -->
+                <!--/span-->
+                <!-- left menu ends -->
 
-            <div id="content" class="col-lg-10 col-sm-10">
-                <!-- content starts -->
-                <div class=" row">
-                    <div class="col-lg-12">
-                        <div class="box-inner ">
-                            <div class="box-content">
-                                <ul id="lb">
-                                    <img src="../../images/lb1.jpg" alt="">
-                                    <img src="../../images/lb2.jpg" alt="">
-                                    <img src="../../images/lb3.jpg" alt="">
-                                    <img src="../../images/lb4.jpg" alt="">
-                                    <div id="circle">
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                        <span></span>
-                                    </div>
-                                </ul>
-                                <div class="news-wrapper">
-                                    <div class="header">
-                                        <p class="title">通知公告</p>
-                                        <a href="#">查看更多</a>
-                                    </div>
-                                    <ul class="news">
-                                        <li>
-                                            <a href="#">云南临沧佤族织锦展吸引八方游客</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">从芯仙茗堂云顶筑巢自驾至临沧冰岛村 风尘仆仆只愿寻一味清凉自在</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">云南临沧沧源县新米节接待游客163946人次</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">武警临沧支队:“魔鬼周”极限训练 锻造反恐精武</a>
-                                        </li>
+                <div id="content" class="col-lg-10 col-sm-10">
+                    <!-- content starts -->
+                    <div class=" row">
+                        <div class="col-lg-12">
+                            <div class="box-inner ">
+                                <div class="box-content">
+                                    <ul id="lb">
+                                        <img src="../../images/lb1.jpg" alt="">
+                                        <img src="../../images/lb2.jpg" alt="">
+                                        <img src="../../images/lb3.jpg" alt="">
+                                        <img src="../../images/lb4.jpg" alt="">
+                                        <div id="circle">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
                                     </ul>
-                                </div>
-                                <div class="news-wrapper">
-                                    <div class="header">
-                                        <p class="title">最新消息</p>
-                                        <a href="#">查看更多</a>
+                                    <div class="news-wrapper">
+                                        <div class="header">
+                                            <p class="title">通知公告</p>
+                                            <a href="#">查看更多</a>
+                                        </div>
+                                        <ul class="news">
+                                            <li>
+                                                <a href="#">云南临沧佤族织锦展吸引八方游客</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">从芯仙茗堂云顶筑巢自驾至临沧冰岛村 风尘仆仆只愿寻一味清凉自在</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">云南临沧沧源县新米节接待游客163946人次</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">武警临沧支队:“魔鬼周”极限训练 锻造反恐精武</a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul class="news">
-                                        <li>
-                                            <a href="#">临沧荣获“全国森林旅游示范市”称号</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">临沧4天缴获114公斤冰毒 两批毒贩已落网</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">临沧供电检企联合开展职务犯罪警示教育</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">阿里巴巴太极禅苑文化驿栈在云南临沧揭牌</a>
-                                        </li>
-                                    </ul>
+                                    <div class="news-wrapper">
+                                        <div class="header">
+                                            <p class="title">最新消息</p>
+                                            <a href="#">查看更多</a>
+                                        </div>
+                                        <ul class="news">
+                                            <li>
+                                                <a href="#">临沧荣获“全国森林旅游示范市”称号</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">临沧4天缴获114公斤冰毒 两批毒贩已落网</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">临沧供电检企联合开展职务犯罪警示教育</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">阿里巴巴太极禅苑文化驿栈在云南临沧揭牌</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
 
-                </div>
+                    <div class="row">
 
-                <div class="row">
-
+                    </div>
+                    <!-- content ends -->
                 </div>
-                <!-- content ends -->
             </div>
-        </div>
 
 
-        <hr>
+            <hr>
 
-        <footer class="row">
-            <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
 
-            <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
-                    href="http://www.bhidi.com">北京院</a></p>
-        </footer>
 
-    </div><!--/.fluid-container-->
-</div>
+        </div><!--/.fluid-container-->
+    </div>
+    <footer class="row">
+        <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
+                href="http://www.bhidi.com">北京院</a></p>
+    </footer>
 
 
 
