@@ -84,12 +84,10 @@
         #sel_model{
             width: 96%;
             margin: 0 auto;
+            margin-left: 24px;
             font-size: 0;
         }
         #sel_model>div{
-            display: inline-block;
-            vertical-align: top;
-            width: 50%;
             font-size: 14px;
         }
         #select_people{
@@ -106,7 +104,7 @@
         #select_people li span{
             display: inline-block;
             vertical-align: middle;
-            width: 150px;
+            width: 120px;
         }
         #model_container,#model_container_1{
             width: 96%;
@@ -131,6 +129,9 @@
             outline:none;
             border: none;
         }
+        input{
+            line-height: 16px !important;
+        }
         .left{
             text-align: left;
         }
@@ -140,7 +141,8 @@
             width: 150px;
         }
         #fawen td,#dcl_table td,#ycl_table td{
-            border-left:1px solid #000;
+            border: none;
+            border-top: 1px solid #ddd;
         }
         #more tr:nth-child(4) td:nth-child(2)>div,#more1 tr:nth-child(4) td:nth-child(2)>div{
             display: inline-block;
@@ -178,6 +180,10 @@
             text-align: center;
             font-size: 14px;
             background-color: #fff;
+        }
+        #sel_people>p,#sel_people>ul,#sel_people>div{
+            display: inline-block;
+            vertical-align: top;
         }
     </style>
 
@@ -558,7 +564,7 @@
                     </div>
                 </div>
                 <div id="more" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 30px;">点击查看收文登记详细信息</p>
+                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看收文登记详细信息<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -639,8 +645,8 @@
                     </table>
                 </div>
                 <div id="model_info" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p style="line-height: 30px;margin-left: 24px;font-size: 16px;cursor: pointer;">点击查看模版名称及处理人</p>
-                    <p style="margin-left: 24px;">模版名称:<span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
+                    <p style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看模版名称及处理人<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
+                    <p style="margin-left: 24px;"><span style="display: inline-block;width: 150px;">模版名称:</span><span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
                     <ul id="handle_people" style="padding-left: 0;margin-left: 24px;">
                         <li><span>科室1处理人</span><span id="keshi1_1">科室1</span></li>
                         <li><span>科室2处理人</span><span id="keshi2_1">科室2</span></li>
@@ -924,7 +930,7 @@
                     </div>
                 </div>
                 <div id="more1" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p id="first1" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 30px;">查看收文登记详细信息</p>
+                    <p id="first1" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看收文登记详细信息<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -1006,71 +1012,74 @@
                 </div>
                 <div id="sel_model">
                     <div id="model">
-                        <p style="color: red;">选择模版</p>
-                        <select name="" id="sel1">
+                        <p style="color: red;display: inline-block;margin-left: 20px;margin-top: 8px;width: 100px;">选择处理方式</p>
+                        <select name="" id="sel1" style="margin-left: 30px;">
                             <option>直接处理</option>
                             <option>文件拟办单</option>
                             <option>一科室提意见</option>
                             <option>两科室提意见</option>
                         </select>
-                        <ul id="select_people">
-                            <li><span>选择科室1处理人</span><input type="text" id="keshi1"></li>
-                            <li><span>选择科室2处理人</span><input type="text" id="keshi2"></li>
-                            <li><span>选择分管领导处理人</span><input type="text" id="fenguan"></li>
-                            <li><span>选择主管领导处理人</span><input type="text" id="zhuguan"></li>
-                            <li><span>选择办理人</span><input type="text" id="banli"></li>
-                        </ul>
                     </div>
                     <div id="sel_people">
-                        <p style="color: red;">选择分管领导处理人</p>
-                        <div id="tree_container">
-                            <ul>
-                                <li data-jstree='{"opened":false}'>办公室
-                                    <ul>
-                                        <li>穆志芳</li>
-                                        <li>袁璐</li>
-                                        <li>办公室测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":false}'>规划科
-                                    <ul>
-                                        <li>杨再培</li>
-                                        <li>规划测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":false}'>财务科
-                                    <ul>
-                                        <li>财务测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":false}'>主管领导
-                                    <ul>
-                                        <li>主管领导测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":false}'>分管领导
-                                    <ul>
-                                        <li>分管领导测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li data-jstree='{"opened":false}'>其他科室
-                                    <ul>
-                                        <li>其他用户测试账号</li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <p style="color: red;width: 100px;margin-left: 20px;margin-top: 8px;">选择处理人</p>
+                        <p id="people_kind" style="display: none;"></p>
+                        <ul id="select_people" style="margin-left: 30px;">
+                            <li><span>科室1处理人</span><input type="text" id="keshi1"></li>
+                            <li><span>科室2处理人</span><input type="text" id="keshi2"></li>
+                            <li><span>分管领导处理人</span><input type="text" id="fenguan"></li>
+                            <li><span>主管领导处理人</span><input type="text" id="zhuguan"></li>
+                            <li><span>办理人</span><input type="text" id="banli"></li>
+                        </ul>
+                        <div id="tree_container_wrapper" style="margin-left: 30px;">
+                            <div id="tree_container">
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>办公室
+                                        <ul>
+                                            <li>穆志芳</li>
+                                            <li>袁璐</li>
+                                            <li>办公室测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>规划科
+                                        <ul>
+                                            <li>杨再培</li>
+                                            <li>规划测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>财务科
+                                        <ul>
+                                            <li>财务测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>主管领导
+                                        <ul>
+                                            <li>主管领导测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>分管领导
+                                        <ul>
+                                            <li>分管领导测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li data-jstree='{"opened":false}'>其他科室
+                                        <ul>
+                                            <li>其他用户测试账号</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button>确认</button>
                         </div>
-                        <button>确认</button>
                     </div>
                 </div>
                 <div id="model_container">
@@ -1594,16 +1603,13 @@
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","none");
             $("#model_container>#model3").css({"display":"block"});
-            $("#sel_people>p:first-child").text("选择科室1处理人");
         }else if($(this).val() == "两科室提意见"){
             $("#select_people li:nth-child(1)").css("display","block");
             $("#select_people li:nth-child(2)").css("display","block");
             $("#model_container>#model4").css({"display":"block"});
-            $("#sel_people>p:first-child").text("选择科室1处理人");
         }else {
             $("#select_people li:nth-child(1)").css("display","none");
             $("#select_people li:nth-child(2)").css("display","none");
-            $("#sel_people>p:first-child").text("选择分管领导处理人");
             if($(this).val() == "直接处理"){
                 $("#model_container>#model1").css({"display":"block"});
             }else if($(this).val() == "文件拟办单"){
@@ -1614,7 +1620,8 @@
     //选择处理人
     $("#select_people li input").focus(function () {
         var text = $(this).siblings("span").text();
-        $("#sel_people>p").text(text);
+        $("#people_kind").text(text);
+        $('#tree_container').jstree('deselect_all');
     })
 
 
@@ -1630,12 +1637,12 @@
                 arr.push(n.parent);
             }
         })
-        var peole_kind = $("#sel_people>p").text();
+        var peole_kind = $("#people_kind").text();
         var people = people_arr.toString();
 
-        if(peole_kind == "选择办公室处理人"){
+        if(peole_kind == "办公室处理人"){
             $("#bangongshi").val(people);
-        }else if(peole_kind == "选择科室1处理人"){
+        }else if(peole_kind == "科室1处理人"){
             arr = arr.unique3();
             if(arr.length >1){
                 alert("此处不能选择多个部门");
@@ -1643,7 +1650,7 @@
             }else {
                 $("#keshi1").val(people);
             }
-        }else if(peole_kind == "选择科室2处理人"){
+        }else if(peole_kind == "科室2处理人"){
             arr = arr.unique3();
             if(arr.length > 1){
                 alert("此处不能选择多个部门");
@@ -1651,11 +1658,11 @@
             }else {
                 $("#keshi2").val(people);
             }
-        }else if(peole_kind == "选择分管领导处理人"){
+        }else if(peole_kind == "分管领导处理人"){
             $("#fenguan").val(people);
-        }else if(peole_kind == "选择主管领导处理人"){
+        }else if(peole_kind == "主管领导处理人"){
             $("#zhuguan").val(people);
-        }else if(peole_kind == "选择办理人"){
+        }else if(peole_kind == "办理人"){
             $("#banli").val(people);
         }
 
@@ -1676,18 +1683,22 @@
     $("#first").click(function () {
         flag = !flag;
         if(flag == true){
+            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#more").height(760);
         }else {
-            $("#more").height(30);
+            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
+            $("#more").height(36);
         }
     })
     var flag1 = false;
     $("#first1").click(function () {
         flag1 = !flag1;
         if(flag1 == true){
+            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#more1").height(760);
         }else {
-            $("#more1").height(30);
+            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
+            $("#more1").height(36);
         }
     })
     //查看模版选择及处理人
@@ -1695,9 +1706,11 @@
     $("#model_info>p:first-child").click(function () {
         m_flag = !m_flag;
         if(m_flag == true){
+            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#model_info").height(240);
         }else {
-            $("#model_info").height(30);
+            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
+            $("#model_info").height(36);
         }
     })
 

@@ -796,6 +796,10 @@ $(function(){
 	var echart2 = echarts.init(document.getElementById('container2'));
     var option1 = {
         color: ['#3398DB'],
+		title: {
+        	text: "安置点统计表",
+            left: "50%"
+		},
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -833,6 +837,10 @@ $(function(){
     };
     var option2 = {
         color: ['#3398DB'],
+        title: {
+            text: "安置点统计表",
+			left: "50%"
+        },
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效

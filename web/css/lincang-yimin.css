@@ -401,6 +401,7 @@ td{
   border: none;
   outline: none;
   text-align: center;
+  line-height: 16px;
   padding: 0;
 }
 .bgc{

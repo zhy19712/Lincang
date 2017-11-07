@@ -120,6 +120,9 @@
         .download_wrapper button:hover{
             text-decoration: underline;
         }
+        input{
+            line-height: 16px !important;
+        }
     </style>
 </head>
 
