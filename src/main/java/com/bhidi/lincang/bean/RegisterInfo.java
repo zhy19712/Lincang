@@ -13,7 +13,8 @@ public class RegisterInfo {
     public RegisterInfo() {
     }
 
-    public RegisterInfo(String username, String role, String name, String unit, String department) {
+    public RegisterInfo(int id,String username, String role, String name, String unit, String department) {
+        this.id = id;
         this.username = username;
         this.role = role;
         this.name = name;

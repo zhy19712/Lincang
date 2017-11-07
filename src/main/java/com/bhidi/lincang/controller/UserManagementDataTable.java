@@ -40,7 +40,7 @@ public class UserManagementDataTable {
             //过滤后记录数
             String recordsFiltered = "";
             //定义列名
-            String[] cols = {"username","role","name","unit","department"};
+            String[] cols = {"id","username","role","name","unit","department"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -53,6 +53,7 @@ public class UserManagementDataTable {
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
                 searchValue = searchValue.replaceAll("'","");
+                sArray.add(" id like '%" + searchValue + "%'");
                 sArray.add(" username like '%" + searchValue + "%'");
                 sArray.add(" role like '%" + searchValue + "%'");
                 sArray.add(" name like '%" + searchValue + "%'");
@@ -82,7 +83,7 @@ public class UserManagementDataTable {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id";
+                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -95,6 +96,7 @@ public class UserManagementDataTable {
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     tasks.add(new RegisterInfo (
+                            rs.getInt("id"),
                             rs.getString("username"),
                             rs.getString("role"),
                             rs.getString("name"),
