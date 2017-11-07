@@ -61,8 +61,8 @@
         </trim>
         WHERE userid = #{userid}
     </update>
-    <!--Map<String,String> deleteRegisterInfoById(int id);-->
-    <delete id="deleteRegisterInfoById">
-        DELETE FROM USER WHERE id = #{id}
+    <!--int deleteRegisterInfoById(int id);-->
+    <delete id="deleteRegisterInfoById" >
+        DELETE FROM user WHERE id = #{id}
     </delete>
 </mapper>
