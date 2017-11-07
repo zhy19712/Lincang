@@ -2,30 +2,11 @@
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bhidi.lincang.dao.UserMapper">
 
-    <!--List<User> selectDepartmentAndStaff();-->
-    <select id="selectDepartmentAndStaff" resultMap="UserResultMap">
-        SELECT id,uid,username,pass AS password,name,dept,phone1,phone2,level,created_at
-        FROM user
+    <!--List<DepartmentAndStaff> selectDepartmentAndStaff();-->
+    <select id="selectDepartmentAndStaff" resultType="com.bhidi.lincang.bean.DepartmentAndStaff">
+        SELECT u.name,ud.department
+        FROM user u ,unitanddepartment ud
+        WHERE u.dept = ud.id AND ud.unit = '临沧市移民局'
     </select>
 
-    <resultMap type="com.bhidi.lincang.bean.User" id="UserResultMap">
-        <id column="id" property="id"/>
-        <collection property="roleList" select="queryRoleNameByUserid" column="id" ofType="String">
-        </collection>
-        <collection property="permissionList" select="queryPermissionName" column="id" ofType="String">
-        </collection>
-    </resultMap>
-
-    <select id="queryRoleNameByUserid" parameterType="Map" resultType="String">
-        SELECT rolename
-        FROM user_role ur,role r
-        WHERE ur.roleid = r.id AND ur.userid = #{id}
-    </select>
-
-    <select id="queryPermissionName" parameterType="Map" resultType="String">
-        SELECT authdescription
-        FROM user_role ur,role r,role_privilege rp,privilege p
-        WHERE ur.roleid = r.id AND r.id = rp.roleid AND rp.authorithid = p.id
-        AND ur.userid = #{id}
-    </select>
 </mapper>
