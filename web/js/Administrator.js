@@ -2,13 +2,13 @@
 
 var all_table = $('#NewTable_Admin').DataTable({
     ajax: {
-        url: "/sendFileDataTableFirst.do"
+        url: "/userManagementDataTableFirst.do"
     },
     "order": [[2, 'asc']],
     "serverSide": true,
     "columns": [
-        {"data": "sendfileid"},
         {"data": "username"},
+        {"data": "role"},
         {"data": "name"},
         {"data": "unit"},
         {"data": "department"},
