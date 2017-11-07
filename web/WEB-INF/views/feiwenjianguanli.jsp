@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../../css/oa.css">
 
     <link rel="stylesheet" href="../../css/media.css" media="print">
+    <link rel="stylesheet" href="../../css/mycommon.css">
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
@@ -124,9 +125,32 @@
         .download_wrapper button:hover{
             text-decoration: underline;
         }
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(../../images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
+        #bg div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
+        #container,#container1{
+            border-bottom: 1px solid #ccc;
+        }
     </style>
 </head>
-
+<div id="bg">
+    <div></div>
+</div>
 <body>
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
@@ -141,8 +165,8 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-            <span style="font-size: 26px">临沧市移民开发局</span></a>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+            <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
         <!-- logo ends -->
 
         <!-- user dropdown starts -->
@@ -175,7 +199,7 @@
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
 
                         <li class="nav-header">我的表单</li>
-                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 申请表单</span></a></li>
+                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span>非文件表单</span></a></li>
 
                         <li id="header2" class="nav-header">我的事务</li>
                         <li id="dcl2"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
@@ -202,18 +226,18 @@
                                                 <a href="#">我的表单</a>
                                             </li>
                                             <li>
-                                                <a href="#">申请表单</a>
+                                                <a href="#">新建非文件表单</a>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
+                                            <a data-toggle="tooltip" title="新建非文件表单" class="well top-block"
                                                href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
-                                                <div>新建表单</div>
+                                                <div>新建非文件表单</div>
 
                                             </a>
                                         </div>
@@ -408,7 +432,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>办公室处理</h3>
+                    <h3></h3>
                 </div>
 
 
@@ -427,7 +451,7 @@
                             <div class="user_2"></div>
                         </div>
                     </div>
-                    <div class="con_info">
+                    <div class="con_info" style="margin-top: 20px;">
                         <table class="mytable">
                             <tbody>
                             <tr>
@@ -474,9 +498,7 @@
 </div>
 
 <footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
-
-    <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+    <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
             href="http://www.bhidi.com">北京院</a></p>
 </footer>
 
@@ -794,6 +816,7 @@
                 }
             }
         })
+        $("#modle_handle .modal-header h3").text("非文件管理-" + id);
         if(state == "办公室签收并处理"){
             step.goStep(2);
             $(".user_1").text(mydata.submitperson);

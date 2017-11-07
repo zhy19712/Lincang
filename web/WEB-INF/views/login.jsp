@@ -27,6 +27,31 @@
             -webkit-box-shadow: 0 0 0px 1000px white inset;
             border: 1px solid #CCC!important;
         }
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(../../images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
+        #bg div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
+        footer{
+            color: #fff !important;
+            margin-top: 20px !important;
+            position: absolute !important;
+            bottom: 0 !important;
+            width: 100% !important;
+        }
     </style>
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
@@ -34,18 +59,36 @@
 </head>
 
 <body>
+<div id="bg">
+    <div></div>
+</div>
+<!-- topbar starts -->
+<div class="navbar navbar-default" role="navigation">
+
+    <div class="navbar-inner">
+        <!-- 小屏幕时的导航按键 starts -->
+        <button type="button" class="navbar-toggle pull-left animated flip">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <!-- 小屏幕时的导航按键 ends -->
+        <!-- logo starts -->
+        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+            <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
+        <!-- logo ends -->
+
+    </div>
+</div>
 <div class="ch-container">
     <div class="row">
 
-        <div class="row">
-            <div class="col-md-12 center login-header">
-                <h2>用户登录</h2>
-            </div>
-            <!--/span-->
-        </div><!--/row-->
 
-        <div class="row">
+        <div class="row" style="position: absolute;top: 50%;margin-top: -180px;">
+
             <div class="well col-md-5 center login-box">
+                <h4>用户登录</h4>
                 <div class="alert alert-info">
                     <c:if test="${msg==null}">
                         用户名密码登录
@@ -85,6 +128,10 @@
     </div><!--/fluid-row-->
 
 </div><!--/.fluid-container-->
+<footer class="row" style="color: #fff;margin-top: 50px;">
+    <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
+            href="http://www.bhidi.com">北京院</a></p>
+</footer>
 
 
 

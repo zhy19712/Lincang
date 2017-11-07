@@ -287,9 +287,7 @@
                     <h3>资金上报</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post"
-                      enctype="multipart/form-data"  target="uploadFrame">
-
+                <form id = "fileForm" action="" method="post" enctype="multipart/form-data"  target="uploadFrame">
                     <div class="modal-body">
                         <input id="oId" type="text" name="id" style="display: none" ></input>
                         <input id="created_at" type="text" name="created_at" style="display: none" ></input>
@@ -546,7 +544,6 @@
                 </form>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                    <a href="#" class="btn btn-success">保存</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -556,9 +553,7 @@
 </div>
 
 <footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
-
-    <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+    <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
             href="http://www.bhidi.com">北京院</a></p>
 </footer>
 

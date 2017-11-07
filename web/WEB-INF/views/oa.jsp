@@ -33,6 +33,7 @@
     <link rel="stylesheet" href="../../css/oa.css">
 
     <link rel="stylesheet" href="../../css/media.css" media="print">
+    <link rel="stylesheet" href="../../css/mycommon.css">
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
@@ -86,7 +87,7 @@
         #sel_model>div{
             display: inline-block;
             vertical-align: top;
-            width: 50%;
+            margin-left: 30px;
             font-size: 14px;
         }
         #select_people{
@@ -107,7 +108,6 @@
             vertical-align: middle;
             word-wrap: break-word;
             text-align: center;
-            font-size: 20px;
             width: 16.5%;
         }
         .download_wrapper button{
@@ -123,10 +123,34 @@
         input{
             line-height: 16px !important;
         }
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(../../images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
+        #bg div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
+        #container{
+            border-bottom: 1px solid #ccc;
+        }
     </style>
 </head>
 
 <body>
+<div id="bg">
+    <div></div>
+</div>
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
 
@@ -140,8 +164,8 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-            <span style="font-size: 26px">临沧市移民开发局</span></a>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+            <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
         <!-- logo ends -->
 
         <!-- user dropdown starts -->
@@ -173,7 +197,7 @@
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
 
                         <li class="nav-header">我的表单</li>
-                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 申请表单</span></a></li>
+                        <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 发文表单</span></a></li>
 
                         <li class="nav-header">我的事务</li>
                         <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
@@ -200,18 +224,18 @@
                                                 <a href="#">我的表单</a>
                                             </li>
                                             <li>
-                                                <a href="#">申请表单</a>
+                                                <a href="#">新建发文表单</a>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
+                                            <a data-toggle="tooltip" title="新建发文表单" class="well top-block"
                                                href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
-                                                <div>新建表单</div>
+                                                <div>新建发文表单</div>
 
                                             </a>
                                         </div>
@@ -441,19 +465,20 @@
                             <div class="user_6"></div>
                         </div>
                     </div>
-                    <div id="people_list" style="font-size: 12px;margin-left: 20px;line-height: 30px;">
-                        <p><span>签批领导:</span><span id="leader" style="margin-left: 10px;"></span></p>
-                        <p><span>办理人员:</span><span id="people" style="margin-left: 10px;"></span></p>
-                    </div>
-                    <div id="sel_model">
+                    <%--<div id="people_list" style="font-size: 12px;margin-left: 20px;line-height: 30px;">--%>
+                        <%--<p><span>签批领导:</span><span id="leader" style="margin-left: 10px;"></span></p>--%>
+                        <%--<p><span>办理人员:</span><span id="people" style="margin-left: 10px;"></span></p>--%>
+                    <%--</div>--%>
+                    <div id="sel_model" style="margin-top: 20px;">
+                        <p style="display: none;">领导签批人</p>
+                        <p id="text" class="style1" style="margin-top: 3px;">选择处理人</p>
                         <div id="model">
                             <ul id="select_people">
-                                <li><span>选择领导签批人</span><input type="text" id="lingdao"></li>
-                                <li><span>选择办理人</span><input type="text" id="banli"></li>
+                                <li><span style="width: 120px;">领导签批人</span><input type="text" id="lingdao"></li>
+                                <li><span style="width: 120px;">办理人</span><input type="text" id="banli"></li>
                             </ul>
                         </div>
                         <div id="sel_people">
-                            <p style="color: red;">选择领导签批人</p>
                             <div id="tree_container">
                                 <ul>
                                     <li data-jstree='{"opened":false}'>办公室
@@ -501,10 +526,10 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button>确认</button>
+                            <button class="mybtn1">确认</button>
                         </div>
                     </div>
-                    <div class="fawen_info">
+                    <div class="fawen_info" style="margin-top: 20px;">
                         <p class="red" style="font-size: 18px;text-align: center;line-height: 40px;">临沧市移民局发文稿纸</p>
                         <table class="mytable">
                             <tbody>
@@ -600,143 +625,141 @@
     </div>
     </div>
 
-    <div class="modal fade" id="model_handel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" data-backdrop="static">
+    <%--<div class="modal fade" id="model_handel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
+         <%--aria-hidden="true" data-backdrop="static">--%>
 
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>选择处理人</h3>
-                </div>
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
 
 
-                <div class="modal-body" style="font-size: 0;width: 100%;">
-                    <div id="container1" style="width: 100%;height: 160px">
-                        <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
-                            <div class="step-header">
-                                <ul>
-                                    <li><p>发文起草</p></li>
-                                    <li><p>办公室审核处理</p></li>
-                                    <li><p>签批</p></li>
-                                    <li><p>处理处置</p></li>
-                                    <li><p>办公室归档</p></li>
-                                    <li><p>结束</p></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                            <div class="user_1">user1</div>
-                            <div class="user_2">user1</div>
-                            <div class="user_3">user1</div>
-                            <div class="user_4">user1</div>
-                            <div class="user_5">user1</div>
-                            <div class="user_6">user1</div>
-                        </div>
-                    </div>
-                    <div class="fawen_info">
-                        <p class="red" style="font-size: 18px;text-align: center;line-height: 40px;">临沧市移民局发文稿纸</p>
-                        <table class="mytable">
-                            <tbody>
-                                <tr>
-                                    <td class="red">临沧(</td>
-                                    <td><input type="text" name="dept"></td>
-                                    <td class="red">)号</td>
-                                    <td class="red">日期</td>
-                                    <td><input type="text" name="author"></td>
-                                    <td class="red">缓级</td>
-                                    <td><input type="text" name="reviewer"></td>
-                                    <td class="red">密级</td>
-                                    <td><input type="text" name="reviewer"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5">
-                                        <p class="red text-left">签发</p>
-                                        <textarea name="" cols="30" rows="10"></textarea>
-                                    </td>
-                                    <td colspan="2">
-                                        <p class="red text-left">审稿</p>
-                                        <textarea name="" cols="30" rows="10"></textarea>
-                                    </td>
-                                    <td colspan="2">
-                                        <p class="red text-left">会签</p>
-                                        <textarea name="" cols="30" rows="10"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="9">
-                                        <p class="red text-left">抄报</p>
-                                        <textarea name="" cols="30" rows="10"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="red">抄送</td>
-                                    <td colspan="8"><input type="text" name="keyword"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">发</td>
-                                    <td colspan="8"><input type="text" name="title"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">拟稿单位</td>
-                                    <td colspan="4"><input type="text" name="dept"></td>
-                                    <td class="red">拟稿</td>
-                                    <td><input type="text" name="author"></td>
-                                    <td class="red">科室核稿</td>
-                                    <td><input type="text" name="reviewer"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">印刷</td>
-                                    <td colspan="4"><input type="text" name="print"></td>
-                                    <td class="red">校对</td>
-                                    <td><input type="text" name="revision"></td>
-                                    <td class="red">份数</td>
-                                    <td><input type="text" name="copy"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">下载</td>
-                                    <td colspan="8"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">主题词</td>
-                                    <td colspan="8"><input type="text" name="keyword"></td>
-                                </tr>
-                                <tr>
-                                    <td class="red">标题</td>
-                                    <td colspan="8"><input type="text" name="title"></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="9"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
-                                </tr>
-                                <tr>
-                                    <td>办理结果</td>
-                                    <td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                </div>
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" data-dismiss="modal">×</button>--%>
+                    <%--<h3>选择处理人</h3>--%>
+                <%--</div>--%>
 
 
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                    <a href="#"  class="btn btn-primary">提交</a>
-                </div>
+                <%--<div class="modal-body" style="font-size: 0;width: 100%;">--%>
+                    <%--<div id="container1" style="width: 100%;height: 160px">--%>
+                        <%--<div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">--%>
+                            <%--<div class="step-header">--%>
+                                <%--<ul>--%>
+                                    <%--<li><p>发文起草</p></li>--%>
+                                    <%--<li><p>办公室审核处理</p></li>--%>
+                                    <%--<li><p>签批</p></li>--%>
+                                    <%--<li><p>处理处置</p></li>--%>
+                                    <%--<li><p>办公室归档</p></li>--%>
+                                    <%--<li><p>结束</p></li>--%>
+                                <%--</ul>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                        <%--<div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">--%>
+                            <%--<div class="user_1">user1</div>--%>
+                            <%--<div class="user_2">user1</div>--%>
+                            <%--<div class="user_3">user1</div>--%>
+                            <%--<div class="user_4">user1</div>--%>
+                            <%--<div class="user_5">user1</div>--%>
+                            <%--<div class="user_6">user1</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                    <%--<div class="fawen_info">--%>
+                        <%--<p class="red" style="font-size: 18px;text-align: center;line-height: 40px;">临沧市移民局发文稿纸</p>--%>
+                        <%--<table class="mytable">--%>
+                            <%--<tbody>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">临沧(</td>--%>
+                                    <%--<td><input type="text" name="dept"></td>--%>
+                                    <%--<td class="red">)号</td>--%>
+                                    <%--<td class="red">日期</td>--%>
+                                    <%--<td><input type="text" name="author"></td>--%>
+                                    <%--<td class="red">缓级</td>--%>
+                                    <%--<td><input type="text" name="reviewer"></td>--%>
+                                    <%--<td class="red">密级</td>--%>
+                                    <%--<td><input type="text" name="reviewer"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td colspan="5">--%>
+                                        <%--<p class="red text-left">签发</p>--%>
+                                        <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                    <%--</td>--%>
+                                    <%--<td colspan="2">--%>
+                                        <%--<p class="red text-left">审稿</p>--%>
+                                        <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                    <%--</td>--%>
+                                    <%--<td colspan="2">--%>
+                                        <%--<p class="red text-left">会签</p>--%>
+                                        <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td colspan="9">--%>
+                                        <%--<p class="red text-left">抄报</p>--%>
+                                        <%--<textarea name="" cols="30" rows="10"></textarea>--%>
+                                    <%--</td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">抄送</td>--%>
+                                    <%--<td colspan="8"><input type="text" name="keyword"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">发</td>--%>
+                                    <%--<td colspan="8"><input type="text" name="title"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">拟稿单位</td>--%>
+                                    <%--<td colspan="4"><input type="text" name="dept"></td>--%>
+                                    <%--<td class="red">拟稿</td>--%>
+                                    <%--<td><input type="text" name="author"></td>--%>
+                                    <%--<td class="red">科室核稿</td>--%>
+                                    <%--<td><input type="text" name="reviewer"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">印刷</td>--%>
+                                    <%--<td colspan="4"><input type="text" name="print"></td>--%>
+                                    <%--<td class="red">校对</td>--%>
+                                    <%--<td><input type="text" name="revision"></td>--%>
+                                    <%--<td class="red">份数</td>--%>
+                                    <%--<td><input type="text" name="copy"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">下载</td>--%>
+                                    <%--<td colspan="8"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">主题词</td>--%>
+                                    <%--<td colspan="8"><input type="text" name="keyword"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td class="red">标题</td>--%>
+                                    <%--<td colspan="8"><input type="text" name="title"></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td colspan="9"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>--%>
+                                <%--</tr>--%>
+                                <%--<tr>--%>
+                                    <%--<td>办理结果</td>--%>
+                                    <%--<td colspan="8"><textarea name="content" placeholder="内容" cols="30" rows="10" style="width: 99%;"></textarea></td>--%>
+                                <%--</tr>--%>
+                            <%--</tbody>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+
+                <%--</div>--%>
 
 
-            </div>
-        </div>
-    </div>
-    </div>
+                <%--<div class="modal-footer">--%>
+                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>--%>
+                    <%--<a href="#"  class="btn btn-primary">提交</a>--%>
+                <%--</div>--%>
+
+
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+    <%--</div>--%>
 
     <footer class="row">
-        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
-
-        <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+        <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
                 href="http://www.bhidi.com">北京院</a></p>
     </footer>
 

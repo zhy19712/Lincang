@@ -1,9 +1,6 @@
 
 
 //打印
-// $("#btn-print").click(function () {
-//     jQuery('#fileForm').print();
-// })
 
 // 全部列表datatables
 
@@ -167,11 +164,12 @@ $("#time1").jeDate({
 //选择处理人
 $("#select_people li input").focus(function () {
     var text = $(this).siblings("span").text();
-    $("#sel_people>p").text(text);
+    $("#sel_model>p:first-child").text(text);
+    $('#tree_container').jstree('deselect_all');
 })
 //处理人集合
 $("#sel_people button").click(function () {
-    var peole_kind = $("#sel_people>p").text();
+    var people_kind = $("#sel_model>p:first-child").text();
     var people_arr = [];
     $.each($("#tree_container").jstree().get_selected(true),function (i,n) {
         if(n.parent != "#"){
@@ -180,9 +178,9 @@ $("#sel_people button").click(function () {
         }
     })
     var people = people_arr.toString();
-    if(peole_kind == "选择领导签批人"){
+    if(people_kind == "领导签批人"){
         $("#lingdao").val(people);
-    }else if(peole_kind == "选择办理人"){
+    }else if(people_kind == "办理人"){
         $("#banli").val(people);
     }
 });
@@ -231,8 +229,8 @@ function edit(that) {
         success: function (data) {
             console.log(data);
             mydata = data;
-            $("#leader").text(data.approver);
-            $("#people").text(data.implementperson);
+            // $("#leader").text(data.approver);
+            // $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
             $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
             $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
@@ -280,6 +278,7 @@ function edit(that) {
             }
         }
     });
+    $("#select_model .modal-header h3").text("发文管理-" + id);
     $("#select_model .btn-primary").text("提交");
     $('#select_model').modal('show');
     $("#select_model input").attr("readonly",true);
@@ -294,6 +293,8 @@ function edit(that) {
             $("#people_list").css("display","none");
             $("#sel_model").css("display","none");
         }else if(kind == "编辑"){
+            $("#select_people input").val("");
+            $('#tree_container').jstree('deselect_all');
             $("#people_list").css("display","none");
             $("#sel_model").css("display","block");
         }
@@ -311,8 +312,8 @@ function edit(that) {
             step.goStep(3);
             $(".user_1").text(mydata.applicant);
             $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text("");
-            $(".user_4").text("");
+            $(".user_3").text(mydata.approver);
+            $(".user_4").text(mydata.implementperson);
             $(".user_5").text("");
             $("#select_model tr:nth-child(2) td:nth-child(1) textarea").attr("readonly",false);
             $("#select_model tr:nth-child(2) td:nth-child(3) textarea").attr("readonly",false);
@@ -320,8 +321,8 @@ function edit(that) {
             step.goStep(4);
             $(".user_1").text(mydata.applicant);
             $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text(mydata.approverdelete);
-            $(".user_4").text("");
+            $(".user_3").text(mydata.approver);
+            $(".user_4").text(mydata.implementperson);
             $(".user_5").text("");
             $("#select_model tr:nth-child(12) td:nth-child(2) textarea").attr("readonly",false);
         }else if(status == "办公室归档"){

@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/jedate.css">
     <link rel="stylesheet" href="js/themes/default/style.min.css">
     <link rel="stylesheet" href="css/money.css">
+    <link rel="stylesheet" href="../../css/mycommon.css">
     <style>
         .last{
             border-bottom: 1px solid #000 !important;
@@ -41,8 +42,8 @@
             vertical-align: middle;
             word-wrap: break-word;
             text-align: center;
-            font-size: 20px;
-            width: 16%;
+            font-size: 14px;
+            width: 16.5%;
         }
         #shouwen_wdo form,#more,#more1,#model_info{
             width: 96%;
@@ -60,7 +61,6 @@
         }
         table td{
             padding: 5px 0;
-            text-align: center;
             border-right: 1px solid #000;
             border-bottom: 1px solid #000;
         }
@@ -84,7 +84,6 @@
         #sel_model{
             width: 96%;
             margin: 0 auto;
-            margin-left: 24px;
             font-size: 0;
         }
         #sel_model>div{
@@ -161,6 +160,9 @@
         #more tr:nth-child(4) td:nth-child(2)>div span:hover,#more1 tr:nth-child(4) td:nth-child(2)>div span:hover,#more tr:nth-child(4) td:nth-child(2)>div button:hover,#more1 tr:nth-child(4) td:nth-child(2)>div button:hover{
             text-decoration: underline;
         }
+        #container,#container1{
+            border-bottom: 1px solid #ccc;
+        }
         .delete_wrapper{
             position: fixed;
             top: 0;
@@ -185,6 +187,24 @@
             display: inline-block;
             vertical-align: top;
         }
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
+        #bg div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1080px;
+            background-color: rgba(0, 0, 0, 0.25);
+        }
     </style>
 
 
@@ -199,6 +219,10 @@
 </head>
 
 <body>
+<div id="bg">
+    <div></div>
+</div>
+
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
 
@@ -212,8 +236,8 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-            <span style="font-size: 26px;">临沧市移民开发局</span></a>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+            <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
         <!-- logo ends -->
 
         <!-- user dropdown starts -->
@@ -247,7 +271,7 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li id="header1" class="nav-header">我的收文</li>
-                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">收文登记</span></a></li>
+                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">收文表单</span></a></li>
 
                         <li class="nav-header">我的待办</li>
                         <li id="dcl"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
@@ -274,17 +298,17 @@
                                                 <a href="#">我的收文</a>
                                             </li>
                                             <li>
-                                                <a href="#">新建登记</a>
+                                                <a href="#">新建收文表单</a>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="新建收文登记表" class="well top-block"
+                                            <a data-toggle="tooltip" title="新建收文表单" class="well top-block"
                                                href="#" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
-                                                <div id="kind2">新建收文登记表</div>
+                                                <div id="kind2">新建收文表单</div>
                                             </a>
                                         </div>
 
@@ -299,10 +323,10 @@
                                             <table id="fawen" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>收文编号</th>
                                                     <th>年度</th>
                                                     <th>类别</th>
                                                     <th>来文日期</th>
-                                                    <th>收文编号</th>
                                                     <th>标题</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
@@ -326,17 +350,17 @@
                                     </div>
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已到资金</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 待办列表</h2>
 
                                         </div>
                                         <div class="box-content">
                                             <table id="dcl_table" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>收文编号</th>
                                                     <th>年度</th>
                                                     <th>类别</th>
                                                     <th>来文日期</th>
-                                                    <th>收文编号</th>
                                                     <th>标题</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
@@ -355,7 +379,7 @@
                                                 <a href="#">我的事务</a>
                                             </li>
                                             <li>
-                                                <a href="#">已处理事务</a>
+                                                <a href="#">已办事务</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -363,17 +387,17 @@
 
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已处理事务</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已办列表</h2>
 
                                         </div>
                                         <div class="box-content">
                                             <table id="ycl_table" class="display" width="100%" cellspacing="0">
                                                 <thead>
                                                 <tr>
+                                                    <th>收文编号</th>
                                                     <th>年度</th>
                                                     <th>类别</th>
                                                     <th>来文日期</th>
-                                                    <th>收文编号</th>
                                                     <th>标题</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
@@ -563,8 +587,8 @@
                         <div class="user1_6"></div>
                     </div>
                 </div>
-                <div id="more" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p id="first" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看收文登记详细信息<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
+                <div id="more" style="height: 56px;overflow: hidden;transition: all 0.5s;border-top: 1px solid #ccc;">
+                    <span class="style1">收文登记表</span><p id="first" style="margin-top:20px;margin-left:30px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -605,7 +629,7 @@
                         </tr>
                         <tr>
                             <td>归档份数</td>
-                            <td><input type="text" name="guidangyeshu"></td>
+                            <td>< input type="text" name="guidangyeshu"></td>
                             <td>页数</td>
                             <td><input type="text" name="yeshu"></td>
                             <td>密级</td>
@@ -644,20 +668,9 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="model_info" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看模版名称及处理人<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
-                    <p style="margin-left: 24px;"><span style="display: inline-block;width: 150px;">模版名称:</span><span id="model_name" style="margin-left: 10px;">文件拟办单</span></p>
-                    <ul id="handle_people" style="padding-left: 0;margin-left: 24px;">
-                        <li><span>科室1处理人</span><span id="keshi1_1">科室1</span></li>
-                        <li><span>科室2处理人</span><span id="keshi2_1">科室2</span></li>
-                        <li><span>分管领导处理人</span><span id="fenguan_1">分管领导</span></li>
-                        <li><span>主管领导处理人</span><span id="zhuguan_1">主管领导处理人</span></li>
-                        <li><span>办理人</span><span id="banli_1">办理人</span></li>
-                    </ul>
-                </div>
                 <div id="model_container_1">
                     <div id="model1_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -706,7 +719,7 @@
                         </table>
                     </div>
                     <div id="model2_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -929,8 +942,8 @@
                         <div class="user_6"></div>
                     </div>
                 </div>
-                <div id="more1" style="height: 30px;overflow: hidden;transition: all 0.5s;">
-                    <p id="first1" style="margin-left: 24px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #000;padding-left: 10px;">点击查看收文登记详细信息<span style="display: inline-block;width: 20px;height: 16px;background: url('images/arrow_bottom.png') no-repeat center center;background-size: 20px 20px;"></span></p>
+                <div id="more1" style="height: 56px;overflow: hidden;transition: all 0.5s;">
+                    <span class="style1">收文登记表</span><p id="first1" style="margin-top:20px;margin-left:34px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -1012,8 +1025,8 @@
                 </div>
                 <div id="sel_model">
                     <div id="model">
-                        <p style="color: red;display: inline-block;margin-left: 20px;margin-top: 8px;width: 100px;">选择处理方式</p>
-                        <select name="" id="sel1" style="margin-left: 30px;">
+                        <p class="style1">选择处理方式</p>
+                        <select  class="form-control input-sm" name="" id="sel1" style="margin-left: 30px;display: inline-block;width: 171px;">
                             <option>直接处理</option>
                             <option>文件拟办单</option>
                             <option>一科室提意见</option>
@@ -1021,7 +1034,7 @@
                         </select>
                     </div>
                     <div id="sel_people">
-                        <p style="color: red;width: 100px;margin-left: 20px;margin-top: 8px;">选择处理人</p>
+                        <p class="style1">选择处理人</p>
                         <p id="people_kind" style="display: none;"></p>
                         <ul id="select_people" style="margin-left: 30px;">
                             <li><span>科室1处理人</span><input type="text" id="keshi1"></li>
@@ -1078,7 +1091,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <button>确认</button>
+                            <button class="mybtn1">确认</button>
                         </div>
                     </div>
                 </div>
@@ -1330,12 +1343,9 @@
 
 
 <footer class="row">
-    <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; 临沧市移民局</p>
-
-    <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
+    <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
             href="http://www.bhidi.com">北京院</a></p>
 </footer>
-
 </div><!--/.fluid-container-->
 
 
@@ -1379,10 +1389,10 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
+            {"data": "receivefileid"},
             {"data": "year"},
             {"data": "type"},
             {"data": "cometime"},
-            {"data": "receivefileid"},
             {"data": "title"},
             {"data": "status"},
             {"data": null}
@@ -1420,10 +1430,10 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
+            {"data": "receivefileid"},
             {"data": "year"},
             {"data": "type"},
             {"data": "cometime"},
-            {"data": "receivefileid"},
             {"data": "title"},
             {"data": "status"},
             {"data": null}
@@ -1462,10 +1472,10 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
+            {"data": "receivefileid"},
             {"data": "year"},
             {"data": "type"},
             {"data": "cometime"},
-            {"data": "receivefileid"},
             {"data": "title"},
             {"data": "status"},
             {"data": null}
@@ -1683,22 +1693,18 @@
     $("#first").click(function () {
         flag = !flag;
         if(flag == true){
-            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#more").height(760);
         }else {
-            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
-            $("#more").height(36);
+            $("#more").height(56);
         }
     })
     var flag1 = false;
     $("#first1").click(function () {
         flag1 = !flag1;
         if(flag1 == true){
-            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#more1").height(760);
         }else {
-            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
-            $("#more1").height(36);
+            $("#more1").height(56);
         }
     })
     //查看模版选择及处理人
@@ -1706,11 +1712,9 @@
     $("#model_info>p:first-child").click(function () {
         m_flag = !m_flag;
         if(m_flag == true){
-            $(this).children("span").css({"background":"url(images/arrow_top.png) no-repeat center center","background-size":"20px 20px"});
             $("#model_info").height(240);
         }else {
-            $(this).children("span").css({"background":"url(images/arrow_bottom.png) no-repeat center center","background-size":"20px 20px"});
-            $("#model_info").height(36);
+            $("#model_info").height(56);
         }
     })
 
@@ -1796,7 +1800,9 @@
         //查看发文登记信息
         var kind = $(that).val();
         state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
-        id = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
+        id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        $("#select_model .modal-header h3").text("收文管理-" + id);
+        $("#model_handle .modal-header h3").text("收文管理-" + id);
         if(state == "办公室归档"){
             $("#model_handle .btn-primary").text("确认归档");
         }else {
@@ -1829,7 +1835,7 @@
                             + "<form action='/file/download.do' method='get' target='downloadFrame'>"
                             + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                             + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
-                            + "<span class='del' onclick='del(this)'>删除</span>"
+//                            + "<span class='del' onclick='del(this)'>删除</span>"
                             + "<button type='submit'>下载</button>"
                             + "</form>"
                             + "</div>"
@@ -1897,6 +1903,8 @@
             }
         });
         $("#receivefileid").text(id);
+        $(".user1_1").text(mydata.reveivereregisterpersonname);
+        $(".user_1").text(mydata.reveivereregisterpersonname);
         if(state == "办公室处理文件"){
             if(kind == "查看"){
                 $('#model_handle').modal('show');
@@ -1905,14 +1913,11 @@
                 $("#model_container_1").css("display","none");
             }else if(kind == "编辑"){
                 $("#select_people input").val("");
+                $('#tree_container').jstree('deselect_all');
                 $('#select_model').modal('show');
             }
             step1.goStep(2);
             step.goStep(2);
-            $(".user1_1").text(mydata.reveivereregisterpersonname);
-            $(".user_1").text(mydata.reveivereregisterpersonname);
-            $("#select_model .modal-header h3").text("收文管理-" + id);
-            $("#model_handle .modal-header h3").text("收文管理-" + id);
         }else {
             $.ajax({
                 url:"/getReceiveFileAndModelInfo.do",
@@ -1924,12 +1929,20 @@
                     console.log(data);
                     mydata1 = data.ReceiveFile
                     var model_name = data.ReceiveFile.modeltype
-                    $("#model_name").text(model_name);
-                    $("#keshi1_1").text(data.ReceiveFile.department1person);
-                    $("#keshi2_1").text(data.ReceiveFile.department2person);
-                    $("#fenguan_1").text(data.ReceiveFile.fenguanname);
-                    $("#zhuguan_1").text(data.ReceiveFile.zhuguanname);
-                    $("#banli_1").text(data.ReceiveFile.implementperson);
+//                    $("#model_name").text(model_name);
+//                    $("#keshi1_1").text(data.ReceiveFile.department1person);
+//                    $("#keshi2_1").text(data.ReceiveFile.department2person);
+//                    $("#fenguan_1").text(data.ReceiveFile.fenguanname);
+//                    $("#zhuguan_1").text(data.ReceiveFile.zhuguanname);
+//                    $("#banli_1").text(data.ReceiveFile.implementperson);
+                    if(!data.ReceiveFile.department1person && !data.ReceiveFile.department2person){
+                        $(".user1_3").text(data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
+                    }else if(data.ReceiveFile.department1person && !data.ReceiveFile.department2person){
+                        $(".user1_3").text(data.ReceiveFile.department1person +","+ data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
+                    }else {
+                        $(".user1_3").text(data.ReceiveFile.department1person +","+ data.ReceiveFile.department2person +","+ data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
+                    }
+                    $(".user1_4").text(data.ReceiveFile.implementperson);
                     $("#model_container_1>div").css("display","none");
                     if(model_name == "直接处理"){
                         $("#model1_1").css("display","block");
@@ -2014,8 +2027,6 @@
                 }
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_1").text(mydata1.reveivereregisterpersonname);
-                $(".user_1").text(mydata1.reveivereregisterpersonname);
                 $(".user1_2").text(mydata1.modelchoicename);
                 $(".user_2").text(mydata1.modelchoicename);
             }else if(mydata1.status == "分管领导签批"){
@@ -2025,18 +2036,16 @@
                 $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_1").text(mydata1.reveivereregisterpersonname);
-                $(".user_1").text(mydata1.reveivereregisterpersonname);
                 $(".user1_2").text(mydata1.modelchoicename);
                 $(".user_2").text(mydata1.modelchoicename);
-                if(mydata1.modeltype == "一科室提意见"){
-                    $(".user1_3").text(mydata1.department1person);
-                    $("#handle_people li:first-child").css("display","block");
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
-                    $("#handle_people li:first-child").css("display","block");
-                    $("#handle_people li:nth-child(2)").css("display","block");
-                }
+//                if(mydata1.modeltype == "一科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person);
+////                    $("#handle_people li:first-child").css("display","block");
+//                }else if(mydata1.modeltype == "两科室提意见"){
+////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
+////                    $("#handle_people li:first-child").css("display","block");
+////                    $("#handle_people li:nth-child(2)").css("display","block");
+//                }
             }else if(mydata1.status == "主管领导签批"){
                 $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").attr("readonly",false);
@@ -2044,20 +2053,18 @@
                 $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_1").text(mydata1.modelchoicename);
-                $(".user_1").text(mydata1.modelchoicename);
                 $(".user1_2").text(mydata1.reveivereregisterpersonname);
                 $(".user_2").text(mydata1.reveivereregisterpersonname);
-                if(mydata1.modeltype == "一科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                    $("#handle_people li:nth-child(2)").css("display","block");
-                }else {
-                    $(".user1_3").text(mydata1.fenguanname);
-                }
+//                if(mydata1.modeltype == "一科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                }else if(mydata1.modeltype == "两科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                    $("#handle_people li:nth-child(2)").css("display","block");
+//                }else {
+//                    $(".user1_3").text(mydata1.fenguanname);
+//                }
             }else if(mydata1.status == "处理处置"){
                 $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").attr("readonly",false);
@@ -2065,56 +2072,56 @@
                 $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(4);
                 step.goStep(4);
-                $(".user1_1").text(mydata1.modelchoicename);
-                $(".user_1").text(mydata1.modelchoicename);
-                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                $(".user_2").text(mydata1.reveivereregisterpersonname);
-                if(mydata1.modeltype == "一科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                }else {
-                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                    $("#handle_people li:nth-child(2)").css("display","block");
-                }
+//                $(".user1_1").text(mydata1.modelchoicename);
+//                $(".user_1").text(mydata1.modelchoicename);
+//                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+//                $(".user_2").text(mydata1.reveivereregisterpersonname);
+//                if(mydata1.modeltype == "一科室提意见"){
+////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                }else if(mydata1.modeltype == "两科室提意见"){
+////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                }else {
+////                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                    $("#handle_people li:nth-child(2)").css("display","block");
+//                }
             }else if(mydata1.status == "办公室归档"){
                 step1.goStep(5);
                 step.goStep(5);
-                $(".user1_1").text(mydata1.modelchoicename);
-                $(".user_1").text(mydata1.modelchoicename);
-                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                $(".user_2").text(mydata1.reveivereregisterpersonname);
-                if(mydata1.modeltype == "一科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                    $("#handle_people li:nth-child(2)").css("display","block");
-                }else {
-                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-                }
-                $(".user1_4").text(mydata1.implementperson);
+//                $(".user1_1").text(mydata1.modelchoicename);
+//                $(".user_1").text(mydata1.modelchoicename);
+//                $(".user1_2").text(mydata1.reveivereregisterpersonname);
+//                $(".user_2").text(mydata1.reveivereregisterpersonname);
+//                if(mydata1.modeltype == "一科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                }else if(mydata1.modeltype == "两科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                    $("#handle_people li:nth-child(2)").css("display","block");
+//                }else {
+//                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                }
+//                $(".user1_4").text(mydata1.implementperson);
             }else if(mydata1.status == "结束"){
                 step1.goStep(6);
                 step.goStep(6);
-                $(".user1_1").text(mydata1.modelchoicename);
-                $(".user_1").text(mydata1.modelchoicename);
+////                $(".user1_1").text(mydata1.modelchoicename);
+////                $(".user_1").text(mydata1.modelchoicename);
                 $(".user1_2").text(mydata1.reveivereregisterpersonname);
                 $(".user_2").text(mydata1.reveivereregisterpersonname);
-                if(mydata1.modeltype == "一科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                }else if(mydata1.modeltype == "两科室提意见"){
-                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-                    $("#handle_people li:first-child").css("display","block");
-                    $("#handle_people li:nth-child(2)").css("display","block");
-                }else {
-                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-                }
-                $(".user1_4").text(mydata1.implementperson);
+//                if(mydata1.modeltype == "一科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                }else if(mydata1.modeltype == "两科室提意见"){
+//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                    $("#handle_people li:first-child").css("display","block");
+//                    $("#handle_people li:nth-child(2)").css("display","block");
+//                }else {
+//                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
+//                }
+//                $(".user1_4").text(mydata1.implementperson);
                 $(".user1_5").text(mydata1.confirmperson);
             }
             if(kind == "查看"){
