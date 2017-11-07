@@ -4,9 +4,10 @@ var all_table = $('#NewTable_Admin').DataTable({
     ajax: {
         url: "/userManagementDataTableFirst.do"
     },
-    "order": [[2, 'asc']],
+    "order": [[0, 'asc']],
     "serverSide": true,
     "columns": [
+        {"data": "id"},
         {"data": "username"},
         {"data": "role"},
         {"data": "name"},
@@ -18,7 +19,7 @@ var all_table = $('#NewTable_Admin').DataTable({
         {
             "searchable": false,
             "orderable": false,
-            "targets": [5],
+            "targets": [6],
             "render" :  function(data,type,row) {
                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                 html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
@@ -103,6 +104,132 @@ $(function () {
     $("#tree_container").jstree().get_selected(true); //获取选中的
     $('#tree_container').jstree('deselect_all');//全部取消
     $('#tree_container').jstree('select_all');//全部选中
+
+
+
+    //初始化 单位名称UnitName 部门Department
+    function initUND() {
+        $.ajax({
+            url:"/getUnitAndDepartments.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="",str1="";
+                $.each(val,function (a,b) {
+                    str+="<option value="+b.unit+">"+b.unit+"</option>";
+                });
+                $("#unit").html(str);
+
+                $.each(val[0].departmentList,function (h,k) {
+                    str1+="<option value="+k+">"+k+"</option>"
+                });
+                $("#department").html(str1);
+
+                 $("#unit").change(function () {
+                     var sel=$("#unit").val();
+                     var str2="";
+                    $.each(val,function(c,d){
+                        if(sel==d.unit){
+                            $.each(d.departmentList,function (e,f) {
+                                str2+="<option value="+f+">"+f+"</option>"
+                            })
+                        }
+                    });
+                     $("#department").html(str2);
+                 })
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
+    //初始化 单位名称UnitName 部门Department
+    initUND();
+
+    //初始化角色
+    function initRole() {
+        $.ajax({
+            url:"getRoles.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="";
+                $.each(val,function (a,b) {
+                    str+="<option>"+b+"</option>"
+                })
+                $("#role").html(str)
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
+    //动态角色
+    initRole();
+
+
+
+    //提交事件
+    $("#btn-primary").click(function () {
+
+        primaryClick()
+    });
+
+    function primaryClick() {
+        var username=$("#username").val(),
+            pass=$("#pass").val(),
+            role=$("#role").val(),
+            unit=$("#unit").val(),
+            name=$("#name").val(),
+            department=$("#department").val(),
+            phone=$("#phone").val();
+
+        var datas={
+            "username" : username,
+            "pass" : pass,
+            "role" : role,
+            "unit" : unit,
+            "department" : department,
+            "name" : name,
+            "phone" : phone
+        };
+
+        $.ajax({
+            url:"/registerUser.do",
+            dataType:"json",
+            type:"post",
+            data:datas,
+            async:false,
+            success:function (val) {
+                if(val.result =="success"){
+                    table_refresh();
+                    $('#form_stuff').modal('hide');
+                    alert("提交成功");
+                }else {
+                    alert("提交失败");
+                    $('#form_stuff').modal('hide');
+                }
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+
+
+
+
+    }
+
+    //表格刷新
+    function table_refresh() {
+        all_table.ajax.url("/userManagementDataTableFirst.do").load();
+        // New_table.ajax.url("/sendFileDataTableSecond.do").load();
+    }
+
+
+    
+    
 
 
 

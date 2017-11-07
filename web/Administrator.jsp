@@ -220,7 +220,8 @@
                                                 <thead>
                                                 <tr>
                                                     <th>编号</th>
-                                                    <th>user</th>
+                                                    <th>用户名</th>
+                                                    <th>角色</th>
                                                     <th>姓名</th>
                                                     <th>单位名称</th>
                                                     <th>部门</th>
@@ -319,22 +320,17 @@
                             <tbody>
                             <tr>
                                 <td>用户名</td>
-                                <td colspan="3"><input type="text" name="username"></td>
+                                <td colspan="3"><input type="text" name="username" id="username"></td>
                             </tr>
                             <tr>
                                 <td>密码</td>
-                                <td><input type="text" name="pass"></td>
+                                <td><input type="text" name="pass" id="pass"></td>
                             </tr>
                             <tr>
                                 <td>角色</td>
                                 <td colspan="7">
                                     <div class="col-sm-4">
-                                        <select class="form-control input-sm " name="role" >
-                                            <option>==请选择===</option>
-                                            <option>==请选择===</option>
-                                            <option>==请选择===</option>
-                                            <option>==请选择===</option>
-                                            <option>==请选择===</option>
+                                        <select class="form-control input-sm " name="role" id="role" >
                                             <option>==请选择===</option>
                                         </select>
                                     </div>
@@ -345,12 +341,7 @@
                                 <td>
                                     <div class="form-group">
                                         <div class="col-sm-4">
-                                            <select class="form-control input-sm" name="unit" >
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
+                                            <select class="form-control input-sm" name="unit" id="unit" >
                                                 <option>==请选择===</option>
                                             </select>
                                         </div>
@@ -362,12 +353,7 @@
                                 <td>
                                     <div class="form-group">
                                         <div class="col-sm-4">
-                                            <select class="form-control input-sm" name="department" >
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
-                                                <option>==请选择===</option>
+                                            <select class="form-control input-sm" name="department" id="department">
                                                 <option>==请选择===</option>
                                             </select>
                                         </div>
@@ -376,11 +362,11 @@
                             </tr>
                             <tr>
                                 <td>姓名</td>
-                                <td><input type="text" name="name"></td>
+                                <td><input type="text" name="name" id="name"></td>
                             </tr>
                             <tr>
                                 <td class="black">联系电话</td>
-                                <td><input type="text" name="phone"></td>
+                                <td><input type="text" name="phone" id="phone"></td>
                             </tr>
 
 
@@ -391,7 +377,7 @@
 
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                    <a href="#" class="btn btn-primary">提交</a>
+                    <a href="#" class="btn btn-primary" id="btn-primary">提交</a>
                 </div>
 
 
