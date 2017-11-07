@@ -1,40 +1,38 @@
 package com.bhidi.lincang.bean;
 
-import java.util.List;
-
 public class DepartmentAndStaff {
-    private String departmentName;
-    private List<String> staffList;
+    private String name;
+    private String department;
 
     public DepartmentAndStaff() {
     }
 
-    public DepartmentAndStaff(String departmentName, List<String> staffList) {
-        this.departmentName = departmentName;
-        this.staffList = staffList;
+    public DepartmentAndStaff(String name, String department) {
+        this.name = name;
+        this.department = department;
     }
 
-    public String getDepartmentName() {
-        return departmentName;
+    public String getName() {
+        return name;
     }
 
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public List<String> getStaffList() {
-        return staffList;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setStaffList(List<String> staffList) {
-        this.staffList = staffList;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @Override
     public String toString() {
         return "DepartmentAndStaff{" +
-                "departmentName='" + departmentName + '\'' +
-                ", staffList=" + staffList +
+                "name='" + name + '\'' +
+                ", department='" + department + '\'' +
                 '}';
     }
 }

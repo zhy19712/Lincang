@@ -1,7 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.DepartmentAndStaff;
-import com.bhidi.lincang.bean.User;
+import com.bhidi.lincang.bean.DepartmentAndStaffs;
 import com.bhidi.lincang.service.UserServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +25,13 @@ public class UserController {
     }
 
     /**
-     *这个方法是收文管理部分的那个用户树，按照部门取出来用户的多少
+     *这个方法是收文管理部分的那个用户树，按照部门取出来用户的名字
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/getDepartmentAndStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/getDepartmentAndStaffs",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getDepartmentAndStaff(){
-        //查询出所有的用户和相对应的角色
-        List<DepartmentAndStaff> resList=  userServiceImp.getDepartmentAndStaff();
+        List<DepartmentAndStaffs> resList=  userServiceImp.getDepartmentAndStaffs();
         String result = new Gson().toJson(resList);
         return result;
     }
