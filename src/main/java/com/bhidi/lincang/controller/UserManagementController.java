@@ -74,7 +74,7 @@ public class UserManagementController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/getRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/getRegisterInfoByIdssss",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getRegisterInfoById(RegisterInfo ri){
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("registerInfo",ri);
