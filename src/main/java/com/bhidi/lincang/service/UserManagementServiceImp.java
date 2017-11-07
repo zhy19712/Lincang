@@ -65,4 +65,8 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         }
         return mapResult;
     }
+
+    public RegisterInfo getRegisterInfoById(int id) {
+        return userManagementMapper.selectRegisterInfoById(id);
+    }
 }

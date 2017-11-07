@@ -33,4 +33,13 @@
         INSERT INTO user_role (userid,roleid)
         VALUES ( #{userid},#{roleid} )
     </insert >
+    <!--RegisterInfo selectRegisterInfoById(int id);-->
+    <select id="selectRegisterInfoById" parameterType="int" resultType="com.bhidi.lincang.bean.RegisterInfo">
+        SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,
+            IFNULL(u.pass,'')AS pass,IFNULL(r.rolename,'') AS role,
+            IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit,
+            IFNULL(ud.department,'') AS department,IFNULL(u.phone1,'')AS phone
+        FROM user u,user_role ur,role r,unitanddepartment ud
+        WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id AND u.id = #{id}
+    </select>
 </mapper>

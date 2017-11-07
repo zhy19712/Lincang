@@ -53,12 +53,12 @@ public class UserManagementDataTable {
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
                 searchValue = searchValue.replaceAll("'","");
-                sArray.add(" id like '%" + searchValue + "%'");
-                sArray.add(" username like '%" + searchValue + "%'");
-                sArray.add(" role like '%" + searchValue + "%'");
-                sArray.add(" name like '%" + searchValue + "%'");
-                sArray.add(" unit like '%" + searchValue + "%'");
-                sArray.add(" department like '%" + searchValue + "%'");
+                sArray.add(" u.id like '%" + searchValue + "%'");
+                sArray.add(" u.username like '%" + searchValue + "%'");
+                sArray.add(" r.rolename like '%" + searchValue + "%'");
+                sArray.add(" u.name like '%" + searchValue + "%'");
+                sArray.add(" ud.unit like '%" + searchValue + "%'");
+                sArray.add(" ud.unit like '%" + searchValue + "%'");
             }
 
             String individualSearch = "";

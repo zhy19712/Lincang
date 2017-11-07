@@ -1,5 +1,6 @@
 package com.bhidi.lincang.service;
 
+import com.bhidi.lincang.bean.RegisterInfo;
 import com.bhidi.lincang.bean.UnitAndDepartments;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface UserManagementServiceInf {
     List<UnitAndDepartments> getUnitAndDepartments();
 
     Map<String,String> register(Map<String, Object> mapCondition);
+
+    RegisterInfo getRegisterInfoById(int id);
 }

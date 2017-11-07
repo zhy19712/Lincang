@@ -20,4 +20,6 @@ public interface UserManagementMapper {
     int selectRoleid(RegisterInfo ri);
 
     int insertUserRole(Map<String, Object> mapConditionCondition);
+
+    RegisterInfo selectRegisterInfoById(int id);
 }

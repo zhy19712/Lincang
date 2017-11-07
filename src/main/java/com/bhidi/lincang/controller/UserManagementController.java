@@ -2,7 +2,6 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.RegisterInfo;
 import com.bhidi.lincang.bean.UnitAndDepartments;
-import com.bhidi.lincang.bean.UserManagement;
 import com.bhidi.lincang.service.UserManagementServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +53,33 @@ public class UserManagementController {
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("registerInfo",ri);
         Map<String,String> mapResult= userManagementServiceImp.register(mapCondition);
-
         String result = new Gson().toJson(mapResult);
         return result;
     }
-
+    /**
+     * 查看
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getRegisterInfoById(int id){
+        RegisterInfo ri = userManagementServiceImp.getRegisterInfoById(id);
+        String result = new Gson().toJson(ri);
+        return result;
+    }
+    /**
+     * 编辑之后的提交
+     * @param ri
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getRegisterInfoById(RegisterInfo ri){
+        Map<String,Object> mapCondition = new HashMap<String,Object>();
+        mapCondition.put("registerInfo",ri);
+        Map<String,String> mapResult= userManagementServiceImp.register(mapCondition);
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
 }
