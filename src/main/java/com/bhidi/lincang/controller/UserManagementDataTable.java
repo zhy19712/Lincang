@@ -44,7 +44,7 @@ public class UserManagementDataTable {
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
-            /*if("id".equals(orderColumn)){
+            if("id".equals(orderColumn)){
                 orderColumn = "u.id";
             }
             if("username".equals(orderColumn)){
@@ -61,7 +61,7 @@ public class UserManagementDataTable {
             }
             if("department".equals(orderColumn)){
                 orderColumn = "ud.department";
-            }*/
+            }
             //获取排序方式 默认为asc
             String orderDir = "asc";
             orderDir = request.getParameter("order[0][dir]");
@@ -91,10 +91,10 @@ public class UserManagementDataTable {
 
             List<RegisterInfo> tasks = new ArrayList<RegisterInfo>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table;
+                String recordsFilteredSql = "select count(u.id) as recordsFiltered from user u,user_role ur,role r,unitanddepartment ud WHERE  u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table;
+                String recordsTotalSql = "select count(u.id) as recordsTotal from user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
@@ -110,7 +110,6 @@ public class UserManagementDataTable {
                 sql += " order by " + orderColumn + " " + orderDir;
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
-
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     tasks.add(new RegisterInfo (

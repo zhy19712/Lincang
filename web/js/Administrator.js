@@ -4,7 +4,7 @@ var all_table = $('#NewTable_Admin').DataTable({
     ajax: {
         url: "/userManagementDataTableFirst.do"
     },
-    "order": [[0, 'asc']],
+    "order": [[1, 'asc']],
     "serverSide": true,
     "columns": [
         {"data": "id"},
