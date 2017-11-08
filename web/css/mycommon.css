@@ -27,6 +27,7 @@ footer{
 }
 .title input{
     font-size: 18px !important;
+    text-align: center;
 }
 .modal-header h3{
     color: #466faa !important;
