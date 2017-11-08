@@ -74,12 +74,24 @@ public class UserManagementController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/getRegisterInfoByIdssss",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getRegisterInfoById(RegisterInfo ri){
+    @RequestMapping(value="/updateRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String updateRegisterInfoById(RegisterInfo ri){
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("registerInfo",ri);
-        Map<String,String> mapResult= userManagementServiceImp.register(mapCondition);
+        Map<String,String> mapResult= userManagementServiceImp.update(mapCondition);
         String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteRegisterInfoById(int id){
+        int a = userManagementServiceImp.deleteRegisterInfoById(id);
+        String result = new Gson().toJson(a);
         return result;
     }
 }

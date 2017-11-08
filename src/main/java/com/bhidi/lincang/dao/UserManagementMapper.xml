@@ -42,4 +42,27 @@
         FROM user u,user_role ur,role r,unitanddepartment ud
         WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id AND u.id = #{id}
     </select>
+    <!--int updateUser(RegisterInfo ri);-->
+    <update id="updateUser" parameterType="com.bhidi.lincang.bean.RegisterInfo" >
+        UPDATE user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="pass!=null">pass = #{pass},</if>
+            <if test="name!=null">name = #{name},</if>
+            <if test="department!=null">dept = #{department},</if>
+            <if test="phone!=null">phone1 = #{phone},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+    <!--int updateUserRole(Map<String, Object> mapConditionCondition);-->
+    <update id="updateUserRole" parameterType="com.bhidi.lincang.bean.RegisterInfo" >
+        UPDATE user_role
+        <trim prefix="set" suffixOverrides=",">
+            <if test="roleid!=null">roleid = #{roleid},</if>
+        </trim>
+        WHERE userid = #{userid}
+    </update>
+    <!--int deleteRegisterInfoById(int id);-->
+    <delete id="deleteRegisterInfoById" >
+        DELETE FROM user WHERE id = #{id}
+    </delete>
 </mapper>

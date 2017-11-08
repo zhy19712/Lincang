@@ -22,4 +22,10 @@ public interface UserManagementMapper {
     int insertUserRole(Map<String, Object> mapConditionCondition);
 
     RegisterInfo selectRegisterInfoById(int id);
+
+    int updateUser(RegisterInfo ri);
+
+    int updateUserRole(Map<String, Object> mapConditionCondition);
+
+    int deleteRegisterInfoById(int id);
 }

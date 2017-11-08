@@ -74,7 +74,7 @@ public class UserManagementDataTable {
                 sArray.add(" u.id like '%" + searchValue + "%'");
                 sArray.add(" u.username like '%" + searchValue + "%'");
                 sArray.add(" u.name like '%" + searchValue + "%'");
-                sArray.add(" rolename like '%" + searchValue + "%'");
+                sArray.add(" r.rolename like '%" + searchValue + "%'");
                 sArray.add(" ud.unit like '%" + searchValue + "%'");
                 sArray.add(" ud.department like '%" + searchValue + "%'");
             }
@@ -91,17 +91,17 @@ public class UserManagementDataTable {
 
             List<RegisterInfo> tasks = new ArrayList<RegisterInfo>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table;
+                String recordsFilteredSql = "select count(u.id) as recordsFiltered from user u,user_role ur,role r,unitanddepartment ud WHERE  u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table;
+                String recordsTotalSql = "select count(u.id) as recordsTotal from user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT=ud.id";
+                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
@@ -110,7 +110,6 @@ public class UserManagementDataTable {
                 sql += " order by " + orderColumn + " " + orderDir;
                 recordsFilteredSql += " order by " + orderColumn + " " + orderDir;
                 sql += " limit " + start + ", " + length;
-
                 rs = stmt.executeQuery(sql);
                 while (rs.next()) {
                     tasks.add(new RegisterInfo (
