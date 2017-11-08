@@ -535,7 +535,7 @@
                 <iframe id="uploadFrame3" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm3" action="" method="post" enctype="multipart/form-data"  target="uploadFrame3">
                     <div class="modal-body">
-                        <table class="mytable qxapply">
+                        <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
                                 <td colspan="3"><input type="text"></td>
@@ -649,31 +649,6 @@
 
     function del_file2(number) {
         var o=document.getElementById("filesUpload2");//获取父节点
-        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
-        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
-        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
-        o.removeChild(int); //从父节点o上面移除子节点a
-        o.removeChild(a);
-        o.removeChild(span)
-    }
-
-    var fileIndex = 3;
-    function add_click_file3(index){
-        $("#add_file_"+fileIndex).click();
-    }
-
-    function add3(index) {
-        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
-        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
-        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
-        $("#filesUpload3").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
-        $("#filesUpload3").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file3(' + fileIndex+ ')">删除</a>');
-        $("#filesUpload3").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
-        ++fileIndex;
-    }
-
-    function del_file3(number) {
-        var o=document.getElementById("filesUpload3");//获取父节点
         var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
         var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
         var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
@@ -1422,10 +1397,10 @@
 //            }
 //        })
 //        $("#filesUpload span").remove();
-        $('#money_apply_wdo1').modal('show');
+//        $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
-//        $('#final_handle').modal('show');
+        $('#final_handle').modal('show');
     }
 
 
