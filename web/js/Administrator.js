@@ -232,13 +232,14 @@
         var idArr=[];
         $.each(dataArr,function (a,b) {
             if(parseInt(b.id)){
-                idArr.push(b.id);
+                idArr.push(parseInt(b.id));
             }
         });
         var datas={
             "role":roleName,
             "functionList":idArr
         };
+        console.log(datas);
         $.ajax({
             url:"/registerUser.do",
             dataType:"json",
