@@ -14,18 +14,20 @@
     <!--int selectDept(RegisterInfo ri);-->
     <select id="selectDept" parameterType="com.bhidi.lincang.bean.RegisterInfo" resultType="int">
         SELECT id
-        FROM unitanddepartment where unit = #{unit} and department = #{department}
+        FROM unitanddepartment
+        WHERE unit = #{unit} and department = #{department}
     </select>
     <!--int saveUser(RegisterInfo ri);-->
     <insert  id="saveUser" parameterType="com.bhidi.lincang.bean.RegisterInfo" useGeneratedKeys="true"
              keyProperty="id">
-        INSERT INTO user (username,pass,name,phone1,dept)
-        VALUES ( #{username},#{pass},#{name},#{phone},#{department} )
+        INSERT INTO user (username,pass,name,phone1,dept,created_at)
+        VALUES ( #{username},#{pass},#{name},#{phone},#{department},#{created_at} )
     </insert >
     <!--int selectRoleid(RegisterInfo ri);-->
     <select id="selectRoleid" parameterType="com.bhidi.lincang.bean.RegisterInfo" resultType="int">
         SELECT id
-        FROM role where rolename = #{role}
+        FROM role
+        WHERE rolename = #{role}
     </select>
     <!--int insertUserRole(Map<String, Object> mapConditionCondition);-->
     <insert id="insertUserRole" parameterType="Map" useGeneratedKeys="true"

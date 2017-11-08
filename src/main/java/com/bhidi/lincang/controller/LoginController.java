@@ -1,8 +1,10 @@
 package com.bhidi.lincang.controller;
 
+import com.bhidi.lincang.bean.Privilege;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.LoginServiceImp;
 import com.google.gson.Gson;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 2017/8/28.
@@ -36,6 +40,13 @@ public class LoginController {
     @RequestMapping(value = "/login",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String login(String username, String password, String login_auto_login,HttpSession session, ModelMap map, HttpServletResponse response){
         User user = loginServiceImp.queryUserByUsernameAndPass(username,password);
+        //先求出来roleid
+        int roleid = loginServiceImp.getRoleid(user.getRoleList().get(0));
+        //根据roleid查出来功能
+        List<Integer> intList = loginServiceImp.getFunction(roleid);
+        //查出来不属于他的功能
+        List<Privilege> privilegeList = loginServiceImp.getNotFunction(intList);
+        user.setPermissionList(privilegeList);
         if( user != null  ){
             session.setAttribute("user",user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
@@ -47,7 +58,6 @@ public class LoginController {
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-                /*System.out.println(jsonUser);*/
                 Cookie cookie = new Cookie("cookie_user",jsonUser);
                 cookie.setMaxAge(60 * 60 * 24 * 7);
                 response.addCookie(cookie);

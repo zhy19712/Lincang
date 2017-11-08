@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -85,6 +86,9 @@ public class ReceiveFileController {
             rf.setStatus("分管领导签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
+            Date now = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            rf.setModelchoicetime(sdf.format(now));
             //判断两个科室的名字
             //rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
             //rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
@@ -146,6 +150,9 @@ public class ReceiveFileController {
             rf.setStatus("分管领导签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
+            Date now = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            rf.setModelchoicetime(sdf.format(now));
             //判断两个科室的名字
             //rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
             //rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
@@ -204,6 +211,9 @@ public class ReceiveFileController {
             rf.setStatus("科室签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
+            Date now = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            rf.setModelchoicetime(sdf.format(now));
             //判断两个科室的名字
             rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
             //rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
@@ -265,6 +275,9 @@ public class ReceiveFileController {
             rf.setStatus("科室签批");
             rf.setModeltype(modeltype);
             rf.setModelchoicename(((User)session.getAttribute("user")).getName());
+            Date now = new Date();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            rf.setModelchoicetime(sdf.format(now));
             //判断两个科室的名字
             rf.setDepartment1name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment1()!=null?pl.getDepartment1().split(",")[0]:""));
             rf.setDepartment2name(receiveFileServiceImp.getDepartmentNameByName(pl.getDepartment2()!=null?pl.getDepartment2().split(",")[0]:""));
@@ -369,12 +382,16 @@ public class ReceiveFileController {
     public String updateReceiveFileAndModelInfo(HttpSession session,String receivedata,String text){
         JSONObject objectrf = JSONObject.fromObject(receivedata);
         ReceiveFile receivefileinfo = (ReceiveFile) JSONObject.toBean(objectrf,ReceiveFile.class);
+        //取到数据库中的数据
+        ReceiveFile rfRource = receiveFileServiceImp.getReceiveFileInfoById(receivefileinfo.getReceivefileid());
         //取到当前用户的角色
         User user = (User)session.getAttribute("user");
         String role  = user.getRoleList().get(0);
         int er =0;
         int mer =0;
         String modeltype = "";
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         //根据modelname来判断给数据库中存储的名字
         if( receivefileinfo.getModeltype().equals("直接处理") ){
             ReceiveFile rf = new ReceiveFile();
@@ -384,8 +401,10 @@ public class ReceiveFileController {
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
                     rf.setFenguannamedelete(user.getName());
+                    rf.setFenguantime(sdf.format(now));
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                    rf.setFenguantime(rfRource.getFenguantime()+","+sdf.format(now));
                 }
                 if( fenguanname.split(",").length == (rf.getFenguannamedelete().split(",").length) ){
                     rf.setStatus("主管领导签批");
@@ -398,8 +417,10 @@ public class ReceiveFileController {
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
                     rf.setZhuguannamedelete(user.getName());
+                    rf.setZhuguantime(sdf.format(now));
                 } else {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
+                    rf.setZhuguantime(rfRource.getZhuguantime()+","+sdf.format(now));
                 }
 
                 if(zhuguanname.split(",").length == ( rf.getZhuguannamedelete().split(",").length) ){
@@ -413,8 +434,10 @@ public class ReceiveFileController {
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
                     rf.setImplementpersondelete(user.getName());
+                    rf.setImplementtime(sdf.format(now));
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
+                    rf.setImplementtime(rfRource.getImplementtime()+","+sdf.format(now));
                 }
                 if(implementperson.split(",").length == (rf.getImplementpersondelete().split(",").length)){
                     rf.setStatus("办公室归档");
@@ -462,8 +485,10 @@ public class ReceiveFileController {
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
                     rf.setFenguannamedelete(user.getName());
+                    rf.setFenguantime(sdf.format(now));
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                    rf.setFenguantime(rfRource.getFenguantime()+","+sdf.format(now));
                 }
                 if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
@@ -476,8 +501,10 @@ public class ReceiveFileController {
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
                     rf.setZhuguannamedelete(user.getName());
+                    rf.setZhuguantime(sdf.format(now));
                 } else {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
+                    rf.setZhuguantime(rfRource.getZhuguantime()+","+sdf.format(now));
                 }
 
                 if(zhuguanname.split(",").length ==  rf.getZhuguannamedelete().split(",").length ){
@@ -491,8 +518,10 @@ public class ReceiveFileController {
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
                     rf.setImplementpersondelete(user.getName());
+                    rf.setImplementtime(sdf.format(now));
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
+                    rf.setImplementtime(rfRource.getImplementtime()+","+sdf.format(now));
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("办公室归档");
@@ -538,8 +567,10 @@ public class ReceiveFileController {
             if(receivefileinfo.getStatus().equals("科室签批")){
                 if(receivefileinfo.getDepartment1persondelete().equals("")){
                     rf.setDepartment1persondelete(user.getName());
+                    rf.setDepartment1time(sdf.format(now));
                 } else {
                     rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
+                    rf.setDepartment1time(rfRource.getDepartment1time()+","+sdf.format(now));
                 }
                 if( receivefileinfo.getDepartment1person().split(",").length == rf.getDepartment1persondelete().split(",").length ){
                     rf.setStatus("分管领导签批");
@@ -552,8 +583,10 @@ public class ReceiveFileController {
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
                     rf.setFenguannamedelete(user.getName());
+                    rf.setFenguantime(sdf.format(now));
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                    rf.setFenguantime(rfRource.getFenguantime()+","+sdf.format(now));
                 }
                 if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
@@ -566,8 +599,10 @@ public class ReceiveFileController {
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
                     rf.setZhuguannamedelete(user.getName());
+                    rf.setZhuguantime(sdf.format(now));
                 } else {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
+                    rf.setZhuguantime(rfRource.getZhuguantime()+","+sdf.format(now));
                 }
                 if(zhuguanname.split(",").length == rf.getZhuguannamedelete().split(",").length ){
                     rf.setStatus("处理处置");
@@ -580,8 +615,10 @@ public class ReceiveFileController {
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
                     rf.setImplementpersondelete(user.getName());
+                    rf.setImplementtime(sdf.format(now));
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
+                    rf.setImplementtime(rfRource.getImplementtime()+","+sdf.format(now));
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("办公室归档");
@@ -632,8 +669,10 @@ public class ReceiveFileController {
                     rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete());
                     if(receivefileinfo.getDepartment1persondelete().equals("")){
                         rf.setDepartment1persondelete(user.getName());
+                        rf.setDepartment1time(sdf.format(now));
                     }else {
                         rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete()+","+user.getName());
+                        rf.setDepartment1time(rfRource.getDepartment1time()+","+sdf.format(now));
                     }
                     int len1 = receivefileinfo.getDepartment1person().split(",").length;
                     int len2 = rf.getDepartment1persondelete().equals("")?0:rf.getDepartment1persondelete().split(",").length;
@@ -648,8 +687,10 @@ public class ReceiveFileController {
                     rf.setDepartment1persondelete(receivefileinfo.getDepartment1persondelete());
                     if(receivefileinfo.getDepartment2persondelete().equals("")){
                         rf.setDepartment2persondelete(user.getName());
+                        rf.setDepartment2time(sdf.format(now));
                     } else {
                         rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete()+","+user.getName());
+                        rf.setDepartment2time(rfRource.getDepartment1time()+","+sdf.format(now));
                     }
                     int len1 = receivefileinfo.getDepartment1person().split(",").length;
                     int len2 = receivefileinfo.getDepartment1persondelete().equals("")?0:receivefileinfo.getDepartment1persondelete().split(",").length;
@@ -668,8 +709,10 @@ public class ReceiveFileController {
                 String fenguannamedelete = receivefileinfo.getFenguannamedelete();
                 if(fenguannamedelete.equals("")){
                     rf.setFenguannamedelete(user.getName());
+                    rf.setFenguantime(sdf.format(now));
                 } else {
                     rf.setFenguannamedelete(fenguannamedelete+","+user.getName());
+                    rf.setFenguantime(rfRource.getFenguantime()+","+sdf.format(now));
                 }
                 if( fenguanname.split(",").length == rf.getFenguannamedelete().split(",").length ){
                     rf.setStatus("主管领导签批");
@@ -682,8 +725,10 @@ public class ReceiveFileController {
                 String zhuguannamedelete = receivefileinfo.getZhuguannamedelete();
                 if(zhuguannamedelete.equals("")){
                     rf.setZhuguannamedelete(user.getName());
+                    rf.setZhuguantime(sdf.format(now));
                 } else {
                     rf.setZhuguannamedelete(zhuguannamedelete +","+user.getName());
+                    rf.setZhuguantime(rfRource.getZhuguantime()+","+sdf.format(now));
                 }
 
                 if(zhuguanname.split(",").length ==  rf.getZhuguannamedelete().split(",").length ){
@@ -697,8 +742,10 @@ public class ReceiveFileController {
                 String implementpersondelete = receivefileinfo.getImplementpersondelete();
                 if( implementpersondelete.equals("") ){
                     rf.setImplementpersondelete(user.getName());
+                    rf.setImplementtime(sdf.format(now));
                 } else {
                     rf.setImplementpersondelete(implementpersondelete+","+user.getName());
+                    rf.setImplementtime(rfRource.getImplementtime()+","+sdf.format(now));
                 }
                 if(implementperson.split(",").length == rf.getImplementpersondelete().split(",").length){
                     rf.setStatus("办公室归档");
@@ -813,10 +860,13 @@ public class ReceiveFileController {
     @RequestMapping(value="/toConfirm",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String toConfirm(String receivefileid,HttpSession session){
         User user = (User)session.getAttribute("user");
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         ReceiveFile rf = new ReceiveFile();
         rf.setReceivefileid(receivefileid);
         rf.setStatus("结束");
         rf.setConfirmperson( user.getName() );
+        rf.setConfirmtime(sdf.format(now));
         int re = 0;
         try {
             re = receiveFileServiceImp.updateReceiveFile(rf);

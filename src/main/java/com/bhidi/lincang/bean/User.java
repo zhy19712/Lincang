@@ -19,13 +19,13 @@ public class User {
     //下边是和数据库不一样的属性
     //角色名字
     private List<String> roleList;
-    //权限名字
-    private List<String> permissionList;
+    //权限
+    private List<Privilege> permissionList;
 
     public User() {
     }
 
-    public User(int id, String uid, String username, String password, String name, String dept, String phone1, String phone2, int level, String created_at, List<String> roleList, List<String> permissionList) {
+    public User(int id, String uid, String username, String password, String name, String dept, String phone1, String phone2, int level, String created_at, List<String> roleList, List<Privilege> permissionList) {
         this.id = id;
         this.uid = uid;
         this.username = username;
@@ -128,11 +128,11 @@ public class User {
         this.roleList = roleList;
     }
 
-    public List<String> getPermissionList() {
+    public List<Privilege> getPermissionList() {
         return permissionList;
     }
 
-    public void setPermissionList(List<String> permissionList) {
+    public void setPermissionList(List<Privilege> permissionList) {
         this.permissionList = permissionList;
     }
 
