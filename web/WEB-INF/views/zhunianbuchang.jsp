@@ -368,9 +368,9 @@
                                             <td>到款金额</td>
                                             <td><input type="text"></td>
                                             <td>上传附件</td>
-                                            <td><div id="filesUpload2" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                                <a href="#" id="add_2" onclick="add_click_file(2)">添加附件</a>
-                                                <input style="display:none;" id="add_file_2" type="file" name = "files" onChange="add2(2)"/>
+                                            <td><div id="myfilesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                                <a href="#" id="myadd_1" onclick="myadd_click_file(1)">添加附件</a>
+                                                <input style="display:none;" id="myadd_file_1" type="file" name = "files" onChange="myadd(1)"/>
                                             </div></td>
                                         </tr>
                                     </table>
@@ -520,6 +520,103 @@
         </div>
     </div>
 
+    <div class="modal fade" id="money_apply_wdo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>填写表单</h3>
+                </div>
+                <iframe id="uploadFrame3" name="uploadFrame" style="display:none;"></iframe>
+                <form id = "fileForm3" action="" method="post" enctype="multipart/form-data"  target="uploadFrame3">
+                    <div class="modal-body">
+                        <table class="mytable ghapply">
+                            <tr>
+                                <td>标题</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>申请人</td>
+                                <td><input type="text"></td>
+                                <td>申请原因</td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>上传附件</td>
+                                <td colspan="3"><div id="my1filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <a href="#" id="my1add_1" onclick="my1add_click_file(1)">添加附件</a>
+                                    <input style="display:none;" id="my1add_file_1" type="file" name = "files" onChange="my1add(1)"/>
+                                </div></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </form>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="final_handle2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3>填写表单</h3>
+                </div>
+                <div class="modal-body">
+                    <table class="mytable ghapply">
+                        <tr>
+                            <td>标题</td>
+                            <td colspan="3"><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>申请人</td>
+                            <td><input type="text"></td>
+                            <td>申请原因</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>上传附件</td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td>批复意见</td>
+                            <td colspan="3"><textarea></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>处理内容</td>
+                            <td colspan="3"><textarea></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>资金流向</td>
+                            <td colspan="3"><textarea></textarea></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer class="row">
@@ -585,31 +682,59 @@
         o.removeChild(span)
     }
 
-
-    var fileIndex = 2;
-    function add_click_file2(index){
-        $("#add_file_"+fileIndex).click();
+    // 多文件上传
+    var myfileIndex = 1;
+    function myadd_click_file(index){
+        $("#myadd_file_"+myfileIndex).click();
     }
 
-    function add2(index) {
+    function myadd(index) {
         /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
-        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
-        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
-        $("#filesUpload2").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
-        $("#filesUpload2").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file2(' + fileIndex+ ')">删除</a>');
-        $("#filesUpload2").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
-        ++fileIndex;
+        var len = $("#myadd_file_" + (myfileIndex) + "").val().split("\\").length;
+        var num = $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1];
+        $("#myfilesUpload").append('<span  id="myadd_file_span_' + (myfileIndex) + '"  class="add_file">' + $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#myfilesUpload").append('<a   id="myadd_file_a_' + (myfileIndex) + '"  class="add_file" href="javascript:mydel_file(' + myfileIndex+ ')">删除</a>');
+        $("#myfilesUpload").append('<input style="display:none;" id="myadd_file_' + (myfileIndex + 1) + '" type="file" name = "files" onChange="myadd(' + (myfileIndex + 1) + ')"/>');
+        ++myfileIndex;
     }
 
-    function del_file2(number) {
-        var o=document.getElementById("filesUpload2");//获取父节点
-        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
-        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
-        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
+    function mydel_file(number) {
+        var o=document.getElementById("myfilesUpload");//获取父节点
+        var int=document.getElementById("myadd_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("myadd_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("myadd_file_span_" + number+"");//获取需要删除的子节点
         o.removeChild(int); //从父节点o上面移除子节点a
         o.removeChild(a);
         o.removeChild(span)
     }
+
+    // 多文件上传
+    var my1fileIndex = 1;
+    function my1add_click_file(index){
+        $("#my1add_file_"+my1fileIndex).click();
+    }
+
+    function my1add(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\").length;
+        var num = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1];
+        $("#my1filesUpload").append('<span  id="my1add_file_span_' + (my1fileIndex) + '"  class="add_file">' + $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#my1filesUpload").append('<a   id="my1add_file_a_' + (my1fileIndex) + '"  class="add_file" href="javascript:my1del_file(' + my1fileIndex+ ')">删除</a>');
+        $("#my1filesUpload").append('<input style="display:none;" id="my1add_file_' + (my1fileIndex + 1) + '" type="file" name = "files" onChange="my1add(' + (my1fileIndex + 1) + ')"/>');
+        ++my1fileIndex;
+    }
+
+    function my1del_file(number) {
+        var o=document.getElementById("my1filesUpload");//获取父节点
+        var int=document.getElementById("my1add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("my1add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("my1add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
+
+
 
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
@@ -1354,7 +1479,9 @@
 //        $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
-        $('#final_handle').modal('show');
+//        $('#final_handle').modal('show');
+//        $('#money_apply_wdo2').modal('show');
+        $('#final_handle2').modal('show');
     }
 
 
