@@ -330,7 +330,7 @@
                                 <td>角色</td>
                                 <td colspan="7">
                                     <div class="col-sm-4">
-                                        <select class="form-control input-sm " name="role" id="role" >
+                                        <select class="form-control input-sm role" name="role"  >
                                             <option>==请选择===</option>
                                         </select>
                                     </div>
@@ -341,7 +341,7 @@
                                 <td>
                                     <div class="form-group">
                                         <div class="col-sm-4">
-                                            <select class="form-control input-sm" name="unit" id="unit" >
+                                            <select class="form-control input-sm unit" name="unit"  >
                                                 <option>==请选择===</option>
                                             </select>
                                         </div>
@@ -353,7 +353,7 @@
                                 <td>
                                     <div class="form-group">
                                         <div class="col-sm-4">
-                                            <select class="form-control input-sm" name="department" id="department">
+                                            <select class="form-control input-sm department" name="department" >
                                                 <option>==请选择===</option>
                                             </select>
                                         </div>
@@ -384,6 +384,91 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="form_update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" id="close_update" data-dismiss="modal">×</button>
+                    <h3 id="form-kind1">编辑用户</h3>
+                </div>
+                <span id="data_id" style="display: none"></span>
+
+                <iframe id="uploadFrame1" name="uploadFrame" style="display:none;"></iframe>
+                <form id = "fileForm1" enctype="multipart/form-data"  target="uploadFrame">
+                    <div class="modal-body" style="font-size: 0;width: 100%;" id="print11">
+                        <table class="mytable">
+                            <tbody>
+                            <tr>
+                                <td>用户名</td>
+                                <td colspan="3"><input type="text" name="username" id="username1"></td>
+                            </tr>
+                            <tr>
+                                <td>密码</td>
+                                <td><input type="text" name="pass" id="pass1"></td>
+                            </tr>
+                            <tr>
+                                <td>角色</td>
+                                <td colspan="7">
+                                    <div class="col-sm-4">
+                                        <select class="form-control input-sm role" name="role" >
+                                            <option>==请选择===</option>
+                                        </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>单位名称</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select class="form-control input-sm unit" name="unit"  >
+                                                <option>==请选择===</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>部门</td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-sm-4">
+                                            <select class="form-control input-sm department" name="department">
+                                                <option>==请选择===</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>姓名</td>
+                                <td><input type="text" name="name" id="name1"></td>
+                            </tr>
+                            <tr>
+                                <td class="black">联系电话</td>
+                                <td><input type="text" name="phone" id="phone1"></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary" id="btn-update">修改</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
 
     <div class="modal fade" id="form_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">

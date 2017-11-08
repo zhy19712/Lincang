@@ -109,56 +109,41 @@ var New_table = $('#NewTable_role').DataTable({
     $("#btn-primary").click(function () {
         primaryClick()
     });
+    // 修改
+    $("#btn-update").click(function () {
+        updata();
+    });
 
-
-    //编辑查看删除按钮
+    //操作
     function edit(that) {
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
              kind = $(that).val();
-
-            $.ajax({
-                url: "/getRegisterInfoById.do",
-                type: "post",
-                async: false,
-                data: {"id":id},
-                dataType: "json",
-                success: function (data) {
-                    $("#username").val(data.username);
-                    $("#pass").val(data.pass);
-                    $("#role").val(data.role);
-                    $("#unit").val(data.unit);
-                    $("#name").val(data.name);
-                    $("#department").val(data.department);
-                    $("#phone").val(data.phone);
-                    $('#form_stuff').modal('show');
-                }
-            });
-
+            $("#data_id").text(id);
 
             if(kind=="查看"){
-                $("#btn-primary").hide();
+                $("#form-kind1").text("查看用户");
+                $("#btn-update").hide();
+                lookOver(id);
             }else if(kind=="编辑"){
-                $("#btn-primary").text("修改");
-                $("#btn-primary").show();
+                $("#form-kind1").text("编辑用户");
+                $("#btn-update").show();
+                lookOver(id);
+            }else if(kind=="删除"){
+                deldata(id)
             }
-
     }
+    //修改
+    function updata() {
+        var username=$("#username1").val(),
+            pass=$("#pass1").val(),
+            role=$("#form_update .role").val(),
+            unit=$("#form_update .unit").val(),
+            name=$("#name1").val(),
+            department=$("#form_update .department").val(),
+            phone=$("#phone1").val(),
+            id=$("#data_id").text();
 
-
-
-
-
-
-
-    //提交
-    function primaryClick(id) {
-        var username=$("#username").val(),
-            pass=$("#pass").val(),
-            role=$("#role").val(),
-            unit=$("#unit").val(),
-            name=$("#name").val(),
-            department=$("#department").val(),
-            phone=$("#phone").val();
+        console.log(id);
 
         var datas={
             "username" : username,
@@ -168,32 +153,91 @@ var New_table = $('#NewTable_role').DataTable({
             "department" : department,
             "name" : name,
             "phone" : phone,
-            "id" : id
+            "id" :id
         };
+        console.log(datas);
+        $.ajax({
+            url:"/updateRegisterInfoById.do",
+            dataType:"json",
+            type:"post",
+            data:datas,
+            async:false,
+            success:function (val) {
+                console.log(val);
+                $('#form_update').modal('hide');
+                if(val.result =="success"){
+                    table_refresh();
+                    alert("修改成功");
+                }else {
+                    alert("修改失败");
+                }
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
+    // 查看
+    function lookOver(id) {
+        $.ajax({
+            url: "/getRegisterInfoById.do",
+            type: "post",
+            async: false,
+            data: {"id":id},
+            dataType: "json",
+            success: function (data) {
+                $("#username1").val(data.username);
+                $("#pass1").val(data.pass);
+                $("#form_update .role").val(data.role);
+                $("#form_update .unit").val(data.unit);
+                $("#name1").val(data.name);
+                $("#form_update .department").val(data.department);
+                $("#phone1").val(data.phone);
+                $("#form_update").modal('show');
+            }
+        });
+    }
+    //删除
+    function deldata(id) {
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deleteRegisterInfoById.do",
+                type: "post",
+                async: false,
+                data: {"id":id},
+                dataType: "json",
+                success: function (data) {
+                    if(data){
+                        table_refresh();
+                        alert("删除成功！")
+                    }else {
+                        alert("删除失败！")
+                    }
+                },error:function () {
+                    alert("系统出错！")
+                }
+            });
+        }
 
+    }
+    //增加
+    function primaryClick() {
+        var username=$("#username").val(),
+            pass=$("#pass").val(),
+            role=$("#form_stuff .role").val(),
+            unit=$("#form_stuff .unit").val(),
+            name=$("#name").val(),
+            department=$("#form_stuff .department").val(),
+            phone=$("#phone").val();
 
-
-       $("#btn-primary").text();
-       if($("#btn-primary").text()=="修改"){
-           $.ajax({
-               url:"/updateRegisterInfoById.do",
-               dataType:"json",
-               type:"post",
-               data:datas,
-               async:false,
-               success:function (val) {
-                   $('#form_stuff').modal('hide');
-                   if(val.result =="success"){
-                       table_refresh();
-                       alert("修改成功");
-                   }else {
-                       alert("修改失败");
-                   }
-               },error:(function(){
-                   alert("系统出错")
-               })
-           })
-       }else if($("#btn-primary").text()=="提交"){
+        var datas={
+            "username" : username,
+            "pass" : pass,
+            "role" : role,
+            "unit" : unit,
+            "department" : department,
+            "name" : name,
+            "phone" : phone
+        };
            $.ajax({
                url:"/registerUser.do",
                dataType:"json",
@@ -213,14 +257,6 @@ var New_table = $('#NewTable_role').DataTable({
                })
            })
 
-       }
-
-
-
-
-
-
-
     }
     //表格刷新
     function table_refresh() {
@@ -239,8 +275,8 @@ var New_table = $('#NewTable_role').DataTable({
                 var str="";
                 $.each(val,function (a,b) {
                     str+="<option>"+b+"</option>"
-                })
-                $("#role").html(str)
+                });
+                $(".role").html(str)
             },error:(function(){
                 alert("系统出错")
             })
@@ -259,15 +295,15 @@ var New_table = $('#NewTable_role').DataTable({
                 $.each(val,function (a,b) {
                     str+="<option value="+b.unit+">"+b.unit+"</option>";
                 });
-                $("#unit").html(str);
+                $(".unit").html(str);
 
                 $.each(val[0].departmentList,function (h,k) {
                     str1+="<option value="+k+">"+k+"</option>"
                 });
-                $("#department").html(str1);
+                $(".department").html(str1);
 
-                $("#unit").change(function () {
-                    var sel=$("#unit").val();
+                $(".unit").change(function () {
+                    var sel=$(".unit").val();
                     var str2="";
                     $.each(val,function(c,d){
                         if(sel==d.unit){
@@ -276,7 +312,7 @@ var New_table = $('#NewTable_role').DataTable({
                             })
                         }
                     });
-                    $("#department").html(str2);
+                    $(".department").html(str2);
                 })
             },error:(function(){
                 alert("系统出错")
