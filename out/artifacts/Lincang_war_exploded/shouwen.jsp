@@ -220,7 +220,6 @@
 
 <body>
 <div id="bg">
-    <div></div>
 </div>
 
 <!-- topbar starts -->
