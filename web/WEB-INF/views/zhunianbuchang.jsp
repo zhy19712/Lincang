@@ -25,29 +25,32 @@
     <link rel="stylesheet" href="../../css/jquery.step.css">
     <link rel="stylesheet" href="../../css/jedate.css">
     <link rel="stylesheet" href="../../css/money.css">
+    <link rel="stylesheet" href="../../css/mycommon.css">
     <style>
-        .last{
-            border-bottom: 1px solid #000 !important;
+        .mytable{
+            width: 100%;
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
         }
-        #new3 tbody tr td:last-child input:last-child{
-            display: none;
+        .mytable td{
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
+            line-height: 30px;
+            padding: 0 5px;
         }
-        #user_container1,#user_container2{
-            font-size: 0;
+        .mytable input{
+            outline: none;
+            border: none;
+            width: 100%;
+            padding: 0 5px;
         }
-        #user_container1>div,#user_container2>div{
-            display: inline-block;
-            vertical-align: middle;
-            word-wrap: break-word;
-            text-align: center;
-            font-size: 20px;
-            width: 33%;
-        }
-        #user_container2>div{
-            width: 20%;
-        }
-        .step-header li{
-            margin-top: 5px;
+        .mytable textarea{
+            outline: none;
+            border: none;
+            width: 100%;
+            height:120px;
+            padding: 0 5px;
+            resize: none;
         }
     </style>
 
@@ -274,7 +277,7 @@
 
     <hr>
 
-    <div class="modal fade" id="money_apply_wdo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="money_apply_wdo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -284,54 +287,107 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" id="close_stuff" data-dismiss="modal">×</button>
-                    <h3>资金上报</h3>
+                    <h3>填写表单</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm" action="" method="post" enctype="multipart/form-data"  target="uploadFrame">
+                <form id = "fileForm1" action="" method="post" enctype="multipart/form-data"  target="uploadFrame">
                     <div class="modal-body">
-                        <input id="oId" type="text" name="id" style="display: none" ></input>
-                        <input id="created_at" type="text" name="created_at" style="display: none" ></input>
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>标题</span>
-                                <input id="title" type="text">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-6" id="people">
-                                <span>上报人</span>
-                                <input id="input1" type="text" name="dept">
-                            </div>
-                            <div class="col-sm-6" id="time">
-                                <span>上报季度</span>
-                                <input id="input2" type="text" name="author">
-                            </div>
-                        </div>
-                        <div class="row myrow" id="night">
-                            <div class="col-sm-12">
-                                <span>上传文件</span>
-                                <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                        <table class="mytable ghapply">
+                            <tr>
+                                <td>标题</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>上报人</td>
+                                <td><input type="text"></td>
+                                <td>上报时间</td>
+                                <td><input type="text" id="time1" readonly="readonly"></td>
+                            </tr>
+                            <tr>
+                                <td>上报文件</td>
+                                <td colspan="3"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" id="Commit" style="display:none"/>
-                            </div>
-                        </div>
-                        <textarea class="mytext" name="content" id="input3" cols="30" rows="10" placeholder="上报内容描述"></textarea>
+                                </div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><textarea name="" placeholder="上报内容"></textarea></td>
+                            </tr>
+                        </table>
                     </div>
 
                 </form>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="caiwu_handle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" id="close_stuff1" data-dismiss="modal">×</button>
+                    <h3></h3>
+                </div>
+                    <div class="modal-body">
+                        <table class="mytable ghapply">
+                            <tr>
+                                <td>标题</td>
+                                <td colspan="3"><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>上报人</td>
+                                <td><input type="text"></td>
+                                <td>上报时间</td>
+                                <td><input type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>下载</td>
+                                <td colspan="3"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><textarea></textarea></td>
+                            </tr>
+                            <iframe id="uploadFrame2" name="uploadFrame" style="display:none;"></iframe>
+                            <form id = "fileForm2" action="" method="post" enctype="multipart/form-data"  target="uploadFrame2">
+                                <table class="mytable" style="border-top: none;">
+                                        <tr>
+                                            <td>款项来源</td>
+                                            <td><input type="text"></td>
+                                            <td>到款时间</td>
+                                            <td><input type="text" id="time2" readonly="readonly"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>到款金额</td>
+                                            <td><input type="text"></td>
+                                            <td>上传附件</td>
+                                            <td><div id="filesUpload2" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                                <a href="#" id="add_2" onclick="add_click_file(2)">添加附件</a>
+                                                <input style="display:none;" id="add_file_2" type="file" name = "files" onChange="add2(2)"/>
+                                            </div></td>
+                                        </tr>
+                                    </table>
+                            </form>
+                        </table>
+                    </div>
+
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
-
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="guihua_handle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -341,120 +397,60 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3></h3>
                 </div>
-                <div id="container" style="width: 100%;height: 160px">
-                    <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
-                        <div class="step-header">
-                            <ul>
-                                <li><p>规划科已上报</p></li>
-                                <li><p>财务处理中</p></li>
-                                <li><p>规划科已通知区县</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                        <div class="user1_1"></div>
-                        <div class="user1_2"></div>
-                        <div class="user1_3"></div>
-                    </div>
+                <div class="modal-body">
+                    <table class="mytable ghapply">
+                        <tr>
+                            <td>标题</td>
+                            <td colspan="3"><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>上报人</td>
+                            <td><input type="text"></td>
+                            <td>上报时间</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>下载附件</td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><textarea></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>款项来源</td>
+                            <td><input type="text"></td>
+                            <td style="width: 80px;">到款时间</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>到款金额</td>
+                            <td><input type="text"></td>
+                            <td>下载附件</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>通知区县</td>
+                            <td colspan="3">
+                                <ul class="ui-choose" multiple="multiple" id="uc_03" style="margin: 10px;">
+                                    <li>临翔区</li>
+                                    <li>凤庆县</li>
+                                    <li>永德县</li>
+                                    <li>镇康县</li>
+                                    <li>云县</li>
+                                    <li>沧源佤族自治县</li>
+                                    <li>耿马傣族佤族自治县</li>
+                                    <li>双江拉祜族佤族布朗族傣族自治县</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><textarea placeholder="通知内容"></textarea></td>
+                        </tr>
+                    </table>
                 </div>
-                <iframe name="uploadFrame" style="display:none;"></iframe>
-                <form action="" method="post"
-                      enctype="multipart/form-data"  target="uploadFrame">
 
-
-                    <div class="modal-body">
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>标题</span>
-                                <input type="text" id="report_title_edit" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-6">
-                                <span>上报人</span>
-                                <input type="text" id="report_person_edit" readonly="true">
-                            </div>
-                            <div class="col-sm-6">
-                                <span>上报时间</span>
-                                <input type="text" id="report_quarter_edit" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>文件</span>
-                                <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                    <a href="#" onclick="add_click_file(1)">下载</a>
-                                    <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" style="display:none"/>
-                            </div>
-                        </div>
-                        <div class="row myrow" id="caiwu">
-                            <div class="col-sm-12" id="report_text_edit"></div>
-                        </div>
-                        <div class="row myrow" id="caiwu1">
-                            <div class="col-sm-6">
-                                <span>款项来源</span>
-                                <input type="text" id="money_source" readonly="true">
-                            </div>
-                            <div class="col-sm-6">
-                                <span>到款时间</span>
-                                <input type="text" name="author" id="arrival_time" readonly="readonly">
-                            </div>
-                        </div>
-                        <div class="row myrow" id="caiwu2">
-                            <div class="col-sm-6">
-                                <span>到款金额</span>
-                                <input type="text" id="amount" readonly="true">
-                            </div>
-                            <div class="col-sm-6">
-                                <span>上传附件</span>
-                                <input type="text" name="author">
-                            </div>
-                        </div>
-                        <div class="row myrow last" id="guihuake">
-                            <div class="col-sm-12">
-                                <div class="notice">
-                                    <div class="add">
-                                        <span>通知区县</span>
-                                        <ul class="ui-choose" multiple="multiple" id="uc_03" style="width: 92%;">
-                                            <li>临翔区</li>
-                                            <li>凤庆县</li>
-                                            <li>永德县</li>
-                                            <li>镇康县</li>
-                                            <li>云县</li>
-                                            <li>沧源佤族自治县</li>
-                                            <li>耿马傣族佤族自治县</li>
-                                            <li>双江拉祜族佤族布朗族傣族自治县</li>
-                                        </ul>
-                                    </div>
-                                    <div class="text">
-                                        <span>通知内容</span><textarea name="" id="notice_content" cols="30" rows="10" style="outline: none;border: 1px solid #000"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row myrow" id="guihuake_show1">
-                            <div class="col-sm-12">
-                                <div class="county_infos">
-                                    <span>已通知区县:</span>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row myrow last" id="guihuake_show2">
-                            <div class="col-sm-12">
-                                <div class="not_content">
-                                    <span>通知内容:</span>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -462,94 +458,6 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" data-backdrop="static">
-
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3></h3>
-                </div>
-                <div id="container2" style="width: 100%;height: 160px">
-                    <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
-                        <div class="step-header">
-                            <ul>
-                                <li><p>区县已申请</p></li>
-                                <li><p>市局规划科批复中</p></li>
-                                <li><p>市局财务科转账中</p></li>
-                                <li><p>区县资金流向录入</p></li>
-                                <li><p>区县资金流向明细</p></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div id="user_container2" style="width:80%;margin: 0 auto;margin-top: 85px;">
-                        <div class="user2_1"></div>
-                        <div class="user2_2"></div>
-                        <div class="user2_3"></div>
-                        <div class="user2_4"></div>
-                        <div class="user2_5"></div>
-                    </div>
-                </div>
-                <iframe name="uploadFrame" style="display:none;"></iframe>
-                <form action="" method="post"
-                      enctype="multipart/form-data"  target="uploadFrame">
-
-
-                    <div class="modal-body">
-                        <div class="row myrow">
-                            <div class="col-sm-12">
-                                <span>标题</span>
-                                <input type="text" id="apply_title_edit" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row myrow">
-                            <div class="col-sm-6">
-                                <span>申请人</span>
-                                <input type="text" id="apply_person_edit" readonly="true">
-                            </div>
-                            <div class="col-sm-6">
-                                <span>申请原因</span>
-                                <input type="text" id="apply_reason_edit" readonly="true">
-                            </div>
-                        </div>
-                        <div class="row myrow" id="apply1">
-                            <div class="col-sm-12">
-                                <span>文件</span>
-                                <div style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
-                                    <a href="#" onclick="add_click_file(1)">下载</a>
-                                    <input style="display:none;" type="file" name = "files" onChange="add(1)"/>
-                                </div>
-                                <input type="button" style="display:none"/>
-                            </div>
-                        </div>
-                        <div class="row myrow" id="pifu">
-                            <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">批复意见:</span><textarea name="" id="pifu_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
-                            </div>
-                        </div>
-                        <div class="row myrow" id="chuli">
-                            <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">处理内容:</span><textarea name="" id="chuli_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
-                            </div>
-                        </div>
-                        <div class="row myrow" id="luru">
-                            <div class="col-sm-12" style="padding-top: 10px">
-                                <span style="display: inline-block;vertical-align: top;border: none;">资金流向:</span><textarea name="" id="luru_content" cols="30" rows="10" style="width:90%;outline: none;border: 1px solid #000"></textarea>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
-                    <a href="#" class="btn btn-primary">提交</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
 </div>
 
 <footer class="row">
@@ -576,17 +484,70 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="../../js/money.js"></script>
 <script>
+    //checkbox美化
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
+    //日期插件
 
-    $("#myDate").jeDate({
+    $("#time1").jeDate({
         format: "YYYY-MM-DD"
     });
     $("#arrival_time").jeDate({
         format: "YYYY-MM-DD"
     });
+
+    // 多文件上传
+    var fileIndex = 1;
+    function add_click_file(index){
+        $("#add_file_"+fileIndex).click();
+    }
+
+    function add(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
+        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
+        $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
+        $("#filesUpload").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
+        ++fileIndex;
+    }
+
+    function del_file(number) {
+        var o=document.getElementById("filesUpload");//获取父节点
+        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
+
+
+    var fileIndex = 2;
+    function add_click_file2(index){
+        $("#add_file_"+fileIndex).click();
+    }
+
+    function add2(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
+        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
+        $("#filesUpload2").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#filesUpload2").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file2(' + fileIndex+ ')">删除</a>');
+        $("#filesUpload2").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
+        ++fileIndex;
+    }
+
+    function del_file2(number) {
+        var o=document.getElementById("filesUpload2");//获取父节点
+        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
 
     //资金申请
     var money_apply1 = $('#money_apply1').DataTable({
@@ -736,38 +697,6 @@
 
         status = $("#status").text();
 
-        if(status == 2){
-            $("#header1").remove();
-            $("#m_apply1").remove();
-            $("#new1").remove();
-            $("#dcl").addClass("active");
-            $("#new2").addClass("active");
-            sta1 = "市局财务科处理中,市局财务科转账中";
-            sta2 = "已通知区县,市局规划科处理中,区县资金流向录入";
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-
-        }else if(status == 3){
-            $("#night").addClass("last");
-            $("#kind1").text("资金申请");
-            $("#kind2").text("资金申请");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=3").load();
-            sta1 = "区县资金流向录入";
-            sta2 = "区县资金流向明细";
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-        }else if(status == 1){
-            $("#night").removeClass("last");
-            sta1 = "市局规划科处理中,市局规划科批复中";
-            sta2 = "已通知区县,市局财务科转账中";
-            console.log(sta1);
-            $("#kind1").text("市局资金计划上报");
-            $("#kind2").text("市局资金计划上报");
-            money_apply1.ajax.url("/capitalFlowForm.do?userstatus=1").load();
-            dcl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta1))).load();
-            ycl_table.ajax.url("/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2))).load();
-        }
-
     }();
 
 
@@ -863,12 +792,6 @@
         }
     });
 
-    // 清空数据
-    function mywipeData() {
-        $("#edit input").val("");
-
-        $("#notice_content").val("");
-    }
 
     function edit2(that) {
         $("#edit2").modal('show');
@@ -1358,21 +1281,20 @@
     }
 
     function newForm() {
-        if(status == 1){
-            $("#people span").text("上报人");
-            $("#time span").text("上报季度");
-            $("#input3").css("display","block");
-        }else if(status == 3){
-            $("#people span").text("申请人");
-            $("#time span").text("申请原因");
-            $("#input3").css("display","none");
-        }
-        $('#money_apply_wdo').modal('show');
+//        $('#money_apply_wdo1 input').val("");
+//        $('#money_apply_wdo1 textarea').val("");
+//        $.each($("#filesUpload a"),function (i,n) {
+//            if(n.text != "添加附件"){
+//                n.remove()
+//            }
+//        })
+//        $("#filesUpload span").remove();
+//        $('#money_apply_wdo1').modal('show');
+//        $('#caiwu_handle').modal('show');
+        $('#guihua_handle').modal('show');
     }
 
-    function applyForm() {
-        $('#money_apply_wdo').modal('show');
-    }
+
 
 
 

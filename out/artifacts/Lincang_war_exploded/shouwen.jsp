@@ -123,10 +123,10 @@
             display: block;
         }
         #model_container input,#model_container_1 input{
-            width: 100px;
-            text-align: center;
+            width: 100%;
             outline:none;
             border: none;
+            padding: 0 5px;
         }
         input{
             line-height: 16px !important;
@@ -629,7 +629,7 @@
                         </tr>
                         <tr>
                             <td>归档份数</td>
-                            <td>< input type="text" name="guidangyeshu"></td>
+                            <td><input type="text" name="guidangyeshu"></td>
                             <td>页数</td>
                             <td><input type="text" name="yeshu"></td>
                             <td>密级</td>
@@ -1381,7 +1381,7 @@
         }
         return res;
     }
-    //发文登记
+    //收文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
             url: "/receiveFileDataTable.do"
@@ -1790,9 +1790,15 @@
 
     function newForm() {
 
-        $('#shouwen_wdo').modal('show');
         $("#shouwen_wdo input").val("");
         $("#shouwen_wdo textarea").val("");
+        $.each($("#filesUpload a"),function (i,n) {
+            if(n.text != "添加附件"){
+                n.remove()
+            }
+        })
+        $("#filesUpload span").remove();
+        $('#shouwen_wdo').modal('show');
 
     }
     //编辑查看按钮
@@ -1880,7 +1886,7 @@
                 $("#more1 tr:nth-child(2) td:nth-child(2) input").val(data.fileid);
                 $("#more1 tr:nth-child(2) td:nth-child(4) input").val(data.registrationnum);
                 $("#more1 tr:nth-child(2) td:nth-child(6) input").val(data.fileallid);
-                $("#more1 tr:nth-child(2) td:nth-child(8) input").val(data.	writtentime);
+                $("#more1 tr:nth-child(2) td:nth-child(8) input").val(data.writtentime);
                 $("#more1 tr:nth-child(3) td:nth-child(2) textarea").val(data.title);
 
 
@@ -1928,13 +1934,7 @@
                 success: function(data){
                     console.log(data);
                     mydata1 = data.ReceiveFile
-                    var model_name = data.ReceiveFile.modeltype
-//                    $("#model_name").text(model_name);
-//                    $("#keshi1_1").text(data.ReceiveFile.department1person);
-//                    $("#keshi2_1").text(data.ReceiveFile.department2person);
-//                    $("#fenguan_1").text(data.ReceiveFile.fenguanname);
-//                    $("#zhuguan_1").text(data.ReceiveFile.zhuguanname);
-//                    $("#banli_1").text(data.ReceiveFile.implementperson);
+                    var model_name = data.ReceiveFile.modeltype;
                     if(!data.ReceiveFile.department1person && !data.ReceiveFile.department2person){
                         $(".user1_3").text(data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
                     }else if(data.ReceiveFile.department1person && !data.ReceiveFile.department2person){

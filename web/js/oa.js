@@ -27,11 +27,6 @@ var all_table = $('#NewTable_Stuff').DataTable({
                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                 return html;
             }
-        },
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [0]
         }
     ],
     "language": {
@@ -117,11 +112,6 @@ var ycl_table = $('#SubmittedTable_Office').DataTable({
                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                 return html;
             }
-        },
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [0]
         }
     ],
     "language": {
@@ -283,6 +273,87 @@ function edit(that) {
     $('#select_model').modal('show');
     $("#select_model input").attr("readonly",true);
     $("#select_model textarea").attr("readonly",true);
+    $(".user_1").empty();
+    $(".user_2").empty();
+    $(".user_3").empty();
+    $(".user_4").empty();
+    $(".user_5").empty();
+    if(mydata.applicant != ""){
+        var str = "";
+        str +=  ""
+            +   "<div>"
+            +   "<p class='user'>"+ mydata.applicant +"</p>"
+            +   "<p class='time'>"+ mydata.createdtime +"</p>"
+            +   "</div>"
+        $(".user_1").append(str).addClass("myactive");
+    }
+    if(mydata.officeprocessperson != ""){
+        var str = "";
+        str +=  ""
+            +   "<div>"
+            +   "<p class='user'>"+ mydata.officeprocessperson +"</p>"
+            +   "<p class='time'>"+ mydata.officeprocesstime +"</p>"
+            +   "</div>"
+        $(".user_2").append(str).addClass("myactive");
+    }
+    if(mydata.approver != ""){
+        var peoplearr1 = mydata.approver.split(",");
+        var deletearr1 = mydata.approverdelete.split(",");
+        var timearr1 = mydata.approvertime.split(",");
+        $.each(peoplearr1,function (i,n) {
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ n +"</p>"
+                +   "<p class='time'></p>"
+                +   "</div>"
+            $(".user_3").append(str);
+        });
+        $.each(deletearr1,function (i,n) {
+            var name = n;
+            var time = timearr1[i];
+            $.each(peoplearr1,function (i,n) {
+                if(name == n){
+                    $(".user_3>div:nth-child("+(i+1)+")").addClass("myactive");
+                    $(".user_3>div:nth-child("+(i+1)+")").children(".time").text(time);
+                }
+            })
+        })
+    }
+    if(mydata.implementperson != ""){
+        var peoplearr2 = mydata.implementperson.split(",");
+        var deletearr2 = mydata.implementpersondelete.split(",");
+        var timearr2 = mydata.implementpersontime.split(",");
+        $.each(peoplearr2,function (i,n) {
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ n +"</p>"
+                +   "<p class='time'></p>"
+                +   "</div>"
+            $(".user_4").append(str);
+        });
+        $.each(deletearr2,function (i,n) {
+            var name = n;
+            var time = timearr2[i];
+            $.each(peoplearr2,function (i,n) {
+                if(name == n){
+                    $(".user_4>div:nth-child("+(i+1)+")").addClass("myactive");
+                    $(".user_4>div:nth-child("+(i+1)+")").children(".time").text(time);
+                }
+            })
+        })
+    }
+    if(mydata.confirmperson != ""){
+        var str = "";
+        str +=  ""
+            +   "<div>"
+            +   "<p class='user'>"+ mydata.confirmperson +"</p>"
+            +   "<p class='time'>"+ mydata.confirmtime +"</p>"
+            +   "</div>"
+        $(".user_5").append(str).addClass("myactive");
+    }
+
     if(status == "办公室审核处理"){
         $("#select_model input").attr("readonly",false);
         $("#select_model textarea").attr("readonly",false);
@@ -300,46 +371,21 @@ function edit(that) {
         }
 
         step.goStep(2);
-        $(".user_1").text(mydata.applicant);
-        $(".user_2").text("");
-        $(".user_3").text("");
-        $(".user_4").text("");
-        $(".user_5").text("");
     }else {
         $("#people_list").css("display","block");
         $("#sel_model").css("display","none");
         if(status == "签批"){
             step.goStep(3);
-            $(".user_1").text(mydata.applicant);
-            $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text(mydata.approver);
-            $(".user_4").text(mydata.implementperson);
-            $(".user_5").text("");
             $("#select_model tr:nth-child(2) td:nth-child(1) textarea").attr("readonly",false);
             $("#select_model tr:nth-child(2) td:nth-child(3) textarea").attr("readonly",false);
         }else if(status == "处理处置"){
             step.goStep(4);
-            $(".user_1").text(mydata.applicant);
-            $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text(mydata.approver);
-            $(".user_4").text(mydata.implementperson);
-            $(".user_5").text("");
             $("#select_model tr:nth-child(12) td:nth-child(2) textarea").attr("readonly",false);
         }else if(status == "办公室归档"){
             step.goStep(5);
-            $(".user_1").text(mydata.applicant);
-            $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text(mydata.approverdelete);
-            $(".user_4").text(mydata.implementpersondelete);
-            $(".user_5").text("");
             $("#select_model .btn-primary").text("确认归档");
         }else if(status == "结束"){
             step.goStep(6);
-            $(".user_1").text(mydata.applicant);
-            $(".user_2").text(mydata.officeprocessperson);
-            $(".user_3").text(mydata.approverdelete);
-            $(".user_4").text(mydata.implementpersondelete);
-            $(".user_5").text(mydata.confirmperson);
         }
     }
     if(kind == "查看"){

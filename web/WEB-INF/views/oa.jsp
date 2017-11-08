@@ -443,7 +443,7 @@
 
 
                 <div class="modal-body" style="font-size: 0;width: 100%;">
-                    <div id="container" style="width: 100%;height: 160px">
+                    <div id="container" style="width: 100%;padding-bottom: 20px;">
                         <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                             <div class="step-header">
                                 <ul>
@@ -773,6 +773,13 @@
 
     function newForm() {
         $('#form_stuff input').val('');
+        $('#form_stuff textarea').val('');
+        $.each($("#filesUpload a"),function (i,n) {
+            if(n.text != "添加附件"){
+                n.remove()
+            }
+        })
+        $("#filesUpload span").remove();
         $('#form_stuff').modal('show');
     }
 
