@@ -91,7 +91,7 @@
         #sel_model>div{
             display: inline-block;
             vertical-align: top;
-            width: 50%;
+            width: 33.3%;
             font-size: 14px;
         }
         #select_people{
@@ -113,7 +113,7 @@
             word-wrap: break-word;
             text-align: center;
             font-size: 20px;
-            width: 50%;
+            width: 33.3%;
         }
         .download_wrapper button{
             background: transparent;
@@ -443,12 +443,14 @@
                                 <ul>
                                     <li><p>信息提交</p></li>
                                     <li><p>办公室处理处置</p></li>
+                                    <li><p>结束</p></li>
                                 </ul>
                             </div>
                         </div>
                         <div id="user_container" style="width:80%;margin: 0 auto;margin-top: 85px;">
                             <div class="user_1"></div>
                             <div class="user_2"></div>
+                            <div class="user_3"></div>
                         </div>
                     </div>
                     <div class="con_info" style="margin-top: 20px;">
@@ -512,6 +514,13 @@
 
     function newForm() {
         $('#form_stuff input').val('');
+        $('#form_stuff textarea').val('');
+        $.each($("#filesUpload a"),function (i,n) {
+            if(n.text != "添加附件"){
+                n.remove()
+            }
+        })
+        $("#filesUpload span").remove();
         $('#form_stuff').modal('show');
     }
 
@@ -749,7 +758,7 @@
                     acount();
                     $('#form_stuff').modal('hide');
                 }else {
-                    alert("提交失败")
+                    alert(data.result);
                 }
             },
             error:function () {
@@ -811,20 +820,36 @@
                             + "</form>"
                             + "</div>"
                         $("#modle_handle tr:nth-child(4) td:nth-child(2)").append(files);
-                        console.log(str)
                     });
                 }
             }
         })
+        $(".user_1").empty();
+        $(".user_2").empty();
+        if(mydata.submitperson != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.submitperson +"</p>"
+                +   "<p class='time'>"+ mydata.submittime +"</p>"
+                +   "</div>"
+            $(".user_1").append(str).addClass("myactive");
+        }
+        if(mydata.officeperson != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.officeperson +"</p>"
+                +   "<p class='time'>"+ mydata.officetime +"</p>"
+                +   "</div>"
+            $(".user_2").append(str).addClass("myactive");
+        }
         $("#modle_handle .modal-header h3").text("非文件管理-" + id);
         if(state == "办公室签收并处理"){
             step.goStep(2);
-            $(".user_1").text(mydata.submitperson);
-            $(".user_2").text("");
         }else if(state == "签收" || state == "采用" ){
-            step.goStep(2);
-            $(".user_1").text(mydata.submitperson);
-            $(".user_2").text(mydata.officeperson);
+            step.goStep(3);
+            $("#myStep li:nth-child(3) p").text(mydata.status);
         }
     }
     //办公室提交

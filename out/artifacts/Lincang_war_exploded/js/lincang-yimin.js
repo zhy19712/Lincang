@@ -838,7 +838,7 @@ $(function(){
     var option2 = {
         color: ['#3398DB'],
         title: {
-            text: "安置点统计表",
+            text: "所属水库登记表",
 			left: "50%"
         },
         tooltip : {
