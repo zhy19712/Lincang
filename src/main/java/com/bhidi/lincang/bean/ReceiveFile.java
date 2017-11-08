@@ -48,6 +48,15 @@ public class ReceiveFile {
     private String implementpersondelete;
     private String confirmperson;
     private String attachmentdeleteperson;
+    private String reveivereregistertime;
+    private String modelchoicetime;
+    private String department1time;
+    private String department2time;
+    private String fenguantime;
+    private String zhuguantime;
+    private String implementtime;
+    private String confirmtime;
+
 
     public ReceiveFile() {
     }
@@ -61,7 +70,7 @@ public class ReceiveFile {
         this.status = status;
     }
 
-    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String department1person, String department2person, String department1persondelete, String department2persondelete, String fenguanname, String zhuguanname, String implementperson, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete, String confirmperson, String attachmentdeleteperson) {
+    public ReceiveFile(int id, String receivefileid, String year, String savetime, String type, String cometime, String fileid, String registrationnum, String fileallid, String writtentime, String title, String attachmentpath, String keyword, String responsibleperson, String archivecopies, String pagenum, String secret, String issues, String receiveperson, String comedepartment, String attachmentpagenum, String entitynum, String distributionsituation, String oldfond, String archivesituation, String registrationdate, String circulationsituation, String dealsituation, String status, String modeltype, String reveivereregisterpersonname, String modelchoicename, String department1name, String department2name, String department1person, String department2person, String department1persondelete, String department2persondelete, String fenguanname, String zhuguanname, String implementperson, String fenguannamedelete, String zhuguannamedelete, String implementpersondelete, String confirmperson, String attachmentdeleteperson, String reveivereregistertime, String modelchoicetime, String department1time, String department2time, String fenguantime, String zhuguantime, String implementtime, String confirmtime) {
         this.id = id;
         this.receivefileid = receivefileid;
         this.year = year;
@@ -108,6 +117,14 @@ public class ReceiveFile {
         this.implementpersondelete = implementpersondelete;
         this.confirmperson = confirmperson;
         this.attachmentdeleteperson = attachmentdeleteperson;
+        this.reveivereregistertime = reveivereregistertime;
+        this.modelchoicetime = modelchoicetime;
+        this.department1time = department1time;
+        this.department2time = department2time;
+        this.fenguantime = fenguantime;
+        this.zhuguantime = zhuguantime;
+        this.implementtime = implementtime;
+        this.confirmtime = confirmtime;
     }
 
     public int getId() {
@@ -479,6 +496,70 @@ public class ReceiveFile {
         this.attachmentdeleteperson = attachmentdeleteperson;
     }
 
+    public String getReveivereregistertime() {
+        return reveivereregistertime;
+    }
+
+    public void setReveivereregistertime(String reveivereregistertime) {
+        this.reveivereregistertime = reveivereregistertime;
+    }
+
+    public String getModelchoicetime() {
+        return modelchoicetime;
+    }
+
+    public void setModelchoicetime(String modelchoicetime) {
+        this.modelchoicetime = modelchoicetime;
+    }
+
+    public String getDepartment1time() {
+        return department1time;
+    }
+
+    public void setDepartment1time(String department1time) {
+        this.department1time = department1time;
+    }
+
+    public String getDepartment2time() {
+        return department2time;
+    }
+
+    public void setDepartment2time(String department2time) {
+        this.department2time = department2time;
+    }
+
+    public String getFenguantime() {
+        return fenguantime;
+    }
+
+    public void setFenguantime(String fenguantime) {
+        this.fenguantime = fenguantime;
+    }
+
+    public String getZhuguantime() {
+        return zhuguantime;
+    }
+
+    public void setZhuguantime(String zhuguantime) {
+        this.zhuguantime = zhuguantime;
+    }
+
+    public String getImplementtime() {
+        return implementtime;
+    }
+
+    public void setImplementtime(String implementtime) {
+        this.implementtime = implementtime;
+    }
+
+    public String getConfirmtime() {
+        return confirmtime;
+    }
+
+    public void setConfirmtime(String confirmtime) {
+        this.confirmtime = confirmtime;
+    }
+
     @Override
     public String toString() {
         return "ReceiveFile{" +
@@ -528,6 +609,14 @@ public class ReceiveFile {
                 ", implementpersondelete='" + implementpersondelete + '\'' +
                 ", confirmperson='" + confirmperson + '\'' +
                 ", attachmentdeleteperson='" + attachmentdeleteperson + '\'' +
+                ", reveivereregistertime='" + reveivereregistertime + '\'' +
+                ", modelchoicetime='" + modelchoicetime + '\'' +
+                ", department1time='" + department1time + '\'' +
+                ", department2time='" + department2time + '\'' +
+                ", fenguantime='" + fenguantime + '\'' +
+                ", zhuguantime='" + zhuguantime + '\'' +
+                ", implementtime='" + implementtime + '\'' +
+                ", confirmtime='" + confirmtime + '\'' +
                 '}';
     }
 }

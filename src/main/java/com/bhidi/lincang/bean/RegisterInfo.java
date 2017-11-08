@@ -9,6 +9,7 @@ public class RegisterInfo {
     private String department;
     private String name;
     private String phone;
+    private String created_at;
 
     public RegisterInfo() {
     }
@@ -22,7 +23,7 @@ public class RegisterInfo {
         this.department = department;
     }
 
-    public RegisterInfo(int id, String username, String pass, String role, String unit, String department, String name, String phone) {
+    public RegisterInfo(int id, String username, String pass, String role, String unit, String department, String name, String phone, String created_at) {
         this.id = id;
         this.username = username;
         this.pass = pass;
@@ -31,6 +32,7 @@ public class RegisterInfo {
         this.department = department;
         this.name = name;
         this.phone = phone;
+        this.created_at = created_at;
     }
 
     public int getId() {
@@ -97,6 +99,14 @@ public class RegisterInfo {
         this.phone = phone;
     }
 
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
     @Override
     public String toString() {
         return "RegisterInfo{" +
@@ -108,6 +118,7 @@ public class RegisterInfo {
                 ", department='" + department + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", created_at='" + created_at + '\'' +
                 '}';
     }
 }

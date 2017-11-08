@@ -21,11 +21,13 @@ footer{
     bottom: 20px !important;
     width: 100% !important;
 }
-#user_container1,#user_container{
+#user_container1>div,#user_container>div{
+    vertical-align: top !important;
     font-size: 14px !important;
 }
 .title input{
     font-size: 18px !important;
+    text-align: center;
 }
 .modal-header h3{
     color: #466faa !important;
@@ -44,4 +46,15 @@ footer{
     line-height: 24px;
     color: #466faa;
     font-weight: 700;
+}
+.myactive{
+    font-weight: 700 !important;
+    color: #466faa !important;
+}
+th{
+    text-align: center;
+}
+td{
+    text-align: center !important;
+    min-width: 80px !important;
 }

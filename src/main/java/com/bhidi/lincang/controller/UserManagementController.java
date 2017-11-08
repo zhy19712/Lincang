@@ -1,6 +1,7 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.RegisterInfo;
+import com.bhidi.lincang.bean.RegisterRoleInfo;
 import com.bhidi.lincang.bean.UnitAndDepartments;
 import com.bhidi.lincang.service.UserManagementServiceImp;
 import com.google.gson.Gson;
@@ -93,5 +94,18 @@ public class UserManagementController {
         int a = userManagementServiceImp.deleteRegisterInfoById(id);
         String result = new Gson().toJson(a);
         return result;
+    }
+    /**
+     * 注册新角色
+     * @param rri
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/registerRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String registerRole(RegisterRoleInfo rri){
+        /*int a = userManagementServiceImp.deleteRegisterInfoById(rri);
+        String result = new Gson().toJson(a);
+        return result;*/
+        return "";
     }
 }
