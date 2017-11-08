@@ -199,7 +199,6 @@ $("#pass1").keyup(function () {
     }
 });
 
-
     //初始化 单位名称UnitName 部门Department
     initUND();
     //动态角色
@@ -207,13 +206,9 @@ $("#pass1").keyup(function () {
 
     //树状复选框插件
     $("#tree_container").jstree({
-        "plugins" : ["checkbox"],
+        "plugins" : ["checkbox"]
     });
-    $("#tree_container").jstree().get_selected(true); //获取选中的
-    $('#tree_container').jstree('deselect_all');//全部取消
-    $('#tree_container').jstree('select_all');//全部选中
-
-    //提交事件
+    //用户添加
     $("#btn-primary").click(function () {
         console.log(status1,status2,status3);
         if(status1 && status2 && status3){
@@ -222,7 +217,7 @@ $("#pass1").keyup(function () {
             alert("请正确添加用户")
         }
     });
-    // 修改
+    //用户修改
     $("#btn-update").click(function () {
         if(status4 && status5 && status6){
             updata();
@@ -231,7 +226,7 @@ $("#pass1").keyup(function () {
         }
 
     });
-    //操作
+    //用户操作
     function edit(that) {
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
              kind = $(that).val();
@@ -249,7 +244,49 @@ $("#pass1").keyup(function () {
                 deldata(id)
             }
     }
-    //修改
+    //角色添加
+    $("#roleBtnAdd").click(function () {
+        addRole()
+    });
+    function addRole(){
+        var dataArr=$("#tree_container").jstree().get_selected(true);
+        var roleName=$("#roleName").val();
+        var idArr=[];
+        $.each(dataArr,function (a,b) {
+            if(parseInt(b.id)){
+                idArr.push(b.id);
+            }
+        });
+        var datas={
+            "role":roleName,
+            "functionList":idArr
+        };
+        $.ajax({
+            url:"/registerUser.do",
+            dataType:"json",
+            type:"post",
+            data:datas,
+            async:false,
+            success:function (val) {
+                $('#form_Role').modal('hide');
+                if(val.result =="success"){
+                    table_refresh();
+                    alert("提交成功");
+                }else {
+                    alert("提交失败");
+                }
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+
+
+
+
+    }
+
+
+    //用户修改
     function updata() {
         var username=$("#username1").val(),
             pass=$("#pass1").val(),
@@ -293,7 +330,7 @@ $("#pass1").keyup(function () {
             })
         })
     }
-    // 查看
+    // 用户查看
     function lookOver(id) {
         $.ajax({
             url: "/getRegisterInfoById.do",
@@ -313,7 +350,7 @@ $("#pass1").keyup(function () {
             }
         });
     }
-    //删除
+    //用户删除
     function deldata(id) {
         if(confirm("你确定要删除吗？")){
             $.ajax({
@@ -336,7 +373,7 @@ $("#pass1").keyup(function () {
         }
 
     }
-    //增加
+    //用户增加
     function primaryClick() {
         var username=$("#username").val(),
             pass=$("#pass").val(),
@@ -380,7 +417,7 @@ $("#pass1").keyup(function () {
         all_table.ajax.url("/userManagementDataTableFirst.do").load();
         // New_table.ajax.url("/sendFileDataTableSecond.do").load();
     }
-    //初始化角色
+    //用户初始化角色
     function initRole() {
         $.ajax({
             url:"getRoles.do",
@@ -399,7 +436,7 @@ $("#pass1").keyup(function () {
             })
         })
     }
-    //初始化 单位名称UnitName 部门Department
+    //用户初始化 单位名称UnitName 部门Department
     function initUND() {
         $.ajax({
             url:"/getUnitAndDepartments.do",
