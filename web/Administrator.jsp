@@ -384,6 +384,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="form_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
@@ -461,6 +462,7 @@
 
     function newForm() {
         $('#form_stuff input').val('');
+        $("#btn-primary").text("提交");
         $('#form_stuff').modal('show');
     }
 

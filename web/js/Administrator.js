@@ -4,7 +4,7 @@ var all_table = $('#NewTable_Admin').DataTable({
     ajax: {
         url: "/userManagementDataTableFirst.do"
     },
-    "order": [[0, 'asc']],
+    "order": [[1, 'asc']],
     "serverSide": true,
     "columns": [
         {"data": "id"},
@@ -29,8 +29,6 @@ var all_table = $('#NewTable_Admin').DataTable({
         },
         {
             "searchable": false,
-            "orderable": false,
-            "targets": [0]
         }
     ],
     "language": {
@@ -91,10 +89,10 @@ var New_table = $('#NewTable_role').DataTable({
 });
 
 
-
-
-
-$(function () {
+    //初始化 单位名称UnitName 部门Department
+    initUND();
+    //动态角色
+    initRole();
 
     //树状复选框插件
     $("#tree_container").jstree({
@@ -107,6 +105,147 @@ $(function () {
 
 
 
+    //提交事件
+    $("#btn-primary").click(function () {
+        primaryClick()
+    });
+
+
+    //编辑查看删除按钮
+    function edit(that) {
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
+             kind = $(that).val();
+
+            $.ajax({
+                url: "/getRegisterInfoById.do",
+                type: "post",
+                async: false,
+                data: {"id":id},
+                dataType: "json",
+                success: function (data) {
+                    $("#username").val(data.username);
+                    $("#pass").val(data.pass);
+                    $("#role").val(data.role);
+                    $("#unit").val(data.unit);
+                    $("#name").val(data.name);
+                    $("#department").val(data.department);
+                    $("#phone").val(data.phone);
+                    $('#form_stuff').modal('show');
+                }
+            });
+
+
+            if(kind=="查看"){
+                $("#btn-primary").hide();
+            }else if(kind=="编辑"){
+                $("#btn-primary").text("修改");
+                $("#btn-primary").show();
+            }
+
+    }
+
+
+
+
+
+
+
+    //提交
+    function primaryClick(id) {
+        var username=$("#username").val(),
+            pass=$("#pass").val(),
+            role=$("#role").val(),
+            unit=$("#unit").val(),
+            name=$("#name").val(),
+            department=$("#department").val(),
+            phone=$("#phone").val();
+
+        var datas={
+            "username" : username,
+            "pass" : pass,
+            "role" : role,
+            "unit" : unit,
+            "department" : department,
+            "name" : name,
+            "phone" : phone,
+            "id" : id
+        };
+
+
+
+       $("#btn-primary").text();
+       if($("#btn-primary").text()=="修改"){
+           $.ajax({
+               url:"/updateRegisterInfoById.do",
+               dataType:"json",
+               type:"post",
+               data:datas,
+               async:false,
+               success:function (val) {
+                   $('#form_stuff').modal('hide');
+                   if(val.result =="success"){
+                       table_refresh();
+                       alert("修改成功");
+                   }else {
+                       alert("修改失败");
+                   }
+               },error:(function(){
+                   alert("系统出错")
+               })
+           })
+       }else if($("#btn-primary").text()=="提交"){
+           $.ajax({
+               url:"/registerUser.do",
+               dataType:"json",
+               type:"post",
+               data:datas,
+               async:false,
+               success:function (val) {
+                   $('#form_stuff').modal('hide');
+                   if(val.result =="success"){
+                       table_refresh();
+                       alert("提交成功");
+                   }else {
+                       alert("提交失败");
+                   }
+               },error:(function(){
+                   alert("系统出错")
+               })
+           })
+
+       }
+
+
+
+
+
+
+
+    }
+    //表格刷新
+    function table_refresh() {
+        all_table.ajax.url("/userManagementDataTableFirst.do").load();
+        // New_table.ajax.url("/sendFileDataTableSecond.do").load();
+    }
+    //初始化角色
+    function initRole() {
+        $.ajax({
+            url:"getRoles.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="";
+                $.each(val,function (a,b) {
+                    str+="<option>"+b+"</option>"
+                })
+                $("#role").html(str)
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
     //初始化 单位名称UnitName 部门Department
     function initUND() {
         $.ajax({
@@ -127,9 +266,9 @@ $(function () {
                 });
                 $("#department").html(str1);
 
-                 $("#unit").change(function () {
-                     var sel=$("#unit").val();
-                     var str2="";
+                $("#unit").change(function () {
+                    var sel=$("#unit").val();
+                    var str2="";
                     $.each(val,function(c,d){
                         if(sel==d.unit){
                             $.each(d.departmentList,function (e,f) {
@@ -137,94 +276,12 @@ $(function () {
                             })
                         }
                     });
-                     $("#department").html(str2);
-                 })
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-    }
-    //初始化 单位名称UnitName 部门Department
-    initUND();
-
-    //初始化角色
-    function initRole() {
-        $.ajax({
-            url:"getRoles.do",
-            dataType:"json",
-            type:"post",
-            data:"",
-            async:false,
-            success:function (val) {
-                var str="";
-                $.each(val,function (a,b) {
-                    str+="<option>"+b+"</option>"
+                    $("#department").html(str2);
                 })
-                $("#role").html(str)
             },error:(function(){
                 alert("系统出错")
             })
         })
-    }
-    //动态角色
-    initRole();
-
-
-
-    //提交事件
-    $("#btn-primary").click(function () {
-
-        primaryClick()
-    });
-
-    function primaryClick() {
-        var username=$("#username").val(),
-            pass=$("#pass").val(),
-            role=$("#role").val(),
-            unit=$("#unit").val(),
-            name=$("#name").val(),
-            department=$("#department").val(),
-            phone=$("#phone").val();
-
-        var datas={
-            "username" : username,
-            "pass" : pass,
-            "role" : role,
-            "unit" : unit,
-            "department" : department,
-            "name" : name,
-            "phone" : phone
-        };
-
-        $.ajax({
-            url:"/registerUser.do",
-            dataType:"json",
-            type:"post",
-            data:datas,
-            async:false,
-            success:function (val) {
-                if(val.result =="success"){
-                    table_refresh();
-                    $('#form_stuff').modal('hide');
-                    alert("提交成功");
-                }else {
-                    alert("提交失败");
-                    $('#form_stuff').modal('hide');
-                }
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-
-
-
-
-    }
-
-    //表格刷新
-    function table_refresh() {
-        all_table.ajax.url("/userManagementDataTableFirst.do").load();
-        // New_table.ajax.url("/sendFileDataTableSecond.do").load();
     }
 
 
@@ -233,7 +290,6 @@ $(function () {
 
 
 
-})
 
 
 

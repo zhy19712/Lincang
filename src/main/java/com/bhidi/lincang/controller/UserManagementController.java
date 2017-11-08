@@ -83,7 +83,7 @@ public class UserManagementController {
         return result;
     }
     /**
-     * 编辑之后的提交
+     * 删除
      * @param id
      * @return
      */
