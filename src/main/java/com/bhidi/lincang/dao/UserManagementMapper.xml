@@ -67,4 +67,20 @@
     <delete id="deleteRegisterInfoById" >
         DELETE FROM user WHERE id = #{id}
     </delete>
+    <!--int deleteRole(int id);-->
+    <delete id="deleteRole" >
+        DELETE FROM role WHERE id = #{id}
+    </delete>
+    <!--int selectRole(int id);-->
+    <select id="selectRole" parameterType="int" resultType="com.bhidi.lincang.bean.Role">
+        SELECT IFNULL(id,'')AS id,IFNULL(rolename,'')AS rolename
+        FROM role
+        WHERE id = #{id}
+    </select>
+    <!--int insertRole(RegisterRoleInfo rri);-->
+    <insert id="insertRole" parameterType="com.bhidi.lincang.bean.RegisterRoleInfo" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO role (id,rolename)
+        VALUES ( #{id},#{rolename} )
+    </insert >
 </mapper>

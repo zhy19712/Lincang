@@ -2,6 +2,7 @@ package com.bhidi.lincang.dao;
 
 import com.bhidi.lincang.bean.Privilege;
 import com.bhidi.lincang.bean.RegisterInfo;
+import com.bhidi.lincang.bean.RegisterRoleInfo;
 import com.bhidi.lincang.bean.UnitAndDepartment;
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +31,9 @@ public interface UserManagementMapper {
 
     int deleteRegisterInfoById(int id);
 
+    int deleteRole(int id);
+
+    int selectRole(int id);
+
+    int insertRole(RegisterRoleInfo rri);
 }
