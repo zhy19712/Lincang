@@ -104,13 +104,14 @@ public class UserManagementController {
     @ResponseBody
     @RequestMapping(value="/registerRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String registerRole(RegisterRoleInfo rri){
+        System.out.println("1");
         //先存储角色，获得id
         int a = userManagementServiceImp.saveRole(rri);
 
         //
         RolePrivilege rp = new RolePrivilege();
         String result = new Gson().toJson(a);
-        return result;
+        return "";
     }
     /**
      * 查看角色
@@ -133,6 +134,7 @@ public class UserManagementController {
     @ResponseBody
     @RequestMapping(value="/updateRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String updateRole(RegisterRoleInfo rri){
+        System.out.println("1");
         /*int a = userManagementServiceImp.deleteRole(id);
         String result = new Gson().toJson(a);
         return result;*/
