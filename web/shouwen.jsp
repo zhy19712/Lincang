@@ -123,10 +123,10 @@
             display: block;
         }
         #model_container input,#model_container_1 input{
-            width: 100px;
-            text-align: center;
+            width: 100%;
             outline:none;
             border: none;
+            padding: 0 5px;
         }
         input{
             line-height: 16px !important;
