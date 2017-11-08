@@ -1,214 +1,209 @@
-var all_table = $('#NewTable_Admin').DataTable({
-    ajax: {
-        url: "/userManagementDataTableFirst.do"
-    },
-    "order": [[1, 'asc']],
-    "serverSide": true,
-    "columns": [
-        {"data": "id"},
-        {"data": "username"},
-        {"data": "role"},
-        {"data": "name"},
-        {"data": "unit"},
-        {"data": "department"},
-        {"data": null}
-    ],
-    "columnDefs": [
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [6],
-            "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='删除'/>" ;
-                return html;
-            }
+    var all_table = $('#NewTable_Admin').DataTable({
+        ajax: {
+            url: "/userManagementDataTableFirst.do"
         },
-        {
-            "searchable": false,
-        }
-    ],
-    "language": {
-        "lengthMenu": "每页_MENU_ 条记录",
-        "zeroRecords": "没有找到记录",
-        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-        "infoEmpty": "无记录",
-        "search": "搜索：",
-        "infoFiltered": "(从 _MAX_ 条记录过滤)",
-        "paginate": {
-            "previous": "上一页",
-            "next": "下一页"
-        }
-    }
-});
-
-var New_table = $('#NewTable_role').DataTable({
-    ajax: {
-        url: "/sendFileDataTableFirst.do"
-    },
-    "order": [[2, 'asc']],
-    "serverSide": true,
-    "columns": [
-        {"data": "sendfileid"},
-        {"data": "role"},
-        {"data": null}
-    ],
-    "columnDefs": [
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [2],
-            "render" :  function(data,type,row) {
-                var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='删除'/>" ;
-                return html;
+        "order": [[1, 'asc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "id"},
+            {"data": "username"},
+            {"data": "role"},
+            {"data": "name"},
+            {"data": "unit"},
+            {"data": "department"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [6],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='删除'/>" ;
+                    return html;
+                }
+            },
+            {
+                "searchable": false,
             }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
+
+    var New_table = $('#NewTable_role').DataTable({
+        ajax: {
+            url: "/sendFileDataTableFirst.do"
         },
-        {
-            "searchable": false,
-            "orderable": false,
-            "targets": [0]
+        "order": [[2, 'asc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "sendfileid"},
+            {"data": "role"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [2],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='editRole(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='editRole(this)' value='编辑'/>" ;
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='editRole(this)' value='删除'/>" ;
+                    return html;
+                }
+            },
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [0]
+            }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
         }
-    ],
-    "language": {
-        "lengthMenu": "每页_MENU_ 条记录",
-        "zeroRecords": "没有找到记录",
-        "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-        "infoEmpty": "无记录",
-        "search": "搜索：",
-        "infoFiltered": "(从 _MAX_ 条记录过滤)",
-        "paginate": {
-            "previous": "上一页",
-            "next": "下一页"
-        }
-    }
-});
+    });
 
-
-//增加的正则
-var status1=false,status2=false,status3=false;
-$("#name").keyup(function () {
-    var name=$("#name").val();
-    var pattern = /^[\u4e00-\u9fa5]*$/;
-    if(name.length==0){
-        status1=false;
-        $("#namePrompt").css("color","black").text("必须为汉字");
-    }else {
-        if(!pattern.test(name)){
+    //用户添加的正则
+    var status1=false,status2=false,status3=false;
+    $("#name").keyup(function () {
+        var name=$("#name").val();
+        var pattern = /^[\u4e00-\u9fa5]*$/;
+        if(name.length==0){
             status1=false;
-            $("#namePrompt").css("color","red").text("必须为汉字");
+            $("#namePrompt").css("color","black").text("必须为汉字");
         }else {
-            status1=true;
-            $("#namePrompt").text("")
+            if(!pattern.test(name)){
+                status1=false;
+                $("#namePrompt").css("color","red").text("必须为汉字");
+            }else {
+                status1=true;
+                $("#namePrompt").text("")
+            }
         }
-    }
-});
-
-$("#username").keyup(function () {
-    var username=$("#username").val();
-    var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
-    if(username.length==0){
-        status2=false;
-        $("#usernamePrompt").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
-    }else {
-        if(!pattern.test(username)){
+    });
+    $("#username").keyup(function () {
+        var username=$("#username").val();
+        var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
+        if(username.length==0){
             status2=false;
-            $("#usernamePrompt").css("color","red").text("以字母开头,可以字母和数字组合,长度在2个以上");
+            $("#usernamePrompt").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
         }else {
-            status2=true;
-            $("#usernamePrompt").text("")
+            if(!pattern.test(username)){
+                status2=false;
+                $("#usernamePrompt").css("color","red").text("以字母开头,可以字母和数字组合,长度在2个以上");
+            }else {
+                status2=true;
+                $("#usernamePrompt").text("")
+            }
         }
-    }
-});
+    });
+    $("#pass").keyup(function () {
+        var pass=$("#pass").val();
+        var pattern = /\w{6,18}/;
+        var p1=/^\d+$/;
+        var p2=/^[a-zA-Z]+$/;
 
-$("#pass").keyup(function () {
-    var pass=$("#pass").val();
-    var pattern = /\w{6,18}/;
-    var p1=/^\d+$/;
-    var p2=/^[a-zA-Z]+$/;
-
-    if(pass.length==0){
-        status3=false;
-        $("#passPrompt").css("color","black").text("数字和字母,字符,长度在6~18之间");
-    }else {
-        if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
-            status3=true;
-            $("#passPrompt").text("")
-        }else {
+        if(pass.length==0){
             status3=false;
-            $("#passPrompt").css("color","red").text("数字和字母,字符,长度在6~18之间");
+            $("#passPrompt").css("color","black").text("数字和字母,字符,长度在6~18之间");
+        }else {
+            if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
+                status3=true;
+                $("#passPrompt").text("")
+            }else {
+                status3=false;
+                $("#passPrompt").css("color","red").text("数字和字母,字符,长度在6~18之间");
+            }
         }
-    }
-});
+    });
 
-//修改的正则
-var status4=true,status5=true,status6=true;
-$("#name1").keyup(function () {
-    var name=$("#name1").val();
-    var pattern = /^[\u4e00-\u9fa5]*$/;
-    if(name.length==0){
-        status4=false;
-        $("#namePrompt1").css("color","black").text("必须为汉字");
-    }else {
-        if(!pattern.test(name)){
+    //用户修改的正则
+    var status4=true,status5=true,status6=true;
+    $("#name1").keyup(function () {
+        var name=$("#name1").val();
+        var pattern = /^[\u4e00-\u9fa5]*$/;
+        if(name.length==0){
             status4=false;
-            $("#namePrompt1").css("color","red").text("必须为汉字");
+            $("#namePrompt1").css("color","black").text("必须为汉字");
         }else {
-            status4=true;
-            $("#namePrompt1").text("")
+            if(!pattern.test(name)){
+                status4=false;
+                $("#namePrompt1").css("color","red").text("必须为汉字");
+            }else {
+                status4=true;
+                $("#namePrompt1").text("")
+            }
         }
-    }
-});
-
-$("#username1").keyup(function () {
-    var username=$("#username1").val();
-    var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
-    if(username.length==0){
-        status5=false;
-        $("#usernamePrompt1").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
-    }else {
-        if(!pattern.test(username)){
+    });
+    $("#username1").keyup(function () {
+        var username=$("#username1").val();
+        var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
+        if(username.length==0){
             status5=false;
-            $("#usernamePrompt1").css("color","red").text("以字母开头,可以字母和数字组合");
+            $("#usernamePrompt1").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
         }else {
-            status5=true;
-            $("#usernamePrompt1").text("")
+            if(!pattern.test(username)){
+                status5=false;
+                $("#usernamePrompt1").css("color","red").text("以字母开头,可以字母和数字组合");
+            }else {
+                status5=true;
+                $("#usernamePrompt1").text("")
+            }
         }
-    }
-});
+    });
+    $("#pass1").keyup(function () {
+        var pass=$("#pass1").val();
+        var pattern = /\w{6,18}/;
+        var p1=/^\d+$/;
+        var p2=/^[a-zA-Z]+$/;
 
-$("#pass1").keyup(function () {
-    var pass=$("#pass1").val();
-    var pattern = /\w{6,18}/;
-    var p1=/^\d+$/;
-    var p2=/^[a-zA-Z]+$/;
-
-    if(pass.length==0){
-        status6=false;
-        $("#passPrompt1").css("color","black").text("数字和字母,字符,长度在6~18之间");
-    }else {
-        if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
-            status6=true;
-            $("#passPrompt1").text("")
-        }else {
+        if(pass.length==0){
             status6=false;
-            $("#passPrompt1").css("color","red").text("数字和字母,字符,长度在6~18之间");
+            $("#passPrompt1").css("color","black").text("数字和字母,字符,长度在6~18之间");
+        }else {
+            if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
+                status6=true;
+                $("#passPrompt1").text("")
+            }else {
+                status6=false;
+                $("#passPrompt1").css("color","red").text("数字和字母,字符,长度在6~18之间");
+            }
         }
-    }
-});
+    });
 
-    //初始化 单位名称UnitName 部门Department
+    //用户初始化 单位名称UnitName 部门Department
     initUND();
-    //动态角色
+    //用户初始化 角色
     initRole();
 
     //树状复选框插件
     $("#tree_container").jstree({
         "plugins" : ["checkbox"]
     });
-    //用户添加
+    //用户添加按钮
     $("#btn-primary").click(function () {
         console.log(status1,status2,status3);
         if(status1 && status2 && status3){
@@ -217,7 +212,7 @@ $("#pass1").keyup(function () {
             alert("请正确添加用户")
         }
     });
-    //用户修改
+    //用户修改按钮
     $("#btn-update").click(function () {
         if(status4 && status5 && status6){
             updata();
@@ -226,28 +221,11 @@ $("#pass1").keyup(function () {
         }
 
     });
-    //用户操作
-    function edit(that) {
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
-             kind = $(that).val();
-            $("#data_id").text(id);
-
-            if(kind=="查看"){
-                $("#form-kind1").text("查看用户");
-                $("#btn-update").hide();
-                lookOver(id);
-            }else if(kind=="编辑"){
-                $("#form-kind1").text("编辑用户");
-                $("#btn-update").show();
-                lookOver(id);
-            }else if(kind=="删除"){
-                deldata(id)
-            }
-    }
-    //角色添加
+    //角色添加按钮
     $("#roleBtnAdd").click(function () {
         addRole()
     });
+    //角色添加
     function addRole(){
         var dataArr=$("#tree_container").jstree().get_selected(true);
         var roleName=$("#roleName").val();
@@ -284,8 +262,30 @@ $("#pass1").keyup(function () {
 
 
     }
+    //角色操作
+    function editRole() {
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
+            kind = $(that).val();
+        console.log(id,kind)
+    }
+    //用户操作
+    function edit(that) {
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
+            kind = $(that).val();
+        $("#data_id").text(id);
 
-
+        if(kind=="查看"){
+            $("#form-kind1").text("查看用户");
+            $("#btn-update").hide();
+            lookOver(id);
+        }else if(kind=="编辑"){
+            $("#form-kind1").text("编辑用户");
+            $("#btn-update").show();
+            lookOver(id);
+        }else if(kind=="删除"){
+            deldata(id)
+        }
+    }
     //用户修改
     function updata() {
         var username=$("#username1").val(),
