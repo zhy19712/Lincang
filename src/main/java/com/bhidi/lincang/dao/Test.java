@@ -28,12 +28,13 @@ public class Test {
             System.out.println("null");
         }
         System.out.println("".equals(null));*/
+/*
         String path= "E:\\GitRepository\\Lincang\\out\\artifacts\\Lincang_war_exploded\\upload\\receivefile\\1-1509117536062.txt";
         File file =  new File(path);
         file.delete();
         System.out.println(file.getName());
         System.out.println(file.length());
-
+*/
     }
 
 }

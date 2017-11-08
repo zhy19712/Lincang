@@ -2,6 +2,7 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.RegisterInfo;
 import com.bhidi.lincang.bean.RegisterRoleInfo;
+import com.bhidi.lincang.bean.RolePrivilege;
 import com.bhidi.lincang.bean.UnitAndDepartments;
 import com.bhidi.lincang.service.UserManagementServiceImp;
 import com.google.gson.Gson;
@@ -103,9 +104,50 @@ public class UserManagementController {
     @ResponseBody
     @RequestMapping(value="/registerRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String registerRole(RegisterRoleInfo rri){
-        /*int a = userManagementServiceImp.deleteRegisterInfoById(rri);
+        //先存储角色，获得id
+        int a = userManagementServiceImp.saveRole(rri);
+
+        //
+        RolePrivilege rp = new RolePrivilege();
+        String result = new Gson().toJson(a);
+        return result;
+    }
+    /**
+     * 查看角色
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/selectRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String selectRole(int id){
+        int a = userManagementServiceImp.selectRole(id);
+        String result = new Gson().toJson(a);
+        return result;
+    }
+
+    /**
+     * 编辑角色
+     * @param rri
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/updateRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String updateRole(RegisterRoleInfo rri){
+        /*int a = userManagementServiceImp.deleteRole(id);
         String result = new Gson().toJson(a);
         return result;*/
         return "";
+    }
+    /**
+     * 删除角色
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteRole(int id){
+        int a = userManagementServiceImp.deleteRole(id);
+        String result = new Gson().toJson(a);
+        return result;
     }
 }
