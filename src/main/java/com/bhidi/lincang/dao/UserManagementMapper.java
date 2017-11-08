@@ -27,5 +27,5 @@ public interface UserManagementMapper {
 
     int updateUserRole(Map<String, Object> mapConditionCondition);
 
-    Map<String,String> deleteRegisterInfoById(int id);
+    int deleteRegisterInfoById(int id);
 }

@@ -88,10 +88,10 @@ public class UserManagementController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/delsteRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String delsteRegisterInfoById(int id){
-        Map<String,String> mapResult= userManagementServiceImp.delsteRegisterInfoById(id);
-        String result = new Gson().toJson(mapResult);
+    @RequestMapping(value="/deleteRegisterInfoById",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteRegisterInfoById(int id){
+        int a = userManagementServiceImp.deleteRegisterInfoById(id);
+        String result = new Gson().toJson(a);
         return result;
     }
 }

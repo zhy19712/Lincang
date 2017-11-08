@@ -95,7 +95,7 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         return mapResult;
     }
 
-    public Map<String, String> delsteRegisterInfoById(int id) {
+    public int deleteRegisterInfoById(int id) {
         return userManagementMapper.deleteRegisterInfoById(id);
     }
 }

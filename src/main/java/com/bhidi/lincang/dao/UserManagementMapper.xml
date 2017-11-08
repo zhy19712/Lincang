@@ -48,8 +48,8 @@
         <trim prefix="set" suffixOverrides=",">
             <if test="pass!=null">pass = #{pass},</if>
             <if test="name!=null">name = #{name},</if>
-            <if test="dept!=null">dept = #{dept},</if>
-            <if test="phone1!=null">phone1 = #{phone},</if>
+            <if test="department!=null">dept = #{department},</if>
+            <if test="phone!=null">phone1 = #{phone},</if>
         </trim>
         WHERE id = #{id}
     </update>
@@ -61,8 +61,8 @@
         </trim>
         WHERE userid = #{userid}
     </update>
-    <!--Map<String,String> deleteRegisterInfoById(int id);-->
-    <delete id="deleteRegisterInfoById">
-        DELETE FROM USER WHERE id = #{id}
+    <!--int deleteRegisterInfoById(int id);-->
+    <delete id="deleteRegisterInfoById" >
+        DELETE FROM user WHERE id = #{id}
     </delete>
 </mapper>
