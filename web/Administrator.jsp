@@ -116,6 +116,12 @@
         .download_wrapper button:hover{
             text-decoration: underline;
         }
+        .prompt{
+            float:left;
+            width:50%;
+            white-space:nowrap;
+            overflow:hidden;
+        }
     </style>
 </head>
 
@@ -320,11 +326,17 @@
                             <tbody>
                             <tr>
                                 <td>用户名</td>
-                                <td colspan="3"><input type="text" name="username" id="username"></td>
+                                <td colspan="3">
+                                    <input type="text" name="username" id="username" class="pull-left" style="width :50%;">
+                                    <span id="usernamePrompt" class="text-left prompt" >以字母开头,可以字母和数字组合,长度在2个以上</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>密码</td>
-                                <td><input type="text" name="pass" id="pass"></td>
+                                <td>
+                                    <input type="text" name="pass" id="pass" class="pull-left" style="width :50%;">
+                                    <span id="passPrompt" class="text-left prompt" >数字和字母组合,字符,长度在6~18之间</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>角色</td>
@@ -362,7 +374,9 @@
                             </tr>
                             <tr>
                                 <td>姓名</td>
-                                <td><input type="text" name="name" id="name"></td>
+                                <td><input type="text" name="name" id="name" class="pull-left" style="width :50%;">
+                                    <span id="namePrompt" class="text-left prompt">必须为汉字</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="black">联系电话</td>
@@ -404,11 +418,18 @@
                             <tbody>
                             <tr>
                                 <td>用户名</td>
-                                <td colspan="3"><input type="text" name="username" id="username1"></td>
+                                <td colspan="3">
+
+                                    <input type="text" name="username" id="username1" class="pull-left" style="width :50%;">
+                                    <span id="usernamePrompt1" class="text-left prompt" >以字母开头,可以字母和数字组合,长度在2个以上</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>密码</td>
-                                <td><input type="text" name="pass" id="pass1"></td>
+                                <td>
+                                    <input type="text" name="pass" id="pass1" class="pull-left" style="width :50%;">
+                                    <span id="passPrompt1" class="text-left prompt" >数字和字母组合,字符,长度在6~18之间</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>角色</td>
@@ -446,7 +467,10 @@
                             </tr>
                             <tr>
                                 <td>姓名</td>
-                                <td><input type="text" name="name" id="name1"></td>
+                                <td>
+                                    <input type="text" name="name" id="name1" class="pull-left" style="width :50%;">
+                                    <span id="namePrompt1" class="text-left prompt">必须为汉字</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="black">联系电话</td>

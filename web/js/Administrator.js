@@ -1,5 +1,3 @@
-
-
 var all_table = $('#NewTable_Admin').DataTable({
     ajax: {
         url: "/userManagementDataTableFirst.do"
@@ -89,6 +87,119 @@ var New_table = $('#NewTable_role').DataTable({
 });
 
 
+//增加的正则
+var status1=false,status2=false,status3=false;
+$("#name").keyup(function () {
+    var name=$("#name").val();
+    var pattern = /^[\u4e00-\u9fa5]*$/;
+    if(name.length==0){
+        status1=false;
+        $("#namePrompt").css("color","black").text("必须为汉字");
+    }else {
+        if(!pattern.test(name)){
+            status1=false;
+            $("#namePrompt").css("color","red").text("必须为汉字");
+        }else {
+            status1=true;
+            $("#namePrompt").text("")
+        }
+    }
+});
+
+$("#username").keyup(function () {
+    var username=$("#username").val();
+    var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
+    if(username.length==0){
+        status2=false;
+        $("#usernamePrompt").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
+    }else {
+        if(!pattern.test(username)){
+            status2=false;
+            $("#usernamePrompt").css("color","red").text("以字母开头,可以字母和数字组合,长度在2个以上");
+        }else {
+            status2=true;
+            $("#usernamePrompt").text("")
+        }
+    }
+});
+
+$("#pass").keyup(function () {
+    var pass=$("#pass").val();
+    var pattern = /\w{6,18}/;
+    var p1=/^\d+$/;
+    var p2=/^[a-zA-Z]+$/;
+
+    if(pass.length==0){
+        status3=false;
+        $("#passPrompt").css("color","black").text("数字和字母,字符,长度在6~18之间");
+    }else {
+        if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
+            status3=true;
+            $("#passPrompt").text("")
+        }else {
+            status3=false;
+            $("#passPrompt").css("color","red").text("数字和字母,字符,长度在6~18之间");
+        }
+    }
+});
+
+//修改的正则
+var status4=true,status5=true,status6=true;
+$("#name1").keyup(function () {
+    var name=$("#name1").val();
+    var pattern = /^[\u4e00-\u9fa5]*$/;
+    if(name.length==0){
+        status4=false;
+        $("#namePrompt1").css("color","black").text("必须为汉字");
+    }else {
+        if(!pattern.test(name)){
+            status4=false;
+            $("#namePrompt1").css("color","red").text("必须为汉字");
+        }else {
+            status4=true;
+            $("#namePrompt1").text("")
+        }
+    }
+});
+
+$("#username1").keyup(function () {
+    var username=$("#username1").val();
+    var pattern = /^[a-zA-Z][a-zA-Z0-9]+$/;
+    if(username.length==0){
+        status5=false;
+        $("#usernamePrompt1").css("color","black").text("以字母开头,可以字母和数字组合,长度在2个以上");
+    }else {
+        if(!pattern.test(username)){
+            status5=false;
+            $("#usernamePrompt1").css("color","red").text("以字母开头,可以字母和数字组合");
+        }else {
+            status5=true;
+            $("#usernamePrompt1").text("")
+        }
+    }
+});
+
+$("#pass1").keyup(function () {
+    var pass=$("#pass1").val();
+    var pattern = /\w{6,18}/;
+    var p1=/^\d+$/;
+    var p2=/^[a-zA-Z]+$/;
+
+    if(pass.length==0){
+        status6=false;
+        $("#passPrompt1").css("color","black").text("数字和字母,字符,长度在6~18之间");
+    }else {
+        if(!p1.test(pass) && !p2.test(pass) && pattern.test(pass)){
+            status6=true;
+            $("#passPrompt1").text("")
+        }else {
+            status6=false;
+            $("#passPrompt1").css("color","red").text("数字和字母,字符,长度在6~18之间");
+        }
+    }
+});
+
+
     //初始化 单位名称UnitName 部门Department
     initUND();
     //动态角色
@@ -97,23 +208,29 @@ var New_table = $('#NewTable_role').DataTable({
     //树状复选框插件
     $("#tree_container").jstree({
         "plugins" : ["checkbox"],
-
     });
     $("#tree_container").jstree().get_selected(true); //获取选中的
     $('#tree_container').jstree('deselect_all');//全部取消
     $('#tree_container').jstree('select_all');//全部选中
 
-
-
     //提交事件
     $("#btn-primary").click(function () {
-        primaryClick()
+        console.log(status1,status2,status3);
+        if(status1 && status2 && status3){
+            primaryClick()
+        }else {
+            alert("请正确添加用户")
+        }
     });
     // 修改
     $("#btn-update").click(function () {
-        updata();
-    });
+        if(status4 && status5 && status6){
+            updata();
+        }else {
+            alert("请正确修改用户")
+        }
 
+    });
     //操作
     function edit(that) {
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
@@ -321,7 +438,16 @@ var New_table = $('#NewTable_role').DataTable({
     }
 
 
-    
+
+
+
+
+
+
+
+
+
+
     
 
 
