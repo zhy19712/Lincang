@@ -1,5 +1,6 @@
 package com.bhidi.lincang.service;
 
+import com.bhidi.lincang.bean.Privilege;
 import com.bhidi.lincang.bean.RegisterInfo;
 import com.bhidi.lincang.bean.UnitAndDepartment;
 import com.bhidi.lincang.bean.UnitAndDepartments;
@@ -7,6 +8,7 @@ import com.bhidi.lincang.dao.UserManagementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -49,6 +51,9 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         int dept = userManagementMapper.selectDept(ri);
         ri.setDepartment(dept+"");
         //把用户存进去吧id拿出来
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        ri.setCreated_at(sdf.format(now));
         int userid = userManagementMapper.saveUser(ri);
         //查出来对应的角色的id
         int roleid = userManagementMapper.selectRoleid(ri);
@@ -98,4 +103,6 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
     public int deleteRegisterInfoById(int id) {
         return userManagementMapper.deleteRegisterInfoById(id);
     }
+
+
 }

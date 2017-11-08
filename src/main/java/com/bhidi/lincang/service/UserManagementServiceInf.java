@@ -18,4 +18,5 @@ public interface UserManagementServiceInf {
     Map<String,String> update(Map<String, Object> mapCondition);
 
     int deleteRegisterInfoById(int id);
+
 }

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.net.InetAddress;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -92,6 +93,9 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         List<String> fileUploadList =  multipleUpload(files,request);
         String receivefileid = new Date().getTime()+"";
         rfaa.setReceivefileid(receivefileid);
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        rfaa.setReveivereregistertime(sdf.format(now));
 
         for( int i = 0;i < fileUploadList.size();i++ ) {
             if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {

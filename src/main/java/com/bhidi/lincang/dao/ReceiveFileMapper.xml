@@ -3,27 +3,27 @@
 <mapper namespace="com.bhidi.lincang.dao.ReceiveFileMapper">
     <!--int insert(ReceiveFile rfaa);-->
     <insert id="insert" parameterType="com.bhidi.lincang.bean.ReceiveFile">
-        INSERT INTO receivefile(receivefileid,year, savetime,
+        INSERT INTO receivefile(receivefileid,year,savetime,
         type, cometime,fileid, registrationnum,fileallid,
         writtentime, title,  attachmentpath,keyword,
         responsibleperson, archivecopies, pagenum, secret,
         issues,  receiveperson, comedepartment,attachmentpagenum,
         entitynum,  distributionsituation,  oldfond, archivesituation,
-        registrationdate, circulationsituation, dealsituation,  status,
-        reveivereregisterpersonname)
+        registrationdate, circulationsituation, dealsituation,status,
+        reveivereregisterpersonname,reveivereregistertime)
         VALUES (#{receivefileid},#{year}, #{savetime},
         #{type}, #{cometime},#{fileid}, #{registrationnum},#{fileallid},
         #{writtentime}, #{title},  #{attachmentpath},#{keyword},
         #{responsibleperson}, #{archivecopies}, #{pagenum}, #{secret},
         #{issues},  #{receiveperson}, #{comedepartment},#{attachmentpagenum},
         #{entitynum},  #{distributionsituation},  #{oldfond}, #{archivesituation},
-        #{registrationdate}, #{circulationsituation}, #{dealsituation},  #{status},
-        #{reveivereregisterpersonname});
+        #{registrationdate}, #{circulationsituation}, #{dealsituation},#{status},
+        #{reveivereregisterpersonname},#{reveivereregistertime});
     </insert>
 
     <!--ReceiveFile selectReceiveFileInfoById(String receivefileid);-->
     <select id="selectReceiveFileInfoById" resultType="com.bhidi.lincang.bean.ReceiveFile">
-        SELECT IFNULL(receivefileid,"") AS receivefileid,IFNULL(year,"") AS year,
+        SELECT IFNULL(id,"") AS id,IFNULL(receivefileid,"") AS receivefileid,IFNULL(year,"") AS year,
         IFNULL(savetime,"") AS savetime,IFNULL(type,"") AS type,
         IFNULL(cometime,"") AS cometime, IFNULL(fileid,"") AS fileid,
         IFNULL(registrationnum,"") AS registrationnum,IFNULL(fileallid,"") AS fileallid,
@@ -44,7 +44,15 @@
         IFNULL(zhuguanname,"") AS zhuguanname,IFNULL(fenguannamedelete,"") AS fenguannamedelete,
         IFNULL(zhuguannamedelete,"") AS zhuguannamedelete,IFNULL(implementperson,"") AS implementperson,
         IFNULL(implementpersondelete,"") AS implementpersondelete,IFNULL(confirmperson,"") AS confirmperson,
-        IFNULL(attachmentdeleteperson,"") AS attachmentdeleteperson
+        IFNULL(attachmentdeleteperson,"") AS attachmentdeleteperson,
+        IFNULL(reveivereregistertime,"")AS reveivereregistertime,
+        IFNULL(modelchoicetime,"")AS modelchoicetime,
+        IFNULL(department1time,"")AS department1time,
+        IFNULL(department2time,"")AS department2time,
+        IFNULL(fenguantime,"")AS fenguantime,
+        IFNULL(zhuguantime,"")AS zhuguantime,
+        IFNULL(implementtime,"")AS implementtime,
+        IFNULL(confirmtime,"")AS confirmtime
         FROM receivefile
         WHERE receivefileid = #{receivefileid}
     </select>
@@ -78,6 +86,13 @@
             <if test="confirmperson!=null">confirmperson = #{confirmperson},</if>
             <if test="attachmentpath!=null">attachmentpath = #{attachmentpath},</if>
             <if test="attachmentdeleteperson!=null">attachmentdeleteperson = #{attachmentdeleteperson},</if>
+            <if test="modelchoicetime!=null">modelchoicetime = #{modelchoicetime},</if>
+            <if test="department1time!=null">department1time = #{department1time},</if>
+            <if test="department2time!=null">department2time = #{department2time},</if>
+            <if test="fenguantime!=null">fenguantime = #{fenguantime},</if>
+            <if test="zhuguantime!=null">zhuguantime = #{zhuguantime},</if>
+            <if test="implementtime!=null">implementtime = #{implementtime},</if>
+            <if test="confirmtime!=null">confirmtime = #{confirmtime},</if>
         </trim>
         WHERE receivefileid = #{receivefileid}
     </update>

@@ -22,8 +22,8 @@
         <id column="id" property="id"/>
         <collection property="roleList" select="queryRoleNameByUserid" column="id" ofType="String">
         </collection>
-        <collection property="permissionList" select="queryPermissionName" column="id" ofType="String">
-        </collection>
+        <!--<collection property="permissionList" select="queryPermissionName" column="id" ofType="String">
+        </collection>-->
     </resultMap>
 
     <select id="queryRoleNameByUserid" parameterType="Map" resultType="String">
@@ -32,11 +32,31 @@
         WHERE ur.roleid = r.id AND ur.userid = #{id}
     </select>
 
-    <select id="queryPermissionName" parameterType="Map" resultType="String">
-        SELECT authdescription
+    <select id="queryPermissionName" parameterType="Map" resultType="com.bhidi.lincang.bean.Privilege">
+        SELECT p.id,p.module,p.classification,p.subclassification,p.authdescription
         FROM user_role ur,role r,role_privilege rp,privilege p
         WHERE ur.roleid = r.id AND r.id = rp.roleid AND rp.authorithid = p.id
         AND ur.userid = #{id}
     </select>
-
+    <!--int selectRoleid(String rolename);-->
+    <select id="selectRoleid" parameterType="string" resultType="int">
+        SELECT id
+        FROM role
+        WHERE rolename = #{rolename}
+    </select>
+    <!--List<Integer> selectFunction(int roleid);-->
+    <select id="selectFunction" parameterType="int" resultType="int">
+        SELECT authorithid
+        FROM role_privilege
+        WHERE roleid = #{roleid}
+    </select>
+    <!--List<Privilege> selectNotFunction(List<Integer> intList);-->
+    <select id="selectNotFunction" parameterType="list" resultType="com.bhidi.lincang.bean.Privilege">
+        SELECT id,module,classification,subclassification,authdescription
+        FROM privilege
+        WHERE id NOT IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+        #{item}
+        </foreach>
+    </select>
 </mapper>
