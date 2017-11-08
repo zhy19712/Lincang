@@ -169,7 +169,7 @@
 
 
     </div>
-    <div id="mycontainer" style="width: 1200px;margin: 0 auto;">
+    <%--<div id="mycontainer" style="width: 1200px;margin: 0 auto;">--%>
     <!-- topbar ends -->
         <div class="ch-container">
             <div class="row">
@@ -274,7 +274,7 @@
 
 
         </div><!--/.fluid-container-->
-    </div>
+    <%--</div>--%>
     <footer class="row">
         <p class="col-md-12 col-sm-12 col-xs-12 copyright" style="text-align: center;">&copy; 临沧市移民局 <span style="margin-left: 10px;">Powered by: </span><a
                 href="http://www.bhidi.com">北京院</a></p>
