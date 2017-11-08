@@ -109,8 +109,12 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         return userManagementMapper.selectRole(id);
     }
 
-    public int saveRole(RegisterRoleInfo rri) {
+    public int saveRole(Role rri) {
         return userManagementMapper.insertRole(rri);
+    }
+
+    public int saveRolePrivilege(List<RolePrivilege> rolePrivilege) {
+        return userManagementMapper.insertRolePrivilege(rolePrivilege);
     }
 
 

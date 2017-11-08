@@ -77,10 +77,18 @@
         FROM role
         WHERE id = #{id}
     </select>
-    <!--int insertRole(RegisterRoleInfo rri);-->
-    <insert id="insertRole" parameterType="com.bhidi.lincang.bean.RegisterRoleInfo" useGeneratedKeys="true"
+    <!--int insertRole(Role rri);-->
+    <insert id="insertRole" parameterType="com.bhidi.lincang.bean.Role" useGeneratedKeys="true"
             keyProperty="id">
-        INSERT INTO role (id,rolename)
-        VALUES ( #{id},#{rolename} )
+        INSERT INTO role (rolename)
+        VALUES ( #{rolename} )
+    </insert >
+    <!--int insertRolePrivilege(List<RolePrivilege> rolePrivilege);-->
+    <insert id="insertRolePrivilege" parameterType="com.bhidi.lincang.bean.Role">
+        INSERT INTO role_privilege (roleid,authorithid)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.roleid},#{item.authorithid})
+        </foreach>
     </insert >
 </mapper>

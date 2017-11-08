@@ -1,8 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.RegisterInfo;
-import com.bhidi.lincang.bean.RegisterRoleInfo;
-import com.bhidi.lincang.bean.UnitAndDepartments;
+import com.bhidi.lincang.bean.*;
 
 import java.util.List;
 import java.util.Map;
@@ -24,5 +22,7 @@ public interface UserManagementServiceInf {
 
     int selectRole(int id);
 
-    int saveRole(RegisterRoleInfo rri);
+    int saveRole(Role rri);
+
+    int saveRolePrivilege(List<RolePrivilege> rolePrivilege);
 }

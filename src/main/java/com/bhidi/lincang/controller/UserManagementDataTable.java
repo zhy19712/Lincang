@@ -202,7 +202,7 @@ public class UserManagementDataTable {
             }
 
             String searchSQL = "";
-            String sql = "SELECT IFNULL(id,'') AS id,IFNULL(rolaname,'') AS rolename FROM " + table + " WHERE 1=1 ";
+            String sql = "SELECT id,IFNULL(rolename,'') AS rolename FROM " + table + " WHERE 1=1 ";
             if (individualSearch != "") {
                 searchSQL = " AND " + "("+individualSearch+")";
             }

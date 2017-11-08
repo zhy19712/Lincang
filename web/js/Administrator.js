@@ -45,13 +45,13 @@
 
     var New_table = $('#NewTable_role').DataTable({
         ajax: {
-            url: "/sendFileDataTableFirst.do"
+            url: "/userManagementDataTableRole.do"
         },
-        "order": [[2, 'asc']],
+        "order": [[0, 'asc']],
         "serverSide": true,
         "columns": [
-            {"data": "sendfileid"},
-            {"data": "role"},
+            {"data": "id"},
+            {"data": "rolename"},
             {"data": null}
         ],
         "columnDefs": [
@@ -239,9 +239,9 @@
             "role":roleName,
             "functionList":idArr
         };
-        console.log(datas);
+
         $.ajax({
-            url:"/registerUser.do",
+            url:"/registerRole.do",
             dataType:"json",
             type:"post",
             data:datas,
