@@ -458,6 +458,68 @@
         </div>
     </div>
 
+    <div class="modal fade" id="final_handle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3></h3>
+                </div>
+                <div class="modal-body">
+                    <table class="mytable ghapply">
+                        <tr>
+                            <td>标题</td>
+                            <td colspan="3"><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>上报人</td>
+                            <td><input type="text"></td>
+                            <td>上报时间</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>下载附件</td>
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><textarea></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>款项来源</td>
+                            <td><input type="text"></td>
+                            <td style="width: 80px;">到款时间</td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>到款金额</td>
+                            <td><input type="text"></td>
+                            <td>下载附件</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>通知区县</td>
+                            <td colspan="3">
+                                <input type="text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><textarea></textarea></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-primary">提交</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <footer class="row">
@@ -1291,7 +1353,8 @@
 //        $("#filesUpload span").remove();
 //        $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
-        $('#guihua_handle').modal('show');
+//        $('#guihua_handle').modal('show');
+        $('#final_handle').modal('show');
     }
 
 
