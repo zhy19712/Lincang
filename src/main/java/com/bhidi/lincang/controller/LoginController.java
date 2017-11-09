@@ -40,13 +40,20 @@ public class LoginController {
     @RequestMapping(value = "/login",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String login(String username, String password, String login_auto_login,HttpSession session, ModelMap map, HttpServletResponse response){
         User user = loginServiceImp.queryUserByUsernameAndPass(username,password);
-        //先求出来roleid
-        int roleid = loginServiceImp.getRoleid(user.getRoleList().get(0));
-        //根据roleid查出来功能
-        List<Integer> intList = loginServiceImp.getFunction(roleid);
-        //查出来不属于他的功能
-        List<Privilege> privilegeList = loginServiceImp.getNotFunction(intList);
-        user.setPermissionList(privilegeList);
+        if(user.getRoleList()!=null & user.getRoleList().size()>0){
+            //先求出来roleid
+            int roleid = loginServiceImp.getRoleid(user.getRoleList().get(0));
+            //根据roleid查出来功能
+            List<Integer> intList = loginServiceImp.getFunction(roleid);
+            //查出来不属于他的功能
+            List<Privilege> privilegeList = new ArrayList<Privilege>();
+            if( intList!=null & intList.size()!=0){
+                privilegeList = loginServiceImp.getNotFunction(intList);
+            }
+            user.setPermissionList(privilegeList);
+        }
+
+
         if( user != null  ){
             session.setAttribute("user",user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
