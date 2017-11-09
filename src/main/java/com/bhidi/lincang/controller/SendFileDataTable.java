@@ -39,7 +39,7 @@ public class SendFileDataTable {
 
             String status = "";
             if( roleList.size() > 0 ) {
-                if ("市局办公室".equals(roleList.get(0))) {
+                if ("市局办公室管理角色".equals(roleList.get(0))) {
                     status = "";
                 } else {
                     status = " AND applicant = '"+name+"'";
@@ -164,7 +164,7 @@ public class SendFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( roleList.size() > 0 ){
-            if( "市局办公室".equals(roleList.get(0)) ){
+            if( "市局办公室管理角色".equals(roleList.get(0)) ){
                 status = " AND ( (status = '办公室审核处理') OR (status = '办公室归档') OR ( status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%' ) OR ( status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' ) )";
             } else {
                 status = " AND ( (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' )  )";

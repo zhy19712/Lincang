@@ -39,7 +39,7 @@ public class NonFileManagementDataTable {
 
         String status = "";
         if( roleList.size() > 0 ) {
-            if ("市局办公室".equals(roleList.get(0))) {
+            if ("市局办公室管理角色".equals(roleList.get(0))) {
                 status = "";
             } else {
                 status = " AND submitperson = '"+name+"'";
@@ -163,7 +163,7 @@ public class NonFileManagementDataTable {
         //根据角色名字判断状态
         String status = "";
         if( roleList.size() > 0 ){
-            if( "市局办公室".equals(roleList.get(0)) ){
+            if( "市局办公室管理角色".equals(roleList.get(0)) ){
                 status = " AND status = '办公室签收并处理'";
             } else {
                 status = "";
