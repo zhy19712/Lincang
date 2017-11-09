@@ -388,6 +388,7 @@ public class ReceiveFileController {
         User user = (User)session.getAttribute("user");
         String name = user.getName();
         String role  = user.getRoleList().get(0);
+        String dept = user.getDept();
         int er =0;
         int mer =0;
         String modeltype = "";
@@ -639,7 +640,7 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & dept.equals(receivefileinfo.getDepartment1name())){
                 meme.setDepartmentadvice(me.getDepartmentadvice());
             }
             if(receivefileinfo.getStatus().equals("分管领导签批")){
@@ -670,7 +671,7 @@ public class ReceiveFileController {
             String person2Rource = receivefileinfo.getDepartment2person();
             String person2RourceDelete = receivefileinfo.getDepartment2persondelete();
             if(receivefileinfo.getStatus().equals("科室签批")){
-                if( role.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
+                if( dept.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
                     rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete());
                     if(receivefileinfo.getDepartment1persondelete().equals("")){
                         rf.setDepartment1persondelete(user.getName());
@@ -770,10 +771,10 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
+            if(receivefileinfo.getStatus().equals("科室签批") & dept.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
                 meme.setDepartment1advice(me.getDepartment1advice());
             }
-            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment2name()) & person2Rource.contains(name) & !person2RourceDelete.contains(name) ){
+            if(receivefileinfo.getStatus().equals("科室签批") & dept.equals(receivefileinfo.getDepartment2name()) & person2Rource.contains(name) & !person2RourceDelete.contains(name) ){
                 meme.setDepartment2advice(me.getDepartment2advice());
             }
             if(receivefileinfo.getStatus().equals("分管领导签批")){

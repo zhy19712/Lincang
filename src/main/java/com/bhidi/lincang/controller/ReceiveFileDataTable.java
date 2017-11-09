@@ -50,7 +50,7 @@ public class ReceiveFileDataTable {
             //过滤后记录数
             String recordsFiltered = "";
             //定义列名
-            String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+            String[] cols = {"receivefileid","year","type", "cometime",  "title","status"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -185,7 +185,7 @@ public class ReceiveFileDataTable {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+        String[] cols = {"receivefileid","year","type", "cometime",  "title","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -343,7 +343,7 @@ public class ReceiveFileDataTable {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"year","type", "cometime", "receivefileid", "title","status"};
+        String[] cols = {"receivefileid","year","type", "cometime",  "title","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];

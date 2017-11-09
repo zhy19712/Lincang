@@ -59,9 +59,9 @@
 
     <!--String selectDepartmentNameByName(String department1);-->
     <select id="selectDepartmentNameByName" parameterType="String" resultType="String">
-        SELECT r.rolename
-        FROM user u,user_role ur,role r
-        WHERE u.id = ur.userid AND ur.roleid = r.id AND u.name = #{name}
+        SELECT concat(ud.unit,ud.department) AS departmentname
+        FROM user u,unitanddepartment ud
+        WHERE u.dept = ud.id AND u.name = #{name}
     </select>
 
     <!--int updateReceiveFile(ReceiveFile rf);-->
@@ -205,5 +205,11 @@
         SELECT *
         FROM model_erkeshi
         WHERE receivefileid = #{receivefileid}
+    </select>
+    <!--String selectLastReceiveFileId();-->
+    <select id="selectLastReceiveFileId" resultType="String">
+        SELECT receivefileid
+        FROM receivefile
+        ORDER BY id DESC LIMIT 1
     </select>
 </mapper>

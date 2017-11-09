@@ -308,7 +308,7 @@
 
     <hr>
 
-    <div class="modal fade" id="form_stuff" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="form_add_users" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -399,7 +399,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="form_update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="form_update_users" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -494,7 +494,7 @@
     </div>
 
 
-    <div class="modal fade" id="form_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    <div class="modal fade" id="form_add_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
@@ -526,7 +526,7 @@
                                                         <ul>
                                                             <li>移民登记
                                                                 <ul>
-                                                                    <li id="1">移民新建功能</li>
+                                                                    <li id="1" class="1">移民新建功能</li>
                                                                     <li id="2">移民修改功能</li>
                                                                     <li id="3">移民上传功能</li>
                                                                     <li id="4">列表查看，搜索功能</li>
@@ -668,6 +668,180 @@
         </div>
     </div>
 
+    <%--<div class="modal fade" id="form_update_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
+         <%--aria-hidden="true" data-backdrop="static">--%>
+
+        <%--<div class="modal-dialog">--%>
+            <%--<div class="modal-content">--%>
+
+                <%--<div class="modal-header">--%>
+                    <%--<button type="button" class="close" id="update_Role" data-dismiss="modal">×</button>--%>
+                    <%--<h3 id="Role-kind1">添加角色</h3>--%>
+                <%--</div>--%>
+
+                <%--<form id = "fileRole1" enctype="multipart/form-data"  target="uploadFrame">--%>
+                    <%--<div class="modal-body" style="font-size: 0;width: 100%;" id="print3">--%>
+                        <%--<table class="mytable">--%>
+                            <%--<tbody>--%>
+                            <%--<tr>--%>
+                                <%--<td>角色</td>--%>
+                                <%--<td colspan="3"><input type="text" name="username" id="roleName1"></td>--%>
+                            <%--</tr>--%>
+
+                            <%--<tr>--%>
+                                <%--<td>功能</td>--%>
+                                <%--<td>--%>
+
+                                    <%--<div id="tree_container1" align="left">--%>
+                                        <%--<ul>--%>
+                                            <%--<li>移民搬迁模块--%>
+                                                <%--<ul>--%>
+                                                    <%--<li>移民管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>移民登记--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="1">移民新建功能</li>--%>
+                                                                    <%--<li id="2">移民修改功能</li>--%>
+                                                                    <%--<li id="3">移民上传功能</li>--%>
+                                                                    <%--<li id="4">列表查看，搜索功能</li>--%>
+                                                                    <%--<li id="5">列表删除功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>移民分析--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="6">地图搜索功能</li>--%>
+                                                                    <%--<li id="7">地图查看功能</li>--%>
+                                                                    <%--<li id="8">地图统计功能(按照区县)</li>--%>
+                                                                    <%--<li id="9">移民信息查看</li>--%>
+                                                                    <%--<li id="10">统计分析查看</li>--%>
+                                                                    <%--<li id="11">区县搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                <%--</ul>--%>
+                                            <%--</li>--%>
+                                            <%--<li>资金申请模块--%>
+                                                <%--<ul>--%>
+                                                    <%--<li>市资金申请管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>我的表单--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="12">市局规划科资金申请上报功能</li>--%>
+                                                                    <%--<li id="13">全部列表查看、搜索、删除功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>待处理/已处理事务--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="14">市局财务处理功能</li>--%>
+                                                                    <%--<li id="15">市局规划科处理功能</li>--%>
+                                                                    <%--<li id="16">列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>区县资金申请管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>我的申请--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="17">区县发起申请功能</li>--%>
+                                                                    <%--<li id="18">全部列表查看、搜索、删除功能</li>--%>
+                                                                    <%--<li id="19">个人申请列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>待处理/已处理事务--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="20">市局规划科资金批复功能</li>--%>
+                                                                    <%--<li id="21">市局财务科处理功能</li>--%>
+                                                                    <%--<li id="22">区县接收到账功能</li>--%>
+                                                                    <%--<li id="23">区县记账功能</li>--%>
+                                                                    <%--<li id="24">列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                <%--</ul>--%>
+                                            <%--</li>--%>
+                                            <%--<li>协同办公模块--%>
+                                                <%--<ul>--%>
+                                                    <%--<li>发文管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>我的表单--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="25">起草文件功能</li>--%>
+                                                                    <%--<li id="26">全部列表查看、搜索、删除功能</li>--%>
+                                                                    <%--<li id="27">个人申请列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>待处理/已处理事务--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="28">审核处理</li>--%>
+                                                                    <%--<li id="29">领导签批功能</li>--%>
+                                                                    <%--<li id="30">处理处置功能</li>--%>
+                                                                    <%--<li id="31">文件归档功能</li>--%>
+                                                                    <%--<li id="32">列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>收文管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>我的表单--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="33">文件登记功能</li>--%>
+                                                                    <%--<li id="34">全部列表查看、搜索、删除功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>待处理/已处理事务--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="35">文件处理功能</li>--%>
+                                                                    <%--<li id="36">文件签批功能</li>--%>
+                                                                    <%--<li id="37">文件处理处置功能</li>--%>
+                                                                    <%--<li id="38">办公室归档功能</li>--%>
+                                                                    <%--<li id="39">列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>非文件管理--%>
+                                                        <%--<ul>--%>
+                                                            <%--<li>我的表单--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="40">文件提交</li>--%>
+                                                                    <%--<li id="41">全部列表查看、搜索、删除功能</li>--%>
+                                                                    <%--<li id="42">个人申请列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                            <%--<li>待处理/已处理事务--%>
+                                                                <%--<ul>--%>
+                                                                    <%--<li id="43">文件接收及签批</li>--%>
+                                                                    <%--<li id="44">列表查看、搜索功能</li>--%>
+                                                                <%--</ul>--%>
+                                                            <%--</li>--%>
+                                                        <%--</ul>--%>
+                                                    <%--</li>--%>
+                                                <%--</ul>--%>
+                                            <%--</li>--%>
+                                        <%--</ul>--%>
+                                    <%--</div>--%>
+
+                                <%--</td>--%>
+                            <%--</tr>--%>
+
+                            <%--</tbody>--%>
+                        <%--</table>--%>
+                    <%--</div>--%>
+                <%--</form>--%>
+
+                <%--<div class="modal-footer">--%>
+                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>--%>
+                    <%--<a href="#" class="btn btn-primary" id="roleBtnUpdate">修改</a>--%>
+                <%--</div>--%>
+
+            <%--</div>--%>
+        <%--</div>--%>
+    <%--</div>--%>
+
 
 </div>
 
@@ -686,26 +860,17 @@
 <script>
 
     function newForm() {
-        $('#form_stuff input').val('');
-        $('#form_stuff').modal('show');
+        $('#form_add_users input').val('');
+        $('#form_add_users').modal('show');
     }
 
     function newRoleForm() {
-        $('#form_Role input').val('');
-        $('#form_Role').modal('show');
+        $('#form_add_Role input').val('');
+        $('#form_add_Role').modal('show');
     }
 
 
 
-    function detail_office(that) {
-        $('#form_office').modal('show');
-    }
-
-    function flow(that){
-        $('#flow').modal('show');
-    }
-
-    $("#status")
 </script>
 
 

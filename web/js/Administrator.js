@@ -230,6 +230,9 @@
         var dataArr=$("#tree_container").jstree().get_selected(true);
         var roleName=$("#roleName").val();
         var idArr=[];
+
+        console.log(dataArr)
+
         $.each(dataArr,function (a,b) {
             if(parseInt(b.id)){
                 idArr.push(parseInt(b.id));
@@ -247,7 +250,7 @@
             data:datas,
             async:false,
             success:function (val) {
-                $('#form_Role').modal('hide');
+                $('#form_add_Role').modal('hide');
                 if(val.result =="success"){
                     table_refresh();
                     alert("提交成功");
@@ -258,10 +261,6 @@
                 alert("系统出错")
             })
         })
-
-
-
-
     }
     //角色操作
     function editRole() {
@@ -291,10 +290,10 @@
     function updata() {
         var username=$("#username1").val(),
             pass=$("#pass1").val(),
-            role=$("#form_update .role").val(),
-            unit=$("#form_update .unit").val(),
+            role=$("#form_update_users .role").val(),
+            unit=$("#form_update_users .unit").val(),
             name=$("#name1").val(),
-            department=$("#form_update .department").val(),
+            department=$("#form_update_users .department").val(),
             phone=$("#phone1").val(),
             id=$("#data_id").text();
 
@@ -319,7 +318,7 @@
             async:false,
             success:function (val) {
                 console.log(val);
-                $('#form_update').modal('hide');
+                $('#form_update_users').modal('hide');
                 if(val.result =="success"){
                     table_refresh();
                     alert("修改成功");
@@ -342,12 +341,12 @@
             success: function (data) {
                 $("#username1").val(data.username);
                 $("#pass1").val(data.pass);
-                $("#form_update .role").val(data.role);
-                $("#form_update .unit").val(data.unit);
+                $("#form_update_users .role").val(data.role);
+                $("#form_update_users .unit").val(data.unit);
                 $("#name1").val(data.name);
-                $("#form_update .department").val(data.department);
+                $("#form_update_users .department").val(data.department);
                 $("#phone1").val(data.phone);
-                $("#form_update").modal('show');
+                $("#form_update_users").modal('show');
             }
         });
     }
@@ -378,10 +377,10 @@
     function primaryClick() {
         var username=$("#username").val(),
             pass=$("#pass").val(),
-            role=$("#form_stuff .role").val(),
-            unit=$("#form_stuff .unit").val(),
+            role=$("#form_add_users .role").val(),
+            unit=$("#form_add_users .unit").val(),
             name=$("#name").val(),
-            department=$("#form_stuff .department").val(),
+            department=$("#form_add_users .department").val(),
             phone=$("#phone").val();
 
         var datas={
@@ -400,7 +399,7 @@
                data:datas,
                async:false,
                success:function (val) {
-                   $('#form_stuff').modal('hide');
+                   $('#form_add_users').modal('hide');
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
