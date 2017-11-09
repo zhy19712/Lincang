@@ -561,7 +561,7 @@
     var last = role.lastIndexOf("]");
     role = role.substring(1,last);
     console.log(role);
-    if(role != "市局办公室"){
+    if(role != "市局办公室管理角色"){
         $("#header2").remove();
         $("#dcl2").remove();
         $("#ycl2").remove();
