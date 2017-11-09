@@ -231,8 +231,6 @@
         var roleName=$("#roleName").val();
         var idArr=[];
 
-        console.log(dataArr)
-
         $.each(dataArr,function (a,b) {
             if(parseInt(b.id)){
                 idArr.push(parseInt(b.id));
@@ -263,10 +261,21 @@
         })
     }
     //角色操作
-    function editRole() {
+    function editRole(that) {
         var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
             kind = $(that).val();
-        console.log(id,kind)
+        $("#role_id").test(id);
+
+        if(kind=="查看"){
+            $("#Role-kind1").text("查看角色");
+            $("#roleBtnUpdate").hide();
+        }else if(kind=="编辑"){
+            $("#Role-kind1").text("修改角色");
+            $("#roleBtnUpdate").show();
+        }else if(kind=="删除"){
+
+        }
+
     }
     //用户操作
     function edit(that) {
@@ -286,6 +295,20 @@
             deldata(id)
         }
     }
+    function lookRole(id) {
+        $.ajax({
+            // url: "/getRegisterInfoById.do",
+            type: "post",
+            async: false,
+            data: {"id":id},
+            dataType: "json",
+            success: function (data) {
+                $("#roleName1").val(data.role);
+
+            }
+        });
+    }
+
     //用户修改
     function updata() {
         var username=$("#username1").val(),

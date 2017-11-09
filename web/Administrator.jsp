@@ -25,7 +25,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="css/jedate.css">
     <link rel="stylesheet" href="css/mycss.css">
-    <link rel="stylesheet" href="../../css/themes/default/style.css">
     <link rel="stylesheet" href="css/oa.css">
 
     <link rel="stylesheet" href="css/media.css" media="print">
@@ -39,6 +38,9 @@
     <!-- The fav icon -->
     <link rel="shortcut icon" href="img/favicon.ico">
     <style>
+        .navbar-brand{
+            font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+        }
         .mytable{
             width: 100%;
             font-size: 12px;
@@ -65,29 +67,14 @@
             width: 99%;
             height: 100px;
         }
-        .red{
-            color: red;
-        }
-        .text_left{
-            text-align: left;
-        }
         p{
             margin:0;
-        }
-        #sel_model{
-            width: 96%;
-            margin: 0 auto;
-            font-size: 0;
         }
         #sel_model>div{
             display: inline-block;
             vertical-align: top;
             width: 50%;
             font-size: 14px;
-        }
-        #select_people{
-            padding-left: 0;
-            line-height: 20px;
         }
         li{
             list-style: none;
@@ -139,8 +126,10 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="img/logo20.png" class="hidden-xs"/>
-            <span style="font-size: 26px">临沧市移民开发局</span></a>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 600px;">
+            <img alt="Logo" src="img/logo20.png" class="hidden-xs"/>
+            <p style="font-size: 26px"><span>临沧市移民数字管理平台-</span> <span style="font-size: 18px">用户授权管理系统</span></p>
+        </a>
         <!-- logo ends -->
 
         <!-- user dropdown starts -->
@@ -505,6 +494,7 @@
                     <h3 id="Role-kind">添加角色</h3>
                 </div>
 
+
                 <form id = "fileRole" enctype="multipart/form-data"  target="uploadFrame">
                     <div class="modal-body" style="font-size: 0;width: 100%;" id="print2">
                         <table class="mytable">
@@ -526,7 +516,7 @@
                                                         <ul>
                                                             <li>移民登记
                                                                 <ul>
-                                                                    <li id="1" class="1">移民新建功能</li>
+                                                                    <li id="1">移民新建功能</li>
                                                                     <li id="2">移民修改功能</li>
                                                                     <li id="3">移民上传功能</li>
                                                                     <li id="4">列表查看，搜索功能</li>
@@ -545,43 +535,43 @@
                                                             </li>
                                                         </ul>
                                                     </li>
-                                                </ul>
-                                            </li>
-                                            <li>资金申请模块
-                                                <ul>
-                                                    <li>市资金申请管理
+                                                    <li>资金申请模块
                                                         <ul>
-                                                            <li>我的表单
+                                                            <li>市资金申请管理
                                                                 <ul>
-                                                                    <li id="12">市局规划科资金申请上报功能</li>
-                                                                    <li id="13">全部列表查看、搜索、删除功能</li>
+                                                                    <li>我的表单
+                                                                        <ul>
+                                                                            <li id="12">市局规划科资金申请上报功能</li>
+                                                                            <li id="13">全部列表查看、搜索、删除功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>待处理/已处理事务
+                                                                        <ul>
+                                                                            <li id="14">市局财务处理功能</li>
+                                                                            <li id="15">市局规划科处理功能</li>
+                                                                            <li id="16">列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
                                                                 </ul>
                                                             </li>
-                                                            <li>待处理/已处理事务
+                                                            <li>区县资金申请管理
                                                                 <ul>
-                                                                    <li id="14">市局财务处理功能</li>
-                                                                    <li id="15">市局规划科处理功能</li>
-                                                                    <li id="16">列表查看、搜索功能</li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>区县资金申请管理
-                                                        <ul>
-                                                            <li>我的申请
-                                                                <ul>
-                                                                    <li id="17">区县发起申请功能</li>
-                                                                    <li id="18">全部列表查看、搜索、删除功能</li>
-                                                                    <li id="19">个人申请列表查看、搜索功能</li>
-                                                                </ul>
-                                                            </li>
-                                                            <li>待处理/已处理事务
-                                                                <ul>
-                                                                    <li id="20">市局规划科资金批复功能</li>
-                                                                    <li id="21">市局财务科处理功能</li>
-                                                                    <li id="22">区县接收到账功能</li>
-                                                                    <li id="23">区县记账功能</li>
-                                                                    <li id="24">列表查看、搜索功能</li>
+                                                                    <li>我的申请
+                                                                        <ul>
+                                                                            <li id="17">区县发起申请功能</li>
+                                                                            <li id="18">全部列表查看、搜索、删除功能</li>
+                                                                            <li id="19">个人申请列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>待处理/已处理事务
+                                                                        <ul>
+                                                                            <li id="20">市局规划科资金批复功能</li>
+                                                                            <li id="21">市局财务科处理功能</li>
+                                                                            <li id="22">区县接收到账功能</li>
+                                                                            <li id="23">区县记账功能</li>
+                                                                            <li id="24">列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -668,179 +658,181 @@
         </div>
     </div>
 
-    <%--<div class="modal fade" id="form_update_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"--%>
-         <%--aria-hidden="true" data-backdrop="static">--%>
+    <div class="modal fade" id="form_update_Role" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
 
-        <%--<div class="modal-dialog">--%>
-            <%--<div class="modal-content">--%>
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                <%--<div class="modal-header">--%>
-                    <%--<button type="button" class="close" id="update_Role" data-dismiss="modal">×</button>--%>
-                    <%--<h3 id="Role-kind1">添加角色</h3>--%>
-                <%--</div>--%>
+                <div class="modal-header">
+                    <button type="button" class="close" id="update_Role" data-dismiss="modal">×</button>
+                    <h3 id="Role-kind1">修改角色</h3>
+                </div>
 
-                <%--<form id = "fileRole1" enctype="multipart/form-data"  target="uploadFrame">--%>
-                    <%--<div class="modal-body" style="font-size: 0;width: 100%;" id="print3">--%>
-                        <%--<table class="mytable">--%>
-                            <%--<tbody>--%>
-                            <%--<tr>--%>
-                                <%--<td>角色</td>--%>
-                                <%--<td colspan="3"><input type="text" name="username" id="roleName1"></td>--%>
-                            <%--</tr>--%>
+                <span id="role_id" style="display: none"></span>
 
-                            <%--<tr>--%>
-                                <%--<td>功能</td>--%>
-                                <%--<td>--%>
+                <form id = "fileRole1" enctype="multipart/form-data"  target="uploadFrame">
+                    <div class="modal-body" style="font-size: 0;width: 100%;" id="print3">
+                        <table class="mytable">
+                            <tbody>
+                            <tr>
+                                <td>角色</td>
+                                <td colspan="3"><input type="text" name="username" id="roleName1"></td>
+                            </tr>
 
-                                    <%--<div id="tree_container1" align="left">--%>
-                                        <%--<ul>--%>
-                                            <%--<li>移民搬迁模块--%>
-                                                <%--<ul>--%>
-                                                    <%--<li>移民管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>移民登记--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="1">移民新建功能</li>--%>
-                                                                    <%--<li id="2">移民修改功能</li>--%>
-                                                                    <%--<li id="3">移民上传功能</li>--%>
-                                                                    <%--<li id="4">列表查看，搜索功能</li>--%>
-                                                                    <%--<li id="5">列表删除功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>移民分析--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="6">地图搜索功能</li>--%>
-                                                                    <%--<li id="7">地图查看功能</li>--%>
-                                                                    <%--<li id="8">地图统计功能(按照区县)</li>--%>
-                                                                    <%--<li id="9">移民信息查看</li>--%>
-                                                                    <%--<li id="10">统计分析查看</li>--%>
-                                                                    <%--<li id="11">区县搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                <%--</ul>--%>
-                                            <%--</li>--%>
-                                            <%--<li>资金申请模块--%>
-                                                <%--<ul>--%>
-                                                    <%--<li>市资金申请管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>我的表单--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="12">市局规划科资金申请上报功能</li>--%>
-                                                                    <%--<li id="13">全部列表查看、搜索、删除功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>待处理/已处理事务--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="14">市局财务处理功能</li>--%>
-                                                                    <%--<li id="15">市局规划科处理功能</li>--%>
-                                                                    <%--<li id="16">列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                    <%--<li>区县资金申请管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>我的申请--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="17">区县发起申请功能</li>--%>
-                                                                    <%--<li id="18">全部列表查看、搜索、删除功能</li>--%>
-                                                                    <%--<li id="19">个人申请列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>待处理/已处理事务--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="20">市局规划科资金批复功能</li>--%>
-                                                                    <%--<li id="21">市局财务科处理功能</li>--%>
-                                                                    <%--<li id="22">区县接收到账功能</li>--%>
-                                                                    <%--<li id="23">区县记账功能</li>--%>
-                                                                    <%--<li id="24">列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                <%--</ul>--%>
-                                            <%--</li>--%>
-                                            <%--<li>协同办公模块--%>
-                                                <%--<ul>--%>
-                                                    <%--<li>发文管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>我的表单--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="25">起草文件功能</li>--%>
-                                                                    <%--<li id="26">全部列表查看、搜索、删除功能</li>--%>
-                                                                    <%--<li id="27">个人申请列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>待处理/已处理事务--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="28">审核处理</li>--%>
-                                                                    <%--<li id="29">领导签批功能</li>--%>
-                                                                    <%--<li id="30">处理处置功能</li>--%>
-                                                                    <%--<li id="31">文件归档功能</li>--%>
-                                                                    <%--<li id="32">列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                    <%--<li>收文管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>我的表单--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="33">文件登记功能</li>--%>
-                                                                    <%--<li id="34">全部列表查看、搜索、删除功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>待处理/已处理事务--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="35">文件处理功能</li>--%>
-                                                                    <%--<li id="36">文件签批功能</li>--%>
-                                                                    <%--<li id="37">文件处理处置功能</li>--%>
-                                                                    <%--<li id="38">办公室归档功能</li>--%>
-                                                                    <%--<li id="39">列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                    <%--<li>非文件管理--%>
-                                                        <%--<ul>--%>
-                                                            <%--<li>我的表单--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="40">文件提交</li>--%>
-                                                                    <%--<li id="41">全部列表查看、搜索、删除功能</li>--%>
-                                                                    <%--<li id="42">个人申请列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                            <%--<li>待处理/已处理事务--%>
-                                                                <%--<ul>--%>
-                                                                    <%--<li id="43">文件接收及签批</li>--%>
-                                                                    <%--<li id="44">列表查看、搜索功能</li>--%>
-                                                                <%--</ul>--%>
-                                                            <%--</li>--%>
-                                                        <%--</ul>--%>
-                                                    <%--</li>--%>
-                                                <%--</ul>--%>
-                                            <%--</li>--%>
-                                        <%--</ul>--%>
-                                    <%--</div>--%>
+                            <tr>
+                                <td>功能</td>
+                                <td>
 
-                                <%--</td>--%>
-                            <%--</tr>--%>
+                                    <div id="tree_container1" align="left">
+                                        <ul>
+                                            <li>移民搬迁模块
+                                                <ul>
+                                                    <li>移民管理
+                                                        <ul>
+                                                            <li>移民登记
+                                                                <ul>
+                                                                    <li id="1j">移民新建功能</li>
+                                                                    <li id="2j">移民修改功能</li>
+                                                                    <li id="3j">移民上传功能</li>
+                                                                    <li id="4j">列表查看，搜索功能</li>
+                                                                    <li id="5j">列表删除功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>移民分析
+                                                                <ul>
+                                                                    <li id="6j">地图搜索功能</li>
+                                                                    <li id="7j">地图查看功能</li>
+                                                                    <li id="8j">地图统计功能(按照区县)</li>
+                                                                    <li id="9j">移民信息查看</li>
+                                                                    <li id="10j">统计分析查看</li>
+                                                                    <li id="11j">区县搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>资金申请模块
+                                                        <ul>
+                                                            <li>市资金申请管理
+                                                                <ul>
+                                                                    <li>我的表单
+                                                                        <ul>
+                                                                            <li id="12j">市局规划科资金申请上报功能</li>
+                                                                            <li id="13j">全部列表查看、搜索、删除功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>待处理/已处理事务
+                                                                        <ul>
+                                                                            <li id="14j">市局财务处理功能</li>
+                                                                            <li id="15j">市局规划科处理功能</li>
+                                                                            <li id="16j">列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>区县资金申请管理
+                                                                <ul>
+                                                                    <li>我的申请
+                                                                        <ul>
+                                                                            <li id="17j">区县发起申请功能</li>
+                                                                            <li id="18j">全部列表查看、搜索、删除功能</li>
+                                                                            <li id="19j">个人申请列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                    <li>待处理/已处理事务
+                                                                        <ul>
+                                                                            <li id="20j">市局规划科资金批复功能</li>
+                                                                            <li id="21j">市局财务科处理功能</li>
+                                                                            <li id="22j">区县接收到账功能</li>
+                                                                            <li id="23j">区县记账功能</li>
+                                                                            <li id="24j">列表查看、搜索功能</li>
+                                                                        </ul>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>协同办公模块
+                                                <ul>
+                                                    <li>发文管理
+                                                        <ul>
+                                                            <li>我的表单
+                                                                <ul>
+                                                                    <li id="25j">起草文件功能</li>
+                                                                    <li id="26j">全部列表查看、搜索、删除功能</li>
+                                                                    <li id="27j">个人申请列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>待处理/已处理事务
+                                                                <ul>
+                                                                    <li id="28j">审核处理</li>
+                                                                    <li id="29j">领导签批功能</li>
+                                                                    <li id="30j">处理处置功能</li>
+                                                                    <li id="31j">文件归档功能</li>
+                                                                    <li id="32j">列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>收文管理
+                                                        <ul>
+                                                            <li>我的表单
+                                                                <ul>
+                                                                    <li id="33j">文件登记功能</li>
+                                                                    <li id="34j">全部列表查看、搜索、删除功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>待处理/已处理事务
+                                                                <ul>
+                                                                    <li id="35j">文件处理功能</li>
+                                                                    <li id="36j">文件签批功能</li>
+                                                                    <li id="37j">文件处理处置功能</li>
+                                                                    <li id="38j">办公室归档功能</li>
+                                                                    <li id="39j">列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>非文件管理
+                                                        <ul>
+                                                            <li>我的表单
+                                                                <ul>
+                                                                    <li id="40j">文件提交</li>
+                                                                    <li id="41j">全部列表查看、搜索、删除功能</li>
+                                                                    <li id="42j">个人申请列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>待处理/已处理事务
+                                                                <ul>
+                                                                    <li id="43j">文件接收及签批</li>
+                                                                    <li id="44j">列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
 
-                            <%--</tbody>--%>
-                        <%--</table>--%>
-                    <%--</div>--%>
-                <%--</form>--%>
+                                </td>
+                            </tr>
 
-                <%--<div class="modal-footer">--%>
-                    <%--<a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>--%>
-                    <%--<a href="#" class="btn btn-primary" id="roleBtnUpdate">修改</a>--%>
-                <%--</div>--%>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
 
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#" class="btn btn-primary" id="roleBtnUpdate">修改</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
 </div>
