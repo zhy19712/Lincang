@@ -110,6 +110,7 @@
         </div>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
+        <span id="permissionList" style="display:none;width:0;height:0;">${user.permissionList}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -657,6 +658,15 @@
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script>
+    //获取功能
+//    $.ajax({
+//        url: "/getFunctionByName.do",
+//        type: "post",
+//        dataType: "json",
+//        success:function (data) {
+//            console.log(data)
+//        }
+//    })
     //checkbox美化
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
@@ -668,7 +678,6 @@
     $("#time2").jeDate({
         format: "YYYY-MM-DD"
     });
-
     // 多文件上传
     var fileIndex = 1;
     function add_click_file(index){
@@ -892,13 +901,6 @@
     //        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
     //        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
     //    }
-    var status;
-    ~function() {
-
-        status = $("#status").text();
-
-    }();
-
 
 
 
