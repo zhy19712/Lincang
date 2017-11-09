@@ -126,7 +126,7 @@
                     </div>
                     <ul class="nav nav-pills nav-stacked main-menu" id="myTab">
                         <li id="header1" class="nav-header">我的申请</li>
-                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">市局资金计划上报</span></a></li>
+                        <li id="m_apply1"><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span id="kind1">资金申请</span></a></li>
 
                         <li class="nav-header">我的事务</li>
                         <li id="dcl"><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
@@ -160,11 +160,20 @@
 
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
-                                            <a data-toggle="tooltip" title="填写新表单" class="well top-block"
+                                            <a data-toggle="tooltip" title="市局资金计划上报" class="well top-block"
                                                href="javascript:void(0)" onclick="newForm()">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
-                                                <div id="kind2">市局资金计划上报</div>
+                                                <div>市局资金计划上报</div>
+
+                                            </a>
+                                        </div>
+                                        <div class="col-md-2 col-sm-3 col-xs-6">
+                                            <a data-toggle="tooltip" title="区县资金申请" class="well top-block"
+                                               href="javascript:void(0)" onclick="newForm2()">
+                                                <i class="glyphicon glyphicon-pencil blue"></i>
+
+                                                <div>区县资金申请</div>
 
                                             </a>
                                         </div>
@@ -926,8 +935,6 @@
 //        $("#fileForm1").ajaxSubmit(options);
     });
 
-
-
     function newForm() {
         $('#money_apply_wdo1 input').val("");
         $('#money_apply_wdo1 textarea').val("");
@@ -938,6 +945,23 @@
         })
         $("#filesUpload span").remove();
         $('#money_apply_wdo1').modal('show');
+//        $('#caiwu_handle').modal('show');
+//        $('#guihua_handle').modal('show');
+//        $('#final_handle').modal('show');
+//        $('#money_apply_wdo2').modal('show');
+//        $('#final_handle2').modal('show');
+    }
+
+    function newForm2() {
+        $('#money_apply_wdo2 input').val("");
+        $('#money_apply_wdo2 textarea').val("");
+        $.each($("#my1filesUpload a"),function (i,n) {
+            if(n.text != "添加附件"){
+                n.remove()
+            }
+        })
+        $("#my1filesUpload span").remove();
+        $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
 //        $('#final_handle').modal('show');

@@ -42,8 +42,9 @@
         .news-wrapper{
             display: inline-block;
             vertical-align: middle;
-            width: 400px;
-            margin: 32px;
+            width: 49%;
+            padding: 32px;
+            box-sizing: border-box;
         }
         .news-wrapper .header{
             height: 30px;
@@ -77,38 +78,20 @@
         .news li a{
             color: #000000;
         }
-        #lb{
-            position: relative;
-            height: 400px;
-            width: 100%;
-            overflow: hidden;
-        }
-        #lb img{
-            float: left;
-            height: 400px;
-            width: 100%;
-        }
-        #circle{
-            position: absolute;
-            width: 140px;
-            height: 50px;
-            left: 50%;
-            margin-left: -80px;
-            bottom: 10px;
-        }
-        #circle span{
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            margin-left: 10px;
-            border-radius: 50%;
-            background-color: transparent;
-            border: 2px solid #fff;
-            cursor: pointer;
-        }
-        #circle span:first-child{
-            background-color: #2fa4e7;
-        }
+
+
+        .baner_box{position:relative;width:100%;overflow:hidden;}
+        .baner_box .baner{overflow:hidden;z-index:0;margin:0 auto 0;position:absolute}
+        .baner_box .baner li{float:left;z-index:0;text-align:center;position:relative;overflow:hidden}
+        .baner_box .baner li img{width:100%;height:100%}
+        .baner_box a{display:inline-block; position:absolute; top: 50%;transform: translateY(-50%);z-index:10;cursor:pointer;text-align:center;font-size:32px}
+        .baner_box .left{display:none;width:30px;height:52px;line-height:52px;color:#fff;left:10px;background:rgba(0,0,0,.7)}
+        .baner_box .right{display:none;width:30px;height:52px;line-height:52px;color:#fff;right:10px;background:rgba(0,0,0,.7)}
+        .baner_box ol{position:absolute; left: 50%;transform: translateX(-50%);display:table;bottom:10px;z-index:10}
+        .baner_box ol li{list-style:none;float:left;width:12px;height:12px;margin-left:5px;margin-right:5px;border-radius:50%;background:#ccc;cursor:pointer}
+        .baner_box ol li.red{background:red}
+
+
         #bg{
             position: fixed;
             top: 0;
@@ -202,18 +185,19 @@
                         <div class="col-lg-12">
                             <div class="box-inner ">
                                 <div class="box-content">
-                                    <ul id="lb">
-                                        <img src="../../images/lb1.jpg" alt="">
-                                        <img src="../../images/lb2.jpg" alt="">
-                                        <img src="../../images/lb3.jpg" alt="">
-                                        <img src="../../images/lb4.jpg" alt="">
-                                        <div id="circle">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    </ul>
+
+                                    <div class="baner_box">
+                                        <ul class="baner">
+                                            <li><img src="../../images/1.jpg" /></li>
+                                            <li><img src="../../images/2.jpg" /></li>
+                                            <li><img src="../../images/3.jpg" /></li>
+                                            <li><img src="../../images/4.jpg" /></li>
+                                        </ul>
+                                        <ol></ol>
+                                        <a class="left"><</a>
+                                        <a class="right">></a>
+                                    </div>
+
                                     <div class="news-wrapper">
                                         <div class="header">
                                             <p class="title">通知公告</p>
@@ -292,45 +276,144 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script src="../../js/app.js"></script>
+
+
 <script>
-    var x = 1;
-    function lb() {
-        x += 1 ;
-        $("#lb>img").css("display","none");
-        $("#circle>span").css("background","transparent");
-        if(x==1){
-            $("#lb>img:first-child").fadeIn();
-            $("#circle>span:first-child").css("background","#2fa4e7");
-        }else if(x==2){
-            $("#lb>img:nth-child(2)").fadeIn();
-            $("#circle>span:nth-child(2)").css("background","#2fa4e7");
-        }else if(x==3){
-            $("#lb>img:nth-child(3)").fadeIn();
-            $("#circle>span:nth-child(3)").css("background","#2fa4e7");
-        }else if(x==4){
-            $("#lb>img:nth-child(4)").fadeIn();
-            $("#circle>span:nth-child(4)").css("background","#2fa4e7");
-            x = 0;
-        }else if(x==5){
-            $("#lb>img:first-child").fadeIn();
-            $("#circle>span:first-child").css("background","#2fa4e7");
-            x == 1;
+
+
+    $(function() {
+        var speed = 500; //animate time
+        var setsed = 2000; //setInterval time
+        var gao=$(window).height();
+        var width = $(".baner_box").width(); //每次滚动距离
+        var len = $(".baner li").length;
+        var twidth = parseInt(width * (len + 1)); //baner总宽度设置
+        var set;
+
+        $(window).resize(function () {
+            gao=$(window).height();
+            width = $(".baner_box").width();
+            $(".baner_box").css("height",gao/2);
+            twidth = parseInt(width * (len + 1)); //baner总宽度设置
+            //baner总宽度赋值
+            $(".baner").width(twidth);
+            $(".baner li").width(width); //可以动态选择像li中添加宽度，根据父元素盒子的宽度
+        });
+
+        //baner_box的高度为浏览器高度的一半
+        $(".baner_box").css("height",gao/2);
+        //baner总宽度赋值
+        $(".baner").width(twidth);
+        $(".baner li").width(width); //可以动态选择像li中添加宽度，根据父元素盒子的宽度
+        //根据图片的index数，加载原点
+        var olh = '<li></li>';
+        var str="";
+        for (var i = 0; i < len; i++) {
+            str+=olh
         }
-    }
-    var set1 = setInterval(lb,3000);
-    $("#lb").hover(function () {
-        clearInterval(set1)
-    },function () {
-        set1 = setInterval(lb,3000);
+        $("ol").html(str);
+        $("ol").find('li').first().addClass('red');
+
+        //防止连续点击
+        var _timer = {};
+        function delay_till_last(id, fn, wait) {
+            if (_timer[id]) {
+                window.clearTimeout(_timer[id]);
+                delete _timer[id];
+            }
+
+            return _timer[id] = window.setTimeout(function() {
+                fn();
+                delete _timer[id];
+            }, wait);
+        }
+
+        //左滚动
+        $(".left").on('click',
+            function() {
+                delay_till_last(1, function() {//注意 id 是唯一的，防止连续点击
+                    var pleft = parseInt($(".baner").css("left")) + width + 'px';
+                    var cpleft = '-' + parseInt((len-1) * width) + 'px';
+                    var cleft = parseInt($(".baner").css("left"));
+                    var cindex = parseInt( - (cleft / width));
+                    if (cleft == 0) {
+                        $(".baner").stop().animate({
+                                left: cpleft
+                            },
+                            speed);
+                    } else {
+                        $(".baner").stop().animate({
+                                left: pleft
+                            },
+                            speed);
+                    }
+
+                    if (cindex == 0) {
+                        $("ol li").eq(len-1).addClass('red').siblings('li').removeClass('red');
+                    } else {
+                        $("ol li").eq(cindex - 1).addClass('red').siblings('li').removeClass('red');
+                    }
+                }, 500);
+            });
+        //右滚动
+        $(".right").on('click',
+            function() {
+                delay_till_last(2, function() {//注意 id 是唯一的，防止连续点击
+                    var nleft = parseInt($(".baner").css("left")) - width + 'px';
+                    var npleft = parseInt( - width * (len-1));
+                    var cleft = parseInt($(".baner").css("left"));
+                    var cindex = parseInt( - (cleft / width));
+
+                    if (cleft <= npleft) {
+                        $(".baner").stop().animate({
+                                left: 0
+                            },
+                            speed);
+                    } else {
+                        $(".baner").stop().animate({
+                                left: nleft
+                            },
+                            speed);
+                    }
+                    if (cindex == (len-1)) {
+                        $("ol li").eq(0).addClass('red').siblings('li').removeClass('red');
+                    } else {
+                        $("ol li").eq(cindex + 1).addClass('red').siblings('li').removeClass('red');
+                    }
+
+                },500);
+            });
+        //当前状态
+        $("ol li").on('click',
+            function() {
+                var colindex = $(this).index();
+                var collert = '-' + colindex * width;
+                $(".baner").stop().animate({
+                        left: collert
+                    },
+                    speed);
+                $(this).addClass('red').siblings('li').removeClass('red');
+            });
+        //定时器
+        function seTime() {
+            set = setInterval(function() {
+                    $(".right").click();
+                },
+                setsed);
+        }
+        //清除定时器
+        $(".baner_box").hover(function() {
+                clearInterval(set);
+                $(".left").css("display","block");
+                $(".right").css("display","block");
+            },
+            function() {
+                seTime();
+                $(".left").css("display","none");
+                $(".right").css("display","none");
+            });
+        seTime();
     });
-    $("#circle>span").click(function () {
-        var index = $(this).index() + 1;
-        x = index;
-        $("#lb>img").css("display","none");
-        $("#circle>span").css("background","transparent");
-        $("#lb>img:nth-child("+ index +")").fadeIn();
-        $("#circle>span:nth-child("+ index +")").css("background","#2fa4e7");
-    })
 </script>
 
 </body>
