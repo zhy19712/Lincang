@@ -149,7 +149,6 @@
     </style>
 </head>
 <div id="bg">
-    <div></div>
 </div>
 <body>
 <!-- topbar starts -->

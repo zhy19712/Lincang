@@ -60,7 +60,6 @@
 
 <body>
 <div id="bg">
-    <div></div>
 </div>
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">

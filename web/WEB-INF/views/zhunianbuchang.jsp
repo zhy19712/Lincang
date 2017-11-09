@@ -27,6 +27,16 @@
     <link rel="stylesheet" href="../../css/money.css">
     <link rel="stylesheet" href="../../css/mycommon.css">
     <style>
+        #bg{
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: url(../../images/bg-1.png) no-repeat left top;
+            background-size: 100% 100%;
+        }
         .mytable{
             width: 100%;
             border-top: 1px solid #000;
@@ -52,6 +62,7 @@
             padding: 0 5px;
             resize: none;
         }
+
     </style>
 
 
@@ -66,6 +77,8 @@
 </head>
 
 <body>
+<div id="bg">
+</div>
 <!-- topbar starts -->
 <div class="navbar navbar-default" role="navigation">
 
