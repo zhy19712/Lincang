@@ -36,4 +36,6 @@ public interface ReceiveFileMapper {
     int updateModelYikeshi(Model_Yikeshi meme);
 
     int updateModelErkeshi(Model_Erkeshi meme);
+
+    String selectLastReceiveFileId();
 }

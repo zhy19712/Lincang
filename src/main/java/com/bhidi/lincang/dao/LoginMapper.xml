@@ -54,7 +54,7 @@
     <select id="selectNotFunction" parameterType="list" resultType="com.bhidi.lincang.bean.Privilege">
         SELECT id,module,classification,subclassification,authdescription
         FROM privilege
-        WHERE id NOT IN
+        WHERE id IN
         <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
         #{item}
         </foreach>
