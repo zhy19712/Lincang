@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,6 +22,7 @@ public class SendFileServiceImp implements SendFileServiceInf{
     public SendFile getSendFileInfoBySendFileId(String sendFileid) {
         return sendFileMapper.selectSendFileInfoBySendFileId(sendFileid);
     }
+
 
     public int updateSendFile(Map<String,Object> mapCondition) {
         SendFile sf = (SendFile)mapCondition.get("sendFile");
@@ -81,16 +83,34 @@ public class SendFileServiceImp implements SendFileServiceInf{
         return sendFileMapper.updateSendFile(sf);
     }
 
+    /**
+     *获取sendfile的sendfileid
+     * @return
+     */
+    public String getLastSendFileId() {
+        return sendFileMapper.selectLastSendFileId();
+    }
+
     public Map<String,Object> save(Map<String, Object> mapCondition){
         SendFile sfa = (SendFile)mapCondition.get("sendFile");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
         HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
         String str = "";
         List<String> fileUploadList =  multipleUpload(files,request);
-        String sendFileid = new Date().getTime()+"";
-        sfa.setSendfileid(sendFileid);
         Date now = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String today = sdf1.format(now);
+        String lastSendFileId =  getLastSendFileId();
+        String sendFileid = "";
+        if( today.equals(lastSendFileId.substring(0,8)) ){
+            BigDecimal bd = new BigDecimal(lastSendFileId);
+            sendFileid = bd.add(new BigDecimal(1)).toString();
+        } else {
+
+            sendFileid = today+"0001"+"";
+        }
+        sfa.setSendfileid(sendFileid);
         sfa.setCreatedtime(sdf.format(now));
 
         for( int i = 0;i < fileUploadList.size();i++ ) {

@@ -10,4 +10,6 @@ public interface SendFileMapper {
     SendFile selectSendFileInfoBySendFileId(String sendFileid);
 
     int updateSendFile(SendFile sf);
+
+    String selectLastSendFileId();
 }

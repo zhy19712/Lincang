@@ -668,14 +668,14 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script>
     //获取功能
-//    $.ajax({
-//        url: "/getFunctionByName.do",
-//        type: "post",
-//        dataType: "json",
-//        success:function (data) {
-//            console.log(data)
-//        }
-//    })
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        dataType: "json",
+        success:function (data) {
+            console.log(data)
+        }
+    })
     //checkbox美化
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
