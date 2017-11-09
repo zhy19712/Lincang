@@ -665,7 +665,7 @@
     $("#time1").jeDate({
         format: "YYYY-MM-DD"
     });
-    $("#arrival_time").jeDate({
+    $("#time2").jeDate({
         format: "YYYY-MM-DD"
     });
 

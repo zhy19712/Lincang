@@ -205,6 +205,8 @@ function del_file(number) {
 //编辑查看按钮
 var id,status;
 function edit(that) {
+    $("#select_model input").val("");
+    $("#select_model textarea").val("");
     id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
     status = $(that).parent("td").parent("tr").children("td:nth-child(5)").text();
     var kind = $(that).val();
