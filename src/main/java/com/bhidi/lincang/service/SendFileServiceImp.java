@@ -101,13 +101,12 @@ public class SendFileServiceImp implements SendFileServiceInf{
         SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String today = sdf1.format(now);
-        String lastSendFileId =  getLastSendFileId();
+        String lastSendFileId = getLastSendFileId();
         String sendFileid = "";
         if( today.equals(lastSendFileId.substring(0,8)) ){
             BigDecimal bd = new BigDecimal(lastSendFileId);
             sendFileid = bd.add(new BigDecimal(1)).toString();
         } else {
-
             sendFileid = today+"0001"+"";
         }
         sfa.setSendfileid(sendFileid);

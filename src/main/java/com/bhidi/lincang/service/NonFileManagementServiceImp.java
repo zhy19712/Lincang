@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,16 +22,32 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
     NonFileManagementMapper nonFileManagementMapper;
 
 
+    /**
+     *获取nonfile的nonfileid
+     * @return
+     */
+    public String getLastNonFileId() {
+        return nonFileManagementMapper.selectLastNonFileId();
+    }
     public Map<String, Object> submit(Map<String, Object> mapCondition) {
         NonFileManagement nfm = (NonFileManagement)mapCondition.get("nonfilemanagement");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
         HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
         String str = "";
         List<String> fileUploadList =  multipleUpload(files,request);
-        String nonFileid = new Date().getTime()+"";
-        nfm.setNonfileid(nonFileid);
         Date now = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String today = sdf1.format(now);
+        String lastNonFileId = getLastNonFileId();
+        String nonFileid = "";
+        if( today.equals(lastNonFileId.substring(0,8)) ){
+            BigDecimal bd = new BigDecimal(lastNonFileId);
+            nonFileid = bd.add(new BigDecimal(1)).toString();
+        } else {
+            nonFileid = today+"0001"+"";
+        }
+        nfm.setNonfileid(nonFileid);
         nfm.setSubmittime(sdf.format(now));
 
         for( int i = 0;i < fileUploadList.size();i++ ) {

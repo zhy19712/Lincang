@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -85,16 +86,35 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return receiveFileMapper.updateModelErkeshi(meme);
     }
 
+    /**
+     *获取receivefile的receivefileid
+     * @return
+     */
+    public String getLastReceiveFileId() {
+        return receiveFileMapper.selectLastReceiveFileId();
+    }
+
     public Map<String,Object> save(Map<String, Object> mapCondition){
         ReceiveFile rfaa = (ReceiveFile)mapCondition.get("receiveFileAhead");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
         HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
         String str = "";
         List<String> fileUploadList =  multipleUpload(files,request);
-        String receivefileid = new Date().getTime()+"";
-        rfaa.setReceivefileid(receivefileid);
         Date now = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String today = sdf1.format(now);
+        String lastReceiveFileId = getLastReceiveFileId();
+        String receivefileid = "";
+        if( today.equals(lastReceiveFileId.substring(0,8)) ){
+            BigDecimal bd = new BigDecimal(lastReceiveFileId);
+            receivefileid = bd.add(new BigDecimal(1)).toString();
+        } else {
+            receivefileid = today+"0001"+"";
+        }
+
+
+        rfaa.setReceivefileid(receivefileid);
         rfaa.setReveivereregistertime(sdf.format(now));
 
         for( int i = 0;i < fileUploadList.size();i++ ) {

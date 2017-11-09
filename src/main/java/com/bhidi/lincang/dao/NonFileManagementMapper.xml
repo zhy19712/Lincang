@@ -35,4 +35,10 @@
         </trim>
         WHERE nonfileid = #{nonfileid}
     </update>
+    <!--String selectLastNonFileId();-->
+    <select id="selectLastNonFileId" resultType="String">
+        SELECT nonfileid
+        FROM nonfilemanagement
+        ORDER BY id DESC LIMIT 1
+    </select>
 </mapper>

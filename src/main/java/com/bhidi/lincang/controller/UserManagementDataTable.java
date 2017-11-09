@@ -104,7 +104,7 @@ public class UserManagementDataTable {
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(u.id,'')AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
+                String sql = "SELECT IFNULL(u.id,0)AS id,IFNULL(u.username,'')AS username,IFNULL(r.rolename,'') AS role,IFNULL(u.name,'') AS name,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
                 if (individualSearch != "") {
                     searchSQL = " and " + "("+individualSearch+")";
                 }
