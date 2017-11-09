@@ -313,18 +313,18 @@
                     <h3>填写表单</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm1" action="" method="post" enctype="multipart/form-data"  target="uploadFrame">
+                <form id = "fileForm1" action="" enctype="multipart/form-data"  target="uploadFrame">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="title"></td>
                             </tr>
                             <tr>
                                 <td>上报人</td>
-                                <td><input type="text"></td>
-                                <td>上报时间</td>
-                                <td><input type="text" id="time1" readonly="readonly"></td>
+                                <td><input type="text" name="report_person"></td>
+                                <td>上报季度</td>
+                                <td><input type="text" name="report_quarter"></td>
                             </tr>
                             <tr>
                                 <td>上报文件</td>
@@ -334,7 +334,7 @@
                                 </div></td>
                             </tr>
                             <tr>
-                                <td colspan="4"><textarea name="" placeholder="上报内容"></textarea></td>
+                                <td colspan="4"><textarea name="report_text" placeholder="上报内容"></textarea></td>
                             </tr>
                         </table>
                     </div>
@@ -378,8 +378,8 @@
                             <tr>
                                 <td colspan="4"><textarea></textarea></td>
                             </tr>
-                            <iframe id="uploadFrame2" name="uploadFrame" style="display:none;"></iframe>
-                            <form id = "fileForm2" action="" method="post" enctype="multipart/form-data"  target="uploadFrame2">
+                            <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
+                            <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
                                 <table class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>
@@ -555,19 +555,19 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3>填写表单</h3>
                 </div>
-                <iframe id="uploadFrame3" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm3" action="" method="post" enctype="multipart/form-data"  target="uploadFrame3">
+                <iframe id="uploadFrame3" name="uploadFrame3" style="display:none;"></iframe>
+                <form id = "fileForm3" action="" enctype="multipart/form-data"  target="uploadFrame3">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
-                                <td colspan="3"><input type="text"></td>
+                                <td colspan="3"><input type="text" name="title"></td>
                             </tr>
                             <tr>
                                 <td>申请人</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="report_person"></td>
                                 <td>申请原因</td>
-                                <td><input type="text"></td>
+                                <td><input type="text" name="report_reason"></td>
                             </tr>
                             <tr>
                                 <td>上传附件</td>
@@ -667,15 +667,34 @@
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script>
+//    $("#header1").remove();
+//    $("#m_apply1").remove();
+//    $("#new1").remove();
+//    $("#dcl").addClass("active");
+//    $("#new2").addClass("active");
     //获取功能
+    var fun_list1 = [];
+    var fun_list2 = [];
     $.ajax({
         url: "/getFunction.do",
         type: "post",
+        async: false,
         dataType: "json",
         success:function (data) {
-            console.log(data)
+            $.each(data.function,function (i,n) {
+//                console.log(n);
+//                console.log(n.subclassification);
+                if(n.subclassification == "市资金申请管理"){
+                    fun_list1.push(n);
+                }else if(n.subclassification == "区县资金申请管理"){
+                    fun_list2.push(n);
+                }
+            })
         }
-    })
+    });
+//    console.log(fun_list1);
+//    console.log(fun_list2);
+
     //checkbox美化
     $('.ui-choose').ui_choose();
     var uc_03 = $('#uc_03').data('ui-choose');
@@ -767,7 +786,7 @@
 
 
 
-    //资金申请
+    //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
             url: "/capitalFlowForm.do?userstatus=1",
@@ -911,30 +930,6 @@
     //        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
     //    }
 
-
-
-
-    //上报提交
-    $("#money_apply_wdo1 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo1').modal('hide');
-//                    $("#money_apply_wdo1 input").val("");
-//                    $("#money_apply_wdo1 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm1").ajaxSubmit(options);
-    });
-
     function newForm() {
         $('#money_apply_wdo1 input').val("");
         $('#money_apply_wdo1 textarea').val("");
@@ -968,6 +963,50 @@
 //        $('#money_apply_wdo2').modal('show');
 //        $('#final_handle2').modal('show');
     }
+
+
+    //上报提交
+    $("#money_apply_wdo1 .btn-primary").click(function () {
+//        var options  = {
+//            url:'reveiceFileRegistration.do',
+//            type:'post',
+//            success:function(data)
+//            {
+//                console.log(data);
+//                if(data.result == "success"){
+//                    alert("提交成功");
+//                    $('#money_apply_wdo1').modal('hide');
+//                    $("#money_apply_wdo1 input").val("");
+//                    $("#money_apply_wdo1 textarea").val("");
+//                }else {
+//                    alert(data.result);
+//                }
+//            }
+//        };
+//        $("#fileForm1").ajaxSubmit(options);
+    });
+    //资金申请
+    $("#money_apply_wdo2 .btn-primary").click(function () {
+//        var options  = {
+//            url:'reveiceFileRegistration.do',
+//            type:'post',
+//            success:function(data)
+//            {
+//                console.log(data);
+//                if(data.result == "success"){
+//                    alert("提交成功");
+//                    $('#money_apply_wdo2').modal('hide');
+//                    $("#money_apply_wdo2 input").val("");
+//                    $("#money_apply_wdo2 textarea").val("");
+//                }else {
+//                    alert(data.result);
+//                }
+//            }
+//        };
+//        $("#fileForm3").ajaxSubmit(options);
+    });
+
+
 
 
 

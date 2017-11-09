@@ -2211,7 +2211,6 @@
     var b_flag = true;
     $("#select_model .btn-primary").click(function(){
         if(b_flag){
-            b_flag = false;
             var receivefileid = $("#receivefileid").text();
             var model = $("#sel1").val();
             var keshi1 = $("#keshi1").val();
@@ -2237,6 +2236,10 @@
             }
             var text = new Object();
             if(model == "直接处理"){
+                if(!fenguan || !zhuguan || !banli){
+                    alert("请选择处理人");
+                    return;
+                }
                 text.filename = $("#model1 .title input").val();
                 text.receivefilenum = $("#model1 tr:first-child td:nth-child(2) input").val();
                 text.comefiledepartment = $("#model1 tr:first-child td:nth-child(4) input").val();
@@ -2250,6 +2253,10 @@
                 text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
                 text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
             }else if(model == "文件拟办单"){
+                if(!fenguan || !zhuguan || !banli){
+                    alert("请选择处理人");
+                    return;
+                }
                 text.filename = $("#model2 .title input").val();
                 text.dispatchfiledepartment = $("#model2 tr:first-child td:nth-child(2) input").val();
                 text.filenum = $("#model2 tr:first-child td:nth-child(4) input").val();
@@ -2261,6 +2268,10 @@
                 text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
                 text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
             }else if(model == "一科室提意见"){
+                if(!keshi1 || !fenguan || !zhuguan || !banli){
+                    alert("请选择处理人");
+                    return;
+                }
                 text.filename = $("#model3 .title input").val();
                 text.receivefilenum = $("#model3 tr:first-child td:nth-child(2) input").val();
                 text.comefiledepartment = $("#model3 tr:first-child td:nth-child(4) input").val();
@@ -2276,6 +2287,10 @@
                 text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
                 text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
             }else if(model == "两科室提意见"){
+                if(!keshi2 || !keshi1 || !fenguan || !zhuguan || !banli){
+                    alert("请选择处理人");
+                    return;
+                }
                 text.filename = $("#model4 .title input").val();
                 text.receivefilenum = $("#model4 tr:first-child td:nth-child(2) input").val();
                 text.comefiledepartment = $("#model4 tr:first-child td:nth-child(4) input").val();
@@ -2294,6 +2309,7 @@
                 text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
             }
             console.log(text);
+            b_flag = false;
             people_list = JSON.stringify(people_list);
             text = JSON.stringify(text);
             console.log(people_list);
