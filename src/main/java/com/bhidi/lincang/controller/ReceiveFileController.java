@@ -386,6 +386,7 @@ public class ReceiveFileController {
         ReceiveFile rfRource = receiveFileServiceImp.getReceiveFileInfoById(receivefileinfo.getReceivefileid());
         //取到当前用户的角色
         User user = (User)session.getAttribute("user");
+        String name = user.getName();
         String role  = user.getRoleList().get(0);
         int er =0;
         int mer =0;
@@ -664,8 +665,12 @@ public class ReceiveFileController {
         if( receivefileinfo.getModeltype().equals("两科室提意见") ){
             ReceiveFile rf = new ReceiveFile();
             rf.setReceivefileid(receivefileinfo.getReceivefileid());
+            String person1Rource = receivefileinfo.getDepartment1person();
+            String person1RourceDelete = receivefileinfo.getDepartment1persondelete();
+            String person2Rource = receivefileinfo.getDepartment2person();
+            String person2RourceDelete = receivefileinfo.getDepartment2persondelete();
             if(receivefileinfo.getStatus().equals("科室签批")){
-                if( role.equals(receivefileinfo.getDepartment1name()) ){
+                if( role.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
                     rf.setDepartment2persondelete(receivefileinfo.getDepartment2persondelete());
                     if(receivefileinfo.getDepartment1persondelete().equals("")){
                         rf.setDepartment1persondelete(user.getName());
@@ -765,10 +770,10 @@ public class ReceiveFileController {
             JSONObject object = JSONObject.fromObject(text);
             ModelText me= (ModelText) JSONObject.toBean(object,ModelText.class);
             meme.setReceivefileid(receivefileinfo.getReceivefileid());
-            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment1name()) & person1Rource.contains(name) & !person1RourceDelete.contains(name) ){
                 meme.setDepartment1advice(me.getDepartment1advice());
             }
-            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment2name())){
+            if(receivefileinfo.getStatus().equals("科室签批") & role.equals(receivefileinfo.getDepartment2name()) & person2Rource.contains(name) & !person2RourceDelete.contains(name) ){
                 meme.setDepartment2advice(me.getDepartment2advice());
             }
             if(receivefileinfo.getStatus().equals("分管领导签批")){
