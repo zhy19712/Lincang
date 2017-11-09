@@ -75,7 +75,7 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+        <a class="navbar-brand" href="" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
         <!-- logo ends -->
 
