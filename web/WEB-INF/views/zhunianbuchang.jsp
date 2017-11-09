@@ -682,8 +682,6 @@
         dataType: "json",
         success:function (data) {
             $.each(data.function,function (i,n) {
-//                console.log(n);
-//                console.log(n.subclassification);
                 if(n.subclassification == "市资金申请管理"){
                     fun_list1.push(n);
                 }else if(n.subclassification == "区县资金申请管理"){
@@ -692,8 +690,8 @@
             })
         }
     });
-//    console.log(fun_list1);
-//    console.log(fun_list2);
+    console.log(fun_list1);
+    console.log(fun_list2);
 
     //checkbox美化
     $('.ui-choose').ui_choose();
