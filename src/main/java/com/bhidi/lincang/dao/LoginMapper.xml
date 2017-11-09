@@ -4,18 +4,18 @@
 
     <select id="queryUserByUsername" parameterType="Map" resultMap="UserResultMap">
         SELECT
-        id,
+        u.id,
         uid,
         username,
         pass AS password,
         name,
-        dept,
+        concat(ud.unit,ud.department) AS dept,
         phone1,
         phone2,
         level,
         created_at
-        FROM user
-        WHERE username= #{username} AND pass = #{password}
+        FROM user u,unitanddepartment ud
+        WHERE u.dept = ud.id AND username= #{username} AND pass = #{password}
     </select>
 
     <resultMap type="com.bhidi.lincang.bean.User" id="UserResultMap">
