@@ -87,7 +87,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
     }
 
     /**
-     *获取sreceivefile的receivefileid
+     *获取receivefile的receivefileid
      * @return
      */
     public String getLastReceiveFileId() {
