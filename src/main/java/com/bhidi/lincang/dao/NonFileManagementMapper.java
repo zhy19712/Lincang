@@ -11,5 +11,5 @@ public interface NonFileManagementMapper {
 
     int updateNonFileManagement(NonFileManagement nfm);
 
-
+    String selectLastNonFileId();
 }
