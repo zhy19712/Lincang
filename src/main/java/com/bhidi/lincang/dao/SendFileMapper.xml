@@ -10,7 +10,7 @@
          #{approverdelete},#{implementpersondelete});
     </insert>
     <!--ReceiveFile selectSendFileInfoBySendFileId(String sendFileid);-->
-    <select id="selectSendFileInfoBySendFileId" resultType="com.bhidi.lincang.bean.SendFile">
+    <select id="selectSendFileInfoBySendFileId" parameterType="String" resultType="com.bhidi.lincang.bean.SendFile">
         SELECT IFNULL(sendfileid,"") AS sendfileid,IFNULL(createdtime,"") AS createdtime,
         IFNULL(applicant,"") AS applicant,IFNULL(dept,"") AS dept,
         IFNULL(author,"") AS author, IFNULL(reviewer,"") AS reviewer,
@@ -71,4 +71,10 @@
         </trim>
         WHERE sendfileid = #{sendfileid}
     </update>
+    <!--String selectLastSendFileId();-->
+    <select id="selectLastSendFileId" resultType="String">
+        SELECT sendfileid
+        FROM sendfile
+        ORDER BY id DESC LIMIT 1
+    </select>
 </mapper>

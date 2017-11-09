@@ -149,7 +149,6 @@
     </style>
 </head>
 <div id="bg">
-    <div></div>
 </div>
 <body>
 <!-- topbar starts -->
@@ -771,6 +770,8 @@
     //编辑查看按钮
     var id;
     function edit(that) {
+        $("#modle_handle input").val("");
+        $("#modle_handle textarea").val("");
         var mydata;
         var kind = $(that).val();
         id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();

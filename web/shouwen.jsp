@@ -43,6 +43,7 @@
             word-wrap: break-word;
             text-align: center;
             font-size: 14px;
+            padding: 0 5px;
             width: 16.5%;
         }
         #shouwen_wdo form,#more,#more1,#model_info{
@@ -564,7 +565,7 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3></h3>
                 </div>
-                <div id="container1" style="width: 100%;">
+                <div id="container1" style="width: 100%;padding-bottom: 20px;">
                     <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
@@ -577,7 +578,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div id="user_container1" style="width:80%;margin: 0 auto;margin-top: 85px;">
+                    <div id="user_container1" style="width:80%;margin: 0 auto;">
                         <div class="user1_1"></div>
                         <div class="user1_2"></div>
                         <div class="user1_3"></div>
@@ -919,7 +920,7 @@
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3></h3>
                 </div>
-                <div id="container" style="width: 100%;height: 160px">
+                <div id="container" style="width: 100%;padding-bottom: 20px;">
                     <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                         <div class="step-header">
                             <ul>
@@ -932,7 +933,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div id="user_container" style="width:80%;margin: 0 auto;margin-top: 85px;">
+                    <div id="user_container" style="width:80%;margin: 0 auto;">
                         <div class="user_1"></div>
                         <div class="user_2"></div>
                         <div class="user_3"></div>
@@ -1706,16 +1707,6 @@
             $("#more1").height(56);
         }
     })
-    //查看模版选择及处理人
-    var m_flag = false;
-    $("#model_info>p:first-child").click(function () {
-        m_flag = !m_flag;
-        if(m_flag == true){
-            $("#model_info").height(240);
-        }else {
-            $("#model_info").height(56);
-        }
-    })
 
 
     var file_arr = [];
@@ -1803,6 +1794,10 @@
     //编辑查看按钮
     function edit(that) {
         //查看发文登记信息
+        $("#select_model input").val("");
+        $("#select_model textarea").val("");
+        $("#model_handle input").val("");
+        $("#model_handle textarea").val("");
         var kind = $(that).val();
         state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
@@ -1908,8 +1903,165 @@
             }
         });
         $("#receivefileid").text(id);
-        $(".user1_1").text(mydata.reveivereregisterpersonname);
-        $(".user_1").text(mydata.reveivereregisterpersonname);
+        $(".user_1").empty();
+        $(".user1_1").empty();
+        $(".user_2").empty();
+        $(".user1_2").empty();
+        $(".user1_3").empty();
+        $(".user1_4").empty();
+        $(".user1_5").empty();
+        if(mydata.reveivereregisterpersonname != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.reveivereregisterpersonname +"</p>"
+                +   "<p class='time'>"+ mydata.reveivereregistertime +"</p>"
+                +   "</div>"
+            $(".user1_1").append(str).addClass("myactive");
+            $(".user_1").append(str).addClass("myactive");
+        }
+        if(mydata.modelchoicename != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.modelchoicename +"</p>"
+                +   "<p class='time'>"+ mydata.modelchoicetime +"</p>"
+                +   "</div>"
+            $(".user1_2").append(str).addClass("myactive");
+            $(".user_2").append(str).addClass("myactive");
+        }
+        if(mydata.department1person != ""){
+            var peoplearr = mydata.department1person.split(",");
+            var deletearr = mydata.department1persondelete.split(",");
+            var timearr = mydata.department1time.split(",");
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'></p>"
+                    +   "</div>"
+                $(".user1_3").append(str);
+            });
+            $.each(deletearr,function (i,n) {
+                var name = n;
+                var time = timearr[i];
+                $.each(peoplearr,function (i,n) {
+                    if(name == n){
+                        $(".user1_3>div:nth-child("+(i+1)+")").addClass("myactive");
+                        $(".user1_3>div:nth-child("+(i+1)+")").children(".time").text(time);
+                    }
+                })
+            })
+        }
+        if(mydata.department2person != ""){
+            var peoplearr = mydata.department2person.split(",");
+            var deletearr = mydata.department2persondelete.split(",");
+            var timearr = mydata.department2time.split(",");
+            var size = $(".user1_3>div").size() + 1;
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'></p>"
+                    +   "</div>"
+                $(".user1_3").append(str);
+            });
+            $.each(deletearr,function (i,n) {
+                var name = n;
+                var time = timearr[i];
+                $.each(peoplearr,function (i,n) {
+                    if(name == n){
+                        $(".user1_3>div:nth-child("+(i+size)+")").addClass("myactive");
+                        $(".user1_3>div:nth-child("+(i+size)+")").children(".time").text(time);
+                    }
+                })
+            })
+        }
+        if(mydata.fenguanname != ""){
+            var peoplearr = mydata.fenguanname.split(",");
+            var deletearr = mydata.fenguannamedelete.split(",");
+            var timearr = mydata.fenguantime.split(",");
+            var size = $(".user1_3>div").size() + 1;
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'></p>"
+                    +   "</div>"
+                $(".user1_3").append(str);
+            });
+            $.each(deletearr,function (i,n) {
+                var name = n;
+                var time = timearr[i];
+                $.each(peoplearr,function (i,n) {
+                    if(name == n){
+                        $(".user1_3>div:nth-child("+(i+size)+")").addClass("myactive");
+                        $(".user1_3>div:nth-child("+(i+size)+")").children(".time").text(time);
+                    }
+                })
+            })
+        }
+        if(mydata.zhuguanname != ""){
+            var peoplearr = mydata.zhuguanname.split(",");
+            var deletearr = mydata.zhuguannamedelete.split(",");
+            var timearr = mydata.zhuguantime.split(",");
+            var size = $(".user1_3>div").size() + 1;
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'></p>"
+                    +   "</div>"
+                $(".user1_3").append(str);
+            });
+            $.each(deletearr,function (i,n) {
+                var name = n;
+                var time = timearr[i];
+                $.each(peoplearr,function (i,n) {
+                    if(name == n){
+                        $(".user1_3>div:nth-child("+(i+size)+")").addClass("myactive");
+                        $(".user1_3>div:nth-child("+(i+size)+")").children(".time").text(time);
+                    }
+                })
+            })
+        }
+        if(mydata.implementperson != ""){
+            var peoplearr = mydata.implementperson.split(",");
+            var deletearr = mydata.implementpersondelete.split(",");
+            var timearr = mydata.implementtime.split(",");
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'></p>"
+                    +   "</div>"
+                $(".user1_4").append(str);
+            });
+            $.each(deletearr,function (i,n) {
+                var name = n;
+                var time = timearr[i];
+                $.each(peoplearr,function (i,n) {
+                    if(name == n){
+                        $(".user1_4>div:nth-child("+(i+1)+")").addClass("myactive");
+                        $(".user1_4>div:nth-child("+(i+1)+")").children(".time").text(time);
+                    }
+                })
+            })
+        }
+        if(mydata.confirmperson != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.confirmperson +"</p>"
+                +   "<p class='time'>"+ mydata.confirmtime +"</p>"
+                +   "</div>"
+            $(".user1_5").append(str).addClass("myactive");
+        }
         if(state == "办公室处理文件"){
             if(kind == "查看"){
                 $('#model_handle').modal('show');
@@ -1934,14 +2086,6 @@
                     console.log(data);
                     mydata1 = data.ReceiveFile
                     var model_name = data.ReceiveFile.modeltype;
-                    if(!data.ReceiveFile.department1person && !data.ReceiveFile.department2person){
-                        $(".user1_3").text(data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
-                    }else if(data.ReceiveFile.department1person && !data.ReceiveFile.department2person){
-                        $(".user1_3").text(data.ReceiveFile.department1person +","+ data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
-                    }else {
-                        $(".user1_3").text(data.ReceiveFile.department1person +","+ data.ReceiveFile.department2person +","+ data.ReceiveFile.fenguanname +","+ data.ReceiveFile.zhuguanname);
-                    }
-                    $(".user1_4").text(data.ReceiveFile.implementperson);
                     $("#model_container_1>div").css("display","none");
                     if(model_name == "直接处理"){
                         $("#model1_1").css("display","block");
@@ -2026,8 +2170,6 @@
                 }
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_2").text(mydata1.modelchoicename);
-                $(".user_2").text(mydata1.modelchoicename);
             }else if(mydata1.status == "分管领导签批"){
                 $("#model1_1 tr:nth-child(4) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model2_1 tr:nth-child(4) td:nth-child(1) textarea").attr("readonly",false);
@@ -2035,16 +2177,6 @@
                 $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_2").text(mydata1.modelchoicename);
-                $(".user_2").text(mydata1.modelchoicename);
-//                if(mydata1.modeltype == "一科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person);
-////                    $("#handle_people li:first-child").css("display","block");
-//                }else if(mydata1.modeltype == "两科室提意见"){
-////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person);
-////                    $("#handle_people li:first-child").css("display","block");
-////                    $("#handle_people li:nth-child(2)").css("display","block");
-//                }
             }else if(mydata1.status == "主管领导签批"){
                 $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model2_1 tr:nth-child(3) td:nth-child(1) textarea").attr("readonly",false);
@@ -2052,18 +2184,6 @@
                 $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(3);
                 step.goStep(3);
-                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                $(".user_2").text(mydata1.reveivereregisterpersonname);
-//                if(mydata1.modeltype == "一科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                }else if(mydata1.modeltype == "两科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+mydata1.fenguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                    $("#handle_people li:nth-child(2)").css("display","block");
-//                }else {
-//                    $(".user1_3").text(mydata1.fenguanname);
-//                }
             }else if(mydata1.status == "处理处置"){
                 $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").attr("readonly",false);
                 $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").attr("readonly",false);
@@ -2071,57 +2191,12 @@
                 $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").attr("readonly",false);
                 step1.goStep(4);
                 step.goStep(4);
-//                $(".user1_1").text(mydata1.modelchoicename);
-//                $(".user_1").text(mydata1.modelchoicename);
-//                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-//                $(".user_2").text(mydata1.reveivereregisterpersonname);
-//                if(mydata1.modeltype == "一科室提意见"){
-////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                }else if(mydata1.modeltype == "两科室提意见"){
-////                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                }else {
-////                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                    $("#handle_people li:nth-child(2)").css("display","block");
-//                }
             }else if(mydata1.status == "办公室归档"){
                 step1.goStep(5);
                 step.goStep(5);
-//                $(".user1_1").text(mydata1.modelchoicename);
-//                $(".user_1").text(mydata1.modelchoicename);
-//                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-//                $(".user_2").text(mydata1.reveivereregisterpersonname);
-//                if(mydata1.modeltype == "一科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                }else if(mydata1.modeltype == "两科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                    $("#handle_people li:nth-child(2)").css("display","block");
-//                }else {
-//                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                }
-//                $(".user1_4").text(mydata1.implementperson);
             }else if(mydata1.status == "结束"){
                 step1.goStep(6);
                 step.goStep(6);
-////                $(".user1_1").text(mydata1.modelchoicename);
-////                $(".user_1").text(mydata1.modelchoicename);
-                $(".user1_2").text(mydata1.reveivereregisterpersonname);
-                $(".user_2").text(mydata1.reveivereregisterpersonname);
-//                if(mydata1.modeltype == "一科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                }else if(mydata1.modeltype == "两科室提意见"){
-//                    $(".user1_3").text(mydata1.department1person +","+ mydata1.department2person +","+ mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                    $("#handle_people li:first-child").css("display","block");
-//                    $("#handle_people li:nth-child(2)").css("display","block");
-//                }else {
-//                    $(".user1_3").text(mydata1.fenguanname +","+ mydata1.zhuguanname);
-//                }
-//                $(".user1_4").text(mydata1.implementperson);
-                $(".user1_5").text(mydata1.confirmperson);
             }
             if(kind == "查看"){
                 $('#model_handle .btn-primary').css('display','none');
@@ -2129,7 +2204,6 @@
                 $('#model_handle .btn-primary').css('display','inline-block');
             }
         }
-        console.log(kind,state,id);
 
     }
 
