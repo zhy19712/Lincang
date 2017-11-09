@@ -1,9 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.Privilege;
-import com.bhidi.lincang.bean.RegisterInfo;
-import com.bhidi.lincang.bean.UnitAndDepartment;
-import com.bhidi.lincang.bean.UnitAndDepartments;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.UserManagementMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,6 +99,22 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
 
     public int deleteRegisterInfoById(int id) {
         return userManagementMapper.deleteRegisterInfoById(id);
+    }
+
+    public int deleteRole(int id) {
+        return userManagementMapper.deleteRole(id);
+    }
+
+    public int selectRole(int id) {
+        return userManagementMapper.selectRole(id);
+    }
+
+    public int saveRole(Role rri) {
+        return userManagementMapper.insertRole(rri);
+    }
+
+    public int saveRolePrivilege(List<RolePrivilege> rolePrivilege) {
+        return userManagementMapper.insertRolePrivilege(rolePrivilege);
     }
 
 

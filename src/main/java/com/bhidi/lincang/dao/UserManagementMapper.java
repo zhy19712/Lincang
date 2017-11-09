@@ -1,8 +1,6 @@
 package com.bhidi.lincang.dao;
 
-import com.bhidi.lincang.bean.Privilege;
-import com.bhidi.lincang.bean.RegisterInfo;
-import com.bhidi.lincang.bean.UnitAndDepartment;
+import com.bhidi.lincang.bean.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -30,4 +28,11 @@ public interface UserManagementMapper {
 
     int deleteRegisterInfoById(int id);
 
+    int deleteRole(int id);
+
+    int selectRole(int id);
+
+    int insertRole(Role rri);
+
+    int insertRolePrivilege(List<RolePrivilege> rolePrivilege);
 }

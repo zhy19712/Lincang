@@ -67,4 +67,28 @@
     <delete id="deleteRegisterInfoById" >
         DELETE FROM user WHERE id = #{id}
     </delete>
+    <!--int deleteRole(int id);-->
+    <delete id="deleteRole" >
+        DELETE FROM role WHERE id = #{id}
+    </delete>
+    <!--int selectRole(int id);-->
+    <select id="selectRole" parameterType="int" resultType="com.bhidi.lincang.bean.Role">
+        SELECT IFNULL(id,'')AS id,IFNULL(rolename,'')AS rolename
+        FROM role
+        WHERE id = #{id}
+    </select>
+    <!--int insertRole(Role rri);-->
+    <insert id="insertRole" parameterType="com.bhidi.lincang.bean.Role" useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO role (rolename)
+        VALUES ( #{rolename} )
+    </insert >
+    <!--int insertRolePrivilege(List<RolePrivilege> rolePrivilege);-->
+    <insert id="insertRolePrivilege" parameterType="com.bhidi.lincang.bean.Role">
+        INSERT INTO role_privilege (roleid,authorithid)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator="," >
+        (#{item.roleid},#{item.authorithid})
+        </foreach>
+    </insert >
 </mapper>
