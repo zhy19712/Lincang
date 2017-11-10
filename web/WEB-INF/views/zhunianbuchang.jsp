@@ -581,7 +581,7 @@
                 </div>
                 <iframe id="uploadFrame3" name="uploadFrame3" style="display:none;"></iframe>
                 <form id = "fileForm3" action="" enctype="multipart/form-data"  target="uploadFrame3">
-                    <inpu id="initiatorclass2" type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
+                    <input id="initiatorclass2" type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
@@ -842,7 +842,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
@@ -884,7 +884,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
@@ -927,7 +927,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},

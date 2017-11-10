@@ -46,8 +46,8 @@ public class CapitalFlow {
     public CapitalFlow() {
     }
 
-    public CapitalFlow(int id, String title,String create_time,String report_person,String initiatorclass,String status) {
-        this.id = id;
+    public CapitalFlow(String capitalflowid, String title,String create_time,String report_person,String initiatorclass,String status) {
+        this.capitalflowid = capitalflowid;
         this.title = title;
         this.create_time = create_time;
         this.report_person = report_person;

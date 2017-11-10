@@ -87,7 +87,7 @@ public class CapitalFlowDataTable {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "title","create_time", "report_person","initiatorclass","status"};
+        String[] cols = {"capitalflowid", "title","create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -99,7 +99,7 @@ public class CapitalFlowDataTable {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
-            sArray.add(" id like '%" + searchValue + "%'");
+            sArray.add(" capitalflowid like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
             sArray.add(" report_person like '%" + searchValue + "%'");
@@ -126,7 +126,7 @@ public class CapitalFlowDataTable {
                 recordsTotal = rs.getString("recordsTotal");
             }
             String searchSQL = "";
-            String sql = "SELECT IFNULL(id,0)as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
+            String sql = "SELECT IFNULL(capitalflowid,'')as capitalflowid,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -137,7 +137,7 @@ public class CapitalFlowDataTable {
             sql += " limit " + start + ", " + length;
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new CapitalFlow(rs.getInt("id"),
+                tasks.add(new CapitalFlow(rs.getString("capitalflowid"),
                         rs.getString("title"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
@@ -299,7 +299,7 @@ public class CapitalFlowDataTable {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "title","create_time", "report_person","initiatorclass","status"};
+        String[] cols = {"capitalflowid", "title","create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -311,7 +311,7 @@ public class CapitalFlowDataTable {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
-            sArray.add(" id like '%" + searchValue + "%'");
+            sArray.add(" capitalflowid like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
             sArray.add(" report_person like '%" + searchValue + "%'");
@@ -338,7 +338,7 @@ public class CapitalFlowDataTable {
                 recordsTotal = rs.getString("recordsTotal");
             }
             String searchSQL = "";
-            String sql = "SELECT IFNULL(id,0)as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
+            String sql = "SELECT IFNULL(capitalflowid,'')as capitalflowid,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -349,7 +349,7 @@ public class CapitalFlowDataTable {
             sql += " limit " + start + ", " + length;
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new CapitalFlow(rs.getInt("id"),
+                tasks.add(new CapitalFlow(rs.getString("capitalflowid"),
                         rs.getString("title"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
@@ -397,7 +397,7 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"')";
+            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"' OR quxianshenqingren = '"+name+"')";
         }
 
 
@@ -414,7 +414,7 @@ public class CapitalFlowDataTable {
         //过滤后记录数
         String recordsFiltered = "";
         //定义列名
-        String[] cols = {"id", "title","create_time", "report_person","initiatorclass","status"};
+        String[] cols = {"capitalflowid", "title","create_time", "report_person","initiatorclass","status"};
         String orderColumn = "0";
         orderColumn = request.getParameter("order[0][column]");
         orderColumn = cols[Integer.parseInt(orderColumn)];
@@ -426,7 +426,7 @@ public class CapitalFlowDataTable {
         List<String> sArray = new ArrayList<String>();
         if (!searchValue.equals("")) {
             searchValue = searchValue.replaceAll("'","");
-            sArray.add(" id like '%" + searchValue + "%'");
+            sArray.add(" capitalflowid like '%" + searchValue + "%'");
             sArray.add(" title like '%" + searchValue + "%'");
             sArray.add(" create_time like '%" + searchValue + "%'");
             sArray.add(" report_person like '%" + searchValue + "%'");
@@ -453,7 +453,7 @@ public class CapitalFlowDataTable {
                 recordsTotal = rs.getString("recordsTotal");
             }
             String searchSQL = "";
-            String sql = "SELECT IFNULL(id,0)as id,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
+            String sql = "SELECT IFNULL(capitalflowid,'')as capitalflowid,IFNULL(create_time,'')as create_time,IFNULL(report_person,'')as report_person,IFNULL(initiatorclass,'')as initiatorclass,IFNULL(title,'')as title,IFNULL(status,'')as status FROM " + table + " where 1=1"+str;
             if (individualSearch != "") {
                 searchSQL = " and " + "("+individualSearch+")";
             }
@@ -464,7 +464,7 @@ public class CapitalFlowDataTable {
             sql += " limit " + start + ", " + length;
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                tasks.add(new CapitalFlow(rs.getInt("id"),
+                tasks.add(new CapitalFlow(rs.getString("capitalflowid"),
                         rs.getString("title"),
                         rs.getString("create_time"),
                         rs.getString("report_person"),
