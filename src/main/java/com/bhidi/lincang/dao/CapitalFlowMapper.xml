@@ -26,6 +26,7 @@
             IFNULL(amount,'') AS amount,
             IFNULL(caiwuchuliren,'') AS caiwuchuliren,
             IFNULL(finance_time,'') AS finance_time,
+            IFNULL(caiwuattachment,'') AS caiwuattachment,
             IFNULL(areaname,'') AS areaname,
             IFNULL(areanamedelete,'') AS areanamedelete,
             IFNULL(text,'') AS text,
@@ -61,6 +62,7 @@
             <if test="areaname!=null">areaname = #{areaname},</if>
             <if test="areanamedelete!=null">areanamedelete = #{areanamedelete},</if>
             <if test="text!=null">text = #{text},</if>
+            <if test="guihuakechulitime!=null">guihuakechulitime = #{guihuakechulitime},</if>
 
             <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
             <if test="replytext!=null">replytext = #{replytext},</if>

@@ -11,7 +11,7 @@ public interface CapitalFlowMapper {
 
     CapitalFlow queryCapitalDataById(String id);
 
-    int updateCatipalDataById(Map<String, String> map);
+    int updateCatipalDataById(Map<String,Object> map);
 
     String selectLastCapitalFlowId();
 

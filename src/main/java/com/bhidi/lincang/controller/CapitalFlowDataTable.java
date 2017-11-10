@@ -50,6 +50,9 @@ public class CapitalFlowDataTable {
         //根据功能名字判断状态
         String str = "";
         if( functionList!=null &functionList.size() > 0 ){
+            if(!functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
+                str = "1=0";
+            }
             if(functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
                 str = " AND initiatorclass = '市局资金计划上报'";
             }
@@ -394,7 +397,7 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            str = " AND caiwuchuliren = '"+name+"'";
+            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"')";
         }
 
 
