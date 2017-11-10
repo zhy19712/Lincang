@@ -325,7 +325,7 @@
                                 <td>上报人</td>
                                 <td><input type="text" name="report_person"></td>
                                 <td>上报季度</td>
-                                <td><input type="text" name="report_quarter"></td>
+                                <td><input type="text" id="time1" name="report_quarter"></td>
                             </tr>
                             <tr>
                                 <td>上报文件</td>
@@ -391,7 +391,7 @@
                             <tr>
                                 <td>上报人</td>
                                 <td><input type="text"></td>
-                                <td>上报时间</td>
+                                <td>上报季度</td>
                                 <td><input type="text"></td>
                             </tr>
                             <tr>
@@ -1041,7 +1041,7 @@
     //                console.log(data);
     //                if(data.result == "success"){
     //                    alert("提交成功");
-    //                    $('##caiwu_handle').modal('hide');
+    //                    $('#caiwu_handle').modal('hide');
     //                    $("#fileForm2 input").val("");
     //                    $("#fileForm2 textarea").val("");
     //                }else {
@@ -1079,6 +1079,7 @@
         id = $(that).parent("td").parent("tr").children("td:first-child").text();
         status = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         var kind = $(that).val();
+        var mydata;
         $.ajax({
             url: "/getCapitalDataById.do",
             async: false,
@@ -1086,7 +1087,34 @@
             dataType: "json",
             data: {id:id},
             success: function (data) {
-                console.log(data)
+                console.log(data);
+                mydata = data.result;
+                $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
+                $(".ghapply tr:nth-child(2) td:nth-child(2) input").val(mydata.report_person);
+                $(".ghapply tr:nth-child(2) td:nth-child(4) input").val(mydata.report_quarter);
+                $(".ghapply tr:nth-child(4) td:nth-child(1) textarea").val(mydata.report_text);
+                if(mydata.report_attachment != ""){
+                    file_arr = mydata.report_attachment.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\") + 1;
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(start,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div>"
+                            + "<iframe name='downloadFrame1' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame1'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
+                    });
+                }
             }
         })
         if(kind == "查看"){
@@ -1097,7 +1125,6 @@
         if(status == "市局财务科办理"){
             $('#caiwu_handle').modal('show');
             $("#myid").val(id);
-            console.log($("#myid").val())
         }
     }
 
