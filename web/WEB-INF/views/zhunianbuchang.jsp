@@ -65,7 +65,10 @@
         .btn-success{
             display: none;
         }
-
+        .mystep_user1>div{
+            width: 25%;
+            padding: 0 5px;
+        }
     </style>
 
 
@@ -364,28 +367,24 @@
                     <h3></h3>
                 </div>
                     <div class="modal-body">
-                        <%--<div class="mystep_container" style="width: 100%;padding-bottom: 20px;">--%>
-                            <%--<div class="step-body" class="mystep" style="width:80%;margin: 0 auto;">--%>
-                                <%--<div class="step-header">--%>
-                                    <%--<ul>--%>
-                                        <%--<li><p>办公室收文登记</p></li>--%>
-                                        <%--<li><p>办公室处理文件</p></li>--%>
-                                        <%--<li><p>签批</p></li>--%>
-                                        <%--<li><p>处理处置</p></li>--%>
-                                        <%--<li><p>办公室归档</p></li>--%>
-                                        <%--<li><p>结束</p></li>--%>
-                                    <%--</ul>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                            <%--<div class="mystep_user" style="width:80%;margin: 0 auto;">--%>
-                                <%--<div class="user1"></div>--%>
-                                <%--<div class="user2"></div>--%>
-                                <%--<div class="user3"></div>--%>
-                                <%--<div class="user4"></div>--%>
-                                <%--<div class="user5"></div>--%>
-                                <%--<div class="user6"></div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
+                        <div id="mystep_container" style="width: 100%;padding-bottom: 20px;">
+                            <div class="step-body" id="mystep" style="width:80%;margin: 0 auto;">
+                                <div class="step-header">
+                                    <ul>
+                                        <li><p>市局规划科已上报</p></li>
+                                        <li><p>市局财务科办理</p></li>
+                                        <li><p>市局规划科通知区县</p></li>
+                                        <li><p>结束</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mystep_user1" style="width:80%;margin: 0 auto;">
+                                <div class="user1"></div>
+                                <div class="user2"></div>
+                                <div class="user3"></div>
+                                <div class="user4"></div>
+                            </div>
+                        </div>
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
@@ -448,6 +447,24 @@
                     <h3></h3>
                 </div>
                 <div class="modal-body">
+                    <div id="mystep1_container" style="width: 100%;padding-bottom: 20px;">
+                        <div class="step-body" id="mystep1" style="width:80%;margin: 0 auto;">
+                            <div class="step-header">
+                                <ul>
+                                    <li><p>市局规划科已上报</p></li>
+                                    <li><p>市局财务科办理</p></li>
+                                    <li><p>市局规划科通知区县</p></li>
+                                    <li><p>结束</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mystep_user1" style="width:80%;margin: 0 auto;">
+                            <div class="user1"></div>
+                            <div class="user2"></div>
+                            <div class="user3"></div>
+                            <div class="user4"></div>
+                        </div>
+                    </div>
                     <table class="mytable ghapply">
                         <tr>
                             <td>标题</td>
@@ -519,6 +536,24 @@
                     <h3></h3>
                 </div>
                 <div class="modal-body">
+                    <div id="mystep2_container" style="width: 100%;padding-bottom: 20px;">
+                        <div class="step-body" id="mystep2" style="width:80%;margin: 0 auto;">
+                            <div class="step-header">
+                                <ul>
+                                    <li><p>市局规划科已上报</p></li>
+                                    <li><p>市局财务科办理</p></li>
+                                    <li><p>市局规划科通知区县</p></li>
+                                    <li><p>结束</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mystep_user1" style="width:80%;margin: 0 auto;">
+                            <div class="user1"></div>
+                            <div class="user2"></div>
+                            <div class="user3"></div>
+                            <div class="user4"></div>
+                        </div>
+                    </div>
                     <table class="mytable ghapply">
                         <tr>
                             <td>标题</td>
@@ -972,11 +1007,11 @@
     setTimeout(acount,100);
 
     //表格刷新
-    function table_refresh() {
-        money_apply1.ajax.url("/capitalFlowAll.do").load();
-        dcl_table.ajax.url("/capitalFlowWait.do").load();
-        ycl_table.ajax.url("/capitalFlowDealed.do").load();
-    }
+//    function table_refresh() {
+//        money_apply1.ajax.url("/capitalFlowAll.do").load();
+//        dcl_table.ajax.url("/capitalFlowWait.do").load();
+//        ycl_table.ajax.url("/capitalFlowDealed.do").load();
+//    }
 
     function newForm() {
         $('#money_apply_wdo1 input').val("");
@@ -990,11 +1025,6 @@
         $("#initiatorclass1").val("市局资金计划上报");
         $('#money_apply_wdo1 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo1').modal('show');
-//        $('#caiwu_handle').modal('show');
-//        $('#guihua_handle').modal('show');
-//        $('#final_handle').modal('show');
-//        $('#money_apply_wdo2').modal('show');
-//        $('#final_handle2').modal('show');
     }
 
     function newForm2() {
@@ -1102,9 +1132,10 @@
         $("#fileForm3").ajaxSubmit(options);
     });
     //提交内容
-    $("#model_handle2 .btn-primary").click(function () {
+//    $("#final_handle2 .btn-primary").click(function () {
 //        if(status == "市局规划科批复"){
 //            var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) input").val();
+//            console.log(replytext)
 //            $.ajax({
 //                url: "",
 //                type: "post",
@@ -1115,11 +1146,12 @@
 //                        alert("提交成功");
 //                        $("#model_handle2").modal('hide');
 //                    }else {
-        //        alert(data.result)
-        //    }
+//                alert(data.result)
+//            }
 //                }
 //            })
-//        }else if(status == "市局财务科处置办理"){
+//        }
+//         else if(status == "市局财务科处置办理"){
 //            var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) input").val();
 //            $.ajax({
 //                url: "",
@@ -1152,7 +1184,7 @@
 //                }
 //            })
 //        }
-    })
+//    })
     //保存按钮
     $("#final_handle2 .btn-success").click(function () {
         var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) input").val();
@@ -1273,9 +1305,9 @@
                         $("#final_handle2 tr:nth-child(3) td:nth-child(2)").append(files);
                     });
                 }
-                $("#final_handle2 tr:nth-child(4) td:nth-child(2) input").val(mydata.replytext);
-                $("#final_handle2 tr:nth-child(5) td:nth-child(2) input").val(mydata.dealtext);
-                $("#final_handle2 tr:nth-child(6) td:nth-child(2) input").val(mydata.capitalflowinstruction);
+                $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val(mydata.replytext);
+                $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val(mydata.dealtext);
+                $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val(mydata.capitalflowinstruction);
             }
         })
         if(kind == "查看"){
@@ -1283,15 +1315,45 @@
         }else if(kind == "编辑"){
             $("a.btn-primary").css("display","inline-block");
         }
+        if(mydata.guihuakeshenqingperson != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.guihuakeshenqingperson +"</p>"
+                +   "<p class='time'>"+ mydata.create_time +"</p>"
+                +   "</div>"
+            $(".mystep_user1 .user1").append(str).addClass("myactive");
+        }
+        if(mydata.caiwuchuliren != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.caiwuchuliren +"</p>"
+                +   "<p class='time'>"+ mydata.finance_time +"</p>"
+                +   "</div>"
+            $(".mystep_user1 .user1").append(str).addClass("myactive");
+        }
+        if(mydata.guihuachuliren != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.guihuachuliren +"</p>"
+                +   "<p class='time'>"+ mydata.guihuakechulitime +"</p>"
+                +   "</div>"
+            $(".mystep_user1 .user1").append(str).addClass("myactive");
+        }
         if(status == "市局财务科办理"){
+            step.goStep(2);
             $('#caiwu_handle').modal('show');
             $("#myid").val(id);
         }else if(status == "市局规划科通知区县"){
+            step1.goStep(3);
             $("#guihua_handle").modal('show');
         }else if(status == "结束"){
             var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
             console.log(app_kind)
             if(app_kind == "市局资金计划上报"){
+                step2.goStep(4);
                 $("#final_handle").modal('show');
             }else if(app_kind == "区县资金申请"){
                 $("#final_handle2").modal('show');
