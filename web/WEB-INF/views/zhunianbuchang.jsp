@@ -1063,20 +1063,21 @@
         console.log(id);
         console.log(str);
         console.log(text);
-//        $.ajax({
-//            url: "",
-//            type: "post",
-//            dataType: "json",
-//            data: {id:id,areaname:str,text:text},
-//            success: function (data) {
-//                if(data.result == "success"){
-//                    $("#guihua_handle").modal('hide');
-//                    alert("提交成功")
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        })
+        $.ajax({
+            url: "/setToAreaDataById.do",
+            type: "post",
+            dataType: "json",
+            data: {id:id,areaname:str,text:text},
+            success: function (data) {
+                console.log(data);
+                if(data.result == "success"){
+                    $("#guihua_handle").modal('hide');
+                    alert("提交成功")
+                }else {
+                    alert(data.result);
+                }
+            }
+        })
     })
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {

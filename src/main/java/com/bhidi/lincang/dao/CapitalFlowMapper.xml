@@ -26,6 +26,7 @@
             IFNULL(amount,'') AS amount,
             IFNULL(caiwuchuliren,'') AS caiwuchuliren,
             IFNULL(finance_time,'') AS finance_time,
+            IFNULL(caiwuattachment,'') AS caiwuattachment,
             IFNULL(areaname,'') AS areaname,
             IFNULL(areanamedelete,'') AS areanamedelete,
             IFNULL(text,'') AS text,

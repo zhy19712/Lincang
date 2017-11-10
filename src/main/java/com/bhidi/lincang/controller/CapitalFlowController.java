@@ -142,9 +142,20 @@ public class CapitalFlowController {
             map.put("status","区县资金流向录入");
 
         }
-
-        int result = capitalFlowServiceImp.setCatipalDataById(map);
-        return result+"";
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
     }
 
     /**
@@ -155,7 +166,7 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setToAreaDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String setDataById(@RequestParam(value="id",required=false) int id,
+    public String setToAreaDataById(@RequestParam(value="id",required=false) int id,
                               @RequestParam(value="areaname",required=false) String areaname,
                               @RequestParam(value="text",required=false) String text,
 
@@ -191,8 +202,20 @@ public class CapitalFlowController {
             map.put("status","市局财务科转账中");
             //map.put("guihuapifuren",username);
         }
-        int result = capitalFlowServiceImp.setCatipalDataById(map);
-        return result+"";
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
     }
 
     /**
