@@ -50,13 +50,7 @@ public class LoginController {
                 int roleid = loginServiceImp.getRoleid(user.getRoleList().get(0));
                 //根据roleid查出来功能
                 List<Integer> intList = loginServiceImp.getFunction(roleid);
-                //查出来不属于他的功能
-                List<Privilege> privilegeList = new ArrayList<Privilege>();
-                if (intList != null & intList.size() != 0) {
-                    privilegeList = loginServiceImp.getNotFunction(intList);
-                }
-                user.setPermissionList(privilegeList);
-                System.out.println(user);
+                session.setAttribute("function",intList);
             }
             session.setAttribute("user", user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
@@ -104,7 +98,7 @@ public class LoginController {
     @RequestMapping(value="/getFunction",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String getFunctionByName(HttpSession session) {
         User user = (User)session.getAttribute("user");
-        //查出来不属于他的功能
+        //查出来属于他的功能
         List<Privilege> privilegeList = new ArrayList<Privilege>();
         if (user != null) {
             if (user.getRoleList() != null & user.getRoleList().size() > 0) {

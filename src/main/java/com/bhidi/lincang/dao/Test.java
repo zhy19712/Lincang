@@ -35,6 +35,12 @@ public class Test {
         System.out.println(file.getName());
         System.out.println(file.length());
 */
+        List<Integer> i = new ArrayList<Integer>();
+        i.add(1);
+        i.add(2);
+        List<Integer> ii = new ArrayList<Integer>();
+        ii.add(1);
+        System.out.println(i.contains(1));
     }
 
 }

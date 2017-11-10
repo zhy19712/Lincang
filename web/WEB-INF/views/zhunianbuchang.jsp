@@ -216,7 +216,7 @@
                                     </div>
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已到资金</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i>待办列表</h2>
 
                                         </div>
                                         <div class="box-content">
@@ -245,7 +245,7 @@
                                                 <a href="#">我的事务</a>
                                             </li>
                                             <li>
-                                                <a href="#">已处理事务</a>
+                                                <a href="#">已办事务</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -253,7 +253,7 @@
 
                                     <div class="box-inner">
                                         <div class="box-header well">
-                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已处理事务</h2>
+                                            <h2><i class="glyphicon glyphicon-info-sign"></i> 已办列表</h2>
 
                                         </div>
                                         <div class="box-content">
@@ -314,8 +314,9 @@
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm1" action="" enctype="multipart/form-data"  target="uploadFrame">
+                    <input id="initiatorclass1" type="text" name="initiatorclass" value="市局资金计划上报" style="display: none;">
                     <div class="modal-body">
-                        <table class="mytable ghapply">
+                        <table class="mytable">
                             <tr>
                                 <td>标题</td>
                                 <td colspan="3"><input type="text" name="title"></td>
@@ -324,7 +325,7 @@
                                 <td>上报人</td>
                                 <td><input type="text" name="report_person"></td>
                                 <td>上报季度</td>
-                                <td><input type="text" name="report_quarter"></td>
+                                <td><input type="text" id="time1" name="report_quarter"></td>
                             </tr>
                             <tr>
                                 <td>上报文件</td>
@@ -360,6 +361,28 @@
                     <h3></h3>
                 </div>
                     <div class="modal-body">
+                        <%--<div class="mystep_container" style="width: 100%;padding-bottom: 20px;">--%>
+                            <%--<div class="step-body" class="mystep" style="width:80%;margin: 0 auto;">--%>
+                                <%--<div class="step-header">--%>
+                                    <%--<ul>--%>
+                                        <%--<li><p>办公室收文登记</p></li>--%>
+                                        <%--<li><p>办公室处理文件</p></li>--%>
+                                        <%--<li><p>签批</p></li>--%>
+                                        <%--<li><p>处理处置</p></li>--%>
+                                        <%--<li><p>办公室归档</p></li>--%>
+                                        <%--<li><p>结束</p></li>--%>
+                                    <%--</ul>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="mystep_user" style="width:80%;margin: 0 auto;">--%>
+                                <%--<div class="user1"></div>--%>
+                                <%--<div class="user2"></div>--%>
+                                <%--<div class="user3"></div>--%>
+                                <%--<div class="user4"></div>--%>
+                                <%--<div class="user5"></div>--%>
+                                <%--<div class="user6"></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
@@ -368,7 +391,7 @@
                             <tr>
                                 <td>上报人</td>
                                 <td><input type="text"></td>
-                                <td>上报时间</td>
+                                <td>上报季度</td>
                                 <td><input type="text"></td>
                             </tr>
                             <tr>
@@ -380,16 +403,17 @@
                             </tr>
                             <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
                             <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
+                                <input id="myid" type="text" name="id" value="" style="display: none">
                                 <table class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" name="money_source"></td>
                                             <td>到款时间</td>
-                                            <td><input type="text" id="time2" readonly="readonly"></td>
+                                            <td><input type="text" id="time2" readonly="readonly" name="arrival_time"></td>
                                         </tr>
                                         <tr>
                                             <td>到款金额</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" name="amount"></td>
                                             <td>上传附件</td>
                                             <td><div id="myfilesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                                 <a href="#" id="myadd_1" onclick="myadd_click_file(1)">添加附件</a>
@@ -402,7 +426,7 @@
                     </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -473,7 +497,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -535,7 +559,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -557,15 +581,16 @@
                 </div>
                 <iframe id="uploadFrame3" name="uploadFrame3" style="display:none;"></iframe>
                 <form id = "fileForm3" action="" enctype="multipart/form-data"  target="uploadFrame3">
+                    <inpu id="initiatorclass2" type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
-                                <td colspan="3"><input type="text" name="title"></td>
+                                <td colspan="3"><input type="text" name="titlequxian"></td>
                             </tr>
                             <tr>
                                 <td>申请人</td>
-                                <td><input type="text" name="report_person"></td>
+                                <td><input type="text" name="shenqingren"></td>
                                 <td>申请原因</td>
                                 <td><input type="text" name="report_reason"></td>
                             </tr>
@@ -666,12 +691,9 @@
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="../../js/app.js"></script>
 <script>
-//    $("#header1").remove();
-//    $("#m_apply1").remove();
-//    $("#new1").remove();
-//    $("#dcl").addClass("active");
-//    $("#new2").addClass("active");
+
     //获取功能
     var fun_list1 = [];
     var fun_list2 = [];
@@ -692,6 +714,33 @@
     });
     console.log(fun_list1);
     console.log(fun_list2);
+    var len1 = fun_list1.length;
+    var len2 = fun_list2.length;
+    if(len1 == 0 && len2 == 0){
+        $("#header1").remove();
+        $("#m_apply1").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }else{
+        $("#new1>.row>div:nth-child(1)").css("display","none");
+        $("#new1>.row>div:nth-child(2)").css("display","none");
+        $("#new1>.box-inner").css("display","none");
+        $.each(fun_list1,function (i,n) {
+            if(n.authdescription == "市局规划科资金申请上报功能"){
+                $("#new1>.row>div:nth-child(1)").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+                $("#new1>.box-inner").css("display","block");
+            }
+        });
+        $.each(fun_list2,function (i,n) {
+            if(n.authdescription == "区县发起申请功能"){
+                $("#new1>.row>div:nth-child(2)").css("display","block");
+            }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+            }
+        });
+    }
 
     //checkbox美化
     $('.ui-choose').ui_choose();
@@ -787,7 +836,7 @@
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=1",
+            url: "/capitalFlowAll.do? ",
             async:false
         },
         "order": [[1, 'desc']],
@@ -827,10 +876,9 @@
     });
 
     //待处理
-    var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
+            url: "/capitalFlowWait.do",
             async:false
         },
         "order": [[1, 'desc']],
@@ -871,10 +919,9 @@
     });
 
     //已处理
-    var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
+            url: "/capitalFlowDealed.do",
             async:false
         },
         "order": [[1, 'desc']],
@@ -895,7 +942,6 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -922,11 +968,11 @@
     setTimeout(acount,100);
 
     //表格刷新
-    //    function table_refresh() {
-    //        money_apply1.ajax.url("/receiveFileDataTable.do").load();
-    //        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
-    //        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
-    //    }
+    function table_refresh() {
+        money_apply1.ajax.url("/capitalFlowAll.do").load();
+        dcl_table.ajax.url("/capitalFlowWait.do").load();
+        ycl_table.ajax.url("/capitalFlowDealed.do").load();
+    }
 
     function newForm() {
         $('#money_apply_wdo1 input').val("");
@@ -937,6 +983,8 @@
             }
         })
         $("#filesUpload span").remove();
+        $("#initiatorclass1").val("市局资金计划上报");
+        $('#money_apply_wdo1 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
@@ -954,6 +1002,8 @@
             }
         })
         $("#my1filesUpload span").remove();
+        $("#initiatorclass2").val("区县资金申请");
+        $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
@@ -965,57 +1015,216 @@
 
     //上报提交
     $("#money_apply_wdo1 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo1').modal('hide');
-//                    $("#money_apply_wdo1 input").val("");
-//                    $("#money_apply_wdo1 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm1").ajaxSubmit(options);
+        var options  = {
+            url:'submitDataOfCapital.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#money_apply_wdo1').modal('hide');
+                    $("#money_apply_wdo1 input").val("");
+                    $("#money_apply_wdo1 textarea").val("");
+                }else {
+                    alert(data.result);
+                }
+            }
+        };
+        $("#fileForm1").ajaxSubmit(options);
     });
+    //财务提交
+    $("#caiwu_handle .btn-primary").click(function () {
+            var options  = {
+                url:'shiJuSubmit.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $('#caiwu_handle').modal('hide');
+                        $("#fileForm2 input").val("");
+                        $("#fileForm2 textarea").val("");
+                    }else {
+                        alert(data.result);
+                    }
+                }
+            };
+            $("#fileForm2").ajaxSubmit(options);
+    });
+    //规划科通知区县
+    $("#guihua_handle .btn-primary").click(function () {
+        var str = "";
+        $.each($("#uc_03>li.selected"),function (i,n) {
+            console.log(n);
+            str += "," + n.innerText ;
+        });
+        var text = $("#guihua_handle tr:last-child textarea").val();
+        str = str.substring(1);
+        console.log(id);
+        console.log(str);
+        console.log(text);
+        $.ajax({
+            url: "/setToAreaDataById.do",
+            type: "post",
+            dataType: "json",
+            data: {id:id,areaname:str,text:text},
+            success: function (data) {
+                console.log(data);
+                if(data.result == "success"){
+                    $("#guihua_handle").modal('hide');
+                    alert("提交成功")
+                }else {
+                    alert(data.result);
+                }
+            }
+        })
+    })
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo2').modal('hide');
-//                    $("#money_apply_wdo2 input").val("");
-//                    $("#money_apply_wdo2 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm3").ajaxSubmit(options);
+        var options  = {
+            url:'quxianSubmitDataOfCapital.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#money_apply_wdo2').modal('hide');
+                    $("#money_apply_wdo2 input").val("");
+                    $("#money_apply_wdo2 textarea").val("");
+                }else {
+                    alert(data.result);
+                }
+            }
+        };
+        $("#fileForm3").ajaxSubmit(options);
     });
 
 
-
-
-
-
-
-    function detail_office(that) {
-        $('#form_office').modal('show');
-    }
-
-    function flow(that){
-        $('#flow').modal('show');
+    //编辑查看按钮
+    var id,status;
+    function edit(that) {
+        id = $(that).parent("td").parent("tr").children("td:first-child").text();
+        status = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        var kind = $(that).val();
+        var mydata;
+        $.ajax({
+            url: "/getCapitalDataById.do",
+            async: false,
+            type: "post",
+            dataType: "json",
+            data: {id:id},
+            success: function (data) {
+                console.log(data);
+                mydata = data.result;
+                //资金上报信息
+                $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
+                $(".ghapply tr:nth-child(2) td:nth-child(2) input").val(mydata.report_person);
+                $(".ghapply tr:nth-child(2) td:nth-child(4) input").val(mydata.report_quarter);
+                $(".ghapply tr:nth-child(3) td:nth-child(2)").empty();
+                if(mydata.report_attachment != ""){
+                    file_arr = mydata.report_attachment.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\") + 1;
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(start,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div>"
+                            + "<iframe name='downloadFrame1' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame1'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
+                    });
+                }
+                $(".ghapply tr:nth-child(4) td:nth-child(1) textarea").val(mydata.report_text);
+                $(".ghapply tr:nth-child(5) td:nth-child(2) input").val(mydata.money_source);
+                $(".ghapply tr:nth-child(5) td:nth-child(4) input").val(mydata.arrival_time);
+                $(".ghapply tr:nth-child(6) td:nth-child(2) input").val(mydata.amount);
+                $(".ghapply tr:nth-child(6) td:nth-child(4)").empty();
+                if(mydata.caiwuattachment != ""){
+                    file_arr = mydata.caiwuattachment.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\") + 1;
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(start,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div>"
+                            + "<iframe name='downloadFrame2' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame2'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $(".ghapply tr:nth-child(6) td:nth-child(4)").append(files);
+                    });
+                }
+                $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
+                $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
+                //区县资金申请信息
+                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.titlequxian);
+                $("#final_handle2 tr:nth-child(2) td:nth-child(2) input").val(mydata.shenqingren);
+                $("#final_handle2 tr:nth-child(2) td:nth-child(4) input").val(mydata.report_reason);
+                $("#final_handle2 tr:nth-child(3) td:nth-child(2) input").empty();
+//                if(mydata.report_attachment != ""){
+//                    file_arr = mydata.report_attachment.split(",");
+//                    $.each(file_arr,function (i,n) {
+//                        var start = n.lastIndexOf("\\") + 1;
+//                        var end = n.lastIndexOf("-");
+//                        var filekind_index = n.lastIndexOf(".");
+//                        var str = n.substring(start,end);
+//                        var filekind = n.substring(filekind_index);
+//                        str = str + filekind;
+//                        var files = "";
+//                        files  += ""
+//                            + "<div>"
+//                            + "<iframe name='downloadFrame1' style='display:none;'></iframe>"
+//                            + "<form action='/file/download.do' method='get' target='downloadFrame1'>"
+//                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+//                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+//                            + "<button type='submit'>下载</button>"
+//                            + "</form>"
+//                            + "</div>"
+//                        $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
+//                    });
+//                }
+            }
+        })
+        if(kind == "查看"){
+            $("a.btn-primary").css("display","none");
+        }else if(kind == "编辑"){
+            $("a.btn-primary").css("display","inline-block");
+        }
+        if(status == "市局财务科办理"){
+            $('#caiwu_handle').modal('show');
+            $("#myid").val(id);
+        }else if(status == "市局规划科通知区县"){
+            $("#guihua_handle").modal('show');
+        }else if(status == "结束"){
+            var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+            console.log(app_kind)
+            if(app_kind == "市局资金计划上报"){
+                $("#final_handle").modal('show');
+            }else if(app_kind == "区县资金申请"){
+                $("#final_handle2").modal('show');
+            }
+        }else {
+            $("#final_handle2").modal('show');
+        }
     }
 
 

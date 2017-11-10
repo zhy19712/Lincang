@@ -103,11 +103,15 @@ public class SendFileServiceImp implements SendFileServiceInf{
         String today = sdf1.format(now);
         String lastSendFileId = getLastSendFileId();
         String sendFileid = "";
-        if( today.equals(lastSendFileId.substring(0,8)) ){
-            BigDecimal bd = new BigDecimal(lastSendFileId);
-            sendFileid = bd.add(new BigDecimal(1)).toString();
-        } else {
+        if(lastSendFileId==null || lastSendFileId==""){
             sendFileid = today+"0001"+"";
+        } else {
+            if( today.equals(lastSendFileId.substring(0,8)) ){
+                BigDecimal bd = new BigDecimal(lastSendFileId);
+                sendFileid = bd.add(new BigDecimal(1)).toString();
+            } else {
+                sendFileid = today+"0001"+"";
+            }
         }
         sfa.setSendfileid(sendFileid);
         sfa.setCreatedtime(sdf.format(now));

@@ -96,18 +96,18 @@
                         ${msg}
                     </c:if>
                 </div>
-                <form class="form-horizontal" action="login.do" method="post">
+                <form class="form-horizontal" action="/login.do" method="post">
                     <fieldset>
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user red"></i></span>
-                            <input type="text" name="username" class="form-control" placeholder="用户名">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required oninvalid="setCustomValidity('请输入用户名');" oninput="setCustomValidity('');">
                         </div>
                         <div class="clearfix"></div>
                         <br>
 
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock red"></i></span>
-                            <input type="password" name="password" class="form-control" placeholder="密码">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="密码" required oninvalid="setCustomValidity('请输入密码');" oninput="setCustomValidity('');">
                         </div>
                         <div class="clearfix"></div>
 
@@ -117,7 +117,7 @@
                         <div class="clearfix"></div>
 
                         <p class="center col-md-5">
-                            <input type="submit"  value="登录" class="btn btn-primary"/>
+                            <input type="submit" value="登录" class="btn btn-primary"/>
                         </p>
                     </fieldset>
                 </form>
@@ -140,11 +140,37 @@
 <script src="../../js/jquery.cookie.js"></script>
 <!-- for iOS style toggle switch -->
 <script src="../../js/jquery.iphone.toggle.js"></script>
+<script src="../../js/jquery-form.min.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
 <script src="../../js/app.js"></script>
 
-
+<script>
+//    $(".form-horizontal .btn-primary").click(function () {
+//        var username = $("#username").val();
+//        var password = $("#password").val();
+//        if(!username){
+//            alert("用户名不能为空");
+//            return;
+//        }else if(!password){
+//            alert("密码不能为空");
+//            return;
+//        }else {
+//            var options  = {
+//                url:'/login.do',
+//                type:'post',
+//                success:function(data)
+//                {
+//                    console.log(data);
+//                    if(data.result == "success"){
+//                        console.log("提交成功");
+//                    }
+//                }
+//            };
+//            $(".form-horizontal").ajaxSubmit(options);
+//        }
+//    });
+</script>
 
 </body>
 </html>

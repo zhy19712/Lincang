@@ -80,6 +80,7 @@
             outline:none;
             border: none;
             resize: none;
+            height: 100px;
             width: 100%;
         }
         #sel_model{
@@ -483,7 +484,7 @@
                             <tr>
                                 <td style="vertical-align: middle;">题名</td>
                                 <td colspan="9">
-                                    <textarea name="title" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                    <textarea name="title" style="width: 99%;outline: none;height: 80px;"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -536,7 +537,7 @@
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
 
-                                <td colspan="9"><textarea name="dealsituation" id="" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                                <td colspan="9"><textarea name="dealsituation" id="" style="width: 99%;"></textarea></td>
 
 
                             </tr>
@@ -614,7 +615,7 @@
                         <tr>
                             <td style="vertical-align: middle;">题名</td>
                             <td colspan="9">
-                                <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                <textarea name="timing" style="width: 99%;outline: none;height: 80px;"></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -663,14 +664,14 @@
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">处理情况</td>
-                            <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            <td colspan="9"><textarea name="chuli" style="width: 99%;"></textarea></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
                 <div id="model_container_1">
                     <div id="model1_1">
-                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -694,32 +695,32 @@
                             <tr>
                                 <td class="middle">拟办意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" style="width: 99%;"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" style="width: 99%;"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" style="width: 99%;"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" style="width: 99%;"></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div id="model2_1">
-                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -734,37 +735,37 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="7"><textarea name="" cols="30" rows="10" style="height: 50px;"></textarea></td>
+                                <td colspan="7"><textarea name="" style="height: 50px;"></textarea></td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">局领导批示:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">分管领导意见:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">拟办意见:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">办理结果:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div id="model3_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -783,7 +784,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name=""></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -798,37 +799,37 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
+                                <td colspan="6"><input type="text" style="width: 100%;text-align:center;font-size: 14px;line-height: 20px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
-                                <td colspan="6"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="6"><textarea name=""></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             </tbody>
                         </table>
                     </div>
                     <div id="model4_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -847,7 +848,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="11"><textarea name=""></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -862,32 +863,32 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;"></td>
+                                <td colspan="3"><input type="text" style="width: 100%;text-align:center;font-size: 14px;line-height: 20px;"></td>
+                                <td colspan="3"><input type="text" style="width: 100%;text-align:center;font-size: 14px;line-height: 20px;"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10"></textarea></td>
+                                <td colspan="3"><textarea name=""></textarea></td>
+                                <td colspan="3"><textarea name=""></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -969,7 +970,7 @@
                         <tr>
                             <td style="vertical-align: middle;">题名</td>
                             <td colspan="9">
-                                <textarea name="timing" cols="30" rows="10" style="width: 99%;outline: none;height: 80px;"></textarea>
+                                <textarea name="timing" style="width: 99%;outline: none;height: 80px;"></textarea>
                             </td>
                         </tr>
                         <tr>
@@ -1018,7 +1019,7 @@
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">处理情况</td>
-                            <td colspan="9"><textarea name="chuli" cols="30" rows="10" style="width: 99%;"></textarea></td>
+                            <td colspan="9"><textarea name="chuli" style="width: 99%;"></textarea></td>
                         </tr>
                         </tbody>
                     </table>
@@ -1121,25 +1122,25 @@
                             <tr>
                                 <td class="middle">拟办意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;"></textarea>
+                                    <textarea name="" style="width: 99%;"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
+                                    <textarea name="" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
+                                    <textarea name="" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" style="width: 99%;" readonly="readonly"></textarea>
+                                    <textarea name="" style="width: 99%;" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1161,30 +1162,30 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="7"><textarea name="" cols="30" rows="10" style="height: 50px;"></textarea></td>
+                                <td colspan="7"><textarea name="" style="height: 50px;"></textarea></td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">局领导批示:</p>
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">分管领导意见:</p>
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">拟办意见:</p>
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="8">
                                     <p class="left">办理结果:</p>
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1210,7 +1211,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
+                                <td colspan="11"><textarea name="" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1225,30 +1226,30 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
+                                <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
-                                <td colspan="6"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
+                                <td colspan="6"><textarea name="" readonly="readonly"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1274,7 +1275,7 @@
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
-                                <td colspan="11"><textarea name="" cols="30" rows="10" style="height: 50px"></textarea></td>
+                                <td colspan="11"><textarea name="" style="height: 50px"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle" rowspan="3">
@@ -1289,32 +1290,32 @@
                             <tr>
                                 <td colspan="5" style="border-bottom: none">
                                 </td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
-                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly">科</td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
+                                <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
-                                <td colspan="3"><textarea name="" cols="30" rows="10" readonly="readonly"></textarea></td>
+                                <td colspan="3"><textarea name="" readonly="readonly"></textarea></td>
+                                <td colspan="3"><textarea name="" readonly="readonly"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">分管领导批示</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10" readonly="readonly"></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name="" cols="30" rows="10"></textarea>
+                                    <textarea name=""></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -2089,7 +2090,7 @@
                     $("#model_container_1>div").css("display","none");
                     if(model_name == "直接处理"){
                         $("#model1_1").css("display","block");
-                        $("#model1_1 .title input").val(data.model.filename);
+                        $("#model1_1>.title").text(data.model.filename);
                         $("#model1_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model1_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model1_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
@@ -2103,7 +2104,7 @@
                         $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.result);
                     }else if(model_name == "文件拟办单"){
                         $("#model2_1").css("display","block");
-                        $("#model2_1 .title input").val(data.model.filename);
+                        $("#model2_1>.title").text(data.model.filename);
                         $("#model2_1 tr:first-child td:nth-child(2) input").val(data.model.dispatchfiledepartment);
                         $("#model2_1 tr:first-child td:nth-child(4) input").val(data.model.filenum);
                         $("#model2_1 tr:first-child td:nth-child(6) input").val(data.model.receivefileregisterid);
@@ -2115,7 +2116,7 @@
                         $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val(data.model.result);
                     }else if(model_name == "一科室提意见"){
                         $("#model3_1").css("display","block");
-                        $("#model3_1 .title input").val(data.model.filename);
+                        $("#model3_1>.title").text(data.model.filename);
                         $("#model3_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model3_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model3_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
@@ -2131,7 +2132,7 @@
                         $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val(data.model.departmentadvice);
                     }else if(model_name == "两科室提意见"){
                         $("#model4_1").css("display","block");
-                        $("#model4_1 .title input").val(data.model.filename);
+                        $("#model4_1>.title").text(data.model.filename);
                         $("#model4_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model4_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model4_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);

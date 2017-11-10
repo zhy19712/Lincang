@@ -7,9 +7,13 @@ import java.util.Map;
 
 @Repository
 public interface CapitalFlowMapper {
-    int submitData(Map map);
+    int submitData(CapitalFlow cf);
 
-    CapitalFlow queryCatipalDataById(String id);
+    CapitalFlow queryCapitalDataById(String id);
 
-    int updateCatipalDataById(Map<String, String> map);
+    int updateCatipalDataById(Map<String,Object> map);
+
+    String selectLastCapitalFlowId();
+
+    int updateCapitalDataByCapitalFlow(CapitalFlow cf);
 }
