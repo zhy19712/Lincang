@@ -1102,69 +1102,72 @@
         $("#fileForm3").ajaxSubmit(options);
     });
     //提交内容
-    $("#model_handle2 .btn-primary").click(function () {
-//        if(status == "市局规划科批复"){
-//            var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) input").val();
-//            $.ajax({
-//                url: "",
-//                type: "post",
-//                dataType: "json",
-//                data: {id:id,replytext:replytext},
-//                success: function (data) {
-//                    if(data.result == "success"){
-//                        alert("提交成功");
-//                        $("#model_handle2").modal('hide');
-//                    }else {
-        //        alert(data.result)
-        //    }
-//                }
-//            })
-//        }else if(status == "市局财务科处置办理"){
-//            var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) input").val();
-//            $.ajax({
-//                url: "",
-//                type: "post",
-//                dataType: "json",
-//                data: {id:id,dealtext:dealtext},
-//                success: function (data) {
-//                    if(data.result == "success"){
-//                        alert("提交成功");
-//                        $("#model_handle2").modal('hide');
-//                    }else {
-        //        alert(data.result)
-        //    }
-//                }
-//            })
-//        }else if(status == "区县资金流向记录"){
-//            var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) input").val();
-//            $.ajax({
-//                url: "",
-//                type: "post",
-//                dataType: "json",
-//                data: {id:id,capitalflowinstruction:capitalflowinstruction},
-//                success: function (data) {
-//                    if(data.result == "success"){
-//                        alert("提交成功");
-//                        $("#model_handle2").modal('hide');
-//                    }else {
-                //        alert(data.result)
-                //    }
-//                }
-//            })
-//        }
+    $("#final_handle2 .btn-primary").click(function () {
+        if(status == "市局规划科批复"){
+            var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val();
+            console.log(replytext);
+            $.ajax({
+                url: "/quxianGuiHuaSetDataById.do",
+                type: "post",
+                dataType: "json",
+                data: {id:id,replytext:replytext},
+                success: function (data) {
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $("#final_handle2").modal('hide');
+                    }else {
+                alert(data.result)
+            }
+                }
+            })
+        }
+ else if(status == "市局财务科处置办理"){
+            var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val();
+            $.ajax({
+                url: "/quxianCaiWuSetDataById.do",
+                type: "post",
+                dataType: "json",
+                data: {id:id,dealtext:dealtext},
+                success: function (data) {
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $("#final_handle2").modal('hide');
+                    }else {
+                alert(data.result)
+            }
+                }
+            })
+        }
+ else if(status == "区县资金流向记录"){
+            var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
+            $.ajax({
+                url: "/quxianSubmitSetDataById.do",
+                type: "post",
+                dataType: "json",
+                data: {id:id,capitalflowinstruction:capitalflowinstruction},
+                success: function (data) {
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $("#final_handle2").modal('hide');
+                    }else {
+                        alert(data.result)
+                    }
+                }
+            })
+        }
     })
     //保存按钮
     $("#final_handle2 .btn-success").click(function () {
-        var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) input").val();
+        var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
         $.ajax({
-            url: "",
+            url: "/quxianSaveSetDataById.do",
             type: "post",
             dataType: "json",
             data: {id:id,capitalflowinstruction:capitalflowinstruction},
             success: function (data) {
                 if(data.result == "success"){
                     alert("提交成功");
-                    $("#model_handle2").modal('hide');
+                    $("#final_handle2").modal('hide');
                 }else {
                     alert(data.result)
                 }
@@ -1250,7 +1253,7 @@
                 $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.titlequxian);
                 $("#final_handle2 tr:nth-child(2) td:nth-child(2) input").val(mydata.shenqingren);
                 $("#final_handle2 tr:nth-child(2) td:nth-child(4) input").val(mydata.report_reason);
-                $("#final_handle2 tr:nth-child(3) td:nth-child(2) input").empty();
+                $("#final_handle2 tr:nth-child(3) td:nth-child(2)").empty();
                 if(mydata.quxianattachment != ""){
                      file_arr = mydata.quxianattachment.split(",");
                     $.each(file_arr,function (i,n) {
@@ -1273,9 +1276,9 @@
                         $("#final_handle2 tr:nth-child(3) td:nth-child(2)").append(files);
                     });
                 }
-                $("#final_handle2 tr:nth-child(4) td:nth-child(2) input").val(mydata.replytext);
-                $("#final_handle2 tr:nth-child(5) td:nth-child(2) input").val(mydata.dealtext);
-                $("#final_handle2 tr:nth-child(6) td:nth-child(2) input").val(mydata.capitalflowinstruction);
+                $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val(mydata.replytext);
+                $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val(mydata.dealtext);
+                $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val(mydata.capitalflowinstruction);
             }
         })
         if(kind == "查看"){
