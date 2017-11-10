@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../../css/oa.css">
     <link rel="stylesheet" href="../../css/ui-choose.css">
     <link rel="stylesheet" href="../../css/jquery.step.css">
+    <link rel="stylesheet" href="../../js/themes/default/style.min.css">
     <link rel="stylesheet" href="../../css/jedate.css">
     <link rel="stylesheet" href="../../css/money.css">
     <link rel="stylesheet" href="../../css/mycommon.css">
@@ -624,7 +625,7 @@
                         <table class="mytable">
                             <tr>
                                 <td>标题</td>
-                                <td colspan="3"><input type="text" name="titlequxian"></td>
+                                <td colspan="3"><input type="text" name="title"></td>
                             </tr>
                             <tr>
                                 <td>申请人</td>
@@ -1280,7 +1281,7 @@
                 $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
                 $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
                 //区县资金申请信息
-                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.titlequxian);
+                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
                 $("#final_handle2 tr:nth-child(2) td:nth-child(2) input").val(mydata.shenqingren);
                 $("#final_handle2 tr:nth-child(2) td:nth-child(4) input").val(mydata.report_reason);
                 $("#final_handle2 tr:nth-child(3) td:nth-child(2)").empty();
