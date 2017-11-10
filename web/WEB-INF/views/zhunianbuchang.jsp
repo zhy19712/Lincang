@@ -1119,7 +1119,7 @@
                 $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
                 $(".ghapply tr:nth-child(2) td:nth-child(2) input").val(mydata.report_person);
                 $(".ghapply tr:nth-child(2) td:nth-child(4) input").val(mydata.report_quarter);
-                $(".ghapply tr:nth-child(4) td:nth-child(1) textarea").val(mydata.report_text);
+                $(".ghapply tr:nth-child(3) td:nth-child(2)").empty();
                 if(mydata.report_attachment != ""){
                     file_arr = mydata.report_attachment.split(",");
                     $.each(file_arr,function (i,n) {
@@ -1142,6 +1142,35 @@
                         $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
                     });
                 }
+                $(".ghapply tr:nth-child(4) td:nth-child(1) textarea").val(mydata.report_text);
+                $(".ghapply tr:nth-child(5) td:nth-child(2) input").val(mydata.money_source);
+                $(".ghapply tr:nth-child(5) td:nth-child(4) input").val(mydata.arrival_time);
+                $(".ghapply tr:nth-child(6) td:nth-child(2) input").val(mydata.amount);
+                $(".ghapply tr:nth-child(6) td:nth-child(4)").empty();
+                if(mydata.caiwuattachment != ""){
+                    file_arr = mydata.caiwuattachment.split(",");
+                    $.each(file_arr,function (i,n) {
+                        var start = n.lastIndexOf("\\") + 1;
+                        var end = n.lastIndexOf("-");
+                        var filekind_index = n.lastIndexOf(".");
+                        var str = n.substring(start,end);
+                        var filekind = n.substring(filekind_index);
+                        str = str + filekind;
+                        var files = "";
+                        files  += ""
+                            + "<div>"
+                            + "<iframe name='downloadFrame2' style='display:none;'></iframe>"
+                            + "<form action='/file/download.do' method='get' target='downloadFrame2'>"
+                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+                            + "<button type='submit'>下载</button>"
+                            + "</form>"
+                            + "</div>"
+                        $(".ghapply tr:nth-child(6) td:nth-child(4)").append(files);
+                    });
+                }
+                $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
+                $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
             }
         })
         if(kind == "查看"){
