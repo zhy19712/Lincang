@@ -1079,16 +1079,16 @@
         id = $(that).parent("td").parent("tr").children("td:first-child").text();
         status = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         var kind = $(that).val();
-//        $.ajax({
-//            url: "",
-//            async: false,
-//            type: "post",
-//            dataType: "json",
-//            data: {id:id},
-//            success: function (data) {
-//                console.log(data)
-//            }
-//        })
+        $.ajax({
+            url: "/getCapitalDataById.do",
+            async: false,
+            type: "post",
+            dataType: "json",
+            data: {id:id},
+            success: function (data) {
+                console.log(data)
+            }
+        })
         if(kind == "查看"){
             $("a.btn-primary").css("display","none");
         }else if(kind == "编辑"){
