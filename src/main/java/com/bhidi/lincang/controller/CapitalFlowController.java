@@ -1,6 +1,7 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.CapitalFlow;
+import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.CapitalFlowServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,24 +26,13 @@ public class CapitalFlowController {
 
     /**
      * 提交申请按钮
-     * @param report_person
-     * @param report_reason
-     * @param report_quarter
-     * @param report_text
-     * @param userstatus
      * @return
      */
     @ResponseBody
     @RequestMapping(value="/submitDataOfCapital",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String submitDataOfCapital(@RequestParam(value="report_person",required=false)String report_person,
-                                      @RequestParam(value="report_reason",required=false)String report_reason,
-                                      @RequestParam(value="report_quarter",required=false)String report_quarter,
-                                      @RequestParam(value="report_text",required=false)String report_text,
-                                      @RequestParam(value="title",required=false)String title,
-                                      @RequestParam(value="username",required=false)String username,
-                                      @RequestParam(value="userstatus",required=false)String userstatus) {
+    public String submitDataOfCapital(HttpServletRequest request, HttpSession session, CapitalFlow cf, @RequestParam("files") MultipartFile[] files) {
         //在提交的时候，userstatus就是数据库中的发起人类别，其他的时候就不是了。
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        /*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date now = new Date();
         String create_time = format.format(now);
         Map<String,String> map = new HashMap();
@@ -61,7 +54,23 @@ public class CapitalFlowController {
             map.put("status","市局财务科处理中");
         }
         int result = capitalFlowServiceImp.submitData(map);
-        return result+"";
+        return result+"";*/
+        //获取当前用户
+        User user = (User)session.getAttribute("user");
+        //取出来当前用户的姓名
+        if( user!=null ){
+            cf.setGuihuakeshenqingperson( user.getName() );
+        }
+        cf.setStatus("市局财务科办理");
+
+        Map<String,Object> mapCondition = new HashMap();
+        mapCondition.put("capitalFlow",cf);
+        mapCondition.put("files",files);
+        mapCondition.put("request",request);
+        //在这里把条件给到文件进行存储，然后把文件的url存储
+        Map<String,Object> map = capitalFlowServiceImp.saveCapitalFlow(mapCondition);
+        String result = new Gson().toJson(map);
+        return result;
     }
 
     /**
