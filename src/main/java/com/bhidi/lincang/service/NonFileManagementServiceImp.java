@@ -41,11 +41,15 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
         String today = sdf1.format(now);
         String lastNonFileId = getLastNonFileId();
         String nonFileid = "";
-        if( today.equals(lastNonFileId.substring(0,8)) ){
-            BigDecimal bd = new BigDecimal(lastNonFileId);
-            nonFileid = bd.add(new BigDecimal(1)).toString();
-        } else {
+        if(lastNonFileId==null || lastNonFileId==""){
             nonFileid = today+"0001"+"";
+        } else {
+            if( today.equals(lastNonFileId.substring(0,8)) ){
+                BigDecimal bd = new BigDecimal(lastNonFileId);
+                nonFileid = bd.add(new BigDecimal(1)).toString();
+            } else {
+                nonFileid = today+"0001"+"";
+            }
         }
         nfm.setNonfileid(nonFileid);
         nfm.setSubmittime(sdf.format(now));

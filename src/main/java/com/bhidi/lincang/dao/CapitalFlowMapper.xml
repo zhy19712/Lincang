@@ -2,11 +2,11 @@
 <!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bhidi.lincang.dao.CapitalFlowMapper">
 
-    <!-- int submitData(Map map);-->
-    <insert  id="submitData" parameterType="Map" useGeneratedKeys="true"
+    <!--int submitData(CapitalFlow cf);-->
+    <insert  id="submitData" parameterType="com.bhidi.lincang.bean.CapitalFlow" useGeneratedKeys="true"
     keyProperty="id">
-        INSERT INTO capitalflow (create_time,report_person,report_quarter,report_reason,report_text,initiatorclass,title,status,guihuakeshenqing,quxianshenqingren)
-        VALUES( #{create_time},#{report_person},#{report_quarter},#{report_reason},#{report_text},#{initiatorclass},#{title},#{status},#{guihuakeshenqing},#{quxianshenqingren})
+        INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,quxianshenqingren,report_reason)
+        VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},#{quxianshenqingren},#{report_reason})
     </insert >
     <!--CapitalFlow queryCatipalDataById(String id);-->
     <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
@@ -71,4 +71,10 @@
         </trim>
         WHERE id = #{id}
     </update >
+    <!--String selectLastCapitalFlowId();-->
+    <select id="selectLastCapitalFlowId" resultType="String">
+        SELECT capitalflowid
+        FROM capitalflow
+        ORDER BY id DESC LIMIT 1
+    </select>
 </mapper>

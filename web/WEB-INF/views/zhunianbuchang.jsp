@@ -314,7 +314,7 @@
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm1" action="" enctype="multipart/form-data"  target="uploadFrame">
-                    <input type="text" name="initiatorclass" value="市局资金计划上报" style="display: none;">
+                    <input id="initiatorclass1" type="text" name="initiatorclass" value="市局资金计划上报" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
@@ -835,7 +835,7 @@
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
-            url: "/capitalFlowForm.do?userstatus=1",
+            url: "/capitalFlowAll.do? ",
             async:false
         },
         "order": [[1, 'desc']],
@@ -878,7 +878,7 @@
     var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus="+ encodeURI(encodeURI(sta1)),
+            url: "/capitalFlowWait.do",
             async:false
         },
         "order": [[1, 'desc']],
@@ -985,6 +985,7 @@
             }
         })
         $("#filesUpload span").remove();
+        $("#initiatorclass1").val("市局资金计划上报");
         $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
@@ -1013,23 +1014,23 @@
 
     //上报提交
     $("#money_apply_wdo1 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo1').modal('hide');
-//                    $("#money_apply_wdo1 input").val("");
-//                    $("#money_apply_wdo1 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm1").ajaxSubmit(options);
+        var options  = {
+            url:'submitDataOfCapital.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#money_apply_wdo1').modal('hide');
+                    $("#money_apply_wdo1 input").val("");
+                    $("#money_apply_wdo1 textarea").val("");
+                }else {
+                    alert(data.result);
+                }
+            }
+        };
+        $("#fileForm1").ajaxSubmit(options);
     });
     //财务提交
     $("#caiwu_handle .btn-primary").click(function () {
