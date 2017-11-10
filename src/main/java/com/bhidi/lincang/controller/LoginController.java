@@ -45,7 +45,7 @@ public class LoginController {
     public String login(String username, String password, String login_auto_login, HttpSession session, ModelMap map, HttpServletResponse response) {
         User user = loginServiceImp.queryUserByUsernameAndPass(username, password);
         if (user != null) {
-            /*if (user.getRoleList() != null & user.getRoleList().size() > 0) {
+            if (user.getRoleList() != null & user.getRoleList().size() > 0) {
                 //先求出来roleid
                 int roleid = loginServiceImp.getRoleid(user.getRoleList().get(0));
                 //根据roleid查出来功能
@@ -56,7 +56,8 @@ public class LoginController {
                     privilegeList = loginServiceImp.getNotFunction(intList);
                 }
                 user.setPermissionList(privilegeList);
-            }*/
+                System.out.println(user);
+            }
             session.setAttribute("user", user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
                 //如果前台点击了自动登录，就放在cookie里边
