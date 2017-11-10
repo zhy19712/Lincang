@@ -42,12 +42,13 @@
             IFNULL(quxianattachment,'') AS quxianattachment,
             IFNULL(quxianshenqingren,'') AS quxianshenqingren,
             IFNULL(quxianshenqingtime,'') AS quxianshenqingtime,
-
             IFNULL(replytext,'') AS replytext,
+            IFNULL(guihuapifuren,'') AS guihuapifuren,
+            IFNULL(guihuapifutime,'') AS guihuapifutime,
+
             IFNULL(dealtext,'') AS dealtext,
             IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
             IFNULL(guihuachuliren,'') AS guihuachuliren,
-            IFNULL(guihuapifuren,'') AS guihuapifuren,
             IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
             IFNULL(quxianbaocunren,'') AS quxianbaocunren,
             IFNULL(quxiantijiaoren,'') AS quxiantijiaoren
@@ -71,14 +72,17 @@
             <if test="areaname!=null">areaname = #{areaname},</if>
             <if test="areanamedelete!=null">areanamedelete = #{areanamedelete},</if>
             <if test="text!=null">text = #{text},</if>
+            <if test="report_reason!=null">report_reason = #{report_reason},</if>
             <if test="guihuakechulitime!=null">guihuakechulitime = #{guihuakechulitime},</if>
 
             <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
+
             <if test="replytext!=null">replytext = #{replytext},</if>
-            <if test="dealtext!=null">dealtext = #{dealtext},</if>
-            <if test="report_reason!=null">report_reason = #{report_reason},</if>
-            <if test="caiwuchuliren!=null">caiwuchuliren = #{caiwuchuliren},</if>
             <if test="guihuachuliren!=null">guihuachuliren = #{guihuachuliren},</if>
+            <if test="guihuapifutime!=null">guihuapifutime = #{guihuapifutime},</if>
+
+            <if test="dealtext!=null">dealtext = #{dealtext},</if>
+            <if test="caiwuchuliren!=null">caiwuchuliren = #{caiwuchuliren},</if>
             <if test="guihuapifuren!=null">guihuapifuren = #{guihuapifuren},</if>
             <if test="caiwuzhuanzhangren!=null">caiwuzhuanzhangren = #{caiwuzhuanzhangren},</if>
             <if test="quxianbaocunren!=null">quxianbaocunren = #{quxianbaocunren},</if>

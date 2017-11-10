@@ -156,6 +156,40 @@ public class CapitalFlowController {
         String result = new Gson().toJson(mapResult);
         return result;
     }
+    /**
+     * 区县提交的申请---规划科批复---点击了编辑之后的提交按钮
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianGuiHuaSetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianGuiHuaSetDataById(String id,HttpServletRequest request,
+                              @RequestParam(value="replytext",required=false) String replytext){
+        User user = (User)request.getSession().getAttribute("user");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        String finance_time = format.format(now);
+        Map<String,Object> map = new HashMap();
+        map.put("id",id);
+        map.put("replytext",replytext==null?"":replytext);
+        map.put("guihuapifuren",user.getName());
+        map.put("guihuapifutime",format.format(now));
+        map.put("status","市局财务科处置办理");
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
 
     /**
      * 规划科点击编辑之后的提交
@@ -165,7 +199,7 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setToAreaDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String setToAreaDataById(@RequestParam(value="id",required=false) int id,
+    public String setToAreaDataById(@RequestParam(value="id",required=false) String id,
                               @RequestParam(value="areaname",required=false) String areaname,
                               @RequestParam(value="text",required=false) String text,
 

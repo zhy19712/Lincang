@@ -32,16 +32,17 @@ public class CapitalFlow {
     private String quxianattachment;
     private String quxianshenqingren;
     private String quxianshenqingtime;
-
-
     private String replytext;
+    private String guihuapifuren;
+    private String guihuapifutime;
+
+
+
     private String dealtext;
     private String capitalflowinstruction;
-    private String guihuapifuren;
     private String caiwuzhuanzhangren;
     private String quxianbaocunren;
     private String quxiantijiaoren;
-
 
     public CapitalFlow() {
     }
@@ -55,7 +56,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String initiatorclass, String status, String money_source, String arrival_time, String amount, String caiwuattachment, String caiwuchuliren, String finance_time, String areaname, String areanamedelete, String text, String guihuachuliren, String guihuakechulitime, String toarea_time, String titlequxian, String shenqingren, String report_reason, String quxianattachment, String quxianshenqingren, String quxianshenqingtime, String replytext, String dealtext, String capitalflowinstruction, String guihuapifuren, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren) {
+    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String initiatorclass, String status, String money_source, String arrival_time, String amount, String caiwuattachment, String caiwuchuliren, String finance_time, String areaname, String areanamedelete, String text, String guihuachuliren, String guihuakechulitime, String toarea_time, String titlequxian, String shenqingren, String report_reason, String quxianattachment, String quxianshenqingren, String quxianshenqingtime, String replytext, String guihuapifuren, String guihuapifutime, String dealtext, String capitalflowinstruction, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren) {
         this.id = id;
         this.capitalflowid = capitalflowid;
         this.title = title;
@@ -86,9 +87,10 @@ public class CapitalFlow {
         this.quxianshenqingren = quxianshenqingren;
         this.quxianshenqingtime = quxianshenqingtime;
         this.replytext = replytext;
+        this.guihuapifuren = guihuapifuren;
+        this.guihuapifutime = guihuapifutime;
         this.dealtext = dealtext;
         this.capitalflowinstruction = capitalflowinstruction;
-        this.guihuapifuren = guihuapifuren;
         this.caiwuzhuanzhangren = caiwuzhuanzhangren;
         this.quxianbaocunren = quxianbaocunren;
         this.quxiantijiaoren = quxiantijiaoren;
@@ -382,6 +384,14 @@ public class CapitalFlow {
         this.quxianshenqingtime = quxianshenqingtime;
     }
 
+    public String getGuihuapifutime() {
+        return guihuapifutime;
+    }
+
+    public void setGuihuapifutime(String guihuapifutime) {
+        this.guihuapifutime = guihuapifutime;
+    }
+
     @Override
     public String toString() {
         return "CapitalFlow{" +
@@ -415,9 +425,10 @@ public class CapitalFlow {
                 ", quxianshenqingren='" + quxianshenqingren + '\'' +
                 ", quxianshenqingtime='" + quxianshenqingtime + '\'' +
                 ", replytext='" + replytext + '\'' +
+                ", guihuapifuren='" + guihuapifuren + '\'' +
+                ", guihuapifutime='" + guihuapifutime + '\'' +
                 ", dealtext='" + dealtext + '\'' +
                 ", capitalflowinstruction='" + capitalflowinstruction + '\'' +
-                ", guihuapifuren='" + guihuapifuren + '\'' +
                 ", caiwuzhuanzhangren='" + caiwuzhuanzhangren + '\'' +
                 ", quxianbaocunren='" + quxianbaocunren + '\'' +
                 ", quxiantijiaoren='" + quxiantijiaoren + '\'' +
