@@ -671,7 +671,7 @@
                 </div>
                 <div id="model_container_1">
                     <div id="model1_1">
-                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -720,7 +720,7 @@
                         </table>
                     </div>
                     <div id="model2_1">
-                        <p class="title"><input type="text" style="width: 100%;" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -765,7 +765,7 @@
                         </table>
                     </div>
                     <div id="model3_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -829,7 +829,7 @@
                         </table>
                     </div>
                     <div id="model4_1">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"></p>
                         <table>
                             <tbody>
                             <tr>
@@ -1799,7 +1799,6 @@
         $("#select_model textarea").val("");
         $("#model_handle input").val("");
         $("#model_handle textarea").val("");
-        $("#select_model .title input").val("临沧市移民局文件处理笺");
         var kind = $(that).val();
         state = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
         id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
@@ -2091,7 +2090,7 @@
                     $("#model_container_1>div").css("display","none");
                     if(model_name == "直接处理"){
                         $("#model1_1").css("display","block");
-                        $("#model1_1 .title input").val(data.model.filename);
+                        $("#model1_1>.title").text(data.model.filename);
                         $("#model1_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model1_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model1_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
@@ -2105,7 +2104,7 @@
                         $("#model1_1 tr:nth-child(6) td:nth-child(2) textarea").val(data.model.result);
                     }else if(model_name == "文件拟办单"){
                         $("#model2_1").css("display","block");
-                        $("#model2_1 .title input").val(data.model.filename);
+                        $("#model2_1>.title").text(data.model.filename);
                         $("#model2_1 tr:first-child td:nth-child(2) input").val(data.model.dispatchfiledepartment);
                         $("#model2_1 tr:first-child td:nth-child(4) input").val(data.model.filenum);
                         $("#model2_1 tr:first-child td:nth-child(6) input").val(data.model.receivefileregisterid);
@@ -2117,7 +2116,7 @@
                         $("#model2_1 tr:nth-child(6) td:nth-child(1) textarea").val(data.model.result);
                     }else if(model_name == "一科室提意见"){
                         $("#model3_1").css("display","block");
-                        $("#model3_1 .title input").val(data.model.filename);
+                        $("#model3_1>.title").text(data.model.filename);
                         $("#model3_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model3_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model3_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
@@ -2133,7 +2132,7 @@
                         $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val(data.model.departmentadvice);
                     }else if(model_name == "两科室提意见"){
                         $("#model4_1").css("display","block");
-                        $("#model4_1 .title input").val(data.model.filename);
+                        $("#model4_1>.title").text(data.model.filename);
                         $("#model4_1 tr:first-child td:nth-child(2) input").val(data.model.receivefilenum);
                         $("#model4_1 tr:first-child td:nth-child(4) input").val(data.model.comefiledepartment);
                         $("#model4_1 tr:first-child td:nth-child(6) input").val(data.model.comefilenum);
