@@ -62,7 +62,6 @@ public class CapitalFlowController {
             cf.setGuihuakeshenqingperson( user.getName() );
         }
         cf.setStatus("市局财务科办理");
-
         Map<String,Object> mapCondition = new HashMap();
         mapCondition.put("capitalFlow",cf);
         mapCondition.put("files",files);
@@ -72,21 +71,44 @@ public class CapitalFlowController {
         String result = new Gson().toJson(map);
         return result;
     }
-
     /**
      * 查看按钮
      * @param id
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/getCatipalDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String getDataById(String id) {
-        CapitalFlow cap = capitalFlowServiceImp.getCatipalDataById(id);
+    @RequestMapping(value="/getCapitalDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String getCapitalDataById(String id) {
+        CapitalFlow cap = capitalFlowServiceImp.getCapitalDataById(id);
         Map<String,CapitalFlow> mapResult = new HashMap();
         mapResult.put("result",cap);
         String resStr =  new Gson().toJson(mapResult);
         return resStr;
     }
+    /**
+     * 市局提交的申请之后的财务科编辑的提交
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/shiJuSubmit",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String shiJuSubmit(HttpServletRequest request, HttpSession session, CapitalFlow cf, @RequestParam("files") MultipartFile[] files) {
+        //获取当前用户
+        User user = (User)session.getAttribute("user");
+        //取出来当前用户的姓名
+        if( user!=null ){
+            cf.setCaiwuchuliren( user.getName() );
+        }
+        cf.setStatus("市局规划科通知区县");
+        Map<String,Object> mapCondition = new HashMap();
+        mapCondition.put("capitalFlow",cf);
+        mapCondition.put("files",files);
+        mapCondition.put("request",request);
+        //在这里把条件给到文件进行存储，然后把文件的url存储
+        Map<String,Object> map = capitalFlowServiceImp.shiJuSubmit(mapCondition);
+        String result = new Gson().toJson(map);
+        return result;
+    }
+
 
     /**
      * 财务科点击了编辑之后的提交按钮

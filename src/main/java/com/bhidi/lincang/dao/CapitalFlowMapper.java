@@ -9,9 +9,11 @@ import java.util.Map;
 public interface CapitalFlowMapper {
     int submitData(CapitalFlow cf);
 
-    CapitalFlow queryCatipalDataById(String id);
+    CapitalFlow queryCapitalDataById(String id);
 
     int updateCatipalDataById(Map<String, String> map);
 
     String selectLastCapitalFlowId();
+
+    int updateCapitalDataByCapitalFlow(CapitalFlow cf);
 }

@@ -8,59 +8,97 @@
         INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,quxianshenqingren,report_reason)
         VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},#{quxianshenqingren},#{report_reason})
     </insert >
-    <!--CapitalFlow queryCatipalDataById(String id);-->
-    <select  id="queryCatipalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
-        SELECT IFNULL(id,'') AS id,
-         IFNULL(title,'') AS title,
-         IFNULL(create_time,'') AS create_time,
-         IFNULL(report_person,'') AS report_person,
-         IFNULL(report_reason,'') AS report_reason,
-         IFNULL(report_quarter,'') AS report_quarter,
-         IFNULL(report_text,'') AS report_text,
-         IFNULL(report_failname,'') AS report_failname,
-         IFNULL(initiatorclass,'') AS initiatorclass,
-         IFNULL(status,'') AS status,
-         IFNULL(money_source,'') AS money_source,
-         IFNULL(arrival_time,'') AS arrival_time,
-         IFNULL(amount,'') AS amount,
-         IFNULL(finance_time,'') AS finance_time,
-         IFNULL(toarea_time,'') AS toarea_time,
-         IFNULL(areaname,'') AS areaname,
-         IFNULL(text,'') AS text,
-         IFNULL(replytext,'') AS replytext,
-         IFNULL(dealtext,'') AS dealtext,
-         IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
-         IFNULL(guihuakeshenqing,'') AS guihuakeshenqing,
-         IFNULL(quxianshenqingren,'') AS quxianshenqingren,
-         IFNULL(caiwuchuliren,'') AS caiwuchuliren,
-         IFNULL(guihuachuliren,'') AS guihuachuliren,
-         IFNULL(guihuapifuren,'') AS guihuapifuren,
-         IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
-         IFNULL(quxianbaocunren,'') AS quxianbaocunren,
-         IFNULL(quxiantijiaoren,'') AS quxiantijiaoren
+    <!--CapitalFlow queryCapitalDataById(String id);-->
+    <select  id="queryCapitalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
+        SELECT IFNULL(id,0) AS id,
+            IFNULL(capitalflowid,'')AS capitalflowid,
+            IFNULL(title,'') AS title,
+            IFNULL(report_person,'') AS report_person,
+            IFNULL(report_quarter,'') AS report_quarter,
+            IFNULL(report_text,'') AS report_text,
+            IFNULL(report_attachment,'')AS report_attachment,
+            IFNULL(guihuakeshenqingperson,'') AS guihuakeshenqingperson,
+            IFNULL(create_time,'') AS create_time,
+            IFNULL(initiatorclass,'') AS initiatorclass,
+            IFNULL(status,'') AS status,
+            IFNULL(money_source,'') AS money_source,
+            IFNULL(arrival_time,'') AS arrival_time,
+            IFNULL(amount,'') AS amount,
+            IFNULL(caiwuchuliren,'') AS caiwuchuliren,
+            IFNULL(finance_time,'') AS finance_time,
+            IFNULL(areaname,'') AS areaname,
+            IFNULL(areanamedelete,'') AS areanamedelete,
+            IFNULL(text,'') AS text,
+
+            IFNULL(toarea_time,'') AS toarea_time,
+            IFNULL(replytext,'') AS replytext,
+            IFNULL(dealtext,'') AS dealtext,
+            IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
+            IFNULL(report_reason,'') AS report_reason,
+            IFNULL(quxianshenqingren,'') AS quxianshenqingren,
+            IFNULL(guihuachuliren,'') AS guihuachuliren,
+            IFNULL(guihuapifuren,'') AS guihuapifuren,
+            IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
+            IFNULL(quxianbaocunren,'') AS quxianbaocunren,
+            IFNULL(quxiantijiaoren,'') AS quxiantijiaoren
          FROM capitalflow WHERE id = #{id}
     </select >
     <!--int updateCatipalDataById(Map<String, String> map);-->
     <update  id="updateCatipalDataById" parameterType="Map">
         UPDATE capitalflow
         <trim prefix="set" suffixOverrides=",">
-            <if test="create_time!=null">create_time = #{create_time},</if>
+            <if test="title!=null">title = #{title},</if>
             <if test="report_person!=null">report_person = #{report_person},</if>
-            <if test="report_reason!=null">report_reason = #{report_reason},</if>
             <if test="report_quarter!=null">report_quarter = #{report_quarter},</if>
             <if test="report_text!=null">report_text = #{report_text},</if>
-            <if test="report_failname!=null">report_failname = #{report_failname},</if>
             <if test="initiatorclass!=null">initiatorclass = #{initiatorclass},</if>
             <if test="status!=null">status = #{status},</if>
+            <if test="create_time!=null">create_time = #{create_time},</if>
             <if test="money_source!=null">money_source = #{money_source},</if>
             <if test="arrival_time!=null">arrival_time = #{arrival_time},</if>
             <if test="amount!=null">amount = #{amount},</if>
             <if test="finance_time!=null">finance_time = #{finance_time},</if>
-            <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
             <if test="areaname!=null">areaname = #{areaname},</if>
+            <if test="areanamedelete!=null">areanamedelete = #{areanamedelete},</if>
             <if test="text!=null">text = #{text},</if>
+
+            <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
             <if test="replytext!=null">replytext = #{replytext},</if>
             <if test="dealtext!=null">dealtext = #{dealtext},</if>
+            <if test="report_reason!=null">report_reason = #{report_reason},</if>
+            <if test="caiwuchuliren!=null">caiwuchuliren = #{caiwuchuliren},</if>
+            <if test="guihuachuliren!=null">guihuachuliren = #{guihuachuliren},</if>
+            <if test="guihuapifuren!=null">guihuapifuren = #{guihuapifuren},</if>
+            <if test="caiwuzhuanzhangren!=null">caiwuzhuanzhangren = #{caiwuzhuanzhangren},</if>
+            <if test="quxianbaocunren!=null">quxianbaocunren = #{quxianbaocunren},</if>
+            <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
+            <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
+        </trim>
+        WHERE id = #{id}
+    </update >
+    <!--int updateCapitalDataByCapitalFlow(CapitalFlow cf);-->
+    <update  id="updateCapitalDataByCapitalFlow" parameterType="com.bhidi.lincang.bean.CapitalFlow">
+        UPDATE capitalflow
+        <trim prefix="set" suffixOverrides=",">
+            <if test="title!=null">title = #{title},</if>
+            <if test="report_person!=null">report_person = #{report_person},</if>
+            <if test="report_quarter!=null">report_quarter = #{report_quarter},</if>
+            <if test="report_text!=null">report_text = #{report_text},</if>
+            <if test="initiatorclass!=null">initiatorclass = #{initiatorclass},</if>
+            <if test="status!=null">status = #{status},</if>
+            <if test="create_time!=null">create_time = #{create_time},</if>
+            <if test="money_source!=null">money_source = #{money_source},</if>
+            <if test="arrival_time!=null">arrival_time = #{arrival_time},</if>
+            <if test="amount!=null">amount = #{amount},</if>
+            <if test="finance_time!=null">finance_time = #{finance_time},</if>
+            <if test="areaname!=null">areaname = #{areaname},</if>
+            <if test="areanamedelete!=null">areanamedelete = #{areanamedelete},</if>
+            <if test="text!=null">text = #{text},</if>
+
+            <if test="toarea_time!=null">toarea_time = #{toarea_time},</if>
+            <if test="replytext!=null">replytext = #{replytext},</if>
+            <if test="dealtext!=null">dealtext = #{dealtext},</if>
+            <if test="report_reason!=null">report_reason = #{report_reason},</if>
             <if test="caiwuchuliren!=null">caiwuchuliren = #{caiwuchuliren},</if>
             <if test="guihuachuliren!=null">guihuachuliren = #{guihuachuliren},</if>
             <if test="guihuapifuren!=null">guihuapifuren = #{guihuapifuren},</if>

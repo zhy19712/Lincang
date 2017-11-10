@@ -23,8 +23,8 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.submitData(map);
     }*/
 
-    public CapitalFlow getCatipalDataById(String id) {
-        return capitalFlowMapper.queryCatipalDataById(id);
+    public CapitalFlow getCapitalDataById(String id) {
+        return capitalFlowMapper.queryCapitalDataById(id);
     }
 
     public int setCatipalDataById(Map<String, String> map){
@@ -32,7 +32,7 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
     }
 
     /**
-     *获取sendfile的sendfileid
+     *获取capitalFlow的capitalFlowid
      * @return
      */
     public String getLastCapitalFlowId() {
@@ -94,6 +94,48 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         mapResult.put("result","success");
         return mapResult;
     }
+
+    public Map<String, Object> shiJuSubmit(Map<String, Object> mapCondition) {
+        CapitalFlow cf = (CapitalFlow)mapCondition.get("capitalFlow");
+        MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
+        HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
+        String str = "";
+        List<String> fileUploadList =  multipleUpload(files,request);
+        Date now = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        cf.setFinance_time(sdf.format(now));
+
+        for( int i = 0;i < fileUploadList.size();i++ ) {
+            if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
+                for( int t = 0;t < fileUploadList.size();t++ ) {
+                    delete(fileUploadList.get(t));
+                }
+            }
+        }
+        //结果的map
+        Map<String,Object> mapResult = new HashMap();
+        for( int i = 0;i < fileUploadList.size();i++ ){
+            if( fileUploadList.get(i).contains("文件上传失败！")||fileUploadList.get(i).contains("文件为空！") ){
+                mapResult.put("path","");
+                mapResult.put("sendfileid","");
+                mapResult.put("result",fileUploadList.get(i));
+                return mapResult;
+            } else {
+                if( i < (fileUploadList.size() -1) ){
+                    str += fileUploadList.get(i) + ",";
+                } else {
+                    str += fileUploadList.get(i);
+                }
+            }
+        }
+        cf.setCaiwuattachment(str);
+        int as = capitalFlowMapper.updateCapitalDataByCapitalFlow(cf);
+        mapResult.put("path",str);
+        //mapResult.put("capitalFlowId",capitalFlowId);
+        mapResult.put("result","success");
+        return mapResult;
+    }
+
     /**
      * 删除文件
      */
