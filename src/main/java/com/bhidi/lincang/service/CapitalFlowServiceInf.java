@@ -10,7 +10,7 @@ public interface CapitalFlowServiceInf {
     CapitalFlow getCapitalDataById(String id);
 
 
-    int setCatipalDataById(Map<String, String> map);
+    int setCatipalDataById(Map<String,Object> map);
 
     Map<String,Object> saveCapitalFlow(Map<String, Object> mapCondition);
 

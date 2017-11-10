@@ -27,7 +27,7 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.queryCapitalDataById(id);
     }
 
-    public int setCatipalDataById(Map<String, String> map){
+    public int setCatipalDataById(Map<String,Object> map){
         return capitalFlowMapper.updateCatipalDataById(map);
     }
 

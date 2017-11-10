@@ -18,17 +18,17 @@ public class CapitalFlow {
     private String caiwuattachment;
     private String caiwuchuliren;
     private String finance_time;
-
-
-    private String toarea_time;
     private String areaname;
     private String areanamedelete;
     private String text;
+    private String guihuachuliren;
+    private String guihuakechulitime;
+
+    private String toarea_time;
     private String replytext;
     private String dealtext;
     private String capitalflowinstruction;
     private String quxianshenqingren;
-    private String guihuachuliren;
     private String guihuapifuren;
     private String caiwuzhuanzhangren;
     private String quxianbaocunren;
@@ -47,7 +47,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String report_reason, String initiatorclass, String status, String money_source, String arrival_time, String amount, String finance_time, String toarea_time, String areaname, String areanamedelete, String text, String replytext, String dealtext, String capitalflowinstruction, String quxianshenqingren, String caiwuchuliren, String guihuachuliren, String guihuapifuren, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren) {
+    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String initiatorclass, String status, String money_source, String arrival_time, String amount, String caiwuattachment, String caiwuchuliren, String finance_time, String areaname, String areanamedelete, String text, String guihuachuliren, String guihuakechulitime, String toarea_time, String replytext, String dealtext, String capitalflowinstruction, String quxianshenqingren, String guihuapifuren, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren, String report_reason) {
         this.id = id;
         this.capitalflowid = capitalflowid;
         this.title = title;
@@ -57,27 +57,37 @@ public class CapitalFlow {
         this.report_attachment = report_attachment;
         this.guihuakeshenqingperson = guihuakeshenqingperson;
         this.create_time = create_time;
-        this.report_reason = report_reason;
         this.initiatorclass = initiatorclass;
         this.status = status;
         this.money_source = money_source;
         this.arrival_time = arrival_time;
         this.amount = amount;
+        this.caiwuattachment = caiwuattachment;
+        this.caiwuchuliren = caiwuchuliren;
         this.finance_time = finance_time;
-        this.toarea_time = toarea_time;
         this.areaname = areaname;
         this.areanamedelete = areanamedelete;
         this.text = text;
+        this.guihuachuliren = guihuachuliren;
+        this.guihuakechulitime = guihuakechulitime;
+        this.toarea_time = toarea_time;
         this.replytext = replytext;
         this.dealtext = dealtext;
         this.capitalflowinstruction = capitalflowinstruction;
         this.quxianshenqingren = quxianshenqingren;
-        this.caiwuchuliren = caiwuchuliren;
-        this.guihuachuliren = guihuachuliren;
         this.guihuapifuren = guihuapifuren;
         this.caiwuzhuanzhangren = caiwuzhuanzhangren;
         this.quxianbaocunren = quxianbaocunren;
         this.quxiantijiaoren = quxiantijiaoren;
+        this.report_reason = report_reason;
+    }
+
+    public String getGuihuakechulitime() {
+        return guihuakechulitime;
+    }
+
+    public void setGuihuakechulitime(String guihuakechulitime) {
+        this.guihuakechulitime = guihuakechulitime;
     }
 
     public int getId() {
@@ -340,26 +350,29 @@ public class CapitalFlow {
                 ", report_attachment='" + report_attachment + '\'' +
                 ", guihuakeshenqingperson='" + guihuakeshenqingperson + '\'' +
                 ", create_time='" + create_time + '\'' +
-                ", report_reason='" + report_reason + '\'' +
                 ", initiatorclass='" + initiatorclass + '\'' +
                 ", status='" + status + '\'' +
                 ", money_source='" + money_source + '\'' +
                 ", arrival_time='" + arrival_time + '\'' +
                 ", amount='" + amount + '\'' +
+                ", caiwuattachment='" + caiwuattachment + '\'' +
+                ", caiwuchuliren='" + caiwuchuliren + '\'' +
                 ", finance_time='" + finance_time + '\'' +
-                ", toarea_time='" + toarea_time + '\'' +
                 ", areaname='" + areaname + '\'' +
+                ", areanamedelete='" + areanamedelete + '\'' +
                 ", text='" + text + '\'' +
+                ", guihuachuliren='" + guihuachuliren + '\'' +
+                ", guihuakechulitime='" + guihuakechulitime + '\'' +
+                ", toarea_time='" + toarea_time + '\'' +
                 ", replytext='" + replytext + '\'' +
                 ", dealtext='" + dealtext + '\'' +
                 ", capitalflowinstruction='" + capitalflowinstruction + '\'' +
                 ", quxianshenqingren='" + quxianshenqingren + '\'' +
-                ", caiwuchuliren='" + caiwuchuliren + '\'' +
-                ", guihuachuliren='" + guihuachuliren + '\'' +
                 ", guihuapifuren='" + guihuapifuren + '\'' +
                 ", caiwuzhuanzhangren='" + caiwuzhuanzhangren + '\'' +
                 ", quxianbaocunren='" + quxianbaocunren + '\'' +
                 ", quxiantijiaoren='" + quxiantijiaoren + '\'' +
+                ", report_reason='" + report_reason + '\'' +
                 '}';
     }
 }
