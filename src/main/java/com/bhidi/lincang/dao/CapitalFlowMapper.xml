@@ -127,7 +127,7 @@
             <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
             <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
-        WHERE capitalflowid = #{id}
+        WHERE capitalflowid = #{capitalflowid}
     </update >
     <!--String selectLastCapitalFlowId();-->
     <select id="selectLastCapitalFlowId" resultType="String">

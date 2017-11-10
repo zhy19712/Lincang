@@ -35,8 +35,9 @@ public class Test {
         System.out.println(file.getName());
         System.out.println(file.length());
 */
-
-System.out.println("asd".length());
+        int last = "功能列表V1.4.xlsx".lastIndexOf(".");
+        System.out.println(last);
+        System.out.println("功能列表V1.4.xlsx".substring(0,8));
     }
 
 }
