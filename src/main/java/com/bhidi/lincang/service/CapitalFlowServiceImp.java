@@ -136,6 +136,62 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return mapResult;
     }
 
+    public Map<String, Object> quxianSaveCapitalFlow(Map<String, Object> mapCondition) {
+        CapitalFlow cf = (CapitalFlow)mapCondition.get("capitalFlow");
+        MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
+        HttpServletRequest request = (HttpServletRequest)mapCondition.get("request");
+        String str = "";
+        List<String> fileUploadList =  multipleUpload(files,request);
+        Date now = new Date();
+        SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String today = sdf1.format(now);
+        String lastCapitalFlowId = getLastCapitalFlowId();
+        String capitalFlowId = "";
+        if(lastCapitalFlowId==null || lastCapitalFlowId==""){
+            capitalFlowId = today+"0001"+"";
+        } else {
+            if( today.equals(lastCapitalFlowId.substring(0,8)) ){
+                BigDecimal bd = new BigDecimal(lastCapitalFlowId);
+                capitalFlowId = bd.add(new BigDecimal(1)).toString();
+            } else {
+                capitalFlowId = today+"0001"+"";
+            }
+        }
+        cf.setCapitalflowid(capitalFlowId);
+        cf.setQuxianshenqingtime(sdf.format(now));
+
+        for( int i = 0;i < fileUploadList.size();i++ ) {
+            if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
+                for( int t = 0;t < fileUploadList.size();t++ ) {
+                    delete(fileUploadList.get(t));
+                }
+            }
+        }
+        //结果的map
+        Map<String,Object> mapResult = new HashMap();
+        for( int i = 0;i < fileUploadList.size();i++ ){
+            if( fileUploadList.get(i).contains("文件上传失败！")||fileUploadList.get(i).contains("文件为空！") ){
+                mapResult.put("path","");
+                mapResult.put("sendfileid","");
+                mapResult.put("result",fileUploadList.get(i));
+                return mapResult;
+            } else {
+                if( i < (fileUploadList.size() -1) ){
+                    str += fileUploadList.get(i) + ",";
+                } else {
+                    str += fileUploadList.get(i);
+                }
+            }
+        }
+        cf.setQuxianattachment(str);
+        int as = capitalFlowMapper.submitData(cf);
+        mapResult.put("path",str);
+        mapResult.put("capitalFlowId",capitalFlowId);
+        mapResult.put("result","success");
+        return mapResult;
+    }
+
     /**
      * 删除文件
      */

@@ -5,8 +5,11 @@
     <!--int submitData(CapitalFlow cf);-->
     <insert  id="submitData" parameterType="com.bhidi.lincang.bean.CapitalFlow" useGeneratedKeys="true"
     keyProperty="id">
-        INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,quxianshenqingren,report_reason)
-        VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},#{quxianshenqingren},#{report_reason})
+        INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,
+                                 titlequxian,shenqingren,report_reason,quxianattachment,quxianshenqingren,quxianshenqingren,quxianshenqingtime)
+        VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},
+                                 #{titlequxian},#{shenqingren},#{report_reason},#{quxianattachment},
+                #{quxianshenqingren},#{quxianshenqingren},#{quxianshenqingtime})
     </insert >
     <!--CapitalFlow queryCapitalDataById(String id);-->
     <select  id="queryCapitalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
@@ -32,10 +35,17 @@
             IFNULL(text,'') AS text,
 
             IFNULL(toarea_time,'') AS toarea_time,
+
+            IFNULL(titlequxian,'') AS titlequxian,
+            IFNULL(shenqingren,'') AS shenqingren,
+            IFNULL(report_reason,'') AS report_reason,
+            IFNULL(quxianattachment,'') AS quxianattachment,
+            IFNULL(quxianshenqingren,'') AS quxianshenqingren,
+            IFNULL(quxianshenqingtime,'') AS quxianshenqingtime,
+
             IFNULL(replytext,'') AS replytext,
             IFNULL(dealtext,'') AS dealtext,
             IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
-            IFNULL(report_reason,'') AS report_reason,
             IFNULL(quxianshenqingren,'') AS quxianshenqingren,
             IFNULL(guihuachuliren,'') AS guihuachuliren,
             IFNULL(guihuapifuren,'') AS guihuapifuren,
