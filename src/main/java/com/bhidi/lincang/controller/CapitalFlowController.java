@@ -25,36 +25,12 @@ public class CapitalFlowController {
     CapitalFlowServiceImp capitalFlowServiceImp;
 
     /**
-     * 提交申请按钮
+     * 市局提交申请按钮
      * @return
      */
     @ResponseBody
     @RequestMapping(value="/submitDataOfCapital",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String submitDataOfCapital(HttpServletRequest request, HttpSession session, CapitalFlow cf, @RequestParam("files") MultipartFile[] files) {
-        //在提交的时候，userstatus就是数据库中的发起人类别，其他的时候就不是了。
-        /*SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date now = new Date();
-        String create_time = format.format(now);
-        Map<String,String> map = new HashMap();
-        map.put("create_time",create_time);
-        map.put("report_person",report_person == null?"":report_person);
-        map.put("report_reason",report_reason == null?"":report_reason);
-        map.put("report_quarter",report_quarter == null?"":report_quarter);
-        map.put("report_text",report_person == null?"":report_text);
-        map.put("title",title == null?"":title);
-        //规划科申请人
-        map.put("guihuakeshenqing",username == null?"":username);
-        //区县申请人
-        map.put("quxianshenqingren",username == null?"":username);
-        map.put("initiatorclass",userstatus == null?"":userstatus);
-        if( "3".equals(userstatus) ){
-            map.put("status","市局规划科批复中");
-
-        } else {
-            map.put("status","市局财务科处理中");
-        }
-        int result = capitalFlowServiceImp.submitData(map);
-        return result+"";*/
         //获取当前用户
         User user = (User)session.getAttribute("user");
         //取出来当前用户的姓名
@@ -68,6 +44,29 @@ public class CapitalFlowController {
         mapCondition.put("request",request);
         //在这里把条件给到文件进行存储，然后把文件的url存储
         Map<String,Object> map = capitalFlowServiceImp.saveCapitalFlow(mapCondition);
+        String result = new Gson().toJson(map);
+        return result;
+    }
+    /**
+     * 区县提交申请按钮
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianSubmitDataOfCapital",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianSubmitDataOfCapital(HttpServletRequest request, HttpSession session, CapitalFlow cf, @RequestParam("files") MultipartFile[] files) {
+        //获取当前用户
+        User user = (User)session.getAttribute("user");
+        //取出来当前用户的姓名
+        if( user!=null ){
+            cf.setQuxianshenqingren( user.getName() );
+        }
+        cf.setStatus("市局规划科批复");
+        Map<String,Object> mapCondition = new HashMap();
+        mapCondition.put("capitalFlow",cf);
+        mapCondition.put("files",files);
+        mapCondition.put("request",request);
+        //在这里把条件给到文件进行存储，然后把文件的url存储
+        Map<String,Object> map = capitalFlowServiceImp.quxianSaveCapitalFlow(mapCondition);
         String result = new Gson().toJson(map);
         return result;
     }
