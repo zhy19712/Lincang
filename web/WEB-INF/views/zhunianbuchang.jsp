@@ -886,7 +886,7 @@
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
-            {"data": "report_person"},
+            {"data": "guihuakeshenqingperson"},
             {"data": "status"},
             {"data": null}
         ],
@@ -928,7 +928,7 @@
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
-            {"data": "report_person"},
+            {"data": "guihuakeshenqingperson"},
             {"data": "status"},
             {"data": null}
         ],
@@ -971,7 +971,7 @@
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
-            {"data": "report_person"},
+            {"data": "guihuakeshenqingperson"},
             {"data": "status"},
             {"data": null}
         ],

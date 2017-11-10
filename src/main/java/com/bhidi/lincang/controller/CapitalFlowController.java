@@ -58,7 +58,7 @@ public class CapitalFlowController {
         User user = (User)session.getAttribute("user");
         //取出来当前用户的姓名
         if( user!=null ){
-            cf.setQuxianshenqingren( user.getName() );
+            cf.setGuihuakeshenqingperson( user.getName() );
             cf.setShenqingrendept( user.getDept() );
         }
         cf.setStatus("市局规划科批复");
