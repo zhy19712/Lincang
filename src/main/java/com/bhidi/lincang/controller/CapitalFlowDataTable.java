@@ -186,7 +186,7 @@ public class CapitalFlowDataTable {
         }
         //根据功能名字判断状态
         String str = "";
-        if( functionList!=null &functionList.size() > 0 ){
+        if( functionList!=null && functionList.size() > 0 ){
             if(!functionList.contains(14) & !functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& !functionList.contains(23)){
                 str = " AND 1=0";
             }
@@ -394,7 +394,7 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            str = "";
+            str = " AND caiwuchuliren = '"+name+"'";
         }
 
 
