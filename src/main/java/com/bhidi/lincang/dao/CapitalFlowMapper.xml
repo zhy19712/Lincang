@@ -6,10 +6,10 @@
     <insert  id="submitData" parameterType="com.bhidi.lincang.bean.CapitalFlow" useGeneratedKeys="true"
     keyProperty="id">
         INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,
-                                 titlequxian,shenqingren,report_reason,quxianattachment,quxianshenqingren,quxianshenqingren,quxianshenqingtime)
+                                 titlequxian,shenqingren,report_reason,quxianattachment,quxianshenqingren,quxianshenqingtime)
         VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},
                                  #{titlequxian},#{shenqingren},#{report_reason},#{quxianattachment},
-                #{quxianshenqingren},#{quxianshenqingren},#{quxianshenqingtime})
+                #{quxianshenqingren},#{quxianshenqingtime})
     </insert >
     <!--CapitalFlow queryCapitalDataById(String id);-->
     <select  id="queryCapitalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
@@ -51,7 +51,7 @@
             IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
             IFNULL(quxianbaocunren,'') AS quxianbaocunren,
             IFNULL(quxiantijiaoren,'') AS quxiantijiaoren
-         FROM capitalflow WHERE id = #{id}
+         FROM capitalflow WHERE capitalflowid = #{id}
     </select >
     <!--int updateCatipalDataById(Map<String, String> map);-->
     <update  id="updateCatipalDataById" parameterType="Map">
@@ -85,7 +85,7 @@
             <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
             <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
-        WHERE id = #{id}
+        WHERE capitalflowid = #{id}
     </update >
     <!--int updateCapitalDataByCapitalFlow(CapitalFlow cf);-->
     <update  id="updateCapitalDataByCapitalFlow" parameterType="com.bhidi.lincang.bean.CapitalFlow">
@@ -119,7 +119,7 @@
             <if test="quxiantijiaoren!=null">quxiantijiaoren = #{quxiantijiaoren},</if>
             <if test="capitalflowinstruction!=null">capitalflowinstruction = #{capitalflowinstruction},</if>
         </trim>
-        WHERE id = #{id}
+        WHERE capitalflowid = #{id}
     </update >
     <!--String selectLastCapitalFlowId();-->
     <select id="selectLastCapitalFlowId" resultType="String">

@@ -842,7 +842,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
@@ -884,7 +884,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
@@ -927,7 +927,7 @@
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
-            {"data": "id"},
+            {"data": "capitalflowid"},
             {"data": "initiatorclass"},
             {"data": "title"},
             {"data": "create_time"},
@@ -1079,23 +1079,23 @@
     })
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo2').modal('hide');
-//                    $("#money_apply_wdo2 input").val("");
-//                    $("#money_apply_wdo2 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm3").ajaxSubmit(options);
+        var options  = {
+            url:'quxianSubmitDataOfCapital.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#money_apply_wdo2').modal('hide');
+                    $("#money_apply_wdo2 input").val("");
+                    $("#money_apply_wdo2 textarea").val("");
+                }else {
+                    alert(data.result);
+                }
+            }
+        };
+        $("#fileForm3").ajaxSubmit(options);
     });
 
 
