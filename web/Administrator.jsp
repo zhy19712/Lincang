@@ -398,7 +398,7 @@
                     <button type="button" class="close" id="close_update" data-dismiss="modal">×</button>
                     <h3 id="form-kind1">编辑用户</h3>
                 </div>
-                <span id="data_id" style="display: none"></span>
+                <span id="user_id" style="display: none"></span>
 
                 <iframe id="uploadFrame1" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm1" enctype="multipart/form-data"  target="uploadFrame">
@@ -408,9 +408,7 @@
                             <tr>
                                 <td>用户名</td>
                                 <td colspan="3">
-
-                                    <input type="text" name="username" id="username1" class="pull-left" style="width :50%;">
-                                    <span id="usernamePrompt1" class="text-left prompt" >以字母开头,可以字母和数字组合,长度在2个以上</span>
+                                    <input type="text" name="username" id="username1" disabled="disabled" class="pull-left" style="width :50%;">
                                 </td>
                             </tr>
                             <tr>
@@ -566,9 +564,8 @@
                                                                     <li>待处理/已处理事务
                                                                         <ul>
                                                                             <li id="20">市局规划科资金批复功能</li>
-                                                                            <li id="21">市局财务科处理功能</li>
-                                                                            <li id="22">区县接收到账功能</li>
-                                                                            <li id="23">区县记账功能</li>
+                                                                            <li id="21">市局财务科处置处理功能</li>
+                                                                            <li id="23">区县资金流向记录</li>
                                                                             <li id="24">列表查看、搜索功能</li>
                                                                         </ul>
                                                                     </li>
@@ -742,9 +739,8 @@
                                                                     <li>待处理/已处理事务
                                                                         <ul>
                                                                             <li id="20j">市局规划科资金批复功能</li>
-                                                                            <li id="21j">市局财务科处理功能</li>
-                                                                            <li id="22j">区县接收到账功能</li>
-                                                                            <li id="23j">区县记账功能</li>
+                                                                            <li id="21j">市局财务科处置处理功能</li>
+                                                                            <li id="23j">区县资金流向记录</li>
                                                                             <li id="24j">列表查看、搜索功能</li>
                                                                         </ul>
                                                                     </li>
