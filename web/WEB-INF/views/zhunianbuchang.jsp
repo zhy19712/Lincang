@@ -581,7 +581,7 @@
                 </div>
                 <iframe id="uploadFrame3" name="uploadFrame3" style="display:none;"></iframe>
                 <form id = "fileForm3" action="" enctype="multipart/form-data"  target="uploadFrame3">
-                    <input type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
+                    <inpu id="initiatorclass2" type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
@@ -1002,13 +1002,14 @@
             }
         })
         $("#my1filesUpload span").remove();
+        $("#initiatorclass2").val("区县资金申请");
         $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
-//        $('#money_apply_wdo2').modal('show');
+        $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
 //        $('#final_handle').modal('show');
 //        $('#money_apply_wdo2').modal('show');
-        $('#final_handle2').modal('show');
+//        $('#final_handle2').modal('show');
     }
 
 
@@ -1175,7 +1176,32 @@
                 $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
                 $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
                 //区县资金申请信息
-                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.)
+                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.titlequxian);
+                $("#final_handle2 tr:nth-child(2) td:nth-child(2) input").val(mydata.shenqingren);
+                $("#final_handle2 tr:nth-child(2) td:nth-child(4) input").val(mydata.report_reason);
+                $("#final_handle2 tr:nth-child(3) td:nth-child(2) input").empty();
+//                if(mydata.report_attachment != ""){
+//                    file_arr = mydata.report_attachment.split(",");
+//                    $.each(file_arr,function (i,n) {
+//                        var start = n.lastIndexOf("\\") + 1;
+//                        var end = n.lastIndexOf("-");
+//                        var filekind_index = n.lastIndexOf(".");
+//                        var str = n.substring(start,end);
+//                        var filekind = n.substring(filekind_index);
+//                        str = str + filekind;
+//                        var files = "";
+//                        files  += ""
+//                            + "<div>"
+//                            + "<iframe name='downloadFrame1' style='display:none;'></iframe>"
+//                            + "<form action='/file/download.do' method='get' target='downloadFrame1'>"
+//                            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+//                            + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
+//                            + "<button type='submit'>下载</button>"
+//                            + "</form>"
+//                            + "</div>"
+//                        $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
+//                    });
+//                }
             }
         })
         if(kind == "查看"){
