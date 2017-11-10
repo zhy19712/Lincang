@@ -51,11 +51,15 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         String today = sdf1.format(now);
         String lastCapitalFlowId = getLastCapitalFlowId();
         String capitalFlowId = "";
-        if( today.equals(lastCapitalFlowId.substring(0,8)) ){
-            BigDecimal bd = new BigDecimal(lastCapitalFlowId);
-            capitalFlowId = bd.add(new BigDecimal(1)).toString();
-        } else {
+        if(lastCapitalFlowId==null || lastCapitalFlowId==""){
             capitalFlowId = today+"0001"+"";
+        } else {
+            if( today.equals(lastCapitalFlowId.substring(0,8)) ){
+                BigDecimal bd = new BigDecimal(lastCapitalFlowId);
+                capitalFlowId = bd.add(new BigDecimal(1)).toString();
+            } else {
+                capitalFlowId = today+"0001"+"";
+            }
         }
         cf.setCapitalflowid(capitalFlowId);
         cf.setCreate_time(sdf.format(now));

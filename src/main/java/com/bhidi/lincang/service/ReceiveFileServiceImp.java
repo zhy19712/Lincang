@@ -106,14 +106,16 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         String today = sdf1.format(now);
         String lastReceiveFileId = getLastReceiveFileId();
         String receivefileid = "";
-        if( today.equals(lastReceiveFileId.substring(0,8)) ){
-            BigDecimal bd = new BigDecimal(lastReceiveFileId);
-            receivefileid = bd.add(new BigDecimal(1)).toString();
-        } else {
+        if(lastReceiveFileId==null || lastReceiveFileId==""){
             receivefileid = today+"0001"+"";
+        } else {
+            if( today.equals(lastReceiveFileId.substring(0,8)) ){
+                BigDecimal bd = new BigDecimal(lastReceiveFileId);
+                receivefileid = bd.add(new BigDecimal(1)).toString();
+            } else {
+                receivefileid = today+"0001"+"";
+            }
         }
-
-
         rfaa.setReceivefileid(receivefileid);
         rfaa.setReveivereregistertime(sdf.format(now));
 
