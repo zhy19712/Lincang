@@ -361,28 +361,28 @@
                     <h3></h3>
                 </div>
                     <div class="modal-body">
-                        <div class="mystep_container" style="width: 100%;padding-bottom: 20px;">
-                            <div class="step-body" class="mystep" style="width:80%;margin: 0 auto;">
-                                <div class="step-header">
-                                    <ul>
-                                        <li><p>办公室收文登记</p></li>
-                                        <li><p>办公室处理文件</p></li>
-                                        <li><p>签批</p></li>
-                                        <li><p>处理处置</p></li>
-                                        <li><p>办公室归档</p></li>
-                                        <li><p>结束</p></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="mystep_user" style="width:80%;margin: 0 auto;">
-                                <div class="user1"></div>
-                                <div class="user2"></div>
-                                <div class="user3"></div>
-                                <div class="user4"></div>
-                                <div class="user5"></div>
-                                <div class="user6"></div>
-                            </div>
-                        </div>
+                        <%--<div class="mystep_container" style="width: 100%;padding-bottom: 20px;">--%>
+                            <%--<div class="step-body" class="mystep" style="width:80%;margin: 0 auto;">--%>
+                                <%--<div class="step-header">--%>
+                                    <%--<ul>--%>
+                                        <%--<li><p>办公室收文登记</p></li>--%>
+                                        <%--<li><p>办公室处理文件</p></li>--%>
+                                        <%--<li><p>签批</p></li>--%>
+                                        <%--<li><p>处理处置</p></li>--%>
+                                        <%--<li><p>办公室归档</p></li>--%>
+                                        <%--<li><p>结束</p></li>--%>
+                                    <%--</ul>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                            <%--<div class="mystep_user" style="width:80%;margin: 0 auto;">--%>
+                                <%--<div class="user1"></div>--%>
+                                <%--<div class="user2"></div>--%>
+                                <%--<div class="user3"></div>--%>
+                                <%--<div class="user4"></div>--%>
+                                <%--<div class="user5"></div>--%>
+                                <%--<div class="user6"></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
@@ -403,16 +403,17 @@
                             </tr>
                             <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
                             <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
+                                <input id="myid" type="text" name="id" value="" style="display: none">
                                 <table class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" name="money_source"></td>
                                             <td>到款时间</td>
-                                            <td><input type="text" id="time2" readonly="readonly"></td>
+                                            <td><input type="text" id="time2" readonly="readonly" name="arrival_time"></td>
                                         </tr>
                                         <tr>
                                             <td>到款金额</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" name="amount"></td>
                                             <td>上传附件</td>
                                             <td><div id="myfilesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
                                                 <a href="#" id="myadd_1" onclick="myadd_click_file(1)">添加附件</a>
@@ -875,7 +876,6 @@
     });
 
     //待处理
-    var sta1 = "市局规划科处理中";
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
             url: "/capitalFlowWait.do",
@@ -919,10 +919,9 @@
     });
 
     //已处理
-    var sta2 = "已通知区县";
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do?capitalstatus=" + encodeURI(encodeURI(sta2)),
+            url: "/pendingCapitalFlow.do",
             async:false
         },
         "order": [[1, 'desc']],
@@ -1074,17 +1073,32 @@
     });
 
 
-
-
-
-
-
-    function detail_office(that) {
-        $('#form_office').modal('show');
-    }
-
-    function flow(that){
-        $('#flow').modal('show');
+    //编辑查看按钮
+    var id,status;
+    function edit(that) {
+        id = $(that).parent("td").parent("tr").children("td:first-child").text();
+        status = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        var kind = $(that).val();
+//        $.ajax({
+//            url: "",
+//            async: false,
+//            type: "post",
+//            dataType: "json",
+//            data: {id:id},
+//            success: function (data) {
+//                console.log(data)
+//            }
+//        })
+        if(kind == "查看"){
+            $("a.btn-primary").css("display","none");
+        }else if(kind == "编辑"){
+            $("a.btn-primary").css("display","inline-block");
+        }
+        if(status == "市局财务科办理"){
+            $('#caiwu_handle').modal('show');
+            $("#myid").val(id);
+            console.log($("#myid").val())
+        }
     }
 
 
