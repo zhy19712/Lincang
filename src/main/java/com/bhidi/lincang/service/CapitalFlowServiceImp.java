@@ -159,7 +159,7 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
             }
         }
         cf.setCapitalflowid(capitalFlowId);
-        cf.setQuxianshenqingtime(sdf.format(now));
+        cf.setCreate_time(sdf.format(now));
 
         for( int i = 0;i < fileUploadList.size();i++ ) {
             if (fileUploadList.get(i).contains("文件上传失败！") || fileUploadList.get(i).contains("文件为空！")) {
