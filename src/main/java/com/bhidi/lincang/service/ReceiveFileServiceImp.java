@@ -171,11 +171,12 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         String pathpath = "";
         //文件名字
         String fileName =  file.getOriginalFilename();
-        System.out.println(fileName);
-        System.out.println(fileName.split("\\.").length);
+
+        int last = fileName.lastIndexOf(".");
 
         //处理过的文件名字
-        String fileNameSave = fileName.split("\\.")[0] + "-" + new Date().getTime() + "."+fileName.split("\\.")[1];
+        String fileNameSave = fileName.substring(0,last) + "-" + new Date().getTime() + "."+fileName.substring(last+1);
+
         if (!file.isEmpty()) {
             try {
                 //文件存储路径

@@ -424,7 +424,7 @@
                             </tr>
                             <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
                             <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
-                                <input id="myid" type="text" name="id" value="" style="display: none">
+                                <input id="myid" type="text" name="capitalflowid" value="" style="display: none">
                                 <table class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>

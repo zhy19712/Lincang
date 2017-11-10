@@ -49,7 +49,7 @@ public class CapitalFlowDataTable {
         }
         //根据功能名字判断状态
         String str = "";
-        if( functionList!=null &functionList.size() > 0 ){
+        if( functionList!=null && functionList.size() > 0 ){
             if(!functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
                 str = "1=0";
             }
@@ -399,7 +399,6 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            System.out.println(name);
             str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"' OR quxianshenqingren = '"+name+"' OR guihuapifuren = '"+name+"' OR caiwuzhuanzhangren = '"+name+"'OR quxianbaocunren LIKE '%"+name+"%'OR quxiantijiaoren = '"+name+"')";
         }
 
