@@ -1003,12 +1003,12 @@
         })
         $("#my1filesUpload span").remove();
         $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
-//        $('#money_apply_wdo2').modal('show');
+        $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
 //        $('#final_handle').modal('show');
 //        $('#money_apply_wdo2').modal('show');
-        $('#final_handle2').modal('show');
+//        $('#final_handle2').modal('show');
     }
 
 
@@ -1082,23 +1082,23 @@
     })
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {
-//        var options  = {
-//            url:'reveiceFileRegistration.do',
-//            type:'post',
-//            success:function(data)
-//            {
-//                console.log(data);
-//                if(data.result == "success"){
-//                    alert("提交成功");
-//                    $('#money_apply_wdo2').modal('hide');
-//                    $("#money_apply_wdo2 input").val("");
-//                    $("#money_apply_wdo2 textarea").val("");
-//                }else {
-//                    alert(data.result);
-//                }
-//            }
-//        };
-//        $("#fileForm3").ajaxSubmit(options);
+        var options  = {
+            url:'quxianSubmitDataOfCapital.do',
+            type:'post',
+            success:function(data)
+            {
+                console.log(data);
+                if(data.result == "success"){
+                    alert("提交成功");
+                    $('#money_apply_wdo2').modal('hide');
+                    $("#money_apply_wdo2 input").val("");
+                    $("#money_apply_wdo2 textarea").val("");
+                }else {
+                    alert(data.result);
+                }
+            }
+        };
+        $("#fileForm3").ajaxSubmit(options);
     });
 
 
@@ -1175,7 +1175,7 @@
                 $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
                 $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
                 //区县资金申请信息
-                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.)
+                //$("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.)
             }
         })
         if(kind == "查看"){

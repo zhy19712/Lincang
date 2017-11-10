@@ -6,10 +6,10 @@
     <insert  id="submitData" parameterType="com.bhidi.lincang.bean.CapitalFlow" useGeneratedKeys="true"
     keyProperty="id">
         INSERT INTO capitalflow (capitalflowid,title,report_person,report_quarter,report_text,report_attachment,guihuakeshenqingperson,create_time,initiatorclass,status,
-                                 titlequxian,shenqingren,report_reason,quxianattachment,quxianshenqingren,quxianshenqingren,quxianshenqingtime)
+                                 titlequxian,shenqingren,report_reason,quxianattachment,quxianshenqingren,quxianshenqingtime)
         VALUES( #{capitalflowid},#{title},#{report_person},#{report_quarter},#{report_text},#{report_attachment},#{guihuakeshenqingperson},#{create_time},#{initiatorclass},#{status},
                                  #{titlequxian},#{shenqingren},#{report_reason},#{quxianattachment},
-                #{quxianshenqingren},#{quxianshenqingren},#{quxianshenqingtime})
+                #{quxianshenqingren},#{quxianshenqingtime})
     </insert >
     <!--CapitalFlow queryCapitalDataById(String id);-->
     <select  id="queryCapitalDataById" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow" >
