@@ -96,6 +96,7 @@ public class CapitalFlowController {
         //取出来当前用户的姓名
         if( user!=null ){
             cf.setCaiwuchuliren( user.getName() );
+            cf.setShenqingrendept( user.getDept() );
         }
         cf.setStatus("市局规划科通知区县");
         Map<String,Object> mapCondition = new HashMap();
@@ -156,6 +157,148 @@ public class CapitalFlowController {
         String result = new Gson().toJson(mapResult);
         return result;
     }
+    /**
+     * 区县提交的申请---规划科批复---点击了编辑之后的提交按钮
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianGuiHuaSetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianGuiHuaSetDataById(String id,HttpServletRequest request,
+                              @RequestParam(value="replytext",required=false) String replytext){
+        User user = (User)request.getSession().getAttribute("user");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        String finance_time = format.format(now);
+        Map<String,Object> map = new HashMap();
+        map.put("id",id);
+        map.put("replytext",replytext==null?"":replytext);
+        map.put("guihuapifuren",user.getName());
+        map.put("guihuapifutime",format.format(now));
+        map.put("status","市局财务科处置办理");
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 区县提交的申请---财务科处置办理---点击了编辑之后的提交按钮
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianCaiWuSetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianCaiWuSetDataById(String id,HttpServletRequest request,
+                                          @RequestParam(value="dealtext",required=false) String dealtext){
+        User user = (User)request.getSession().getAttribute("user");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        Map<String,Object> map = new HashMap();
+        map.put("id",id);
+        map.put("dealtext",dealtext==null?"":dealtext);
+        map.put("caiwuzhuanzhangren",user.getName());
+        map.put("caiwuzhuangzhangtime",format.format(now));
+        map.put("status","区县资金流向记录");
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 区县提交的申请---保存
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianSaveSetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianSaveSetDataById(String id,HttpServletRequest request,
+                                         @RequestParam(value="capitalflowinstruction",required=false) String capitalflowinstruction){
+        User user = (User)request.getSession().getAttribute("user");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        Map<String,Object> map = new HashMap();
+        map.put("id",id);
+        map.put("capitalflowinstruction",capitalflowinstruction==null?"":capitalflowinstruction);
+        CapitalFlow cap = capitalFlowServiceImp.getCapitalDataById(id);
+        if(cap.getQuxianbaocunren()!=null & cap.getQuxianbaocunren().length()>0){
+            map.put("quxianbaocunren",cap.getQuxianbaocunren()+","+user.getName());
+        } else {
+            map.put("quxianbaocunren",user.getName());
+        }
+        if(cap.getQuxianbaocuntime()!=null & cap.getQuxianbaocuntime().length()>0){
+            map.put("quxianbaocuntime",cap.getQuxianbaocuntime()+","+format.format(now));
+        } else {
+            map.put("quxianbaocuntime",format.format(now));
+        }
+        map.put("status","区县资金流向记录");
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
+    /**
+     * 区县提交的申请---提交
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/quxianSubmitSetDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String quxianSubmitSetDataById(String id,HttpServletRequest request,
+                                        @RequestParam(value="capitalflowinstruction",required=false) String capitalflowinstruction){
+        User user = (User)request.getSession().getAttribute("user");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date now = new Date();
+        Map<String,Object> map = new HashMap();
+        map.put("id",id);
+        map.put("capitalflowinstruction",capitalflowinstruction==null?"":capitalflowinstruction);
+        map.put("quxiantijiaoren",user.getName());
+        map.put("quxiantijiaotime",format.format(now));
+        map.put("status","结束");
+        int i =0;
+        try {
+            i = capitalFlowServiceImp.setCatipalDataById(map);
+        } catch (Exception e) {
+            i = -1;
+        }
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        if( i==-1){
+            mapResult.put("result","failure");
+        } else {
+            mapResult.put("result","success");
+        }
+        String result = new Gson().toJson(mapResult);
+        return result;
+    }
 
     /**
      * 规划科点击编辑之后的提交
@@ -165,7 +308,7 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/setToAreaDataById",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String setToAreaDataById(@RequestParam(value="id",required=false) int id,
+    public String setToAreaDataById(@RequestParam(value="id",required=false) String id,
                               @RequestParam(value="areaname",required=false) String areaname,
                               @RequestParam(value="text",required=false) String text,
 

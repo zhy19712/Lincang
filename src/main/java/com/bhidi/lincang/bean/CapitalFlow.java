@@ -32,16 +32,18 @@ public class CapitalFlow {
     private String quxianattachment;
     private String quxianshenqingren;
     private String quxianshenqingtime;
-
-
     private String replytext;
-    private String dealtext;
-    private String capitalflowinstruction;
     private String guihuapifuren;
+    private String guihuapifutime;
+    private String dealtext;
     private String caiwuzhuanzhangren;
+    private String caiwuzhuangzhangtime;
+    private String capitalflowinstruction;
     private String quxianbaocunren;
+    private String quxianbaocuntime;
     private String quxiantijiaoren;
-
+    private String quxiantijiaotime;
+    private String shenqingrendept;
 
     public CapitalFlow() {
     }
@@ -55,7 +57,7 @@ public class CapitalFlow {
         this.status = status;
     }
 
-    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String initiatorclass, String status, String money_source, String arrival_time, String amount, String caiwuattachment, String caiwuchuliren, String finance_time, String areaname, String areanamedelete, String text, String guihuachuliren, String guihuakechulitime, String toarea_time, String titlequxian, String shenqingren, String report_reason, String quxianattachment, String quxianshenqingren, String quxianshenqingtime, String replytext, String dealtext, String capitalflowinstruction, String guihuapifuren, String caiwuzhuanzhangren, String quxianbaocunren, String quxiantijiaoren) {
+    public CapitalFlow(int id, String capitalflowid, String title, String report_person, String report_quarter, String report_text, String report_attachment, String guihuakeshenqingperson, String create_time, String initiatorclass, String status, String money_source, String arrival_time, String amount, String caiwuattachment, String caiwuchuliren, String finance_time, String areaname, String areanamedelete, String text, String guihuachuliren, String guihuakechulitime, String toarea_time, String titlequxian, String shenqingren, String report_reason, String quxianattachment, String quxianshenqingren, String quxianshenqingtime, String replytext, String guihuapifuren, String guihuapifutime, String dealtext, String caiwuzhuanzhangren, String caiwuzhuangzhangtime, String capitalflowinstruction, String quxianbaocunren, String quxianbaocuntime, String quxiantijiaoren, String quxiantijiaotime, String shenqingrendept) {
         this.id = id;
         this.capitalflowid = capitalflowid;
         this.title = title;
@@ -86,12 +88,49 @@ public class CapitalFlow {
         this.quxianshenqingren = quxianshenqingren;
         this.quxianshenqingtime = quxianshenqingtime;
         this.replytext = replytext;
-        this.dealtext = dealtext;
-        this.capitalflowinstruction = capitalflowinstruction;
         this.guihuapifuren = guihuapifuren;
+        this.guihuapifutime = guihuapifutime;
+        this.dealtext = dealtext;
         this.caiwuzhuanzhangren = caiwuzhuanzhangren;
+        this.caiwuzhuangzhangtime = caiwuzhuangzhangtime;
+        this.capitalflowinstruction = capitalflowinstruction;
         this.quxianbaocunren = quxianbaocunren;
+        this.quxianbaocuntime = quxianbaocuntime;
         this.quxiantijiaoren = quxiantijiaoren;
+        this.quxiantijiaotime = quxiantijiaotime;
+        this.shenqingrendept = shenqingrendept;
+    }
+
+    public String getShenqingrendept() {
+        return shenqingrendept;
+    }
+
+    public void setShenqingrendept(String shenqingrendept) {
+        this.shenqingrendept = shenqingrendept;
+    }
+
+    public String getQuxianbaocuntime() {
+        return quxianbaocuntime;
+    }
+
+    public void setQuxianbaocuntime(String quxianbaocuntime) {
+        this.quxianbaocuntime = quxianbaocuntime;
+    }
+
+    public String getQuxiantijiaotime() {
+        return quxiantijiaotime;
+    }
+
+    public void setQuxiantijiaotime(String quxiantijiaotime) {
+        this.quxiantijiaotime = quxiantijiaotime;
+    }
+
+    public String getCaiwuzhuangzhangtime() {
+        return caiwuzhuangzhangtime;
+    }
+
+    public void setCaiwuzhuangzhangtime(String caiwuzhuangzhangtime) {
+        this.caiwuzhuangzhangtime = caiwuzhuangzhangtime;
     }
 
     public String getGuihuakechulitime() {
@@ -382,6 +421,14 @@ public class CapitalFlow {
         this.quxianshenqingtime = quxianshenqingtime;
     }
 
+    public String getGuihuapifutime() {
+        return guihuapifutime;
+    }
+
+    public void setGuihuapifutime(String guihuapifutime) {
+        this.guihuapifutime = guihuapifutime;
+    }
+
     @Override
     public String toString() {
         return "CapitalFlow{" +
@@ -415,12 +462,17 @@ public class CapitalFlow {
                 ", quxianshenqingren='" + quxianshenqingren + '\'' +
                 ", quxianshenqingtime='" + quxianshenqingtime + '\'' +
                 ", replytext='" + replytext + '\'' +
-                ", dealtext='" + dealtext + '\'' +
-                ", capitalflowinstruction='" + capitalflowinstruction + '\'' +
                 ", guihuapifuren='" + guihuapifuren + '\'' +
+                ", guihuapifutime='" + guihuapifutime + '\'' +
+                ", dealtext='" + dealtext + '\'' +
                 ", caiwuzhuanzhangren='" + caiwuzhuanzhangren + '\'' +
+                ", caiwuzhuangzhangtime='" + caiwuzhuangzhangtime + '\'' +
+                ", capitalflowinstruction='" + capitalflowinstruction + '\'' +
                 ", quxianbaocunren='" + quxianbaocunren + '\'' +
+                ", quxianbaocuntime='" + quxianbaocuntime + '\'' +
                 ", quxiantijiaoren='" + quxiantijiaoren + '\'' +
+                ", quxiantijiaotime='" + quxiantijiaotime + '\'' +
+                ", shenqingrendept='" + shenqingrendept + '\'' +
                 '}';
     }
 }

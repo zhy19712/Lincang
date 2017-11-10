@@ -183,9 +183,11 @@ public class CapitalFlowDataTable {
         List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
+        String dept = "";
         if( user!=null ){
             name = user.getName();
             roleList = user.getRoleList();
+            dept =user.getDept();
         }
         //根据功能名字判断状态
         String str = "";
@@ -206,7 +208,7 @@ public class CapitalFlowDataTable {
                 str = " AND status = '市局财务科处置办理'";
             }
             if(!functionList.contains(14) & !functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND status = '区县资金流向记录'";
+                str = " AND status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'";
             }
             if(functionList.contains(14) & functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县')";
@@ -218,7 +220,7 @@ public class CapitalFlowDataTable {
                 str = " AND (status = '市局财务科办理' OR status = '市局财务科处置办理')";
             }
             if(functionList.contains(14) & !functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"') )";
             }
             if(!functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复')";
@@ -227,16 +229,16 @@ public class CapitalFlowDataTable {
                 str = " AND (status = '市局规划科通知区县' OR status = '市局财务科处置办理')";
             }
             if(!functionList.contains(14) & functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科通知区县' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科通知区县' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局规划科批复' OR status = '市局财务科处置办理')";
             }
             if(!functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科批复' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科批复' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & !functionList.contains(15) & !functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复')";
@@ -245,46 +247,46 @@ public class CapitalFlowDataTable {
                 str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局财务科处置办理')";
             }
             if(functionList.contains(14) & functionList.contains(15) & !functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局财务科办理' OR status = '市局规划科批复' OR status = '市局财务科处置办理')";
             }
             if(functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科批复' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科批复' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & !functionList.contains(15) & !functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理')";
             }
             if(!functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & functionList.contains(15) & !functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科通知区县' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科通知区县' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科批复' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科批复' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& !functionList.contains(23)){
                 str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理')";
             }
             if(functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& !functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & functionList.contains(15) & !functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & !functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(!functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
             if(functionList.contains(14) & functionList.contains(15) & functionList.contains(20)& functionList.contains(21)& functionList.contains(23)){
-                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR status = '区县资金流向记录')";
+                str = " AND (status = '市局财务科办理' OR status = '市局规划科通知区县' OR status = '市局规划科批复' OR status = '市局财务科处置办理' OR (status = '区县资金流向记录' AND shenqingrendept = '"+dept+"'))";
             }
         }
         //获取请求次数
@@ -397,7 +399,8 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"' OR quxianshenqingren = '"+name+"')";
+            System.out.println(name);
+            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"' OR quxianshenqingren = '"+name+"' OR guihuapifuren = '"+name+"' OR caiwuzhuanzhangren = '"+name+"'OR quxianbaocunren LIKE '%"+name+"%'OR quxiantijiaoren = '"+name+"')";
         }
 
 
