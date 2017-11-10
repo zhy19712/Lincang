@@ -46,7 +46,6 @@
             IFNULL(replytext,'') AS replytext,
             IFNULL(dealtext,'') AS dealtext,
             IFNULL(capitalflowinstruction,'') AS capitalflowinstruction,
-            IFNULL(quxianshenqingren,'') AS quxianshenqingren,
             IFNULL(guihuachuliren,'') AS guihuachuliren,
             IFNULL(guihuapifuren,'') AS guihuapifuren,
             IFNULL(caiwuzhuanzhangren,'') AS caiwuzhuanzhangren,
