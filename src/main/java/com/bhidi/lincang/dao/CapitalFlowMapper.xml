@@ -91,6 +91,7 @@
             <if test="arrival_time!=null">arrival_time = #{arrival_time},</if>
             <if test="amount!=null">amount = #{amount},</if>
             <if test="finance_time!=null">finance_time = #{finance_time},</if>
+            <if test="caiwuattachment!=null">caiwuattachment = #{caiwuattachment},</if>
             <if test="areaname!=null">areaname = #{areaname},</if>
             <if test="areanamedelete!=null">areanamedelete = #{areanamedelete},</if>
             <if test="text!=null">text = #{text},</if>

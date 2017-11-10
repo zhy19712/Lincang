@@ -921,7 +921,7 @@
     //已处理
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
-            url: "/pendingCapitalFlow.do",
+            url: "/capitalFlowDealed.do",
             async:false
         },
         "order": [[1, 'desc']],
@@ -1033,23 +1033,23 @@
     });
     //财务提交
     $("#caiwu_handle .btn-primary").click(function () {
-    //        var options  = {
-    //            url:'reveiceFileRegistration.do',
-    //            type:'post',
-    //            success:function(data)
-    //            {
-    //                console.log(data);
-    //                if(data.result == "success"){
-    //                    alert("提交成功");
-    //                    $('#caiwu_handle').modal('hide');
-    //                    $("#fileForm2 input").val("");
-    //                    $("#fileForm2 textarea").val("");
-    //                }else {
-    //                    alert(data.result);
-    //                }
-    //            }
-    //        };
-    //        $("#fileForm2").ajaxSubmit(options);
+            var options  = {
+                url:'shiJuSubmit.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        $('#caiwu_handle').modal('hide');
+                        $("#fileForm2 input").val("");
+                        $("#fileForm2 textarea").val("");
+                    }else {
+                        alert(data.result);
+                    }
+                }
+            };
+            $("#fileForm2").ajaxSubmit(options);
     });
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {
