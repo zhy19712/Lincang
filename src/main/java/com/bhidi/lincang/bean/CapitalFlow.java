@@ -48,11 +48,11 @@ public class CapitalFlow {
     public CapitalFlow() {
     }
 
-    public CapitalFlow(String capitalflowid, String title,String create_time,String report_person,String initiatorclass,String status) {
+    public CapitalFlow(String capitalflowid, String title,String create_time,String guihuakeshenqingperson,String initiatorclass,String status) {
         this.capitalflowid = capitalflowid;
         this.title = title;
         this.create_time = create_time;
-        this.report_person = report_person;
+        this.guihuakeshenqingperson = guihuakeshenqingperson;
         this.initiatorclass = initiatorclass;
         this.status = status;
     }
