@@ -426,7 +426,7 @@
                     </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -497,7 +497,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -559,7 +559,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
@@ -1051,6 +1051,33 @@
             };
             $("#fileForm2").ajaxSubmit(options);
     });
+    //规划科通知区县
+    $("#guihua_handle .btn-primary").click(function () {
+        var str = "";
+        $.each($("#uc_03>li.selected"),function (i,n) {
+            console.log(n);
+            str += "," + n.innerText ;
+        });
+        var text = $("#guihua_handle tr:last-child textarea").val();
+        str = str.substring(1);
+        console.log(id);
+        console.log(str);
+        console.log(text);
+//        $.ajax({
+//            url: "",
+//            type: "post",
+//            dataType: "json",
+//            data: {id:id,areaname:str,text:text},
+//            success: function (data) {
+//                if(data.result == "success"){
+//                    $("#guihua_handle").modal('hide');
+//                    alert("提交成功")
+//                }else {
+//                    alert(data.result);
+//                }
+//            }
+//        })
+    })
     //资金申请
     $("#money_apply_wdo2 .btn-primary").click(function () {
 //        var options  = {
@@ -1125,6 +1152,8 @@
         if(status == "市局财务科办理"){
             $('#caiwu_handle').modal('show');
             $("#myid").val(id);
+        }else if(status == "市局规划科通知区县"){
+            $("#guihua_handle").modal('show');
         }
     }
 
