@@ -59,6 +59,7 @@ public class CapitalFlowController {
         //取出来当前用户的姓名
         if( user!=null ){
             cf.setQuxianshenqingren( user.getName() );
+            cf.setShenqingrendept( user.getDept() );
         }
         cf.setStatus("市局规划科批复");
         Map<String,Object> mapCondition = new HashMap();
@@ -96,7 +97,6 @@ public class CapitalFlowController {
         //取出来当前用户的姓名
         if( user!=null ){
             cf.setCaiwuchuliren( user.getName() );
-            cf.setShenqingrendept( user.getDept() );
         }
         cf.setStatus("市局规划科通知区县");
         Map<String,Object> mapCondition = new HashMap();
@@ -225,7 +225,7 @@ public class CapitalFlowController {
         return result;
     }
     /**
-     * 区县提交的申请---保存
+     * 区县提交的申请---保存按钮
      * @param id
      * @return
      */
@@ -267,7 +267,7 @@ public class CapitalFlowController {
         return result;
     }
     /**
-     * 区县提交的申请---提交
+     * 区县提交的申请---提交按钮
      * @param id
      * @return
      */
