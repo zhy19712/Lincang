@@ -314,6 +314,7 @@
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
                 <form id = "fileForm1" action="" enctype="multipart/form-data"  target="uploadFrame">
+                    <input type="text" name="initiatorclass" value="市局资金计划上报" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
@@ -557,6 +558,7 @@
                 </div>
                 <iframe id="uploadFrame3" name="uploadFrame3" style="display:none;"></iframe>
                 <form id = "fileForm3" action="" enctype="multipart/form-data"  target="uploadFrame3">
+                    <input type="text" name="initiatorclass" value="区县资金申请" style="display: none;">
                     <div class="modal-body">
                         <table class="mytable ghapply">
                             <tr>
