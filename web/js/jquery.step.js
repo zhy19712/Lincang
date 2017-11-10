@@ -1,11 +1,13 @@
 ﻿var step;
 var step1;
 var step2;
+var step3;
   $(function() {
 
     step= $("#myStep").step();
     step1 = $("#myStep1").step();
     step2= $("#myStep2").step();
+    step3= $("#myStep3").step();
 
     $("#preBtn").click(function(event) {
       var yes=step.preStep();//上一步
