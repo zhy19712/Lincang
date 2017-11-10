@@ -316,7 +316,7 @@
                 <form id = "fileForm1" action="" enctype="multipart/form-data"  target="uploadFrame">
                     <input id="initiatorclass1" type="text" name="initiatorclass" value="市局资金计划上报" style="display: none;">
                     <div class="modal-body">
-                        <table class="mytable ghapply">
+                        <table class="mytable">
                             <tr>
                                 <td>标题</td>
                                 <td colspan="3"><input type="text" name="title"></td>
@@ -942,7 +942,6 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
                     return html;
                 }
             }
@@ -985,6 +984,7 @@
         })
         $("#filesUpload span").remove();
         $("#initiatorclass1").val("市局资金计划上报");
+        $('#money_apply_wdo1 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo1').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
@@ -1002,6 +1002,7 @@
             }
         })
         $("#my1filesUpload span").remove();
+        $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
@@ -1184,6 +1185,14 @@
             $("#myid").val(id);
         }else if(status == "市局规划科通知区县"){
             $("#guihua_handle").modal('show');
+        }else if(status == "结束"){
+            var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+            console.log(app_kind)
+            if(app_kind == "市局资金计划上报"){
+                $("#final_handle").modal('show');
+            }else if(app_kind == "区县资金申请"){
+                $("#final_handle2").modal('show');
+            }
         }
     }
 
