@@ -586,11 +586,11 @@
                         <table class="mytable ghapply">
                             <tr>
                                 <td>标题</td>
-                                <td colspan="3"><input type="text" name="title"></td>
+                                <td colspan="3"><input type="text" name="titlequxian"></td>
                             </tr>
                             <tr>
                                 <td>申请人</td>
-                                <td><input type="text" name="report_person"></td>
+                                <td><input type="text" name="shenqingren"></td>
                                 <td>申请原因</td>
                                 <td><input type="text" name="report_reason"></td>
                             </tr>
@@ -968,11 +968,11 @@
     setTimeout(acount,100);
 
     //表格刷新
-    //    function table_refresh() {
-    //        money_apply1.ajax.url("/receiveFileDataTable.do").load();
-    //        dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
-    //        ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
-    //    }
+    function table_refresh() {
+        money_apply1.ajax.url("/capitalFlowAll.do").load();
+        dcl_table.ajax.url("/capitalFlowWait.do").load();
+        ycl_table.ajax.url("/capitalFlowDealed.do").load();
+    }
 
     function newForm() {
         $('#money_apply_wdo1 input').val("");
@@ -1003,12 +1003,12 @@
         })
         $("#my1filesUpload span").remove();
         $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
-        $('#money_apply_wdo2').modal('show');
+//        $('#money_apply_wdo2').modal('show');
 //        $('#caiwu_handle').modal('show');
 //        $('#guihua_handle').modal('show');
 //        $('#final_handle').modal('show');
 //        $('#money_apply_wdo2').modal('show');
-//        $('#final_handle2').modal('show');
+        $('#final_handle2').modal('show');
     }
 
 
@@ -1118,6 +1118,7 @@
             success: function (data) {
                 console.log(data);
                 mydata = data.result;
+                //资金上报信息
                 $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
                 $(".ghapply tr:nth-child(2) td:nth-child(2) input").val(mydata.report_person);
                 $(".ghapply tr:nth-child(2) td:nth-child(4) input").val(mydata.report_quarter);
@@ -1173,6 +1174,8 @@
                 }
                 $(".ghapply tr:nth-child(7) td:nth-child(2) input").val(mydata.areaname);
                 $(".ghapply tr:nth-child(8) td:nth-child(1) textarea").val(mydata.text);
+                //区县资金申请信息
+                $("#final_handle2 tr:nth-child(1) td:nth-child(2) input").val(mydata.)
             }
         })
         if(kind == "查看"){
@@ -1193,6 +1196,8 @@
             }else if(app_kind == "区县资金申请"){
                 $("#final_handle2").modal('show');
             }
+        }else {
+            $("#final_handle2").modal('show');
         }
     }
 
