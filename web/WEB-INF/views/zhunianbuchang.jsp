@@ -677,7 +677,7 @@
                             <td><input type="text"></td>
                         </tr>
                         <tr>
-                            <td>上传附件</td>
+                            <td>下载附件</td>
                             <td colspan="3"></td>
                         </tr>
                         <tr>
@@ -1146,12 +1146,12 @@
                         alert("提交成功");
                         $("#final_handle2").modal('hide');
                     }else {
-                alert(data.result)
-            }
+                        alert(data.result)
+                    }
                 }
             })
         }
- else if(status == "市局财务科处置办理"){
+        else if(status == "市局财务科处置办理"){
             var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val();
             $.ajax({
                 url: "/quxianCaiWuSetDataById.do",
@@ -1168,7 +1168,7 @@
                 }
             })
         }
- else if(status == "区县资金流向记录"){
+        else if(status == "区县资金流向记录"){
             var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
             $.ajax({
                 url: "/quxianSubmitSetDataById.do",
@@ -1315,6 +1315,9 @@
             $("a.btn-primary").css("display","none");
         }else if(kind == "编辑"){
             $("a.btn-primary").css("display","inline-block");
+            if(status == "区县资金流向记录"){
+                $("#final_handle2 .btn-success").css("display","inline-block");
+            }
         }
         if(mydata.guihuakeshenqingperson != ""){
             var str = "";
@@ -1361,9 +1364,6 @@
             }
         }else {
             $("#final_handle2").modal('show');
-            if(status == "区县资金流向记录"){
-                $("#final_handle2 .btn-success").css("display","inline-block");
-            }
         }
     }
 
