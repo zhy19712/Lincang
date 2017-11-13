@@ -13,9 +13,9 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>临沧市移民局</title>
+    <title>临沧市移民数字管理平台</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="临沧市移民局">
+    <meta name="description" content="临沧市移民数字管理平台">
 
     <!-- The styles -->
     <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
@@ -296,7 +296,6 @@
         </div>
     </div>
 
-
     <hr>
 
     <div class="modal fade" id="form_add_users" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -325,7 +324,7 @@
                             <tr>
                                 <td>密码</td>
                                 <td>
-                                    <input type="text" name="pass" id="pass" class="pull-left" style="width :50%;">
+                                    <input type="password" name="pass" id="pass" class="pull-left" style="width :50%;">
                                     <span id="passPrompt" class="text-left prompt" >数字和字母组合,字符,长度在6~18之间</span>
                                 </td>
                             </tr>
@@ -416,7 +415,7 @@
                             <tr>
                                 <td>密码</td>
                                 <td>
-                                    <input type="text" name="pass" id="pass1" class="pull-left" style="width :50%;">
+                                    <input type="password" name="pass" id="pass1" class="pull-left" style="width :50%;">
                                     <span id="passPrompt1" class="text-left prompt" >数字和字母组合,字符,长度在6~18之间</span>
                                 </td>
                             </tr>

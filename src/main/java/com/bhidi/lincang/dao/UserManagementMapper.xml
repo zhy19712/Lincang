@@ -71,7 +71,7 @@
     <delete id="deleteRole" >
         DELETE FROM role WHERE id = #{id}
     </delete>
-    <!--int selectRole(int id);-->
+    <!--Role selectRole(int id);-->
     <select id="selectRole" parameterType="int" resultType="com.bhidi.lincang.bean.Role">
         SELECT IFNULL(id,'')AS id,IFNULL(rolename,'')AS rolename
         FROM role

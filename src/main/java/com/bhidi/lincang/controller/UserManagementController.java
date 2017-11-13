@@ -145,7 +145,7 @@ public class UserManagementController {
     @ResponseBody
     @RequestMapping(value="/selectRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String selectRole(int id){
-        int a = userManagementServiceImp.selectRole(id);
+        Role a = userManagementServiceImp.selectRole(id);
         String result = new Gson().toJson(a);
         return result;
     }

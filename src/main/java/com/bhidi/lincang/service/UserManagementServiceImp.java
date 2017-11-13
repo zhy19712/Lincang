@@ -105,7 +105,7 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         return userManagementMapper.deleteRole(id);
     }
 
-    public int selectRole(int id) {
+    public Role selectRole(int id) {
         return userManagementMapper.selectRole(id);
     }
 

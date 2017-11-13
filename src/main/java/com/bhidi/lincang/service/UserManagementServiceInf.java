@@ -20,7 +20,7 @@ public interface UserManagementServiceInf {
 
     int deleteRole(int id);
 
-    int selectRole(int id);
+    Role selectRole(int id);
 
     int saveRole(Role rri);
 
