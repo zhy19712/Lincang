@@ -105,7 +105,7 @@ public class UserManagementController {
      */
     @ResponseBody
     @RequestMapping(value="/registerRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String registerRole(String role,@RequestParam(value="functionList[]") int[] functionList){
+    public String registerRole(String role,@RequestParam(value="functionList[]",required = false) int[] functionList){
         Role r = new Role();
         r.setRolename(role);
         List<RolePrivilege> rolePrivilege = new ArrayList<RolePrivilege>();
@@ -117,18 +117,20 @@ public class UserManagementController {
             e.printStackTrace();
             a = -1;
         }
-        for(int i = 0;i < functionList.length;i++){
-            RolePrivilege rp = new RolePrivilege();
-            rp.setRoleid(r.getId());
-            rp.setAuthorithid(functionList[i]);
-            rolePrivilege.add(rp);
-        }
         int b = 0;
-        try {
-            b = userManagementServiceImp.saveRolePrivilege(rolePrivilege);
-        } catch (Exception e) {
-            e.printStackTrace();
-            b = -1;
+        if(functionList!=null){
+            for(int i = 0;i < functionList.length;i++){
+                RolePrivilege rp = new RolePrivilege();
+                rp.setRoleid(r.getId());
+                rp.setAuthorithid(functionList[i]);
+                rolePrivilege.add(rp);
+            }
+            try {
+                b = userManagementServiceImp.saveRolePrivilege(rolePrivilege);
+            } catch (Exception e) {
+                e.printStackTrace();
+                b = -1;
+            }
         }
 
         Map<String,String> resultMap = new HashMap<String, String>();
@@ -166,12 +168,11 @@ public class UserManagementController {
      */
     @ResponseBody
     @RequestMapping(value="/updateRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String updateRole(int id,String role,@RequestParam(value="functionList[]") int[] functionList){
+    public String updateRole(int id,String role,@RequestParam(value="functionList[]",required = false) int[] functionList){
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         List<RolePrivilege> rolePrivilege = new ArrayList<RolePrivilege>();
         mapCondition.put("id",id);
         mapCondition.put("role",role);
-        mapCondition.put("functionList",functionList);
         int updateRoleResult = 0;
         try {
             updateRoleResult = userManagementServiceImp.updateRoleById(mapCondition);
@@ -186,18 +187,20 @@ public class UserManagementController {
             e.printStackTrace();
             deleteRolePrivilegeResult =-1;
         }
-        for(int i = 0;i < functionList.length;i++){
-            RolePrivilege rp = new RolePrivilege();
-            rp.setRoleid(id);
-            rp.setAuthorithid(functionList[i]);
-            rolePrivilege.add(rp);
-        }
         int b = 0;
-        try {
-            b = userManagementServiceImp.saveRolePrivilege(rolePrivilege);
-        } catch (Exception e) {
-            e.printStackTrace();
-            b = -1;
+        if(functionList!=null){
+            for(int i = 0;i < functionList.length;i++){
+                RolePrivilege rp = new RolePrivilege();
+                rp.setRoleid(id);
+                rp.setAuthorithid(functionList[i]);
+                rolePrivilege.add(rp);
+            }
+            try {
+                b = userManagementServiceImp.saveRolePrivilege(rolePrivilege);
+            } catch (Exception e) {
+                e.printStackTrace();
+                b = -1;
+            }
         }
         Map<String,String> resultMap = new HashMap<String, String>();
         if(updateRoleResult == -1 | b == -1 | deleteRolePrivilegeResult==-1){

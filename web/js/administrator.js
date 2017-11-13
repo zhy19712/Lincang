@@ -478,7 +478,7 @@
        //角色修改
        function updateRole() {
            var dataArr=$("#tree_container1").jstree().get_selected(true),
-               roleName=$("#roleName").val(),
+               roleName=$("#roleName1").val(),
                idArr=[],
                id=$("#role_id").text();
 
@@ -492,7 +492,7 @@
                "functionList":idArr,
                "id":id
            };
-           console.log(idArr);
+           console.log(datas);
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
