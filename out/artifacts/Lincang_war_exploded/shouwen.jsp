@@ -1831,7 +1831,7 @@
                         str = str + filekind;
                         var files = "";
                         files  += ""
-                            + "<div>"
+                            + "<div style='display: inline-block;'>"
                             + "<iframe name='downloadFrame' style='display:none;'></iframe>"
                             + "<form action='/file/download.do' method='get' target='downloadFrame'>"
                             + "<span class='file_name' style='color: #000;'>"+str+"</span>"

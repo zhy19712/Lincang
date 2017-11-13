@@ -45,6 +45,16 @@ footer{
     color: #466faa;
     font-weight: 700;
 }
+.mybtn2{
+    color: #2fa4e7;
+    margin: 0 5px;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+.mybtn2:hover{
+    text-decoration: underline;
+}
 .myactive{
     font-weight: 700 !important;
     color: #466faa !important;

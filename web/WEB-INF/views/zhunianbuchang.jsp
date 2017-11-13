@@ -66,9 +66,27 @@
         .btn-success{
             display: none;
         }
+        .mystep_user1,.mystep_user2{
+            font-size: 0;
+        }
         .mystep_user1>div{
+            vertical-align: top;
             width: 25%;
+            display: inline-block;
             padding: 0 5px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .mystep_user2>div{
+            display: inline-block;
+            vertical-align: top;
+            width: 20%;
+            padding: 0 5px;
+            text-align: center;
+            font-size: 12px;
+        }
+        .step-bar{
+            top:70px;
         }
     </style>
 
@@ -369,7 +387,7 @@
                 </div>
                     <div class="modal-body">
                         <div id="mystep_container" style="width: 100%;padding-bottom: 20px;">
-                            <div class="step-body" id="mystep" style="width:80%;margin: 0 auto;">
+                            <div class="step-body" id="myStep" style="width:80%;margin: 0 auto;">
                                 <div class="step-header">
                                     <ul>
                                         <li><p>市局规划科已上报</p></li>
@@ -449,7 +467,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="mystep1_container" style="width: 100%;padding-bottom: 20px;">
-                        <div class="step-body" id="mystep1" style="width:80%;margin: 0 auto;">
+                        <div class="step-body" id="myStep1" style="width:80%;margin: 0 auto;">
                             <div class="step-header">
                                 <ul>
                                     <li><p>市局规划科已上报</p></li>
@@ -538,7 +556,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="mystep2_container" style="width: 100%;padding-bottom: 20px;">
-                        <div class="step-body" id="mystep2" style="width:80%;margin: 0 auto;">
+                        <div class="step-body" id="myStep2" style="width:80%;margin: 0 auto;">
                             <div class="step-header">
                                 <ul>
                                     <li><p>市局规划科已上报</p></li>
@@ -666,6 +684,26 @@
                     <h3>填写表单</h3>
                 </div>
                 <div class="modal-body">
+                    <div id="mystep3_container" style="width: 100%;padding-bottom: 20px;">
+                        <div class="step-body" id="myStep3" style="width:80%;margin: 0 auto;">
+                            <div class="step-header">
+                                <ul>
+                                    <li><p>区县资金申请上报</p></li>
+                                    <li><p>市局规划科批复</p></li>
+                                    <li><p>市局财务科处置办理</p></li>
+                                    <li><p>区县资金流向记录</p></li>
+                                    <li><p>结束</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mystep_user2" style="width:80%;margin: 0 auto;">
+                            <div class="user1"></div>
+                            <div class="user2"></div>
+                            <div class="user3"></div>
+                            <div class="user4"></div>
+                            <div class="user5"></div>
+                        </div>
+                    </div>
                     <table class="mytable ghapply">
                         <tr>
                             <td>标题</td>
@@ -787,9 +825,6 @@
     var uc_03 = $('#uc_03').data('ui-choose');
     //日期插件
 
-    $("#time1").jeDate({
-        format: "YYYY-MM-DD"
-    });
     $("#time2").jeDate({
         format: "YYYY-MM-DD"
     });
@@ -1047,7 +1082,7 @@
     //上报提交
     $("#money_apply_wdo1 .btn-primary").click(function () {
         var options  = {
-            url:'submitDataOfCapital.do',
+            url:'/submitDataOfCapital.do',
             type:'post',
             success:function(data)
             {
@@ -1055,6 +1090,8 @@
                 if(data.result == "success"){
                     alert("提交成功");
                     $('#money_apply_wdo1').modal('hide');
+                    table_refresh();
+                    acount();
                     $("#money_apply_wdo1 input").val("");
                     $("#money_apply_wdo1 textarea").val("");
                 }else {
@@ -1066,14 +1103,17 @@
     });
     //财务提交
     $("#caiwu_handle .btn-primary").click(function () {
+            console.log($("#myid").val());
             var options  = {
-                url:'shiJuSubmit.do',
+                url:'/shiJuSubmit.do',
                 type:'post',
                 success:function(data)
                 {
                     console.log(data);
                     if(data.result == "success"){
                         alert("提交成功");
+                        table_refresh();
+                        acount();
                         $('#caiwu_handle').modal('hide');
                         $("#fileForm2 input").val("");
                         $("#fileForm2 textarea").val("");
@@ -1104,6 +1144,8 @@
             success: function (data) {
                 console.log(data);
                 if(data.result == "success"){
+                    table_refresh();
+                    acount();
                     $("#guihua_handle").modal('hide');
                     alert("提交成功")
                 }else {
@@ -1122,6 +1164,8 @@
                 console.log(data);
                 if(data.result == "success"){
                     alert("提交成功");
+                    table_refresh();
+                    acount();
                     $('#money_apply_wdo2').modal('hide');
                     $("#money_apply_wdo2 input").val("");
                     $("#money_apply_wdo2 textarea").val("");
@@ -1144,6 +1188,8 @@
                 data: {id:id,replytext:replytext},
                 success: function (data) {
                     if(data.result == "success"){
+                        table_refresh();
+                        acount();
                         alert("提交成功");
                         $("#final_handle2").modal('hide');
                     }else {
@@ -1161,6 +1207,8 @@
                 data: {id:id,dealtext:dealtext},
                 success: function (data) {
                     if(data.result == "success"){
+                        table_refresh();
+                        acount();
                         alert("提交成功");
                         $("#final_handle2").modal('hide');
                     }else {
@@ -1178,6 +1226,8 @@
                 data: {id:id,capitalflowinstruction:capitalflowinstruction},
                 success: function (data) {
                     if(data.result == "success"){
+                        table_refresh();
+                        acount();
                         alert("提交成功");
                         $("#final_handle2").modal('hide');
                     }else {
@@ -1197,6 +1247,8 @@
             data: {id:id,capitalflowinstruction:capitalflowinstruction},
             success: function (data) {
                 if(data.result == "success"){
+                    table_refresh();
+                    acount();
                     alert("提交成功");
                     $("#final_handle2").modal('hide');
                 }else {
@@ -1240,12 +1292,12 @@
                         str = str + filekind;
                         var files = "";
                         files  += ""
-                            + "<div>"
+                            + "<div style='display: inline-block;'>"
                             + "<iframe name='downloadFrame1' style='display:none;'></iframe>"
                             + "<form action='/file/download.do' method='get' target='downloadFrame1'>"
                             + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                             + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
-                            + "<button type='submit'>下载</button>"
+                            + "<button type='submit' class='mybtn2'>下载</button>"
                             + "</form>"
                             + "</div>"
                         $(".ghapply tr:nth-child(3) td:nth-child(2)").append(files);
@@ -1267,12 +1319,12 @@
                         str = str + filekind;
                         var files = "";
                         files  += ""
-                            + "<div>"
+                            + "<div style='display: inline-block;'>"
                             + "<iframe name='downloadFrame2' style='display:none;'></iframe>"
                             + "<form action='/file/download.do' method='get' target='downloadFrame2'>"
                             + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                             + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
-                            + "<button type='submit'>下载</button>"
+                            + "<button type='submit' class='mybtn2'>下载</button>"
                             + "</form>"
                             + "</div>"
                         $(".ghapply tr:nth-child(6) td:nth-child(4)").append(files);
@@ -1296,12 +1348,12 @@
                         str = str + filekind;
                         var files = "";
                         files  += ""
-                            + "<div>"
+                            + "<div style='display: inline-block;'>"
                             + "<iframe name='downloadFrame3' style='display:none;'></iframe>"
                             + "<form action='/file/download.do' method='get' target='downloadFrame3'>"
                             + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                             + "<input class='file_url' style='display: none;' name='path' value="+ n +">"
-                            + "<button type='submit'>下载</button>"
+                            + "<button type='submit' class='mybtn2'>下载</button>"
                             + "</form>"
                             + "</div>"
                         $("#final_handle2 tr:nth-child(3) td:nth-child(2)").append(files);
@@ -1320,6 +1372,14 @@
                 $("#final_handle2 .btn-success").css("display","inline-block");
             }
         }
+        $(".mystep_user1 .user1").empty();
+        $(".mystep_user1 .user2").empty();
+        $(".mystep_user1 .user3").empty();
+        $(".mystep_user2 .user1").empty();
+        $(".mystep_user2 .user2").empty();
+        $(".mystep_user2 .user3").empty();
+        $(".mystep_user2 .user4").empty();
+        $(".mystep_user2 .user5").empty();
         if(mydata.guihuakeshenqingperson != ""){
             var str = "";
             str +=  ""
@@ -1336,7 +1396,7 @@
                 +   "<p class='user'>"+ mydata.caiwuchuliren +"</p>"
                 +   "<p class='time'>"+ mydata.finance_time +"</p>"
                 +   "</div>"
-            $(".mystep_user1 .user1").append(str).addClass("myactive");
+            $(".mystep_user1 .user2").append(str).addClass("myactive");
         }
         if(mydata.guihuachuliren != ""){
             var str = "";
@@ -1345,7 +1405,47 @@
                 +   "<p class='user'>"+ mydata.guihuachuliren +"</p>"
                 +   "<p class='time'>"+ mydata.guihuakechulitime +"</p>"
                 +   "</div>"
-            $(".mystep_user1 .user1").append(str).addClass("myactive");
+            $(".mystep_user1 .user3").append(str).addClass("myactive");
+        }
+        if(mydata.guihuakeshenqingperson != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.guihuakeshenqingperson +"</p>"
+                +   "<p class='time'>"+ mydata.create_time+"</p>"
+                +   "</div>"
+            $(".mystep_user2 .user1").append(str).addClass("myactive");
+        }
+        if(mydata.guihuapifuren != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.guihuapifuren +"</p>"
+                +   "<p class='time'>"+ mydata.guihuapifutime+"</p>"
+                +   "</div>"
+            $(".mystep_user2 .user2").append(str).addClass("myactive");
+        }
+        if(mydata.caiwuzhuanzhangren != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.caiwuzhuanzhangren +"</p>"
+                +   "<p class='time'>"+ mydata.caiwuzhuangzhangtime+"</p>"
+                +   "</div>"
+            $(".mystep_user2 .user3").append(str).addClass("myactive");
+        }
+        if(mydata.quxianbaocunren != ""){
+            var peoplearr = mydata.quxianbaocunren.split(",");
+            var timearr = mydata.quxianbaocuntime.split(",");
+            $.each(peoplearr,function (i,n) {
+                var str = "";
+                str +=  ""
+                    +   "<div>"
+                    +   "<p class='user'>"+ n +"</p>"
+                    +   "<p class='time'>"+ timearr[i] +"</p>"
+                    +   "</div>"
+                $(".mystep_user2 .user4").append(str).addClass("myactive");
+            });
         }
         if(status == "市局财务科办理"){
             step.goStep(2);
@@ -1361,10 +1461,18 @@
                 step2.goStep(4);
                 $("#final_handle").modal('show');
             }else if(app_kind == "区县资金申请"){
+                step3.goStep(5);
                 $("#final_handle2").modal('show');
             }
-        }else {
+        }else{
             $("#final_handle2").modal('show');
+            if(status == "市局规划科批复"){
+                step3.goStep(2);
+            }else if(status == "市局财务科处置办理") {
+                step3.goStep(3);
+            }else if(status == "区县资金流向记录"){
+                step3.goStep(4);
+            }
         }
     }
 
