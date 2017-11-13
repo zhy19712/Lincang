@@ -111,7 +111,7 @@
             width: 96%;
             margin: 0 auto;
             position: relative;
-            height: 1210px;
+            height: 740px;
             transition: all 0.5s;
         }
         #model_container>div,#model_container_1>div{
@@ -1158,7 +1158,7 @@
                                 <td>收文登记号</td>
                                 <td><input type="text"></td>
                                 <td>收文日期</td>
-                                <td><input type="text"></td>
+                                <td><input id="mytime" type="text" readonly="readonly"></td>
                             </tr>
                             <tr>
                                 <td class="middle">文件标题</td>
@@ -1315,7 +1315,7 @@
                             <tr>
                                 <td class="middle">办理结果</td>
                                 <td colspan="11">
-                                    <textarea name=""></textarea>
+                                    <textarea name="" readonly="readonly"></textarea>
                                 </td>
                             </tr>
                             </tbody>
@@ -1542,6 +1542,9 @@
         format: "YYYY-MM-DD"
     });
     $("#time3").jeDate({
+        format: "YYYY-MM-DD"
+    });
+    $("#mytime").jeDate({
         format: "YYYY-MM-DD"
     });
 
@@ -2154,10 +2157,10 @@
             $("#model_info").css("display","block");
             $("#model_container_1").css("display","block");
             $('#model_handle').modal('show');
-            $("#model_handle input").attr("readonly",true);
-            $("#model_handle textarea").attr("readonly",true);
             $("#handle_people li:first-child").css("display","none");
             $("#handle_people li:nth-child(2)").css("display","none");
+            $("#model_handle input").attr("readonly",true);
+            $("#model_handle textarea").attr("readonly",true);
             if(mydata1.status == "科室签批"){
                 if(mydata1.modeltype == "一科室提意见"){
                     $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);

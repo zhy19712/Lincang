@@ -431,11 +431,13 @@ $("#form_stuff .btn-primary").click(function () {
 var b_flag = true;
 $("#select_model .btn-primary").click(function () {
     if(b_flag){
-        var lingdao = $("#lingdao").val();
-        var banli = $("#banli").val();
-        if(!lingdao || !banli){
-            alert("请选择处理人");
-            return;
+        if(status == "办公室审核处理"){
+            var lingdao = $("#lingdao").val();
+            var banli = $("#banli").val();
+            if(!lingdao || !banli){
+                alert("请选择处理人");
+                return;
+            }
         }
         b_flag = false;
         var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
