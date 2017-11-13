@@ -66,7 +66,11 @@ public class LoginController {
                 cookie.setMaxAge(60 * 60 * 24 * 7);
                 response.addCookie(cookie);
             }
-            return "home";
+            if(user.getUsername().equals("superadmin")){
+                return "administrator";
+            } else {
+                return "home";
+            }
         } else {
             map.put("msg", "用户名或者密码不正确！");
             return "login";
