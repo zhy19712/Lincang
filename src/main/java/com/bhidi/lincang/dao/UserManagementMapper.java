@@ -35,4 +35,9 @@ public interface UserManagementMapper {
     int insertRole(Role rri);
 
     int insertRolePrivilege(List<RolePrivilege> rolePrivilege);
+
+    int deleteRolePrivilege(int id);
+
+    int updateRoleById(Map<String, Object> mapCondition);
+
 }

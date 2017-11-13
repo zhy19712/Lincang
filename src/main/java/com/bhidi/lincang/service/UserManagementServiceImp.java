@@ -117,5 +117,13 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         return userManagementMapper.insertRolePrivilege(rolePrivilege);
     }
 
+    public int deleteRolePrivilege(int id) {
+        return userManagementMapper.deleteRolePrivilege(id);
+    }
+
+    public int updateRoleById(Map<String, Object> mapCondition) {
+        return userManagementMapper.updateRoleById(mapCondition);
+    }
+
 
 }

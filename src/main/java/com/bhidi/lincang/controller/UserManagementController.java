@@ -160,17 +160,53 @@ public class UserManagementController {
 
     /**
      * 编辑角色
-     * @param rri
+     * @param id
+     * @param role
      * @return
      */
     @ResponseBody
     @RequestMapping(value="/updateRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String updateRole(RegisterRoleInfo rri){
-        System.out.println("1");
-        /*int a = userManagementServiceImp.deleteRole(id);
-        String result = new Gson().toJson(a);
-        return result;*/
-        return "";
+    public String updateRole(int id,String role,@RequestParam(value="functionList[]") int[] functionList){
+        Map<String,Object> mapCondition = new HashMap<String,Object>();
+        List<RolePrivilege> rolePrivilege = new ArrayList<RolePrivilege>();
+        mapCondition.put("id",id);
+        mapCondition.put("role",role);
+        mapCondition.put("functionList",functionList);
+        int updateRoleResult = 0;
+        try {
+            updateRoleResult = userManagementServiceImp.updateRoleById(mapCondition);
+        } catch (Exception e) {
+            e.printStackTrace();
+            updateRoleResult =-1;
+        }
+        int deleteRolePrivilegeResult = 0;
+        try {
+            deleteRolePrivilegeResult = userManagementServiceImp.deleteRolePrivilege(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            deleteRolePrivilegeResult =-1;
+        }
+        for(int i = 0;i < functionList.length;i++){
+            RolePrivilege rp = new RolePrivilege();
+            rp.setRoleid(id);
+            rp.setAuthorithid(functionList[i]);
+            rolePrivilege.add(rp);
+        }
+        int b = 0;
+        try {
+            b = userManagementServiceImp.saveRolePrivilege(rolePrivilege);
+        } catch (Exception e) {
+            e.printStackTrace();
+            b = -1;
+        }
+        Map<String,String> resultMap = new HashMap<String, String>();
+        if(updateRoleResult == -1 | b == -1 | deleteRolePrivilegeResult==-1){
+            resultMap.put("result","failure");
+        } else {
+            resultMap.put("result","success");
+        }
+        String result = new Gson().toJson(resultMap);
+        return result;
     }
     /**
      * 删除角色
@@ -180,8 +216,27 @@ public class UserManagementController {
     @ResponseBody
     @RequestMapping(value="/deleteRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String deleteRole(int id){
-        int a = userManagementServiceImp.deleteRole(id);
-        String result = new Gson().toJson(a);
+        int roleDeleteResult = 0;
+        int roleprivilegeDeleteResult = 0;
+        try {
+            roleDeleteResult = userManagementServiceImp.deleteRole(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            roleDeleteResult = -1;
+        }
+        try {
+            roleprivilegeDeleteResult = userManagementServiceImp.deleteRolePrivilege(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            roleprivilegeDeleteResult =-1;
+        }
+        Map<String,String> resultMap = new HashMap<String, String>();
+        if(roleDeleteResult == -1 | roleprivilegeDeleteResult == -1){
+            resultMap.put("result","failure");
+        } else {
+            resultMap.put("result","success");
+        }
+        String result = new Gson().toJson(resultMap);
         return result;
     }
 }

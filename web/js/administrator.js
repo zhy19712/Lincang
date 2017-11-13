@@ -394,7 +394,7 @@
                "role":roleName,
                "functionList":idArr
            };
-           console.log(idArr);
+           console.log(datas);
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);

@@ -91,4 +91,17 @@
         (#{item.roleid},#{item.authorithid})
         </foreach>
     </insert >
+    <!--int deleteRolePrivilege(int id);-->
+    <delete id="deleteRolePrivilege" >
+        DELETE FROM role_privilege WHERE roleid = #{id}
+    </delete>
+    <!--int updateRoleById(Map<String, Object> mapCondition);-->
+    <update id="updateRoleById" parameterType="map" >
+        UPDATE role
+        <trim prefix="set" suffixOverrides=",">
+            <if test="role!=null">rolename = #{role},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
 </mapper>
