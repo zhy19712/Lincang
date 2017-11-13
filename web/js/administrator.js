@@ -1,4 +1,5 @@
-       var all_table = $('#NewTable_Admin').DataTable({
+
+        var all_table = $('#NewTable_Admin').DataTable({
            ajax: {
                url: "/userManagementDataTableFirst.do"
            },
@@ -215,7 +216,13 @@
        });
        //角色添加按钮
        $("#roleBtnAdd").click(function () {
-           addRole()
+          var roleName= $("#roleName").val();
+          if(roleName==""){
+                alert("角色名不能为空！")
+          }else {
+              addRole()
+          }
+
        });
        //角色修改按钮
        $("#roleBtnUpdate").click(function () {
@@ -326,6 +333,7 @@
                "name" : name,
                "phone" : phone
            };
+           console.log(datas)
            $.ajax({
                url:"/registerUser.do",
                dataType:"json",
