@@ -56,7 +56,7 @@ public class UserManagementController {
     public String registerUser(RegisterInfo ri){
         User u = userManagementServiceImp.selectUserByUserName(ri.getUsername());
         Map<String,String> mapResult = new HashMap<String, String>();
-        if(u==null){
+        if(u!=null){
             mapResult.put("result","rename");
         } else {
             Map<String,Object> mapCondition = new HashMap<String,Object>();
@@ -115,7 +115,7 @@ public class UserManagementController {
         //判断角色名字是否唯一
         Role ro = userManagementServiceImp.selectRoleByRoleName(role);
         Map<String,String> resultMap = new HashMap<String, String>();
-        if(ro == null){
+        if(ro != null){
             resultMap.put("result","rename");
         } else {
             Role r = new Role();
