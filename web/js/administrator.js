@@ -293,7 +293,6 @@
                data:datas,
                async:false,
                success:function (val) {
-                   console.log(val);
                    $('#form_update_users').modal('hide');
                    if(val.result =="success"){
                        table_refresh();
@@ -325,7 +324,6 @@
                "name" : name,
                "phone" : phone
            };
-           console.log(datas)
            $.ajax({
                url:"/registerUser.do",
                dataType:"json",
@@ -337,6 +335,8 @@
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
+                   }else if(val.result =="rename"){
+                       alert("该用户名已存在！");
                    }else {
                        alert("提交失败");
                    }
@@ -386,50 +386,54 @@
                "role":roleName,
                "functionList":idArr
            };
-           console.log(datas);
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
-           console.log(a,b);
            //26,27
            var c= contains(idArr, 26);
            var d= contains(idArr, 27);
-           console.log(c,d);
            //41 ,42
            var e= contains(idArr, 41);
            var f= contains(idArr, 42);
-           console.log(e,f);
 
-           if(a && b){
-               alert("区县资金申请全部列表和个人列表不能同时选择!")
+           if(idArr.length==0){
+               alert("功能至少选择一项！")
            }else {
-               if (c && d){
-                   alert("发文模块，全部列表和个人列表不能同时选择!")
+               if(a && b){
+                   alert("区县资金申请全部列表和个人列表不能同时选择!")
                }else {
-                   if(e && f){
-                       alert("非文件模块，全部列表和个人列表不能同时选择!")
+                   if (c && d){
+                       alert("发文模块，全部列表和个人列表不能同时选择!")
                    }else {
-                       $.ajax({
-                           url:"/registerRole.do",
-                           dataType:"json",
-                           type:"post",
-                           data:datas,
-                           async:false,
-                           success:function (val) {
-                               $('#form_add_Role').modal('hide');
-                               if(val.result =="success"){
-                                   table_refresh();
-                                   alert("提交成功");
-                               }else {
-                                   alert("提交失败");
-                               }
-                           },error:(function(){
-                               alert("系统出错")
+                       if(e && f){
+                           alert("非文件模块，全部列表和个人列表不能同时选择!")
+                       }else {
+
+                           $.ajax({
+                               url:"/registerRole.do",
+                               dataType:"json",
+                               type:"post",
+                               data:datas,
+                               async:false,
+                               success:function (val) {
+                                   $('#form_add_Role').modal('hide');
+                                   if(val.result =="success"){
+                                       table_refresh();
+                                       alert("提交成功");
+                                   }else if(val.result =="rename"){
+                                       alert("该角色名已存在！");
+                                   }else {
+                                       alert("提交失败");
+                                   }
+                               },error:(function(){
+                                   alert("系统出错")
+                               })
                            })
-                       })
+                       }
                    }
                }
            }
+
        }
        //角色操作
        function editRole(that) {
@@ -461,7 +465,6 @@
                data: {"id":id},
                dataType: "json",
                success: function (data) {
-                   console.log(data);
                    var functionList=data.functionList;
                    var newId=functionList.map(function (a) {
                        return a+"j"
@@ -487,53 +490,53 @@
                    idArr.push(parseInt(b.id));
                }
            });
-           console.log(idArr)
+
            var datas={
                "role":roleName,
                "functionList":idArr,
                "id":id
            };
-           console.log(datas);
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
-           console.log(a,b);
            //26,27
            var c= contains(idArr, 26);
            var d= contains(idArr, 27);
-           console.log(c,d);
            //41 ,42
            var e= contains(idArr, 41);
            var f= contains(idArr, 42);
-           console.log(e,f);
 
-           if(a && b){
-               alert("区县资金申请全部列表和个人列表不能同时选择!")
+           if(idArr.length==0){
+               alert("功能至少选择一项")
            }else {
-               if (c && d){
-                   alert("发文模块，全部列表和个人列表不能同时选择!")
+               if(a && b){
+                   alert("区县资金申请全部列表和个人列表不能同时选择!")
                }else {
-                   if(e && f){
-                       alert("非文件模块，全部列表和个人列表不能同时选择!")
+                   if (c && d){
+                       alert("发文模块，全部列表和个人列表不能同时选择!")
                    }else {
-                       $.ajax({
-                           url:"/updateRole.do",
-                           dataType:"json",
-                           type:"post",
-                           data:datas,
-                           async:false,
-                           success:function (val) {
-                               $("#form_update_Role").modal('hide');
-                               if(val.result =="success"){
-                                   table_refresh();
-                                   alert("修改成功");
-                               }else {
-                                   alert("修改失败");
-                               }
-                           },error:(function(){
-                               alert("系统出错")
+                       if(e && f){
+                           alert("非文件模块，全部列表和个人列表不能同时选择!")
+                       }else {
+                           $.ajax({
+                               url:"/updateRole.do",
+                               dataType:"json",
+                               type:"post",
+                               data:datas,
+                               async:false,
+                               success:function (val) {
+                                   $("#form_update_Role").modal('hide');
+                                   if(val.result =="success"){
+                                       table_refresh();
+                                       alert("修改成功");
+                                   }else {
+                                       alert("修改失败");
+                                   }
+                               },error:(function(){
+                                   alert("系统出错")
+                               })
                            })
-                       })
+                       }
                    }
                }
            }
