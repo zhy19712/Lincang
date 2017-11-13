@@ -487,6 +487,7 @@
                    idArr.push(parseInt(b.id));
                }
            });
+           console.log(idArr)
            var datas={
                "role":roleName,
                "functionList":idArr,
