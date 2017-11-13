@@ -681,7 +681,7 @@
 
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
-                    <h3>填写表单</h3>
+                    <h3></h3>
                 </div>
                 <div class="modal-body">
                     <div id="mystep3_container" style="width: 100%;padding-bottom: 20px;">
@@ -1060,6 +1060,7 @@
         $("#filesUpload span").remove();
         $("#initiatorclass1").val("市局资金计划上报");
         $('#money_apply_wdo1 .btn-primary').css('display','inline-block');
+        $('#money_apply_wdo1 h3').text('填写表单');
         $('#money_apply_wdo1').modal('show');
     }
 
@@ -1074,6 +1075,7 @@
         $("#my1filesUpload span").remove();
         $("#initiatorclass2").val("区县资金申请");
         $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
+        $('#money_apply_wdo2 h3').text('填写表单');
         $('#money_apply_wdo2').modal('show');
 //        $('#final_handle2').modal('show');
     }
@@ -1264,6 +1266,7 @@
     function edit(that) {
         id = $(that).parent("td").parent("tr").children("td:first-child").text();
         status = $(that).parent("td").parent("tr").children("td:nth-child(6)").text();
+        $(".modal-header h3").text("逐年补偿-" + id);
         $(".btn-success").css("display","none");
         var kind = $(that).val();
         var mydata;

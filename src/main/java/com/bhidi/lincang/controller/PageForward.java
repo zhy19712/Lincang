@@ -48,7 +48,7 @@ public class PageForward {
     public String to_home(HttpSession session){
         User user = (User)session.getAttribute("user");
         if( user != null ){
-            return "tohome";
+            return "home";
         } else {
             return "login";
         }

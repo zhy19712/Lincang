@@ -65,7 +65,7 @@
 .jedateblue .daysul{width: 100%;border-collapse: collapse;border-spacing: 0;border: 1px solid #fff;}
 .jedateblue .daysul thead{background-color:#f5f5f5;}
 .jedateblue .daysul th{width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 12px;font-weight: 400;}
-.jedateblue .daysul td{width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
+.jedateblue .daysul td{min-width:30px !important;width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .nolunar{line-height: 29px;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .solar{height:16px;line-height:16px;font-size: 14px;padding-top: 3px;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .lunar{height:16px;line-height:16px;font-size: 12px;overflow:hidden;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';color: #888;}
