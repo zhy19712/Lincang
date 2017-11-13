@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false"%>
 
 <!DOCTYPE html>
 <html>
@@ -16,27 +18,27 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link href="css/bootstrap-cerulean.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/chosen.min.css" rel="stylesheet">
-    <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
-    <link rel="stylesheet" href="css/jquery.step.css">
-    <link rel="stylesheet" href="js/themes/default/style.min.css">
+    <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="../../css/app.css" rel="stylesheet">
+    <link href="../../css/chosen.min.css" rel="stylesheet">
+    <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link rel="stylesheet" href="../../css/jquery.step.css">
+    <link rel="stylesheet" href="../../js/themes/default/style.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="css/jedate.css">
-    <link rel="stylesheet" href="css/mycss.css">
-    <link rel="stylesheet" href="css/oa.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
+    <link rel="stylesheet" href="../../css/mycss.css">
+    <link rel="stylesheet" href="../../css/oa.css">
 
-    <link rel="stylesheet" href="css/media.css" media="print">
+    <link rel="stylesheet" href="../../css/media.css" media="print">
 
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-form.min.js"></script>
-    <script src="js/jquery.jedate.js"></script>
-    <script src="js/jquery.step.js"></script>
-    <script src="js/jstree.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-form.min.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/jquery.step.js"></script>
+    <script src="../../js/jstree.js"></script>
     <!-- The fav icon -->
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
     <style>
         .navbar-brand{
             font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -127,7 +129,7 @@
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
         <a class="navbar-brand" href="/tohome.htm" style="width: 600px;">
-            <img alt="Logo" src="img/logo20.png" class="hidden-xs"/>
+            <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <p style="font-size: 26px"><span>临沧市移民数字管理平台-</span> <span style="font-size: 18px">用户授权管理系统</span></p>
         </a>
         <!-- logo ends -->
@@ -864,19 +866,19 @@
 
 
 <!-- external javascript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <!-- library for cookie management -->
-<script src="js/jquery.cookie.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
 <!-- select or dropdown enhancer -->
-<script src="js/chosen.jquery.min.js"></script>
+<script src="../../js/chosen.jquery.min.js"></script>
 <!-- for iOS style toggle switch -->
-<script src="js/jquery.iphone.toggle.js"></script>
+<script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
-<script src="js/jquery.history.js"></script>
+<script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="js/jstree.js"></script>
-<script src="js/app.js"></script>
-<script src="js/Administrator.js"></script>
+<script src="../../js/jstree.js"></script>
+<script src="../../js/app.js"></script>
+<script src="../../js/administrator.js"></script>
 </body>
 </html>
 
