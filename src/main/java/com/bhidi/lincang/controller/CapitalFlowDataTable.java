@@ -42,16 +42,21 @@ public class CapitalFlowDataTable {
         User user = (User)request.getSession().getAttribute("user");
         List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
-        List<String> roleList = new ArrayList<String>();
+        String dept = "";
+        String str = "";
         if( user!=null ){
             name = user.getName();
-            roleList = user.getRoleList();
+            dept = user.getDept();
+        }
+        if(dept.equals("临沧市移民局规划科")){
+            str = "";
+        } else {
+            str = " AND shenqingrendept = '"+dept+"' ";
         }
         //根据功能名字判断状态
-        String str = "";
-        if( functionList!=null && functionList.size() > 0 ){
+        /*if( functionList!=null && functionList.size() > 0 ){
             if(!functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
-                str = "1=0";
+                str = " AND 1=0";
             }
             if(functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
                 str = " AND initiatorclass = '市局资金计划上报'";
@@ -74,7 +79,7 @@ public class CapitalFlowDataTable {
             if(functionList.contains(13) & functionList.contains(18) & functionList.contains(19)){
                 str = "";
             }
-        }
+        }*/
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");

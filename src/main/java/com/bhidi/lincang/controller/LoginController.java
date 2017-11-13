@@ -53,6 +53,7 @@ public class LoginController {
                 session.setAttribute("function",intList);
             }
             session.setAttribute("user", user);
+            System.out.println(user);
             if (login_auto_login != null && !login_auto_login.equals("")) {
                 //如果前台点击了自动登录，就放在cookie里边
                 Gson gson = new Gson();
