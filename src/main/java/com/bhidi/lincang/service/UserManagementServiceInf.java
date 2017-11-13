@@ -25,4 +25,13 @@ public interface UserManagementServiceInf {
     int saveRole(Role rri);
 
     int saveRolePrivilege(List<RolePrivilege> rolePrivilege);
+
+    int deleteRolePrivilege(int id);
+
+    int updateRoleById(Map<String, Object> mapCondition);
+
+
+    Role selectRoleByRoleName(String roleName);
+
+    User selectUserByUserName(String userName);
 }

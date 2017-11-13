@@ -675,7 +675,7 @@
                             <tbody>
                             <tr>
                                 <td>角色</td>
-                                <td colspan="3"><input type="text" name="username" id="roleName1"></td>
+                                <td colspan="3"><input type="text" disabled="disabled" name="username" id="roleName1"></td>
                             </tr>
 
                             <tr>
@@ -847,19 +847,19 @@
 
 
 <script>
-
     function newForm() {
         $('#form_add_users input').val('');
         $('#form_add_users').modal('show');
     }
-
     function newRoleForm() {
         $('#form_add_Role input').val('');
+//        树状复选框初始默认选中
+         var instance = $('#tree_container').jstree(true);
+         instance.deselect_all();
+         var inArr=['1','2','3',"4","6","7","8","9","10","11"];
+         instance.select_node(inArr);
         $('#form_add_Role').modal('show');
     }
-
-
-
 </script>
 
 
