@@ -125,5 +125,13 @@ public class UserManagementServiceImp implements UserManagementServiceInf{
         return userManagementMapper.updateRoleById(mapCondition);
     }
 
+    public Role selectRoleByRoleName(String roleName) {
+        return userManagementMapper.selectRoleByRoleName(roleName);
+    }
+
+    public User selectUserByUserName(String userName) {
+        return userManagementMapper.selectUserByUserName(userName);
+    }
+
 
 }
