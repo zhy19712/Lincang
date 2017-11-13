@@ -191,12 +191,6 @@
            "plugins" : ["checkbox"]
        });
 
-       //树状复选框初始默认选中
-       var instance = $('#tree_container').jstree(true);
-       instance.deselect_all();
-       var inArr=['1','2','3',"4","6","7","8","9","10","11"];
-       instance.select_node(inArr);
-
        //用户添加按钮
        $("#btn-primary").click(function () {
            if(status1 && status2 && status3){
@@ -212,7 +206,6 @@
            }else {
                alert("请正确修改用户")
            }
-
        });
        //角色添加按钮
        $("#roleBtnAdd").click(function () {
@@ -222,7 +215,6 @@
           }else {
               addRole()
           }
-
        });
        //角色修改按钮
        $("#roleBtnUpdate").click(function () {
@@ -381,9 +373,9 @@
 
        //角色添加
        function addRole(){
-           var dataArr=$("#tree_container").jstree().get_selected(true);
-           var roleName=$("#roleName").val();
-           var idArr=[];
+           var dataArr=$("#tree_container").jstree().get_selected(true),
+               roleName=$("#roleName").val(),
+               idArr=[];
 
            $.each(dataArr,function (a,b) {
                if(parseInt(b.id)){
@@ -438,7 +430,6 @@
                    }
                }
            }
-
        }
        //角色操作
        function editRole(that) {
@@ -470,7 +461,7 @@
                data: {"id":id},
                dataType: "json",
                success: function (data) {
-                   console.log(data)
+                   console.log(data);
                    var functionList=data.functionList;
                    var newId=functionList.map(function (a) {
                        return a+"j"
@@ -479,7 +470,7 @@
                    RoleIdArr.deselect_all();  //functionList
                    RoleIdArr.select_node(newId);
 
-                   $("#roleName1").val(data.role);
+                   $("#roleName1").val(data.rolename);
                    $("#form_update_Role").modal('show');
                }
            });
