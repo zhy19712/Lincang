@@ -479,7 +479,7 @@
                    RoleIdArr.deselect_all();  //functionList
                    RoleIdArr.select_node(newId);
 
-                   $("#roleName1").val(data.role);
+                   $("#roleName1").val(data.rolename);
                    $("#form_update_Role").modal('show');
                }
            });
