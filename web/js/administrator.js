@@ -516,7 +516,7 @@
                        alert("非文件模块，全部列表和个人列表不能同时选择!")
                    }else {
                        $.ajax({
-                           url:"/registerRole.do",
+                           url:"/updateRole.do",
                            dataType:"json",
                            type:"post",
                            data:datas,
