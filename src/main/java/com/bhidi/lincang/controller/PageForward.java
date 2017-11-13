@@ -45,33 +45,113 @@ public class PageForward {
     }
 
     @RequestMapping(value = "/tohome", method = RequestMethod.GET)
-    public String to_home(){
-        return "home";
+    public String to_home(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "tohome";
+        } else {
+            return "login";
+        }
+    }
+    @RequestMapping(value = "/lincang-yimin", method = RequestMethod.GET)
+    public String to_yimin(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "lincang-yimin";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping(value = "/oa", method = RequestMethod.GET)
-    public String to_oa(){
-        return "oa";
+    public String to_oa(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "oa";
+        } else {
+            return "login";
+        }
     }
 
-    @RequestMapping(value = "/yimin", method = RequestMethod.GET)
-    public String to_yimin(){
-        return "lincang-yimin";
-    }
 
-    @RequestMapping(value = "/money", method = RequestMethod.GET)
-    public String to_money(){
-        return "money";
+    @RequestMapping(value = "/shouwen", method = RequestMethod.GET)
+    public String to_money(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "shouwen";
+        } else {
+            return "login";
+        }
         /*return "yimin_temp";*/
     }
 
     @RequestMapping(value = "/tofeiwenjianguanli", method = RequestMethod.GET)
-    public String tofeiwenjianguanli(){
-        return "feiwenjianguanli";
+    public String tofeiwenjianguanli(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "feiwenjianguanli";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping(value = "/zhunianbuchang", method = RequestMethod.GET)
-    public String tozhunianbuchang(){
-        return "zhunianbuchang";
+    public String tozhunianbuchang(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "zhunianbuchang";
+        } else {
+            return "login";
+        }
+    }
+
+//    @RequestMapping(value = "/lincangyimin", method = RequestMethod.GET)
+//    public String lincangyimin(HttpSession session){
+//        User user = (User)session.getAttribute("user");
+//        if( user != null ){
+//            return "lincangyimin";
+//        } else {
+//            return "login";
+//        }
+//    }
+
+    @RequestMapping(value = "/kuquanzhi", method = RequestMethod.GET)
+    public String kuquanzhi(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "kuquanzhi";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/yiminbanqian", method = RequestMethod.GET)
+    public String yiminbanqian(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "yiminbanqian";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/anzhi_detail", method = RequestMethod.GET)
+    public String anzhi_detail(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "anzhi_detail";
+        } else {
+            return "login";
+        }
+    }
+
+    @RequestMapping(value = "/banqian_detail", method = RequestMethod.GET)
+    public String banqian_detail(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "banqian_detail";
+        } else {
+            return "login";
+        }
     }
 }

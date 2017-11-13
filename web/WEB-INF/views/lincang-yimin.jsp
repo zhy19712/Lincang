@@ -160,7 +160,7 @@
                 <form style="margin-top: 10px;" id="excel" target="uploadFrame" enctype="multipart/form-data">
                     <ul style="display: inline-block;">
 						<li><a data-toggle="tooltip" title="新建库区登记表" class="well top-block"
-							   href="../../kuquanzhi.jsp" style="padding: 16px 0;border-radius: 6px;">
+                               href="/kuquanzhi.htm" style="padding: 16px 0;border-radius: 6px;">
 							<i class="glyphicon glyphicon-pencil blue"></i>
 
 							<div>新建库区登记表</div>
@@ -168,7 +168,7 @@
 						</a>
 						</li>
 						<li><a data-toggle="tooltip" title="新建移民搬迁登记表" class="well top-block"
-							   href="../../yiminbanqian.jsp" style="padding: 16px 0;border-radius: 6px;">
+                               href="/yiminbanqian.htm" style="padding: 16px 0;border-radius: 6px;">
 							<i class="glyphicon glyphicon-pencil blue"></i>
 
 							<div>新建移民搬迁登记表</div>
@@ -256,9 +256,9 @@
         var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         id = encodeURI(encodeURI(id));
         if(table_kind == "库区安置登记表"){
-            window.open("/anzhi_detail.jsp?kind=" + kind + "&id=" + id);
+            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id);
         }else if(table_kind == "移民搬迁登记表"){
-            window.open("/banqian_detail.jsp?kind=" + kind + "&id=" + id);
+            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id);
 		}
     }
 </script>

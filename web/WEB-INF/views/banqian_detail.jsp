@@ -16,16 +16,17 @@
 <head>
     <title>移民搬迁登记表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/jedate.css">
-    <link rel="stylesheet" href="css/lincang-yimin.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="css/mybs.css">
-    <link rel="stylesheet" href="css/app.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.jedate.js"></script>
-    <script src="js/table.js"></script>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
+    <link rel="stylesheet" href="../../css/lincang-yimin.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="../../css/mybs.css">
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/jQuery.print.js"></script>
+    <script src="../../js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color:    red;
@@ -38,6 +39,10 @@
         }
         :-ms-input-placeholder { /* Internet Explorer 10+ */
             color:    red;
+        }
+        #fid p{
+            text-align: right;
+            color: red;
         }
     </style>
 </head>
@@ -66,7 +71,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
+                    欢迎${user.name}<a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
@@ -76,19 +81,22 @@
     </div>
 </div>
 <form action="" style="width: 96%;margin: 10px auto;">
-    <table id="jqtable">
+    <table id="jqtable" border-collapse="separate">
         <tbody>
+        <tr>
+            <td colspan="9" id="fid"><p>移民搬迁登记表:<span></span></p></td>
+        </tr>
         <tr>
             <td colspan="9" id="kind">移民搬迁登记表</td>
         </tr>
         <tr>
             <td rowspan="2" class="bgc">户主信息</td>
             <td class="bgc">所属水库</td>
-            <td colspan="1"><input type="text" id="reservoir" required="required" placeholder="*此项为必填项"></td>
+            <td colspan="1"><input type="text" id="reservoir"></td>
             <td class="bgc">安置点</td>
             <td><input type="text" id="place"></td>
             <td class="bgc">户主姓名</td>
-            <td><input type="text" id="householder" required="required" placeholder="*此项为必填项"></td>
+            <td><input type="text" id="householder"></td>
             <td class="bgc">联系电话</td>
             <td><input type="text" id="number"></td>
         </tr>
@@ -111,7 +119,7 @@
             <td class="bgc">职业</td>
         </tr>
         <tr id="home_people1">
-            <td><input type="text" required="required" placeholder="*此项为必填项"></td>
+            <td><input type="text"></td>
             <td colspan="2"><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
@@ -158,8 +166,8 @@
         </tr>
         <tr id="city1">
             <td class="bgc">迁入地</td>
-            <td><input type="text" required="required" placeholder="*此项为必填项"></td>
-            <td><input type="text" required="required" placeholder="*此项为必填项"></td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
@@ -488,15 +496,15 @@
             <td class="bgc">被调查人签字</td>
             <td colspan="2"><input type="text" id="respondent"></td>
             <td class="bgc">调查人签字</td>
-            <td colspan="2"><input type="text" id="inquirer" required="required" placeholder="*此项为必填项"></td>
+            <td colspan="2"><input type="text" id="inquirer"></td>
             <td class="bgc">填表时间</td>
-            <td colspan="2"><input type="text" id="time" readonly="readonly" required="required" placeholder="*此项为必填项"></td>
+            <td colspan="2"><input type="text" id="time" readonly="readonly"></td>
         </tr>
         </tbody>
     </table>
     <ul id="btn-container">
         <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-bounce-to-bottom button">放弃</a></li>
+        <li id="jqprint"><a class="hvr-back-pulse button">打印</a></li>
     </ul>
 </form>
 </body>

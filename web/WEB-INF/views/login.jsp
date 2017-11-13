@@ -22,6 +22,7 @@
     <link href="../../css/app.css" rel="stylesheet">
     <link href='../../css/jquery.iphone.toggle.css' rel='stylesheet'>
     <link href='../../css/animate.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="../../img/favicon.ico">
     <style>
         input:-webkit-autofill {
             -webkit-box-shadow: 0 0 0px 1000px white inset;

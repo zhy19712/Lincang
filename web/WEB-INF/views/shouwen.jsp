@@ -14,18 +14,18 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link href="css/bootstrap-cerulean.min.css" rel="stylesheet">
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/chosen.min.css" rel="stylesheet">
-    <link href="css/jquery.iphone.toggle.css" rel='stylesheet'>
+    <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
+    <link href="../../css/app.css" rel="stylesheet">
+    <link href="../../css/chosen.min.css" rel="stylesheet">
+    <link href="../../css/jquery.iphone.toggle.css" rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="css/mycss.css">
-    <link rel="stylesheet" href="css/oa.css">
-    <link rel="stylesheet" href="css/ui-choose.css">
-    <link rel="stylesheet" href="css/jquery.step.css">
-    <link rel="stylesheet" href="css/jedate.css">
-    <link rel="stylesheet" href="js/themes/default/style.min.css">
-    <link rel="stylesheet" href="css/money.css">
+    <link rel="stylesheet" href="../../css/mycss.css">
+    <link rel="stylesheet" href="../../css/oa.css">
+    <link rel="stylesheet" href="../../css/ui-choose.css">
+    <link rel="stylesheet" href="../../css/jquery.step.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
+    <link rel="stylesheet" href="../../js/themes/default/style.min.css">
+    <link rel="stylesheet" href="../../css/money.css">
     <link rel="stylesheet" href="../../css/mycommon.css">
     <style>
         .last{
@@ -196,7 +196,7 @@
             right: 0;
             bottom: 0;
             width: 100%;
-            background: url(images/bg-1.png) no-repeat left top;
+            background: url(../../images/bg-1.png) no-repeat left top;
             background-size: 100% 100%;
         }
         #bg div {
@@ -211,11 +211,11 @@
 
 
     <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery-form.min.js"></script>
-    <script src="js/ui-choose.js"></script>
-    <script src="js/jquery.jedate.js"></script>
-    <script src="js/jquery.step.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-form.min.js"></script>
+    <script src="../../js/ui-choose.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/jquery.step.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
 </head>
@@ -589,7 +589,7 @@
                     </div>
                 </div>
                 <div id="more" style="height: 56px;overflow: hidden;transition: all 0.5s;border-top: 1px solid #ccc;">
-                    <span class="style1">收文登记表</span><p id="first" style="margin-top:20px;margin-left:30px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
+                    <span class="style1">收文登记表</span><p id="first" style="margin-top:20px;margin-left:30px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(../../images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('../../images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -944,7 +944,7 @@
                     </div>
                 </div>
                 <div id="more1" style="height: 56px;overflow: hidden;transition: all 0.5s;">
-                    <span class="style1">收文登记表</span><p id="first1" style="margin-top:20px;margin-left:34px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
+                    <span class="style1">收文登记表</span><p id="first1" style="margin-top:20px;margin-left:34px;font-size: 16px;cursor: pointer;line-height: 26px;display: inline-block;border: 1px solid #999;padding:0 10px;border-radius: 3px;color: #466faa;background: url(../../images/bg-2.png) repeat-x top left;">点击查看详细信息<span style="display: inline-block;width: 7px;height: 6px;background: url('../../images/arrow.png') no-repeat center center;background-size: 7px 6px;vertical-align: top;margin-top: 10px;margin-left: 14px;"></span></p>
                     <table>
                         <tbody>
                         <tr>
@@ -1356,19 +1356,19 @@
 
 
 <!-- external javascript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
 <!-- library for cookie management -->
-<script src="js/jquery.cookie.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
 <!-- select or dropdown enhancer -->
-<script src="js/chosen.jquery.min.js"></script>
+<script src="../../js/chosen.jquery.min.js"></script>
 <!-- for iOS style toggle switch -->
-<script src="js/jquery.iphone.toggle.js"></script>
+<script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
-<script src="js/jquery.history.js"></script>
+<script src="../../js/jquery.history.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-<script src="js/jstree.js"></script>
-<script src="js/jquery-form.min.js"></script>
-<script src="js/money.js"></script>
+<script src="../../js/jstree.js"></script>
+<script src="../../js/jquery-form.min.js"></script>
+<script src="../../js/money.js"></script>
 <script>
     //数组去重
     Array.prototype.unique3 = function(){
