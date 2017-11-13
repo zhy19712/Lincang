@@ -40,4 +40,7 @@ public interface UserManagementMapper {
 
     int updateRoleById(Map<String, Object> mapCondition);
 
+    Role selectRoleByRoleName(String roleName);
+
+    User selectUserByUserName(String userName);
 }
