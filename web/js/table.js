@@ -9,6 +9,9 @@ $(function () {
     $("#traffic").val("交通落后");
     $("#money").val("缺技术、资金、土地、水");
     $("#disaster").val("因学、残、灾");
+    //调查人
+    var name = $("#name").text();
+    $("#inquirer").val(name);
     //数据录入表格单选
     $("#yes").click(function () {
         $("#no").prop("checked",false);

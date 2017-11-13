@@ -176,7 +176,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
+                    欢迎<span id="name" style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
@@ -255,7 +255,7 @@
                                                     <th>编号</th>
                                                     <th>标题</th>
                                                     <th>信息分类</th>
-                                                    <th>发起人</th>
+                                                    <th>提交人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -288,7 +288,7 @@
                                                     <th>编号</th>
                                                     <th>标题</th>
                                                     <th>信息分类</th>
-                                                    <th>发起人</th>
+                                                    <th>提交人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -325,7 +325,7 @@
                                                     <th>编号</th>
                                                     <th>标题</th>
                                                     <th>信息分类</th>
-                                                    <th>发起人</th>
+                                                    <th>提交人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -383,7 +383,7 @@
                                 </tr>
                                 <tr>
                                     <td>提交人</td>
-                                    <td><input type="text" name="formsubmitperson"></td>
+                                    <td><input id="name1" readonly="readonly" type="text" name="formsubmitperson"></td>
                                     <td>信息分类</td>
                                     <td><select name="infokind">
                                         <option value="计划总结类">计划总结类</option>
@@ -510,6 +510,7 @@
 <script>
 
     var status=$("#status").text();
+    var name=$("#name").text();
 
     function newForm() {
         $('#form_stuff input').val('');
@@ -520,25 +521,11 @@
             }
         })
         $("#filesUpload span").remove();
+        $("#name1").val(name);
         $('#form_stuff').modal('show');
     }
 
 
-
-
-
-
-
-
-    function detail_office(that) {
-        $('#form_office').modal('show');
-    }
-
-    function flow(that){
-        $('#flow').modal('show');
-    }
-
-    $("#status")
 </script>
 
 
