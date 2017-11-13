@@ -34,6 +34,7 @@
             IFNULL(areanamedelete,'') AS areanamedelete,
             IFNULL(text,'') AS text,
             IFNULL(guihuachuliren,'') AS guihuachuliren,
+            IFNULL(guihuakechulitime,'') AS guihuakechulitime,
 
             IFNULL(toarea_time,'') AS toarea_time,
 
