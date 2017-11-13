@@ -1,6 +1,7 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.*;
+import com.bhidi.lincang.service.LoginServiceImp;
 import com.bhidi.lincang.service.UserManagementServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,8 @@ import java.util.Map;
 public class UserManagementController {
     @Autowired
     UserManagementServiceImp userManagementServiceImp;
+    @Autowired
+    LoginServiceImp loginServiceImp;
     /**
      * 获取所有的角色名称
      * @return
@@ -146,7 +149,12 @@ public class UserManagementController {
     @RequestMapping(value="/selectRole",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public String selectRole(int id){
         Role a = userManagementServiceImp.selectRole(id);
-        String result = new Gson().toJson(a);
+        //查到这个角色对应的功能
+        List<Integer> intList = loginServiceImp.getFunction(a.getId());
+        Map<String,Object> mapResult = new HashMap<String,Object>();
+        mapResult.put("rolename",a==null?"":a.getRolename());
+        mapResult.put("functionList",intList);
+        String result = new Gson().toJson(mapResult);
         return result;
     }
 

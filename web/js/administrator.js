@@ -470,6 +470,7 @@
                data: {"id":id},
                dataType: "json",
                success: function (data) {
+                   console.log(data)
                    var functionList=data.functionList;
                    var newId=functionList.map(function (a) {
                        return a+"j"
