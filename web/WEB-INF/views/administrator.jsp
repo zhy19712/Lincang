@@ -675,7 +675,7 @@
                             <tbody>
                             <tr>
                                 <td>角色</td>
-                                <td colspan="3"><input type="text" name="username" id="roleName1"></td>
+                                <td colspan="3"><input type="text" disabled="disabled" name="username" id="roleName1"></td>
                             </tr>
 
                             <tr>

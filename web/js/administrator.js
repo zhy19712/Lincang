@@ -293,10 +293,10 @@
                data:datas,
                async:false,
                success:function (val) {
-                   $('#form_update_users').modal('hide');
                    if(val.result =="success"){
                        table_refresh();
                        alert("修改成功");
+                       $('#form_update_users').modal('hide');
                    }else {
                        alert("修改失败");
                    }
@@ -331,10 +331,11 @@
                data:datas,
                async:false,
                success:function (val) {
-                   $('#form_add_users').modal('hide');
+                   console.log(val)
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
+                       $('#form_add_users').modal('hide');
                    }else if(val.result =="rename"){
                        alert("该用户名已存在！");
                    }else {
@@ -370,7 +371,6 @@
            }
 
        }
-
        //角色添加
        function addRole(){
            var dataArr=$("#tree_container").jstree().get_selected(true),
@@ -386,6 +386,7 @@
                "role":roleName,
                "functionList":idArr
            };
+           console.log(datas)
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
@@ -416,10 +417,11 @@
                                data:datas,
                                async:false,
                                success:function (val) {
-                                   $('#form_add_Role').modal('hide');
+                                   console.log(val);
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("提交成功");
+                                       $('#form_add_Role').modal('hide');
                                    }else if(val.result =="rename"){
                                        alert("该角色名已存在！");
                                    }else {
@@ -525,10 +527,10 @@
                                data:datas,
                                async:false,
                                success:function (val) {
-                                   $("#form_update_Role").modal('hide');
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("修改成功");
+                                       $("#form_update_Role").modal('hide');
                                    }else {
                                        alert("修改失败");
                                    }
