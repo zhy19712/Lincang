@@ -43,7 +43,7 @@
                }
            }
        });
-       var New_table = $('#NewTable_role').DataTable({
+        var New_table = $('#NewTable_role').DataTable({
            ajax: {
                url: "/userManagementDataTableRole.do"
            },
@@ -331,7 +331,6 @@
                data:datas,
                async:false,
                success:function (val) {
-                   console.log(val)
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
@@ -386,7 +385,6 @@
                "role":roleName,
                "functionList":idArr
            };
-           console.log(datas)
            // 18/19
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
@@ -409,7 +407,6 @@
                        if(e && f){
                            alert("非文件模块，全部列表和个人列表不能同时选择!")
                        }else {
-
                            $.ajax({
                                url:"/registerRole.do",
                                dataType:"json",
@@ -417,7 +414,6 @@
                                data:datas,
                                async:false,
                                success:function (val) {
-                                   console.log(val);
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("提交成功");
@@ -435,7 +431,6 @@
                    }
                }
            }
-
        }
        //角色操作
        function editRole(that) {
