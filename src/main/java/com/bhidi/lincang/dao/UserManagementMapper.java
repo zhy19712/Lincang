@@ -30,7 +30,7 @@ public interface UserManagementMapper {
 
     int deleteRole(int id);
 
-    int selectRole(int id);
+    Role selectRole(int id);
 
     int insertRole(Role rri);
 

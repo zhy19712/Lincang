@@ -443,8 +443,8 @@
        //角色操作
        function editRole(that) {
            var id = $(that).parent("td").parent("tr").children("td:nth-child(1)").text(),
-               kind = $(that).val();
-           // url="/deleteRegisterInfoById.do";
+               kind = $(that).val(),
+               url="/deleteRole.do";
            $("#role_id").text(id);
 
            if(kind=="查看"){
@@ -458,13 +458,13 @@
                $("#roleBtnUpdate").show();
                lookRole(id)
            }else if(kind=="删除"){
-               // deldata(id,url)
+               deldata(id,url)
            }
        }
        //角色查看
        function lookRole(id) {
            $.ajax({
-               // url: "/getRegisterInfoById.do",
+               url: "/selectRole.do",
                type: "post",
                async: false,
                data: {"id":id},
