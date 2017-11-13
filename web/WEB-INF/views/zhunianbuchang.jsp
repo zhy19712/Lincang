@@ -117,8 +117,8 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 300px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
-            <span style="font-size: 26px;">临沧市移民开发局</span></a>
+        <a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+            <span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
         <!-- logo ends -->
 
         <!-- user dropdown starts -->
@@ -704,7 +704,7 @@
                             <div class="user5"></div>
                         </div>
                     </div>
-                    <table class="mytable ghapply">
+                    <table class="mytable qxapply">
                         <tr>
                             <td>标题</td>
                             <td colspan="3"><input type="text"></td>
@@ -1447,13 +1447,28 @@
                 $(".mystep_user2 .user4").append(str).addClass("myactive");
             });
         }
+        if(mydata.quxiantijiaoren != ""){
+            var str = "";
+            str +=  ""
+                +   "<div>"
+                +   "<p class='user'>"+ mydata.quxiantijiaoren +"</p>"
+                +   "<p class='time'>"+ mydata.quxiantijiaotime+"</p>"
+                +   "</div>"
+            $(".mystep_user2 .user4").append(str).addClass("myactive");
+        }
         if(status == "市局财务科办理"){
             step.goStep(2);
             $('#caiwu_handle').modal('show');
+            $(".ghapply input").attr("readonly",true);
+            $(".ghapply textarea").attr("readonly",true);
+            $("#fileForm2 input").attr("readonly",false);
             $("#myid").val(id);
         }else if(status == "市局规划科通知区县"){
             step1.goStep(3);
             $("#guihua_handle").modal('show');
+            $(".ghapply input").attr("readonly",true);
+            $(".ghapply textarea").attr("readonly",true);
+            $(".ghapply tr:nth-child(8) textarea").attr("readonly",false);
         }else if(status == "结束"){
             var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
             console.log(app_kind)
@@ -1466,11 +1481,16 @@
             }
         }else{
             $("#final_handle2").modal('show');
+            $(".qxapply input").attr("readonly",true);
+            $(".qxapply textarea").attr("readonly",true);
             if(status == "市局规划科批复"){
                 step3.goStep(2);
+                $(".qxapply tr:nth-child(4) textarea").attr("readonly",false);
             }else if(status == "市局财务科处置办理") {
+                $(".qxapply tr:nth-child(5) textarea").attr("readonly",false);
                 step3.goStep(3);
             }else if(status == "区县资金流向记录"){
+                $(".qxapply tr:nth-child(6) textarea").attr("readonly",false);
                 step3.goStep(4);
             }
         }

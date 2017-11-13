@@ -16,16 +16,16 @@
 <head>
     <title>库区安置登记表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/jedate.css">
-    <link rel="stylesheet" href="css/lincang-yimin.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="css/mybs.css">
-    <link rel="stylesheet" href="css/app.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.jedate.js"></script>
-    <script src="js/table.js"></script>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
+    <link rel="stylesheet" href="../../css/lincang-yimin.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="../../css/mybs.css">
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/table.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color:    red;

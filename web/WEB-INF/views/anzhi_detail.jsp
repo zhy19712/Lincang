@@ -14,19 +14,19 @@
 %>
 <html>
 <head>
-    <title>移民搬迁登记表</title>
+    <title>库区安置登记表</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/jedate.css">
-    <link rel="stylesheet" href="css/lincang-yimin.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link rel="stylesheet" href="css/mybs.css">
-    <link rel="stylesheet" href="css/app.css">
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.jedate.js"></script>
-    <script src="js/jQuery.print.js"></script>
-    <script src="js/detail.js"></script>
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/jedate.css">
+    <link rel="stylesheet" href="../../css/lincang-yimin.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <link rel="stylesheet" href="../../css/mybs.css">
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery.jedate.js"></script>
+    <script src="../../js/jQuery.print.js"></script>
+    <script src="../../js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */
             color:    red;
@@ -71,7 +71,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.name}<a href="logout.do" >注销</a>
+                    欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
@@ -81,32 +81,30 @@
     </div>
 </div>
 <form action="" style="width: 96%;margin: 10px auto;">
-    <table id="jqtable" border-collapse="separate">
+    <table id="jqtable">
         <tbody>
         <tr>
-            <td colspan="9" id="fid"><p>移民搬迁登记表:<span></span></p></td>
+            <td colspan="9" id="fid"><p>库区安置登记表:<span></span></p></td>
         </tr>
         <tr>
-            <td colspan="9" id="kind">移民搬迁登记表</td>
+            <td colspan="9" id="kind">库区安置登记表</td>
         </tr>
         <tr>
             <td rowspan="2" class="bgc">户主信息</td>
             <td class="bgc">所属水库</td>
             <td colspan="1"><input type="text" id="reservoir"></td>
-            <td class="bgc">安置点</td>
-            <td><input type="text" id="place"></td>
             <td class="bgc">户主姓名</td>
-            <td><input type="text" id="householder"></td>
+            <td colspan="2"><input type="text" id="householder"></td>
             <td class="bgc">联系电话</td>
-            <td><input type="text" id="number"></td>
+            <td colspan="2"><input type="text" id="number"></td>
         </tr>
         <tr>
             <td class="bgc">开户人姓名</td>
             <td><input type="text" id="bank-user"></td>
             <td class="bgc">开户行名称</td>
-            <td colspan="1"><input type="text" id="bank-name"></td>
+            <td colspan="2"><input type="text" id="bank-name"></td>
             <td class="bgc">银行卡号</td>
-            <td colspan="3"><input type="text" id="bank-number"></td>
+            <td colspan="2"><input type="text" id="bank-number"></td>
         </tr>
         <tr>
             <td rowspan="5" class="bgc">家庭信息</td>
@@ -155,32 +153,21 @@
             <td><input type="text"></td>
         </tr>
         <tr>
-            <td class="bgc" rowspan="3">搬迁信息</td>
-            <td class="bgc">分类</td>
+            <td class="bgc" rowspan="2">所在地</td>
             <td class="bgc">州市</td>
             <td class="bgc">区县</td>
             <td class="bgc">乡镇</td>
             <td class="bgc">村</td>
             <td class="bgc">组</td>
-            <td class="bgc" colspan="2">备注</td>
+            <td class="bgc" colspan="3">备注</td>
         </tr>
-        <tr id="city1">
-            <td class="bgc">迁入地</td>
+        <tr id="city">
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
-            <td colspan="2"><input type="text"></td>
-        </tr>
-        <tr id="city2">
-            <td class="bgc">迁出地</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
-            <td colspan="2"><input type="text"></td>
+            <td colspan="3"><input type="text"></td>
         </tr>
         <tr>
             <td class="bgc" rowspan="3">住房情况</td>
