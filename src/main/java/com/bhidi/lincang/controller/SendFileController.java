@@ -1,7 +1,5 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.People_List;
-import com.bhidi.lincang.bean.ReceiveFile;
 import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.SendFileServiceImp;

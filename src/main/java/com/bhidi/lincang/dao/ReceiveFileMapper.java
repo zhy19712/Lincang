@@ -38,4 +38,6 @@ public interface ReceiveFileMapper {
     int updateModelErkeshi(Model_Erkeshi meme);
 
     String selectLastReceiveFileId();
+
+    int deleteReceivefile(String receivefileid);
 }
