@@ -212,8 +212,8 @@
         FROM receivefile
         ORDER BY id DESC LIMIT 1
     </select>
-    <!--int deleteReceivefile(String receivefileid);-->
-    <delete id="deleteReceivefile" parameterType="String">
+    <!--int deleteReceiveFile(String receivefileid);-->
+    <delete id="deleteReceiveFile" parameterType="String">
         DELETE FROM receivefile WHERE receivefileid = #{receivefileid}
     </delete>
 </mapper>

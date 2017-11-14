@@ -77,4 +77,8 @@
         FROM sendfile
         ORDER BY id DESC LIMIT 1
     </select>
+    <!--int deleteSendFile(String sendfileid);-->
+    <delete id="deleteSendFile" parameterType="String">
+        DELETE FROM sendfile where sendfileid = #{sendfileid}
+    </delete>
 </mapper>

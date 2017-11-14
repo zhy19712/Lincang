@@ -39,5 +39,5 @@ public interface ReceiveFileMapper {
 
     String selectLastReceiveFileId();
 
-    int deleteReceivefile(String receivefileid);
+    int deleteReceiveFile(String receivefileid);
 }

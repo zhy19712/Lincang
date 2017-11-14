@@ -83,6 +83,10 @@ public class SendFileServiceImp implements SendFileServiceInf{
         return sendFileMapper.updateSendFile(sf);
     }
 
+    public int deleteSendFile(String sendfileid) {
+        return sendFileMapper.deleteSendFile(sendfileid);
+    }
+
     /**
      *获取sendfile的sendfileid
      * @return

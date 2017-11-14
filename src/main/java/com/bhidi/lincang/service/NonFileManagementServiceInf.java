@@ -10,4 +10,6 @@ public interface NonFileManagementServiceInf {
     int updateNonFileManagement(Map<String, Object> mapCondition);
 
     NonFileManagement getNonFileManagementInfoByNonFileId(String nonfileid);
+
+    int deleteNonFile(String nonfileid);
 }

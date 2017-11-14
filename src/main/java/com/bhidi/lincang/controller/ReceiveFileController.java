@@ -894,11 +894,11 @@ public class ReceiveFileController {
      * @return
      */
     @ResponseBody
-    @RequestMapping(value="/deleteReceivefile",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String deleteReceivefile(String receivefileid){
+    @RequestMapping(value="/deleteReceiveFile",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteReceiveFile(String receivefileid){
         int deleteResult = 0;
         try {
-            deleteResult = receiveFileServiceImp.deleteReceivefile(receivefileid);
+            deleteResult = receiveFileServiceImp.deleteReceiveFile(receivefileid);
         } catch (Exception e) {
             e.printStackTrace();
             deleteResult =-1;
