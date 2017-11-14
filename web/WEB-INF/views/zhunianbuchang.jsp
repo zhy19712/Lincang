@@ -1043,7 +1043,7 @@
         var capitalflowid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(capitalflowid);
         $.ajax({
-            url: "",
+            url: "/deleteCapitalFlow.do",
             type: "post",
             dataType: "json",
             data: {capitalflowid:capitalflowid},
