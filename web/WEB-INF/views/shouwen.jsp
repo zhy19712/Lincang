@@ -1870,6 +1870,39 @@
     var sflag = true;
     $("#shouwen_wdo .btn-primary").click(function () {
         if(sflag){
+            var val1 = $("#fileForm tr:nth-child(1) td:nth-child(2) input").val();
+            var val2 = $("#fileForm tr:nth-child(1) td:nth-child(6) input").val();
+            var val3 = $("#fileForm tr:nth-child(1) td:nth-child(8) input").val();
+            var val4 = $("#fileForm tr:nth-child(2) td:nth-child(2) input").val();
+            var val5 = $("#fileForm tr:nth-child(2) td:nth-child(4) input").val();
+            var val6 = $("#fileForm tr:nth-child(2) td:nth-child(8) input").val();
+            var val7 = $("#fileForm tr:nth-child(3) td:nth-child(2) textarea").val();
+            var val8 = $("#fileForm tr:nth-child(5) td:nth-child(2) input").val();
+            if(!val1){
+                alert("年度不能为空");
+                return;
+            }else if(!val2){
+                alert("类别不能为空");
+                return;
+            }else if(!val3){
+                alert("来文日期不能为空");
+                return;
+            }else if(!val4){
+                alert("文件编号不能为空");
+                return;
+            }else if(!val5){
+                alert("登记号不能为空");
+                return;
+            }else if(!val6){
+                alert("成文日期不能为空");
+                return;
+            }else if(!val7){
+                alert("题名不能为空");
+                return;
+            }else if(!val8){
+                alert("主题词不能为空");
+                return;
+            }
             sflag = false;
             var options  = {
                 url:'reveiceFileRegistration.do',
@@ -2622,6 +2655,22 @@
                 text.branchleaderinstruction = $("#model1 tr:nth-child(4) td:nth-child(2) textarea").val();
                 text.mainleaderinstruction = $("#model1 tr:nth-child(5) td:nth-child(2) textarea").val();
                 text.result = $("#model1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                if(!text.receivefilenum){
+                    alert("收文号不能为空");
+                    return;
+                }else if(!text.comefiledepartment){
+                    alert("来文机关不能为空");
+                    return;
+                }else if(!text.comefilenum){
+                    alert("来文号不能为空");
+                    return;
+                }else if(!text.filetitle){
+                    alert("文件标题不能为空");
+                    return;
+                }else if(!text.suggestion){
+                    alert("拟办意见不能为空");
+                    return;
+                }
             }else if(model == "文件拟办单"){
                 if(!fenguan || !zhuguan || !banli){
                     alert("请选择处理人");
@@ -2637,6 +2686,25 @@
                 text.mainleaderinstruction = $("#model2 tr:nth-child(3) td:nth-child(2) textarea").val();
                 text.branchleaderinstruction = $("#model2 tr:nth-child(4) td:nth-child(2) textarea").val();
                 text.result = $("#model2 tr:nth-child(6) td:nth-child(2) textarea").val();
+                if(!text.dispatchfiledepartment){
+                    alert("发文单位不能为空");
+                    return;
+                }else if(!text.filenum){
+                    alert("文件字号不能为空");
+                    return;
+                }else if(!text.receivefileregisterid){
+                    alert("收文登记号不能为空");
+                    return;
+                }else if(!text.receivefiledate){
+                    alert("收文日期不能为空");
+                    return;
+                }else if(!text.filetitle){
+                    alert("文件标题不能为空");
+                    return;
+                }else if(!text.suggestion){
+                    alert("拟办意见不能为空");
+                    return;
+                }
             }else if(model == "一科室提意见"){
                 if(!keshi1 || !fenguan || !zhuguan || !banli){
                     alert("请选择处理人");
@@ -2656,6 +2724,22 @@
                 text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
                 text.department = $("#model3 tr:nth-child(4) td:nth-child(1) input").val();
                 text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+                if(!text.receivefilenum){
+                    alert("收文号不能为空");
+                    return;
+                }else if(!text.comefiledepartment){
+                    alert("收文单位不能为空");
+                    return;
+                }else if(!text.comefilenum){
+                    alert("来文号不能为空");
+                    return;
+                }else if(!text.filetitle){
+                    alert("文件标题不能为空");
+                    return;
+                }else if(!text.suggestion){
+                    alert("拟办意见不能为空");
+                    return;
+                }
             }else if(model == "两科室提意见"){
                 if(!keshi2 || !keshi1 || !fenguan || !zhuguan || !banli){
                     alert("请选择处理人");
@@ -2677,6 +2761,22 @@
                 text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
                 text.department2name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
                 text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
+                if(!text.receivefilenum){
+                    alert("收文号不能为空");
+                    return;
+                }else if(!text.comefiledepartment){
+                    alert("收文单位不能为空");
+                    return;
+                }else if(!text.comefilenum){
+                    alert("来文号不能为空");
+                    return;
+                }else if(!text.filetitle){
+                    alert("文件标题不能为空");
+                    return;
+                }else if(!text.suggestion){
+                    alert("拟办意见不能为空");
+                    return;
+                }
             }
             console.log(text);
             b_flag = false;
@@ -2711,7 +2811,6 @@
     var t_flag = true;
     $("#model_handle .btn-primary").click(function () {
         if(t_flag){
-            t_flag = false;
             if(state == "办公室归档"){
                 console.log(id);
                 $.ajax({
@@ -2742,9 +2841,17 @@
                 if(mydata1.status == "科室签批"){
                     if(mydata1.modeltype == "一科室提意见"){
                         text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(1) textarea").val();
+                        if(!text.departmentadvice){
+                            alert("科室意见不能为空");
+                            return;
+                        }
                     }else if(mydata1.modeltype == "两科室提意见"){
                         text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(1) textarea").val();
                         text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                        if(!text.department1advice && !text.department2advice){
+                            alert("科室意见不能为空");
+                            return;
+                        }
                     }
                 }else if(mydata1.status == "分管领导签批"){
                     if(mydata1.modeltype == "直接处理"){
@@ -2756,6 +2863,10 @@
                     }else if(mydata1.modeltype == "两科室提意见"){
                         text.branchleaderinstruction = $("#model4_1 tr:nth-child(7) td:nth-child(2) textarea").val();
                     }
+                    if(!text.branchleaderinstruction){
+                        alert("分管领导签批不能为空");
+                        return;
+                    }
                 }else if(mydata1.status == "主管领导签批"){
                     if(mydata1.modeltype == "直接处理"){
                         text.mainleaderinstruction = $("#model1_1 tr:nth-child(5) td:nth-child(2) textarea").val();
@@ -2765,6 +2876,10 @@
                         text.mainleaderinstruction = $("#model3_1 tr:nth-child(6) td:nth-child(2) textarea").val();
                     }else if(mydata1.modeltype == "两科室提意见"){
                         text.mainleaderinstruction = $("#model4_1 tr:nth-child(6) td:nth-child(2) textarea").val();
+                    }
+                    if(!text.mainleaderinstruction){
+                        alert("主管领导签批不能为空");
+                        return;
                     }
                 }else if(mydata1.status == "处理处置"){
                     if(mydata1.modeltype == "直接处理"){
@@ -2776,10 +2891,16 @@
                     }else if(mydata1.modeltype == "两科室提意见"){
                         text.result = $("#model4_1 tr:nth-child(8) td:nth-child(2) textarea").val();
                     }
+                    if(!text.result){
+                        alert("处理处置不能为空");
+                        return;
+                    }
+
                 }
                 console.log(text,mydata1);
                 var text2 = JSON.stringify(text);
                 var mydata2 = JSON.stringify(mydata1);
+                t_flag = false;
                 $.ajax({
                     url: "/updateReceiveFileAndModelInfo.do",
                     type: "post",

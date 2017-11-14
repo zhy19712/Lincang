@@ -260,15 +260,16 @@ $(function(){
 		
 	}
     //添加侧边栏信息
-    function slide(name,num) {
+    function slide(name,num,households) {
         var str = "";
         str += ""
             +  "<li class='about'>"
             +  "<a href='#' title='地区'>"
             +  "<div class='img'></div>"
             +  "<div class='info'>"
-            +  "<h2 class='name'>" + name + "</h2>"
-            +  "<p class='text'>共有移民<span class='people'>" + num + "</span>人</p>"
+            +  "<h2 class='name' style='margin-bottom: 0px;'>" + name + "</h2>"
+            +  "<p class='text' style='margin-bottom: 0px;'>共有户数<span class='people'>" + households + "</span>人</p>"
+            +  "<p class='text' style='margin-bottom: 0px;'>共有移民<span class='people'>" + num + "</span>人</p>"
             +  "</div>"
             +  "</a>"
             +  "</li>"
@@ -288,7 +289,7 @@ $(function(){
             $.each(data.result,function (i,n) {
                 all_info.push(n);
                 all_place.push(n.name);
-                slide(n.name,n.num);
+                slide(n.name,n.num,n.households);
                 if(n.name.length<8){
                     addLabel(n.name,n.level,n.name+"<br>共有移民"+n.num+"人");
                 }else {

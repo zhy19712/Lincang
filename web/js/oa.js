@@ -169,7 +169,7 @@ console.log(f2,f3);
 if(f2.length == 0 && f3.length == 0){
     $("#new1>.box-inner").css("display","none");
 }else if(f2.length == 0 && f3.length == 1){
-    $(".btn-danger").css("display","none");
+    $("#new1 .btn-danger").css("display","none");
 }
 if(f1.length == 0 && f2.length == 0 && f3.length == 0){
     $("#myTab li:nth-child(1)").remove();
@@ -561,7 +561,6 @@ $("#select_model .btn-primary").click(function () {
                 return;
             }
         }
-        b_flag = false;
         var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
         var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
         var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
@@ -582,6 +581,21 @@ $("#select_model .btn-primary").click(function () {
         var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
         var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
         var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
+        if(!sn){
+            alert("编号不能为空");
+            return;
+        }
+        if(!date){
+            alert("日期不能为空");
+            return;
+        }
+        if(status == "处理处置"){
+            if(!result){
+                alert("办理结果不能为空");
+                return;
+            }
+        }
+        b_flag = false;
         var text = new Object();
         text.approver = lingdao;
         text.implementperson = banli;

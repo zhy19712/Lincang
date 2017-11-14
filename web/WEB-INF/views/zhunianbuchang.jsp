@@ -424,9 +424,9 @@
                                 <td colspan="4"><textarea></textarea></td>
                             </tr>
                             <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
-                            <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
+                            <form id = "fileForm2" enctype="multipart/form-data"  target="uploadFrame2">
                                 <input id="myid" type="text" name="capitalflowid" value="" style="display: none">
-                                <table class="mytable" style="border-top: none;">
+                                <table id="table2" class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>
                                             <td><input type="text" name="money_source"></td>
@@ -947,7 +947,7 @@
                 $("#new1>.box-inner").css("display","block");
             }else if(n.authdescription == "个人申请列表查看、搜索功能"){
                 $("#new1>.box-inner").css("display","block");
-                $(".btn-danger").css("display","none");
+                $("#new1 .btn-danger").css("display","none");
             }
         });
     }
@@ -1114,6 +1114,23 @@
     var flag1 = true;
     $("#money_apply_wdo1 .btn-primary").click(function () {
         if(flag1){
+            var val1 = $("#fileForm1 tr:nth-child(1) td:nth-child(2) input").val();
+            var val2 = $("#fileForm1 tr:nth-child(2) td:nth-child(2) input").val();
+            var val3 = $("#fileForm1 tr:nth-child(2) td:nth-child(4) input").val();
+            var val4 = $("#fileForm1 tr:nth-child(4) td:nth-child(1) textarea").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val2){
+                alert("上报人不能为空");
+                return;
+            }else if(!val3){
+                alert("上报季度不能为空");
+                return;
+            }else if(!val4){
+                alert("上报内容不能为空");
+                return;
+            }
             flag1 = false;
             var options  = {
                 url:'/submitDataOfCapital.do',
@@ -1141,9 +1158,21 @@
     //财务提交
     var flag2 = true;
     $("#caiwu_handle .btn-primary").click(function () {
-            console.log($("#myid").val());
             if(flag2){
-                flag2 = true;
+                var val1 = $("#table2 tr:nth-child(1) td:nth-child(2) input").val();
+                var val2 = $("#table2 tr:nth-child(1) td:nth-child(4) input").val();
+                var val3 = $("#table2 tr:nth-child(2) td:nth-child(2) input").val();
+                if(!val1){
+                    alert("款项来源不能为空");
+                    return;
+                }else if(!val2){
+                    alert("到款时间不能为空");
+                    return;
+                }else if(!val3){
+                    alert("到款金额不能为空");
+                    return;
+                }
+                flag2 = false;
                 var options  = {
                     url:'/shiJuSubmit.do',
                     type:'post',
@@ -1171,14 +1200,22 @@
     var flag3 = true;
     $("#guihua_handle .btn-primary").click(function () {
         if(flag3){
-            flag3 = false;
             var str = "";
+            if($("#uc_03>li.selected").length == 0){
+                alert("请选择区县");
+                return;
+            }
             $.each($("#uc_03>li.selected"),function (i,n) {
                 console.log(n);
                 str += "," + n.innerText ;
             });
             var text = $("#guihua_handle tr:last-child textarea").val();
+            if(!text){
+                alert("请输入通知内容");
+                return;
+            }
             str = str.substring(1);
+            flag3 = false;
             $.ajax({
                 url: "/setToAreaDataById.do",
                 type: "post",
@@ -1204,6 +1241,19 @@
     var flag4 = true;
     $("#money_apply_wdo2 .btn-primary").click(function () {
         if(flag4){
+            var val1 = $("#fileForm3 tr:nth-child(1) td:nth-child(2) input").val();
+            var val2 = $("#fileForm3 tr:nth-child(2) td:nth-child(2) input").val();
+            var val3 = $("#fileForm3 tr:nth-child(2) td:nth-child(4) input").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val2){
+                alert("申请人不能为空");
+                return;
+            }else if(!val3){
+                alert("申请原因不能为空");
+                return;
+            }
             flag4 = false;
             var options  = {
                 url:'quxianSubmitDataOfCapital.do',
@@ -1232,9 +1282,13 @@
     var flag5 = true;
     $("#final_handle2 .btn-primary").click(function () {
         if(flag5){
-            flag5 = false;
             if(status == "市局规划科批复"){
                 var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val();
+                if(!replytext){
+                    alert("批复内容不能为空");
+                    return;
+                }
+                flag5 = false;
                 console.log(replytext);
                 $.ajax({
                     url: "/quxianGuiHuaSetDataById.do",
@@ -1257,6 +1311,11 @@
             }
             else if(status == "市局财务科处置办理"){
                 var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val();
+                if(!dealtext){
+                    alert("处置办理内容不能为空");
+                    return;
+                }
+                flag5 = false;
                 $.ajax({
                     url: "/quxianCaiWuSetDataById.do",
                     type: "post",
@@ -1278,6 +1337,11 @@
             }
             else if(status == "区县资金流向记录"){
                 var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
+                if(!capitalflowinstruction){
+                    alert("资金流向记录不能为空");
+                    return;
+                }
+                flag5 = false;
                 $.ajax({
                     url: "/quxianSubmitSetDataById.do",
                     type: "post",
@@ -1303,8 +1367,12 @@
     var flag6 = true;
     $("#final_handle2 .btn-success").click(function () {
         if(flag6){
-            flag6 = false;
             var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
+            if(!capitalflowinstruction){
+                alert("资金流向记录不能为空");
+                return;
+            }
+            flag6 = false;
             $.ajax({
                 url: "/quxianSaveSetDataById.do",
                 type: "post",

@@ -724,7 +724,7 @@
         $("#new1>.box-inner").css("display","none");
     }else if(f2.length == 0 && f3.length == 1){
         console.log(123)
-        $(".btn-danger").css("display","none");
+        $("#new1 .btn-danger").css("display","none");
     }
     if(f1.length == 0 && f2.length == 0 && f3.length == 0){
         $("#myTab li:nth-child(1)").remove();
@@ -801,6 +801,15 @@
     var xflag = true;
     $("#form_stuff .btn-primary").click(function () {
         if(xflag){
+            var val1 = $("#fileForm tr:nth-child(1) td:nth-child(2) input").val();
+            var val3 = $("#fileForm tr:nth-child(3) td:nth-child(1) textarea").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val3){
+                alert("内容不能为空");
+                return;
+            }
             xflag = false;
             var options  = {
                 url:'/submitNonFileManagement.do',
@@ -919,7 +928,7 @@
     var bflag1 = true;
     $("#modle_handle .btn-primary").click(function () {
         if(bflag1){
-            bflag1 = false;
+
             var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
             var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
             var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
@@ -933,7 +942,12 @@
             text.content = content;
             text.officecontent = officecontent;
             text.status = "签收";
+            if(!officecontent){
+                alert("办公室处理内容不能为空");
+                return;
+            }
             console.log(text);
+            bflag1 = false;
             var mytext = JSON.stringify(text)
             $.ajax({
                 url: "/updateNonFileManagementInfo.do",
@@ -957,7 +971,6 @@
     var bflag2 = true;
     $("#modle_handle .btn-success").click(function () {
         if(bflag2){
-            bflag2 = false
             var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
             var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
             var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
@@ -971,7 +984,12 @@
             text.content = content;
             text.officecontent = officecontent;
             text.status = "采用";
+            if(!officecontent){
+                alert("办公室处理内容不能为空");
+                return;
+            }
             console.log(text);
+            bflag2 = false;
             var mytext = JSON.stringify(text)
             $.ajax({
                 url: "/updateNonFileManagementInfo.do",
