@@ -23,4 +23,8 @@ public class FamilyInfoServiceImp implements FamilyInfoServiceInf{
     public PeopleMore queryFamilyDetailByFid(String fid) {
         return familyInfoMapper.queryFamilyDetailByFid(fid);
     }
+
+    public int deletePeople(String fid) {
+        return familyInfoMapper.deletePeople(fid);
+    }
 }

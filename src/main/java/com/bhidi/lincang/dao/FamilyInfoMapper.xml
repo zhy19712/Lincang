@@ -41,4 +41,8 @@
         <result property="pid" column="pid" />
         <result property="name" column="name" />
     </resultMap>-->
+    <!--int deletePeople(String fid);-->
+    <delete id="deletePeople" parameterType="String">
+        DELETE FROM people WHERE fid = #{fid}
+    </delete>
 </mapper>
