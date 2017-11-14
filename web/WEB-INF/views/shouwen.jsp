@@ -1725,20 +1725,22 @@
     function delete1(that) {
         var receivefileid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(receivefileid);
-        $.ajax({
-            url: "/deleteReceiveFile.do",
-            type: "post",
-            dataType: "json",
-            data: {receivefileid:receivefileid},
-            success: function (data) {
-                if(data.result == "success"){
-                    shouwen.ajax.url("/receiveFileDataTable.do").load();
-                    alert("删除成功");
-                }else {
-                    alert(data.result);
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deleteReceiveFile.do",
+                type: "post",
+                dataType: "json",
+                data: {receivefileid:receivefileid},
+                success: function (data) {
+                    if(data.result == "success"){
+                        shouwen.ajax.url("/receiveFileDataTable.do").load();
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
 

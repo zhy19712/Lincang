@@ -1,4 +1,4 @@
-var mytable1,allinfo_table;
+var mytable1,allinfo_table,county_name;
 $(function(){
 	//自适应宽高
 	var height = $(window).height() - 66;
@@ -708,9 +708,9 @@ $(function(){
 
 
     $("#show").on("click",".about",function () {
-		var name = $(this).find(".name").text();
-		console.log(name);
-        mytable1.ajax.url("/TableAddByName.do?name="+ encodeURI(encodeURI(name))).load();
+		county_name = $(this).find(".name").text();
+		console.log(county_name);
+        mytable1.ajax.url("/TableAddByName.do?name="+ encodeURI(encodeURI(county_name))).load();
 		$("#show_info").css("display","block");
     });
 
