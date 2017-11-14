@@ -696,7 +696,7 @@
         var nonfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(nonfileid);
          $.ajax({
-             url: "",
+             url: "/deleteNonFile.do",
              type: "post",
              dataType: "json",
              data: {nonfileid:nonfileid},
