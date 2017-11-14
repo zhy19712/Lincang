@@ -11,4 +11,6 @@ public interface FamilyInfoServiceInf {
     List<People> queryFamilyInfoByFid(String fid);
 
     PeopleMore queryFamilyDetailByFid(String fid);
+
+    int deletePeople(String fid);
 }
