@@ -1,3 +1,4 @@
+var mytable1,allinfo_table;
 $(function(){
 	//自适应宽高
 	var height = $(window).height() - 66;
@@ -657,8 +658,10 @@ $(function(){
 	})
 
 
+
+
 	//区县列表信息
-    var mytable1 = $('#table1').DataTable({
+    mytable1 = $('#table1').DataTable({
             ajax: {
                 url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
                 async:false
@@ -683,6 +686,7 @@ $(function(){
                     "render" :  function(data,type,row) {
                         var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                         html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                         return html;
                     }
                 }
@@ -727,7 +731,7 @@ $(function(){
 
 
     //所有信息展示表格
-    var allinfo_table = $('#allinfo_table').DataTable({
+    allinfo_table = $('#allinfo_table').DataTable({
         ajax: {
             url: "/FamilyInfoAdd.do",
             async:false
@@ -752,6 +756,7 @@ $(function(){
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             }
@@ -770,29 +775,7 @@ $(function(){
         }
     });
 
-    function table_refresh() {
-        allinfo_table.ajax.url("/FamilyInfoAdd.do").load();
-    }
 
-    //删除功能
-    function delete1(that) {
-        var FID = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
-        console.log(FID);
-        $.ajax({
-            url: "/deleteNonFile.do",
-            type: "post",
-            dataType: "json",
-            data: {FID:FID},
-            success: function (data) {
-                if(data.result == "success"){
-                    all_table.ajax.url("/allNonFileManagementDataTable.do").load();
-                    alert("删除成功");
-                }else {
-                    alert(data.result);
-                }
-            }
-        })
-    }
 
 
     //统计分析图表
