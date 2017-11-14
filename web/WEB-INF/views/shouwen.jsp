@@ -1726,7 +1726,7 @@
         var receivefileid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(receivefileid);
         $.ajax({
-            url: "/deleteReceivefile.do",
+            url: "/deleteReceiveFile.do",
             type: "post",
             dataType: "json",
             data: {receivefileid:receivefileid},
