@@ -4,14 +4,16 @@ public class PictureCounty {
     private String countyName;
     private String level;
     private int num;
+    private int households;
 
     public PictureCounty() {
     }
 
-    public PictureCounty(String level, String countyName, int num) {
-        this.level = level;
+    public PictureCounty(String countyName, String level, int num, int households) {
         this.countyName = countyName;
+        this.level = level;
         this.num = num;
+        this.households = households;
     }
 
     public String getLevel() {
@@ -38,12 +40,21 @@ public class PictureCounty {
         this.num = num;
     }
 
+    public int getHouseholds() {
+        return households;
+    }
+
+    public void setHouseholds(int households) {
+        this.households = households;
+    }
+
     @Override
     public String toString() {
         return "PictureCounty{" +
-                "level='" + level + '\'' +
-                ", countyName='" + countyName + '\'' +
+                "countyName='" + countyName + '\'' +
+                ", level='" + level + '\'' +
                 ", num=" + num +
+                ", households=" + households +
                 '}';
     }
 }
