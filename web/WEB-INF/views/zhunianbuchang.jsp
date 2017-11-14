@@ -1042,20 +1042,22 @@
     function delete1(that) {
         var capitalflowid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(capitalflowid);
-        $.ajax({
-            url: "/deleteCapitalFlow.do",
-            type: "post",
-            dataType: "json",
-            data: {capitalflowid:capitalflowid},
-            success: function (data) {
-                if(data.result == "success"){
-                    money_apply1.ajax.url("/capitalFlowAll.do").load();
-                    alert("删除成功");
-                }else {
-                    alert(data.result);
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deleteCapitalFlow.do",
+                type: "post",
+                dataType: "json",
+                data: {capitalflowid:capitalflowid},
+                success: function (data) {
+                    if(data.result == "success"){
+                        money_apply1.ajax.url("/capitalFlowAll.do").load();
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
                 }
-            }
-        })
+            })
+        }
     }
 
     //待办事务的显示条数
