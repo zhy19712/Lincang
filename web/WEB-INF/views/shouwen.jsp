@@ -1618,6 +1618,7 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             }
@@ -1719,6 +1720,25 @@
             }
         }
     });
+
+    //删除功能
+    function delete1(that) {
+        var receivefileid = $(that).parent("td").parent("tr").children("td:first-child").text();
+        console.log(receivefileid);
+        $.ajax({
+            url: "",
+            type: "post",
+            dataType: "json",
+            data: {receivefileid:receivefileid},
+            success: function (data) {
+                if(data.result == "success"){
+                    alert("提交成功");
+                }else {
+                    alert(data.result);
+                }
+            }
+        })
+    }
 
 
     //待办事务的显示条数
