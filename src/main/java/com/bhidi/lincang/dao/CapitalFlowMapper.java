@@ -16,4 +16,6 @@ public interface CapitalFlowMapper {
     String selectLastCapitalFlowId();
 
     int updateCapitalDataByCapitalFlow(CapitalFlow cf);
+
+    int deleteCapitalFlow(String capitalflowid);
 }

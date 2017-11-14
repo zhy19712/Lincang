@@ -93,4 +93,28 @@ public class SendFileController {
         String result = new Gson().toJson(map);
         return result;
     }
+    /**
+     * 删除按钮
+     * @param sendfileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteSendFile",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String deleteSendFile(String sendfileid){
+        int deleteResult = 0;
+        try {
+            deleteResult = sendFileServiceImp.deleteSendFile(sendfileid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            deleteResult =-1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( deleteResult == -1 ){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
+    }
 }

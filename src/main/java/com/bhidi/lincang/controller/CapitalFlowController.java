@@ -399,4 +399,28 @@ public class CapitalFlowController {
         int result = capitalFlowServiceImp.setCatipalDataById(map);
         return result+"";
     }
+    /**
+     * 删除按钮
+     * @param capitalflowid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteCapitalFlow",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String deleteCapitalFlow(String capitalflowid){
+        int deleteResult = 0;
+        try {
+            deleteResult = capitalFlowServiceImp.deleteCapitalFlow(capitalflowid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            deleteResult =-1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( deleteResult == -1 ){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
+    }
 }

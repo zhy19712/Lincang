@@ -136,4 +136,8 @@
         FROM capitalflow
         ORDER BY id DESC LIMIT 1
     </select>
+    <!--int deleteCapitalFlow(String capitalflowid);-->
+    <delete id="deleteCapitalFlow" parameterType="String">
+        DELETE FROM capitalflow where capitalflowid = #{capitalflowid}
+    </delete>
 </mapper>

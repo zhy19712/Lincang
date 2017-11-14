@@ -8,4 +8,6 @@ public interface SendFileServiceInf {
     SendFile getSendFileInfoBySendFileId(String sendFileid);
 
     int updateSendFile(Map<String,Object> mapCondition);
+
+    int deleteSendFile(String sendfileid);
 }
