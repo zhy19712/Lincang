@@ -9,16 +9,19 @@ public class PictureFull {
     private String level;
     //数量
     private int num;
+    //户数
+    private int households;
     //下一级的集合
     private List<PictureFull> listChild;
 
     public PictureFull() {
     }
 
-    public PictureFull(String name, String level, int num, List<PictureFull> listChild) {
+    public PictureFull(String name, String level, int num, int households, List<PictureFull> listChild) {
         this.name = name;
         this.level = level;
         this.num = num;
+        this.households = households;
         this.listChild = listChild;
     }
 
@@ -54,12 +57,21 @@ public class PictureFull {
         this.listChild = listChild;
     }
 
+    public int getHouseholds() {
+        return households;
+    }
+
+    public void setHouseholds(int households) {
+        this.households = households;
+    }
+
     @Override
     public String toString() {
         return "PictureFull{" +
                 "name='" + name + '\'' +
                 ", level='" + level + '\'' +
                 ", num=" + num +
+                ", households=" + households +
                 ", listChild=" + listChild +
                 '}';
     }

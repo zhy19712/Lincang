@@ -40,4 +40,12 @@ public interface ReceiveFileMapper {
     String selectLastReceiveFileId();
 
     int deleteReceiveFile(String receivefileid);
+
+    int deleteModelZhiJieChuLi(String receivefileid);
+
+    int deleteModelWenJianNiBan(String receivefileid);
+
+    int deleteModelYiKeShi(String receivefileid);
+
+    int deleteModelErKeShi(String receivefileid);
 }

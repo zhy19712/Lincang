@@ -59,13 +59,79 @@ public class TableAdd {
             List<String> sArray = new ArrayList<String>();
             if (!searchValue.equals("")) {
                 searchValue = searchValue.replaceAll("'","");
-                sArray.add(" p.FID like '%" + searchValue + "%'");
-                sArray.add(" TABLE_TYPE like '%" + searchValue + "%'");
-                sArray.add(" NAME like '%" + searchValue + "%'");
-                sArray.add(" RESERVOIR like '%" + searchValue + "%'");
+                sArray.add(" b.account_name like '%" + searchValue + "%'");
+                sArray.add(" b.bank_name like '%" + searchValue + "%'");
+                sArray.add(" b.account_number like '%" + searchValue + "%'");
+
+                sArray.add(" h.main_size like '%" + searchValue + "%'");
+                sArray.add(" h.main_structure1 like '%" + searchValue + "%'");
+                sArray.add(" h.main_structure2 like '%" + searchValue + "%'");
+                sArray.add(" h.main_structure3 like '%" + searchValue + "%'");
+                sArray.add(" h.main_structure4 like '%" + searchValue + "%'");
+                sArray.add(" h.main_structure5 like '%" + searchValue + "%'");
+                sArray.add(" h.main_remark like '%" + searchValue + "%'");
+                sArray.add(" h.sub_size like '%" + searchValue + "%'");
+                sArray.add(" h.sub_structure1 like '%" + searchValue + "%'");
+                sArray.add(" h.sub_structure2 like '%" + searchValue + "%'");
+                sArray.add(" h.sub_structure3 like '%" + searchValue + "%'");
+                sArray.add(" h.sub_structure4 like '%" + searchValue + "%'");
+                sArray.add(" h.sub_structure5 like '%" + searchValue + "%'");
+                sArray.add(" h.sub_remark like '%" + searchValue + "%'");
+
+                sArray.add(" i.INCOME_SOURCE like '%" + searchValue + "%'");
+                sArray.add(" i.INCOME_CATE like '%" + searchValue + "%'");
+                sArray.add(" i.INCOME_QUANTITY like '%" + searchValue + "%'");
+                sArray.add(" i.INCOME_UNIT like '%" + searchValue + "%'");
+                sArray.add(" i.INCOME_SUM like '%" + searchValue + "%'");
+                sArray.add(" i.REMARK like '%" + searchValue + "%'");
+
+                sArray.add(" o.OUTCOME_SOURCE like '%" + searchValue + "%'");
+                sArray.add(" o.OUTCOME_CATE like '%" + searchValue + "%'");
+                sArray.add(" o.OUTCOME_QUANTITY like '%" + searchValue + "%'");
+                sArray.add(" o.OUTCOME_UNIT like '%" + searchValue + "%'");
+                sArray.add(" o.OUTCOME_SUM like '%" + searchValue + "%'");
+                sArray.add(" o.REMARK like '%" + searchValue + "%'");
+
+                sArray.add(" m.FROM_CITY like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_DISTRICT like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_TOWN like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_VILLAGE like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_GROUP like '%" + searchValue + "%'");
+                sArray.add(" m.FROM_REMARK like '%" + searchValue + "%'");
+                sArray.add(" m.TO_CITY like '%" + searchValue + "%'");
                 sArray.add(" m.TO_DISTRICT like '%" + searchValue + "%'");
-                sArray.add(" INTERVIEWER like '%" + searchValue + "%'");
-                sArray.add(" CREATED_AT like '%" + searchValue + "%'");
+                sArray.add(" m.TO_TOWN like '%" + searchValue + "%'");
+                sArray.add(" m.TO_VILLAGE like '%" + searchValue + "%'");
+                sArray.add(" m.TO_GROUP like '%" + searchValue + "%'");
+                sArray.add(" m.TO_REMARK like '%" + searchValue + "%'");
+
+                sArray.add(" p.RESERVOIR like '%" + searchValue + "%'");
+                sArray.add(" p.LOCATION like '%" + searchValue + "%'");
+                sArray.add(" p.NAME like '%" + searchValue + "%'");
+                sArray.add(" p.MASTER like '%" + searchValue + "%'");
+                sArray.add(" p.PID like '%" + searchValue + "%'");
+                sArray.add(" p.GENDER like '%" + searchValue + "%'");
+                sArray.add(" p.RACE like '%" + searchValue + "%'");
+                sArray.add(" p.PHONE like '%" + searchValue + "%'");
+                sArray.add(" p.RELATION like '%" + searchValue + "%'");
+                sArray.add(" p.EDUCATION like '%" + searchValue + "%'");
+                sArray.add(" p.PROFESSION like '%" + searchValue + "%'");
+                sArray.add(" p.HOME_SIZE like '%" + searchValue + "%'");
+                sArray.add(" p.IMM_NUM like '%" + searchValue + "%'");
+                sArray.add(" p.PROP like '%" + searchValue + "%'");
+                sArray.add(" p.POOR_REASON like '%" + searchValue + "%'");
+                sArray.add(" p.INTERVIEWER like '%" + searchValue + "%'");
+                sArray.add(" p.INTERVIEWEE like '%" + searchValue + "%'");
+                sArray.add(" p.CREATED_AT like '%" + searchValue + "%'");
+                sArray.add(" p.TABLE_TYPE like '%" + searchValue + "%'");
+
+                /*sArray.add(" p.FID like '%" + searchValue + "%'");
+                sArray.add(" p.TABLE_TYPE like '%" + searchValue + "%'");
+                sArray.add(" p.NAME like '%" + searchValue + "%'");
+                sArray.add(" p.RESERVOIR like '%" + searchValue + "%'");
+                sArray.add(" m.TO_DISTRICT like '%" + searchValue + "%'");
+                sArray.add(" p.INTERVIEWER like '%" + searchValue + "%'");
+                sArray.add(" p.CREATED_AT like '%" + searchValue + "%'");*/
             }
 
             String individualSearch = "";
@@ -79,19 +145,19 @@ public class TableAdd {
             }
             List<Table_info> tasks = new ArrayList<Table_info>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(1) as recordsFiltered from " + table+" p,move m where p.fid = m.fid and p.MASTER = 1";
+                String recordsFilteredSql = "select count(DISTINCT p.FID) as recordsFiltered from " + table+" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(1) as recordsTotal from " + table+" p,move m where p.fid = m.fid and p.MASTER = 1";
+                String recordsTotalSql = "select count(DISTINCT p.FID) as recordsTotal from " + table+" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m where p.fid = m.fid and p.MASTER = 1";
+                String sql = "SELECT DISTINCT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
                 if (individualSearch != "") {
-                    searchSQL = " and " + "("+individualSearch+")";
+                    searchSQL = " and p.FID IN"+"("+ "SELECT p.fid FROM people p,move m,bank b,house h,income i,outcome o WHERE  p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and" + "("+individualSearch+")"+")";
                 }
                 sql += searchSQL;
                 recordsFilteredSql += searchSQL;
