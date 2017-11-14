@@ -213,7 +213,8 @@ function delete1(that) {
         data: {sendfileid:sendfileid},
         success: function (data) {
             if(data.result == "success"){
-                alert("提交成功");
+                all_table.ajax.url("/sendFileDataTableFirst.do").load();
+                alert("删除成功");
             }else {
                 alert(data.result);
             }

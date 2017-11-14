@@ -577,6 +577,7 @@
                 "targets": [5],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             },
