@@ -690,6 +690,26 @@
         }
     });
 
+    //删除功能
+    function delete1(that) {
+        var nonfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
+        console.log(nonfileid);
+         $.ajax({
+             url: "",
+             type: "post",
+             dataType: "json",
+             data: {nonfileid:nonfileid},
+             success: function (data) {
+                 if(data.result == "success"){
+                    all_table.ajax.url("/allNonFileManagementDataTable.do").load();
+                     alert("删除成功");
+                 }else {
+                     alert(data.result);
+                 }
+             }
+         })
+    }
+
     //表格刷新
     function table_refresh() {
         all_table.ajax.url("/allNonFileManagementDataTable.do").load();

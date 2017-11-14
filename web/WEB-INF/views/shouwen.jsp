@@ -1596,7 +1596,7 @@
         return res;
     }
     //收文登记
-    var fawen = $('#fawen').DataTable({
+    var shouwen = $('#fawen').DataTable({
         ajax: {
             url: "/receiveFileDataTable.do"
         },
@@ -1732,7 +1732,8 @@
             data: {receivefileid:receivefileid},
             success: function (data) {
                 if(data.result == "success"){
-                    alert("提交成功");
+                    shouwen.ajax.url("/receiveFileDataTable.do").load();
+                    alert("删除成功");
                 }else {
                     alert(data.result);
                 }
