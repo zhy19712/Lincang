@@ -550,7 +550,7 @@
 
                 </form>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-danger" data-dismiss="modal">放弃</a>
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
                     <a href="#" class="btn btn-primary">提交</a>
                 </div>
 
