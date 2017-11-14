@@ -43,7 +43,7 @@
                }
            }
        });
-       var New_table = $('#NewTable_role').DataTable({
+        var New_table = $('#NewTable_role').DataTable({
            ajax: {
                url: "/userManagementDataTableRole.do"
            },
@@ -293,10 +293,10 @@
                data:datas,
                async:false,
                success:function (val) {
-                   $('#form_update_users').modal('hide');
                    if(val.result =="success"){
                        table_refresh();
                        alert("修改成功");
+                       $('#form_update_users').modal('hide');
                    }else {
                        alert("修改失败");
                    }
@@ -331,10 +331,10 @@
                data:datas,
                async:false,
                success:function (val) {
-                   $('#form_add_users').modal('hide');
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
+                       $('#form_add_users').modal('hide');
                    }else if(val.result =="rename"){
                        alert("该用户名已存在！");
                    }else {
@@ -370,7 +370,6 @@
            }
 
        }
-
        //角色添加
        function addRole(){
            var dataArr=$("#tree_container").jstree().get_selected(true),
@@ -408,7 +407,6 @@
                        if(e && f){
                            alert("非文件模块，全部列表和个人列表不能同时选择!")
                        }else {
-
                            $.ajax({
                                url:"/registerRole.do",
                                dataType:"json",
@@ -416,10 +414,10 @@
                                data:datas,
                                async:false,
                                success:function (val) {
-                                   $('#form_add_Role').modal('hide');
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("提交成功");
+                                       $('#form_add_Role').modal('hide');
                                    }else if(val.result =="rename"){
                                        alert("该角色名已存在！");
                                    }else {
@@ -433,7 +431,6 @@
                    }
                }
            }
-
        }
        //角色操作
        function editRole(that) {
@@ -525,10 +522,10 @@
                                data:datas,
                                async:false,
                                success:function (val) {
-                                   $("#form_update_Role").modal('hide');
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("修改成功");
+                                       $("#form_update_Role").modal('hide');
                                    }else {
                                        alert("修改失败");
                                    }

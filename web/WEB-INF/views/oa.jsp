@@ -41,6 +41,7 @@
     <script src="../../js/jquery.jedate.js"></script>
     <script src="../../js/jquery.step.js"></script>
     <script src="../../js/jstree.js"></script>
+    <script src="../../js/jQuery.print.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <style>
@@ -143,6 +144,13 @@
         }
         #container{
             border-bottom: 1px solid #ccc;
+        }
+        .btn-success{
+            display: none;
+        }
+        #myprint td{
+            border-right: 1px solid red;
+            border-bottom: 1px solid red;
         }
     </style>
 </head>
@@ -615,7 +623,102 @@
 
                 <div class="modal-footer">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <a href="#"  class="btn btn-success">打印</a>
                     <a href="#"  class="btn btn-primary">提交</a>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="print_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-body" style="font-size: 0;width: 100%;">
+                    <div class="fawen_info" style="margin-top: 20px;">
+                        <table id="myprint" style="border-top: 1px solid red;border-left: 1px solid red;">
+                            <tbody>
+                            <tr>
+                                <td colspan="9">临沧市移民局发文稿纸</td>
+                            </tr>
+                            <tr>
+                                <td class="red">临沧(</td>
+                                <td></td>
+                                <td class="red">)号</td>
+                                <td class="red">日期</td>
+                                <td></td>
+                                <td class="red">缓级</td>
+                                <td><</td>
+                                <td class="red">密级</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <p class="red text-left">签发</p>
+                                    <p></p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="red text-left">审稿</p>
+                                    <p></p>
+                                </td>
+                                <td colspan="2">
+                                    <p class="red text-left">会签</p>
+                                    <p></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="9">
+                                    <p class="red text-left">抄报</p>
+                                    <p></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="red">抄送</td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">发</td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">拟稿单位</td>
+                                <td colspan="4"></td>
+                                <td class="red">拟稿</td>
+                                <td></td>
+                                <td class="red">科室核稿</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="red">印刷</td>
+                                <td colspan="4"></td>
+                                <td class="red">校对</td>
+                                <td></td>
+                                <td class="red">份数</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="red">主题词</td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">标题</td>
+                                <td colspan="8"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="9"></td>
+                            </tr>
+                            <tr>
+                                <td class="red">办理结果</td>
+                                <td colspan="8"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
 

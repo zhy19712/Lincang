@@ -53,25 +53,25 @@
 .jedateblue .ymsbox .ymcon td.contain,.jedateblue .ymsbox .ymcon td.contain:hover{background-color: #D0F0E3;}
 
 .jedateblue .daybox{overflow: hidden;background-color: #fff;}
-.jedateblue .daybox .arthead{background-color: #00A680;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;padding: 0 50px;position: relative;}
+.jedateblue .daybox .arthead{background-color: #54b4eb;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;padding: 0 50px;position: relative;}
 .jedateblue .daybox .arthead em{width:25px;height:40px; line-height:40px;position:absolute;top:0;background-repeat: no-repeat;background-position: center center;cursor: pointer;}
-.jedateblue .daybox .arthead em:hover{background-color:#00C1AA;}
+.jedateblue .daybox .arthead em:hover{background-color:#466faa;}
 .jedateblue .daybox .arthead p{width: 100%;line-height:40px;float: left;text-align:center;font-size: 14px;}
 .jedateblue .daybox .arthead .ymbtn{padding: 8px 10px;color:#fff;border-radius: 4px;cursor:pointer;}
-.jedateblue .daybox .arthead .ymbtn:hover{background-color:#00C1AA;color:#fff;}
+.jedateblue .daybox .arthead .ymbtn:hover{background-color:#466faa;color:#fff;}
 .jedateblue .daybox .artcont{overflow: hidden;position: relative;border: 1px #cecece solid;border-top: none;float: left;}
 .jedateblue .daybox .artcont.spaer:after{width: 1px;background-color:#ddd;position: absolute;top: 0;bottom: 0;left:50%;content: "";}
 .jedateblue .daybox .contlist{width: 234px;float: left;padding:8px;overflow:hidden;}
 .jedateblue .daysul{width: 100%;border-collapse: collapse;border-spacing: 0;border: 1px solid #fff;}
 .jedateblue .daysul thead{background-color:#f5f5f5;}
 .jedateblue .daysul th{width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 12px;font-weight: 400;}
-.jedateblue .daysul td{min-width:30px !important;width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
+.jedateblue .daysul td{min-width:30px !important;width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';min-width: auto}
 .jedateblue .daysul td .nolunar{line-height: 29px;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .solar{height:16px;line-height:16px;font-size: 14px;padding-top: 3px;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .lunar{height:16px;line-height:16px;font-size: 12px;overflow:hidden;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';color: #888;}
 .jedateblue .daysul td.actdate, .jedateblue .daysul td.actdate:hover,
-.jedateblue .daysul td.actdate .lunar{background-color: #00A680;color:#fff;}
-.jedateblue .daysul td.other,.jedateblue .daysul td.other .nolunar,.jedateblue .daysul td.other .lunar{color:#70D1AA;}
+.jedateblue .daysul td.actdate .lunar{background-color: #54b4eb;color:#fff;}
+.jedateblue .daysul td.other,.jedateblue .daysul td.other .nolunar,.jedateblue .daysul td.other .lunar{color:#54b4eb;}
 .jedateblue .daysul td.disabled,.jedateblue .daysul td.disabled .nolunar,.jedateblue .daysul td.disabled .lunar{ color:#bbb;}
 .jedateblue .daysul td.contain,.jedateblue .daysul td.contain:hover{background-color: #D0F0E3;}
 .jedateblue .daysul td.disabled:hover{background-color:#fff;}
@@ -107,5 +107,5 @@
 .jedateblue .mainfoot .timecon span{padding:0 5px;float:left;height:26px;line-height:24px;font-style:normal;display:block;text-align: center;background-color: #f0f0f0;}
 .jedateblue .mainfoot .timecon i{width:6px;float:left;height:26px;line-height:24px;font-style:normal;display:block;text-align: center;}
 .jedateblue .mainfoot .btnscon{line-height:36px;margin-top:4px;display: inline-block;float: right;font-size: 12px;border-radius:4px;overflow: hidden;}
-.jedateblue .mainfoot .btnscon span{float:left; padding:0 5px;border-right: 1px #fff solid;background-color: #00A680;color: #fff;display: block;height:28px;line-height:28px; text-align:center;overflow: hidden;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
+.jedateblue .mainfoot .btnscon span{float:left; padding:0 5px;border-right: 1px #fff solid;background-color: #54b4eb;color: #fff;display: block;height:28px;line-height:28px; text-align:center;overflow: hidden;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .mainfoot .btnscon span:last-child{border-right:none;}

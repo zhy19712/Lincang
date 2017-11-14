@@ -129,11 +129,12 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎${user.username}<a href="logout.do" >注销</a>
+                    欢迎${user.name}<a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
+        <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
         <span id="permissionList" style="display:none;width:0;height:0;">${user.permissionList}</span>
         <!-- user dropdown ends -->
@@ -218,7 +219,7 @@
                                                     <th>流程类型</th>
                                                     <th>标题</th>
                                                     <th>创建时间</th>
-                                                    <th>发起人</th>
+                                                    <th>上报/申请人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -252,7 +253,7 @@
                                                     <th>流程类型</th>
                                                     <th>标题</th>
                                                     <th>创建时间</th>
-                                                    <th>发起人</th>
+                                                    <th>上报/申请人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -289,7 +290,7 @@
                                                     <th>流程类型</th>
                                                     <th>标题</th>
                                                     <th>创建时间</th>
-                                                    <th>发起人</th>
+                                                    <th>上报/申请人</th>
                                                     <th>当前状态</th>
                                                     <th>操作</th>
                                                 </tr>
@@ -348,7 +349,7 @@
                             </tr>
                             <tr>
                                 <td>上报人</td>
-                                <td><input type="text" name="report_person"></td>
+                                <td><input id="name1" type="text" name="report_person" readonly="readonly"></td>
                                 <td>上报季度</td>
                                 <td><input type="text" id="time1" name="report_quarter"></td>
                             </tr>
@@ -647,7 +648,7 @@
                             </tr>
                             <tr>
                                 <td>申请人</td>
-                                <td><input type="text" name="shenqingren"></td>
+                                <td><input id="name2" type="text" name="shenqingren" readonly="readonly"></td>
                                 <td>申请原因</td>
                                 <td><input type="text" name="report_reason"></td>
                             </tr>
@@ -771,7 +772,8 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script>
-
+    //上报人/申请人
+    var name = $("#name").text();
     //获取功能
     var fun_list1 = [];
     var fun_list2 = [];
@@ -1061,6 +1063,7 @@
         $("#initiatorclass1").val("市局资金计划上报");
         $('#money_apply_wdo1 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo1 h3').text('填写表单');
+        $("#name1").val(name);
         $('#money_apply_wdo1').modal('show');
     }
 
@@ -1076,8 +1079,8 @@
         $("#initiatorclass2").val("区县资金申请");
         $('#money_apply_wdo2 .btn-primary').css('display','inline-block');
         $('#money_apply_wdo2 h3').text('填写表单');
+        $("#name2").val(name);
         $('#money_apply_wdo2').modal('show');
-//        $('#final_handle2').modal('show');
     }
 
 

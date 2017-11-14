@@ -66,7 +66,7 @@
                     <a href="/toLogin.htm" target="_blank">请登录</a>
                 </c:if>
                 <c:if test="${user!=null}">
-                    欢迎<span style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
+                    欢迎<span id="name" style="margin: 0 6px;">${user.name}</span><a href="logout.do" >注销</a>
                 </c:if>
             </div>
         </div>
@@ -488,7 +488,7 @@
             <td class="bgc">被调查人签字</td>
             <td colspan="2"><input type="text" id="respondent"></td>
             <td class="bgc">调查人签字</td>
-            <td colspan="2"><input type="text" id="inquirer" required="required" placeholder="*此项为必填项"></td>
+            <td colspan="2"><input type="text" id="inquirer" required="required" readonly="readonly"></td>
             <td class="bgc">填表时间</td>
             <td colspan="2"><input type="text" id="time" readonly="readonly" required="required" placeholder="*此项为必填项"></td>
         </tr>
