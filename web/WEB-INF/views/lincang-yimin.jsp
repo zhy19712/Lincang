@@ -261,5 +261,23 @@
             window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id);
 		}
     }
+    //删除功能
+    function delete1(that) {
+        var FID = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+        console.log(FID);
+//        $.ajax({
+//            url: "/deleteNonFile.do",
+//            type: "post",
+//            dataType: "json",
+//            data: {FID:FID},
+//            success: function (data) {
+//                if(data.result == "success"){
+//                    alert("删除成功");
+//                }else {
+//                    alert(data.result);
+//                }
+//            }
+//        })
+    }
 </script>
 </html>
