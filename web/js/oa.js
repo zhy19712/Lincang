@@ -25,6 +25,7 @@ var all_table = $('#NewTable_Stuff').DataTable({
             "targets": [5],
             "render" :  function(data,type,row) {
                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                 return html;
             }
         }
@@ -200,6 +201,24 @@ function del_file(number) {
     o.removeChild(int); //从父节点o上面移除子节点a
     o.removeChild(a);
     o.removeChild(span)
+}
+//删除功能
+function delete1(that) {
+    var sendfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
+    console.log(sendfileid);
+    // $.ajax({
+    //     url: "",
+    //     type: "post",
+    //     dataType: "json",
+    //     data: {sendfileid:sendfileid},
+    //     success: function (data) {
+    //         if(data.result == "success"){
+    //             alert("提交成功");
+    //         }else {
+    //             alert(data.result);
+    //         }
+    //     }
+    // })
 }
 
 //编辑查看按钮
