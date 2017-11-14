@@ -1751,7 +1751,7 @@
 
     //表格刷新
     function table_refresh() {
-        fawen.ajax.url("/receiveFileDataTable.do").load();
+        shouwen.ajax.url("/receiveFileDataTable.do").load();
         dcl_table.ajax.url("/receiveFileDataTableByNameAndStatus.do").load();
         ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
     }
