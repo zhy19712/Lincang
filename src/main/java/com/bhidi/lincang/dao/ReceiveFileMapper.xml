@@ -216,4 +216,20 @@
     <delete id="deleteReceiveFile" parameterType="String">
         DELETE FROM receivefile WHERE receivefileid = #{receivefileid}
     </delete>
+    <!--int deleteModelZhiJieChuLi(String receivefileid);-->
+    <delete id="deleteModelZhiJieChuLi" parameterType="String">
+        DELETE FROM model_zhijiechuli WHERE receivefileid = #{receivefileid}
+    </delete>
+    <!--int deleteModelWenJianNiBan(String receivefileid);-->
+    <delete id="deleteModelWenJianNiBan" parameterType="String">
+        DELETE FROM model_wenjianniban WHERE receivefileid = #{receivefileid}
+    </delete>
+    <!--int deleteModelYiKeShi(String receivefileid);-->
+    <delete id="deleteModelYiKeShi" parameterType="String">
+        DELETE FROM model_yikeshi WHERE receivefileid = #{receivefileid}
+    </delete>
+    <!--int deleteModelErKeShi(String receivefileid);-->
+    <delete id="deleteModelErKeShi" parameterType="String">
+        DELETE FROM model_erkeshi WHERE receivefileid = #{receivefileid}
+    </delete>
 </mapper>
