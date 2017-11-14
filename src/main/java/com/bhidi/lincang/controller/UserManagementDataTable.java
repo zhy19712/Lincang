@@ -2,8 +2,6 @@ package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.RegisterInfo;
 import com.bhidi.lincang.bean.Role;
-import com.bhidi.lincang.bean.SendFile;
-import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.system.DBConfig;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;

@@ -888,4 +888,15 @@ public class ReceiveFileController {
         String result = new Gson().toJson(map);
         return result;
     }
+    /**
+     * 删除按钮
+     * @param receivefileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteReceivefile",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteReceivefile(String receivefileid){
+        int deleteResult = receiveFileServiceImp.deleteReceivefile(receivefileid);
+        return "";
+    }
 }

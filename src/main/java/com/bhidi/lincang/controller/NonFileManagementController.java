@@ -1,8 +1,6 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.NonFileManagement;
-import com.bhidi.lincang.bean.ReceiveFile;
-import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.NonFileManagementServiceImp;
 import com.google.gson.Gson;
