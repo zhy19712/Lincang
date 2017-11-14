@@ -35,9 +35,9 @@
 
 </head>
 <body>
-	<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+	<div style="margin-bottom: 0;height: 62px;" class="navbar navbar-default" role="navigation">
 
-		<div class="navbar-inner">
+		<div class="navbar-inner" style="padding: 0px;">
 			<!-- 小屏幕时的导航按键 starts -->
 			<button type="button" class="navbar-toggle pull-left animated flip">
 				<span class="sr-only">Toggle navigation</span>
@@ -47,7 +47,7 @@
 			</button>
 			<!-- 小屏幕时的导航按键 ends -->
 			<!-- logo starts -->
-			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;height:40px;padding-bottom: 0;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
 				<span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
 			<!-- logo ends -->
 
@@ -204,62 +204,7 @@
 	</div>
 </body>
 <script>
-    //获取功能
-    var f1 = [];
-    var f2 = [];
-    var f3 = [];
-    var f4 = [];
-    var f5 = [];
-    var f6 = [];
-    var f7 = [];
-    var f8 = [];
-    var f9 = [];
-    var f10 = [];
-    var f11 = [];
-    $.ajax({
-        url: "/getFunction.do",
-        type: "post",
-        async: false,
-        dataType: "json",
-        success:function (data) {
-            console.log(data);
-            $.each(data.function,function (i,n) {
-                if(n.authdescription == "移民新建功能"){
-                    f1.push(n.authdescription)
-                }else if(n.authdescription == "移民修改功能"){
-                    f2.push(n.authdescription)
-                }else if(n.authdescription == "移民上传功能"){
-                    f3.push(n.authdescription)
-                }else if(n.authdescription == "列表查看、搜索功能"){
-                    f4.push(n.authdescription)
-                }else if(n.authdescription == "列表删除功能"){
-                    f5.push(n.authdescription)
-                }else if(n.authdescription == "地图搜索功能"){
-                    f6.push(n.authdescription)
-                }else if(n.authdescription == "地图查看功能"){
-                    f7.push(n.authdescription)
-                }else if(n.authdescription == "地图统计功能（按照区县）"){
-                    f8.push(n.authdescription)
-                }else if(n.authdescription == "移民信息查看"){
-                    f9.push(n.authdescription)
-                }else if(n.authdescription == "统计分析查看"){
-                    f10.push(n.authdescription)
-                }else if(n.authdescription == "区县搜索功能"){
-                    f11.push(n.authdescription)
-                }
-            })
-        }
-    });
 
-    if(f1.length == 0){
-        $("#excel>ul").css("display","none");
-	}
-    if(f2.length == 0){
-        $("#new_table tbody tr td:last-child input:nth-child(2)").css("display","none");
-    }
-    if(f3.length == 0){
-        $("#new_table tbody tr td:last-child input:nth-child(3)").css("display","none");
-    }
 
 
     // 多文件上传

@@ -1598,7 +1598,8 @@
     //收文登记
     var shouwen = $('#fawen').DataTable({
         ajax: {
-            url: "/receiveFileDataTable.do"
+            url: "/receiveFileDataTable.do",
+            async: false
         },
         "order": [[1, 'desc']],
         "serverSide": true,
@@ -1618,7 +1619,7 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             }
@@ -1721,6 +1722,51 @@
         }
     });
 
+    //获取功能
+    var fun_list = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.classification == "收文管理"){
+                    fun_list.push(n);
+                }
+            })
+        }
+    });
+    var fun_list1 = [];
+    $.each(fun_list,function (i,n) {
+        if(n.subclassification == "我的表单"){
+            fun_list1.push(n)
+        }
+    })
+    var f1 = [];
+    var f2 = [];
+    $.each(fun_list1,function(i,n){
+        if(n.authdescription == "文件登记功能"){
+            f1.push(n);
+        }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+            f2.push(n);
+        }
+    })
+    if(f1.length == 0){
+        $("#new1>.row").css("display","none");
+    }
+    if(f2.length == 0){
+        $("#new1>.box-inner").css("display","none");
+    }
+    if(f1.length == 0 && f2.length == 0){
+        $("#myTab li:nth-child(1)").remove();
+        $("#myTab li:nth-child(1)").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }
+
     //删除功能
     function delete1(that) {
         var receivefileid = $(that).parent("td").parent("tr").children("td:first-child").text();
@@ -1746,6 +1792,7 @@
                 success: function (data) {
                     if(data.result == "success"){
                         table_refresh();
+                        setTimeout(acount,100);
                         alert("删除成功");
                     }else {
                         alert(data.result);
@@ -1770,18 +1817,6 @@
         ycl_table.ajax.url("/receiveFileDataTableByNameAndStatusHave.do").load();
     }
 
-    //获取角色名称
-    var role = $("#roleList").text();
-    var last = role.lastIndexOf("]");
-    role = role.substring(1,last);
-    console.log(role);
-    if(role != "市局办公室管理角色"){
-        $("#header1").remove();
-        $("#m_apply1").remove();
-        $("#new1").remove();
-        $("#dcl").addClass("active");
-        $("#new2").addClass("active");
-    }
     //日期插件
     $("#time1").jeDate({
         format: "YYYY-MM-DD"
@@ -1832,26 +1867,32 @@
     }
 
     //收文登记提交
+    var sflag = true;
     $("#shouwen_wdo .btn-primary").click(function () {
-        var options  = {
-            url:'reveiceFileRegistration.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                    $('#shouwen_wdo').modal('hide');
-                    $("#shouwen_wdo input").val("");
-                    $("#shouwen_wdo textarea").val("");
-                    table_refresh();
-                    setTimeout(acount,100);
-                }else {
-                    alert(data.result);
+        if(sflag){
+            sflag = false;
+            var options  = {
+                url:'reveiceFileRegistration.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        sflag = true;
+                        $('#shouwen_wdo').modal('hide');
+                        $("#shouwen_wdo input").val("");
+                        $("#shouwen_wdo textarea").val("");
+                        table_refresh();
+                        setTimeout(acount,100);
+                    }else {
+                        alert(data.result);
+                        sflag = true;
+                    }
                 }
-            }
-        };
-        $("#fileForm").ajaxSubmit(options);
+            };
+            $("#fileForm").ajaxSubmit(options);
+        }
     })
 
     //选择模版
@@ -2451,6 +2492,7 @@
             }else if(mydata1.status == "办公室归档"){
                 step1.goStep(5);
                 step.goStep(5);
+                $("#model_handle .btn-success").css("display","inline-block");
             }else if(mydata1.status == "结束"){
                 step1.goStep(6);
                 step.goStep(6);

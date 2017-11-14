@@ -47,7 +47,7 @@
     </style>
 </head>
 <body>
-<div style="margin-bottom: 0;height: 70px;" class="navbar navbar-default" role="navigation">
+<div style="margin-bottom: 0;height: 62px;" class="navbar navbar-default" role="navigation">
 
     <div class="navbar-inner">
         <!-- 小屏幕时的导航按键 starts -->

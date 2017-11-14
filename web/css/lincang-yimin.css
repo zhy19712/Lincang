@@ -99,14 +99,12 @@
 }
 #content{
   position: relative;
-  top: -14px;
+  top: 0px;
 }
 #data_input,#data_analysis{
   position: absolute;
-  top: 0;
   left: 60px;
   right: 0px;
-  height: 100%;
   background-color: #fff;
   display: none;
 }
