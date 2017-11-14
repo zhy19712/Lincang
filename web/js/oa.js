@@ -206,20 +206,22 @@ function del_file(number) {
 function delete1(that) {
     var sendfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
     console.log(sendfileid);
-    $.ajax({
-        url: "/deleteSendFile.do",
-        type: "post",
-        dataType: "json",
-        data: {sendfileid:sendfileid},
-        success: function (data) {
-            if(data.result == "success"){
-                all_table.ajax.url("/sendFileDataTableFirst.do").load();
-                alert("删除成功");
-            }else {
-                alert(data.result);
+    if(confirm("你确定要删除吗？")){
+        $.ajax({
+            url: "/deleteSendFile.do",
+            type: "post",
+            dataType: "json",
+            data: {sendfileid:sendfileid},
+            success: function (data) {
+                if(data.result == "success"){
+                    all_table.ajax.url("/sendFileDataTableFirst.do").load();
+                    alert("删除成功");
+                }else {
+                    alert(data.result);
+                }
             }
-        }
-    })
+        })
+    }
 }
 
 //编辑查看按钮

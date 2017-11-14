@@ -279,6 +279,77 @@
 
 
 <script>
+    //获取功能
+    var fun_list1 = [];
+    var fun_list2 = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.module == "移民搬迁模块"){
+                    fun_list1.push(n);
+                }else if(n.module == "协同办公模块"){
+                    fun_list2.push(n);
+                }
+            })
+        }
+    });
+    var f1 =[];
+    var f2 =[];
+    var f3 =[];
+    var f4 =[];
+    var f5 =[];
+    if(fun_list1.length>0){
+        $.each(fun_list1,function (i,n) {
+            if(n.classification == "移民管理"){
+                f1.push(n.classification)
+            }else if(n.classification == "资金申请模块"){
+                f2.push(n.classification)
+            }
+        })
+    }
+    if(fun_list2.length>0){
+        $.each(fun_list2,function (i,n) {
+            if(n.classification == "发文管理"){
+                f3.push(n.classification)
+            }else if(n.classification == "收文管理"){
+                f4.push(n.classification)
+            }else if(n.classification == "非文件管理"){
+                f5.push(n.classification)
+            }
+        })
+    }
+    var l1 = f1.length;
+    var l2 = f2.length;
+    var l3 = f3.length;
+    var l4 = f4.length;
+    var l5 = f5.length;
+    if(l1 == 0){
+        $(".main-menu li:nth-child(2)").css("display","none");
+    }
+    if(l2 == 0){
+        $(".main-menu li:nth-child(3)").css("display","none");
+    }
+    if(l3 == 0){
+        $(".main-menu li:nth-child(5)").css("display","none");
+    }
+    if(l4 == 0){
+        $(".main-menu li:nth-child(6)").css("display","none");
+    }
+    if(l5 == 0){
+        $(".main-menu li:nth-child(7)").css("display","none");
+    }
+    if(l1 == 0 && l2 == 0){
+        $(".main-menu li:nth-child(1)").css("display","none");
+    }
+    if(l3 == 0 && l4 == 0 && l5 == 0){
+        $(".main-menu li:nth-child(4)").css("display","none");
+    }
+
 
 
     $(function() {

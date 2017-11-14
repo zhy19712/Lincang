@@ -204,6 +204,64 @@
 	</div>
 </body>
 <script>
+    //获取功能
+    var f1 = [];
+    var f2 = [];
+    var f3 = [];
+    var f4 = [];
+    var f5 = [];
+    var f6 = [];
+    var f7 = [];
+    var f8 = [];
+    var f9 = [];
+    var f10 = [];
+    var f11 = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.authdescription == "移民新建功能"){
+                    f1.push(n.authdescription)
+                }else if(n.authdescription == "移民修改功能"){
+                    f2.push(n.authdescription)
+                }else if(n.authdescription == "移民上传功能"){
+                    f3.push(n.authdescription)
+                }else if(n.authdescription == "列表查看、搜索功能"){
+                    f4.push(n.authdescription)
+                }else if(n.authdescription == "列表删除功能"){
+                    f5.push(n.authdescription)
+                }else if(n.authdescription == "地图搜索功能"){
+                    f6.push(n.authdescription)
+                }else if(n.authdescription == "地图查看功能"){
+                    f7.push(n.authdescription)
+                }else if(n.authdescription == "地图统计功能（按照区县）"){
+                    f8.push(n.authdescription)
+                }else if(n.authdescription == "移民信息查看"){
+                    f9.push(n.authdescription)
+                }else if(n.authdescription == "统计分析查看"){
+                    f10.push(n.authdescription)
+                }else if(n.authdescription == "区县搜索功能"){
+                    f11.push(n.authdescription)
+                }
+            })
+        }
+    });
+
+    if(f1.length == 0){
+        $("#excel>ul").css("display","none");
+	}
+    if(f2.length == 0){
+        $("#new_table tbody tr td:last-child input:nth-child(2)").css("display","none");
+    }
+    if(f3.length == 0){
+        $("#new_table tbody tr td:last-child input:nth-child(3)").css("display","none");
+    }
+
+
     // 多文件上传
     var fileIndex = 1;
     function add_click_file(index){
@@ -261,23 +319,31 @@
             window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id);
 		}
     }
+    //表格刷新
+	function table_refresh() {
+        mytable1.ajax.url("/TableAddByName.do?name="+ encodeURI(encodeURI(county_name))).load();
+        allinfo_table.ajax.url("/FamilyInfoAdd.do").load();
+    }
     //删除功能
     function delete1(that) {
         var FID = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         console.log(FID);
-        $.ajax({
-            url: "/deletePeople.do",
-            type: "post",
-            dataType: "json",
-            data: {fid:FID},
-            success: function (data) {
-                if(data.result == "success"){
-                    alert("删除成功");
-                }else {
-                    alert(data.result);
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deletePeople.do",
+                type: "post",
+                dataType: "json",
+                data: {fid:FID},
+                success: function (data) {
+                    if(data.result == "success"){
+                        table_refresh();
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
                 }
-            }
-        })
+            })
+		}
     }
 </script>
 </html>

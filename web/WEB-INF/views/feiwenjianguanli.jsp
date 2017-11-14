@@ -695,20 +695,22 @@
     function delete1(that) {
         var nonfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
         console.log(nonfileid);
-         $.ajax({
-             url: "/deleteNonFile.do",
-             type: "post",
-             dataType: "json",
-             data: {nonfileid:nonfileid},
-             success: function (data) {
-                 if(data.result == "success"){
-                    all_table.ajax.url("/allNonFileManagementDataTable.do").load();
-                     alert("删除成功");
-                 }else {
-                     alert(data.result);
-                 }
-             }
-         })
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deleteNonFile.do",
+                type: "post",
+                dataType: "json",
+                data: {nonfileid:nonfileid},
+                success: function (data) {
+                    if(data.result == "success"){
+                        all_table.ajax.url("/allNonFileManagementDataTable.do").load();
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
+                }
+            })
+        }
     }
 
     //表格刷新
