@@ -914,17 +914,15 @@ public class ReceiveFileController {
         int deleteModel = 0;
         if("".equals(modeltype)){
             deleteModel = 0;
-        } else if("model_zhijiechuli".equals(modeltype)){
+        } else if("直接处理".equals(modeltype)){
             deleteModel = receiveFileServiceImp.deleteModelZhiJieChuLi(receivefileid);
-        } else if("model_wenjianniban".equals(modeltype)){
+        } else if("文件拟办单".equals(modeltype)){
             deleteModel = receiveFileServiceImp.deleteModelWenJianNiBan(receivefileid);
-        } else if("model_yikeshi".equals(modeltype)){
+        } else if("一科室提意见".equals(modeltype)){
             deleteModel = receiveFileServiceImp.deleteModelYiKeShi(receivefileid);
-        } else if("model_erkeshi".equals(modeltype)){
+        } else if("两科室提意见".equals(modeltype)){
             deleteModel = receiveFileServiceImp.deleteModelErKeShi(receivefileid);
         }
-
-
 
         Map<String,String> map = new HashMap<String,String>();
         if( deleteResult == -1 | deleteModel==-1){
