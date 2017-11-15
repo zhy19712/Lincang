@@ -498,7 +498,7 @@
                                 <td class="red">文号</td>
                                 <td colspan="2"><input type="text" name="dept"></td>
                                 <td class="red">日期</td>
-                                <td><input type="text" name="author" id="time1"></td>
+                                <td><input type="text" name="author" id="time1" readonly="readonly"></td>
                                 <td class="red">缓级</td>
                                 <td><input type="text" name="reviewer"></td>
                                 <td class="red">密级</td>
