@@ -145,19 +145,43 @@ public class TableAdd {
             }
             List<Table_info> tasks = new ArrayList<Table_info>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(DISTINCT p.FID) as recordsFiltered from " + table+" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
+                String recordsFilteredSql = "select count(DISTINCT p.FID) as recordsFiltered from " + table+" p"+
+                        " LEFT JOIN move m ON p.fid = m.fid" +
+                        " LEFT JOIN bank b ON p.fid = b.fid" +
+                        " LEFT JOIN house h ON p.fid = h.fid" +
+                        " LEFT JOIN income i ON p.fid = i.fid" +
+                        " LEFT JOIN outcome o ON p.fid = o.fid" +
+                        " WHERE p.MASTER = 1";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(DISTINCT p.FID) as recordsTotal from " + table+" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
+                String recordsTotalSql = "select count(DISTINCT p.FID) as recordsTotal from " + table+" p" +
+                        " LEFT JOIN move m ON p.fid = m.fid" +
+                        " LEFT JOIN bank b ON p.fid = b.fid" +
+                        " LEFT JOIN house h ON p.fid = h.fid" +
+                        " LEFT JOIN income i ON p.fid = i.fid" +
+                        " LEFT JOIN outcome o ON p.fid = o.fid" +
+                        " WHERE p.MASTER = 1";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
                 }
 
                 String searchSQL = "";
-                String sql = "SELECT DISTINCT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM " + table +" p,move m,bank b,house h,income i,outcome o where p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and p.MASTER = 1";
+                String sql = "SELECT DISTINCT IFNULL(p.FID,'') as FID,IFNULL(p.TABLE_TYPE,'')as TABLE_TYPE,IFNULL(p.NAME,'')as NAME,IFNULL(p.RESERVOIR,'')as RESERVOIR,IFNULL(m.TO_DISTRICT,'')as TO_DISTRICT,IFNULL(p.INTERVIEWER,'')as INTERVIEWER,IFNULL(p.CREATED_AT,'')as CREATED_AT FROM people p" +
+                        " LEFT JOIN move m ON p.fid = m.fid" +
+                        " LEFT JOIN bank b ON p.fid = b.fid" +
+                        " LEFT JOIN house h ON p.fid = h.fid" +
+                        " LEFT JOIN income i ON p.fid = i.fid" +
+                        " LEFT JOIN outcome o ON p.fid = o.fid" +
+                        " WHERE p.MASTER = 1 ";
                 if (individualSearch != "") {
-                    searchSQL = " and p.FID IN"+"("+ "SELECT p.fid FROM people p,move m,bank b,house h,income i,outcome o WHERE  p.fid = m.fid and p.fid = b.fid and p.fid = h.fid and p.fid = i.fid and p.fid = o.fid and" + "("+individualSearch+")"+")";
+                    searchSQL = " and p.fid IN"+"("+ "SELECT p.fid FROM people p" +
+                            " LEFT JOIN move m ON p.fid = m.fid" +
+                            " LEFT JOIN bank b ON p.fid = b.fid" +
+                            " LEFT JOIN house h ON p.fid = h.fid" +
+                            " LEFT JOIN income i ON p.fid = i.fid" +
+                            " LEFT JOIN outcome o ON p.fid = o.fid" +
+                            " WHERE" + "("+individualSearch+")"+")";
                 }
                 sql += searchSQL;
                 recordsFilteredSql += searchSQL;
