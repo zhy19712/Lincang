@@ -70,7 +70,6 @@
             outline: none;
             border: none;
             padding: 0 5px;
-            text-align: center;
         }
         #shouwen_wdo table select,#more table select{
             width: 94%;
@@ -2513,6 +2512,63 @@
                 step1.goStep(5);
                 step.goStep(5);
                 $("#model_handle .btn-success").css("display","inline-block");
+                if(model_name == "直接处理"){
+                    $("#print1 tr:first-child td").text(fina_data.model.filename);
+                    $("#print1 tr:nth-child(2) td:nth-child(2) input").text(fina_data.model.receivefilenum);
+                    $("#print1 tr:nth-child(2) td:nth-child(4) input").text(fina_data.model.comefiledepartment);
+                    $("#print1 tr:nth-child(2) td:nth-child(6) input").text(fina_data.model.comefilenum);
+                    $("#print1 tr:nth-child(2) td:nth-child(8) input").text(fina_data.model.urgency);
+                    $("#print1 tr:nth-child(2) td:nth-child(10) input").text(fina_data.model.secret);
+                    $("#print1 tr:nth-child(2) td:nth-child(12) input").text(fina_data.model.copys);
+                    $("#print1 tr:nth-child(3) td:nth-child(2)").text(fina_data.model.filetitle);
+                    $("#print1 tr:nth-child(4) td:nth-child(2)").text(fina_data.model.suggestion);
+                    $("#print1 tr:nth-child(5) td:nth-child(2)").text(fina_data.model.branchleaderinstruction);
+                    $("#print1 tr:nth-child(6) td:nth-child(2)").text(fina_data.model.mainleaderinstruction);
+                    $("#print1 tr:nth-child(7) td:nth-child(2)").text(fina_data.model.result);
+                }else if(model_name == "文件拟办单"){
+                    $("#print2 tr:first-child td").text(fina_data.model.filename);
+                    $("#print2 tr:nth-child(2) td:nth-child(2)").text(fina_data.model.dispatchfiledepartment);
+                    $("#print2 tr:nth-child(2) td:nth-child(4)").text(fina_data.model.filenum);
+                    $("#print2 tr:nth-child(2) td:nth-child(6)").text(fina_data.model.receivefileregisterid);
+                    $("#print2 tr:nth-child(2) td:nth-child(8)").text(fina_data.model.receivefiledate);
+                    $("#print2 tr:nth-child(3) td:nth-child(2)").text(fina_data.model.filetitle);
+                    $("#print2 tr:nth-child(6) td p:nth-child(2)").text(fina_data.model.suggestion);
+                    $("#print2 tr:nth-child(4) td p:nth-child(2)").text(fina_data.model.mainleaderinstruction);
+                    $("#print2 tr:nth-child(5) td p:nth-child(2)").text(fina_data.model.branchleaderinstruction);
+                    $("#print2 tr:nth-child(7) td p:nth-child(2)").text(fina_data.model.result);
+                }else if(model_name == "一科室提意见"){
+                    $("#print3 tr:first-child td").text(fina_data.model.filename);
+                    $("#print3 tr:nth-child(2) td:nth-child(2)").text(fina_data.model.receivefilenum);
+                    $("#print3 tr:nth-child(2) td:nth-child(4)").text(fina_data.model.comefiledepartment);
+                    $("#print3 tr:nth-child(2) td:nth-child(6)").text(fina_data.model.comefilenum);
+                    $("#print3 tr:nth-child(2) td:nth-child(8)").text(fina_data.model.urgency);
+                    $("#print3 tr:nth-child(2) td:nth-child(10)").text(fina_data.model.secret);
+                    $("#print3 tr:nth-child(2) td:nth-child(12)").text(fina_data.model.copys);
+                    $("#print3 tr:nth-child(3) td:nth-child(2)").text(fina_data.model.filetitle);
+                    $("#print3 tr:nth-child(4) td:nth-child(2)").text(fina_data.model.suggestion);
+                    $("#print3 tr:nth-child(7) td:nth-child(2)").text(fina_data.model.mainleaderinstruction);
+                    $("#print3 tr:nth-child(8) td:nth-child(2)").text(fina_data.model.branchleaderinstruction);
+                    $("#print3 tr:nth-child(9) td:nth-child(2)").text(fina_data.model.result);
+                    $("#print3 tr:nth-child(5) td:nth-child(1)").text(fina_data.model.department);
+                    $("#print3 tr:nth-child(6) td:nth-child(1)").text(fina_data.model.departmentadvice);
+                }else if(model_name == "两科室提意见"){
+                    $("#print4 tr:first-child td").text(fina_data.model.filename);
+                    $("#print4 tr:nth-child(2) td:nth-child(2)").text(fina_data.model.receivefilenum);
+                    $("#print4 tr:nth-child(2)  td:nth-child(4)").text(fina_data.model.comefiledepartment);
+                    $("#print4 tr:nth-child(2)  td:nth-child(6)").text(fina_data.model.comefilenum);
+                    $("#print4 tr:nth-child(2)  td:nth-child(8)").text(fina_data.model.urgency);
+                    $("#print4 tr:nth-child(2)  td:nth-child(10)").text(fina_data.model.secret);
+                    $("#print4 tr:nth-child(2)  td:nth-child(12)").text(fina_data.model.copys);
+                    $("#print4 tr:nth-child(3) td:nth-child(2)").text(fina_data.model.filetitle);
+                    $("#print4 tr:nth-child(4) td:nth-child(2)").text(fina_data.model.suggestion);
+                    $("#print4 tr:nth-child(7) td:nth-child(2)").text(fina_data.model.mainleaderinstruction);
+                    $("#print4 tr:nth-child(8) td:nth-child(2)").text(fina_data.model.branchleaderinstruction);
+                    $("#print4 tr:nth-child(9) td:nth-child(2)").text(fina_data.model.result);
+                    $("#print4 tr:nth-child(5) td:nth-child(1)").text(fina_data.model.department1name);
+                    $("#print4 tr:nth-child(6) td:nth-child(1)").text(fina_data.model.department1advice);
+                    $("#print4 tr:nth-child(5) td:nth-child(2)").text(fina_data.model.department2name);
+                    $("#print4 tr:nth-child(6) td:nth-child(2)").text(fina_data.model.department2advice);
+                }
             }else if(mydata1.status == "结束"){
                 step1.goStep(6);
                 step.goStep(6);
