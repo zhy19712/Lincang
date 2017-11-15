@@ -1207,7 +1207,7 @@
                         </table>
                     </div>
                     <div id="model4">
-                        <p class="title"><input type="text" style="width: 100%" value="临沧市移民局文件处理笺"></p>
+                        <p class="title"><input type="text" style="width:100%" value="临沧市移民局文件处理笺"></p>
                         <table>
                             <tbody>
                             <tr>
