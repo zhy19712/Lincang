@@ -603,70 +603,70 @@
                                 <td class="red">文号</td>
                                 <td colspan="2"></td>
                                 <td class="red">日期</td>
-                                <td></td>
+                                <td class="text-left"></td>
                                 <td class="red">缓级</td>
-                                <td><</td>
+                                <td class="text-left"><</td>
                                 <td class="red">密级</td>
-                                <td></td>
+                                <td class="text-left"></td>
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <p class="red text-left">签发</p>
-                                    <p></p>
+                                    <p class="red">签发</p>
+                                    <p class="text-left"></p>
                                 </td>
                                 <td colspan="2">
-                                    <p class="red text-left">审稿</p>
-                                    <p></p>
+                                    <p class="red">审稿</p>
+                                    <p class="text-left"></p>
                                 </td>
                                 <td colspan="2">
-                                    <p class="red text-left">会签</p>
-                                    <p></p>
+                                    <p class="red">会签</p>
+                                    <p class="text-left"></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="9">
                                     <p class="red text-left">抄报</p>
-                                    <p></p>
+                                    <p class="text-left"></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="red">抄送</td>
-                                <td colspan="8"></td>
+                                <td class="text-left" colspan="8"></td>
                             </tr>
                             <tr>
                                 <td class="red">发</td>
-                                <td colspan="8"></td>
+                                <td class="text-left" colspan="8"></td>
                             </tr>
                             <tr>
                                 <td class="red">拟稿单位</td>
-                                <td colspan="4"></td>
+                                <td class="text-left" colspan="4"></td>
                                 <td class="red">拟稿</td>
-                                <td></td>
+                                <td class="text-left"></td>
                                 <td class="red">科室核稿</td>
-                                <td></td>
+                                <td class="text-left"></td>
                             </tr>
                             <tr>
                                 <td class="red">印刷</td>
-                                <td colspan="4"></td>
+                                <td class="text-left" colspan="4"></td>
                                 <td class="red">校对</td>
-                                <td></td>
+                                <td class="text-left"></td>
                                 <td class="red">份数</td>
-                                <td></td>
+                                <td class="text-left"></td>
                             </tr>
                             <tr style="display: none;">
                                 <td class="red">主题词</td>
-                                <td colspan="8"></td>
+                                <td class="text-left" colspan="8"></td>
                             </tr>
                             <tr>
                                 <td class="red">标题</td>
-                                <td colspan="8"></td>
+                                <td class="text-left" colspan="8"></td>
                             </tr>
                             <tr>
-                                <td colspan="9"></td>
+                                <td class="text-left" colspan="9"></td>
                             </tr>
                             <tr>
                                 <td class="red">办理结果</td>
-                                <td colspan="8"></td>
+                                <td class="text-left"  colspan="8"></td>
                             </tr>
                             </tbody>
                         </table>
