@@ -1413,10 +1413,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="6"></td>
+                        <td colspan="6" style="text-align: left"></td>
                     </tr>
                     <tr>
-                        <td colspan="6"></td>
+                        <td colspan="6" style="text-align: left"></td>
                     </tr>
                     <tr>
                         <td class="middle">&nbsp;<br>主<br>要<br>领<br>导<br>批<br>示<br>意<br>见<br>&nbsp;</td>
@@ -1462,8 +1462,7 @@
                         <td class="middle" rowspan="3">
                             &nbsp;<br>拟<br>&nbsp;&nbsp;<br>办<br>&nbsp;&nbsp;<br>意<br>&nbsp;&nbsp;<br>见<br>&nbsp;
                         </td>
-                        <td colspan="5" rowspan="3">
-                        </td>
+                        <td colspan="5" rowspan="3" style="text-align: left"></td>
                         <td colspan="6">
                             科室意见
                         </td>
@@ -1473,8 +1472,8 @@
                         <td colspan="3"></td>
                     </tr>
                     <tr>
-                        <td colspan="3"></td>
-                        <td colspan="3"></td>
+                        <td colspan="3" style="text-align: left"></td>
+                        <td colspan="3" style="text-align: left"></td>
                     </tr>
                     <tr>
                         <td class="middle">&nbsp;<br>主<br>要<br>领<br>导<br>批<br>示<br>意<br>见<br>&nbsp;</td>
