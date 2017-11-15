@@ -63,6 +63,6 @@ th{
     text-align: center;
 }
 td{
-    text-align: center !important;
+    text-align: center;
     min-width: 80px !important;
 }

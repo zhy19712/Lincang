@@ -1041,54 +1041,13 @@
                             <li><span>主管领导处理人</span><input type="text" id="zhuguan"></li>
                             <li><span>办理人</span><input type="text" id="banli"></li>
                         </ul>
+
+
                         <div id="tree_container_wrapper" style="margin-left: 30px;">
-                            <div id="tree_container">
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>办公室
-                                        <ul>
-                                            <li>穆志芳</li>
-                                            <li>袁璐</li>
-                                            <li>办公室测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>规划科
-                                        <ul>
-                                            <li>杨再培</li>
-                                            <li>规划测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>财务科
-                                        <ul>
-                                            <li>财务测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>主管领导
-                                        <ul>
-                                            <li>主管领导测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>分管领导
-                                        <ul>
-                                            <li>分管领导测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>其他科室
-                                        <ul>
-                                            <li>其他用户测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+
+
+                            <div id="tree_container"></div>
+
                             <button class="mybtn1">确认</button>
                         </div>
                     </div>
@@ -1339,7 +1298,7 @@
          aria-hidden="true" data-backdrop="static">
 
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" style="font-family: cursive;font-weight: bold">
 
                 <table id="print1" style="border-top: 1px solid #000;border-left: 1px solid #000;" border-collapse="separate">
                     <tbody>
@@ -1347,41 +1306,41 @@
                         <td colspan="12"></td>
                     </tr>
                     <tr>
-                        <td>收文号</td>
+                        <td>&nbsp;<br>收<br>文<br>号<br>&nbsp;</td>
                         <td></td>
-                        <td>来文机关</td>
+                        <td>来<br>文<br>机<br>关</td>
                         <td></td>
-                        <td>来文号</td>
+                        <td>来<br>文<br>号</td>
                         <td></td>
-                        <td>缓急</td>
+                        <td>缓<br>&nbsp;<br>急</td>
                         <td></td>
-                        <td>密级</td>
+                        <td>密<br>&nbsp;<br>级</td>
                         <td></td>
-                        <td>份数</td>
+                        <td>份<br>&nbsp;<br>数</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td>文件标题</td>
-                        <td colspan="11"></td>
+                        <td>&nbsp;<br>文件<br>标题<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left"></td>
                     </tr>
                     <tr>
-                        <td class="middle">拟办意见</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>&nbsp;<br>拟<br>办<br>意<br>见<br>&nbsp;<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left !important;">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">分管领导批示</td>
-                        <td colspan="11">
+                        <td class="middle">分<br>管<br>领<br>导<br>批<br>示</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">主要领导批示</td>
-                        <td colspan="11">
+                        <td class="middle">主<br>要<br>领<br>导<br>批<br>示</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">办理结果</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>&nbsp;<br>&nbsp;<br>办<br>理<br>结<br>果<br>&nbsp;<br>&nbsp;<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     </tbody>
@@ -1392,41 +1351,41 @@
                         <td colspan="8"></td>
                     </tr>
                     <tr>
-                        <td>发文单位</td>
+                        <td>发文<br>单位</td>
                         <td></td>
-                        <td>文件字号</td>
+                        <td>文件<br>字号</td>
                         <td></td>
-                        <td>收文登记号</td>
+                        <td>收文<br>登记号</td>
                         <td></td>
-                        <td>收文日期</td>
+                        <td>收文<br>日期</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="middle">文件标题</td>
+                        <td class="middle">文件<br>标题</td>
                         <td colspan="7"></td>
                     </tr>
                     <tr>
                         <td colspan="8">
                             <p class="left">局领导批示:</p>
-                            <p></p>
+                            <p class="left" style="text-indent: 30px"></p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="8">
                             <p class="left">分管领导意见:</p>
-                            <p></p>
+                            <p class="left" style="text-indent: 30px"></p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="8">
                             <p class="left">拟办意见:</p>
-                            <p></p>
+                            <p class="left" style="text-indent: 30px"></p>
                         </td>
                     </tr>
                     <tr>
                         <td colspan="8">
                             <p class="left">办理结果:</p>
-                            <p></p>
+                            <p class="left" style="text-indent: 30px"></p>
                         </td>
                     </tr>
                     </tbody>
@@ -1435,28 +1394,28 @@
                     <tbody>
                     <tr><td colspan="12"></td></tr>
                     <tr>
-                        <td>收文号</td>
+                        <td>收<br>文<br>号</td>
                         <td><input type="text"></td>
-                        <td>来文单位</td>
+                        <td>来文<br>单位</td>
                         <td><input type="text"></td>
-                        <td>来文号</td>
+                        <td>来<br>文<br>号</td>
                         <td><input type="text"></td>
-                        <td>缓急</td>
+                        <td>缓<br>&nbsp;<br>急</td>
                         <td><input type="text"></td>
-                        <td>密级</td>
+                        <td>密<br>&nbsp;<br>级</td>
                         <td><input type="text"></td>
-                        <td>份数</td>
+                        <td>份<br>&nbsp;<br>数</td>
                         <td><input type="text"></td>
                     </tr>
                     <tr>
-                        <td class="middle">文件标题</td>
+                        <td class="middle">文件<br>&nbsp;<br>标题</td>
                         <td colspan="11"><textarea></textarea></td>
                     </tr>
                     <tr>
                         <td class="middle" rowspan="3">
-                            拟办意见
+                            &nbsp;<br>拟<br>办<br>意<br>见<br>&nbsp;
                         </td>
-                        <td colspan="5" rowspan="3">
+                        <td colspan="5" rowspan="3" style="text-align: left">
                         </td>
                         <td colspan="6">
                             科室意见
@@ -1469,18 +1428,18 @@
                         <td colspan="6"></td>
                     </tr>
                     <tr>
-                        <td class="middle">主要领导批示意见</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>主<br>要<br>领<br>导<br>批<br>示<br>意<br>见<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">分管领导批示</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>分<br>管<br>导<br>领<br>批<br>示<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">办理结果</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>办理<br>结果<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     </tbody>
@@ -1491,26 +1450,26 @@
                         <td colspan="12"></td>
                     </tr>
                     <tr>
-                        <td>收文号</td>
+                        <td>收<br>文<br>号</td>
                         <td></td>
-                        <td>来文单位</td>
+                        <td>来文<br>&nbsp;<br>单位</td>
                         <td></td>
-                        <td>来文号</td>
+                        <td>来<br>文<br>号</td>
                         <td></td>
-                        <td>缓急</td>
+                        <td>缓<br>&nbsp;<br>急</td>
                         <td></td>
-                        <td>密级</td>
+                        <td>密<br>&nbsp;<br>级</td>
                         <td><</td>
-                        <td>份数</td>
+                        <td>份<br>&nbsp;<br>数</td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="middle">文件标题</td>
+                        <td class="middle">文件<br>&nbsp;<br>标题</td>
                         <td colspan="11"></td>
                     </tr>
                     <tr>
                         <td class="middle" rowspan="3">
-                            拟办意见
+                            &nbsp;<br>拟<br>&nbsp;&nbsp;<br>办<br>&nbsp;&nbsp;<br>意<br>&nbsp;&nbsp;<br>见<br>&nbsp;
                         </td>
                         <td colspan="5" rowspan="3">
                         </td>
@@ -1527,19 +1486,19 @@
                         <td colspan="3"></td>
                     </tr>
                     <tr>
-                        <td class="middle">主要领导批示意见</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>主<br>要<br>领<br>导<br>批<br>示<br>意<br>见<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">分管领导批示</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>分<br>管<br>领<br>导<br>批<br>示<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
 
                         </td>
                     </tr>
                     <tr>
-                        <td class="middle">办理结果</td>
-                        <td colspan="11">
+                        <td class="middle">&nbsp;<br>&nbsp;<br>办理<br>结果<br>&nbsp;<br>&nbsp;</td>
+                        <td colspan="11" style="text-align: left">
 
                         </td>
                     </tr>
@@ -1563,10 +1522,6 @@
 
 
 
-
-
-
-
 <!-- external javascript -->
 <script src="../../js/bootstrap.min.js"></script>
 <!-- library for cookie management -->
@@ -1583,6 +1538,55 @@
 <script src="../../js/jQuery.print.js"></script>
 <script src="../../js/money.js"></script>
 <script>
+
+    //动态树结构显示
+    function initTree() {
+        var jsonarray=[];
+        $.ajax({
+            type: "post",
+            url:"getDepartmentAndStaffs.do",
+            dataType:"json",
+            async: false,
+            success:function(result) {
+                for(var i=0 ; i<result.length; i++){
+                    var arr=[];
+                    for(var j=0;j<result[i].staffList.length;j++){
+                        var rootArr={"text": result[i].staffList[j]};
+                        arr.push(rootArr)
+                    }
+                    var arrays = {
+                        "text":result[i].department,
+                        "children":arr
+                    };
+                    jsonarray.push(arrays);
+                }
+            }
+        });
+        var arrs=[];
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text=="局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text=="副局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text!="副局长" && jsonarray[x].text!="局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+
+        $("#tree_container").jstree({
+                "plugins" : ["checkbox"],
+                "core":{"data" :arrs}
+            }
+        )
+    }
+    initTree();
+
     //数组去重
     Array.prototype.unique3 = function(){
         var res = [];
@@ -1594,7 +1598,7 @@
             }
         }
         return res;
-    }
+    };
     //收文登记
     var fawen = $('#fawen').DataTable({
         ajax: {
@@ -1635,7 +1639,6 @@
             }
         }
     });
-
     //待处理
     var dcl_table = $('#dcl_table').DataTable({
         ajax: {
@@ -1677,7 +1680,6 @@
             }
         }
     });
-
     //已处理
     var ycl_table = $('#ycl_table').DataTable({
         ajax: {
@@ -1719,7 +1721,6 @@
             }
         }
     });
-
 
     //待办事务的显示条数
     function acount() {
@@ -1851,7 +1852,6 @@
         $('#tree_container').jstree('deselect_all');
     })
 
-
     //处理人集合
     $("#sel_people button").click(function () {
 
@@ -1899,11 +1899,8 @@
 
     var username;
     ~function() {
-
         username = $("#username").text();
         $("#user1").val(username);
-
-
     }();
     //查看登记信息按钮
     var flag = false;
@@ -1924,7 +1921,6 @@
             $("#more1").height(56);
         }
     })
-
 
     var file_arr = [];
     var del_file_arr = [];
@@ -1960,10 +1956,7 @@
                 }
             }
         })
-    })
-
-
-
+    });
 
 //    function delete_file() {
 //        var delete_file = [];
@@ -2006,6 +1999,7 @@
         })
         $("#filesUpload span").remove();
         $('#shouwen_wdo').modal('show');
+//        print_model
 
     }
     //编辑查看按钮
@@ -2382,12 +2376,11 @@
             $("#model_handle textarea").attr("readonly",true);
             if(mydata1.status == "科室签批"){
                 if(mydata1.modeltype == "一科室提意见"){
-                    $("#model3_1 tr:nth-child(4) td:nth-child(2) input").attr("readonly",false);
-                    $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
+                    $("#model3_1 tr:nth-child(5) td:nth-child(1) textarea").attr("readonly",false);
                     $("#handle_people li:first-child").css("display","block");
                 }else if(mydata1.modeltype == "两科室提意见"){
+                    $("#model4_1 tr:nth-child(5) td:nth-child(1) textarea").attr("readonly",false);
                     $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").attr("readonly",false);
-                    $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").attr("readonly",false);
                     $("#handle_people li:first-child").css("display","block");
                     $("#handle_people li:nth-child(2)").css("display","block");
                 }
@@ -2578,8 +2571,8 @@
                 text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
                 text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
                 text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
-                text.department = $("#model3 tr:nth-child(4) td:nth-child(2) input").val();
-                text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(2) textarea").val();
+                text.department = $("#model3 tr:nth-child(4) td:nth-child(1) input").val();
+                text.departmentadvice = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
             }else if(model == "两科室提意见"){
                 if(!keshi2 || !keshi1 || !fenguan || !zhuguan || !banli){
                     alert("请选择处理人");
@@ -2597,10 +2590,10 @@
                 text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
                 text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
                 text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();
-                text.department1name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
-                text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
-                text.department2name = $("#model4 tr:nth-child(4) td:nth-child(3) input").val();
-                text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(3) textarea").val();
+                text.department1name = $("#model4 tr:nth-child(4) td:nth-child(1) input").val();
+                text.department1advice = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+                text.department2name = $("#model4 tr:nth-child(4) td:nth-child(2) input").val();
+                text.department2advice = $("#model4 tr:nth-child(5) td:nth-child(2) textarea").val();
             }
             console.log(text);
             b_flag = false;
@@ -2629,7 +2622,7 @@
                 }
             })
         }
-    })
+    });
 
     //提交
     var t_flag = true;
@@ -2665,10 +2658,10 @@
                 text.result = "";
                 if(mydata1.status == "科室签批"){
                     if(mydata1.modeltype == "一科室提意见"){
-                        text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(2) textarea").val();
+                        text.departmentadvice = $("#model3_1 tr:nth-child(5) td:nth-child(1) textarea").val();
                     }else if(mydata1.modeltype == "两科室提意见"){
-                        text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
-                        text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(3) textarea").val();
+                        text.department1advice = $("#model4_1 tr:nth-child(5) td:nth-child(1) textarea").val();
+                        text.department2advice = $("#model4_1 tr:nth-child(5) td:nth-child(2) textarea").val();
                     }
                 }else if(mydata1.status == "分管领导签批"){
                     if(mydata1.modeltype == "直接处理"){
@@ -2729,6 +2722,8 @@
         }
 
     })
+
+
 
 
 
