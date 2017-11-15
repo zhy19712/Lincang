@@ -268,7 +268,7 @@ $(function(){
             +  "<div class='img'></div>"
             +  "<div class='info'>"
             +  "<h2 class='name' style='margin-bottom: 0px;margin-top: 0px;'>" + name + "</h2>"
-            +  "<p class='text' style='margin-bottom: 0px;'>共有户数<span class='people'>" + households + "</span>人</p>"
+            +  "<p class='text' style='margin-bottom: 0px;'>共有户数<span class='people'>" + households + "</span>户</p>"
             +  "<p class='text' style='margin-bottom: 0px;'>共有移民<span class='people'>" + num + "</span>人</p>"
             +  "</div>"
             +  "</a>"

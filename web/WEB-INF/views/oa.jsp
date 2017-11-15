@@ -408,7 +408,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="7"><input type="text" name="keyword"></td>
                             </tr>
@@ -486,53 +486,7 @@
                             </ul>
                         </div>
                         <div id="sel_people">
-                            <div id="tree_container">
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>办公室
-                                        <ul>
-                                            <li>穆志芳</li>
-                                            <li>袁璐</li>
-                                            <li>办公室测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>规划科
-                                        <ul>
-                                            <li>杨再培</li>
-                                            <li>规划测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>财务科
-                                        <ul>
-                                            <li>财务测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>主管领导
-                                        <ul>
-                                            <li>主管领导测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>分管领导
-                                        <ul>
-                                            <li>分管领导测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <ul>
-                                    <li data-jstree='{"opened":false}'>其他科室
-                                        <ul>
-                                            <li>其他用户测试账号</li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            <div id="tree_container"></div>
                             <button class="mybtn1">确认</button>
                         </div>
                     </div>
@@ -541,9 +495,8 @@
                         <table class="mytable">
                             <tbody>
                             <tr>
-                                <td class="red">临沧(</td>
-                                <td><input type="text" name="dept"></td>
-                                <td class="red">)号</td>
+                                <td class="red">文号</td>
+                                <td colspan="2"><input type="text" name="dept"></td>
                                 <td class="red">日期</td>
                                 <td><input type="text" name="author" id="time1"></td>
                                 <td class="red">缓级</td>
@@ -599,7 +552,7 @@
                                 <td class="red">下载</td>
                                 <td colspan="8"></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="8"><input type="text" name="keyword"></td>
                             </tr>
@@ -647,9 +600,8 @@
                                 <td colspan="9">临沧市移民局发文稿纸</td>
                             </tr>
                             <tr>
-                                <td class="red">临沧(</td>
-                                <td></td>
-                                <td class="red">)号</td>
+                                <td class="red">文号</td>
+                                <td colspan="2"></td>
                                 <td class="red">日期</td>
                                 <td></td>
                                 <td class="red">缓级</td>
@@ -701,7 +653,7 @@
                                 <td class="red">份数</td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="8"></td>
                             </tr>
@@ -738,6 +690,54 @@
 
 
 <script>
+
+    //动态树结构显示
+    function initTree() {
+        var jsonarray=[];
+        $.ajax({
+            type: "post",
+            url:"getDepartmentAndStaffs.do",
+            dataType:"json",
+            async: false,
+            success:function(result) {
+                for(var i=0 ; i<result.length; i++){
+                    var arr=[];
+                    for(var j=0;j<result[i].staffList.length;j++){
+                        var rootArr={"text": result[i].staffList[j]};
+                        arr.push(rootArr)
+                    }
+                    var arrays = {
+                        "text":result[i].department,
+                        "children":arr
+                    };
+                    jsonarray.push(arrays);
+                }
+            }
+        });
+        var arrs=[];
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text=="局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text=="副局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+        for(var x=0;x<jsonarray.length;x++){
+            if(jsonarray[x].text!="副局长" && jsonarray[x].text!="局长"){
+                arrs.push(jsonarray[x]);
+            }
+        }
+
+        $("#tree_container").jstree({
+                "plugins" : ["checkbox"],
+                "core":{"data" :arrs}
+            }
+        )
+    }
+    initTree();
 
     var status=$("#status").text();
 

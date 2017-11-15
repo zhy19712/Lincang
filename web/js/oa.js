@@ -298,9 +298,9 @@ function edit(that) {
             // $("#leader").text(data.approver);
             // $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
-            $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
-            $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
-            $(".mytable tr:nth-child(1) td:nth-child(9) input").val(data.secret);
+            $(".mytable tr:nth-child(1) td:nth-child(4) input").val(data.date);
+            $(".mytable tr:nth-child(1) td:nth-child(6) input").val(data.urgency);
+            $(".mytable tr:nth-child(1) td:nth-child(8) input").val(data.secret);
             $(".mytable tr:nth-child(2) td:nth-child(1) textarea").val(data.qianfa);
             $(".mytable tr:nth-child(2) td:nth-child(2) textarea").val(data.shengao);
             $(".mytable tr:nth-child(2) td:nth-child(3) textarea").val(data.huiqian);
@@ -460,6 +460,33 @@ function edit(that) {
         }else if(status == "办公室归档"){
             step.goStep(5);
             $("#select_model .btn-primary").text("确认归档");
+            $(".btn-success").css("display","inline-block");
+            $("#myprint tr:nth-child(2) td:nth-child(2)").text(mydata.sn);
+            $("#myprint tr:nth-child(2) td:nth-child(5)").text(mydata.date);
+            $("#myprint tr:nth-child(2) td:nth-child(7)").text(mydata.urgency);
+            $("#myprint tr:nth-child(2) td:nth-child(9)").text(mydata.secret);
+
+            $("#myprint tr:nth-child(3) td:nth-child(1) p:nth-child(2)").text(mydata.qianfa);
+            $("#myprint tr:nth-child(3) td:nth-child(2) p:nth-child(2)").text(mydata.shengao);
+            $("#myprint tr:nth-child(3) td:nth-child(3) p:nth-child(2)").text(mydata.huiqian);
+
+            $("#myprint tr:nth-child(4) td:nth-child(1) p:nth-child(2)").text(mydata.chaobao);
+
+            $("#myprint tr:nth-child(5) td:nth-child(2)").text(mydata.chaosong);
+
+            $("#myprint tr:nth-child(6) td:nth-child(2)").text(mydata.fa);
+            $("#myprint tr:nth-child(7) td:nth-child(2)").text(mydata.dept);
+            $("#myprint tr:nth-child(7) td:nth-child(4)").text(mydata.author);
+            $("#myprint tr:nth-child(7) td:nth-child(6)").text(mydata.reviewer);
+
+            $("#myprint tr:nth-child(8) td:nth-child(2)").text(mydata.print);
+            $("#myprint tr:nth-child(8) td:nth-child(4)").text(mydata.revision);
+            $("#myprint tr:nth-child(8) td:nth-child(6)").text(mydata.copy);
+
+            $("#myprint tr:nth-child(9) td:nth-child(2)").text(mydata.keyword);
+            $("#myprint tr:nth-child(10) td:nth-child(2)").text(mydata.title);
+            $("#myprint tr:nth-child(11) td:nth-child(1)").text(mydata.content);
+            $("#myprint tr:nth-child(12) td:nth-child(2)").text(mydata.result);
         }else if(status == "结束"){
             step.goStep(6);
             $(".btn-success").css("display","inline-block");
@@ -562,9 +589,9 @@ $("#select_model .btn-primary").click(function () {
             }
         }
         var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
-        var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
-        var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
-        var secret = $("#select_model tr:nth-child(1) td:nth-child(9) input").val();
+        var date = $("#select_model tr:nth-child(1) td:nth-child(4) input").val();
+        var urgency = $("#select_model tr:nth-child(1) td:nth-child(6) input").val();
+        var secret = $("#select_model tr:nth-child(1) td:nth-child(8) input").val();
         var qianfa = $("#select_model tr:nth-child(2) td:nth-child(1) textarea").val();
         var shengao = $("#select_model tr:nth-child(2) td:nth-child(2) textarea").val();
         var huiqian = $("#select_model tr:nth-child(2) td:nth-child(3) textarea").val();
