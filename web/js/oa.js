@@ -298,9 +298,9 @@ function edit(that) {
             // $("#leader").text(data.approver);
             // $("#people").text(data.implementperson);
             $(".mytable tr:nth-child(1) td:nth-child(2) input").val(data.sn);
-            $(".mytable tr:nth-child(1) td:nth-child(5) input").val(data.date);
-            $(".mytable tr:nth-child(1) td:nth-child(7) input").val(data.urgency);
-            $(".mytable tr:nth-child(1) td:nth-child(9) input").val(data.secret);
+            $(".mytable tr:nth-child(1) td:nth-child(4) input").val(data.date);
+            $(".mytable tr:nth-child(1) td:nth-child(6) input").val(data.urgency);
+            $(".mytable tr:nth-child(1) td:nth-child(8) input").val(data.secret);
             $(".mytable tr:nth-child(2) td:nth-child(1) textarea").val(data.qianfa);
             $(".mytable tr:nth-child(2) td:nth-child(2) textarea").val(data.shengao);
             $(".mytable tr:nth-child(2) td:nth-child(3) textarea").val(data.huiqian);
@@ -562,9 +562,9 @@ $("#select_model .btn-primary").click(function () {
             }
         }
         var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
-        var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
-        var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
-        var secret = $("#select_model tr:nth-child(1) td:nth-child(9) input").val();
+        var date = $("#select_model tr:nth-child(1) td:nth-child(4) input").val();
+        var urgency = $("#select_model tr:nth-child(1) td:nth-child(6) input").val();
+        var secret = $("#select_model tr:nth-child(1) td:nth-child(8) input").val();
         var qianfa = $("#select_model tr:nth-child(2) td:nth-child(1) textarea").val();
         var shengao = $("#select_model tr:nth-child(2) td:nth-child(2) textarea").val();
         var huiqian = $("#select_model tr:nth-child(2) td:nth-child(3) textarea").val();

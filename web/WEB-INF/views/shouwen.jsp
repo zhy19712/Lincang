@@ -497,10 +497,10 @@
                                 </div></td>
                             </tr>
                             <tr>
-                                <td>主题词</td>
-                                <td colspan="5"><input type="text" name="keyword"></td>
+                                <td style="display: none;">主题词</td>
+                                <td style="display: none;" colspan="5"><input type="text" name="keyword"></td>
                                 <td>责任者</td>
-                                <td colspan="3"><input type="text" name="responsibleperson"></td>
+                                <td colspan="9"><input type="text" name="responsibleperson"></td>
                             </tr>
                             <tr>
                                 <td>归档份数</td>
@@ -521,20 +521,20 @@
                                 <td colspan="3"><input type="text" name="attachmentpagenum"></td>
                             </tr>
                             <tr>
-                                <td>实体分类号</td>
-                                <td><input type="text" name="entitynum"></td>
+                                <td style="display: none;">实体分类号</td>
+                                <td style="display: none;" colspan="3"><input type="text" name="entitynum"></td>
                                 <td>分发情况</td>
-                                <td colspan="3"><input type="text" name="distributionsituation"></td>
-                                <td>旧全宗</td>
-                                <td colspan="3"><input type="text" name="oldfond"></td>
+                                <td colspan="9"><input type="text" name="distributionsituation"></td>
+                                <td style="display: none;">旧全宗</td>
+                                <td style="display: none;" colspan="3"><input type="text" name="oldfond"></td>
                             </tr>
                             <tr>
-                                <td>归档情况</td>
-                                <td><input type="text" name="archivesituation"></td>
-                                <td>登记日期</td>
-                                <td colspan="3"><input type="text" id="time3" readonly="readonly" name="registrationdate"></td>
+                                <td style="display: none;">归档情况</td>
+                                <td style="display: none;"><input type="text" name="archivesituation"></td>
+                                <td style="display: none;">登记日期</td>
+                                <td style="display: none;" colspan="3"><input type="text" id="time3" readonly="readonly" name="registrationdate"></td>
                                 <td>传阅情况</td>
-                                <td colspan="3"><input type="text" name="circulationsituation"></td>
+                                <td colspan="9"><input type="text" name="circulationsituation"></td>
                             </tr>
                             <tr>
                                 <td style="vertical-align: middle;">处理情况</td>
@@ -625,10 +625,10 @@
                             <td colspan="9"></td>
                         </tr>
                         <tr>
-                            <td>主题词</td>
-                            <td colspan="5"><input type="text" name="zhuti"></td>
+                            <td style="display:none;">主题词</td>
+                            <td style="display:none;" colspan="5"><input type="text" name="zhuti"></td>
                             <td>责任者</td>
-                            <td colspan="3"><input type="text" name="zeren"></td>
+                            <td colspan="9"><input type="text" name="zeren"></td>
                         </tr>
                         <tr>
                             <td>归档份数</td>
@@ -649,20 +649,20 @@
                             <td colspan="3"><input type="text" name="fujianyeshu"></td>
                         </tr>
                         <tr>
-                            <td>实体分类号</td>
-                            <td><input type="text" name="shitihao"></td>
+                            <td style="display: none;">实体分类号</td>
+                            <td style="display: none;"><input type="text" name="shitihao"></td>
                             <td>分发情况</td>
-                            <td colspan="3"><input type="text" name="fenfa"></td>
-                            <td>旧全宗</td>
-                            <td colspan="3"><input type="text" name="jiuquanzong"></td>
+                            <td colspan="9"><input type="text" name="fenfa"></td>
+                            <td style="display: none;">旧全宗</td>
+                            <td style="display: none;" colspan="3"><input type="text" name="jiuquanzong"></td>
                         </tr>
                         <tr>
-                            <td>归档情况</td>
-                            <td><input type="text" name="guidangqingkuang"></td>
-                            <td>登记日期</td>
-                            <td colspan="3"><input type="text" name="dengjiriqi"></td>
+                            <td style="display: none;">归档情况</td>
+                            <td style="display: none;"><input type="text" name="guidangqingkuang"></td>
+                            <td style="display: none;">登记日期</td>
+                            <td style="display: none;" colspan="3"><input type="text" name="dengjiriqi"></td>
                             <td>传阅情况</td>
-                            <td colspan="3"><input type="text" name="chuanyue"></td>
+                            <td colspan="9"><input type="text" name="chuanyue"></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">处理情况</td>
@@ -974,10 +974,10 @@
                             <td colspan="9"><a href="#"></a></td>
                         </tr>
                         <tr>
-                            <td>主题词</td>
-                            <td colspan="5"><input type="text" name="zhuti"></td>
+                            <td style="display:none;">主题词</td>
+                            <td style="display:none;" colspan="5"><input type="text" name="zhuti"></td>
                             <td>责任者</td>
-                            <td colspan="3"><input type="text" name="zeren"></td>
+                            <td colspan="9"><input type="text" name="zeren"></td>
                         </tr>
                         <tr>
                             <td>归档份数</td>
@@ -998,20 +998,20 @@
                             <td colspan="3"><input type="text" name="fujianyeshu"></td>
                         </tr>
                         <tr>
-                            <td>实体分类号</td>
-                            <td><input type="text" name="shitihao"></td>
+                            <td style="display: none;">实体分类号</td>
+                            <td style="display: none;"><input type="text" name="shitihao"></td>
                             <td>分发情况</td>
-                            <td colspan="3"><input type="text" name="fenfa"></td>
-                            <td>旧全宗</td>
-                            <td colspan="3"><input type="text" name="jiuquanzong"></td>
+                            <td colspan="9"><input type="text" name="fenfa"></td>
+                            <td style="display: none;">旧全宗</td>
+                            <td style="display: none;" colspan="3"><input type="text" name="jiuquanzong"></td>
                         </tr>
                         <tr>
-                            <td>归档情况</td>
-                            <td><input type="text" name="guidangqingkuang"></td>
-                            <td>登记日期</td>
-                            <td colspan="3"><input type="text" name="dengjiriqi"></td>
+                            <td style="display: none;">归档情况</td>
+                            <td style="display: none;"><input type="text" name="guidangqingkuang"></td>
+                            <td style="display: none;">登记日期</td>
+                            <td style="display: none;" colspan="3"><input type="text" name="dengjiriqi"></td>
                             <td>传阅情况</td>
-                            <td colspan="3"><input type="text" name="chuanyue"></td>
+                            <td colspan="9"><input type="text" name="chuanyue"></td>
                         </tr>
                         <tr>
                             <td style="vertical-align: middle;">处理情况</td>
@@ -1891,9 +1891,6 @@
             }else if(!val7){
                 alert("题名不能为空");
                 return;
-            }else if(!val8){
-                alert("主题词不能为空");
-                return;
             }
             sflag = false;
             var options  = {
@@ -2007,7 +2004,7 @@
     $("#first").click(function () {
         flag = !flag;
         if(flag == true){
-            $("#more").height(760);
+            $("#more").height(560);
         }else {
             $("#more").height(56);
         }
@@ -2016,7 +2013,7 @@
     $("#first1").click(function () {
         flag1 = !flag1;
         if(flag1 == true){
-            $("#more1").height(760);
+            $("#more1").height(560);
         }else {
             $("#more1").height(56);
         }

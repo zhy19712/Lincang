@@ -408,7 +408,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="7"><input type="text" name="keyword"></td>
                             </tr>
@@ -541,9 +541,8 @@
                         <table class="mytable">
                             <tbody>
                             <tr>
-                                <td class="red">临沧(</td>
-                                <td><input type="text" name="dept"></td>
-                                <td class="red">)号</td>
+                                <td class="red">文号</td>
+                                <td colspan="2"><input type="text" name="dept"></td>
                                 <td class="red">日期</td>
                                 <td><input type="text" name="author" id="time1"></td>
                                 <td class="red">缓级</td>
@@ -599,7 +598,7 @@
                                 <td class="red">下载</td>
                                 <td colspan="8"></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="8"><input type="text" name="keyword"></td>
                             </tr>
@@ -647,9 +646,8 @@
                                 <td colspan="9">临沧市移民局发文稿纸</td>
                             </tr>
                             <tr>
-                                <td class="red">临沧(</td>
-                                <td></td>
-                                <td class="red">)号</td>
+                                <td class="red">文号</td>
+                                <td colspan="2"></td>
                                 <td class="red">日期</td>
                                 <td></td>
                                 <td class="red">缓级</td>
@@ -701,7 +699,7 @@
                                 <td class="red">份数</td>
                                 <td></td>
                             </tr>
-                            <tr>
+                            <tr style="display: none;">
                                 <td class="red">主题词</td>
                                 <td colspan="8"></td>
                             </tr>
