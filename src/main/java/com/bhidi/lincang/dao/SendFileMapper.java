@@ -12,4 +12,6 @@ public interface SendFileMapper {
     int updateSendFile(SendFile sf);
 
     String selectLastSendFileId();
+
+    int deleteSendFile(String sendfileid);
 }

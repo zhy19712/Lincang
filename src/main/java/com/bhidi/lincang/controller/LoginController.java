@@ -4,7 +4,6 @@ import com.bhidi.lincang.bean.Privilege;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.LoginServiceImp;
 import com.google.gson.Gson;
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

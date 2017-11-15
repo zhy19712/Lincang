@@ -13,4 +13,6 @@ public interface FamilyInfoMapper {
     List<People> queryFamilyInfoByFid(String fid);
 
     PeopleMore queryFamilyDetailByFid(String fid);
+
+    int deletePeople(String fid);
 }

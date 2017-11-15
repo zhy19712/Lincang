@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.SynchronousQueue;
 
 @Controller
 public class PictureController {
@@ -52,6 +51,7 @@ public class PictureController {
                     pictureFull.setName(listPictureCounty.get(i).getCountyName());
                     pictureFull.setLevel(listPictureCounty.get(i).getLevel());
                     pictureFull.setNum(listPictureCounty.get(i).getNum());
+                    pictureFull.setHouseholds(listPictureCounty.get(i).getHouseholds());
 
                     List<PictureFull> listTown = new ArrayList<PictureFull>();
                     for(int j = 0; j < listPictureTown.size();j++){
@@ -62,6 +62,8 @@ public class PictureController {
                                 pictureFullTowm.setName(listPictureTown.get(j).getTownName());
                                 pictureFullTowm.setLevel(listPictureTown.get(j).getLevel());
                                 pictureFullTowm.setNum(listPictureTown.get(j).getNum());
+                                pictureFullTowm.setHouseholds(listPictureTown.get(j).getHouseholds());
+
                                 List<PictureFull> listVillage = new ArrayList<PictureFull>();
                                 for(int k = 0; k < listPictureVillage.size();k++){
                                     if( listPictureTown.get(j).getTownName()!=null ){
@@ -70,6 +72,8 @@ public class PictureController {
                                             pictureFullVillage.setName(listPictureVillage.get(k).getVillageName());
                                             pictureFullVillage.setLevel(listPictureVillage.get(k).getLevel());
                                             pictureFullVillage.setNum(listPictureVillage.get(k).getNum());
+                                            pictureFullVillage.setHouseholds(listPictureVillage.get(k).getHouseholds());
+
                                             listVillage.add(pictureFullVillage);
                                         }
                                     }

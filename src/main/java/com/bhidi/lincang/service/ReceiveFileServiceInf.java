@@ -36,4 +36,14 @@ public interface ReceiveFileServiceInf {
     int updateModelYikeshi(Model_Yikeshi meme);
 
     int updateModelErkeshi(Model_Erkeshi meme);
+
+    int deleteReceiveFile(String receivefileid);
+
+    int deleteModelZhiJieChuLi(String receivefileid);
+
+    int deleteModelWenJianNiBan(String receivefileid);
+
+    int deleteModelYiKeShi(String receivefileid);
+
+    int deleteModelErKeShi(String receivefileid);
 }

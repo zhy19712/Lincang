@@ -86,6 +86,26 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         return receiveFileMapper.updateModelErkeshi(meme);
     }
 
+    public int deleteReceiveFile(String receivefileid) {
+        return receiveFileMapper.deleteReceiveFile(receivefileid);
+    }
+
+    public int deleteModelZhiJieChuLi(String receivefileid) {
+        return receiveFileMapper.deleteModelZhiJieChuLi(receivefileid);
+    }
+
+    public int deleteModelWenJianNiBan(String receivefileid) {
+        return receiveFileMapper.deleteModelWenJianNiBan(receivefileid);
+    }
+
+    public int deleteModelYiKeShi(String receivefileid) {
+        return receiveFileMapper.deleteModelYiKeShi(receivefileid);
+    }
+
+    public int deleteModelErKeShi(String receivefileid) {
+        return receiveFileMapper.deleteModelErKeShi(receivefileid);
+    }
+
     /**
      *获取receivefile的receivefileid
      * @return

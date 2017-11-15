@@ -41,4 +41,8 @@
         FROM nonfilemanagement
         ORDER BY id DESC LIMIT 1
     </select>
+    <!--int deleteNonFile(String nonfileid);-->
+    <delete id="deleteNonFile" parameterType="String">
+        DELETE FROM nonfilemanagement WHERE nonfileid = #{nonfileid}
+    </delete>
 </mapper>

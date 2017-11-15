@@ -30,7 +30,7 @@ $(function () {
             //银行账户信息
              $("#bank-user").val(data.bank.account_name);
              $("#bank-number").val(data.bank.account_number);
-             $("#bank-name").val(data.bank.account_number);
+             $("#bank-name").val(data.bank.bank_name);
              //人员信息
              $.each(data.people,function (i,n) {
                  if(n.master == 1){
@@ -93,28 +93,28 @@ $(function () {
              });
 
              //所在地
-            $("#city td:nth-child(1) input").val(data.move.from_city);
-            $("#city td:nth-child(2) input").val(data.move.from_district);
-            $("#city td:nth-child(3) input").val(data.move.from_town);
-            $("#city td:nth-child(4) input").val(data.move.from_village);
-            $("#city td:nth-child(5) input").val(data.move.from_group);
-            $("#city td:nth-child(6) input").val(data.move.from_remake);
+            $("#city td:nth-child(1) input").val(data.move.to_city);
+            $("#city td:nth-child(2) input").val(data.move.to_district);
+            $("#city td:nth-child(3) input").val(data.move.to_town);
+            $("#city td:nth-child(4) input").val(data.move.to_village);
+            $("#city td:nth-child(5) input").val(data.move.to_group);
+            $("#city td:nth-child(6) input").val(data.move.to_remake);
 
             //迁入地
-            $("#city1 td:nth-child(2) input").val(data.move.from_city);
-            $("#city1 td:nth-child(3) input").val(data.move.from_district);
-            $("#city1 td:nth-child(4) input").val(data.move.from_town);
-            $("#city1 td:nth-child(5) input").val(data.move.from_village);
-            $("#city1 td:nth-child(6) input").val(data.move.from_group);
-            $("#city1 td:nth-child(7) input").val(data.move.from_remake);
+            $("#city1 td:nth-child(2) input").val(data.move.to_city);
+            $("#city1 td:nth-child(3) input").val(data.move.to_district);
+            $("#city1 td:nth-child(4) input").val(data.move.to_town);
+            $("#city1 td:nth-child(5) input").val(data.move.to_village);
+            $("#city1 td:nth-child(6) input").val(data.move.to_group);
+            $("#city1 td:nth-child(7) input").val(data.move.to_remake);
 
             //迁出地
-            $("#city2 td:nth-child(2) input").val(data.move.to_city);
-            $("#city2 td:nth-child(3) input").val(data.move.to_district);
-            $("#city2 td:nth-child(4) input").val(data.move.to_town);
-            $("#city2 td:nth-child(5) input").val(data.move.to_village);
-            $("#city2 td:nth-child(6) input").val(data.move.to_group);
-            $("#city2 td:nth-child(7) input").val(data.move.to_remake);
+            $("#city2 td:nth-child(2) input").val(data.move.from_city);
+            $("#city2 td:nth-child(3) input").val(data.move.from_district);
+            $("#city2 td:nth-child(4) input").val(data.move.from_town);
+            $("#city2 td:nth-child(5) input").val(data.move.from_village);
+            $("#city2 td:nth-child(6) input").val(data.move.from_group);
+            $("#city2 td:nth-child(7) input").val(data.move.from_remake);
 
             //房子信息
             $("#main td:nth-child(2) input").val(data.house.main_size);

@@ -128,7 +128,7 @@
         </button>
         <!-- 小屏幕时的导航按键 ends -->
         <!-- logo starts -->
-        <a class="navbar-brand" href="/tohome.htm" style="width: 600px;">
+        <a class="navbar-brand" href="javascript:;" style="width: 600px;">
             <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
             <p style="font-size: 26px"><span>临沧市移民数字管理平台-</span> <span style="font-size: 18px">用户授权管理系统</span></p>
         </a>

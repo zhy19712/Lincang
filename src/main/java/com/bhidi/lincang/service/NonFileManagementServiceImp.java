@@ -99,6 +99,10 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
         return nonFileManagementMapper.selectNonFileManagementInfoByNonFileId(nonfileid);
     }
 
+    public int deleteNonFile(String nonfileid) {
+        return nonFileManagementMapper.deleteNonFile(nonfileid);
+    }
+
     /**
      * 删除文件
      */

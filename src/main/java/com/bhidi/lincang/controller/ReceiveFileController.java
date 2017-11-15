@@ -451,6 +451,7 @@ public class ReceiveFileController {
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
             } catch (Exception e) {
+                e.printStackTrace();
                 er = -1;
             }
             //接下来就是更新model_zhijiechuli表
@@ -472,6 +473,7 @@ public class ReceiveFileController {
             try {
                 mer = receiveFileServiceImp.updateModelZhijiechuli(meme);
             } catch (Exception e) {
+                e.printStackTrace();
                 mer = -1;
             }
         }
@@ -535,6 +537,7 @@ public class ReceiveFileController {
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
             } catch (Exception e) {
+                e.printStackTrace();
                 er = -1;
             }
             //接下来就是更新model_wenjianniban表
@@ -556,6 +559,7 @@ public class ReceiveFileController {
             try {
                 mer = receiveFileServiceImp.updateModelWenjiannibandan(meme);
             } catch (Exception e) {
+                e.printStackTrace();
                 mer = -1;
             }
         }
@@ -632,6 +636,7 @@ public class ReceiveFileController {
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
             } catch (Exception e) {
+                e.printStackTrace();
                 er = -1;
             }
             //接下来就是更新model_yikeshi表
@@ -656,6 +661,7 @@ public class ReceiveFileController {
             try {
                 mer = receiveFileServiceImp.updateModelYikeshi(meme);
             } catch (Exception e) {
+                e.printStackTrace();
                 mer = -1;
             }
         }
@@ -763,6 +769,7 @@ public class ReceiveFileController {
             try {
                 er = receiveFileServiceImp.updateReceiveFile(rf);
             } catch (Exception e) {
+                e.printStackTrace();
                 er = -1;
             }
             //接下来就是更新model_erkeshi表
@@ -790,6 +797,7 @@ public class ReceiveFileController {
             try {
                 mer = receiveFileServiceImp.updateModelErkeshi(meme);
             } catch (Exception e) {
+                e.printStackTrace();
                 mer = -1;
             }
         }
@@ -881,6 +889,43 @@ public class ReceiveFileController {
         }
         Map<String,String> map = new HashMap<String,String>();
         if( re == -1 ){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
+    }
+    /**
+     * 删除按钮
+     * @param receivefileid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deleteReceiveFile",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String deleteReceiveFile(String receivefileid,String modeltype){
+        int deleteResult = 0;
+        try {
+            deleteResult = receiveFileServiceImp.deleteReceiveFile(receivefileid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            deleteResult =-1;
+        }
+        int deleteModel = 0;
+        if("".equals(modeltype)){
+            deleteModel = 0;
+        } else if("直接处理".equals(modeltype)){
+            deleteModel = receiveFileServiceImp.deleteModelZhiJieChuLi(receivefileid);
+        } else if("文件拟办单".equals(modeltype)){
+            deleteModel = receiveFileServiceImp.deleteModelWenJianNiBan(receivefileid);
+        } else if("一科室提意见".equals(modeltype)){
+            deleteModel = receiveFileServiceImp.deleteModelYiKeShi(receivefileid);
+        } else if("两科室提意见".equals(modeltype)){
+            deleteModel = receiveFileServiceImp.deleteModelErKeShi(receivefileid);
+        }
+
+        Map<String,String> map = new HashMap<String,String>();
+        if( deleteResult == -1 | deleteModel==-1){
             map.put("result","failure");
         } else {
             map.put("result","success");

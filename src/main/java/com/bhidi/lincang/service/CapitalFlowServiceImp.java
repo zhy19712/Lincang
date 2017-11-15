@@ -192,6 +192,10 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return mapResult;
     }
 
+    public int deleteCapitalFlow(String capitalflowid) {
+        return capitalFlowMapper.deleteCapitalFlow(capitalflowid);
+    }
+
     /**
      * 删除文件
      */

@@ -35,9 +35,9 @@
 
 </head>
 <body>
-	<div style="margin-bottom: 0;" class="navbar navbar-default" role="navigation">
+	<div style="margin-bottom: 0;height: 62px;" class="navbar navbar-default" role="navigation">
 
-		<div class="navbar-inner">
+		<div class="navbar-inner" style="padding: 0px;">
 			<!-- 小屏幕时的导航按键 starts -->
 			<button type="button" class="navbar-toggle pull-left animated flip">
 				<span class="sr-only">Toggle navigation</span>
@@ -47,7 +47,7 @@
 			</button>
 			<!-- 小屏幕时的导航按键 ends -->
 			<!-- logo starts -->
-			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;height:40px;padding-bottom: 0;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
 				<span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
 			<!-- logo ends -->
 
@@ -136,7 +136,7 @@
 				    <div class="auto_hidden" id="auto"></div>
 				    <div id="btn" style="border: none;background-color: #990101;color: white;padding: 8px;float: left;cursor: pointer;border-radius: 0px 3px 3px 0px;transition: all 0.2s ease-out 0s;margin-top: 10px;margin-left: -3px;">搜索</div>
 				</div>
-				<div class="city_info">
+				<div class="city_info" style="cursor: pointer;">
 					<div class="icon">
 						<div class="circle">
 							<div></div>
@@ -204,6 +204,9 @@
 	</div>
 </body>
 <script>
+
+
+
     // 多文件上传
     var fileIndex = 1;
     function add_click_file(index){
@@ -259,6 +262,32 @@
             window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id);
         }else if(table_kind == "移民搬迁登记表"){
             window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id);
+		}
+    }
+    //表格刷新
+	function table_refresh() {
+        mytable1.ajax.url("/TableAddByName.do?name="+ encodeURI(encodeURI(county_name))).load();
+        allinfo_table.ajax.url("/FamilyInfoAdd.do").load();
+    }
+    //删除功能
+    function delete1(that) {
+        var FID = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+        console.log(FID);
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deletePeople.do",
+                type: "post",
+                dataType: "json",
+                data: {fid:FID},
+                success: function (data) {
+                    if(data.result == "success"){
+                        table_refresh();
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
+                }
+            })
 		}
     }
 </script>

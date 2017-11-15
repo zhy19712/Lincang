@@ -6,8 +6,18 @@ public class PictureVillage {
     private String villageName;
     private String level;
     private int num;
+    private int households;
 
     public PictureVillage() {
+    }
+
+    public PictureVillage(String countyName, String townName, String villageName, String level, int num, int households) {
+        this.countyName = countyName;
+        this.townName = townName;
+        this.villageName = villageName;
+        this.level = level;
+        this.num = num;
+        this.households = households;
     }
 
     public String getCountyName() {
@@ -50,6 +60,14 @@ public class PictureVillage {
         this.num = num;
     }
 
+    public int getHouseholds() {
+        return households;
+    }
+
+    public void setHouseholds(int households) {
+        this.households = households;
+    }
+
     @Override
     public String toString() {
         return "PictureVillage{" +
@@ -58,6 +76,7 @@ public class PictureVillage {
                 ", villageName='" + villageName + '\'' +
                 ", level='" + level + '\'' +
                 ", num=" + num +
+                ", households=" + households +
                 '}';
     }
 }

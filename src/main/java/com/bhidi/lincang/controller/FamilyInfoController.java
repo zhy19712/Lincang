@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class FamilyInfoController {
@@ -56,6 +58,30 @@ public class FamilyInfoController {
         String resultStr = gson.toJson(result);
         System.out.println(resultStr);
         return resultStr;
+    }
+    /**
+     * 删除按钮
+     * @param fid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/deletePeople",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String deletePeople(String fid){
+        int deleteResult = 0;
+        try {
+            deleteResult = familyInfoServiceImp.deletePeople(fid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            deleteResult =-1;
+        }
+        Map<String,String> map = new HashMap<String,String>();
+        if( deleteResult == -1 ){
+            map.put("result","failure");
+        } else {
+            map.put("result","success");
+        }
+        String result = new Gson().toJson(map);
+        return result;
     }
 
 }

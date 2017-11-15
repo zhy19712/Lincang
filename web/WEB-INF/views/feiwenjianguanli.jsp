@@ -544,21 +544,12 @@
 <script src="../../js/app.js"></script>
 <script>
 
-    var role = $("#roleList").text();
-    var last = role.lastIndexOf("]");
-    role = role.substring(1,last);
-    console.log(role);
-    if(role != "市局办公室管理角色"){
-        $("#header2").remove();
-        $("#dcl2").remove();
-        $("#ycl2").remove();
-    }
-
     // 全部列表datatables
 
     var all_table = $('#NewTable_Stuff').DataTable({
         ajax: {
-            url: "/allNonFileManagementDataTable.do"
+            url: "/allNonFileManagementDataTable.do",
+            async: false
         },
         "order": [[2, 'asc']],
         "serverSide": true,
@@ -577,6 +568,7 @@
                 "targets": [5],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             },
@@ -690,6 +682,81 @@
         }
     });
 
+    //获取功能
+    var fun_list = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.classification == "非文件管理"){
+                    fun_list.push(n);
+                }
+            })
+        }
+    });
+    var fun_list1 = [];
+    $.each(fun_list,function (i,n) {
+        if(n.subclassification == "我的表单"){
+            fun_list1.push(n)
+        }
+    })
+    var f1 = [];
+    var f2 = [];
+    var f3 = [];
+    $.each(fun_list1,function(i,n){
+        if(n.authdescription == "文件提交"){
+            f1.push(n);
+        }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+            f2.push(n);
+        }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+            f3.push(n);
+        }
+    })
+    if(f1.length == 0){
+        $("#new1>.row").css("display","none");
+    }
+
+    if(f2.length == 0 && f3.length == 0){
+        $("#new1>.box-inner").css("display","none");
+    }else if(f2.length == 0 && f3.length == 1){
+        console.log(123)
+        $("#new1 .btn-danger").css("display","none");
+    }
+    if(f1.length == 0 && f2.length == 0 && f3.length == 0){
+        $("#myTab li:nth-child(1)").remove();
+        $("#myTab li:nth-child(1)").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }
+
+    //删除功能
+    function delete1(that) {
+        var nonfileid = $(that).parent("td").parent("tr").children("td:first-child").text();
+        console.log(nonfileid);
+        if(confirm("你确定要删除吗？")){
+            $.ajax({
+                url: "/deleteNonFile.do",
+                type: "post",
+                dataType: "json",
+                data: {nonfileid:nonfileid},
+                success: function (data) {
+                    if(data.result == "success"){
+                        table_refresh();
+                        setTimeout(acount,100);
+                        alert("删除成功");
+                    }else {
+                        alert(data.result);
+                    }
+                }
+            })
+        }
+    }
+
     //表格刷新
     function table_refresh() {
         all_table.ajax.url("/allNonFileManagementDataTable.do").load();
@@ -731,27 +798,44 @@
     }
 
     //  新建表单 表单提交
+    var xflag = true;
     $("#form_stuff .btn-primary").click(function () {
-        var options  = {
-            url:'/submitNonFileManagement.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                    table_refresh();
-                    acount();
-                    $('#form_stuff').modal('hide');
-                }else {
-                    alert(data.result);
-                }
-            },
-            error:function () {
-                alert("系统错误");
+        if(xflag){
+            var val1 = $("#fileForm tr:nth-child(1) td:nth-child(2) input").val();
+            var val3 = $("#fileForm tr:nth-child(3) td:nth-child(1) textarea").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val3){
+                alert("内容不能为空");
+                return;
             }
-        };
-        $("#fileForm").ajaxSubmit(options);
+            xflag = false;
+            var options  = {
+                url:'/submitNonFileManagement.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        xflag = true;
+                        table_refresh();
+                        acount();
+                        $('#form_stuff').modal('hide');
+                    }else {
+                        alert(data.result);
+                        xflag = true;
+                    }
+                },
+                error:function () {
+                    alert("系统错误");
+                    xflag = true;
+                }
+            };
+            $("#fileForm").ajaxSubmit(options);
+        }
+
     });
 
     //编辑查看按钮
@@ -841,69 +925,91 @@
         }
     }
     //办公室提交
+    var bflag1 = true;
     $("#modle_handle .btn-primary").click(function () {
-        var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
-        var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
-        var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
-        var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
-        var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
-        var text = new Object();
-        text.nonfileid = id;
-        text.title = title;
-        text.formsubmitperson = formsubmitperson;
-        text.infokind = infokind;
-        text.content = content;
-        text.officecontent = officecontent;
-        text.status = "签收";
-        console.log(text);
-        var mytext = JSON.stringify(text)
-        $.ajax({
-            url: "/updateNonFileManagementInfo.do",
-            type: "post",
-            data: {text:mytext},
-            success: function (data) {
-                if(data.result == "success"){
-                    alert("提交成功");
-                    table_refresh();
-                    acount();
-                    $('#modle_handle').modal('hide');
-                }else {
-                    alert("提交失败");
-                }
+        if(bflag1){
+
+            var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
+            var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
+            var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
+            var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
+            var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
+            var text = new Object();
+            text.nonfileid = id;
+            text.title = title;
+            text.formsubmitperson = formsubmitperson;
+            text.infokind = infokind;
+            text.content = content;
+            text.officecontent = officecontent;
+            text.status = "签收";
+            if(!officecontent){
+                alert("办公室处理内容不能为空");
+                return;
             }
-        })
+            console.log(text);
+            bflag1 = false;
+            var mytext = JSON.stringify(text)
+            $.ajax({
+                url: "/updateNonFileManagementInfo.do",
+                type: "post",
+                data: {text:mytext},
+                success: function (data) {
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        bflag1 = true;
+                        table_refresh();
+                        acount();
+                        $('#modle_handle').modal('hide');
+                    }else {
+                        alert("提交失败");
+                        bflag1 = true;
+                    }
+                }
+            })
+        }
     })
+    var bflag2 = true;
     $("#modle_handle .btn-success").click(function () {
-        var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
-        var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
-        var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
-        var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
-        var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
-        var text = new Object();
-        text.nonfileid = id;
-        text.title = title;
-        text.formsubmitperson = formsubmitperson;
-        text.infokind = infokind;
-        text.content = content;
-        text.officecontent = officecontent;
-        text.status = "采用";
-        console.log(text);
-        var mytext = JSON.stringify(text)
-        $.ajax({
-            url: "/updateNonFileManagementInfo.do",
-            type: "post",
-            data: {text:mytext},
-            success: function (data) {
-                if(data.result == "success"){
-                    alert("提交成功");
-                    table_refresh();
-                    acount();
-                    $('#modle_handle').modal('hide');
-                }else {
-                    alert("提交失败");
-                }
+        if(bflag2){
+            var title = $("#modle_handle tr:nth-child(1) td:nth-child(2) input").val();
+            var formsubmitperson = $("#modle_handle tr:nth-child(2) td:nth-child(2) input").val();
+            var infokind = $("#modle_handle tr:nth-child(2) td:nth-child(4) input").val();
+            var content = $("#modle_handle tr:nth-child(3) td:nth-child(1) textarea").val();
+            var officecontent = $("#modle_handle tr:nth-child(5) td:nth-child(2) textarea").val();
+            var text = new Object();
+            text.nonfileid = id;
+            text.title = title;
+            text.formsubmitperson = formsubmitperson;
+            text.infokind = infokind;
+            text.content = content;
+            text.officecontent = officecontent;
+            text.status = "采用";
+            if(!officecontent){
+                alert("办公室处理内容不能为空");
+                return;
             }
-        })
+            console.log(text);
+            bflag2 = false;
+            var mytext = JSON.stringify(text)
+            $.ajax({
+                url: "/updateNonFileManagementInfo.do",
+                type: "post",
+                data: {text:mytext},
+                success: function (data) {
+                    if(data.result == "success"){
+                        alert("提交成功");
+                        bflag2 = true;
+                        table_refresh();
+                        acount();
+                        $('#modle_handle').modal('hide');
+                    }else {
+                        alert("提交失败");
+                        bflag2 = true;
+                    }
+                }
+            })
+        }
+
     })
 </script>
 </body>
