@@ -1214,22 +1214,18 @@
                                 <td class="middle" rowspan="3">
                                     拟办意见
                                 </td>
-                                <td colspan="5" style="border-bottom: none">
+                                <td colspan="5" rowspan="3">
+                                    <textarea></textarea>
                                 </td>
                                 <td colspan="6">
                                     科室意见
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="border-bottom: none">
-                                </td>
                                 <td colspan="6"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
                             </tr>
                             <tr>
-                                <td colspan="5">
-                                    <textarea name=""></textarea>
-                                </td>
-                                <td colspan="6"><textarea name="" readonly="readonly"></textarea></td>
+                                <td colspan="6"><textarea readonly="readonly"></textarea></td>
                             </tr>
                             <tr>
                                 <td class="middle">主要领导批示意见</td>
@@ -1278,22 +1274,18 @@
                                 <td class="middle" rowspan="3">
                                     拟办意见
                                 </td>
-                                <td colspan="5" style="border-bottom: none">
+                                <td colspan="5" rowspan="3">
+                                    <textarea></textarea>
                                 </td>
                                 <td colspan="6">
                                     科室意见
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="border-bottom: none">
-                                </td>
                                 <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
                                 <td colspan="3"><input type="text" style="width: 110px;font-size: 16px;line-height: 20px;" readonly="readonly"></td>
                             </tr>
                             <tr>
-                                <td colspan="5">
-                                    <textarea name=""></textarea>
-                                </td>
                                 <td colspan="3"><textarea name="" readonly="readonly"></textarea></td>
                                 <td colspan="3"><textarea name="" readonly="readonly"></textarea></td>
                             </tr>
@@ -2718,7 +2710,7 @@
                 text.secret = $("#model3 tr:first-child td:nth-child(10) input").val();
                 text.copys = $("#model3 tr:first-child td:nth-child(12) input").val();
                 text.filetitle = $("#model3 tr:nth-child(2) td:nth-child(2) textarea").val();
-                text.suggestion = $("#model3 tr:nth-child(5) td:nth-child(1) textarea").val();
+                text.suggestion = $("#model3 tr:nth-child(3) td:nth-child(2) textarea").val();
                 text.mainleaderinstruction = $("#model3 tr:nth-child(6) td:nth-child(2) textarea").val();
                 text.branchleaderinstruction = $("#model3 tr:nth-child(7) td:nth-child(2) textarea").val();
                 text.result = $("#model3 tr:nth-child(8) td:nth-child(2) textarea").val();
@@ -2753,7 +2745,7 @@
                 text.secret = $("#model4 tr:first-child td:nth-child(10) input").val();
                 text.copys = $("#model4 tr:first-child td:nth-child(12) input").val();
                 text.filetitle = $("#model4 tr:nth-child(2) td:nth-child(2) textarea").val();
-                text.suggestion = $("#model4 tr:nth-child(5) td:nth-child(1) textarea").val();
+                text.suggestion = $("#model4 tr:nth-child(3) td:nth-child(2) textarea").val();
                 text.mainleaderinstruction = $("#model4 tr:nth-child(6) td:nth-child(2) textarea").val();
                 text.branchleaderinstruction = $("#model4 tr:nth-child(7) td:nth-child(2) textarea").val();
                 text.result = $("#model4 tr:nth-child(8) td:nth-child(2) textarea").val();

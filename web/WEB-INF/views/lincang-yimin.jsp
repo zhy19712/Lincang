@@ -136,7 +136,7 @@
 				    <div class="auto_hidden" id="auto"></div>
 				    <div id="btn" style="border: none;background-color: #990101;color: white;padding: 8px;float: left;cursor: pointer;border-radius: 0px 3px 3px 0px;transition: all 0.2s ease-out 0s;margin-top: 10px;margin-left: -3px;">搜索</div>
 				</div>
-				<div class="city_info">
+				<div class="city_info" style="cursor: pointer;">
 					<div class="icon">
 						<div class="circle">
 							<div></div>

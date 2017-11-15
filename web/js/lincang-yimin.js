@@ -267,7 +267,7 @@ $(function(){
             +  "<a href='#' title='地区'>"
             +  "<div class='img'></div>"
             +  "<div class='info'>"
-            +  "<h2 class='name' style='margin-bottom: 0px;'>" + name + "</h2>"
+            +  "<h2 class='name' style='margin-bottom: 0px;margin-top: 0px;'>" + name + "</h2>"
             +  "<p class='text' style='margin-bottom: 0px;'>共有户数<span class='people'>" + households + "</span>人</p>"
             +  "<p class='text' style='margin-bottom: 0px;'>共有移民<span class='people'>" + num + "</span>人</p>"
             +  "</div>"
@@ -286,6 +286,7 @@ $(function(){
         success: function (data) {
         	console.log(data);
         	mydata = data.result;
+            $("#show ul").empty();
             $.each(data.result,function (i,n) {
                 all_info.push(n);
                 all_place.push(n.name);
@@ -319,43 +320,43 @@ $(function(){
 
 	//侧边栏所有县或该县下的镇级信息显示,
 	function xian(name) {
+        $("#show ul").empty();
 		if(arguments.length == 1){
 			$.each(mydata,function (i,n) {
                 if (name == n.name){
                     $("#show ul").empty();
                     $.each(n.listChild,function (i,n) {
-                        slide(n.name,n.num);
+                        slide(n.name,n.num,n.households);
                     });
                     return ;
                 }
             })
 		}else {
-            $("#show ul").empty();
 			$.each(mydata,function (i,n) {
-                slide(n.name,n.num);
+                slide(n.name,n.num,n.households);
             })
 		}
     }
 
     //侧边栏所有村级或该县下的村级信息显示
 	function zhen(name) {
+        $("#show ul").empty();
 		if (arguments.length == 1){
 			$.each(mydata,function (i,n) {
 				$.each(n.listChild,function (i,n) {
                     if (name == n.name){
                         $("#show ul").empty();
                         $.each(n.listChild,function (i,n) {
-                            slide(n.name,n.num);
+                            slide(n.name,n.num,n.households);
                         });
                         return ;
                     }
                 })
             })
 		}else {
-            $("#show ul").empty();
 			$.each(mydata,function (i,n) {
 				$.each(n.listChild,function (i,n) {
-					slide(n.name,n.num);
+					slide(n.name,n.num,n.households);
                 })
             })
 		}
@@ -363,13 +364,13 @@ $(function(){
 
     //侧边栏所有村级或该村信息显示
 	function cun(name) {
+        $("#show ul").empty();
 		if(arguments.length == 1){
             $.each(mydata,function (i,n) {
                 $.each(n.listChild,function (i,n) {
                     $.each(n.listChild,function (i,n) {
                         if (name == n.name){
-                            $("#show ul").empty();
-                            slide(n.name,n.num);
+                            slide(n.name,n.num,n.households);
 
                             return ;
                         }
@@ -377,11 +378,10 @@ $(function(){
                 });
             })
         }else {
-            $("#show ul").empty();
             $.each(mydata,function (i,n) {
                 $.each(n.listChild,function (i,n) {
                     $.each(n.listChild,function (i,n) {
-						slide(n.name,n.num);
+						slide(n.name,n.num,n.households);
                     })
                 });
             })
@@ -754,6 +754,15 @@ $(function(){
 
 	}
 	var autoComplete=new AutoComplete('ipt','auto',all_place);
+
+
+	$(".city_info").click(function () {
+        $("#show ul").empty();
+	    $.each(mydata,function (i,n) {
+            slide(n.name,n.num,n.households);
+        })
+        map.centerAndZoom(point, 10);
+    })
 
 
 
