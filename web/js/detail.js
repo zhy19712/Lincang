@@ -30,7 +30,7 @@ $(function () {
             //银行账户信息
              $("#bank-user").val(data.bank.account_name);
              $("#bank-number").val(data.bank.account_number);
-             $("#bank-name").val(data.bank.account_number);
+             $("#bank-name").val(data.bank.bank_name);
              //人员信息
              $.each(data.people,function (i,n) {
                  if(n.master == 1){

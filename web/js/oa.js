@@ -1,12 +1,10 @@
 
-
-//打印
-
 // 全部列表datatables
 
 var all_table = $('#NewTable_Stuff').DataTable({
     ajax: {
-        url: "/sendFileDataTableFirst.do"
+        url: "/sendFileDataTableFirst.do",
+        async: false
     },
     "order": [[2, 'asc']],
     "serverSide": true,
@@ -25,7 +23,7 @@ var all_table = $('#NewTable_Stuff').DataTable({
             "targets": [5],
             "render" :  function(data,type,row) {
                 var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                 return html;
             }
         }
@@ -129,6 +127,58 @@ var ycl_table = $('#SubmittedTable_Office').DataTable({
     }
 });
 
+//获取功能
+var fun_list = [];
+$.ajax({
+    url: "/getFunction.do",
+    type: "post",
+    async: false,
+    dataType: "json",
+    success:function (data) {
+        console.log(data);
+        $.each(data.function,function (i,n) {
+            if(n.classification == "发文管理"){
+                fun_list.push(n);
+            }
+        })
+    }
+});
+var fun_list1 = [];
+$.each(fun_list,function (i,n) {
+    if(n.subclassification == "我的表单"){
+        fun_list1.push(n)
+    }
+})
+var f1 = [];
+var f2 = [];
+var f3 = [];
+$.each(fun_list1,function(i,n){
+    if(n.authdescription == "起草文件功能"){
+        f1.push(n);
+    }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+        f2.push(n);
+    }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+        f3.push(n);
+    }
+})
+if(f1.length == 0){
+    $("#new1>.row").css("display","none");
+}
+
+console.log(f2,f3);
+if(f2.length == 0 && f3.length == 0){
+    $("#new1>.box-inner").css("display","none");
+}else if(f2.length == 0 && f3.length == 1){
+    $("#new1 .btn-danger").css("display","none");
+}
+if(f1.length == 0 && f2.length == 0 && f3.length == 0){
+    $("#myTab li:nth-child(1)").remove();
+    $("#myTab li:nth-child(1)").remove();
+    $("#new1").remove();
+    $("#dcl").addClass("active");
+    $("#new2").addClass("active");
+}
+
 //表格刷新
 function table_refresh() {
     all_table.ajax.url("/sendFileDataTableFirst.do").load();
@@ -214,7 +264,8 @@ function delete1(that) {
             data: {sendfileid:sendfileid},
             success: function (data) {
                 if(data.result == "success"){
-                    all_table.ajax.url("/sendFileDataTableFirst.do").load();
+                    table_refresh();
+                    setTimeout(acount,100);
                     alert("删除成功");
                 }else {
                     alert(data.result);
@@ -455,6 +506,23 @@ $(".btn-success").click(function () {
 var x_flag = true;
 $("#form_stuff .btn-primary").click(function () {
     if(x_flag){
+        var val1 = $("#fileForm tr:nth-child(1) td:nth-child(2) input").val();
+        var val2 = $("#fileForm tr:nth-child(1) td:nth-child(6) input").val();
+        var val3 = $("#fileForm tr:nth-child(5) td:nth-child(2) input").val();
+        var val4 = $("#fileForm tr:nth-child(6) td:nth-child(1) textarea").val();
+        if(!val1){
+            alert("拟稿单位不能为空");
+            return;
+        }else if(!val2){
+            alert("科室核稿不能为空");
+            return;
+        }else if(!val3){
+            alert("标题不能为空");
+            return;
+        }else if(!val4){
+            alert("内容不能为空");
+            return;
+        }
         x_flag = false;
         var options  = {
             url:'/submitSendFile.do',
@@ -493,7 +561,6 @@ $("#select_model .btn-primary").click(function () {
                 return;
             }
         }
-        b_flag = false;
         var sn = $("#select_model tr:nth-child(1) td:nth-child(2) input").val();
         var date = $("#select_model tr:nth-child(1) td:nth-child(5) input").val();
         var urgency = $("#select_model tr:nth-child(1) td:nth-child(7) input").val();
@@ -514,6 +581,21 @@ $("#select_model .btn-primary").click(function () {
         var title = $("#select_model tr:nth-child(10) td:nth-child(2) input").val();
         var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
         var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
+        if(!sn){
+            alert("编号不能为空");
+            return;
+        }
+        if(!date){
+            alert("日期不能为空");
+            return;
+        }
+        if(status == "处理处置"){
+            if(!result){
+                alert("办理结果不能为空");
+                return;
+            }
+        }
+        b_flag = false;
         var text = new Object();
         text.approver = lingdao;
         text.implementperson = banli;

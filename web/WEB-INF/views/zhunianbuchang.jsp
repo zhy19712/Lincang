@@ -424,9 +424,9 @@
                                 <td colspan="4"><textarea></textarea></td>
                             </tr>
                             <iframe id="uploadFrame2" name="uploadFrame2" style="display:none;"></iframe>
-                            <form id = "fileForm2" action="" enctype="multipart/form-data"  target="uploadFrame2">
+                            <form id = "fileForm2" enctype="multipart/form-data"  target="uploadFrame2">
                                 <input id="myid" type="text" name="capitalflowid" value="" style="display: none">
-                                <table class="mytable" style="border-top: none;">
+                                <table id="table2" class="mytable" style="border-top: none;">
                                         <tr>
                                             <td>款项来源</td>
                                             <td><input type="text" name="money_source"></td>
@@ -772,144 +772,6 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script>
-    //上报人/申请人
-    var name = $("#name").text();
-    //获取功能
-    var fun_list1 = [];
-    var fun_list2 = [];
-    $.ajax({
-        url: "/getFunction.do",
-        type: "post",
-        async: false,
-        dataType: "json",
-        success:function (data) {
-            $.each(data.function,function (i,n) {
-                if(n.subclassification == "市资金申请管理"){
-                    fun_list1.push(n);
-                }else if(n.subclassification == "区县资金申请管理"){
-                    fun_list2.push(n);
-                }
-            })
-        }
-    });
-    console.log(fun_list1);
-    console.log(fun_list2);
-    var len1 = fun_list1.length;
-    var len2 = fun_list2.length;
-    if(len1 == 0 && len2 == 0){
-        $("#header1").remove();
-        $("#m_apply1").remove();
-        $("#new1").remove();
-        $("#dcl").addClass("active");
-        $("#new2").addClass("active");
-    }else{
-        $("#new1>.row>div:nth-child(1)").css("display","none");
-        $("#new1>.row>div:nth-child(2)").css("display","none");
-        $("#new1>.box-inner").css("display","none");
-        $.each(fun_list1,function (i,n) {
-            if(n.authdescription == "市局规划科资金申请上报功能"){
-                $("#new1>.row>div:nth-child(1)").css("display","block");
-            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
-                $("#new1>.box-inner").css("display","block");
-            }
-        });
-        $.each(fun_list2,function (i,n) {
-            if(n.authdescription == "区县发起申请功能"){
-                $("#new1>.row>div:nth-child(2)").css("display","block");
-            }else if(n.authdescription == "个人申请列表查看、搜索功能"){
-                $("#new1>.box-inner").css("display","block");
-            }
-        });
-    }
-
-    //checkbox美化
-    $('.ui-choose').ui_choose();
-    var uc_03 = $('#uc_03').data('ui-choose');
-    //日期插件
-
-    $("#time2").jeDate({
-        format: "YYYY-MM-DD"
-    });
-    // 多文件上传
-    var fileIndex = 1;
-    function add_click_file(index){
-        $("#add_file_"+fileIndex).click();
-    }
-
-    function add(index) {
-        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
-        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
-        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
-        $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
-        $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
-        $("#filesUpload").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
-        ++fileIndex;
-    }
-
-    function del_file(number) {
-        var o=document.getElementById("filesUpload");//获取父节点
-        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
-        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
-        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
-        o.removeChild(int); //从父节点o上面移除子节点a
-        o.removeChild(a);
-        o.removeChild(span)
-    }
-
-    // 多文件上传
-    var myfileIndex = 1;
-    function myadd_click_file(index){
-        $("#myadd_file_"+myfileIndex).click();
-    }
-
-    function myadd(index) {
-        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
-        var len = $("#myadd_file_" + (myfileIndex) + "").val().split("\\").length;
-        var num = $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1];
-        $("#myfilesUpload").append('<span  id="myadd_file_span_' + (myfileIndex) + '"  class="add_file">' + $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1] + '</span>');
-        $("#myfilesUpload").append('<a   id="myadd_file_a_' + (myfileIndex) + '"  class="add_file" href="javascript:mydel_file(' + myfileIndex+ ')">删除</a>');
-        $("#myfilesUpload").append('<input style="display:none;" id="myadd_file_' + (myfileIndex + 1) + '" type="file" name = "files" onChange="myadd(' + (myfileIndex + 1) + ')"/>');
-        ++myfileIndex;
-    }
-
-    function mydel_file(number) {
-        var o=document.getElementById("myfilesUpload");//获取父节点
-        var int=document.getElementById("myadd_file_" + number+"");//获取需要删除的子节点
-        var a=document.getElementById("myadd_file_a_" + number+"");//获取需要删除的子节点
-        var span=document.getElementById("myadd_file_span_" + number+"");//获取需要删除的子节点
-        o.removeChild(int); //从父节点o上面移除子节点a
-        o.removeChild(a);
-        o.removeChild(span)
-    }
-
-    // 多文件上传
-    var my1fileIndex = 1;
-    function my1add_click_file(index){
-        $("#my1add_file_"+my1fileIndex).click();
-    }
-
-    function my1add(index) {
-        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
-        var len = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\").length;
-        var num = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1];
-        $("#my1filesUpload").append('<span  id="my1add_file_span_' + (my1fileIndex) + '"  class="add_file">' + $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1] + '</span>');
-        $("#my1filesUpload").append('<a   id="my1add_file_a_' + (my1fileIndex) + '"  class="add_file" href="javascript:my1del_file(' + my1fileIndex+ ')">删除</a>');
-        $("#my1filesUpload").append('<input style="display:none;" id="my1add_file_' + (my1fileIndex + 1) + '" type="file" name = "files" onChange="my1add(' + (my1fileIndex + 1) + ')"/>');
-        ++my1fileIndex;
-    }
-
-    function my1del_file(number) {
-        var o=document.getElementById("my1filesUpload");//获取父节点
-        var int=document.getElementById("my1add_file_" + number+"");//获取需要删除的子节点
-        var a=document.getElementById("my1add_file_a_" + number+"");//获取需要删除的子节点
-        var span=document.getElementById("my1add_file_span_" + number+"");//获取需要删除的子节点
-        o.removeChild(int); //从父节点o上面移除子节点a
-        o.removeChild(a);
-        o.removeChild(span)
-    }
-
-
-
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
@@ -934,7 +796,7 @@
                 "targets": [6],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                     return html;
                 }
             }
@@ -1037,6 +899,146 @@
             }
         }
     });
+    //上报人/申请人
+    var name = $("#name").text();
+    //获取功能
+    var fun_list1 = [];
+    var fun_list2 = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            $.each(data.function,function (i,n) {
+                if(n.subclassification == "市资金申请管理"){
+                    fun_list1.push(n);
+                }else if(n.subclassification == "区县资金申请管理"){
+                    fun_list2.push(n);
+                }
+            })
+        }
+    });
+    console.log(fun_list1);
+    console.log(fun_list2);
+    var len1 = fun_list1.length;
+    var len2 = fun_list2.length;
+    if(len1 == 0 && len2 == 0){
+        $("#header1").remove();
+        $("#m_apply1").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }else{
+        $("#new1>.row>div:nth-child(1)").css("display","none");
+        $("#new1>.row>div:nth-child(2)").css("display","none");
+        $("#new1>.box-inner").css("display","none");
+        $.each(fun_list1,function (i,n) {
+            if(n.authdescription == "市局规划科资金申请上报功能"){
+                $("#new1>.row>div:nth-child(1)").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+                $("#new1>.box-inner").css("display","block");
+            }
+        });
+        $.each(fun_list2,function (i,n) {
+            if(n.authdescription == "区县发起申请功能"){
+                $("#new1>.row>div:nth-child(2)").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+                $("#new1>.box-inner").css("display","block");
+            }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1 .btn-danger").css("display","none");
+            }
+        });
+    }
+
+    //checkbox美化
+    $('.ui-choose').ui_choose();
+    var uc_03 = $('#uc_03').data('ui-choose');
+    //日期插件
+
+    $("#time2").jeDate({
+        format: "YYYY-MM-DD"
+    });
+    // 多文件上传
+    var fileIndex = 1;
+    function add_click_file(index){
+        $("#add_file_"+fileIndex).click();
+    }
+
+    function add(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#add_file_" + (fileIndex) + "").val().split("\\").length;
+        var num = $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1];
+        $("#filesUpload").append('<span  id="add_file_span_' + (fileIndex) + '"  class="add_file">' + $("#add_file_" + (fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#filesUpload").append('<a   id="add_file_a_' + (fileIndex) + '"  class="add_file" href="javascript:del_file(' + fileIndex+ ')">删除</a>');
+        $("#filesUpload").append('<input style="display:none;" id="add_file_' + (fileIndex + 1) + '" type="file" name = "files" onChange="add(' + (fileIndex + 1) + ')"/>');
+        ++fileIndex;
+    }
+
+    function del_file(number) {
+        var o=document.getElementById("filesUpload");//获取父节点
+        var int=document.getElementById("add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
+
+    // 多文件上传
+    var myfileIndex = 1;
+    function myadd_click_file(index){
+        $("#myadd_file_"+myfileIndex).click();
+    }
+
+    function myadd(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#myadd_file_" + (myfileIndex) + "").val().split("\\").length;
+        var num = $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1];
+        $("#myfilesUpload").append('<span  id="myadd_file_span_' + (myfileIndex) + '"  class="add_file">' + $("#myadd_file_" + (myfileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#myfilesUpload").append('<a   id="myadd_file_a_' + (myfileIndex) + '"  class="add_file" href="javascript:mydel_file(' + myfileIndex+ ')">删除</a>');
+        $("#myfilesUpload").append('<input style="display:none;" id="myadd_file_' + (myfileIndex + 1) + '" type="file" name = "files" onChange="myadd(' + (myfileIndex + 1) + ')"/>');
+        ++myfileIndex;
+    }
+
+    function mydel_file(number) {
+        var o=document.getElementById("myfilesUpload");//获取父节点
+        var int=document.getElementById("myadd_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("myadd_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("myadd_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
+
+    // 多文件上传
+    var my1fileIndex = 1;
+    function my1add_click_file(index){
+        $("#my1add_file_"+my1fileIndex).click();
+    }
+
+    function my1add(index) {
+        /*因为浏览器的设置问题直接用.val()方法取值的时候会取到C:\fakepath\。。所以在这里进行了剪切。*/
+        var len = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\").length;
+        var num = $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1];
+        $("#my1filesUpload").append('<span  id="my1add_file_span_' + (my1fileIndex) + '"  class="add_file">' + $("#my1add_file_" + (my1fileIndex) + "").val().split("\\")[len - 1] + '</span>');
+        $("#my1filesUpload").append('<a   id="my1add_file_a_' + (my1fileIndex) + '"  class="add_file" href="javascript:my1del_file(' + my1fileIndex+ ')">删除</a>');
+        $("#my1filesUpload").append('<input style="display:none;" id="my1add_file_' + (my1fileIndex + 1) + '" type="file" name = "files" onChange="my1add(' + (my1fileIndex + 1) + ')"/>');
+        ++my1fileIndex;
+    }
+
+    function my1del_file(number) {
+        var o=document.getElementById("my1filesUpload");//获取父节点
+        var int=document.getElementById("my1add_file_" + number+"");//获取需要删除的子节点
+        var a=document.getElementById("my1add_file_a_" + number+"");//获取需要删除的子节点
+        var span=document.getElementById("my1add_file_span_" + number+"");//获取需要删除的子节点
+        o.removeChild(int); //从父节点o上面移除子节点a
+        o.removeChild(a);
+        o.removeChild(span)
+    }
+
+
 
     //删除功能
     function delete1(that) {
@@ -1050,7 +1052,8 @@
                 data: {capitalflowid:capitalflowid},
                 success: function (data) {
                     if(data.result == "success"){
-                        money_apply1.ajax.url("/capitalFlowAll.do").load();
+                        table_refresh();
+                        setTimeout(acount,100);
                         alert("删除成功");
                     }else {
                         alert(data.result);
@@ -1108,147 +1111,270 @@
 
 
     //上报提交
+    var flag1 = true;
     $("#money_apply_wdo1 .btn-primary").click(function () {
-        var options  = {
-            url:'/submitDataOfCapital.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                    $('#money_apply_wdo1').modal('hide');
-                    table_refresh();
-                    acount();
-                    $("#money_apply_wdo1 input").val("");
-                    $("#money_apply_wdo1 textarea").val("");
-                }else {
-                    alert(data.result);
-                }
+        if(flag1){
+            var val1 = $("#fileForm1 tr:nth-child(1) td:nth-child(2) input").val();
+            var val2 = $("#fileForm1 tr:nth-child(2) td:nth-child(2) input").val();
+            var val3 = $("#fileForm1 tr:nth-child(2) td:nth-child(4) input").val();
+            var val4 = $("#fileForm1 tr:nth-child(4) td:nth-child(1) textarea").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val2){
+                alert("上报人不能为空");
+                return;
+            }else if(!val3){
+                alert("上报季度不能为空");
+                return;
+            }else if(!val4){
+                alert("上报内容不能为空");
+                return;
             }
-        };
-        $("#fileForm1").ajaxSubmit(options);
-    });
-    //财务提交
-    $("#caiwu_handle .btn-primary").click(function () {
-            console.log($("#myid").val());
+            flag1 = false;
             var options  = {
-                url:'/shiJuSubmit.do',
+                url:'/submitDataOfCapital.do',
                 type:'post',
                 success:function(data)
                 {
                     console.log(data);
                     if(data.result == "success"){
                         alert("提交成功");
+                        flag1 = true;
+                        $('#money_apply_wdo1').modal('hide');
                         table_refresh();
                         acount();
-                        $('#caiwu_handle').modal('hide');
-                        $("#fileForm2 input").val("");
-                        $("#fileForm2 textarea").val("");
+                        $("#money_apply_wdo1 input").val("");
+                        $("#money_apply_wdo1 textarea").val("");
                     }else {
                         alert(data.result);
+                        flag1 = true;
                     }
                 }
             };
-            $("#fileForm2").ajaxSubmit(options);
+            $("#fileForm1").ajaxSubmit(options);
+        }
+    });
+    //财务提交
+    var flag2 = true;
+    $("#caiwu_handle .btn-primary").click(function () {
+            if(flag2){
+                var val1 = $("#table2 tr:nth-child(1) td:nth-child(2) input").val();
+                var val2 = $("#table2 tr:nth-child(1) td:nth-child(4) input").val();
+                var val3 = $("#table2 tr:nth-child(2) td:nth-child(2) input").val();
+                if(!val1){
+                    alert("款项来源不能为空");
+                    return;
+                }else if(!val2){
+                    alert("到款时间不能为空");
+                    return;
+                }else if(!val3){
+                    alert("到款金额不能为空");
+                    return;
+                }
+                flag2 = false;
+                var options  = {
+                    url:'/shiJuSubmit.do',
+                    type:'post',
+                    success:function(data)
+                    {
+                        console.log(data);
+                        if(data.result == "success"){
+                            alert("提交成功");
+                            flag2 = true;
+                            table_refresh();
+                            acount();
+                            $('#caiwu_handle').modal('hide');
+                            $("#fileForm2 input").val("");
+                            $("#fileForm2 textarea").val("");
+                        }else {
+                            alert(data.result);
+                            flag2 = true;
+                        }
+                    }
+                };
+                $("#fileForm2").ajaxSubmit(options);
+            }
     });
     //规划科通知区县
+    var flag3 = true;
     $("#guihua_handle .btn-primary").click(function () {
-        var str = "";
-        $.each($("#uc_03>li.selected"),function (i,n) {
-            console.log(n);
-            str += "," + n.innerText ;
-        });
-        var text = $("#guihua_handle tr:last-child textarea").val();
-        str = str.substring(1);
-        console.log(id);
-        console.log(str);
-        console.log(text);
-        $.ajax({
-            url: "/setToAreaDataById.do",
-            type: "post",
-            dataType: "json",
-            data: {id:id,areaname:str,text:text},
-            success: function (data) {
-                console.log(data);
-                if(data.result == "success"){
-                    table_refresh();
-                    acount();
-                    $("#guihua_handle").modal('hide');
-                    alert("提交成功")
-                }else {
-                    alert(data.result);
-                }
+        if(flag3){
+            var str = "";
+            if($("#uc_03>li.selected").length == 0){
+                alert("请选择区县");
+                return;
             }
-        })
-    })
-    //资金申请
-    $("#money_apply_wdo2 .btn-primary").click(function () {
-        var options  = {
-            url:'quxianSubmitDataOfCapital.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                    table_refresh();
-                    acount();
-                    $('#money_apply_wdo2').modal('hide');
-                    $("#money_apply_wdo2 input").val("");
-                    $("#money_apply_wdo2 textarea").val("");
-                }else {
-                    alert(data.result);
-                }
+            $.each($("#uc_03>li.selected"),function (i,n) {
+                console.log(n);
+                str += "," + n.innerText ;
+            });
+            var text = $("#guihua_handle tr:last-child textarea").val();
+            if(!text){
+                alert("请输入通知内容");
+                return;
             }
-        };
-        $("#fileForm3").ajaxSubmit(options);
-    });
-    //提交内容
-    $("#final_handle2 .btn-primary").click(function () {
-        if(status == "市局规划科批复"){
-            var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val();
-            console.log(replytext);
+            str = str.substring(1);
+            flag3 = false;
             $.ajax({
-                url: "/quxianGuiHuaSetDataById.do",
+                url: "/setToAreaDataById.do",
                 type: "post",
                 dataType: "json",
-                data: {id:id,replytext:replytext},
+                data: {id:id,areaname:str,text:text},
                 success: function (data) {
+                    console.log(data);
                     if(data.result == "success"){
                         table_refresh();
                         acount();
+                        $("#guihua_handle").modal('hide');
                         alert("提交成功");
-                        $("#final_handle2").modal('hide');
+                        flag3 = true;
                     }else {
-                        alert(data.result)
+                        alert(data.result);
+                        flag3 = true;
                     }
                 }
             })
         }
-        else if(status == "市局财务科处置办理"){
-            var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val();
-            $.ajax({
-                url: "/quxianCaiWuSetDataById.do",
-                type: "post",
-                dataType: "json",
-                data: {id:id,dealtext:dealtext},
-                success: function (data) {
+    })
+    //资金申请
+    var flag4 = true;
+    $("#money_apply_wdo2 .btn-primary").click(function () {
+        if(flag4){
+            var val1 = $("#fileForm3 tr:nth-child(1) td:nth-child(2) input").val();
+            var val2 = $("#fileForm3 tr:nth-child(2) td:nth-child(2) input").val();
+            var val3 = $("#fileForm3 tr:nth-child(2) td:nth-child(4) input").val();
+            if(!val1){
+                alert("标题不能为空");
+                return;
+            }else if(!val2){
+                alert("申请人不能为空");
+                return;
+            }else if(!val3){
+                alert("申请原因不能为空");
+                return;
+            }
+            flag4 = false;
+            var options  = {
+                url:'quxianSubmitDataOfCapital.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
                     if(data.result == "success"){
+                        alert("提交成功");
+                        flag4 = true;
                         table_refresh();
                         acount();
-                        alert("提交成功");
-                        $("#final_handle2").modal('hide');
+                        $('#money_apply_wdo2').modal('hide');
+                        $("#money_apply_wdo2 input").val("");
+                        $("#money_apply_wdo2 textarea").val("");
                     }else {
-                alert(data.result)
-            }
+                        alert(data.result);
+                        flag4 = true;
+                    }
                 }
-            })
+            };
+            $("#fileForm3").ajaxSubmit(options);
         }
-        else if(status == "区县资金流向记录"){
+    });
+    //提交内容
+    var flag5 = true;
+    $("#final_handle2 .btn-primary").click(function () {
+        if(flag5){
+            if(status == "市局规划科批复"){
+                var replytext = $("#final_handle2 tr:nth-child(4) td:nth-child(2) textarea").val();
+                if(!replytext){
+                    alert("批复内容不能为空");
+                    return;
+                }
+                flag5 = false;
+                console.log(replytext);
+                $.ajax({
+                    url: "/quxianGuiHuaSetDataById.do",
+                    type: "post",
+                    dataType: "json",
+                    data: {id:id,replytext:replytext},
+                    success: function (data) {
+                        if(data.result == "success"){
+                            table_refresh();
+                            acount();
+                            alert("提交成功");
+                            flag5 = true;
+                            $("#final_handle2").modal('hide');
+                        }else {
+                            alert(data.result);
+                            flag5 = true;
+                        }
+                    }
+                })
+            }
+            else if(status == "市局财务科处置办理"){
+                var dealtext = $("#final_handle2 tr:nth-child(5) td:nth-child(2) textarea").val();
+                if(!dealtext){
+                    alert("处置办理内容不能为空");
+                    return;
+                }
+                flag5 = false;
+                $.ajax({
+                    url: "/quxianCaiWuSetDataById.do",
+                    type: "post",
+                    dataType: "json",
+                    data: {id:id,dealtext:dealtext},
+                    success: function (data) {
+                        if(data.result == "success"){
+                            table_refresh();
+                            acount();
+                            alert("提交成功");
+                            flag5 = true;
+                            $("#final_handle2").modal('hide');
+                        }else {
+                            alert(data.result);
+                            flag5 = true;
+                        }
+                    }
+                })
+            }
+            else if(status == "区县资金流向记录"){
+                var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
+                if(!capitalflowinstruction){
+                    alert("资金流向记录不能为空");
+                    return;
+                }
+                flag5 = false;
+                $.ajax({
+                    url: "/quxianSubmitSetDataById.do",
+                    type: "post",
+                    dataType: "json",
+                    data: {id:id,capitalflowinstruction:capitalflowinstruction},
+                    success: function (data) {
+                        if(data.result == "success"){
+                            table_refresh();
+                            acount();
+                            alert("提交成功");
+                            flag5 = true;
+                            $("#final_handle2").modal('hide');
+                        }else {
+                            alert(data.result);
+                            flag5 = true;
+                        }
+                    }
+                })
+            }
+        }
+    })
+    //保存按钮
+    var flag6 = true;
+    $("#final_handle2 .btn-success").click(function () {
+        if(flag6){
             var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
+            if(!capitalflowinstruction){
+                alert("资金流向记录不能为空");
+                return;
+            }
+            flag6 = false;
             $.ajax({
-                url: "/quxianSubmitSetDataById.do",
+                url: "/quxianSaveSetDataById.do",
                 type: "post",
                 dataType: "json",
                 data: {id:id,capitalflowinstruction:capitalflowinstruction},
@@ -1257,33 +1383,15 @@
                         table_refresh();
                         acount();
                         alert("提交成功");
+                        flag6 = true;
                         $("#final_handle2").modal('hide');
                     }else {
-                        alert(data.result)
+                        alert(data.result);
+                        flag6 = true;
                     }
                 }
             })
         }
-    })
-    //保存按钮
-    $("#final_handle2 .btn-success").click(function () {
-        var capitalflowinstruction = $("#final_handle2 tr:nth-child(6) td:nth-child(2) textarea").val();
-        $.ajax({
-            url: "/quxianSaveSetDataById.do",
-            type: "post",
-            dataType: "json",
-            data: {id:id,capitalflowinstruction:capitalflowinstruction},
-            success: function (data) {
-                if(data.result == "success"){
-                    table_refresh();
-                    acount();
-                    alert("提交成功");
-                    $("#final_handle2").modal('hide');
-                }else {
-                    alert(data.result)
-                }
-            }
-        })
     })
 
 
