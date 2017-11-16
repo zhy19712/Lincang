@@ -182,7 +182,7 @@
 					</div>
 					<button id="submit" type="submit" style="vertical-align: middle;margin-bottom: 10px;">确认导入</button>
 				</form>
-				<div id="allinfo_table_wrapper">
+				<div id="allinfo_table_wrapper" style="padding-top: 20px;border-top: 3px solid #ccc;margin-top: 14px;">
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
