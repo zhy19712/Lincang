@@ -696,10 +696,6 @@ $(function () {
         var inquirer = $("#inquirer").val();
         var time = $("#time").val();
 
-        if(!respondent || !inquirer || !time){
-            alert("请将必填项输入完整");
-            return;
-        }
         data.respondent = respondent;
         data.inquirer = inquirer;
         data.time = time;
