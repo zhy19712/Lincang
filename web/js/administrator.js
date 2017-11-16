@@ -192,37 +192,55 @@
        });
 
        //用户添加按钮
+        var flagUserAdd=true;
        $("#btn-primary").click(function () {
            if(status1 && status2 && status3){
-               addUser()
+               if(flagUserAdd){
+                   flagUserAdd=false;
+                   addUser()
+               }
            }else {
                alert("请正确添加用户")
            }
        });
        //用户修改按钮
+        var flagUserUpdate=true;
        $("#btn-update").click(function () {
            if(status4 && status6){
-               updateUser();
+               if(flagUserUpdate){
+                   flagUserUpdate=false
+                   updateUser();
+               }
            }else {
                alert("请正确修改用户")
            }
        });
        //角色添加按钮
+        var flagRoleAdd=true;
        $("#roleBtnAdd").click(function () {
           var roleName= $("#roleName").val();
           if(roleName==""){
                 alert("角色名不能为空！")
           }else {
-              addRole()
+              if(flagRoleAdd){
+                  flagRoleAdd=false;
+                  addRole()
+              }
+
           }
        });
        //角色修改按钮
+        var flagRoleUpdate=true;
        $("#roleBtnUpdate").click(function () {
            var roleName1=$("#roleName1").val();
            if(roleName1==""){
                alert("角色不能为空")
            }else {
-               updateRole();
+               if(flagRoleUpdate){
+                   flagRoleUpdate=false;
+                   updateRole();
+               }
+
            }
        });
 
@@ -293,6 +311,7 @@
                data:datas,
                async:false,
                success:function (val) {
+                   flagUserUpdate=true;
                    if(val.result =="success"){
                        table_refresh();
                        alert("修改成功");
@@ -301,6 +320,7 @@
                        alert("修改失败");
                    }
                },error:(function(){
+                   flagUserUpdate=true;
                    alert("系统出错")
                })
            })
@@ -331,6 +351,7 @@
                data:datas,
                async:false,
                success:function (val) {
+                   flagUserAdd= true;
                    if(val.result =="success"){
                        table_refresh();
                        alert("提交成功");
@@ -341,6 +362,7 @@
                        alert("提交失败");
                    }
                },error:(function(){
+                   flagUserAdd= true;
                    alert("系统出错")
                })
            })
@@ -414,6 +436,7 @@
                                data:datas,
                                async:false,
                                success:function (val) {
+                                   flagRoleAdd=true;
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("提交成功");
@@ -424,6 +447,7 @@
                                        alert("提交失败");
                                    }
                                },error:(function(){
+                                   flagRoleAdd=true;
                                    alert("系统出错")
                                })
                            })
@@ -522,6 +546,7 @@
                                data:datas,
                                async:false,
                                success:function (val) {
+                                   flagRoleUpdate=true;
                                    if(val.result =="success"){
                                        table_refresh();
                                        alert("修改成功");
@@ -530,6 +555,7 @@
                                        alert("修改失败");
                                    }
                                },error:(function(){
+                                   flagRoleUpdate=true;
                                    alert("系统出错")
                                })
                            })
@@ -610,6 +636,10 @@
            }
            return false;
        }
+
+
+
+
 
 
 
