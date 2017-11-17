@@ -191,7 +191,7 @@ public class ReceiveFileServiceImp implements ReceiveFileServiceInf{
         String pathpath = "";
         //文件名字
         String fileName =  file.getOriginalFilename();
-
+        fileName = fileName.replaceAll(" ","");
         int last = fileName.lastIndexOf(".");
 
         //处理过的文件名字
