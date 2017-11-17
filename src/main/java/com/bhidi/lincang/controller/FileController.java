@@ -175,7 +175,8 @@ public class FileController {
         //文件名乱码解决
         String filename = path.split("/")[ path.split("/").length - 1 ];
         String filenameSecond = filename.split("\\.")[filename.split("\\.").length-1];//docx
-        String filenameFirst = filename.split("-")[0];
+        int as = filename.lastIndexOf("-");
+        String filenameFirst = filename.substring(0,as);
         filename = filenameFirst + "." + filenameSecond;
         filename = new String(filename.getBytes("GBK"),"ISO8859-1");
 
