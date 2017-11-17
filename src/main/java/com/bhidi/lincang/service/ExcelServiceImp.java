@@ -111,6 +111,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
     public String first(Sheet firstSheet){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date =  new Date();
+        Boolean boo = false;
         //00获取移民编号
         /*Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
@@ -321,6 +322,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 peo.setLocation(location);
                 peo.setName(name);
                 if( masterName.equals(name) ){
+                    boo = true;
                     peo.setMaster(1);
                     peo.setPhone(phone);
                 }else{
@@ -335,6 +337,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 //将用户都放到集合中去，户人口和移民人口在外边处理
                 pl.add(peo);
             }
+        }
+        if(!boo){
+            return " 家庭信息中需包含户主信息";
         }
         //取出来调查者和被调查者
         Row interview = firstSheet.getRow(firstSheetendRow + 42);
@@ -701,9 +706,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -733,9 +738,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -771,9 +776,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -803,9 +808,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
            /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -841,9 +846,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -873,9 +878,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -924,9 +929,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit ="";
@@ -956,9 +961,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -994,9 +999,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit = "";
@@ -1026,9 +1031,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -1064,9 +1069,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit = "";
@@ -1096,9 +1101,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -1135,6 +1140,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
     public String second(Sheet firstSheet){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         Date date =  new Date();
+        Boolean boo = false;
         //取到表格的类型
         Row row0 = firstSheet.getRow(0);
         Cell cell00 = row0.getCell(0);
@@ -1341,6 +1347,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 peo.setTable_type(table_type);
                 peo.setName(name);
                 if( masterName.equals(name) ){
+                    boo = true;
                     peo.setMaster(1);
                     peo.setPhone(phone);
                 }else{
@@ -1355,6 +1362,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
                 //将用户都放到集合中去，户人口和移民人口在外边处理
                 pl.add(peo);
             }
+        }
+        if(!boo){
+            return " 家庭信息中需包含户主信息";
         }
         //取出来调查者和被调查者
         Row interview = firstSheet.getRow(firstSheetendRow + 41);
@@ -1717,9 +1727,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -1749,10 +1759,10 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark("".equals(remark)?"无":remark);
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
+            income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
         }
@@ -1787,9 +1797,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -1819,9 +1829,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark("".equals(remark)?"无":remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -1857,9 +1867,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+income_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(income_quantity)){
+            /*if("".equals(income_quantity)){
                 break;
-            }
+            }*/
             //猪的单价
             Cell cellIncome4 = rowIncome.getCell(4);
             String income_unit ="";
@@ -1889,10 +1899,10 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark("".equals(remark)?"无":remark);
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
+            income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
         }
@@ -1941,9 +1951,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit ="";
@@ -1973,9 +1983,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -2011,9 +2021,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit = "";
@@ -2043,9 +2053,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
            /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -2081,9 +2091,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             System.out.println("数量："+outcome_quantity);
             //在这里进行判断当数量没有填写的时候结束循环
-            if("".equals(outcome_quantity)){
+            /*if("".equals(outcome_quantity)){
                 break;
-            }
+            }*/
             //单价
             Cell cellOutcome4 = rowOutcome.getCell(4);
             String outcome_unit = "";
@@ -2113,9 +2123,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);

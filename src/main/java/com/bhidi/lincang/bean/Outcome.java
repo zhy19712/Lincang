@@ -7,16 +7,16 @@ public class Outcome {
     private String fid;
     private String outcome_source;
     private String outcome_cate;
-    private int outcome_quantity;
-    private float outcome_unit;
-    private float outcome_sum;
+    private String outcome_quantity;
+    private String outcome_unit;
+    private String outcome_sum;
     private String remark;
 
     public Outcome() {
 
     }
 
-    public Outcome(String fid, String outcome_source, String outcome_cate, int outcome_quantity, float outcome_unit, float outcome_sum, String remark) {
+    public Outcome(String fid, String outcome_source, String outcome_cate, String outcome_quantity, String outcome_unit, String outcome_sum, String remark) {
         this.fid = fid;
         this.outcome_source = outcome_source;
         this.outcome_cate = outcome_cate;
@@ -50,27 +50,27 @@ public class Outcome {
         this.outcome_cate = outcome_cate;
     }
 
-    public int getOutcome_quantity() {
+    public String getOutcome_quantity() {
         return outcome_quantity;
     }
 
-    public void setOutcome_quantity(int outcome_quantity) {
+    public void setOutcome_quantity(String outcome_quantity) {
         this.outcome_quantity = outcome_quantity;
     }
 
-    public float getOutcome_unit() {
+    public String getOutcome_unit() {
         return outcome_unit;
     }
 
-    public void setOutcome_unit(float outcome_unit) {
+    public void setOutcome_unit(String outcome_unit) {
         this.outcome_unit = outcome_unit;
     }
 
-    public float getOutcome_sum() {
+    public String getOutcome_sum() {
         return outcome_sum;
     }
 
-    public void setOutcome_sum(float outcome_sum) {
+    public void setOutcome_sum(String outcome_sum) {
         this.outcome_sum = outcome_sum;
     }
 
@@ -102,14 +102,16 @@ public class Outcome {
 
         Outcome outcome = (Outcome) o;
 
-        if (outcome_quantity != outcome.outcome_quantity) return false;
-        if (Float.compare(outcome.outcome_unit, outcome_unit) != 0) return false;
-        if (Float.compare(outcome.outcome_sum, outcome_sum) != 0) return false;
         if (fid != null ? !fid.equals(outcome.fid) : outcome.fid != null) return false;
         if (outcome_source != null ? !outcome_source.equals(outcome.outcome_source) : outcome.outcome_source != null)
             return false;
         if (outcome_cate != null ? !outcome_cate.equals(outcome.outcome_cate) : outcome.outcome_cate != null)
             return false;
+        if (outcome_quantity != null ? !outcome_quantity.equals(outcome.outcome_quantity) : outcome.outcome_quantity != null)
+            return false;
+        if (outcome_unit != null ? !outcome_unit.equals(outcome.outcome_unit) : outcome.outcome_unit != null)
+            return false;
+        if (outcome_sum != null ? !outcome_sum.equals(outcome.outcome_sum) : outcome.outcome_sum != null) return false;
         return remark != null ? remark.equals(outcome.remark) : outcome.remark == null;
     }
 
@@ -118,9 +120,9 @@ public class Outcome {
         int result = fid != null ? fid.hashCode() : 0;
         result = 31 * result + (outcome_source != null ? outcome_source.hashCode() : 0);
         result = 31 * result + (outcome_cate != null ? outcome_cate.hashCode() : 0);
-        result = 31 * result + outcome_quantity;
-        result = 31 * result + (outcome_unit != +0.0f ? Float.floatToIntBits(outcome_unit) : 0);
-        result = 31 * result + (outcome_sum != +0.0f ? Float.floatToIntBits(outcome_sum) : 0);
+        result = 31 * result + (outcome_quantity != null ? outcome_quantity.hashCode() : 0);
+        result = 31 * result + (outcome_unit != null ? outcome_unit.hashCode() : 0);
+        result = 31 * result + (outcome_sum != null ? outcome_sum.hashCode() : 0);
         result = 31 * result + (remark != null ? remark.hashCode() : 0);
         return result;
     }
