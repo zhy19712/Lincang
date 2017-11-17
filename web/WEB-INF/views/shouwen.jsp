@@ -2132,6 +2132,7 @@
                 $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
                 if(data.attachmentpath != ""){
                     file_arr = data.attachmentpath.split(",");
+                    console.log(file_arr)
                     $.each(file_arr,function (i,n) {
                         var start = n.lastIndexOf("\\") + 1;
                         var end = n.lastIndexOf("-");
@@ -2152,7 +2153,6 @@
                             + "</div>"
                         $("#more tr:nth-child(4) td:nth-child(2)").append(files);
                         $("#more1 tr:nth-child(4) td:nth-child(2)").append(files);
-                        console.log(str)
                     });
                 }
                 $("#more tr:nth-child(1) td:nth-child(2) input").val(data.year);
