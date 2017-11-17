@@ -733,9 +733,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -803,9 +803,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
            /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -873,9 +873,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -956,9 +956,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -1026,9 +1026,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -1096,9 +1096,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -1749,10 +1749,10 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark("".equals(remark)?"无":remark);
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
+            income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
         }
@@ -1819,9 +1819,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
             income.setRemark("".equals(remark)?"无":remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
@@ -1889,10 +1889,10 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setFid(fid);
             income.setIncome_source(income_source);
             income.setIncome_cate(income_cate);
-            income.setIncome_quantity("".equals(income_quantity)?0:Integer.parseInt(income_quantity));
-            income.setIncome_unit("".equals(income_unit)?0.0f:Float.parseFloat(income_unit));
-            income.setIncome_sum("".equals(income_sum)?0.0f:Float.parseFloat(income_sum));
-            income.setRemark("".equals(remark)?"无":remark);
+            income.setIncome_quantity(income_quantity);
+            income.setIncome_unit(income_unit);
+            income.setIncome_sum(income_sum);
+            income.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
         }
@@ -1973,9 +1973,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -2043,9 +2043,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
            /* SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);
@@ -2113,9 +2113,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             outcome.setFid(fid);
             outcome.setOutcome_source(outcome_source);
             outcome.setOutcome_cate(outcome_cate);
-            outcome.setOutcome_quantity("".equals(outcome_quantity)?0:Integer.parseInt(outcome_quantity));
-            outcome.setOutcome_unit("".equals(outcome_unit)?0.0f:Float.parseFloat(outcome_unit));
-            outcome.setOutcome_sum("".equals(outcome_sum)?0.0f:Float.parseFloat(outcome_sum));
+            outcome.setOutcome_quantity(outcome_quantity);
+            outcome.setOutcome_unit(outcome_unit);
+            outcome.setOutcome_sum(outcome_sum);
             outcome.setRemark(remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(outcome);*/
             listOutcome.add(outcome);

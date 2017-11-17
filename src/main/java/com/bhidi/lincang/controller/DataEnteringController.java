@@ -247,9 +247,9 @@ public class DataEnteringController {
             }
             income.setIncome_source( map.containsKey("data[money_info]["+p+"][kind]")?map.get("data[money_info]["+p+"][kind]")[0]:"" );
             income.setIncome_cate( map.containsKey("data[money_info]["+p+"][content]")?map.get("data[money_info]["+p+"][content]")[0]:"" );
-            income.setIncome_quantity( Integer.parseInt(  map.containsKey("data[money_info]["+p+"][count]")?( map.get("data[money_info]["+p+"][count]")[0].equals("")?"0":map.get("data[money_info]["+p+"][count]")[0] ):"0"  ) );
-            income.setIncome_unit( Float.parseFloat(  map.containsKey("data[money_info]["+p+"][price]")?( map.get("data[money_info]["+p+"][price]")[0].equals("")?"0":map.get("data[money_info]["+p+"][price]")[0] ):"0.0"  ) );
-            income.setIncome_sum( Float.parseFloat(  map.containsKey("data[money_info]["+p+"][total]")?( map.get("data[money_info]["+p+"][total]")[0].equals("")?"0":map.get("data[money_info]["+p+"][total]")[0] ):"0.0"  ) );
+            income.setIncome_quantity( map.containsKey("data[money_info]["+p+"][count]")?( map.get("data[money_info]["+p+"][count]")[0].equals("")?"0":map.get("data[money_info]["+p+"][count]")[0] ):"0"  );
+            income.setIncome_unit( map.containsKey("data[money_info]["+p+"][price]")?( map.get("data[money_info]["+p+"][price]")[0].equals("")?"0":map.get("data[money_info]["+p+"][price]")[0] ):"0.0"  );
+            income.setIncome_sum( map.containsKey("data[money_info]["+p+"][total]")?( map.get("data[money_info]["+p+"][total]")[0].equals("")?"0":map.get("data[money_info]["+p+"][total]")[0] ):"0.0"  );
             income.setRemark( map.containsKey("data[money_info]["+p+"][remark]")?map.get("data[money_info]["+p+"][remark]")[0]:"" );
             incomeSet.add(income);
         }
@@ -278,9 +278,9 @@ public class DataEnteringController {
             }
             outcome.setOutcome_source( map.containsKey("data[money_outcome]["+p+"][kind]")?map.get("data[money_outcome]["+p+"][kind]")[0]:"" );
             outcome.setOutcome_cate( map.containsKey("data[money_outcome]["+p+"][content]")?map.get("data[money_outcome]["+p+"][content]")[0]:"" );
-            outcome.setOutcome_quantity( Integer.parseInt(  map.containsKey("data[money_outcome]["+p+"][count]")?( map.get("data[money_outcome]["+p+"][count]")[0].equals("")?"0":map.get("data[money_outcome]["+p+"][count]")[0] ):""  ) );
-            outcome.setOutcome_unit( Float.parseFloat(  map.containsKey("data[money_outcome]["+p+"][price]")?( map.get("data[money_outcome]["+p+"][price]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][price]")[0] ):"0.0"  ) );
-            outcome.setOutcome_sum( Float.parseFloat(  map.containsKey("data[money_outcome]["+p+"][total]")?( map.get("data[money_outcome]["+p+"][total]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][total]")[0] ):"0.0"  ) );
+            outcome.setOutcome_quantity( map.containsKey("data[money_outcome]["+p+"][count]")?( map.get("data[money_outcome]["+p+"][count]")[0].equals("")?"0":map.get("data[money_outcome]["+p+"][count]")[0] ):""  );
+            outcome.setOutcome_unit( map.containsKey("data[money_outcome]["+p+"][price]")?( map.get("data[money_outcome]["+p+"][price]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][price]")[0] ):"0.0"  );
+            outcome.setOutcome_sum( map.containsKey("data[money_outcome]["+p+"][total]")?( map.get("data[money_outcome]["+p+"][total]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][total]")[0] ):"0.0"  );
             outcome.setRemark( map.containsKey("data[money_outcome]["+p+"][remark]")?map.get("data[money_outcome]["+p+"][remark]")[0]:"" );
             outcomeSet.add(outcome);
         }
@@ -551,9 +551,9 @@ public class DataEnteringController {
             }
             income.setIncome_source( map.containsKey("data[money_info]["+p+"][kind]")?map.get("data[money_info]["+p+"][kind]")[0]:"" );
             income.setIncome_cate( map.containsKey("data[money_info]["+p+"][content]")?map.get("data[money_info]["+p+"][content]")[0]:"" );
-            income.setIncome_quantity( Integer.parseInt(  map.containsKey("data[money_info]["+p+"][count]")?( map.get("data[money_info]["+p+"][count]")[0].equals("")?"0":map.get("data[money_info]["+p+"][count]")[0] ):"0"  ) );
-            income.setIncome_unit( Float.parseFloat(  map.containsKey("data[money_info]["+p+"][price]")?( map.get("data[money_info]["+p+"][price]")[0].equals("")?"0":map.get("data[money_info]["+p+"][price]")[0] ):"0.0"  ) );
-            income.setIncome_sum( Float.parseFloat(  map.containsKey("data[money_info]["+p+"][total]")?( map.get("data[money_info]["+p+"][total]")[0].equals("")?"0":map.get("data[money_info]["+p+"][total]")[0] ):"0.0"  ) );
+            income.setIncome_quantity( map.containsKey("data[money_info]["+p+"][count]")?( map.get("data[money_info]["+p+"][count]")[0].equals("")?"0":map.get("data[money_info]["+p+"][count]")[0] ):"0"  );
+            income.setIncome_unit( map.containsKey("data[money_info]["+p+"][price]")?( map.get("data[money_info]["+p+"][price]")[0].equals("")?"0":map.get("data[money_info]["+p+"][price]")[0] ):"0.0"  );
+            income.setIncome_sum( map.containsKey("data[money_info]["+p+"][total]")?( map.get("data[money_info]["+p+"][total]")[0].equals("")?"0":map.get("data[money_info]["+p+"][total]")[0] ):"0.0"  );
             income.setRemark( map.containsKey("data[money_info]["+p+"][remark]")?map.get("data[money_info]["+p+"][remark]")[0]:"" );
             incomeSet.add(income);
         }
@@ -583,9 +583,9 @@ public class DataEnteringController {
             }
             outcome.setOutcome_source( map.containsKey("data[money_outcome]["+p+"][kind]")?map.get("data[money_outcome]["+p+"][kind]")[0]:"" );
             outcome.setOutcome_cate( map.containsKey("data[money_outcome]["+p+"][content]")?map.get("data[money_outcome]["+p+"][content]")[0]:"" );
-            outcome.setOutcome_quantity( Integer.parseInt(  map.containsKey("data[money_outcome]["+p+"][count]")?( map.get("data[money_outcome]["+p+"][count]")[0].equals("")?"0":map.get("data[money_outcome]["+p+"][count]")[0] ):""  ) );
-            outcome.setOutcome_unit( Float.parseFloat(  map.containsKey("data[money_outcome]["+p+"][price]")?( map.get("data[money_outcome]["+p+"][price]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][price]")[0] ):"0.0"  ) );
-            outcome.setOutcome_sum( Float.parseFloat(  map.containsKey("data[money_outcome]["+p+"][total]")?( map.get("data[money_outcome]["+p+"][total]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][total]")[0] ):"0.0"  ) );
+            outcome.setOutcome_quantity( map.containsKey("data[money_outcome]["+p+"][count]")?( map.get("data[money_outcome]["+p+"][count]")[0].equals("")?"0":map.get("data[money_outcome]["+p+"][count]")[0] ):""  );
+            outcome.setOutcome_unit( map.containsKey("data[money_outcome]["+p+"][price]")?( map.get("data[money_outcome]["+p+"][price]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][price]")[0] ):"0.0"  );
+            outcome.setOutcome_sum( map.containsKey("data[money_outcome]["+p+"][total]")?( map.get("data[money_outcome]["+p+"][total]")[0].equals("")?"0.0":map.get("data[money_outcome]["+p+"][total]")[0] ):"0.0"  );
             outcome.setRemark( map.containsKey("data[money_outcome]["+p+"][remark]")?map.get("data[money_outcome]["+p+"][remark]")[0]:"" );
             outcomeSet.add(outcome);
         }

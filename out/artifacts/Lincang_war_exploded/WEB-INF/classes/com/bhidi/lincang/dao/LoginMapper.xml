@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bhidi.lincang.dao.LoginMapper">
+
+    <select id="queryUserByUsername" parameterType="Map" resultMap="UserResultMap">
+        SELECT
+        u.id,
+        uid,
+        username,
+        pass AS password,
+        name,
+        concat(ud.unit,ud.department) AS dept,
+        phone1,
+        phone2,
+        level,
+        created_at
+        FROM user u,unitanddepartment ud
+        WHERE u.dept = ud.id AND username= #{username} AND pass = #{password}
+    </select>
+
+    <resultMap type="com.bhidi.lincang.bean.User" id="UserResultMap">
+        <id column="id" property="id"/>
+        <collection property="roleList" select="queryRoleNameByUserid" column="id" ofType="String">
+        </collection>
+        <!--<collection property="permissionList" select="queryPermissionName" column="id" ofType="String">
+        </collection>-->
+    </resultMap>
+
+    <select id="queryRoleNameByUserid" parameterType="Map" resultType="String">
+        SELECT rolename
+        FROM user_role ur,role r
+        WHERE ur.roleid = r.id AND ur.userid = #{id}
+    </select>
+
+    <select id="queryPermissionName" parameterType="Map" resultType="com.bhidi.lincang.bean.Privilege">
+        SELECT p.id,p.module,p.classification,p.subclassification,p.authdescription
+        FROM user_role ur,role r,role_privilege rp,privilege p
+        WHERE ur.roleid = r.id AND r.id = rp.roleid AND rp.authorithid = p.id
+        AND ur.userid = #{id}
+    </select>
+    <!--int selectRoleid(String rolename);-->
+    <select id="selectRoleid" parameterType="string" resultType="int">
+        SELECT id
+        FROM role
+        WHERE rolename = #{rolename}
+    </select>
+    <!--List<Integer> selectFunction(int roleid);-->
+    <select id="selectFunction" parameterType="int" resultType="int">
+        SELECT authorithid
+        FROM role_privilege
+        WHERE roleid = #{roleid}
+    </select>
+    <!--List<Privilege> selectNotFunction(List<Integer> intList);-->
+    <select id="selectNotFunction" parameterType="list" resultType="com.bhidi.lincang.bean.Privilege">
+        SELECT id,module,classification,subclassification,authdescription
+        FROM privilege
+        WHERE id IN
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+        #{item}
+        </foreach>
+    </select>
+</mapper>
