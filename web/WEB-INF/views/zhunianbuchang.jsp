@@ -1426,7 +1426,7 @@
                 if(mydata.report_attachment != ""){
                     file_arr = mydata.report_attachment.split(",");
                     $.each(file_arr,function (i,n) {
-                        var start = n.lastIndexOf("\\") + 1;
+;                        var start = n.lastIndexOf("\\") + 1;
                         var end = n.lastIndexOf("-");
                         var filekind_index = n.lastIndexOf(".");
                         var str = n.substring(start,end);
