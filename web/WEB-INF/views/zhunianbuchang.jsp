@@ -137,6 +137,7 @@
         <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
         <span id="permissionList" style="display:none;width:0;height:0;">${user.permissionList}</span>
+        <span id="dept" style="display:none;width:0;height:0;">${user.dept}</span>
         <!-- user dropdown ends -->
     </div>
 </div>
@@ -902,6 +903,7 @@
     //上报人/申请人
     var name = $("#name").text();
     //获取功能
+
     var fun_list1 = [];
     var fun_list2 = [];
     $.ajax({
@@ -919,8 +921,6 @@
             })
         }
     });
-    console.log(fun_list1);
-    console.log(fun_list2);
     var len1 = fun_list1.length;
     var len2 = fun_list2.length;
     if(len1 == 0 && len2 == 0){
@@ -950,6 +950,11 @@
                 $("#new1 .btn-danger").css("display","none");
             }
         });
+    }
+    var dept = $("#dept").text();
+    console.log(dept);
+    if(dept == "临沧市移民局办公室"){
+        $("#new1 .btn-danger").css("display","none");
     }
 
     //checkbox美化

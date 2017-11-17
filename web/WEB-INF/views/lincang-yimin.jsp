@@ -47,7 +47,7 @@
 			</button>
 			<!-- 小屏幕时的导航按键 ends -->
 			<!-- logo starts -->
-			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;height:40px;padding-bottom: 0;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
+			<a class="navbar-brand" href="/tohome.htm" style="width: 500px;height:40px;padding-bottom: 0;margin-top: 5px;"> <img alt="Logo" src="../../img/logo20.png" class="hidden-xs"/>
 				<span style="font-size: 26px;font-family: 'Helvetica Neue', Arial, Helvetica, sans-serif";>临沧市移民局数字化管理平台</span></a>
 			<!-- logo ends -->
 
@@ -259,9 +259,9 @@
         var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         id = encodeURI(encodeURI(id));
         if(table_kind == "库区安置登记表"){
-            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id);
+            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id ,"_self");
         }else if(table_kind == "移民搬迁登记表"){
-            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id);
+            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id ,"_self");
 		}
     }
     //表格刷新
@@ -289,6 +289,48 @@
                 }
             })
 		}
+    }
+
+    //侧边栏切换
+    var slide_index = 0;
+    function tab1(that) {
+        var index = $(that).index();
+        if(index != slide_index){
+            slide_index = index;
+            $(".nav li").css("background-color","#000");
+            $(that).css("background-color","#3c96e6");
+            if(slide_index == 0){
+                $("#data_input").css("display","none");
+                $("#data_analysis").css("display","none");
+                $("#slide").children(".right").css("visibility","visible");
+                $("#container").css("visibility","visible");
+            }else if (slide_index == 1){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_analysis").css("display","none");
+                $("#data_input").css("display","block");
+            }else if (slide_index == 2){
+                $("#container").css("visibility","hidden");
+                $("#slide").children(".right").css("visibility","hidden");
+                $("#data_input").css("display","none");
+                $("#data_analysis").css("display","block");
+            }
+        }
+    }
+    $(".nav").children("li").click(function () {
+        tab1(this);
+    });
+
+    var url = window.location.search;
+    if(url){
+        url = decodeURIComponent(url);
+        var reg = /[?&][^?&]+=[^?&]+/g;
+        var arr = url.match(reg);
+        console.log(arr);
+        if(arr.length > 0){
+            var name = arr[0].substring(1).split("=")[1];
+            $("#slide .nav li:nth-child(2)").trigger("click",tab1(this));
+        }
     }
 </script>
 </html>

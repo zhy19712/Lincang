@@ -818,32 +818,6 @@ $(function(){
 		$("#show_info").css("display","none");
     });
 
-	//侧边栏切换
-	var slide_index = 0;
-	$(".nav").children("li").click(function () {
-		var index = $(this).index();
-		if(index != slide_index){
-			slide_index = index;
-			$(".nav li").css("background-color","#000");
-			$(this).css("background-color","#3c96e6");
-			if(slide_index == 0){
-                $("#data_input").css("display","none");
-                $("#data_analysis").css("display","none");
-                $("#slide").children(".right").css("visibility","visible");
-                $("#container").css("visibility","visible");
-			}else if (slide_index == 1){
-                $("#container").css("visibility","hidden");
-                $("#slide").children(".right").css("visibility","hidden");
-                $("#data_analysis").css("display","none");
-                $("#data_input").css("display","block");
-			}else if (slide_index == 2){
-                $("#container").css("visibility","hidden");
-                $("#slide").children(".right").css("visibility","hidden");
-                $("#data_input").css("display","none");
-				$("#data_analysis").css("display","block");
-			}
-		}
-    })
 
 	//获取总人数
 	$.ajax({

@@ -156,19 +156,19 @@
             <td class="bgc">组</td>
             <td class="bgc" colspan="2">备注</td>
         </tr>
-        <tr id="city1">
-            <td class="bgc">迁入地</td>
-            <td><input type="text" required="required" placeholder="*此项为必填项"></td>
-            <td><input type="text" required="required" placeholder="*此项为必填项"></td>
+        <tr id="city2">
+            <td class="bgc">迁出地</td>
+            <td><input type="text"></td>
+            <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td colspan="2"><input type="text"></td>
         </tr>
-        <tr id="city2">
-            <td class="bgc">迁出地</td>
-            <td><input type="text"></td>
-            <td><input type="text"></td>
+        <tr id="city1">
+            <td class="bgc">迁入地</td>
+            <td><input type="text"  required="required" placeholder="*此项为必填项"></td>
+            <td><input type="text"  required="required" placeholder="*此项为必填项"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
             <td><input type="text"></td>
@@ -495,8 +495,8 @@
         </tbody>
     </table>
     <ul id="btn-container">
-        <li><a class="hvr-rectangle-in button">提交</a></li>
-        <li><a class="hvr-bounce-to-bottom button">放弃</a></li>
+        <li><a href="#" class="btn btn-primary">提交</a></li>
+        <li><a href="/lincang-yimin.htm?name=table" class="btn btn-danger">关闭</a></li>
     </ul>
 </form>
 </body>

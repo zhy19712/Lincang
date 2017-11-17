@@ -32,12 +32,12 @@
 .jedateblue table thead,.jedateblue table td{border: 1px #fff solid;}
 .jedateblue.grid table thead,.jedateblue.grid table td{border: 1px #e2e2e2 solid;}
 .jedateblue .ymsbox{overflow: hidden;background-color: #fff;}
-.jedateblue .ymsbox .arthead{background-color: #00A680;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;padding: 0 50px;position: relative;}
+.jedateblue .ymsbox .arthead{background-color: #54b4eb;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;padding: 0 50px;position: relative;}
 .jedateblue .ymsbox .arthead.ymfix{padding: 0 50px 0 25px;}
 .jedateblue .ymsbox .arthead.ymfix .yearnext{right: 25px;}
 .jedateblue .ymsbox .arthead .close{right:0;}
 .jedateblue .ymsbox .arthead em{width:25px;height:40px; line-height:40px;position:absolute;top:0;background-repeat: no-repeat;background-position: center center;cursor: pointer;}
-.jedateblue .ymsbox .arthead em:hover{background-color:#00C1AA;}
+.jedateblue .ymsbox .arthead em:hover{background-color:#466faa;}
 .jedateblue .ymsbox .arthead p{width: 100%;line-height:40px;float: left;text-align:center;font-size: 14px;}
 .jedateblue .ymsbox .artcont{overflow: hidden;position: relative;border: 1px #cecece solid;border-top: none;}
 .jedateblue .ymsbox .artcont.spaer:after{width: 1px;background-color:#ddd;position: absolute;top: 0;bottom: 0;left:49.8%;content: "";}
@@ -47,7 +47,7 @@
 .jedateblue .ymsbox .ymcon .yul td{width:70px;height:41px;text-align:center;position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .ymsbox .ymcon .ymul td{padding:0 9px;height:51px;text-align:center;position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .ymsbox .ymcon td.disabled{ color:#bbb;}
-.jedateblue .ymsbox .ymcon td.actdate,.jedateblue .ymsbox .ymcon td.actdate:hover{background-color: #00A680;color:#fff;}
+.jedateblue .ymsbox .ymcon td.actdate,.jedateblue .ymsbox .ymcon td.actdate:hover{background-color: #54b4eb;color:#fff;}
 .jedateblue .ymsbox .ymcon td.disabled:hover{background-color: #fff;color:#bbb;}
 .jedateblue .ymsbox .ymcon td:hover{background-color: #F2F2F2;}
 .jedateblue .ymsbox .ymcon td.contain,.jedateblue .ymsbox .ymcon td.contain:hover{background-color: #D0F0E3;}
@@ -65,7 +65,7 @@
 .jedateblue .daysul{width: 100%;border-collapse: collapse;border-spacing: 0;border: 1px solid #fff;}
 .jedateblue .daysul thead{background-color:#f5f5f5;}
 .jedateblue .daysul th{width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 12px;font-weight: 400;}
-.jedateblue .daysul td{min-width:30px !important;width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';min-width: auto}
+.jedateblue .daysul td{min-width:30px !important;width:31px;height:29px;  text-align:center; position:relative; overflow:hidden;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .nolunar{line-height: 29px;font-size: 14px;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .solar{height:16px;line-height:16px;font-size: 14px;padding-top: 3px;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';}
 .jedateblue .daysul td .lunar{height:16px;line-height:16px;font-size: 12px;overflow:hidden;display: block;font-family: Arial, "\5b8b\4f53", 'sans-serif';color: #888;}

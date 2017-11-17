@@ -609,7 +609,7 @@ $("#select_model .btn-primary").click(function () {
         var content = $("#select_model tr:nth-child(11) td:nth-child(1) textarea").val();
         var result = $("#select_model tr:nth-child(12) td:nth-child(2) textarea").val();
         if(!sn){
-            alert("编号不能为空");
+            alert("文号不能为空");
             return;
         }
         if(!date){
