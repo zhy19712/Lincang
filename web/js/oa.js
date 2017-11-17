@@ -462,9 +462,9 @@ function edit(that) {
             $("#select_model .btn-primary").text("确认归档");
             $(".btn-success").css("display","inline-block");
             $("#myprint tr:nth-child(2) td:nth-child(2)").text(mydata.sn);
-            $("#myprint tr:nth-child(2) td:nth-child(5)").text(mydata.date);
-            $("#myprint tr:nth-child(2) td:nth-child(7)").text(mydata.urgency);
-            $("#myprint tr:nth-child(2) td:nth-child(9)").text(mydata.secret);
+            $("#myprint tr:nth-child(2) td:nth-child(4)").text(mydata.date);
+            $("#myprint tr:nth-child(2) td:nth-child(6)").text(mydata.urgency);
+            $("#myprint tr:nth-child(2) td:nth-child(8)").text(mydata.secret);
 
             $("#myprint tr:nth-child(3) td:nth-child(1) p:nth-child(2)").text(mydata.qianfa);
             $("#myprint tr:nth-child(3) td:nth-child(2) p:nth-child(2)").text(mydata.shengao);
