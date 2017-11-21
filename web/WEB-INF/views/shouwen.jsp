@@ -2130,6 +2130,7 @@
                 console.log(data);
                 $("#more tr:nth-child(4) td:nth-child(2)").empty();
                 $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
+
                 if(data.attachmentpath != ""){
                     file_arr = data.attachmentpath.split(",");
                     $.each(file_arr,function (i,n) {
