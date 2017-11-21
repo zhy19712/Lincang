@@ -98,7 +98,7 @@ select {
     background-image: linear-gradient(top, hsl(40, 95%, 76%), hsl(40, 95%, 61%));
 }
 
-.notification.reds {
+.notification.red {
     border-color: #FA5833;
     background-color: #FA603D;
     background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, hsl(11, 95%, 76%)), color-stop(100%, hsl(11, 95%, 61%)));
