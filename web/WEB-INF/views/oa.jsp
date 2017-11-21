@@ -610,7 +610,7 @@
                                 <td class="red">日期</td>
                                 <td class="text-left"></td>
                                 <td class="red">缓级</td>
-                                <td class="text-left"><</td>
+                                <td class="text-left"></td>
                                 <td class="red">密级</td>
                                 <td class="text-left"></td>
                             </tr>

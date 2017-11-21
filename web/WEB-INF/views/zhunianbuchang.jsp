@@ -951,11 +951,11 @@
             }
         });
     }
-    var dept = $("#dept").text();
-    console.log(dept);
-    if(dept == "临沧市移民局办公室"){
-        $("#new1 .btn-danger").css("display","none");
-    }
+//    var dept = $("#dept").text();
+//    console.log(dept);
+//    if(dept == "临沧市移民局办公室"){
+//        $("#new1 .btn-danger").css("display","none");
+//    }
 
     //checkbox美化
     $('.ui-choose').ui_choose();
