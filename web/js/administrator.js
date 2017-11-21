@@ -220,7 +220,7 @@
                 alert("角色名不能为空！")
           }else {
               if(flagRoleAdd){
-                  flagRoleAdd=false;
+
                   addRole()
               }
 
@@ -234,7 +234,7 @@
                alert("角色不能为空")
            }else {
                if(flagRoleUpdate){
-                   flagRoleUpdate=false;
+
                    updateRole();
                }
 
@@ -404,53 +404,76 @@
                "role":roleName,
                "functionList":idArr
            };
-           // 18/19
+
+
+           // 18/19/46
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
+           var i= contains(idArr, 46);
            //26,27
            var c= contains(idArr, 26);
            var d= contains(idArr, 27);
            //41 ,42
            var e= contains(idArr, 41);
            var f= contains(idArr, 42);
+           //13，45
+           var g= contains(idArr, 13);
+           var h= contains(idArr, 45);
+
 
            if(idArr.length==0){
-               alert("功能至少选择一项！")
+               alert("功能至少选择一项")
            }else {
-               if(a && b){
-                   alert("区县资金申请全部列表和个人列表不能同时选择!")
+               if(g && h){
+                   alert("市资金申请全部列表查看、搜索功能和全部列表查看、搜索、删除功能不能同时选择！")
                }else {
-                   if (c && d){
-                       alert("发文模块，全部列表和个人列表不能同时选择!")
+                   if(a && b && i){
+                       alert("区县资金申请全部列表查看、搜索、删除功能和个人申请列表查看、搜索功能和全部列表查看、搜索功能")
+                   }
+                   if(a && i){
+                       alert("区县资金申请全部列表查看、搜索、删除功能和全部列表查看、搜索功能")
                    }else {
-                       if(e && f){
-                           alert("非文件模块，全部列表和个人列表不能同时选择!")
+                       if(b && i){
+                           alert("区县资金申请个人申请列表查看、搜索功能和全部列表查看、搜索功能")
                        }else {
-                           $.ajax({
-                               url:"/registerRole.do",
-                               dataType:"json",
-                               type:"post",
-                               data:datas,
-                               async:false,
-                               success:function (val) {
-                                   flagRoleAdd=true;
-                                   if(val.result =="success"){
-                                       table_refresh();
-                                       alert("提交成功");
-                                       $('#form_add_Role').modal('hide');
-                                   }else if(val.result =="rename"){
-                                       alert("该角色名已存在！");
+                           if(a && b){
+                               alert("区县资金申请全部列表和个人列表不能同时选择!")
+                           }else {
+                               if (c && d){
+                                   alert("发文模块，全部列表和个人列表不能同时选择!")
+                               }else {
+                                   if(e && f){
+                                       alert("非文件模块，全部列表和个人列表不能同时选择!")
                                    }else {
-                                       alert("提交失败");
+                                       flagRoleAdd=false;
+                                       $.ajax({
+                                           url:"/updateRole.do",
+                                           dataType:"json",
+                                           type:"post",
+                                           data:datas,
+                                           async:false,
+                                           success:function (val) {
+                                               flagRoleUpdate=true;
+                                               if(val.result =="success"){
+                                                   table_refresh();
+                                                   alert("修改成功");
+                                                   $("#form_update_Role").modal('hide');
+                                               }else {
+                                                   alert("修改失败");
+                                               }
+                                           },error:(function(){
+                                               flagRoleUpdate=true;
+                                               alert("系统出错")
+                                           })
+                                       })
                                    }
-                               },error:(function(){
-                                   flagRoleAdd=true;
-                                   alert("系统出错")
-                               })
-                           })
+                               }
+                           }
                        }
                    }
+
                }
+
            }
        }
        //角色操作
@@ -514,52 +537,76 @@
                "functionList":idArr,
                "id":id
            };
-           // 18/19
+           // 18/19/46
            var a= contains(idArr, 18);
            var b= contains(idArr, 19);
+           var i= contains(idArr, 46);
            //26,27
            var c= contains(idArr, 26);
            var d= contains(idArr, 27);
            //41 ,42
            var e= contains(idArr, 41);
            var f= contains(idArr, 42);
+           //13，45
+           var g= contains(idArr, 13);
+           var h= contains(idArr, 45);
+
 
            if(idArr.length==0){
                alert("功能至少选择一项")
            }else {
-               if(a && b){
-                   alert("区县资金申请全部列表和个人列表不能同时选择!")
+               if(g && h){
+                  alert("市资金申请全部列表查看、搜索功能和全部列表查看、搜索、删除功能不能同时选择！")
                }else {
-                   if (c && d){
-                       alert("发文模块，全部列表和个人列表不能同时选择!")
+                   if(a && b && i){
+                       alert("区县资金申请全部列表查看、搜索、删除功能和个人申请列表查看、搜索功能和全部列表查看、搜索功能")
+                   }
+                   if(a && i){
+                    alert("区县资金申请全部列表查看、搜索、删除功能和全部列表查看、搜索功能")
                    }else {
-                       if(e && f){
-                           alert("非文件模块，全部列表和个人列表不能同时选择!")
+                       if(b && i){
+                           alert("区县资金申请个人申请列表查看、搜索功能和全部列表查看、搜索功能")
                        }else {
-                           $.ajax({
-                               url:"/updateRole.do",
-                               dataType:"json",
-                               type:"post",
-                               data:datas,
-                               async:false,
-                               success:function (val) {
-                                   flagRoleUpdate=true;
-                                   if(val.result =="success"){
-                                       table_refresh();
-                                       alert("修改成功");
-                                       $("#form_update_Role").modal('hide');
+                           if(a && b){
+                               alert("区县资金申请全部列表和个人列表不能同时选择!")
+                           }else {
+                               if (c && d){
+                                   alert("发文模块，全部列表和个人列表不能同时选择!")
+                               }else {
+                                   if(e && f){
+                                       alert("非文件模块，全部列表和个人列表不能同时选择!")
                                    }else {
-                                       alert("修改失败");
+                                       flagRoleUpdate=false;
+                                       $.ajax({
+                                           url:"/updateRole.do",
+                                           dataType:"json",
+                                           type:"post",
+                                           data:datas,
+                                           async:false,
+                                           success:function (val) {
+                                               flagRoleUpdate=true;
+                                               if(val.result =="success"){
+                                                   table_refresh();
+                                                   alert("修改成功");
+                                                   $("#form_update_Role").modal('hide');
+                                               }else {
+                                                   alert("修改失败");
+                                               }
+                                           },error:(function(){
+                                               flagRoleUpdate=true;
+                                               alert("系统出错")
+                                           })
+                                       })
                                    }
-                               },error:(function(){
-                                   flagRoleUpdate=true;
-                                   alert("系统出错")
-                               })
-                           })
+                               }
+                           }
                        }
                    }
+
                }
+
            }
+
        }
 
        //表格刷新
