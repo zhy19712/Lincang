@@ -5,12 +5,12 @@ $(function(){
 	if(height<730){
 		height = 730;
 	}
-	var width = $(window).width() - 360;
+	var width = $(window).width() - 300;
 	var show_height = height - 191;
 	var tab_content_height = height - 105;
 	$("#content").height(height);
 	$("#data_input").height(height);
-	$("#container").width(width);
+	// $("#container").width(width);
 	var width1 = width - 100;
 	$("#container1").width(width1);
 	$("#container2").width(width1);

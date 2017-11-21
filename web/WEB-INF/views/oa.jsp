@@ -42,6 +42,10 @@
     <script src="../../js/jquery.step.js"></script>
     <script src="../../js/jstree.js"></script>
     <script src="../../js/jQuery.print.js"></script>
+    <script src="../../js/Blob.js"></script>
+    <script src="../../js/FileSaver.js"></script>
+    <script src="../../js/jquery.wordexport.js"></script>
+
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
     <style>
@@ -402,7 +406,7 @@
                             <tr>
                                 <td class="red">上传附件</td>
                                 <td colspan="9">
-                                    <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                    <div id="filesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                         <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                         <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                     </div>
@@ -574,8 +578,9 @@
                 </div>
 
 
-                <div class="modal-footer">
+                <div class="modal-footer" id="export">
                     <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                    <%--<a href="#"  class="btn btn-info">导出word</a>--%>
                     <a href="#"  class="btn btn-success">打印</a>
                     <a href="#"  class="btn btn-primary">提交</a>
                 </div>
@@ -767,8 +772,6 @@
     function flow(that){
         $('#flow').modal('show');
     }
-
-    $("#status")
 </script>
 
 

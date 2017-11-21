@@ -505,7 +505,7 @@
     <ul id="btn-container">
         <li><a href="#" class="btn btn-primary">提交</a></li>
         <li id="jqprint"><a href="#" class="btn btn-success">打印</a></li>
-        <li><a href="/lincang-yimin.htm?name=table" class="btn btn-danger">关闭</a></li>
+        <li><a href="#" class="btn btn-danger">关闭</a></li>
     </ul>
 </form>
 </body>

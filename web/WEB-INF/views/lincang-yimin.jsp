@@ -31,6 +31,7 @@
 	<script src="../../js/echarts.common.min.js"></script>
 	<script src="../../js/jQuery.print.js"></script>
 	<script src="../../js/jquery-form.min.js"></script>
+
 	<script src="../../js/lincang-yimin.js"></script>
 
 </head>
@@ -116,18 +117,15 @@
 						<i></i>
 						<p>移民登记</p>
 					</li>
-					<%--<li>--%>
-						<%--<i></i>--%>
-						<%--<p>统计分析</p>--%>
-					<%--</li>--%>
+					<li>
+						<i></i>
+						<p>逐年补偿</p>
+					</li>
 				</ul>
 			</div>
 			<div class="right">
 				<p class="title">为您找到<span id="total_people"></span>移民</p>
 				<div id="sel_city">
-					<!-- <select class="prov"></select> 
-                    <select class="city" disabled="disabled"></select>
-                    <select class="dist" disabled="disabled"></select> -->
                     <div align="center" style="width: 230px;float: left;margin-top: 10px;">
 				        <input type="text" style="width: 217px;padding: 0 2px;height: 28px;outline:none;border-radius: 3px 0 0 3px;" placeholder="请输入地区名称" id="ipt">
 
@@ -176,7 +174,7 @@
 						</a>
 						</li>
                     </ul>
-					<div id="filesUpload" style="display:inline-block;line-height:16px;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;">
+					<div id="filesUpload" style="display:inline-block;line-height:16px;">
 						<a href="#" id="add_1" onclick="add_click_file(1)">导入Excel</a>
 						<input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
 					</div>
@@ -255,13 +253,15 @@
     function edit(that) {
         var kind = $(that).val();
         kind = encodeURI(encodeURI(kind));
+        var table_name = $(that).parents("table").attr("id");
         var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         id = encodeURI(encodeURI(id));
+        console.log(table_name);
         if(table_kind == "库区安置登记表"){
-            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id ,"_self");
+            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id  + "&table_name=" + table_name,"_self");
         }else if(table_kind == "移民搬迁登记表"){
-            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id ,"_self");
+            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id  + "&table_name=" + table_name,"_self");
 		}
     }
     //表格刷新

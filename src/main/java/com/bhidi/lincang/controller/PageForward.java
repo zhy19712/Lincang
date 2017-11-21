@@ -105,15 +105,15 @@ public class PageForward {
         }
     }
 
-//    @RequestMapping(value = "/lincangyimin", method = RequestMethod.GET)
-//    public String lincangyimin(HttpSession session){
-//        User user = (User)session.getAttribute("user");
-//        if( user != null ){
-//            return "lincangyimin";
-//        } else {
-//            return "login";
-//        }
-//    }
+    @RequestMapping(value = "/yiimindengji", method = RequestMethod.GET)
+    public String lincangyimin(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "yiimindengji";
+        } else {
+            return "login";
+        }
+    }
 
     @RequestMapping(value = "/kuquanzhi", method = RequestMethod.GET)
     public String kuquanzhi(HttpSession session){
