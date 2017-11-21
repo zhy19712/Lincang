@@ -81,11 +81,11 @@
 
     </div>
 </div>
-<div class="ch-container">
+<div class="ch-container" style="margin-top: 100px;">
     <div class="row">
 
 
-        <div class="row" style="position: absolute;top: 50%;margin-top: -180px;">
+        <div class="row">
 
             <div class="well col-md-5 center login-box">
                 <h4>用户登录</h4>

@@ -399,7 +399,7 @@
                                 <tr>
                                     <td>上传附件</td>
                                     <td colspan="3">
-                                        <div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                        <div id="filesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                             <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                             <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                         </div>

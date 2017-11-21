@@ -163,9 +163,9 @@
                             <div class="nav-sm nav nav-stacked">
                             </div>
                             <ul class="nav nav-pills nav-stacked main-menu">
-                                <li class="nav-header">移民搬迁</li>
-                                <li><a href="/lincang-yimin.htm"><i class="glyphicon glyphicon-tags"></i><span> 移民管理</span></a></li>
-                                <%--<li><a href="/money.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿</span></a></li>--%>
+                                <li class="nav-header">移民安置</li>
+                                <li><a href="/lincang-yimin.htm?name=table"><i class="glyphicon glyphicon-tags"></i><span> 移民登记</span></a></li>
+                                <li><a href="/lincang-yimin.htm"><i class="glyphicon glyphicon-file"></i><span> 移民分析</span></a></li>
                                 <li><a href="/zhunianbuchang.htm"><i class="glyphicon glyphicon-file"></i><span> 逐年补偿</span></a></li>
 
                                 <li class="nav-header">协同办公</li>

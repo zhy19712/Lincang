@@ -450,8 +450,7 @@
                     <h3>收文登记</h3>
                 </div>
                 <iframe id="uploadFrame" name="uploadFrame" style="display:none;"></iframe>
-                <form id = "fileForm"
-                      enctype="multipart/form-data"  target="uploadFrame">
+                <form id = "fileForm" enctype="multipart/form-data"  target="uploadFrame">
 
                     <div class="modal-body">
                         <p class="title">收文登记</p>
@@ -491,7 +490,7 @@
                             </tr>
                             <tr>
                                 <td>上传附件</td>
-                                <td colspan="9"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                <td colspan="9"><div id="filesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div></td>
@@ -2130,6 +2129,7 @@
                 console.log(data);
                 $("#more tr:nth-child(4) td:nth-child(2)").empty();
                 $("#more1 tr:nth-child(4) td:nth-child(2)").empty();
+
                 if(data.attachmentpath != ""){
                     file_arr = data.attachmentpath.split(",");
                     console.log(file_arr)

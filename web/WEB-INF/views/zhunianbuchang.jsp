@@ -356,7 +356,7 @@
                             </tr>
                             <tr>
                                 <td>上报文件</td>
-                                <td colspan="3"><div id="filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                <td colspan="3"><div id="filesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                     <a href="#" id="add_1" onclick="add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="add_file_1" type="file" name = "files" onChange="add(1)"/>
                                 </div></td>
@@ -438,7 +438,7 @@
                                             <td>到款金额</td>
                                             <td><input type="text" name="amount"></td>
                                             <td>上传附件</td>
-                                            <td><div id="myfilesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                            <td><div id="myfilesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                                 <a href="#" id="myadd_1" onclick="myadd_click_file(1)">添加附件</a>
                                                 <input style="display:none;" id="myadd_file_1" type="file" name = "files" onChange="myadd(1)"/>
                                             </div></td>
@@ -655,7 +655,7 @@
                             </tr>
                             <tr>
                                 <td>上传附件</td>
-                                <td colspan="3"><div id="my1filesUpload" style="width:80%;display: inline-block; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;vertical-align: bottom;">
+                                <td colspan="3"><div id="my1filesUpload" style="width:80%;display: inline-block;vertical-align: bottom;">
                                     <a href="#" id="my1add_1" onclick="my1add_click_file(1)">添加附件</a>
                                     <input style="display:none;" id="my1add_file_1" type="file" name = "files" onChange="my1add(1)"/>
                                 </div></td>
@@ -921,6 +921,7 @@
             })
         }
     });
+    console.log(fun_list1,fun_list2);
     var len1 = fun_list1.length;
     var len2 = fun_list2.length;
     if(len1 == 0 && len2 == 0){
@@ -938,6 +939,9 @@
                 $("#new1>.row>div:nth-child(1)").css("display","block");
             }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
                 $("#new1>.box-inner").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1>.box-danger").css("display","none");
             }
         });
         $.each(fun_list2,function (i,n) {
@@ -945,17 +949,20 @@
                 $("#new1>.row>div:nth-child(2)").css("display","block");
             }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
                 $("#new1>.box-inner").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1 .btn-danger").css("display","none");
             }else if(n.authdescription == "个人申请列表查看、搜索功能"){
                 $("#new1>.box-inner").css("display","block");
                 $("#new1 .btn-danger").css("display","none");
             }
         });
     }
-    var dept = $("#dept").text();
-    console.log(dept);
-    if(dept == "临沧市移民局办公室"){
-        $("#new1 .btn-danger").css("display","none");
-    }
+//    var dept = $("#dept").text();
+//    console.log(dept);
+//    if(dept == "临沧市移民局办公室"){
+//        $("#new1 .btn-danger").css("display","none");
+//    }
 
     //checkbox美化
     $('.ui-choose').ui_choose();
