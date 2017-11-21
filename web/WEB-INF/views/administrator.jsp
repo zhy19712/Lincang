@@ -409,7 +409,7 @@
                             <tr>
                                 <td>用户名</td>
                                 <td colspan="3">
-                                    <input type="text" name="username" id="username1" disabled="disabled" class="pull-left" style="width :50%;">
+                                    <input type="text" name="username" id="username1" readonly="readonly" class="pull-left" style="width :50%;">
                                 </td>
                             </tr>
                             <tr>
@@ -669,7 +669,7 @@
                             <tbody>
                             <tr>
                                 <td>角色</td>
-                                <td colspan="3"><input type="text" disabled="disabled" name="username" id="roleName1"></td>
+                                <td colspan="3"><input type="text" readonly="readonly" name="username" id="roleName1"></td>
                             </tr>
 
                             <tr>
@@ -707,38 +707,32 @@
                                                         <ul>
                                                             <li>市资金申请管理
                                                                 <ul>
-                                                                    <li>我的表单
-                                                                        <ul>
-                                                                            <li id="12j">市局规划科资金申请上报功能</li>
-                                                                            <li id="13j">全部列表查看、搜索、删除功能</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li>待处理/已处理事务
-                                                                        <ul>
-                                                                            <li id="14j">市局财务处理功能</li>
-                                                                            <li id="15j">市局规划科处理功能</li>
-                                                                            <li id="16j">列表查看、搜索功能</li>
-                                                                        </ul>
-                                                                    </li>
+                                                                    <li id="12j">市局规划科资金申请上报功能</li>
+                                                                    <li id="45j">全部列表查看、搜索功能</li>
+                                                                    <li id="13j">全部列表查看、搜索、删除功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>市局待处理/已处理事务
+                                                                <ul>
+                                                                    <li id="14j">市局财务处理功能</li>
+                                                                    <li id="15j">市局规划科处理功能</li>
+                                                                    <li id="16j">列表查看、搜索功能</li>
                                                                 </ul>
                                                             </li>
                                                             <li>区县资金申请管理
                                                                 <ul>
-                                                                    <li>我的申请
-                                                                        <ul>
-                                                                            <li id="17j">区县发起申请功能</li>
-                                                                            <li id="18j">全部列表查看、搜索、删除功能</li>
-                                                                            <li id="19j">个人申请列表查看、搜索功能</li>
-                                                                        </ul>
-                                                                    </li>
-                                                                    <li>待处理/已处理事务
-                                                                        <ul>
-                                                                            <li id="20j">市局规划科资金批复功能</li>
-                                                                            <li id="21j">市局财务科处置处理功能</li>
-                                                                            <li id="23j">区县资金流向记录</li>
-                                                                            <li id="24j">列表查看、搜索功能</li>
-                                                                        </ul>
-                                                                    </li>
+                                                                    <li id="17j">区县发起申请功能</li>
+                                                                    <li id="46j">全部列表查看、搜索功能</li>
+                                                                    <li id="18j">全部列表查看、搜索、删除功能</li>
+                                                                    <li id="19j">个人申请列表查看、搜索功能</li>
+                                                                </ul>
+                                                            </li>
+                                                            <li>区县待处理/已处理事务
+                                                                <ul>
+                                                                    <li id="20j">市局规划科资金批复功能</li>
+                                                                    <li id="21j">市局财务科处置处理功能</li>
+                                                                    <li id="23j">区县资金流向记录</li>
+                                                                    <li id="24j">列表查看、搜索功能</li>
                                                                 </ul>
                                                             </li>
                                                         </ul>
@@ -843,6 +837,10 @@
 <script>
     function newForm() {
         $('#form_add_users input').val('');
+        //用户初始化 单位名称UnitName 部门Department
+        initUND();
+        //用户初始化 角色
+        initRole();
         $('#form_add_users').modal('show');
     }
     function newRoleForm() {
@@ -853,6 +851,63 @@
          var inArr=['1','2','3',"4","6","7","8","9","10","11"];
          instance.select_node(inArr);
         $('#form_add_Role').modal('show');
+    }
+
+    //用户初始化角色
+    function initRole() {
+        $.ajax({
+            url:"getRoles.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="";
+                $.each(val,function (a,b) {
+                    str+="<option>"+b+"</option>"
+                });
+                $(".role").html(str)
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
+    //用户初始化 单位名称UnitName 部门Department
+    function initUND() {
+        $.ajax({
+            url:"/getUnitAndDepartments.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="",str1="";
+                $.each(val,function (a,b) {
+                    str+="<option value="+b.unit+">"+b.unit+"</option>";
+                });
+                $(".unit").html(str);
+
+                $.each(val[0].departmentList,function (h,k) {
+                    str1+="<option value="+k+">"+k+"</option>"
+                });
+                $(".department").html(str1);
+
+                $(".unit").change(function () {
+                    var sel=$(".unit").val();
+                    var str2="";
+                    $.each(val,function(c,d){
+                        if(sel==d.unit){
+                            $.each(d.departmentList,function (e,f) {
+                                str2+="<option value="+f+">"+f+"</option>"
+                            })
+                        }
+                    });
+                    $(".department").html(str2);
+                })
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
     }
 </script>
 

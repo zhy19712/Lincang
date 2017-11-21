@@ -474,7 +474,7 @@ function edit(that) {
 
         $("#myprint tr:nth-child(9) td:nth-child(2)").text(mydata.keyword);
         $("#myprint tr:nth-child(10) td:nth-child(2)").text(mydata.title);
-        $("#myprint tr:nth-child(11) td:nth-child(1)").text(mydata.content);
+        $("#myprint tr:nth-child(11) td:nth-child(1) p").text(mydata.content);
         $("#myprint tr:nth-child(12) td:nth-child(2)").text(mydata.result);
         if(status == "签批"){
             step.goStep(3);

@@ -178,10 +178,7 @@
            }
        });
 
-       //用户初始化 单位名称UnitName 部门Department
-       initUND();
-       //用户初始化 角色
-       initRole();
+
 
        //树状复选框插件
        $("#tree_container").jstree({
@@ -570,62 +567,7 @@
            all_table.ajax.url("/userManagementDataTableFirst.do").load();
            New_table.ajax.url("/userManagementDataTableRole.do").load();
        }
-       //用户初始化角色
-       function initRole() {
-           $.ajax({
-               url:"getRoles.do",
-               dataType:"json",
-               type:"post",
-               data:"",
-               async:false,
-               success:function (val) {
-                   var str="";
-                   $.each(val,function (a,b) {
-                       str+="<option>"+b+"</option>"
-                   });
-                   $(".role").html(str)
-               },error:(function(){
-                   alert("系统出错")
-               })
-           })
-       }
-       //用户初始化 单位名称UnitName 部门Department
-       function initUND() {
-           $.ajax({
-               url:"/getUnitAndDepartments.do",
-               dataType:"json",
-               type:"post",
-               data:"",
-               async:false,
-               success:function (val) {
-                   var str="",str1="";
-                   $.each(val,function (a,b) {
-                       str+="<option value="+b.unit+">"+b.unit+"</option>";
-                   });
-                   $(".unit").html(str);
 
-                   $.each(val[0].departmentList,function (h,k) {
-                       str1+="<option value="+k+">"+k+"</option>"
-                   });
-                   $(".department").html(str1);
-
-                   $(".unit").change(function () {
-                       var sel=$(".unit").val();
-                       var str2="";
-                       $.each(val,function(c,d){
-                           if(sel==d.unit){
-                               $.each(d.departmentList,function (e,f) {
-                                   str2+="<option value="+f+">"+f+"</option>"
-                               })
-                           }
-                       });
-                       $(".department").html(str2);
-                   })
-               },error:(function(){
-                   alert("系统出错")
-               })
-           })
-       }
        //角色 表单复选框选中验证
        function contains(arr, obj) {
            var i = arr.length;

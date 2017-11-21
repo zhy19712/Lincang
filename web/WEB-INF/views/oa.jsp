@@ -76,7 +76,7 @@
             height: 100px;
         }
         .red{
-            color: red;
+            color: red !important;
         }
         .text_left{
             text-align: left;
@@ -211,7 +211,7 @@
                         <li><a href="#new1"><i class="glyphicon glyphicon-edit"></i><span> 发文表单</span></a></li>
 
                         <li class="nav-header">我的事务</li>
-                        <li><a href="#new2"><span class="notification red" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
+                        <li><a href="#new2"><span class="notification reds" id="nav_num"></span><i class="glyphicon glyphicon-tags"></i><span> 待处理事务</span></a></li>
                         <li><a href="#progress2"><i class="glyphicon glyphicon-refresh"></i><span> 已处理事务</span></a></li>
                     </ul>
                 </div>
@@ -599,7 +599,7 @@
 
                 <div class="modal-body" style="font-size: 0;width: 100%;">
                     <div class="fawen_info" style="margin-top: 20px;">
-                        <table id="myprint" style="border-top: 1px solid red;border-left: 1px solid red;">
+                        <table id="myprint" style="width:100%;border-top: 1px solid red;border-left: 1px solid red;">
                             <tbody>
                             <tr>
                                 <td colspan="9">临沧市移民局发文稿纸</td>
@@ -616,22 +616,22 @@
                             </tr>
                             <tr>
                                 <td colspan="5">
-                                    <p class="red">签发</p>
-                                    <p class="text-left"></p>
+                                    <p class="red" style="text-align: left">签发</p>
+                                    <p class="text-left" style="min-height: 100px"></p>
                                 </td>
                                 <td colspan="2">
-                                    <p class="red">审稿</p>
-                                    <p class="text-left"></p>
+                                    <p class="red" style="text-align: left">审稿</p>
+                                    <p class="text-left" style="min-height: 100px"></p>
                                 </td>
                                 <td colspan="2">
-                                    <p class="red">会签</p>
-                                    <p class="text-left"></p>
+                                    <p class="red" style="text-align: left">会签</p>
+                                    <p class="text-left" style="min-height: 100px"></p>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="9">
                                     <p class="red text-left">抄报</p>
-                                    <p class="text-left"></p>
+                                    <p class="text-left" style="min-height: 100px"></p>
                                 </td>
                             </tr>
                             <tr>
@@ -651,7 +651,7 @@
                                 <td class="text-left"></td>
                             </tr>
                             <tr>
-                                <td class="red">印刷</td>
+                                <td class="red" style="color: red ">印刷</td>
                                 <td class="text-left" colspan="4"></td>
                                 <td class="red">校对</td>
                                 <td class="text-left"></td>
@@ -667,11 +667,15 @@
                                 <td class="text-left" colspan="8"></td>
                             </tr>
                             <tr>
-                                <td class="text-left" colspan="9"></td>
+                                <td class="text-left" colspan="9">
+                                    <p style="min-height: 100px"></p>
+                                </td>
                             </tr>
                             <tr>
-                                <td class="red">办理结果</td>
-                                <td class="text-left"  colspan="8"></td>
+                                <td style="display: inline-block;position: relative; min-height:100px;">
+                                    <p class="red" style="width:100%;position: absolute;top:50%;left:50%;transform: translate(-50%,-50%)">办理结果</p>
+                                </td>
+                                <td class="text-left"  colspan="8" ></td>
                             </tr>
                             </tbody>
                         </table>
