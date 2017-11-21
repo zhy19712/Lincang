@@ -26,9 +26,9 @@ $(function () {
 
     //表单提交
     var flag = true;
-    $("#btn-container li:first-child").click(function () {
+    $("#btn-container .btn-primary").click(function () {
         if(flag){
-            flag = false;
+
             var kind = $("#kind").text();
             var username = $("#username").text();
             var data = new Object();
@@ -135,40 +135,40 @@ $(function () {
             //迁出地，迁入地
             var move = new Object();
             if($("#city1 td:nth-child(2) input").val()){
-                move.from_city = $("#city1 td:nth-child(2) input").val();
+                move.to_city = $("#city1 td:nth-child(2) input").val();
             }
             if($("#city1 td:nth-child(3) input").val()){
-                move.from_disirict = $("#city1 td:nth-child(3) input").val();
+                move.to_disirict = $("#city1 td:nth-child(3) input").val();
             }
             if($("#city1 td:nth-child(4) input").val()){
-                move.from_town = $("#city1 td:nth-child(4) input").val();
+                move.to_town = $("#city1 td:nth-child(4) input").val();
             }
             if($("#city1 td:nth-child(5) input").val()){
-                move.from_village = $("#city1 td:nth-child(5) input").val();
+                move.to_village = $("#city1 td:nth-child(5) input").val();
             }
             if($("#city1 td:nth-child(6) input").val()){
-                move.from_group = $("#city1 td:nth-child(6) input").val();
+                move.to_group = $("#city1 td:nth-child(6) input").val();
             }
             if($("#city1 td:nth-child(7) input").val()){
-                move.from_remake = $("#city1 td:nth-child(7) input").val();
+                move.to_remake = $("#city1 td:nth-child(7) input").val();
             }
             if($("#city2 td:nth-child(2) input").val()){
-                move.to_city = $("#city2 td:nth-child(2) input").val();
+                move.from_city = $("#city2 td:nth-child(2) input").val();
             }
             if($("#city2 td:nth-child(3) input").val()){
-                move.to_disirict = $("#city2 td:nth-child(3) input").val();
+                move.from_disirict = $("#city2 td:nth-child(3) input").val();
             }
             if($("#city2 td:nth-child(4) input").val()){
-                move.to_town = $("#city2 td:nth-child(4) input").val();
+                move.from_town = $("#city2 td:nth-child(4) input").val();
             }
             if($("#city2 td:nth-child(5) input").val()){
-                move.to_village = $("#city2 td:nth-child(5) input").val();
+                move.from_village = $("#city2 td:nth-child(5) input").val();
             }
             if($("#city2 td:nth-child(6) input").val()){
-                move.to_group = $("#city2 td:nth-child(6) input").val();
+                move.from_group = $("#city2 td:nth-child(6) input").val();
             }
             if($("#city2 td:nth-child(7) input").val()){
-                move.to_remake = $("#city2 td:nth-child(7) input").val();
+                move.from_remake = $("#city2 td:nth-child(7) input").val();
             }
             if(move.from_city || move.from_disirict || move.from_town || move.from_village || move.from_group || move.from_remake || move.to_city || move.to_disirict || move.to_town || move.to_village || move.to_group || move.to_remake){
                 data.move = move;
@@ -426,21 +426,35 @@ $(function () {
             data.time = time;
             data.username = username;
             console.log(data);
-            if(!data.reservoir || !data.householder || !data.inquirer){
+            if(!data.reservoir || !data.householder || !data.inquirer || !data.time){
                 alert("请输入必填项");
                 return;
             }
             if(kind == "库区安置登记表"){
                 if(!$("#city td:nth-child(1) input").val() || !$("#city td:nth-child(2) input").val() || !$("#home_people1 td:first-child input").val()){
-                    alert("请输入必填项");
+                    alert("请输入所在地");
                     return;
                 }
             }else if(kind == "移民搬迁登记表"){
                 if(!$("#city1 td:nth-child(2) input").val() || !$("#city1 td:nth-child(3) input").val() || !$("#home_people1 td:first-child input").val()){
-                    alert("请输入必填项");
+                    alert("请输入迁入地");
                     return;
                 }
             }
+            var h_flag = [];
+            $.each(home_infos,function (i,n) {
+                if(n.name == householder){
+                    h_flag.push(n.name);
+                }
+            })
+            if(h_flag.length == 0){
+                alert("家庭信息中需包含户主信息");
+                return;
+            }else if(h_flag.length > 1){
+                alert("家庭信息中不能有重复姓名");
+                return;
+            }
+            flag = false;
             $.ajax({
                 url: "/dataEntering.do",
                 type: "post",
@@ -448,8 +462,9 @@ $(function () {
                 dataType: "json",
                 success: function (data) {
                     console.log(data);
-                    alert("提交成功");
                     flag = true;
+                    alert("提交成功");
+                    window.open("/lincang-yimin.htm?name=table","_self");
                     $("#jqtable input").val("");
                 }
             });

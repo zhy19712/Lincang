@@ -48,13 +48,13 @@ public class CapitalFlowDataTable {
             name = user.getName();
             dept = user.getDept();
         }
-        if(dept.equals("临沧市移民局规划科")){
+        /*if(dept.equals("临沧市移民局规划科")){
             str = "";
         } else {
             str = " AND shenqingrendept = '"+dept+"' ";
-        }
+        }*/
         //根据功能名字判断状态
-        /*if( functionList!=null && functionList.size() > 0 ){
+        if( functionList!=null && functionList.size() > 0 ){
             if(!functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
                 str = " AND 1=0";
             }
@@ -79,7 +79,7 @@ public class CapitalFlowDataTable {
             if(functionList.contains(13) & functionList.contains(18) & functionList.contains(19)){
                 str = "";
             }
-        }*/
+        }
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
