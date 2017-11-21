@@ -146,6 +146,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -180,6 +181,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -213,6 +215,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -255,6 +258,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -288,6 +292,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -348,6 +353,7 @@ public class CapitalFlowController {
         try {
             i = capitalFlowServiceImp.setCatipalDataById(map);
         } catch (Exception e) {
+            e.printStackTrace();
             i = -1;
         }
         Map<String,Object> mapResult = new HashMap<String,Object>();
@@ -413,6 +419,7 @@ public class CapitalFlowController {
         } catch (Exception e) {
             e.printStackTrace();
             deleteResult =-1;
+            //return "redirect:error";
         }
         Map<String,String> map = new HashMap<String,String>();
         if( deleteResult == -1 ){

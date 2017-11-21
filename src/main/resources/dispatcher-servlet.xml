@@ -29,6 +29,15 @@
         <!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
         <property name="maxUploadSize" value="209715200" />
     </bean>
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**" />
+            <bean class="com.bhidi.lincang.controller.FileUploadInterceptor">
+                <!-- 200M -->
+                <property name="maxSize" value="209715200" />
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
     <!-- 静态资源(js、image等)的访问 -->
     <mvc:default-servlet-handler/>
