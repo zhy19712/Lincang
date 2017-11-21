@@ -921,6 +921,7 @@
             })
         }
     });
+    console.log(fun_list1,fun_list2);
     var len1 = fun_list1.length;
     var len2 = fun_list2.length;
     if(len1 == 0 && len2 == 0){
@@ -938,6 +939,9 @@
                 $("#new1>.row>div:nth-child(1)").css("display","block");
             }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
                 $("#new1>.box-inner").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1>.box-danger").css("display","none");
             }
         });
         $.each(fun_list2,function (i,n) {
@@ -945,6 +949,9 @@
                 $("#new1>.row>div:nth-child(2)").css("display","block");
             }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
                 $("#new1>.box-inner").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1 .btn-danger").css("display","none");
             }else if(n.authdescription == "个人申请列表查看、搜索功能"){
                 $("#new1>.box-inner").css("display","block");
                 $("#new1 .btn-danger").css("display","none");
