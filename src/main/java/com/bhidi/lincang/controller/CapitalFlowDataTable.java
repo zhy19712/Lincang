@@ -55,28 +55,28 @@ public class CapitalFlowDataTable {
         }*/
         //根据功能名字判断状态
         if( functionList!=null && functionList.size() > 0 ){
-            if(!functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
+            if(!functionList.contains(45) & !functionList.contains(13) & !functionList.contains(18) & !functionList.contains(46) & !functionList.contains(19)){
                 str = " AND 1=0";
             }
-            if(functionList.contains(13) & !functionList.contains(18) & !functionList.contains(19)){
+            if( (functionList.contains(13) || functionList.contains(45)) & !functionList.contains(18) & !functionList.contains(46) & !functionList.contains(19)){
                 str = " AND initiatorclass = '市局资金计划上报'";
             }
-            if(!functionList.contains(13) & functionList.contains(18) & !functionList.contains(19)){
+            if(!functionList.contains(45) & !functionList.contains(13) & (functionList.contains(18)||functionList.contains(46)) & !functionList.contains(19)){
                 str = " AND initiatorclass = '区县资金申请'";
             }
-            if(!functionList.contains(13) & !functionList.contains(18) & functionList.contains(19)){
+            if(!functionList.contains(45) & !functionList.contains(13) & !functionList.contains(18) & !functionList.contains(46) & functionList.contains(19)){
                 str = " AND initiatorclass = '区县资金申请' AND quxianshenqingren = '"+name+"'";
             }
-            if(functionList.contains(13) & functionList.contains(18) & !functionList.contains(19)){
+            if((functionList.contains(13) || functionList.contains(45)) & (functionList.contains(18)||functionList.contains(46)) & !functionList.contains(19)){
                 str = "";
             }
-            if(functionList.contains(13) & !functionList.contains(18) & functionList.contains(19)){
-                str = " AND (initiatorclass = '市局资金计划上报' OR (initiatorclass = '区县资金申请' AND quxianshenqingren = '"+name+"')";
+            if((functionList.contains(13) || functionList.contains(45)) & !functionList.contains(18) & !functionList.contains(46) & functionList.contains(19)){
+                str = " AND (initiatorclass = '市局资金计划上报' OR (initiatorclass = '区县资金申请' AND quxianshenqingren = '"+name+"')"+")";
             }
-            if(!functionList.contains(13) & functionList.contains(18) & functionList.contains(19)){
+            if(!functionList.contains(45) & !functionList.contains(13) & (functionList.contains(18)||functionList.contains(46)) & functionList.contains(19)){
                 str = " AND initiatorclass = '区县资金申请'";
             }
-            if(functionList.contains(13) & functionList.contains(18) & functionList.contains(19)){
+            if((functionList.contains(13) || functionList.contains(45)) & (functionList.contains(18)||functionList.contains(46)) & functionList.contains(19)){
                 str = "";
             }
         }
