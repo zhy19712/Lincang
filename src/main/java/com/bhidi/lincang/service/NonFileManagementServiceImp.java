@@ -29,6 +29,7 @@ public class NonFileManagementServiceImp implements NonFileManagementServiceInf 
     public String getLastNonFileId() {
         return nonFileManagementMapper.selectLastNonFileId();
     }
+
     public Map<String, Object> submit(Map<String, Object> mapCondition) {
         NonFileManagement nfm = (NonFileManagement)mapCondition.get("nonfilemanagement");
         MultipartFile[] files = (MultipartFile[])mapCondition.get("files");
