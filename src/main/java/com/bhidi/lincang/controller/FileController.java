@@ -146,7 +146,7 @@ public class FileController {
         out.close();
     }*/
     @RequestMapping("/download")
-    public ResponseEntity<byte[]> downloadImg(HttpSession session,String path) throws IOException{
+    public ResponseEntity<byte[]> download(HttpSession session,String path) throws IOException{
         //=============造响应体=============
         //1、创建一个ResponseEntity对象。这个对象里面既有响应头还有响应体；
         ServletContext servletContext = session.getServletContext();
