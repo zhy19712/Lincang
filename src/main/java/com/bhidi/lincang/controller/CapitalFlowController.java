@@ -457,7 +457,7 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/numOfUnReadCapitalFlow",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
-    public String numOfCanumOfUnReadCapitalFlowpitalFlow(HttpSession session){
+    public String numOfUnReadCapitalFlow(HttpSession session){
         User user = (User)session.getAttribute("user");
         String name = user.getName();
         int numResult = 0;
@@ -474,6 +474,26 @@ public class CapitalFlowController {
     public String getQuXianDepartmentAndStaff(){
         List<DepartmentAndStaff> resList =  capitalFlowServiceImp.getDepartmentAndStaffs();
         String result = new Gson().toJson(resList);
+        return result;
+    }
+    /**
+     * 区县的消息表里的查看按钮
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getNoticeInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getNoticeInfo(HttpSession session,String capitalflowid){
+        User user = (User)session.getAttribute("user");
+        String name = user==null?"区县规划科测试账号":user.getName();
+        Map<String,Object> mapCondition = new HashMap<String,Object>();
+        mapCondition.put("capitalflowid",capitalflowid);
+        mapCondition.put("name",name);
+        QuXianReceiveMessage qxem =  capitalFlowServiceImp.getQuXianReceiveMessage(mapCondition);
+        String text = capitalFlowServiceImp.getNotice(capitalflowid);
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("qxem",qxem);
+        map.put("text",text);
+        String result = new Gson().toJson(map);
         return result;
     }
 }

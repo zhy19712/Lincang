@@ -29,4 +29,8 @@ public interface CapitalFlowServiceInf {
     List<DepartmentAndStaff> getDepartmentAndStaffs();
 
     int setQuXianReceiveMessage(List<QuXianReceiveMessage> list);
+
+    QuXianReceiveMessage getQuXianReceiveMessage(Map<String,Object> mapCondition);
+
+    String getNotice(String capitalflowid);
 }
