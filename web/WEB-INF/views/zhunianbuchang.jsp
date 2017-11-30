@@ -88,6 +88,9 @@
         .step-bar{
             top:70px;
         }
+        #msg{
+            display: none;
+        }
     </style>
 
 
@@ -917,7 +920,6 @@
         type: "post",
         dataType: "json",
         success: function (data) {
-            console.log(data);
             tree_data = data;
             var unit = [];
             var department = [];
@@ -925,7 +927,6 @@
                 unit.push(n.unit);
             })
             unit = unit.unique3();
-            console.log(unit);
             var arr = [];
             var tree_arr = [];
             $.each(unit,function (i,n) {
@@ -977,11 +978,14 @@
         async: false,
         dataType: "json",
         success:function (data) {
+            console.log(data);
             $.each(data.function,function (i,n) {
                 if(n.subclassification == "市资金申请管理"){
                     fun_list1.push(n);
                 }else if(n.subclassification == "区县资金申请管理"){
                     fun_list2.push(n);
+                }else if(n.authdescription == "接收市局规划科通知功能"){
+                    $("#msg").css("display","block");
                 }
             })
         }
@@ -1294,7 +1298,6 @@
                 dataType: "json",
                 data: {id:id,areaname:str,text:text},
                 success: function (data) {
-                    console.log(data);
                     if(data.result == "success"){
                         table_refresh();
                         acount();
@@ -1332,7 +1335,6 @@
                 type:'post',
                 success:function(data)
                 {
-                    console.log(data);
                     if(data.result == "success"){
                         alert("提交成功");
                         flag4 = true;
@@ -1361,7 +1363,6 @@
                     return;
                 }
                 flag5 = false;
-                console.log(replytext);
                 $.ajax({
                     url: "/quxianGuiHuaSetDataById.do",
                     type: "post",
@@ -1483,7 +1484,6 @@
             dataType: "json",
             data: {id:id},
             success: function (data) {
-                console.log(data);
                 mydata = data.result;
                 //资金上报信息
                 $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
@@ -1680,7 +1680,6 @@
             $(".ghapply tr:nth-child(8) textarea").attr("readonly",false);
         }else if(status == "结束"){
             var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
-            console.log(app_kind)
             if(app_kind == "市局资金计划上报"){
                 step2.goStep(4);
                 $("#final_handle").modal('show');

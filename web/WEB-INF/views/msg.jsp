@@ -175,10 +175,11 @@
 
     function edit(that) {
         var id = $(that).parent("td").parent("tr").children("td:first-child").text();
+        var status = $(that).parent("td").parent("tr").children("td:nth-child(4)").text();
         $.ajax({
             url: "",
             type: "post",
-            data: {capitalflowid:id},
+            data: {capitalflowid:id,status:status},
             dataType: "json",
             success: function (data) {
                 console.log(data);
