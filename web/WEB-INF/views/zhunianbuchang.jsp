@@ -1267,7 +1267,6 @@
     //规划科通知区县
     var flag3 = true;
     $("#guihua_handle .btn-primary").click(function () {
-
         if(flag3){
             var str = "";
             $.each($("#tree_container").jstree().get_selected(true),function (i,n) {
