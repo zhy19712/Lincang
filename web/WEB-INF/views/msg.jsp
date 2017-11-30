@@ -103,16 +103,16 @@
 <script>
     var msg_table = $('#msg_table').DataTable({
         ajax: {
-            url: "/capitalFlowWait.do",
+            url: "/quxianMessage.do",
             async:false
         },
         "order": [[3, 'desc']],
         "serverSide": true,
         "columns": [
             {"data": "capitalflowid"},
-            {"data": "initiatorclass"},
-            {"data": "title"},
-            {"data": "create_time"},
+            {"data": "guihuachuliren"},
+            {"data": "guihuakechulitime"},
+            {"data": "status"},
             {"data": null}
         ],
         "columnDefs": [
