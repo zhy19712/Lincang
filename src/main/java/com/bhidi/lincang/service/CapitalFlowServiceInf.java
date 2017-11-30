@@ -3,6 +3,7 @@ package com.bhidi.lincang.service;
 import com.bhidi.lincang.bean.CapitalFlow;
 import com.bhidi.lincang.bean.DepartmentAndStaff;
 import com.bhidi.lincang.bean.DepartmentAndStaffs;
+import com.bhidi.lincang.bean.QuXianReceiveMessage;
 
 import java.util.List;
 import java.util.Map;
@@ -26,4 +27,6 @@ public interface CapitalFlowServiceInf {
     int selectNumOfUnReadCapitalFlow(String name);
 
     List<DepartmentAndStaff> getDepartmentAndStaffs();
+
+    int setQuXianReceiveMessage(List<QuXianReceiveMessage> list);
 }

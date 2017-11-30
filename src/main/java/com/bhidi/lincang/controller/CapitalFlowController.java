@@ -1,9 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.CapitalFlow;
-import com.bhidi.lincang.bean.DepartmentAndStaff;
-import com.bhidi.lincang.bean.DepartmentAndStaffs;
-import com.bhidi.lincang.bean.User;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.CapitalFlowServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class CapitalFlowController {
@@ -359,6 +353,31 @@ public class CapitalFlowController {
             e.printStackTrace();
             i = -1;
         }
+
+
+        //在这里把数据存储到quxianreceivemessage表中去
+        List<QuXianReceiveMessage> list = new ArrayList<QuXianReceiveMessage>();
+        String quxian = (areaname==null?"":areaname);
+        String[] strs = quxian.split(",");
+        for(int s =0;s<strs.length;s++){
+            QuXianReceiveMessage qxrm = new QuXianReceiveMessage();
+            qxrm.setCapitalflowid(id);
+            qxrm.setGuihuachuliren(user.getName());
+            qxrm.setGuihuakechulitime(format.format(now));
+            qxrm.setQuxianpeople(strs[s]);
+            qxrm.setStatus("未查看");
+            list.add(qxrm);
+        }
+        int q =0;
+        try {
+            q = capitalFlowServiceImp.setQuXianReceiveMessage(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            q = -1;
+        }
+
+
+
         Map<String,Object> mapResult = new HashMap<String,Object>();
         if( i==-1){
             mapResult.put("result","failure");

@@ -2,6 +2,7 @@ package com.bhidi.lincang.dao;
 
 import com.bhidi.lincang.bean.CapitalFlow;
 import com.bhidi.lincang.bean.DepartmentAndStaff;
+import com.bhidi.lincang.bean.QuXianReceiveMessage;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,4 +25,6 @@ public interface CapitalFlowMapper {
     int selectNumOfUnReadCapitalFlow(String name);
 
     List<DepartmentAndStaff> selectDepartmentAndStaff();
+
+    int setQuXianReceiveMessage(List<QuXianReceiveMessage> list);
 }

@@ -153,4 +153,15 @@
         FROM user u ,unitanddepartment ud
         WHERE u.dept = ud.id AND ud.unit != '临沧市移民局' AND ud.unit != '管理员'
     </select>
+    <!--int setQuXianReceiveMessage(List<QuXianReceiveMessage> list);-->
+    <insert  id="setQuXianReceiveMessage" parameterType="List">
+        INSERT INTO quxianreceivemessage (capitalflowid,guihuachuliren,guihuakechulitime,quxianpeople)
+        VALUES
+        <foreach collection="list" separator="," item="quxian">
+            (
+            #{quxian.capitalflowid},#{quxian.guihuachuliren},
+            #{quxian.guihuakechulitime},#{quxian.quxianpeople}
+            )
+        </foreach>
+    </insert >
 </mapper>
