@@ -154,4 +154,13 @@ public class PageForward {
             return "login";
         }
     }
+    @RequestMapping(value = "/msg", method = RequestMethod.GET)
+    public String msg(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "msg";
+        } else {
+            return "login";
+        }
+    }
 }
