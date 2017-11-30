@@ -20,12 +20,14 @@
     <meta name="description" content="临沧市移民局">
 
     <!-- The styles -->
-    <link href="../../css/mybs.css" rel="stylesheet">
+    <link href="../../css/bootstrap-cerulean.min.css" rel="stylesheet">
     <link href="../../css/app.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 
     <!-- jQuery -->
     <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <%--<script src="../../js/app.js"></script>--%>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <!-- The fav icon -->
     <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -78,11 +80,6 @@
                     </c:if>
                 </div>
             </div>
-            <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
-            <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
-            <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
-            <span id="permissionList" style="display:none;width:0;height:0;">${user.permissionList}</span>
-            <span id="dept" style="display:none;width:0;height:0;">${user.dept}</span>
             <!-- user dropdown ends -->
         </div>
     </div>
@@ -98,6 +95,42 @@
             </tr>
             </thead>
         </table>
+    </div>
+    <button id="btn" style="font-size: 20px;position: relative;">按钮</button>
+    <div class="modal fade" id="msg_table_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="static">
+
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h3></h3>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>发起人</td>
+                                <td></td>
+                                <td>发起时间</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>通知内容</td>
+                                <td colspan="3"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-danger" data-dismiss="modal">关闭</a>
+                </div>
+
+            </div>
+        </div>
     </div>
 </body>
 <script>
@@ -139,5 +172,21 @@
             }
         }
     });
+
+    function edit(that) {
+        var id = $(that).parent("td").parent("tr").children("td:first-child").text();
+        $.ajax({
+            url: "",
+            type: "post",
+            data: {capitalflowid:id},
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+            }
+        })
+    }
+    $("#btn").click(function () {
+        $("#msg_table_modal").modal("show");
+    })
 </script>
 </html>
