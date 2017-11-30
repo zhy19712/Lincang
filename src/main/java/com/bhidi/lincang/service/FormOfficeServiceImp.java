@@ -11,13 +11,10 @@ public class FormOfficeServiceImp implements FormOfficeServiceInf {
     @Autowired
     FormOfficeMapper formOfficeMapper;
 
-
-    @Override
     public Integer stuffToOffice(F_Stuff f_stuff) {
         return formOfficeMapper.stuffToOffice(f_stuff);
     }
 
-    @Override
     public Integer updateFormOffice(F_Stuff f_stuff) {
         return formOfficeMapper.updateFormOffice(f_stuff);
     }

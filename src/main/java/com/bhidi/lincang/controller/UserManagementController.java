@@ -40,7 +40,7 @@ public class UserManagementController {
      */
     @ResponseBody
     @RequestMapping(value="/getUnitAndDepartments",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getUnits(){
+    public String getUnitAndDepartments(){
         List<UnitAndDepartments> unitAndDepartmentsList=  userManagementServiceImp.getUnitAndDepartments();
         String result = new Gson().toJson(unitAndDepartmentsList);
         return result;
@@ -155,7 +155,7 @@ public class UserManagementController {
         return result;
     }
     /**
-     * 查看角色
+     * 查看角色和对应的角色
      * @param id
      * @return
      */

@@ -1,7 +1,10 @@
 package com.bhidi.lincang.service;
 
 import com.bhidi.lincang.bean.CapitalFlow;
+import com.bhidi.lincang.bean.DepartmentAndStaff;
+import com.bhidi.lincang.bean.DepartmentAndStaffs;
 
+import java.util.List;
 import java.util.Map;
 
 public interface CapitalFlowServiceInf {
@@ -19,4 +22,8 @@ public interface CapitalFlowServiceInf {
     Map<String,Object> quxianSaveCapitalFlow(Map<String, Object> mapCondition);
 
     int deleteCapitalFlow(String capitalflowid);
+
+    int selectNumOfUnReadCapitalFlow(String name);
+
+    List<DepartmentAndStaff> getDepartmentAndStaffs();
 }
