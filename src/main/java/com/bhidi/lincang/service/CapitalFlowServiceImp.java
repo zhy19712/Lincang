@@ -1,9 +1,6 @@
 package com.bhidi.lincang.service;
 
-import com.bhidi.lincang.bean.CapitalFlow;
-import com.bhidi.lincang.bean.DepartmentAndStaff;
-import com.bhidi.lincang.bean.DepartmentAndStaffs;
-import com.bhidi.lincang.bean.SendFile;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.dao.CapitalFlowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -221,6 +218,10 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
             list.add(dass);
         }*/
         return departmentAndStaffList;
+    }
+
+    public int setQuXianReceiveMessage(List<QuXianReceiveMessage> list) {
+        return capitalFlowMapper.setQuXianReceiveMessage(list);
     }
 
     /**
