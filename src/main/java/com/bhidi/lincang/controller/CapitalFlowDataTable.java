@@ -523,8 +523,6 @@ public class CapitalFlowDataTable {
             str = " AND (quxianpeople = '"+name+"')";
         }
 
-
-
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
