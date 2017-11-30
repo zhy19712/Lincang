@@ -155,12 +155,12 @@
     </select>
     <!--int setQuXianReceiveMessage(List<QuXianReceiveMessage> list);-->
     <insert  id="setQuXianReceiveMessage" parameterType="List">
-        INSERT INTO quxianreceivemessage (capitalflowid,guihuachuliren,guihuakechulitime,quxianpeople)
+        INSERT INTO quxianreceivemessage (capitalflowid,guihuachuliren,guihuakechulitime,quxianpeople,status)
         VALUES
         <foreach collection="list" separator="," item="quxian">
             (
             #{quxian.capitalflowid},#{quxian.guihuachuliren},
-            #{quxian.guihuakechulitime},#{quxian.quxianpeople}
+            #{quxian.guihuakechulitime},#{quxian.quxianpeople}，#{quxian.status}
             )
         </foreach>
     </insert >
