@@ -10,27 +10,22 @@ public class FormStuffServiceImp implements FormStuffServiceInf {
     @Autowired
     FormStuffMapper formStuffMapper;
 
-    @Override
     public Integer saveFormStuff(F_Stuff f_stuff) {
         return formStuffMapper.saveFormStuff(f_stuff);
     }
 
-    @Override
     public Integer submittedFormStuff(F_Stuff f_stuff) {
         return formStuffMapper.submittedFormStuff(f_stuff);
     }
 
-    @Override
     public F_Stuff queryStuffById(int id) {
         return formStuffMapper.queryStuffById(id);
     }
 
-    @Override
     public int deleteStuffById(int id) {
         return formStuffMapper.deleteStuffById(id);
     }
 
-    @Override
     public Integer updateFormStuff(F_Stuff f_stuff) {
         return formStuffMapper.updateFormStuff(f_stuff);
     }

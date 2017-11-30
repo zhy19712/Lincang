@@ -117,7 +117,7 @@ $(function(){
         success:function (data) {
             console.log(data);
             $.each(data.function,function (i,n) {
-                if(n.classification == "移民管理"){
+                if(n.classification == "移民登记" || n.classification == "移民分析"){
                     fun_list.push(n);
                 }
             })

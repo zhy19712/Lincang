@@ -88,6 +88,9 @@
         .step-bar{
             top:70px;
         }
+        #msg{
+            display: none;
+        }
     </style>
 
 
@@ -133,6 +136,10 @@
                 </c:if>
             </div>
         </div>
+        <a href="/msg.htm" id="msg" style="float: right;margin: 7px 15px 0 5px;position: relative;cursor: pointer;">
+            <span class="glyphicon glyphicon-envelope" style="font-size: 30px;color: #fff;"></span>
+            <span class="notification red" style="top: -7px;right: -10px;"></span>
+        </a>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>
@@ -519,16 +526,7 @@
                         <tr>
                             <td>通知区县</td>
                             <td colspan="3">
-                                <ul class="ui-choose" multiple="multiple" id="uc_03" style="margin: 10px;">
-                                    <li>临翔区</li>
-                                    <li>凤庆县</li>
-                                    <li>永德县</li>
-                                    <li>镇康县</li>
-                                    <li>云县</li>
-                                    <li>沧源佤族自治县</li>
-                                    <li>耿马傣族佤族自治县</li>
-                                    <li>双江拉祜族佤族布朗族傣族自治县</li>
-                                </ul>
+                                <div id="tree_container" align="left"></div>
                             </td>
                         </tr>
                         <tr>
@@ -770,9 +768,35 @@
 <script src="../../js/jquery.iphone.toggle.js"></script>
 <!-- history.js for cross-browser state change on ajax -->
 <script src="../../js/jquery.history.js"></script>
+<script src="../../js/jstree.js"></script>
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script>
+    //数组去重
+    Array.prototype.unique3 = function(){
+        var res = [];
+        var json = {};
+        for(var i = 0; i < this.length; i++){
+            if(!json[this[i]]){
+                res.push(this[i]);
+                json[this[i]] = 1;
+            }
+        }
+        return res;
+    }
+    //消息条数
+    $.ajax({
+        url: "/numOfUnReadCapitalFlow.do",
+        type: "post",
+        success: function (data) {
+            console.log(data);
+            if(data != 0){
+                $("#msg>span:nth-child(2)").text(data);
+            }else {
+                $("#msg>span:nth-child(2)").css("display","none");
+            }
+        }
+    })
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
@@ -902,6 +926,61 @@
     });
     //上报人/申请人
     var name = $("#name").text();
+    //获取部门和员工
+    var tree_data;
+    $.ajax({
+        url: "/getQuXianDepartmentAndStaff.do",
+        type: "post",
+        dataType: "json",
+        success: function (data) {
+            tree_data = data;
+            var unit = [];
+            var department = [];
+            $.each(data,function (i,n) {
+                unit.push(n.unit);
+            })
+            unit = unit.unique3();
+            var arr = [];
+            var tree_arr = [];
+            $.each(unit,function (i,n) {
+                var obj = new Object();
+                obj.text = n;
+                obj.department = [];
+                obj.name = [];
+                $.each(data,function (i,n) {
+                    if(obj.text == n.unit){
+                        obj.department.push(n.department);
+                    }
+                });
+                obj.department = obj.department.unique3();
+                arr.push(obj);
+            })
+            $.each(arr,function (i,n) {
+                var obj1 = new Object();
+                obj1.text = n.text;
+                obj1.children = [];
+                $.each(n.department,function (i,n) {
+                    var obj2 = new Object();
+                    obj2.text = n;
+                    obj2.children = [];
+                    $.each(data,function (i,n) {
+                        if(obj2.text == n.department){
+                            var obj3 = new Object();
+                            obj3.text = n.name;
+                            obj2.children.push(obj3);
+                        }
+                    });
+                    obj1.children.push(obj2);
+                })
+                tree_arr.push(obj1);
+            })
+            console.log(tree_arr);
+            $("#tree_container").jstree({
+                "plugins" : ["checkbox"],
+                "core":{"data" :tree_arr}
+            })
+        }
+    })
     //获取功能
 
     var fun_list1 = [];
@@ -912,16 +991,18 @@
         async: false,
         dataType: "json",
         success:function (data) {
+            console.log(data);
             $.each(data.function,function (i,n) {
                 if(n.subclassification == "市资金申请管理"){
                     fun_list1.push(n);
                 }else if(n.subclassification == "区县资金申请管理"){
                     fun_list2.push(n);
+                }else if(n.authdescription == "接收市局规划科通知功能"){
+                    $("#msg").css("display","block");
                 }
             })
         }
     });
-    console.log(fun_list1,fun_list2);
     var len1 = fun_list1.length;
     var len2 = fun_list2.length;
     if(len1 == 0 && len2 == 0){
@@ -958,15 +1039,7 @@
             }
         });
     }
-//    var dept = $("#dept").text();
-//    console.log(dept);
-//    if(dept == "临沧市移民局办公室"){
-//        $("#new1 .btn-danger").css("display","none");
-//    }
 
-    //checkbox美化
-    $('.ui-choose').ui_choose();
-    var uc_03 = $('#uc_03').data('ui-choose');
     //日期插件
 
     $("#time2").jeDate({
@@ -1213,20 +1286,24 @@
     $("#guihua_handle .btn-primary").click(function () {
         if(flag3){
             var str = "";
-            if($("#uc_03>li.selected").length == 0){
+            $.each($("#tree_container").jstree().get_selected(true),function (i,n) {
+                var name = n.text;
+                $.each(tree_data,function (i,n) {
+                    if(name == n.name){
+                        str += "," + n.name;
+                    }
+                })
+            })
+            str = str.substring(1);
+            if(!str){
                 alert("请选择区县");
                 return;
             }
-            $.each($("#uc_03>li.selected"),function (i,n) {
-                console.log(n);
-                str += "," + n.innerText ;
-            });
             var text = $("#guihua_handle tr:last-child textarea").val();
             if(!text){
                 alert("请输入通知内容");
                 return;
             }
-            str = str.substring(1);
             flag3 = false;
             $.ajax({
                 url: "/setToAreaDataById.do",
@@ -1234,7 +1311,6 @@
                 dataType: "json",
                 data: {id:id,areaname:str,text:text},
                 success: function (data) {
-                    console.log(data);
                     if(data.result == "success"){
                         table_refresh();
                         acount();
@@ -1272,7 +1348,6 @@
                 type:'post',
                 success:function(data)
                 {
-                    console.log(data);
                     if(data.result == "success"){
                         alert("提交成功");
                         flag4 = true;
@@ -1301,7 +1376,6 @@
                     return;
                 }
                 flag5 = false;
-                console.log(replytext);
                 $.ajax({
                     url: "/quxianGuiHuaSetDataById.do",
                     type: "post",
@@ -1423,7 +1497,6 @@
             dataType: "json",
             data: {id:id},
             success: function (data) {
-                console.log(data);
                 mydata = data.result;
                 //资金上报信息
                 $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);
@@ -1620,7 +1693,6 @@
             $(".ghapply tr:nth-child(8) textarea").attr("readonly",false);
         }else if(status == "结束"){
             var app_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
-            console.log(app_kind)
             if(app_kind == "市局资金计划上报"){
                 step2.goStep(4);
                 $("#final_handle").modal('show');

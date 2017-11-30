@@ -1,7 +1,6 @@
 package com.bhidi.lincang.controller;
 
-import com.bhidi.lincang.bean.CapitalFlow;
-import com.bhidi.lincang.bean.User;
+import com.bhidi.lincang.bean.*;
 import com.bhidi.lincang.service.CapitalFlowServiceImp;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class CapitalFlowController {
@@ -306,7 +303,7 @@ public class CapitalFlowController {
     }
 
     /**
-     * 规划科点击编辑之后的提交
+     * 第一个流程---规划科点击编辑之后的提交
      * @param id
      * @param text
      * @return
@@ -356,6 +353,31 @@ public class CapitalFlowController {
             e.printStackTrace();
             i = -1;
         }
+
+
+        //在这里把数据存储到quxianreceivemessage表中去
+        List<QuXianReceiveMessage> list = new ArrayList<QuXianReceiveMessage>();
+        String quxian = (areaname==null?"":areaname);
+        String[] strs = quxian.split(",");
+        for(int s =0;s<strs.length;s++){
+            QuXianReceiveMessage qxrm = new QuXianReceiveMessage();
+            qxrm.setCapitalflowid(id);
+            qxrm.setGuihuachuliren(user.getName());
+            qxrm.setGuihuakechulitime(format.format(now));
+            qxrm.setQuxianpeople(strs[s]);
+            qxrm.setStatus("未查看");
+            list.add(qxrm);
+        }
+        int q =0;
+        try {
+            q = capitalFlowServiceImp.setQuXianReceiveMessage(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+            q = -1;
+        }
+
+
+
         Map<String,Object> mapResult = new HashMap<String,Object>();
         if( i==-1){
             mapResult.put("result","failure");
@@ -419,7 +441,6 @@ public class CapitalFlowController {
         } catch (Exception e) {
             e.printStackTrace();
             deleteResult =-1;
-            //return "redirect:error";
         }
         Map<String,String> map = new HashMap<String,String>();
         if( deleteResult == -1 ){
@@ -427,6 +448,65 @@ public class CapitalFlowController {
         } else {
             map.put("result","success");
         }
+        String result = new Gson().toJson(map);
+        return result;
+    }
+    /**
+     * 右上角的显示未读的数量
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/numOfUnReadCapitalFlow",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String numOfUnReadCapitalFlow(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        String name = user.getName();
+        int numResult = 0;
+        try {
+            numResult = capitalFlowServiceImp.selectNumOfUnReadCapitalFlow(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String result = new Gson().toJson(numResult);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value="/getQuXianDepartmentAndStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getQuXianDepartmentAndStaff(){
+        List<DepartmentAndStaff> resList =  capitalFlowServiceImp.getDepartmentAndStaffs();
+        String result = new Gson().toJson(resList);
+        return result;
+    }
+    /**
+     * 区县的消息表里的查看按钮
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/getNoticeInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getNoticeInfo(HttpSession session,String capitalflowid,String status){
+        User user = (User)session.getAttribute("user");
+        String name = (user==null?"":user.getName());
+        Map<String,Object> mapCondition = new HashMap<String,Object>();
+        mapCondition.put("capitalflowid",capitalflowid);
+        mapCondition.put("name",name);
+        QuXianReceiveMessage qxem =  capitalFlowServiceImp.getQuXianReceiveMessage(mapCondition);
+        CapitalFlow cf = capitalFlowServiceImp.getNotice(capitalflowid);
+        if(status !=null ){
+            if("未查看".equals(status)){
+                //修改一下状态
+                int a = capitalFlowServiceImp.updateQuXianReceiveMessage(mapCondition);
+                String deletePerson = "";
+                if(cf.getAreanamedelete() == null || "".equals(cf.getAreanamedelete())){
+                    deletePerson = name;
+                } else {
+                    deletePerson = cf.getAreanamedelete() + "," + name;
+                }
+                mapCondition.put("deletePerson",deletePerson);
+                int b = capitalFlowServiceImp.updateCapitalFlow(mapCondition);
+            }
+        }
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("qxem",qxem);
+        map.put("text",cf);
         String result = new Gson().toJson(map);
         return result;
     }

@@ -19,7 +19,7 @@ import java.net.URLDecoder;
 @Controller
 public class PageForward {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public String to_home(HttpSession session,HttpServletRequest req){
+    public String home(HttpSession session,HttpServletRequest req){
         Cookie[] cookies = req.getCookies();
         User user = null;
         if( cookies != null) {
@@ -75,7 +75,7 @@ public class PageForward {
 
 
     @RequestMapping(value = "/shouwen", method = RequestMethod.GET)
-    public String to_money(HttpSession session){
+    public String to_shouwen(HttpSession session){
         User user = (User)session.getAttribute("user");
         if( user != null ){
             return "shouwen";
@@ -106,7 +106,7 @@ public class PageForward {
     }
 
     @RequestMapping(value = "/yiimindengji", method = RequestMethod.GET)
-    public String lincangyimin(HttpSession session){
+    public String yiimindengji(HttpSession session){
         User user = (User)session.getAttribute("user");
         if( user != null ){
             return "yiimindengji";
@@ -150,6 +150,15 @@ public class PageForward {
         User user = (User)session.getAttribute("user");
         if( user != null ){
             return "banqian_detail";
+        } else {
+            return "login";
+        }
+    }
+    @RequestMapping(value = "/msg", method = RequestMethod.GET)
+    public String msg(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        if( user != null ){
+            return "msg";
         } else {
             return "login";
         }

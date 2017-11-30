@@ -251,9 +251,7 @@
                 </div>
             </div>
 
-
             <hr>
-
 
 
         </div><!--/.fluid-container-->
@@ -290,7 +288,7 @@
         success:function (data) {
             console.log(data);
             $.each(data.function,function (i,n) {
-                if(n.module == "移民搬迁模块"){
+                if(n.module == "移民安置模块"){
                     fun_list1.push(n);
                 }else if(n.module == "协同办公模块"){
                     fun_list2.push(n);
@@ -303,12 +301,15 @@
     var f3 =[];
     var f4 =[];
     var f5 =[];
+    var f6 =[];
     if(fun_list1.length>0){
         $.each(fun_list1,function (i,n) {
-            if(n.classification == "移民管理"){
+            if(n.classification == "移民登记"){
                 f1.push(n.classification)
-            }else if(n.classification == "资金申请模块"){
+            }else if(n.classification == "移民分析"){
                 f2.push(n.classification)
+            }else if(n.classification == "逐年补偿"){
+                f6.push(n.classification)
             }
         })
     }
@@ -328,6 +329,7 @@
     var l3 = f3.length;
     var l4 = f4.length;
     var l5 = f5.length;
+    var l6 = f6.length;
     if(l1 == 0){
         $(".main-menu li:nth-child(2)").css("display","none");
     }
@@ -335,19 +337,22 @@
         $(".main-menu li:nth-child(3)").css("display","none");
     }
     if(l3 == 0){
-        $(".main-menu li:nth-child(5)").css("display","none");
-    }
-    if(l4 == 0){
         $(".main-menu li:nth-child(6)").css("display","none");
     }
-    if(l5 == 0){
+    if(l4 == 0){
         $(".main-menu li:nth-child(7)").css("display","none");
     }
-    if(l1 == 0 && l2 == 0){
+    if(l5 == 0){
+        $(".main-menu li:nth-child(8)").css("display","none");
+    }
+    if(l6 == 0){
+        $(".main-menu li:nth-child(4)").css("display","none");
+    }
+    if(l1 == 0 && l2 == 0 && l6 == 0){
         $(".main-menu li:nth-child(1)").css("display","none");
     }
     if(l3 == 0 && l4 == 0 && l5 == 0){
-        $(".main-menu li:nth-child(4)").css("display","none");
+        $(".main-menu li:nth-child(5)").css("display","none");
     }
 
 
