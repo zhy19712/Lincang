@@ -784,6 +784,14 @@
         }
         return res;
     }
+    //消息条数
+    $.ajax({
+        url: "/numOfUnReadCapitalFlow.do",
+        type: "post",
+        success: function (data) {
+            console.log(data);
+        }
+    })
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {
