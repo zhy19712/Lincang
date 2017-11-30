@@ -133,6 +133,10 @@
                 </c:if>
             </div>
         </div>
+        <a href="/msg.htm" id="msg" style="float: right;margin: 7px 15px 0 5px;position: relative;cursor: pointer;">
+            <span class="glyphicon glyphicon-envelope" style="font-size: 30px;color: #fff;"></span>
+            <span class="notification red" style="top: -7px;right: -10px;">3</span>
+        </a>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
         <span id="username" style="display:none;width:0;height:0;">${user.username}</span>

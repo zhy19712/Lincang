@@ -1567,6 +1567,7 @@
                 arrs.push(jsonarray[x]);
             }
         }
+        console.log(arrs);
 
         $("#tree_container").jstree({
                 "plugins" : ["checkbox"],
