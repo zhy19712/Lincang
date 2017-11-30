@@ -482,17 +482,31 @@ public class CapitalFlowController {
      */
     @ResponseBody
     @RequestMapping(value="/getNoticeInfo",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
-    public String getNoticeInfo(HttpSession session,String capitalflowid){
+    public String getNoticeInfo(HttpSession session,String capitalflowid,String status){
         User user = (User)session.getAttribute("user");
-        String name = user==null?"区县规划科测试账号":user.getName();
+        String name = (user==null?"":user.getName());
         Map<String,Object> mapCondition = new HashMap<String,Object>();
         mapCondition.put("capitalflowid",capitalflowid);
         mapCondition.put("name",name);
         QuXianReceiveMessage qxem =  capitalFlowServiceImp.getQuXianReceiveMessage(mapCondition);
-        String text = capitalFlowServiceImp.getNotice(capitalflowid);
+        CapitalFlow cf = capitalFlowServiceImp.getNotice(capitalflowid);
+        if(status !=null ){
+            if("未查看".equals(status)){
+                //修改一下状态
+                int a = capitalFlowServiceImp.updateQuXianReceiveMessage(mapCondition);
+                String deletePerson = "";
+                if(cf.getAreanamedelete() == null || "".equals(cf.getAreanamedelete())){
+                    deletePerson = name;
+                } else {
+                    deletePerson = cf.getAreanamedelete() + "," + name;
+                }
+                mapCondition.put("deletePerson",deletePerson);
+                int b = capitalFlowServiceImp.updateCapitalFlow(mapCondition);
+            }
+        }
         Map<String,Object> map = new HashMap<String,Object>();
         map.put("qxem",qxem);
-        map.put("text",text);
+        map.put("text",cf);
         String result = new Gson().toJson(map);
         return result;
     }

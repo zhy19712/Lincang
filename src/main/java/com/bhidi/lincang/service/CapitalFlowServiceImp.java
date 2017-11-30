@@ -228,8 +228,16 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.getQuXianReceiveMessage(mapCondition);
     }
 
-    public String getNotice(String capitalflowid) {
+    public CapitalFlow getNotice(String capitalflowid) {
         return capitalFlowMapper.getNotice(capitalflowid);
+    }
+
+    public int updateQuXianReceiveMessage(Map<String,Object> mapCondition) {
+        return capitalFlowMapper.updateQuXianReceiveMessage(mapCondition);
+    }
+
+    public int updateCapitalFlow(Map<String,Object> mapCondition) {
+        return capitalFlowMapper.updateCapitalFlow(mapCondition);
     }
 
     /**

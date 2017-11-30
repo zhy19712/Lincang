@@ -32,5 +32,9 @@ public interface CapitalFlowServiceInf {
 
     QuXianReceiveMessage getQuXianReceiveMessage(Map<String,Object> mapCondition);
 
-    String getNotice(String capitalflowid);
+    CapitalFlow getNotice(String capitalflowid);
+
+    int updateQuXianReceiveMessage(Map<String,Object> mapCondition);
+
+    int updateCapitalFlow(Map<String,Object> mapCondition);
 }

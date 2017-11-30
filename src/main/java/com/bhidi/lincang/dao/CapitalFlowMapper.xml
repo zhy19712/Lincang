@@ -170,10 +170,22 @@
         FROM quxianreceivemessage
         WHERE capitalflowid = #{capitalflowid} AND quxianpeople = #{name}
     </select>
-    <!--String getNotice(String capitalflowid);-->
-    <select id="getNotice" parameterType="String" resultType="String">
-        SELECT text
+    <!--CapitalFlow getNotice(String capitalflowid);-->
+    <select id="getNotice" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow">
+        SELECT text,areanamedelete
         FROM capitalflow
         WHERE capitalflowid = #{capitalflowid}
     </select>
+    <!--int updateQuXianReceiveMessage(Map<String,Object> mapCondition);-->
+    <update  id="updateQuXianReceiveMessage" parameterType="Map">
+        UPDATE quxianreceivemessage
+        SET status = '已查看'
+        WHERE capitalflowid = #{capitalflowid} AND quxianpeople = #{name}
+    </update >
+    <!--int updateCapitalFlow(Map<String, Object> mapCondition);-->
+    <update  id="updateCapitalFlow" parameterType="Map">
+        UPDATE capitalflow
+        SET areanamedelete = #{deletePerson}
+        WHERE capitalflowid = #{capitalflowid}
+    </update >
 </mapper>
