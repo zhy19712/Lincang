@@ -1,6 +1,8 @@
 package com.bhidi.lincang.controller;
 
 import com.bhidi.lincang.bean.CapitalFlow;
+import com.bhidi.lincang.bean.DepartmentAndStaff;
+import com.bhidi.lincang.bean.DepartmentAndStaffs;
 import com.bhidi.lincang.bean.User;
 import com.bhidi.lincang.service.CapitalFlowServiceImp;
 import com.google.gson.Gson;
@@ -17,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -306,7 +309,7 @@ public class CapitalFlowController {
     }
 
     /**
-     * 规划科点击编辑之后的提交
+     * 第一个流程---规划科点击编辑之后的提交
      * @param id
      * @param text
      * @return
@@ -419,7 +422,6 @@ public class CapitalFlowController {
         } catch (Exception e) {
             e.printStackTrace();
             deleteResult =-1;
-            //return "redirect:error";
         }
         Map<String,String> map = new HashMap<String,String>();
         if( deleteResult == -1 ){
@@ -428,6 +430,31 @@ public class CapitalFlowController {
             map.put("result","success");
         }
         String result = new Gson().toJson(map);
+        return result;
+    }
+    /**
+     * 右上角的显示未读的数量
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value="/numOfUnReadCapitalFlow",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
+    public String numOfCanumOfUnReadCapitalFlowpitalFlow(HttpSession session){
+        User user = (User)session.getAttribute("user");
+        String name = user.getName();
+        int numResult = 0;
+        try {
+            numResult = capitalFlowServiceImp.selectNumOfUnReadCapitalFlow(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String result = new Gson().toJson(numResult);
+        return result;
+    }
+    @ResponseBody
+    @RequestMapping(value="/getQuXianDepartmentAndStaff",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    public String getQuXianDepartmentAndStaff(){
+        List<DepartmentAndStaff> resList =  capitalFlowServiceImp.getDepartmentAndStaffs();
+        String result = new Gson().toJson(resList);
         return result;
     }
 }

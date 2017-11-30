@@ -1,6 +1,8 @@
 package com.bhidi.lincang.service;
 
 import com.bhidi.lincang.bean.CapitalFlow;
+import com.bhidi.lincang.bean.DepartmentAndStaff;
+import com.bhidi.lincang.bean.DepartmentAndStaffs;
 import com.bhidi.lincang.bean.SendFile;
 import com.bhidi.lincang.dao.CapitalFlowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -194,6 +196,31 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
 
     public int deleteCapitalFlow(String capitalflowid) {
         return capitalFlowMapper.deleteCapitalFlow(capitalflowid);
+    }
+
+    public int selectNumOfUnReadCapitalFlow(String name) {
+        return capitalFlowMapper.selectNumOfUnReadCapitalFlow(name);
+    }
+    public List<DepartmentAndStaff> getDepartmentAndStaffs() {
+        /*List<DepartmentAndStaffs> list = new ArrayList<DepartmentAndStaffs>();*/
+        List<DepartmentAndStaff> departmentAndStaffList = capitalFlowMapper.selectDepartmentAndStaff();
+        /*Set<String> departmentSet = new HashSet<String>();
+        for(DepartmentAndStaff das:departmentAndStaffList){
+            departmentSet.add(das.getDepartment());
+        }
+        for(String ds:departmentSet){
+            DepartmentAndStaffs dass = new DepartmentAndStaffs();
+            List<String> staffList = new ArrayList<String>();
+            dass.setDepartment(ds);
+            for(DepartmentAndStaff das:departmentAndStaffList){
+                if(ds.equals(das.getDepartment())){
+                    staffList.add(das.getName());
+                }
+            }
+            dass.setStaffList(staffList);
+            list.add(dass);
+        }*/
+        return departmentAndStaffList;
     }
 
     /**

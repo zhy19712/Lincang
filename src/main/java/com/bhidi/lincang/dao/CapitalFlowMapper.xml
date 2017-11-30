@@ -140,4 +140,17 @@
     <delete id="deleteCapitalFlow" parameterType="String">
         DELETE FROM capitalflow where capitalflowid = #{capitalflowid}
     </delete>
+    <!--int selectNumOfUnReadCapitalFlow(String name);-->
+    <select id="selectNumOfUnReadCapitalFlow" resultType="int" parameterType="String">
+        SELECT count(*)
+        FROM capitalflow
+        WHERE areaname LIKE CONCAT('%', #{name}, '%')
+        AND (areanamedelete NOT LIKE CONCAT('%', #{name}, '%') OR areanamedelete IS NULL);
+    </select>
+    <!--List<DepartmentAndStaff> selectDepartmentAndStaff();-->
+    <select id="selectDepartmentAndStaff" resultType="com.bhidi.lincang.bean.DepartmentAndStaff">
+        SELECT u.name,ud.unit,ud.department
+        FROM user u ,unitanddepartment ud
+        WHERE u.dept = ud.id AND ud.unit != '临沧市移民局' AND ud.unit != '管理员'
+    </select>
 </mapper>
