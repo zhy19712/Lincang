@@ -789,6 +789,7 @@
         url: "/numOfUnReadCapitalFlow.do",
         type: "post",
         success: function (data) {
+            console.log(data);
             if(data != 0){
                 $("#msg>span:nth-child(2)").text(data);
             }else {
