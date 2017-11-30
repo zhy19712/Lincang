@@ -164,4 +164,28 @@
             )
         </foreach>
     </insert >
+    <!--QuXianReceiveMessage getQuXianReceiveMessage(Map<String,Object> mapCondition);-->
+    <select id="getQuXianReceiveMessage" parameterType="String" resultType="com.bhidi.lincang.bean.QuXianReceiveMessage">
+        SELECT capitalflowid,guihuachuliren,guihuakechulitime,quxianpeople,status
+        FROM quxianreceivemessage
+        WHERE capitalflowid = #{capitalflowid} AND quxianpeople = #{name}
+    </select>
+    <!--CapitalFlow getNotice(String capitalflowid);-->
+    <select id="getNotice" parameterType="String" resultType="com.bhidi.lincang.bean.CapitalFlow">
+        SELECT text,areanamedelete
+        FROM capitalflow
+        WHERE capitalflowid = #{capitalflowid}
+    </select>
+    <!--int updateQuXianReceiveMessage(Map<String,Object> mapCondition);-->
+    <update  id="updateQuXianReceiveMessage" parameterType="Map">
+        UPDATE quxianreceivemessage
+        SET status = '已查看'
+        WHERE capitalflowid = #{capitalflowid} AND quxianpeople = #{name}
+    </update >
+    <!--int updateCapitalFlow(Map<String, Object> mapCondition);-->
+    <update  id="updateCapitalFlow" parameterType="Map">
+        UPDATE capitalflow
+        SET areanamedelete = #{deletePerson}
+        WHERE capitalflowid = #{capitalflowid}
+    </update >
 </mapper>

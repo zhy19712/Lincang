@@ -224,6 +224,22 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.setQuXianReceiveMessage(list);
     }
 
+    public QuXianReceiveMessage getQuXianReceiveMessage(Map<String,Object> mapCondition) {
+        return capitalFlowMapper.getQuXianReceiveMessage(mapCondition);
+    }
+
+    public CapitalFlow getNotice(String capitalflowid) {
+        return capitalFlowMapper.getNotice(capitalflowid);
+    }
+
+    public int updateQuXianReceiveMessage(Map<String,Object> mapCondition) {
+        return capitalFlowMapper.updateQuXianReceiveMessage(mapCondition);
+    }
+
+    public int updateCapitalFlow(Map<String,Object> mapCondition) {
+        return capitalFlowMapper.updateCapitalFlow(mapCondition);
+    }
+
     /**
      * 删除文件
      */
