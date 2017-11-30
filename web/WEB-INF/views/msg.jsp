@@ -96,7 +96,6 @@
             </thead>
         </table>
     </div>
-    <button id="btn" style="font-size: 20px;position: relative;">按钮</button>
     <div class="modal fade" id="msg_table_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="static">
 
@@ -186,8 +185,5 @@
             }
         })
     }
-    $("#btn").click(function () {
-        $("#msg_table_modal").modal("show");
-    })
 </script>
 </html>
