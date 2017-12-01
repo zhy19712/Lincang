@@ -2744,9 +2744,7 @@ public class DataGetingController {
 
     public void setRegionStyle(HSSFSheet sheet, CellRangeAddress region,
                                       HSSFCellStyle cs) {
-
          for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-
             HSSFRow row = sheet.getRow(i);
             if (row == null)
                 row = sheet.createRow(i);
@@ -2757,26 +2755,6 @@ public class DataGetingController {
                     cell.setCellValue("");
                 }
                 cell.setCellStyle(cs);
-
-            }
-        }
-    }
-    public void setRegionStyle1(HSSFSheet sheet, CellRangeAddress region,
-                               HSSFCellStyle cs) {
-
-        for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-
-            HSSFRow row = sheet.getRow(i);
-            if (row == null)
-                row = sheet.createRow(i);
-            for (int j = region.getFirstColumn(); j <= region.getLastColumn(); j++) {
-                HSSFCell cell = row.getCell(j);
-                if (cell == null) {
-                    cell = row.createCell(j);
-                    cell.setCellValue("");
-                }
-                cell.setCellStyle(cs);
-
             }
         }
     }
