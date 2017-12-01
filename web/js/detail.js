@@ -922,6 +922,7 @@ $(function () {
 
     // $(document).ready(function () {
     //     $(".btn-info").click(function () {
+    //         console.log("excel");
     //         $("#jqtable2").table2excel({
     //             exclude  : ".noExl", //过滤位置的 css 类名
     //             filename : "你想说啥" + new Date().getTime() + ".xls", //文件名称

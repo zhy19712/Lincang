@@ -256,7 +256,7 @@
         var kind = $(that).val();
         kind = encodeURI(encodeURI(kind));
         var table_name = $(that).parents("table").attr("id");
-        var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+        var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
         var id = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
         id = encodeURI(encodeURI(id));
         console.log(table_name);
