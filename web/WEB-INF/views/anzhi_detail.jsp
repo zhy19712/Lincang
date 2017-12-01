@@ -28,9 +28,6 @@
     <script src="../../js/jQuery.print.js"></script>
     <%--<script src="../../js/jquery-3.2.1.min.js"></script>--%>
     <script src="../../js/table2excel.js"></script>
-    <script src="../../js/Blob.js"></script>
-    <script src="../../js/FileSaver.js"></script>
-    <script src="../../js/tableExport.js"></script>
     <script src="../../js/detail.js"></script>
     <style>
         ::-webkit-input-placeholder { /* WebKit browsers */

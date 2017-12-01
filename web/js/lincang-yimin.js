@@ -984,9 +984,17 @@ $(function(){
     //导出
     $("#out").click(function () {
         $("#allinfo_table tbody tr td:first-child input").each(function (i,n) {
-            // if($(this).attr("checked")){
-            //     console.log($(this).parent("td").parent("tr").children("td:nth-child(3)").text())
-            // }
+            if(n.checked){
+                var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
+                $.ajax({
+                    url: "/exportExcel.do",
+                    type: "post",
+                    data: {fid:fid},
+                    success: function (data) {
+                        console.log(data);
+                    }
+                })
+            }
         })
     })
 })
