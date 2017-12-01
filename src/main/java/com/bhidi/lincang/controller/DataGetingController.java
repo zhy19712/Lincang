@@ -47,7 +47,7 @@ public class DataGetingController {
     @RequestMapping(value="/exportExcel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseEntity<byte[]> exportExcel(String fid){
         if(fid.contains("KQ")){
-            return exportKuQiExcel(fid);
+            return exportKuQuExcel(fid);
         } else {
             return exportBanQianExcel(fid);
         }
@@ -1413,7 +1413,7 @@ public class DataGetingController {
     }
     //导出库区安置表数据
     @RequestMapping("/exportKuQiExcel")
-    public ResponseEntity<byte[]> exportKuQiExcel(String fid) {
+    public ResponseEntity<byte[]> exportKuQuExcel(String fid) {
         //取出来对应的数据
         Bank bank = dataGetingServiceImp.getBankInfoByFid(fid);
         List<People> peopleList = dataGetingServiceImp.getPeopleInfosByFid(fid);
