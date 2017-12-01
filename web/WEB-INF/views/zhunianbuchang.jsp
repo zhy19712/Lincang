@@ -138,7 +138,7 @@
         </div>
         <a href="/msg.htm" id="msg" style="float: right;margin: 7px 15px 0 5px;position: relative;cursor: pointer;">
             <span class="glyphicon glyphicon-envelope" style="font-size: 30px;color: #fff;"></span>
-            <span class="notification red" style="top: -7px;right: -10px;">3</span>
+            <span class="notification red" style="top: -7px;right: -10px;"></span>
         </a>
         <span id="status" style="display:none;width:0;height:0;">${user.level}</span>
         <span id="name" style="display:none;width:0;height:0;">${user.name}</span>
@@ -784,6 +784,19 @@
         }
         return res;
     }
+    //消息条数
+    $.ajax({
+        url: "/numOfUnReadCapitalFlow.do",
+        type: "post",
+        success: function (data) {
+            console.log(data);
+            if(data != 0){
+                $("#msg>span:nth-child(2)").text(data);
+            }else {
+                $("#msg>span:nth-child(2)").css("display","none");
+            }
+        }
+    })
     //全部列表
     var money_apply1 = $('#money_apply1').DataTable({
         ajax: {

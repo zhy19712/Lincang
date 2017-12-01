@@ -2055,35 +2055,6 @@
         })
     });
 
-//    function delete_file() {
-//        var delete_file = [];
-//        if(del_file_arr.length > 0){
-//            $.each(del_file_arr,function (i,n) {
-//                var index = n.lastIndexOf(".");
-//                var name = n.substring(0,index);
-//                $.each(file_arr,function (i,n) {
-//                    var num = n.search(name);
-//                    if(num > 0){
-//                        delete_file.push(n);
-//                    }
-//                })
-//            });
-//        }
-//        console.log(delete_file)
-//        if(delete_file.length>0){
-//            console.log(id,delete_file);
-//            var mydelete = JSON.stringify(delete_file);
-//            $.ajax({
-//                url: "/pathDelete.do",
-//                type: "post",
-//                data: {receivefileid:id,path:mydelete},
-//                dataType: "json",
-//                success: function(data){
-//                    console.log(data);
-//                }
-//            })
-//        }
-//    }
 
     function newForm() {
 
