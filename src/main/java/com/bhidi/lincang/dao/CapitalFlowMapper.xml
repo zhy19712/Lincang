@@ -160,7 +160,7 @@
         <foreach collection="list" separator="," item="quxian">
             (
             #{quxian.capitalflowid},#{quxian.guihuachuliren},
-            #{quxian.guihuakechulitime},#{quxian.quxianpeople}，#{quxian.status}
+            #{quxian.guihuakechulitime},#{quxian.quxianpeople},#{quxian.status}
             )
         </foreach>
     </insert >

@@ -44,7 +44,19 @@
         }
         #msg_table_wrapper{
             width: 94%;
-            margin: 20px auto;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+        #msg_table_modal table{
+            border-top: 1px solid #000;
+            border-left: 1px solid #000;
+            width: 100%;
+            line-height: 30px;
+            text-align: center;
+        }
+        #msg_table_modal table td{
+            border-right: 1px solid #000;
+            border-bottom: 1px solid #000;
         }
     </style>
 </head>
@@ -101,9 +113,6 @@
 
         <div class="modal-dialog">
             <div class="modal-content">
-
-
-
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">×</button>
                     <h3></h3>
@@ -182,6 +191,12 @@
             dataType: "json",
             success: function (data) {
                 console.log(data);
+                msg_table.ajax.url("/quxianMessage.do").load();
+                $("#msg_table_modal").modal("show");
+                $("#msg_table_modal h3").text("详情内容-" + id);
+                $("#msg_table_modal tbody tr:nth-child(1) td:nth-child(2)").text(data.qxem.guihuachuliren);
+                $("#msg_table_modal tbody tr:nth-child(1) td:nth-child(4)").text(data.qxem.guihuakechulitime);
+                $("#msg_table_modal tbody tr:nth-child(2) td:nth-child(2)").text(data.text.text);
             }
         })
     }

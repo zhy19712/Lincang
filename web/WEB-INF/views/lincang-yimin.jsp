@@ -184,6 +184,7 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
+								<th>导出</th>
 								<th>分类</th>
 								<th>编号</th>
 								<th>户主姓名</th>
@@ -196,6 +197,7 @@
 						</thead>
 					</table>
 				</div>
+				<button id="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
@@ -255,7 +257,7 @@
         kind = encodeURI(encodeURI(kind));
         var table_name = $(that).parents("table").attr("id");
         var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+        var id = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
         id = encodeURI(encodeURI(id));
         console.log(table_name);
         if(table_kind == "库区安置登记表"){
@@ -271,7 +273,7 @@
     }
     //删除功能
     function delete1(that) {
-        var FID = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+        var FID = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
         console.log(FID);
         if(confirm("你确定要删除吗？")){
             $.ajax({

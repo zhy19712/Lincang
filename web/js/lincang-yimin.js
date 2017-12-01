@@ -26,6 +26,7 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
+            {"data": null},
             {"data": "TABLE_TYPE"},
             {"data": "FID"},
             {"data": "NAME"},
@@ -39,7 +40,16 @@ $(function(){
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [7],
+                "targets": [0],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
+                    return html;
+                }
+            },
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [8],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
@@ -971,5 +981,12 @@ $(function(){
     echart1.setOption(option1);
     echart2.setOption(option2);
 
-
+    //导出
+    $("#out").click(function () {
+        $("#allinfo_table tbody tr td:first-child input").each(function (i,n) {
+            // if($(this).attr("checked")){
+            //     console.log($(this).parent("td").parent("tr").children("td:nth-child(3)").text())
+            // }
+        })
+    })
 })
