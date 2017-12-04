@@ -81,11 +81,11 @@
 					</ul>
 					<ul id="tab_content">
 						<li>
-							<div id="table-wrapper">
+							<div id="table-wrapper"`>
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th>导出</th>
+											<th></th>
 											<th>分类</th>
 											<th>编号</th>
 											<th>户主姓名</th>
@@ -186,7 +186,7 @@
 					<table id="allinfo_table" width="100%" class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>导出</th>
+								<th></th>
 								<th>分类</th>
 								<th>编号</th>
 								<th>户主姓名</th>

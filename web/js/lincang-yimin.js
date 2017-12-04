@@ -17,115 +17,247 @@ $(function(){
 	$("#show").height(show_height);
 	$("#tab_content li").height(tab_content_height);
 
-    //所有信息展示表格
-    allinfo_table = $('#allinfo_table').DataTable({
-        ajax: {
-            url: "/FamilyInfoAdd.do",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": null},
-            {"data": "TABLE_TYPE"},
-            {"data": "FID"},
-            {"data": "NAME"},
-            {"data": "RESERVOIR"},
-            {"data": "TO_DISTRICT"},
-            {"data": "INTERVIEWER"},
-            {"data": "CREATED_AT"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
-                    return html;
-                }
-            },
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [8],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
+    function myBrowser(){
+        var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+        var isOpera = userAgent.indexOf("Opera") > -1;
+        if (isOpera) {
+            return "Opera"
+        }; //判断是否Opera浏览器
+        if (userAgent.indexOf("Firefox") > -1) {
+            return "FF";
+        } //判断是否Firefox浏览器
+        if (userAgent.indexOf("Chrome") > -1){
+            return "Chrome";
         }
-    });
+        if (userAgent.indexOf("Safari") > -1) {
+            return "Safari";
+        } //判断是否Safari浏览器
+        if (userAgent.indexOf("Trident") > -1) {
+            return "IE";
+        }; //判断是否IE浏览器
+    }
+    var mb = myBrowser();
+    if ("IE" == mb) {
+        //所有信息展示表格
+        allinfo_table = $('#allinfo_table').DataTable({
+            ajax: {
+                url: "/FamilyInfoAdd.do",
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": null},
+                {"data": "TABLE_TYPE"},
+                {"data": "FID"},
+                {"data": "NAME"},
+                {"data": "RESERVOIR"},
+                {"data": "TO_DISTRICT"},
+                {"data": "INTERVIEWER"},
+                {"data": "CREATED_AT"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0],
+                    "render" :  function(data,type,row) {
+                        var html = "<button class='ie_out'>导出</button>";
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [8],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+
+        //区县列表信息
+        mytable1 = $('#table1').DataTable({
+            ajax: {
+                url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": null},
+                {"data": "TABLE_TYPE"},
+                {"data": "FID"},
+                {"data": "NAME"},
+                {"data": "RESERVOIR"},
+                {"data": "TO_DISTRICT"},
+                {"data": "INTERVIEWER"},
+                {"data": "CREATED_AT"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0],
+                    "render" :  function(data,type,row) {
+                        var html = "<button class='ie_out'>导出</button>";
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [8],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+    }else {
+        //所有信息展示表格
+        allinfo_table = $('#allinfo_table').DataTable({
+            ajax: {
+                url: "/FamilyInfoAdd.do",
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": null},
+                {"data": "TABLE_TYPE"},
+                {"data": "FID"},
+                {"data": "NAME"},
+                {"data": "RESERVOIR"},
+                {"data": "TO_DISTRICT"},
+                {"data": "INTERVIEWER"},
+                {"data": "CREATED_AT"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [8],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+
+        //区县列表信息
+        mytable1 = $('#table1').DataTable({
+            ajax: {
+                url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": null},
+                {"data": "TABLE_TYPE"},
+                {"data": "FID"},
+                {"data": "NAME"},
+                {"data": "RESERVOIR"},
+                {"data": "TO_DISTRICT"},
+                {"data": "INTERVIEWER"},
+                {"data": "CREATED_AT"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [8],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+    }
 
 
-    //区县列表信息
-    mytable1 = $('#table1').DataTable({
-        ajax: {
-            url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": null},
-            {"data": "TABLE_TYPE"},
-            {"data": "FID"},
-            {"data": "NAME"},
-            {"data": "RESERVOIR"},
-            {"data": "TO_DISTRICT"},
-            {"data": "INTERVIEWER"},
-            {"data": "CREATED_AT"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
-                    return html;
-                }
-            },
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [8],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                    return html;
-                }
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
-        }
-    });
 
     //获取功能
     var fun_list = [];
@@ -1009,5 +1141,20 @@ $(function(){
                 $("#form_container").find(".btn" + fid).click();
             }
         })
+    })
+    //ie导出
+    $(".ie_out").click(function(){
+        $("#form_container").empty();
+        var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
+        var str = "";
+        str += ""
+            + "<iframe name=downloadFrame"+ fid +" style='display:none;'></iframe>"
+            + "<form name=download"+ fid +" action='/exportExcel.do' method='get' target=downloadFrame"+ fid +">"
+            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+            + "<input class='file_url' style='display: none;' name='fid' value="+ fid +">"
+            + "<button type='submit' class=btn" + fid +"></button>"
+            + "</form>"
+        $("#form_container").append(str);
+        $("#form_container").find(".btn" + fid).click();
     })
 })

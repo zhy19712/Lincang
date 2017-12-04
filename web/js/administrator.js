@@ -446,8 +446,9 @@
                                        alert("非文件模块，全部列表和个人列表不能同时选择!")
                                    }else {
                                        flagRoleAdd=false;
+                                       console.log(datas);
                                        $.ajax({
-                                           url:"/updateRole.do",
+                                           url:"/registerRole.do",
                                            dataType:"json",
                                            type:"post",
                                            data:datas,
@@ -456,7 +457,7 @@
                                                flagRoleUpdate=true;
                                                if(val.result =="success"){
                                                    table_refresh();
-                                                   alert("修改成功");
+                                                   alert("添加成功");
                                                    $("#form_update_Role").modal('hide');
                                                }else {
                                                    alert("修改失败");
