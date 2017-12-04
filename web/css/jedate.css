@@ -53,10 +53,10 @@
 .jedateblue .ymsbox .ymcon td.contain,.jedateblue .ymsbox .ymcon td.contain:hover{background-color: #D0F0E3;}
 
 .jedateblue .daybox{overflow: hidden;background-color: #fff;}
-.jedateblue .daybox .arthead{background-color: #54b4eb;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;padding: 0 50px;position: relative;}
+.jedateblue .daybox .arthead{background-color: #54b4eb;color:#fff;height:40px; line-height:40px;text-align: center;font-size: 14px;position: relative;}
 .jedateblue .daybox .arthead em{width:25px;height:40px; line-height:40px;position:absolute;top:0;background-repeat: no-repeat;background-position: center center;cursor: pointer;}
 .jedateblue .daybox .arthead em:hover{background-color:#466faa;}
-.jedateblue .daybox .arthead p{width: 100%;line-height:40px;float: left;text-align:center;font-size: 14px;}
+.jedateblue .daybox .arthead p{width: 100%;line-height:40px;float: left;text-align:center;}
 .jedateblue .daybox .arthead .ymbtn{padding: 8px 10px;color:#fff;border-radius: 4px;cursor:pointer;}
 .jedateblue .daybox .arthead .ymbtn:hover{background-color:#466faa;color:#fff;}
 .jedateblue .daybox .artcont{overflow: hidden;position: relative;border: 1px #cecece solid;border-top: none;float: left;}

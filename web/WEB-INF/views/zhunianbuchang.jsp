@@ -1497,6 +1497,7 @@
             dataType: "json",
             data: {id:id},
             success: function (data) {
+                console.log(data);
                 mydata = data.result;
                 //资金上报信息
                 $(".ghapply tr:nth-child(1) td:nth-child(2) input").val(mydata.title);

@@ -60,7 +60,6 @@
         .mytable td{
             border-right: 1px solid red;
             border-bottom: 1px solid red;
-            padding: 0 3px;
         }
         .mytable input{
             width: 100%;
