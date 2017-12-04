@@ -61,6 +61,7 @@
             padding: 0 5px;
             outline: none;
             border: none;
+            height: 30px;
         }
         .mytable textarea{
             border: none;
