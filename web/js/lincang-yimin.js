@@ -82,6 +82,7 @@ $(function(){
         "order": [[1, 'desc']],
         "serverSide": true,
         "columns": [
+            {"data": null},
             {"data": "TABLE_TYPE"},
             {"data": "FID"},
             {"data": "NAME"},
@@ -95,7 +96,16 @@ $(function(){
             {
                 "searchable": false,
                 "orderable": false,
-                "targets": [7],
+                "targets": [0],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
+                    return html;
+                }
+            },
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [8],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
@@ -982,18 +992,21 @@ $(function(){
     echart2.setOption(option2);
 
     //导出
-    $("#out").click(function () {
+    $(".out").click(function () {
+        $("#form_container").empty();
         $("#allinfo_table tbody tr td:first-child input").each(function (i,n) {
             if(n.checked){
                 var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
-                $.ajax({
-                    url: "/exportExcel.do",
-                    type: "post",
-                    data: {fid:fid},
-                    success: function (data) {
-                        console.log(data);
-                    }
-                })
+                var str = "";
+                    str += ""
+                        + "<iframe name=downloadFrame"+ fid +" style='display:none;'></iframe>"
+                        + "<form action='/exportExcel.do' method='post' target=downloadFrame"+ fid +">"
+                        + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+                        + "<input class='file_url' style='display: none;' name='fid' value="+ fid +">"
+                        + "<button type='submit' class=btn" + fid +"></button>"
+                        + "</form>"
+                $("#form_container").append(str);
+                $("#form_container").find(".btn" + fid).click();
             }
         })
     })
