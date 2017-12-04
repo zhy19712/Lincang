@@ -56,6 +56,7 @@ $(function(){
     }
     var mb = myBrowser();
     if ("IE" == mb) {
+        $(".out").css("display","none");
         //所有信息展示表格
         allinfo_table = $('#allinfo_table').DataTable({
             ajax: {
@@ -216,9 +217,6 @@ $(function(){
 
 
     //获取功能
-    $(".out").css("display","none");
-    $("table tr td:first-child").css("display","none");
-    $("table tr th:first-child").css("display","none");
     var fun_list = [];
     $.ajax({
         url: "/getFunction.do",
@@ -295,7 +293,7 @@ $(function(){
     if(f12.length == 0){
         $("table tr td:first-child").css("display","none");
         $("table tr th:first-child").css("display","none");
-        $(".out").css("display","block");
+        $(".out").css("display","none");
     }
     if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0 && f12.length == 0){
         $("#slide .nav>li:first-child").css("display","none");
