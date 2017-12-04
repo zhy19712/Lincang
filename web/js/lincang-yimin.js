@@ -1,4 +1,21 @@
 var mytable1,allinfo_table,county_name;
+//ie导出
+function ie_out(that){
+    $("#form_container").empty();
+    console.log(123)
+    var fid = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
+    console.log(fid);
+    var str = "";
+    str += ""
+        + "<iframe name=downloadFrame"+ fid +" style='display:none;'></iframe>"
+        + "<form name=download"+ fid +" action='/exportExcel.do' method='get' target=downloadFrame"+ fid +">"
+        + "<span class='file_name' style='color: #000;'>"+str+"</span>"
+        + "<input class='file_url' style='display: none;' name='fid' value="+ fid +">"
+        + "<button type='submit' class=btn" + fid +"></button>"
+        + "</form>"
+    $("#form_container").append(str);
+    $("#form_container").find(".btn" + fid).click();
+}
 $(function(){
 	//自适应宽高
 	var height = $(window).height() - 66;
@@ -16,6 +33,7 @@ $(function(){
 	$("#container2").width(width1);
 	$("#show").height(show_height);
 	$("#tab_content li").height(tab_content_height);
+
 
     function myBrowser(){
         var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
@@ -38,6 +56,7 @@ $(function(){
     }
     var mb = myBrowser();
     if ("IE" == mb) {
+        $(".out").css("display","none");
         //所有信息展示表格
         allinfo_table = $('#allinfo_table').DataTable({
             ajax: {
@@ -63,7 +82,7 @@ $(function(){
                     "orderable": false,
                     "targets": [0],
                     "render" :  function(data,type,row) {
-                        var html = "<button class='ie_out'>导出</button>";
+                        var html = "<button class='ie_out' onclick='ie_out(this)'>导出</button>";
                         return html;
                     }
                 },
@@ -118,7 +137,7 @@ $(function(){
                     "orderable": false,
                     "targets": [0],
                     "render" :  function(data,type,row) {
-                        var html = "<button class='ie_out'>导出</button>";
+                        var html = "<button class='ie_out' onclick='ie_out(this)'>导出</button>";
                         return html;
                     }
                 },
@@ -363,7 +382,7 @@ $(function(){
 	//滚动条插件
 	$("#show").panel({iWheelStep:32});
 	$("#ta_sroll").panel({iWheelStep:32});
-	$("#tab_content li:first-child").panel({iWheelStep:32});
+	// $("#tab_content li:first-child").panel({iWheelStep:32});
 
 
 
@@ -1124,9 +1143,9 @@ $(function(){
     echart2.setOption(option2);
 
     //导出
-    $(".out").click(function () {
+    $(".out").click(function (that) {
         $("#form_container").empty();
-        $("#allinfo_table tbody tr td:first-child input").each(function (i,n) {
+        $("table tbody tr td:first-child input").each(function (i,n) {
             if(n.checked){
                 var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
                 var str = "";
@@ -1142,19 +1161,5 @@ $(function(){
             }
         })
     })
-    //ie导出
-    $(".ie_out").click(function(){
-        $("#form_container").empty();
-        var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
-        var str = "";
-        str += ""
-            + "<iframe name=downloadFrame"+ fid +" style='display:none;'></iframe>"
-            + "<form name=download"+ fid +" action='/exportExcel.do' method='get' target=downloadFrame"+ fid +">"
-            + "<span class='file_name' style='color: #000;'>"+str+"</span>"
-            + "<input class='file_url' style='display: none;' name='fid' value="+ fid +">"
-            + "<button type='submit' class=btn" + fid +"></button>"
-            + "</form>"
-        $("#form_container").append(str);
-        $("#form_container").find(".btn" + fid).click();
-    })
+
 })

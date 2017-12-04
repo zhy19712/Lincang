@@ -81,7 +81,7 @@
 					</ul>
 					<ul id="tab_content">
 						<li>
-							<div id="table-wrapper"`>
+							<div id="table-wrapper">
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
