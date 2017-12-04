@@ -44,7 +44,7 @@ public class DataGetingController {
         return new Gson().toJson(resultMap);
     }
 
-    @RequestMapping(value="/exportExcel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
+    @RequestMapping(value="/exportExcel",method= RequestMethod.GET,produces = "application/json;charset=UTF-8")
     public ResponseEntity<byte[]> exportExcel(String fid){
         if(fid.contains("KQ")){
             return exportKuQuExcel(fid);

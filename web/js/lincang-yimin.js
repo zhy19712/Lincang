@@ -1000,7 +1000,7 @@ $(function(){
                 var str = "";
                     str += ""
                         + "<iframe name=downloadFrame"+ fid +" style='display:none;'></iframe>"
-                        + "<form action='/exportExcel.do' method='post' target=downloadFrame"+ fid +">"
+                        + "<form name=download"+ fid +" action='/exportExcel.do' method='get' target=downloadFrame"+ fid +">"
                         + "<span class='file_name' style='color: #000;'>"+str+"</span>"
                         + "<input class='file_url' style='display: none;' name='fid' value="+ fid +">"
                         + "<button type='submit' class=btn" + fid +"></button>"
