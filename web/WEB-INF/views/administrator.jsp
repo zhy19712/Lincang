@@ -197,7 +197,7 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
                                             <a data-toggle="tooltip" title="填写新表单" class="well top-block"
-                                               href="javascript:void(0)" onclick="newForm()">
+                                               href="javascript:void(0)" id="newForm">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
                                                 <div>添加用户</div>
@@ -245,7 +245,7 @@
                                     <div class="row">
                                         <div class="col-md-2 col-sm-3 col-xs-6">
                                             <a data-toggle="tooltip" title="填写新角色" class="well top-block"
-                                               href="javascript:void(0)" onclick="newRoleForm()">
+                                               href="javascript:void(0)" id="newRoleForm">
                                                 <i class="glyphicon glyphicon-pencil blue"></i>
 
                                                 <div>添加角色</div>
@@ -315,8 +315,8 @@
                         <table class="mytable">
                             <tbody>
                             <tr>
-                                <td>用户名</td>
-                                <td colspan="3">
+                                <td width="15%">用户名</td>
+                                <td colspan="3" width="85%">
                                     <input type="text" name="username" id="username" class="pull-left" style="width :50%;">
                                     <span id="usernamePrompt" class="text-left prompt" >以字母开头,可以字母和数字组合,长度在2个以上</span>
                                 </td>
@@ -840,86 +840,6 @@
     <p class="col-md-3 col-sm-3 col-xs-12 powered-by">Powered by: <a
             href="http://www.bhidi.com">北京院</a></p>
 </footer>
-
-
-
-
-<script>
-    function newForm() {
-        $('#form_add_users input').val('');
-        //用户初始化 单位名称UnitName 部门Department
-        initUND();
-        //用户初始化 角色
-        initRole();
-        $('#form_add_users').modal('show');
-    }
-    function newRoleForm() {
-        $('#form_add_Role input').val('');
-//        树状复选框初始默认选中
-         var instance = $('#tree_container').jstree(true);
-         instance.deselect_all();
-         var inArr=['1','2','3',"4","6","7","8","9","10","11"];
-         instance.select_node(inArr);
-        $('#form_add_Role').modal('show');
-    }
-
-    //用户初始化角色
-    function initRole() {
-        $.ajax({
-            url:"getRoles.do",
-            dataType:"json",
-            type:"post",
-            data:"",
-            async:false,
-            success:function (val) {
-                var str="";
-                $.each(val,function (a,b) {
-                    str+="<option>"+b+"</option>"
-                });
-                $(".role").html(str)
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-    }
-    //用户初始化 单位名称UnitName 部门Department
-    function initUND() {
-        $.ajax({
-            url:"/getUnitAndDepartments.do",
-            dataType:"json",
-            type:"post",
-            data:"",
-            async:false,
-            success:function (val) {
-                var str="",str1="";
-                $.each(val,function (a,b) {
-                    str+="<option value="+b.unit+">"+b.unit+"</option>";
-                });
-                $(".unit").html(str);
-
-                $.each(val[0].departmentList,function (h,k) {
-                    str1+="<option value="+k+">"+k+"</option>"
-                });
-                $(".department").html(str1);
-
-                $(".unit").change(function () {
-                    var sel=$(".unit").val();
-                    var str2="";
-                    $.each(val,function(c,d){
-                        if(sel==d.unit){
-                            $.each(d.departmentList,function (e,f) {
-                                str2+="<option value="+f+">"+f+"</option>"
-                            })
-                        }
-                    });
-                    $(".department").html(str2);
-                })
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-    }
-</script>
 
 
 
