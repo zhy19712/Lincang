@@ -85,6 +85,7 @@
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
+											<th>导出</th>
 											<th>分类</th>
 											<th>编号</th>
 											<th>户主姓名</th>
@@ -97,6 +98,7 @@
 									</thead>
 								</table>
 							</div>
+							<button class="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
 						</li>
 						<li>
 							<div id="container1"></div>
@@ -197,10 +199,13 @@
 						</thead>
 					</table>
 				</div>
-				<button id="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
+				<button class="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
+	</div>
+	<div id="form_container" style="display: none;">
+
 	</div>
 </body>
 <script>
