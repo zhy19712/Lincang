@@ -47,7 +47,7 @@ public class DataGetingController {
     @RequestMapping(value="/exportExcel",method= RequestMethod.POST,produces = "application/json;charset=UTF-8")
     public ResponseEntity<byte[]> exportExcel(String fid){
         if(fid.contains("KQ")){
-            return exportKuQiExcel(fid);
+            return exportKuQuExcel(fid);
         } else {
             return exportBanQianExcel(fid);
         }
@@ -1413,7 +1413,7 @@ public class DataGetingController {
     }
     //导出库区安置表数据
     @RequestMapping("/exportKuQiExcel")
-    public ResponseEntity<byte[]> exportKuQiExcel(String fid) {
+    public ResponseEntity<byte[]> exportKuQuExcel(String fid) {
         //取出来对应的数据
         Bank bank = dataGetingServiceImp.getBankInfoByFid(fid);
         List<People> peopleList = dataGetingServiceImp.getPeopleInfosByFid(fid);
@@ -2744,9 +2744,7 @@ public class DataGetingController {
 
     public void setRegionStyle(HSSFSheet sheet, CellRangeAddress region,
                                       HSSFCellStyle cs) {
-
          for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-
             HSSFRow row = sheet.getRow(i);
             if (row == null)
                 row = sheet.createRow(i);
@@ -2757,26 +2755,6 @@ public class DataGetingController {
                     cell.setCellValue("");
                 }
                 cell.setCellStyle(cs);
-
-            }
-        }
-    }
-    public void setRegionStyle1(HSSFSheet sheet, CellRangeAddress region,
-                               HSSFCellStyle cs) {
-
-        for (int i = region.getFirstRow(); i <= region.getLastRow(); i++) {
-
-            HSSFRow row = sheet.getRow(i);
-            if (row == null)
-                row = sheet.createRow(i);
-            for (int j = region.getFirstColumn(); j <= region.getLastColumn(); j++) {
-                HSSFCell cell = row.getCell(j);
-                if (cell == null) {
-                    cell = row.createCell(j);
-                    cell.setCellValue("");
-                }
-                cell.setCellStyle(cs);
-
             }
         }
     }
