@@ -188,13 +188,12 @@ $(function () {
     //打开添加用户模态框
     $("#newForm").click(function () {
         status1=false;status2=false;status3=false;
-
         $('#form_add_users input').val('');
-        //用户初始化 单位名称UnitName 部门Department
-        initUND();
-        //用户初始化 角色
-        initRole();
         $('#form_add_users').modal('show');
+        //用户初始化 单位名称UnitName 部门Department
+        initUND("form_add_users");
+        //用户初始化 角色
+        initRole("form_add_users");
 
         $("#usernamePrompt").text("以字母开头,可以字母和数字组合,长度在2个以上").css("color","black");
         $("#passPrompt").text("数字和字母组合,字符,长度在6~18之间").css("color","black");
@@ -210,62 +209,6 @@ $(function () {
         instance.select_node(inArr);
         $('#form_add_Role').modal('show');
     });
-    //用户初始化角色
-    function initRole() {
-        $.ajax({
-            url:"getRoles.do",
-            dataType:"json",
-            type:"post",
-            data:"",
-            async:false,
-            success:function (val) {
-                var str="";
-                $.each(val,function (a,b) {
-                    str+="<option>"+b+"</option>"
-                });
-                $(".role").html(str)
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-    }
-    //用户初始化 单位名称UnitName 部门Department
-    function initUND() {
-        $.ajax({
-            url:"/getUnitAndDepartments.do",
-            dataType:"json",
-            type:"post",
-            data:"",
-            async:false,
-            success:function (val) {
-                var str="",str1="";
-                $.each(val,function (a,b) {
-                    str+="<option value="+b.unit+">"+b.unit+"</option>";
-                });
-                $(".unit").html(str);
-
-                $.each(val[0].departmentList,function (h,k) {
-                    str1+="<option value="+k+">"+k+"</option>"
-                });
-                $(".department").html(str1);
-
-                $(".unit").change(function () {
-                    var sel=$(".unit").val();
-                    var str2="";
-                    $.each(val,function(c,d){
-                        if(sel==d.unit){
-                            $.each(d.departmentList,function (e,f) {
-                                str2+="<option value="+f+">"+f+"</option>"
-                            })
-                        }
-                    });
-                    $(".department").html(str2);
-                })
-            },error:(function(){
-                alert("系统出错")
-            })
-        })
-    }
 
     //用户添加按钮
     var flagUserAdd=true;
@@ -321,6 +264,8 @@ $(function () {
 
     //用户操作
     $("#NewTable_Admin").on("click",".edit",function () {
+        initUND("form_update_users");
+        initRole("form_update_users");
         status4=true;status6=true;
         $("#passPrompt1").text("数字和字母组合,字符,长度在6~18之间").css("color","black");
         $("#namePrompt1").text("必须为汉字").css("color","black");
@@ -356,9 +301,31 @@ $(function () {
                 $("#form_update_users .role").val(data.role);
                 $("#form_update_users .unit").val(data.unit);
                 $("#name1").val(data.name);
-                $("#form_update_users .department").val(data.department);
                 $("#phone1").val(data.phone);
                 $("#form_update_users").modal('show');
+
+                $.ajax({
+                    url:"/getUnitAndDepartments.do",
+                    dataType:"json",
+                    type:"post",
+                    data:"",
+                    async:false,
+                    success:function (val) {
+                        var str="";
+                        $.each(val,function (a,b) {
+                            if(b.unit==data.unit){
+                                $.each(b.departmentList,function (e,f) {
+                                    str+="<option value="+f+">"+f+"</option>";
+                                })
+                            }
+                        });
+                        $("#form_update_users .department").html(str);
+                        $("#form_update_users .department").val(data.department);
+                    },error:(function(){
+                        alert("系统出错")
+                    })
+                })
+
             }
         });
     }
@@ -383,6 +350,7 @@ $(function () {
             "phone" : phone,
             "id" :id
         };
+
         $.ajax({
             url:"/updateRegisterInfoById.do",
             dataType:"json",
@@ -529,7 +497,7 @@ $(function () {
                                 }else {
                                     flagRoleAdd=false;
 
-                                    console.log(datas);
+
                                     $.ajax({
                                         url:"/registerRole.do",
                                         dataType:"json",
@@ -706,6 +674,65 @@ $(function () {
             }
         }
         return false;
+    }
+    //用户初始化角色
+    function initRole(that) {
+
+        $.ajax({
+            url:"getRoles.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="";
+                $.each(val,function (a,b) {
+                    str+="<option>"+b+"</option>"
+                });
+                $("#"+that+" .role").html(str)
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
+    }
+    //用户初始化 单位名称UnitName 部门Department
+    function initUND(that) {
+
+        $.ajax({
+            url:"/getUnitAndDepartments.do",
+            dataType:"json",
+            type:"post",
+            data:"",
+            async:false,
+            success:function (val) {
+                var str="",str1="";
+                $.each(val,function (a,b) {
+                    str+="<option value="+b.unit+">"+b.unit+"</option>";
+                });
+                $("#"+that+" .unit").html(str);
+
+                $.each(val[0].departmentList,function (h,k) {
+                    str1+="<option value="+k+">"+k+"</option>"
+                });
+                $(".department").html(str1);
+
+                $("#"+that+" .unit").change(function () {
+                    var sel=$("#"+that+" .unit").val();
+                    var str2="";
+
+                    $.each(val,function(c,d){
+                        if(sel==d.unit){
+                            $.each(d.departmentList,function (e,f) {
+                                str2+="<option value="+f+">"+f+"</option>"
+                            })
+                        }
+                    });
+                    $("#"+that+" .department").html(str2);
+                })
+            },error:(function(){
+                alert("系统出错")
+            })
+        })
     }
 
 });
