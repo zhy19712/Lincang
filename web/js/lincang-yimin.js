@@ -112,59 +112,6 @@ $(function(){
             }
         });
 
-        //区县列表信息
-        mytable1 = $('#table1').DataTable({
-            ajax: {
-                url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
-                async:false
-            },
-            "order": [[1, 'desc']],
-            "serverSide": true,
-            "columns": [
-                {"data": null},
-                {"data": "TABLE_TYPE"},
-                {"data": "FID"},
-                {"data": "NAME"},
-                {"data": "RESERVOIR"},
-                {"data": "TO_DISTRICT"},
-                {"data": "INTERVIEWER"},
-                {"data": "CREATED_AT"},
-                {"data": null}
-            ],
-            "columnDefs": [
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [0],
-                    "render" :  function(data,type,row) {
-                        var html = "<button class='ie_out' onclick='ie_out(this)'>导出</button>";
-                        return html;
-                    }
-                },
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [8],
-                    "render" :  function(data,type,row) {
-                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                        return html;
-                    }
-                }
-            ],
-            "language": {
-                "lengthMenu": "每页_MENU_ 条记录",
-                "zeroRecords": "没有找到记录",
-                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                "infoEmpty": "无记录",
-                "search": "搜索：",
-                "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
-                }
-            }
-        });
     }else {
         //所有信息展示表格
         allinfo_table = $('#allinfo_table').DataTable({
@@ -221,64 +168,58 @@ $(function(){
             }
         });
 
-        //区县列表信息
-        mytable1 = $('#table1').DataTable({
-            ajax: {
-                url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
-                async:false
-            },
-            "order": [[1, 'desc']],
-            "serverSide": true,
-            "columns": [
-                {"data": null},
-                {"data": "TABLE_TYPE"},
-                {"data": "FID"},
-                {"data": "NAME"},
-                {"data": "RESERVOIR"},
-                {"data": "TO_DISTRICT"},
-                {"data": "INTERVIEWER"},
-                {"data": "CREATED_AT"},
-                {"data": null}
-            ],
-            "columnDefs": [
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [0],
-                    "render" :  function(data,type,row) {
-                        var html = "<input type='checkbox' style='width: 20px;height: 20px;'>";
-                        return html;
-                    }
-                },
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [8],
-                    "render" :  function(data,type,row) {
-                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                        html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
-                        return html;
-                    }
-                }
-            ],
-            "language": {
-                "lengthMenu": "每页_MENU_ 条记录",
-                "zeroRecords": "没有找到记录",
-                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-                "infoEmpty": "无记录",
-                "search": "搜索：",
-                "infoFiltered": "(从 _MAX_ 条记录过滤)",
-                "paginate": {
-                    "previous": "上一页",
-                    "next": "下一页"
+    }
+
+
+    //区县列表信息
+    mytable1 = $('#table1').DataTable({
+        ajax: {
+            url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
+            async:false
+        },
+        "order": [[1, 'desc']],
+        "serverSide": true,
+        "columns": [
+            {"data": "TABLE_TYPE"},
+            {"data": "FID"},
+            {"data": "NAME"},
+            {"data": "RESERVOIR"},
+            {"data": "TO_DISTRICT"},
+            {"data": "INTERVIEWER"},
+            {"data": "CREATED_AT"},
+            {"data": null}
+        ],
+        "columnDefs": [
+            {
+                "searchable": false,
+                "orderable": false,
+                "targets": [7],
+                "render" :  function(data,type,row) {
+                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                    html += "<input type='button' class='btn btn-warning btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='编辑'/>" ;
+                    return html;
                 }
             }
-        });
-    }
+        ],
+        "language": {
+            "lengthMenu": "每页_MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "search": "搜索：",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)",
+            "paginate": {
+                "previous": "上一页",
+                "next": "下一页"
+            }
+        }
+    });
 
 
 
     //获取功能
+    $("table tr td:first-child").css("display","none");
+    $("table tr th:first-child").css("display","none");
     var fun_list = [];
     $.ajax({
         url: "/getFunction.do",
@@ -306,6 +247,7 @@ $(function(){
     var f9 = [];
     var f10 = [];
     var f11 = [];
+    var f12 = [];
     console.log(fun_list)
     $.each(fun_list,function (i,n) {
         if(n.authdescription == "移民新建功能"){
@@ -330,6 +272,8 @@ $(function(){
             f10.push(n.authdescription)
         }else if(n.authdescription == "区县搜索功能"){
             f11.push(n.authdescription)
+        }else if(n.authdescription == "移民导出功能"){
+            f12.push(n.authdescription)
         }
     })
 
@@ -349,7 +293,11 @@ $(function(){
     if(f5.length == 0){
         $(".btn-danger").css("display","none");
     }
-    if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0){
+    if(f12.length == 0){
+        $("table tr td:first-child").css("display","none");
+        $("table tr th:first-child").css("display","none");
+    }
+    if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0 && f12.length == 0){
         $("#slide .nav>li:first-child").css("display","none");
         $("#slide .nav>li:nth-child(2)").click();
     }
@@ -374,6 +322,7 @@ $(function(){
     if(f11.length == 0){
         $("#table1_filter").css("display","none");
     }
+
 
 
 
@@ -1145,7 +1094,7 @@ $(function(){
     //导出
     $(".out").click(function (that) {
         $("#form_container").empty();
-        $("table tbody tr td:first-child input").each(function (i,n) {
+        $("#allinfo_table tbody tr td:first-child input").each(function (i,n) {
             if(n.checked){
                 var fid = $(this).parent("td").parent("tr").children("td:nth-child(3)").text();
                 var str = "";
