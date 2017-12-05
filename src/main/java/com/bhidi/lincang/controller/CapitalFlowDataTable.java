@@ -405,7 +405,7 @@ public class CapitalFlowDataTable {
         String str = "";
         if( user!=null ){
             name = user.getName();
-            str = " AND (guihuakeshenqingperson = '"+name+"' OR caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"' OR quxianshenqingren = '"+name+"' OR guihuapifuren = '"+name+"' OR caiwuzhuanzhangren = '"+name+"'OR quxianbaocunren LIKE '%"+name+"%'OR quxiantijiaoren = '"+name+"')";
+            str = " AND (caiwuchuliren = '"+name+"' OR guihuachuliren = '"+name+"'OR guihuapifuren = '"+name+"' OR caiwuzhuanzhangren = '"+name+"'OR quxianbaocunren LIKE '%"+name+"%'OR quxiantijiaoren = '"+name+"')";
         }
 
 
