@@ -30,6 +30,7 @@ public class SendFileDataTable {
             String table = "sendfile";
             //获取到当前用户
             User user = (User)request.getSession().getAttribute("user");
+            List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
             String name = "";
             List<String> roleList = new ArrayList<String>();
             if( user!=null ){
@@ -38,13 +39,21 @@ public class SendFileDataTable {
             }
 
             String status = "";
-            if( roleList.size() > 0 ) {
+            if( functionList!=null && functionList.size() > 0 ){
+                if(functionList.contains(26)){
+                    status = " AND 1=1";
+                }
+                if(functionList.contains(27)){
+                    status = " AND applicant = '"+name+"'";
+                }
+            }
+            /*if( roleList.size() > 0 ) {
                 if ("市局办公室管理角色".equals(roleList.get(0))) {
                     status = "";
                 } else {
                     status = " AND applicant = '"+name+"'";
                 }
-            }
+            }*/
             //获取请求次数
             String draw = "0";
             draw = request.getParameter("draw");
@@ -155,6 +164,7 @@ public class SendFileDataTable {
         String table = "sendfile";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
+        List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
         if( user!=null ){
@@ -163,13 +173,67 @@ public class SendFileDataTable {
         }
         //根据角色名字判断状态
         String status = "";
-        if( roleList.size() > 0 ){
+        if( functionList!=null && functionList.size() > 0 ){
+            if(functionList.contains(32)){
+                if(!functionList.contains(28) & !functionList.contains(29) & !functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND 1=0";
+                }
+                if(functionList.contains(28) & !functionList.contains(29) & !functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND status = '办公室审核处理'";
+                }
+                if(!functionList.contains(28) & functionList.contains(29) & !functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND (status = '签批'AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%')";
+                }
+                if(!functionList.contains(28) & !functionList.contains(29) & functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%'";
+                }
+                if(!functionList.contains(28) & !functionList.contains(29) & !functionList.contains(30)& functionList.contains(31)){
+                    status = " AND status = '办公室归档'";
+                }
+                if(functionList.contains(28) & functionList.contains(29) & !functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%'))";
+                }
+                if(functionList.contains(28) & !functionList.contains(29) & functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%'))";
+                }
+                if(functionList.contains(28) & !functionList.contains(29) & !functionList.contains(30)& functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR status = '办公室归档')";
+                }
+                if(!functionList.contains(28) & functionList.contains(29) & functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND ((status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%'))";
+                }
+                if(!functionList.contains(28) & functionList.contains(29) & !functionList.contains(30)& functionList.contains(31)){
+                    status = " AND ((status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR status = '办公室归档')";
+                }
+                if(!functionList.contains(28) & !functionList.contains(29) & functionList.contains(30)& functionList.contains(31)){
+                    status = " AND ((status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR status = '办公室归档')";
+                }
+                if(functionList.contains(28) & functionList.contains(29) & functionList.contains(30)& !functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%'))";
+                }
+                if(functionList.contains(28) & functionList.contains(29) & !functionList.contains(30)& functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '办公室归档'))";
+                }
+                if(functionList.contains(28) & !functionList.contains(29) & functionList.contains(30)& functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '办公室归档'))";
+                }
+                if(!functionList.contains(28) & functionList.contains(29) & functionList.contains(30)& functionList.contains(31)){
+                    status = " AND ((status = '签批'AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '办公室归档'))";
+                }
+                if(functionList.contains(28) & functionList.contains(29) & functionList.contains(30)& functionList.contains(31)){
+                    status = " AND (status = '办公室审核处理' OR (status = '签批'AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '办公室归档'))";
+                }
+            } else {
+                status = " AND 1=0";
+            }
+        }
+        /*if( roleList.size() > 0 ){
             if( "市局办公室管理角色".equals(roleList.get(0)) ){
                 status = " AND ( (status = '办公室审核处理') OR (status = '办公室归档') OR ( status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%' ) OR ( status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' ) )";
             } else {
                 status = " AND ( (status = '签批' AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%' )  )";
             }
-        }
+        }*/
         //获取请求次数
         String draw = "0";
         draw = request.getParameter("draw");
@@ -280,6 +344,7 @@ public class SendFileDataTable {
         String table = "sendfile";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
+        List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
         if( user!=null ){
@@ -287,8 +352,15 @@ public class SendFileDataTable {
             roleList = user.getRoleList();
         }
         String status = "";
-        if( roleList.size() > 0 ){
+        /*if( roleList.size() > 0 ){
             status = " AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
+        }*/
+        if( functionList!=null && functionList.size() > 0 ){
+            if(functionList.contains(32)){
+                status = " AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
+            } else {
+                status = " AND 1=0";
+            }
         }
         //获取请求次数
         String draw = "0";

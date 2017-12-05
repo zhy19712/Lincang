@@ -30,6 +30,7 @@ public class NonFileManagementDataTable {
         String table = "nonfilemanagement";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
+        List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
         if( user!=null ){
@@ -38,10 +39,18 @@ public class NonFileManagementDataTable {
         }
 
         String status = "";
-        if( roleList.size() > 0 ) {
+        /*if( roleList.size() > 0 ) {
             if ("市局办公室管理角色".equals(roleList.get(0))) {
                 status = "";
             } else {
+                status = " AND submitperson = '"+name+"'";
+            }
+        }*/
+        if( functionList!=null && functionList.size() > 0 ){
+            if(functionList.contains(41)){
+                status = " AND 1=1";
+            }
+            if(functionList.contains(42)){
                 status = " AND submitperson = '"+name+"'";
             }
         }
@@ -154,6 +163,7 @@ public class NonFileManagementDataTable {
         String table = "nonfilemanagement";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
+        List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
         if( user!=null ){
@@ -162,8 +172,15 @@ public class NonFileManagementDataTable {
         }
         //根据角色名字判断状态
         String status = "";
-        if( roleList.size() > 0 ){
+        /*if( roleList.size() > 0 ){
             if( "市局办公室管理角色".equals(roleList.get(0)) ){
+                status = " AND status = '办公室签收并处理'";
+            } else {
+                status = " AND 1=0";
+            }
+        }*/
+        if( functionList!=null && functionList.size() > 0 ){
+            if(functionList.contains(44)){
                 status = " AND status = '办公室签收并处理'";
             } else {
                 status = " AND 1=0";
@@ -279,6 +296,7 @@ public class NonFileManagementDataTable {
         String table = "nonfilemanagement";
         //获取到当前用户
         User user = (User)request.getSession().getAttribute("user");
+        List<Integer> functionList = (List<Integer>)request.getSession().getAttribute("function");
         String name = "";
         List<String> roleList = new ArrayList<String>();
         if( user!=null ){
@@ -286,8 +304,15 @@ public class NonFileManagementDataTable {
             roleList = user.getRoleList();
         }
         String status = "";
-        if( roleList.size() > 0 ){
+       /* if( roleList.size() > 0 ){
             status = " AND officeperson LIKE '%"+name+"%'";
+        }*/
+        if( functionList!=null && functionList.size() > 0 ){
+            if(functionList.contains(44)){
+                status = " AND officeperson LIKE '%"+name+"%'";
+            } else {
+                status = " AND 1=0";
+            }
         }
         //获取请求次数
         String draw = "0";
