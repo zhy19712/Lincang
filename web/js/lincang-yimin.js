@@ -1,4 +1,5 @@
-var mytable1,allinfo_table,county_name;
+var mytable1,allinfo_table;
+var county_name = "云县";
 //ie导出
 function ie_out(that){
     $("#form_container").empty();
@@ -173,7 +174,8 @@ $(function(){
     //区县列表信息
     mytable1 = $('#table1').DataTable({
         ajax: {
-            url: "/TableAddByName.do?name=" + encodeURI(encodeURI("云县")),
+            url: "/TableAddByName.do?name=" + encodeURI(encodeURI("")),
+            // url: "/FamilyInfoAdd.do",
             async:false
         },
         "order": [[1, 'desc']],
