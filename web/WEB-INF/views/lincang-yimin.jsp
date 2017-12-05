@@ -198,7 +198,6 @@
 						</thead>
 					</table>
 				</div>
-				<button class="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
