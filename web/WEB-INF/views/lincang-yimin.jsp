@@ -85,7 +85,6 @@
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th></th>
 											<th>分类</th>
 											<th>编号</th>
 											<th>户主姓名</th>
@@ -257,18 +256,26 @@
         $("#excel").ajaxSubmit(options);
     })
     //查看或编辑
+	var mystr = "";
     function edit(that) {
         var kind = $(that).val();
         kind = encodeURI(encodeURI(kind));
         var table_name = $(that).parents("table").attr("id");
-        var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
-        var id = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
+        console.log(mystr);
+        if(mystr != ""){
+            var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+            var id = $(that).parent("td").parent("tr").children("td:nth-child(3)").text();
+		}else {
+            var table_kind = $(that).parent("td").parent("tr").children("td:nth-child(1)").text();
+            var id = $(that).parent("td").parent("tr").children("td:nth-child(2)").text();
+		}
+
         id = encodeURI(encodeURI(id));
         console.log(table_name);
         if(table_kind == "库区安置登记表"){
-            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id  + "&table_name=" + table_name,"_self");
+            window.open("/anzhi_detail.htm?kind=" + kind + "&id=" + id + "&table_name=" + table_name + "&pre=" + mystr,"_self");
         }else if(table_kind == "移民搬迁登记表"){
-            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id  + "&table_name=" + table_name,"_self");
+            window.open("/banqian_detail.htm?kind=" + kind + "&id=" + id + "&table_name=" + table_name + "&pre=" + mystr,"_self");
 		}
     }
     //表格刷新
@@ -336,6 +343,7 @@
         console.log(arr);
         if(arr.length > 0){
             var name = arr[0].substring(1).split("=")[1];
+            mystr = name;
             $("#slide .nav li:nth-child(2)").trigger("click",tab1(this));
         }
     }
