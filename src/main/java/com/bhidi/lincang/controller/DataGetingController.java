@@ -2687,7 +2687,7 @@ public class DataGetingController {
         setRegionStyle(sheet,cra54,cellStyle);
         setRegionStyle(sheet,cra55,cellStyle);
         setRegionStyle(sheet,cra56,cellStyle);
-        setRegionStyle(sheet,cra60,cellStyle);
+        setRegionStyle(sheet,cra60,cellStyle1);
         setRegionStyle(sheet,cra61,cellStyle);
         setRegionStyle(sheet,cra62,cellStyle);
         //输出文件
