@@ -33,6 +33,11 @@
 	<script src="../../js/jquery-form.min.js"></script>
 
 	<script src="../../js/lincang-yimin.js"></script>
+	<style>
+		#table1 td{
+			min-width: 200px;
+		}
+	</style>
 
 </head>
 <body>
@@ -80,8 +85,8 @@
 						<li>统计分析</li>
 					</ul>
 					<ul id="tab_content">
-						<li>
-							<div id="table-wrapper" style="padding-top: 20px;border-top: 3px solid #ccc;margin-top: 14px;">
+						<li style="width: 100%;">
+							<div id="table-wrapper" style="padding-top: 20px;border-top: 3px solid #ccc;margin-top: 14px;width: 100%;">
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
