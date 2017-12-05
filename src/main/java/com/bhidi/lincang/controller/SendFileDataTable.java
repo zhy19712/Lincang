@@ -174,7 +174,7 @@ public class SendFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(32)){
+            /*if(functionList.contains(32)){*/
                 if(!functionList.contains(28) & !functionList.contains(29) & !functionList.contains(30)& !functionList.contains(31)){
                     status = " AND 1=0";
                 }
@@ -223,9 +223,9 @@ public class SendFileDataTable {
                 if(functionList.contains(28) & functionList.contains(29) & functionList.contains(30)& functionList.contains(31)){
                     status = " AND (status = '办公室审核处理' OR (status = '签批'AND approver LIKE '%"+name+"%' AND approverdelete NOT LIKE '%"+name+"%') OR (status = '处理处置' AND implementperson LIKE '%"+name+"%' AND implementpersondelete NOT LIKE '%"+name+"%') OR (status = '办公室归档'))";
                 }
-            } else {
+            /*} else {
                 status = " AND 1=0";
-            }
+            }*/
         }
         /*if( roleList.size() > 0 ){
             if( "市局办公室管理角色".equals(roleList.get(0)) ){
@@ -356,7 +356,7 @@ public class SendFileDataTable {
             status = " AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
         }*/
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(32)){
+            if(functionList.contains(32)||functionList.contains(31)||functionList.contains(30)||functionList.contains(29)||functionList.contains(28)){
                 status = " AND ( (officeprocessperson LIKE '%"+name+"%') OR (approver LIKE '%"+name+"%' AND approverdelete LIKE '%"+name+"%') OR (implementperson LIKE '%"+name+"%' AND implementpersondelete LIKE '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') )";
             } else {
                 status = " AND 1=0";
