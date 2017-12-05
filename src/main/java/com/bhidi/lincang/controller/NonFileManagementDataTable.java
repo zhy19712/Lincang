@@ -180,15 +180,15 @@ public class NonFileManagementDataTable {
             }
         }*/
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(44)){
+            /*if(functionList.contains(44)){*/
                 if(functionList.contains(43)){
                     status = " AND status = '办公室签收并处理'";
                 } else {
                     status = " AND 1=0";
                 }
-            } else {
+            /*} else {
 
-            }
+            }*/
         }
         //获取请求次数
         String draw = "0";
@@ -312,7 +312,7 @@ public class NonFileManagementDataTable {
             status = " AND officeperson LIKE '%"+name+"%'";
         }*/
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(44)){
+            if(functionList.contains(44) || functionList.contains(43)){
                 status = " AND officeperson LIKE '%"+name+"%'";
             } else {
                 status = " AND 1=0";

@@ -168,7 +168,7 @@ public class ReceiveFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(39)){
+            /*if(functionList.contains(39)){*/
                 if(!functionList.contains(35) & !functionList.contains(36) & !functionList.contains(37)& !functionList.contains(38)){
                     status = " AND 1=0";
                 }
@@ -217,9 +217,9 @@ public class ReceiveFileDataTable {
                 if(functionList.contains(35) & functionList.contains(36) & functionList.contains(37)& functionList.contains(38)){
                     status = " AND (status = '办公室处理文件' OR (status = '办公室归档') OR (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%') OR ( (status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%'))) OR  (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%')))";
                 }
-            } else {
+            /*} else {
                 status = " AND 1=0";
-            }
+            }*/
         }
         /*if( "市局办公室管理角色".equals(roleList.get(0)) ){
             status = " and ( (status = '办公室处理文件' or status = '办公室归档') or (status = '处理处置' and implementperson like '%"+name+"%' and implementpersondelete not like '%"+name+"%' ) or ( status = '科室签批' and ((department1person like '%"+name+"%'and department1persondelete not like '%"+name+"%') or (department2person like '%"+name+"%'and department2persondelete not like '%"+name+"%')) )  or (status = '分管领导签批' and fenguanname like '%"+name+"%' and fenguannamedelete not like '%"+name+"%' ) or (status = '主管领导签批' and zhuguanname like '%"+name+"%' and zhuguannamedelete not like '%"+name+"%'))";
@@ -356,7 +356,7 @@ public class ReceiveFileDataTable {
         //根据角色名字判断状态
         String status = "";
         if( functionList!=null && functionList.size() > 0 ){
-            if(functionList.contains(39)){
+            if(functionList.contains(39)||functionList.contains(38)||functionList.contains(37)||functionList.contains(36)||functionList.contains(35)){
                 status = " AND ( modelchoicename LIKE '%"+name+"%' OR (department1person like '%"+name+"%'and department1persondelete like '%"+name+"%') OR (department2person like '%"+name+"%'and department2persondelete like '%"+name+"%') OR (fenguanname like '%"+name+"%' and fenguannamedelete like '%"+name+"%') OR (zhuguanname like '%"+name+"%' and zhuguannamedelete like '%"+name+"%') OR (confirmperson LIKE '%"+name+"%') OR (implementperson like '%"+name+"%' and implementpersondelete like '%"+name+"%'))";
             } else {
                 status = " AND 1=0";
