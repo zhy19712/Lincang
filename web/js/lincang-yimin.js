@@ -1,5 +1,4 @@
-var mytable1,allinfo_table;
-var county_name = "云县";
+var mytable1,allinfo_table,county_name;
 //ie导出
 function ie_out(that){
     $("#form_container").empty();
@@ -330,7 +329,7 @@ $(function(){
 	$("#ta_sroll").height(ta_height);
 	//滚动条插件
 	$("#show").panel({iWheelStep:32});
-	$("#ta_sroll").panel({iWheelStep:32});
+	// $("#ta_sroll").panel({iWheelStep:32});
 	// $("#tab_content li:first-child").panel({iWheelStep:32});
 
 

@@ -81,7 +81,7 @@
 					</ul>
 					<ul id="tab_content">
 						<li>
-							<div id="table-wrapper">
+							<div id="table-wrapper" style="padding-top: 20px;border-top: 3px solid #ccc;margin-top: 14px;">
 								<table id="table1" width="100%" class="table table-striped table-bordered">
 									<thead>
 										<tr>
@@ -97,7 +97,7 @@
 									</thead>
 								</table>
 							</div>
-							<button class="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
+
 						</li>
 						<li>
 							<div id="container1"></div>
@@ -198,6 +198,7 @@
 						</thead>
 					</table>
 				</div>
+				<button class="out" style="vertical-align: middle;margin-bottom: 10px;">确认导出</button>
             </div>
 		</div>
 		<div id="data_analysis">统计分析</div>
