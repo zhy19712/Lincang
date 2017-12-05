@@ -66,13 +66,13 @@ public class CapitalFlowDataTable {
                 str = " AND initiatorclass = '区县资金申请'";
             }
             if(!functionList.contains(45) & !functionList.contains(13) & !functionList.contains(18) & !functionList.contains(46) & functionList.contains(19)){
-                str = " AND initiatorclass = '区县资金申请' AND quxianshenqingren = '"+name+"'";
+                str = " AND initiatorclass = '区县资金申请' AND guihuakeshenqingperson = '"+name+"'";
             }
             if((functionList.contains(13) || functionList.contains(45)) & (functionList.contains(18)||functionList.contains(46)) & !functionList.contains(19)){
                 str = "";
             }
             if((functionList.contains(13) || functionList.contains(45)) & !functionList.contains(18) & !functionList.contains(46) & functionList.contains(19)){
-                str = " AND (initiatorclass = '市局资金计划上报' OR (initiatorclass = '区县资金申请' AND quxianshenqingren = '"+name+"')"+")";
+                str = " AND (initiatorclass = '市局资金计划上报' OR (initiatorclass = '区县资金申请' AND guihuakeshenqingperson = '"+name+"')"+")";
             }
             if(!functionList.contains(45) & !functionList.contains(13) & (functionList.contains(18)||functionList.contains(46)) & functionList.contains(19)){
                 str = " AND initiatorclass = '区县资金申请'";
