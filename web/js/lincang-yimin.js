@@ -295,10 +295,10 @@ $(function(){
         $("table tr th:first-child").css("display","none");
         $(".out").css("display","none");
     }
-    if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0 && f12.length == 0){
-        $("#slide .nav>li:first-child").css("display","none");
-        $("#slide .nav>li:nth-child(2)").click();
-    }
+    // if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0 && f12.length == 0){
+    //     $("#slide .nav>li:first-child").css("display","none");
+    //     $("#slide .nav>li:nth-child(2)").click();
+    // }
     if(f6.length == 0){
         $("#sel_city").css("display","none");
     }
