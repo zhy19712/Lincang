@@ -35,7 +35,7 @@
 	<script src="../../js/lincang-yimin.js"></script>
 	<style>
 		#table1 td{
-			min-width: 200px;
+			min-width: 24px;
 		}
 	</style>
 
