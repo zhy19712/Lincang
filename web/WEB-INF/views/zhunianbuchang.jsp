@@ -933,6 +933,7 @@
         type: "post",
         dataType: "json",
         success: function (data) {
+            console.log(data);
             tree_data = data;
             var unit = [];
             var department = [];
@@ -946,16 +947,18 @@
                 var obj = new Object();
                 obj.text = n;
                 obj.department = [];
-                obj.name = [];
+                obj.data = [];
                 $.each(data,function (i,n) {
                     if(obj.text == n.unit){
                         obj.department.push(n.department);
+                        obj.data.push(n);
                     }
                 });
                 obj.department = obj.department.unique3();
                 arr.push(obj);
             })
             $.each(arr,function (i,n) {
+                var mydata = n.data;
                 var obj1 = new Object();
                 obj1.text = n.text;
                 obj1.children = [];
@@ -963,7 +966,7 @@
                     var obj2 = new Object();
                     obj2.text = n;
                     obj2.children = [];
-                    $.each(data,function (i,n) {
+                    $.each(mydata,function (i,n) {
                         if(obj2.text == n.department){
                             var obj3 = new Object();
                             obj3.text = n.name;
