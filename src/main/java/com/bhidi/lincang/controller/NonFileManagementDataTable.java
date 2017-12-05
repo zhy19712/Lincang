@@ -181,9 +181,13 @@ public class NonFileManagementDataTable {
         }*/
         if( functionList!=null && functionList.size() > 0 ){
             if(functionList.contains(44)){
-                status = " AND status = '办公室签收并处理'";
+                if(functionList.contains(43)){
+                    status = " AND status = '办公室签收并处理'";
+                } else {
+                    status = " AND 1=0";
+                }
             } else {
-                status = " AND 1=0";
+
             }
         }
         //获取请求次数
