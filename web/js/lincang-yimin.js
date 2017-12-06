@@ -179,6 +179,7 @@ $(function(){
         },
         "order": [[1, 'desc']],
         "serverSide": true,
+        "autowidth" : false,
         "columns": [
             {"data": "TABLE_TYPE"},
             {"data": "FID"},
@@ -292,8 +293,8 @@ $(function(){
         $(".btn-danger").css("display","none");
     }
     if(f12.length == 0){
-        $("table tr td:first-child").css("display","none");
-        $("table tr th:first-child").css("display","none");
+        $("#allinfo_table tr td:first-child").css("display","none");
+        $("#allinfo_table tr th:first-child").css("display","none");
         $(".out").css("display","none");
     }
     // if(f1.length == 0 && f2.length == 0 && f3.length == 0 && f4.length == 0 && f5.length == 0 && f12.length == 0){

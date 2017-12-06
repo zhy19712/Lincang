@@ -35,10 +35,9 @@
 	<script src="../../js/lincang-yimin.js"></script>
 	<style>
 		#table1 td{
-			min-width: 24px;
+			width: 12.5%;
 		}
 	</style>
-
 </head>
 <body>
 	<div style="margin-bottom: 0;height: 62px;" class="navbar navbar-default" role="navigation">
