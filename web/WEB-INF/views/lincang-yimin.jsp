@@ -243,21 +243,25 @@
 
     //导入Excel回调
 	$("#submit").click(function () {
-        var options  = {
-            url:'/excel/multipleExcelUpLoadExcel.do',
-            type:'post',
-            success:function(data)
-            {
-                console.log(data);
-                var data = JSON.parse(data);
-                if(data.result == "success"){
-                    alert("提交成功");
-                }else {
-                    alert(data.result);
+        if($("#excel input").size() > 1){
+            var options  = {
+                url:'/excel/multipleExcelUpLoadExcel.do',
+                type:'post',
+                success:function(data)
+                {
+                    console.log(data);
+                    var data = JSON.parse(data);
+                    if(data.result == "success"){
+                        alert("提交成功");
+                    }else {
+                        alert(data.result);
+                    }
                 }
-            }
-        };
-        $("#excel").ajaxSubmit(options);
+            };
+            $("#excel").ajaxSubmit(options);
+		}else {
+            alert("选择导入文件");
+		}
     })
     //查看或编辑
 	var mystr = "";
