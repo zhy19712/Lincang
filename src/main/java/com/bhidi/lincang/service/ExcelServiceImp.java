@@ -112,14 +112,19 @@ public class ExcelServiceImp implements ExcelServiceInf{
             if( "移民搬迁登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )) {
                 if (!resultFirst.contains("录入成功！")) {
                     //调用删除方法
-                    deleteByFids(fidList);
+                    if(fidList!= null & fidList.size()>0){
+                        deleteByFids(fidList);
+                    }
+
                     return excelName + "     " + resultFirst;
                 }
             }
             if( "库区安置登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )) {
                 if (!resultSecond.contains("录入成功！")) {
                     //调用删除方法
-                    deleteByFids(fidList);
+                    if(fidList!= null & fidList.size()>0) {
+                        deleteByFids(fidList);
+                    }
                     return excelName + "     " + resultSecond;
                 }
             }
