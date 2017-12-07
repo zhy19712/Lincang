@@ -193,7 +193,7 @@ public class DataGetingController {
         c25.setCellStyle(cellStyle1);
         HSSFCell c26 = row2.createCell(6);
         String accountNumber = "";
-        if(accountNumber != null){
+        if(bank != null){
             accountNumber = bank.getAccount_number();
         }
         c26.setCellValue(new HSSFRichTextString(accountNumber));
