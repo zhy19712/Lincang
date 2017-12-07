@@ -682,8 +682,13 @@
         }
     });
 
+    $("#header2").css("display","none");
+    $("#dcl2").css("display","none");
+    $("#ycl2").css("display","none");
+
     //获取功能
     var fun_list = [];
+    var dcl_fun = [];
     $.ajax({
         url: "/getFunction.do",
         type: "post",
@@ -702,6 +707,16 @@
     $.each(fun_list,function (i,n) {
         if(n.subclassification == "我的表单"){
             fun_list1.push(n)
+        }
+        if(n.classification == "非文件管理"){
+            dcl_fun.push(n)
+        }
+    });
+    $.each(dcl_fun,function (i,n) {
+        if(n.subclassification == "待处理/已处理事务"){
+            $("#header2").css("display","block");
+            $("#dcl2").css("display","block");
+            $("#ycl2").css("display","block");
         }
     })
     var f1 = [];
