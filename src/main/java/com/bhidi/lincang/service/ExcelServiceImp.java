@@ -86,25 +86,56 @@ public class ExcelServiceImp implements ExcelServiceInf{
         //在这里遍历sheet的名字，是什么名字的时候，调用哪个方法
         String resultFirst = "";
         String resultSecond = "";
+        List<String> fidList = new ArrayList<String>();
         for( int s = 0; s< SheetCount; s++ ){
             String sss = workbook.getSheetAt(s).getSheetName().trim();
             if( "移民搬迁登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
                 Sheet sheet = workbook.getSheetAt(s);
                 resultFirst = first(sheet);
-                if(!"录入成功！".equals(resultFirst)){
-                    return excelName + resultFirst;
+                /*if(!"录入成功！".equals(resultFirst)){
+                    return excelName + "     "+ resultFirst;
+                }*/
+                if(resultFirst.contains("录入成功！")){
+                    fidList.add(resultFirst.substring(0,16));
                 }
             }
             if( "库区安置登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )){
                 Sheet sheet = workbook.getSheetAt(s);
                 resultSecond = second(sheet);
-                if(!"录入成功！".equals(resultSecond)){
-                    return excelName + resultSecond;
+                /*if(!"录入成功！".equals(resultSecond)){
+                    return excelName + "     "+ resultSecond;
+                }*/
+                if(resultSecond.contains("录入成功！")){
+                    fidList.add(resultSecond.substring(0,16));
+                }
+            }
+            if( "移民搬迁登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )) {
+                if (!resultFirst.contains("录入成功！")) {
+                    //调用删除方法
+                    deleteByFids(fidList);
+                    return excelName + "     " + resultFirst;
+                }
+            }
+            if( "库区安置登记表".equals(workbook.getSheetAt(s).getSheetName().trim() )) {
+                if (!resultSecond.contains("录入成功！")) {
+                    //调用删除方法
+                    deleteByFids(fidList);
+                    return excelName + "     " + resultSecond;
                 }
             }
         }
         return "录入成功！";
     }
+    public void deleteByFids(List<String> fidList){
+        excelMapper.deleteBank(fidList);
+        excelMapper.deleteHouse(fidList);
+        excelMapper.deleteMove(fidList);
+        excelMapper.deleteIncome(fidList);
+        excelMapper.deleteOutcome(fidList);
+        excelMapper.deletePeople(fidList);
+    }
+
+
     /*
      * 录入excel文件第一个sheet的方法--移民搬迁登记表
      */
@@ -141,11 +172,11 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell12.setCellType(Cell.CELL_TYPE_STRING);
             reservoir = cell12.getStringCellValue();
         }
+        System.out.println("所属水库："+reservoir);
+        if( "".equals(reservoir) ){
+            return "所属水库不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
 
-       /* if( "".equals(reservoir) ){
-            return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
-        /*System.out.println("所属水库："+reservoir);*/
         //14获取安置点
         Cell cell14 = row1.getCell(4);
         String location = "";
@@ -165,11 +196,13 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cell16.setCellType(Cell.CELL_TYPE_STRING);
             masterName = cell16.getStringCellValue();
         }
-
         /*if( "".equals(masterName) ){
             return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
         }*/
         System.out.println("户主姓名："+masterName);
+        if( "".equals(masterName) ){
+            return "户主姓名不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //18获取电话号码
         Cell cell18 = row1.getCell(8);
         String phone = "";
@@ -209,15 +242,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         bank.setAccount_name(account_name);
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
-        //在这里应该添加事物的，先没有考虑如果插入不成功，会怎么办。
-        Integer intResultOfBank = 0;
-        if( bank != null ){
-            try {
-                intResultOfBank =  excelMapper.saveBank(bank);
-            } catch (Exception e) {
-                intResultOfBank = -1;
-            }
-        }
+
 
 
 
@@ -257,6 +282,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
            /* if( ("".equals(cell.getStringCellValue())) ){
                 return "姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
             }*/
+            if( "".equals(cell.getStringCellValue()) ){
+                return "姓名不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+            }
             //第一个单元格不是空的在去取这一行的数据。
             if( !("".equals(cell.getStringCellValue())) ){
                 num++;
@@ -350,6 +378,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellInterviewer.setCellType(Cell.CELL_TYPE_STRING);
             interviewer = cellInterviewer.getStringCellValue();
         }
+        if( "".equals(interviewer) ){
+            return "调查人不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //被调查人
         Cell cellInterviewee = interview.getCell(1);
         String interviewee ="";
@@ -363,6 +394,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if(cellCreated_at!=null){
             cellCreated_at.setCellType(Cell.CELL_TYPE_STRING);
             created_at = cellCreated_at.getStringCellValue();
+        }
+        if( "".equals(created_at) ){
+            return "填表时间不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
         }
         //取出来其他信息的行
         Row other = firstSheet.getRow(firstSheetendRow + 41);
@@ -390,15 +424,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             p.setInterviewer(interviewer);
             p.setCreated_at(created_at);
         }
-        //调用Dao层将用户的存储到数据库中去
-        Integer intResultOfPeople = 0;
-        if( pl.size() > 0 ){
-            try {
-                intResultOfPeople = excelMapper.batchSavePeople(pl);
-            } catch (Exception e) {
-                intResultOfPeople = -1;
-            }
-        }
+
 
 
 
@@ -463,6 +489,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             to_city = cellTo2.getStringCellValue();
         }
         System.out.println(to_city);
+        if( "".equals(to_city) ){
+            return "迁入地州市不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //区县
         Cell cellTo3 = rowTo.getCell(3);
         String to_district ="";
@@ -471,6 +500,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             to_district = cellTo3.getStringCellValue();
         }
         System.out.println(to_district);
+        if( "".equals(to_district) ){
+            return "迁入地区县不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //乡镇
         Cell cellTo4 = rowTo.getCell(4);
         String to_town ="";
@@ -519,15 +551,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_village(to_village);
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);
-        //调用Dao层的方法插入数据库
-        Integer intResultOfMove = 0;
-        if( move != null ){
-            try {
-                intResultOfMove = excelMapper.saveMove(move);
-            } catch (Exception e) {
-                intResultOfMove = -1;
-            }
-        }
+
 
 
         //开始取住房情况信息
@@ -663,15 +687,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         house.setSub_structure4(sub_structure4);
         house.setSub_structure5(sub_structure5);
         house.setSub_remark(sub_remark);
-        //调用Dao的方法将房屋信息插入数据库
-        Integer intResultOfHouse = 0;
-        if( house != null ){
-            try {
-                intResultOfHouse =  excelMapper.saveHouse(house);
-            } catch (Exception e) {
-                intResultOfHouse = -1;
-            }
-        }
+
 
 
 
@@ -886,15 +902,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             listIncome.add(income);
         }
         System.out.println("集合添加了其他之后的长度："+listIncome.size());
-        //调用Dao层的插入方法存储收入数据
-        Integer intResultOfIncome = 0;
-        if( listIncome.size() > 0 ){
-            try {
-                intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
-            } catch (Exception e) {
-                intResultOfIncome = -1;
-            }
-        }
+
 
 
 
@@ -1109,10 +1117,59 @@ public class ExcelServiceImp implements ExcelServiceInf{
             listOutcome.add(outcome);
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
+        //bank存储
+        Integer intResultOfBank = 0;
+        if( bank != null ){
+            try {
+                intResultOfBank =  excelMapper.saveBank(bank);
+            } catch (Exception e) {
+                intResultOfBank = -1;
+            }
+        }
+        //调用Dao层将用户的存储到数据库中去
+        Integer intResultOfPeople = 0;
+        if( pl.size() > 0 ){
+            try {
+                intResultOfPeople = excelMapper.batchSavePeople(pl);
+            } catch (Exception e) {
+                intResultOfPeople = -1;
+            }
+        }
+        //调用Dao层的方法插入数据库
+        Integer intResultOfMove = 0;
+        if( move != null ){
+            try {
+                intResultOfMove = excelMapper.saveMove(move);
+            } catch (Exception e) {
+                intResultOfMove = -1;
+            }
+        }
+        //调用Dao的方法将房屋信息插入数据库
+        Integer intResultOfHouse = 0;
+        if( house != null ){
+            try {
+                intResultOfHouse =  excelMapper.saveHouse(house);
+            } catch (Exception e) {
+                intResultOfHouse = -1;
+            }
+        }
+        //调用Dao层的插入方法存储收入数据
+        Integer intResultOfIncome = 0;
+        if( listIncome.size() > 0 ){
+            try {
+                intResultOfIncome = excelMapper.batchSaveIncome(listIncome);
+            } catch (Exception e) {
+                intResultOfIncome = -1;
+            }
+        }
         //调用Dao层的方法存储支出数据
         Integer intResultOfOutcome = 0;
         if( listOutcome.size() > 0 ){
-            intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+            try {
+                intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+            } catch (Exception e) {
+                intResultOfOutcome = -1;
+            }
         }
         //intResultOfPeople,intResultOfMove,intResultOfHouse,intResultOfIncome,intResultOfOutcome
         List<Integer> intList = new ArrayList<Integer>();
@@ -1125,9 +1182,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         String strResult = "";
         for( int r = 0;r < intList.size();r++){
             if( intList.get(r) == -1 ){
-                strResult = "录入失败！";
+                strResult = fid+"录入失败！";
             } else {
-                strResult = "录入成功！";
+                strResult = fid+"录入成功！";
             }
         }
         /*Map mapResult = new HashMap();
@@ -1172,9 +1229,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             reservoir = cell12.getStringCellValue();
         }
         System.out.println("所属水库："+reservoir);
-        /*if( "".equals(reservoir) ){
-            return "所属水库不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
+        if( "".equals(reservoir) ){
+            return "所属水库不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
 
        /* //24获取安置点
         Cell cell24 = row2.getCell(4);
@@ -1194,9 +1251,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             masterName = cell14.getStringCellValue();
         }
 
-        /*if( "".equals(masterName) ){
-            return "户主姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-        }*/
+        if( "".equals(masterName) ){
+            return "户主姓名不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         System.out.println("户主姓名："+masterName);
         //17获取电话号码
         Cell cell17 = row1.getCell(7);
@@ -1237,15 +1294,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         bank.setAccount_name(account_name);
         bank.setBank_name(bank_name);
         bank.setAccount_number(account_number);
-        //存储数据库
-        Integer intResultOfBank = 0;
-        if( bank != null ){
-            try {
-                intResultOfBank =  excelMapper.saveBank(bank);
-            } catch (Exception e) {
-                intResultOfBank = -1;
-            }
-        }
+
 
 
         //第五行开始取个人信息,每行的名字取出来都要和前边户主的名字进行比较，进而来判断人的身份。
@@ -1281,9 +1330,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             }
             Cell cell =row.getCell(1);
             cell.setCellType(Cell.CELL_TYPE_STRING);
-           /* if( ("".equals(cell.getStringCellValue())) ){
-                return "姓名不可以为空！"+"   表编号："+fid+"   sheet名字："+firstSheet.getSheetName();
-            }*/
+            if( ("".equals(cell.getStringCellValue())) ){
+                return "姓名不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+            }
             //第一个单元格不是空的在去取这一行的数据。
             if( !("".equals(cell.getStringCellValue())) ){
                 num++;
@@ -1375,6 +1424,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellInterviewer.setCellType(Cell.CELL_TYPE_STRING);
             interviewer = cellInterviewer.getStringCellValue();
         }
+        if( "".equals(interviewer) ){
+            return "调查人不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //被调查人
         Cell cellInterviewee = interview.getCell(1);
         String interviewee = "";
@@ -1388,6 +1440,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         if(cellCreate_at!=null){
             cellCreate_at.setCellType(Cell.CELL_TYPE_STRING);
             create_at = cellCreate_at.getStringCellValue();
+        }
+        if( ("".equals(create_at)) ){
+            return "填表时间不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
         }
         //取出来其他
         Row other = firstSheet.getRow(firstSheetendRow + 40);
@@ -1405,9 +1460,6 @@ public class ExcelServiceImp implements ExcelServiceInf{
             cellPoor.setCellType(Cell.CELL_TYPE_STRING);
             poor_reason = cellPoor.getStringCellValue();
         }
-
-
-
         //在这里给集合中的每个用户添加属性
         for( People p: pl ){
             p.setHome_size(num);
@@ -1418,15 +1470,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             p.setInterviewer(interviewer);
             p.setCreated_at(create_at);
         }
-        //调用Dao层方法将家庭成员信息的存储到数据库中去
-        Integer intResultOfPeople = 0;
-        if( pl.size() > 0 ){
-            try {
-                intResultOfPeople = excelMapper.batchSavePeople(pl);
-            } catch (Exception e) {
-                intResultOfPeople = -1;
-            }
-        }
+
 
 
 
@@ -1442,6 +1486,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             to_city = cellLeave2.getStringCellValue();
         }
         System.out.println(to_city);
+        if( ("".equals(to_city)) ){
+            return "州市不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //区县
         Cell cellLeave3 = rowLeave.getCell(2);
         String to_district = "";
@@ -1450,6 +1497,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
             to_district = cellLeave3.getStringCellValue();
         }
         System.out.println(to_district);
+        if( ("".equals(to_district)) ){
+            return "区县不可以为空！"+"     sheet名字："+firstSheet.getSheetName();
+        }
         //乡镇
         Cell cellLeave4 = rowLeave.getCell(3);
         String to_town = "";
@@ -1542,15 +1592,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
         move.setTo_village(to_village);
         move.setTo_group(to_group);
         move.setTo_remark(to_remark);
-        //调用Dao层的方法插入数据库
-        Integer intResultOfMove =0;
-        if( move != null ){
-            try {
-                intResultOfMove = excelMapper.saveMove(move);
-            } catch (Exception e) {
-                intResultOfMove = -1;
-            }
-        }
+
 
 
         //开始取住房情况信息
@@ -1832,7 +1874,7 @@ public class ExcelServiceImp implements ExcelServiceInf{
             income.setIncome_quantity(income_quantity);
             income.setIncome_unit(income_unit);
             income.setIncome_sum(income_sum);
-            income.setRemark("".equals(remark)?"无":remark);
+            income.setRemark("".equals(remark)?"":remark);
             /*SqlParameterSource paramSource = new BeanPropertySqlParameterSource(income);*/
             listIncome.add(income);
         }
@@ -2131,10 +2173,42 @@ public class ExcelServiceImp implements ExcelServiceInf{
             listOutcome.add(outcome);
         }
         System.out.println("集合添加了生活支出之后的长度："+listOutcome.size());
+
+        //bank存储数据库
+        Integer intResultOfBank = 0;
+        if( bank != null ){
+            try {
+                intResultOfBank =  excelMapper.saveBank(bank);
+            } catch (Exception e) {
+                intResultOfBank = -1;
+            }
+        }
+        //people调用Dao层方法将家庭成员信息的存储到数据库中去
+        Integer intResultOfPeople = 0;
+        if( pl.size() > 0 ){
+            try {
+                intResultOfPeople = excelMapper.batchSavePeople(pl);
+            } catch (Exception e) {
+                intResultOfPeople = -1;
+            }
+        }
+        //move调用Dao层的方法插入数据库
+        Integer intResultOfMove =0;
+        if( move != null ){
+            try {
+                intResultOfMove = excelMapper.saveMove(move);
+            } catch (Exception e) {
+                intResultOfMove = -1;
+            }
+        }
         //调用Dao层的方法存储支出数据
         Integer intResultOfOutcome = 0;
         if( listOutcome.size() > 0 ){
-            intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+            try {
+                intResultOfOutcome = excelMapper.batchSaveOutcome(listOutcome);
+            } catch (Exception e) {
+                intResultOfOutcome = -1;
+            }
         }
         //intResultOfPeople,intResultOfMove,intResultOfHouse,intResultOfIncome,intResultOfOutcome
         List<Integer> intList = new ArrayList<Integer>();
@@ -2147,9 +2221,9 @@ public class ExcelServiceImp implements ExcelServiceInf{
         String strResult = "";
         for( int r = 0;r < intList.size();r++){
             if( intList.get(r) == -1 ){
-                strResult = "录入失败！";
+                strResult = fid+"录入失败！";
             } else {
-                strResult = "录入成功！";
+                strResult = fid+"录入成功！";
             }
         }
         /*Map mapResult = new HashMap();

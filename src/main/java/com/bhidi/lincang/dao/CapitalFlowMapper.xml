@@ -188,4 +188,8 @@
         SET areanamedelete = #{deletePerson}
         WHERE capitalflowid = #{capitalflowid}
     </update >
+    <!--int deleteMessage(String capitalflowid);-->
+    <delete id="deleteMessage" parameterType="String">
+        DELETE FROM quxianreceivemessage where capitalflowid = #{capitalflowid}
+    </delete>
 </mapper>

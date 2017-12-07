@@ -37,4 +37,6 @@ public interface CapitalFlowServiceInf {
     int updateQuXianReceiveMessage(Map<String,Object> mapCondition);
 
     int updateCapitalFlow(Map<String,Object> mapCondition);
+
+    int deleteMessage(String capitalflowid);
 }

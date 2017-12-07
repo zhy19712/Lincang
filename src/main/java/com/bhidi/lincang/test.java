@@ -15,7 +15,9 @@ public class test {
 
         /*List<String> list = new ArrayList<String>();
         System.out.println(list.get(0));*/
-        String s = "G:\\git\\nihao\\最终---最终表";
-        System.out.println(s.split("-").length);
+        /*String s = "G:\\git\\nihao\\最终---最终表";
+        System.out.println(s.split("-").length);*/
+        String str ="BQ20171207113644录入成功！";
+        System.out.println(str.substring(0,16));
     }
 }

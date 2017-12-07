@@ -240,6 +240,10 @@ public class CapitalFlowServiceImp implements CapitalFlowServiceInf {
         return capitalFlowMapper.updateCapitalFlow(mapCondition);
     }
 
+    public int deleteMessage(String capitalflowid) {
+        return capitalFlowMapper.deleteMessage(capitalflowid);
+    }
+
     /**
      * 删除文件
      */

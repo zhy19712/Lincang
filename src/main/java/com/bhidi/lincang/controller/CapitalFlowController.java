@@ -436,8 +436,11 @@ public class CapitalFlowController {
     @RequestMapping(value="/deleteCapitalFlow",method=RequestMethod.POST,produces="application/json;charset=UTF-8")
     public String deleteCapitalFlow(String capitalflowid){
         int deleteResult = 0;
+        int deleteMessageResult = 0;
         try {
             deleteResult = capitalFlowServiceImp.deleteCapitalFlow(capitalflowid);
+            //同时删除那个信息
+            deleteMessageResult = capitalFlowServiceImp.deleteMessage(capitalflowid);
         } catch (Exception e) {
             e.printStackTrace();
             deleteResult =-1;

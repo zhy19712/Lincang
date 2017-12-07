@@ -37,21 +37,15 @@ public interface ExcelMapper {
     Integer batchSaveOutcome(List<Outcome> listOutcome);
 
 
+    void deleteBank(List<String> fidList);
 
+    void deleteHouse(List<String> fidList);
 
+    void deleteMove(List<String> fidList);
 
+    void deleteIncome(List<String> fidList);
 
+    void deleteOutcome(List<String> fidList);
 
-
-
-
-
-
-
-
-
-
-
-
-
+    void deletePeople(List<String> fidList);
 }

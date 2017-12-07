@@ -56,4 +56,46 @@
             )
         </foreach>
     </insert >
+    <!--void deleteBank(List<String> fidList);-->
+    <delete id="deleteBank" parameterType="list">
+        DELETE FROM bank WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    <!--void deleteHouse(List<String> fidList);-->
+    <delete id="deleteHouse" parameterType="list">
+        DELETE FROM house WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    <!--void deleteMove(List<String> fidList);-->
+    <delete id="deleteMove" parameterType="list">
+        DELETE FROM move WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    <!--void deleteIncome(List<String> fidList);-->
+    <delete id="deleteIncome" parameterType="list">
+        DELETE FROM income WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    <!--void deleteOutcome(List<String> fidList);-->
+    <delete id="deleteOutcome" parameterType="list">
+        DELETE FROM outcome WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
+    <!--void deletePeople(List<String> fidList);-->
+    <delete id="deletePeople" parameterType="list">
+        DELETE FROM people WHERE fid in
+        <foreach item="fid" collection="list" open="(" separator="," close=")">
+            #{fid}
+        </foreach>
+    </delete>
 </mapper>
