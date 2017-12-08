@@ -253,6 +253,13 @@
                     var data = JSON.parse(data);
                     if(data.result == "success"){
                         alert("提交成功");
+                        $.each($("#filesUpload a"),function (i,n) {
+                            if(n.text != "导入Excel"){
+                                n.remove()
+                            }
+                        })
+                        $("#filesUpload span").remove();
+                        table_refresh();
                     }else {
                         alert(data.result);
                     }
