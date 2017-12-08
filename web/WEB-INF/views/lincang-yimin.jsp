@@ -148,7 +148,7 @@
 					</div>
 					<div class="info">
 						<h2 class="name">临沧市</h2>
-						<p class="count">共6个区域</p>
+						<p class="count"></p>
 					</div>
 				</div>
 				<div id="show">
@@ -259,7 +259,7 @@
                             }
                         })
                         $("#filesUpload span").remove();
-                        table_refresh();
+                        location.reload();
                     }else {
                         alert(data.result);
                     }

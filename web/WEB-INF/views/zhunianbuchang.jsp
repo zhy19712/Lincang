@@ -784,6 +784,66 @@
         }
         return res;
     }
+    //获取功能
+    var del1 = false;
+    var fun_list1 = [];
+    var fun_list2 = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.subclassification == "市资金申请管理"){
+                    fun_list1.push(n);
+                }else if(n.subclassification == "区县资金申请管理"){
+                    fun_list2.push(n);
+                }else if(n.authdescription == "接收市局规划科通知功能"){
+                    $("#msg").css("display","block");
+                }
+            })
+        }
+    });
+    var len1 = fun_list1.length;
+    var len2 = fun_list2.length;
+    if(len1 == 0 && len2 == 0){
+        $("#header1").remove();
+        $("#m_apply1").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }else{
+        $("#new1>.row>div:nth-child(1)").css("display","none");
+        $("#new1>.row>div:nth-child(2)").css("display","none");
+        $("#new1>.box-inner").css("display","none");
+        $.each(fun_list1,function (i,n) {
+            if(n.authdescription == "市局规划科资金申请上报功能"){
+                $("#new1>.row>div:nth-child(1)").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+                $("#new1>.box-inner").css("display","block");
+                del1 = true;
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1>.box-danger").css("display","none");
+            }
+        });
+        $.each(fun_list2,function (i,n) {
+            if(n.authdescription == "区县发起申请功能"){
+                $("#new1>.row>div:nth-child(2)").css("display","block");
+            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+                $("#new1>.box-inner").css("display","block");
+                del1 = true;
+            }else if(n.authdescription == "全部列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1 .btn-danger").css("display","none");
+            }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+                $("#new1>.box-inner").css("display","block");
+                $("#new1 .btn-danger").css("display","none");
+            }
+        });
+    }
     //消息条数
     $.ajax({
         url: "/numOfUnReadCapitalFlow.do",
@@ -798,47 +858,91 @@
         }
     })
     //全部列表
-    var money_apply1 = $('#money_apply1').DataTable({
-        ajax: {
-            url: "/capitalFlowAll.do? ",
-            async:false
-        },
-        "order": [[1, 'desc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "capitalflowid"},
-            {"data": "initiatorclass"},
-            {"data": "title"},
-            {"data": "create_time"},
-            {"data": "guihuakeshenqingperson"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [6],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
-                    return html;
+    if(del1){
+        var money_apply1 = $('#money_apply1').DataTable({
+            ajax: {
+                url: "/capitalFlowAll.do? ",
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": "capitalflowid"},
+                {"data": "initiatorclass"},
+                {"data": "title"},
+                {"data": "create_time"},
+                {"data": "guihuakeshenqingperson"},
+                {"data": "status"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [6],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
                 }
             }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
+        });
+    }else {
+        var money_apply1 = $('#money_apply1').DataTable({
+            ajax: {
+                url: "/capitalFlowAll.do? ",
+                async:false
+            },
+            "order": [[1, 'desc']],
+            "serverSide": true,
+            "columns": [
+                {"data": "capitalflowid"},
+                {"data": "initiatorclass"},
+                {"data": "title"},
+                {"data": "create_time"},
+                {"data": "guihuakeshenqingperson"},
+                {"data": "status"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [6],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        return html;
+                    }
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
             }
-        }
-    });
+        });
+    }
+
 
     //待处理
     var dcl_table = $('#dcl_table').DataTable({
@@ -984,64 +1088,7 @@
             })
         }
     })
-    //获取功能
 
-    var fun_list1 = [];
-    var fun_list2 = [];
-    $.ajax({
-        url: "/getFunction.do",
-        type: "post",
-        async: false,
-        dataType: "json",
-        success:function (data) {
-            console.log(data);
-            $.each(data.function,function (i,n) {
-                if(n.subclassification == "市资金申请管理"){
-                    fun_list1.push(n);
-                }else if(n.subclassification == "区县资金申请管理"){
-                    fun_list2.push(n);
-                }else if(n.authdescription == "接收市局规划科通知功能"){
-                    $("#msg").css("display","block");
-                }
-            })
-        }
-    });
-    var len1 = fun_list1.length;
-    var len2 = fun_list2.length;
-    if(len1 == 0 && len2 == 0){
-        $("#header1").remove();
-        $("#m_apply1").remove();
-        $("#new1").remove();
-        $("#dcl").addClass("active");
-        $("#new2").addClass("active");
-    }else{
-        $("#new1>.row>div:nth-child(1)").css("display","none");
-        $("#new1>.row>div:nth-child(2)").css("display","none");
-        $("#new1>.box-inner").css("display","none");
-        $.each(fun_list1,function (i,n) {
-            if(n.authdescription == "市局规划科资金申请上报功能"){
-                $("#new1>.row>div:nth-child(1)").css("display","block");
-            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
-                $("#new1>.box-inner").css("display","block");
-            }else if(n.authdescription == "全部列表查看、搜索功能"){
-                $("#new1>.box-inner").css("display","block");
-                $("#new1>.box-danger").css("display","none");
-            }
-        });
-        $.each(fun_list2,function (i,n) {
-            if(n.authdescription == "区县发起申请功能"){
-                $("#new1>.row>div:nth-child(2)").css("display","block");
-            }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
-                $("#new1>.box-inner").css("display","block");
-            }else if(n.authdescription == "全部列表查看、搜索功能"){
-                $("#new1>.box-inner").css("display","block");
-                $("#new1 .btn-danger").css("display","none");
-            }else if(n.authdescription == "个人申请列表查看、搜索功能"){
-                $("#new1>.box-inner").css("display","block");
-                $("#new1 .btn-danger").css("display","none");
-            }
-        });
-    }
 
     //日期插件
 

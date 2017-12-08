@@ -543,54 +543,164 @@
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 <script src="../../js/app.js"></script>
 <script>
-
-    // 全部列表datatables
-
-    var all_table = $('#NewTable_Stuff').DataTable({
-        ajax: {
-            url: "/allNonFileManagementDataTable.do",
-            async: false
-        },
-        "order": [[2, 'asc']],
-        "serverSide": true,
-        "columns": [
-            {"data": "nonfileid"},
-            {"data": "title"},
-            {"data": "infokind"},
-            {"data": "submitperson"},
-            {"data": "status"},
-            {"data": null}
-        ],
-        "columnDefs": [
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [5],
-                "render" :  function(data,type,row) {
-                    var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
-                    html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
-                    return html;
+    //获取功能
+    var del1 = false;
+    var fun_list = [];
+    var dcl_fun = [];
+    $.ajax({
+        url: "/getFunction.do",
+        type: "post",
+        async: false,
+        dataType: "json",
+        success:function (data) {
+            console.log(data);
+            $.each(data.function,function (i,n) {
+                if(n.classification == "非文件管理"){
+                    fun_list.push(n);
                 }
-            },
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0]
-            }
-        ],
-        "language": {
-            "lengthMenu": "每页_MENU_ 条记录",
-            "zeroRecords": "没有找到记录",
-            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
-            "infoEmpty": "无记录",
-            "search": "搜索：",
-            "infoFiltered": "(从 _MAX_ 条记录过滤)",
-            "paginate": {
-                "previous": "上一页",
-                "next": "下一页"
-            }
+            })
         }
     });
+    var fun_list1 = [];
+    $.each(fun_list,function (i,n) {
+        if(n.subclassification == "我的表单"){
+            fun_list1.push(n)
+        }
+        if(n.classification == "非文件管理"){
+            dcl_fun.push(n)
+        }
+    });
+    $.each(dcl_fun,function (i,n) {
+        if(n.subclassification == "待处理/已处理事务"){
+            $("#header2").css("display","block");
+            $("#dcl2").css("display","block");
+            $("#ycl2").css("display","block");
+        }
+    })
+    var f1 = [];
+    var f2 = [];
+    var f3 = [];
+    $.each(fun_list1,function(i,n){
+        if(n.authdescription == "文件提交"){
+            f1.push(n);
+        }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
+            f2.push(n);
+            del1 = true;
+        }else if(n.authdescription == "个人申请列表查看、搜索功能"){
+            f3.push(n);
+        }
+    })
+    if(f1.length == 0){
+        $("#new1>.row").css("display","none");
+    }
+
+    if(f2.length == 0 && f3.length == 0){
+        $("#new1>.box-inner").css("display","none");
+    }else if(f2.length == 0 && f3.length == 1){
+        console.log(123)
+        $("#new1 .btn-danger").css("display","none");
+    }
+    if(f1.length == 0 && f2.length == 0 && f3.length == 0){
+        $("#myTab li:nth-child(1)").remove();
+        $("#myTab li:nth-child(1)").remove();
+        $("#new1").remove();
+        $("#dcl").addClass("active");
+        $("#new2").addClass("active");
+    }
+    // 全部列表datatables
+    if(del1){
+        var all_table = $('#NewTable_Stuff').DataTable({
+            ajax: {
+                url: "/allNonFileManagementDataTable.do",
+                async: false
+            },
+            "order": [[2, 'asc']],
+            "serverSide": true,
+            "columns": [
+                {"data": "nonfileid"},
+                {"data": "title"},
+                {"data": "infokind"},
+                {"data": "submitperson"},
+                {"data": "status"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [5],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0]
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+    }else {
+        var all_table = $('#NewTable_Stuff').DataTable({
+            ajax: {
+                url: "/allNonFileManagementDataTable.do",
+                async: false
+            },
+            "order": [[2, 'asc']],
+            "serverSide": true,
+            "columns": [
+                {"data": "nonfileid"},
+                {"data": "title"},
+                {"data": "infokind"},
+                {"data": "submitperson"},
+                {"data": "status"},
+                {"data": null}
+            ],
+            "columnDefs": [
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [5],
+                    "render" :  function(data,type,row) {
+                        var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
+                        return html;
+                    }
+                },
+                {
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": [0]
+                }
+            ],
+            "language": {
+                "lengthMenu": "每页_MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "search": "搜索：",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)",
+                "paginate": {
+                    "previous": "上一页",
+                    "next": "下一页"
+                }
+            }
+        });
+    }
+
 
 
     //待办列表的datatables
@@ -686,68 +796,7 @@
     $("#dcl2").css("display","none");
     $("#ycl2").css("display","none");
 
-    //获取功能
-    var fun_list = [];
-    var dcl_fun = [];
-    $.ajax({
-        url: "/getFunction.do",
-        type: "post",
-        async: false,
-        dataType: "json",
-        success:function (data) {
-            console.log(data);
-            $.each(data.function,function (i,n) {
-                if(n.classification == "非文件管理"){
-                    fun_list.push(n);
-                }
-            })
-        }
-    });
-    var fun_list1 = [];
-    $.each(fun_list,function (i,n) {
-        if(n.subclassification == "我的表单"){
-            fun_list1.push(n)
-        }
-        if(n.classification == "非文件管理"){
-            dcl_fun.push(n)
-        }
-    });
-    $.each(dcl_fun,function (i,n) {
-        if(n.subclassification == "待处理/已处理事务"){
-            $("#header2").css("display","block");
-            $("#dcl2").css("display","block");
-            $("#ycl2").css("display","block");
-        }
-    })
-    var f1 = [];
-    var f2 = [];
-    var f3 = [];
-    $.each(fun_list1,function(i,n){
-        if(n.authdescription == "文件提交"){
-            f1.push(n);
-        }else if(n.authdescription == "全部列表查看、搜索、删除功能"){
-            f2.push(n);
-        }else if(n.authdescription == "个人申请列表查看、搜索功能"){
-            f3.push(n);
-        }
-    })
-    if(f1.length == 0){
-        $("#new1>.row").css("display","none");
-    }
 
-    if(f2.length == 0 && f3.length == 0){
-        $("#new1>.box-inner").css("display","none");
-    }else if(f2.length == 0 && f3.length == 1){
-        console.log(123)
-        $("#new1 .btn-danger").css("display","none");
-    }
-    if(f1.length == 0 && f2.length == 0 && f3.length == 0){
-        $("#myTab li:nth-child(1)").remove();
-        $("#myTab li:nth-child(1)").remove();
-        $("#new1").remove();
-        $("#dcl").addClass("active");
-        $("#new2").addClass("active");
-    }
 
     //删除功能
     function delete1(that) {
