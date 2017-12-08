@@ -75,7 +75,7 @@ public class UserManagementDataTable {
                 sArray.add(" u.id like '%" + searchValue + "%'");
                 sArray.add(" u.username like '%" + searchValue + "%'");
                 sArray.add(" u.name like '%" + searchValue + "%'");
-                sArray.add(" r.rolename like '%" + searchValue + "%'");
+                sArray.add(" aa.rolename like '%" + searchValue + "%'");
                 sArray.add(" ud.unit like '%" + searchValue + "%'");
                 sArray.add(" ud.department like '%" + searchValue + "%'");
             }
@@ -92,10 +92,10 @@ public class UserManagementDataTable {
 
             List<RegisterInfo> tasks = new ArrayList<RegisterInfo>();
             if (conn != null) {
-                String recordsFilteredSql = "select count(u.id) as recordsFiltered from user u,user_role ur,role r,unitanddepartment ud WHERE  u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
+                String recordsFilteredSql = "select count(u.id) as recordsFiltered from USER u LEFT JOIN (SELECT ur.userid AS id,r.rolename FROM user_role ur,role r WHERE ur.roleid = r.id) aa ON u.id = aa.id LEFT JOIN unitanddepartment ud ON u.DEPT = ud.id";
                 stmt = conn.createStatement();
                 //获取数据库总记录数
-                String recordsTotalSql = "select count(u.id) as recordsTotal from user u,user_role ur,role r,unitanddepartment ud WHERE u.ID = ur.userid AND ur.roleid = r.id AND u.DEPT = ud.id";
+                String recordsTotalSql = "select count(u.id) as recordsTotal from USER u LEFT JOIN (SELECT ur.userid AS id,r.rolename FROM user_role ur,role r WHERE ur.roleid = r.id) aa ON u.id = aa.id LEFT JOIN unitanddepartment ud ON u.DEPT = ud.id";
                 rs = stmt.executeQuery(recordsTotalSql);
                 while (rs.next()) {
                     recordsTotal = rs.getString("recordsTotal");
@@ -104,7 +104,7 @@ public class UserManagementDataTable {
                 String searchSQL = "";
                 String sql = "SELECT IFNULL(u.id,0)AS id,IFNULL(u.username,'')AS username,IFNULL(aa.rolename,'') AS role,IFNULL(u.name,'') AS NAME,IFNULL(ud.unit,'') AS unit, IFNULL(ud.department,'') AS department FROM USER u LEFT JOIN (SELECT ur.userid AS id,r.rolename FROM user_role ur,role r WHERE ur.roleid = r.id) aa ON u.id = aa.id LEFT JOIN unitanddepartment ud ON u.DEPT = ud.id";
                 if (individualSearch != "") {
-                    searchSQL = " and " + "("+individualSearch+")";
+                    searchSQL = " where " + "("+individualSearch+")";
                 }
                 sql += searchSQL;
                 recordsFilteredSql += searchSQL;
