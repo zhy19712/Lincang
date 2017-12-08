@@ -361,8 +361,8 @@ $(function(){
         ],
         "columnDefs": [
             {
-                "searchable": true,
-                "orderable": true,
+                "searchable": false,
+                "orderable": false,
                 "targets": [7],
                 "render" :  function(data,type,row) {
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";

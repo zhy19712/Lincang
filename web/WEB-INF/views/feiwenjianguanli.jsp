@@ -614,7 +614,7 @@
                 url: "/allNonFileManagementDataTable.do",
                 async: false
             },
-            "order": [[2, 'asc']],
+            "order": [[0, 'asc']],
             "serverSide": true,
             "columns": [
                 {"data": "nonfileid"},
@@ -634,11 +634,6 @@
                         html += "<input type='button' class='btn btn-danger btn-xs' style='margin-left: 5px;' onclick='delete1(this)' value='删除'/>" ;
                         return html;
                     }
-                },
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [0]
                 }
             ],
             "language": {
@@ -660,7 +655,7 @@
                 url: "/allNonFileManagementDataTable.do",
                 async: false
             },
-            "order": [[2, 'asc']],
+            "order": [[0, 'asc']],
             "serverSide": true,
             "columns": [
                 {"data": "nonfileid"},
@@ -679,11 +674,6 @@
                         var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                         return html;
                     }
-                },
-                {
-                    "searchable": false,
-                    "orderable": false,
-                    "targets": [0]
                 }
             ],
             "language": {
@@ -771,11 +761,6 @@
                     var html = "<input type='button' class='btn btn-primary btn-xs' style='margin-left: 5px;' onclick='edit(this)' value='查看'/>";
                     return html;
                 }
-            },
-            {
-                "searchable": false,
-                "orderable": false,
-                "targets": [0]
             }
         ],
         "language": {
