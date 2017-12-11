@@ -570,13 +570,6 @@
             dcl_fun.push(n)
         }
     });
-    $.each(dcl_fun,function (i,n) {
-        if(n.subclassification == "待处理/已处理事务"){
-            $("#header2").css("display","block");
-            $("#dcl2").css("display","block");
-            $("#ycl2").css("display","block");
-        }
-    })
     var f1 = [];
     var f2 = [];
     var f3 = [];
@@ -607,6 +600,17 @@
         $("#dcl").addClass("active");
         $("#new2").addClass("active");
     }
+
+    $("#header2").css("display","none");
+    $("#dcl2").css("display","none");
+    $("#ycl2").css("display","none");
+    $.each(dcl_fun,function (i,n) {
+        if(n.subclassification == "待处理/已处理事务"){
+            $("#header2").css("display","block");
+            $("#dcl2").css("display","block");
+            $("#ycl2").css("display","block");
+        }
+    })
     // 全部列表datatables
     if(del1){
         var all_table = $('#NewTable_Stuff').DataTable({
@@ -777,9 +781,6 @@
         }
     });
 
-    $("#header2").css("display","none");
-    $("#dcl2").css("display","none");
-    $("#ycl2").css("display","none");
 
 
 

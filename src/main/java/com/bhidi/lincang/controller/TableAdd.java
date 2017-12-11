@@ -46,7 +46,7 @@ public class TableAdd {
             //过滤后记录数
             String recordsFiltered = "";
             //定义列名
-            String[] cols = {"FID","TABLE_TYPE","NAME", "RESERVOIR", "TO_DISTRICT","INTERVIEWER","CREATED_AT"};
+            String[] cols = {"","FID","TABLE_TYPE","NAME", "RESERVOIR", "TO_DISTRICT","INTERVIEWER","CREATED_AT"};
             String orderColumn = "0";
             orderColumn = request.getParameter("order[0][column]");
             orderColumn = cols[Integer.parseInt(orderColumn)];
